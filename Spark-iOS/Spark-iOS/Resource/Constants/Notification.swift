@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// notification naem 을 확장시켜서 상수로 관리합니다.
+// notification name 을 확장시켜서 상수로 관리합니다.
 extension Notification.Name {
     // static let sendData = Notification.Name("sendData")
 }
