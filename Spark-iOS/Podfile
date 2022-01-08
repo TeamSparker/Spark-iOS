@@ -6,5 +6,12 @@ target 'Spark-iOS' do
   use_frameworks!
 
   # Pods for Spark-iOS
-
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'Kingfisher', '~> 7.0'
+  pod 'SwiftLint'
+  pod 'Moya', '~> 15.0'
+  pod 'JJFloatingActionButton'
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKUser'
+  pod 'KakaoSDKAuth'
 end

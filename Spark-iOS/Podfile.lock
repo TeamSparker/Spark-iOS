@@ -1,0 +1,58 @@
+PODS:
+  - Alamofire (5.4.4)
+  - JJFloatingActionButton (2.5.0)
+  - KakaoSDKAuth (2.8.4):
+    - KakaoSDKCommon (= 2.8.4)
+  - KakaoSDKCommon (2.8.4):
+    - KakaoSDKCommon/Common (= 2.8.4)
+    - KakaoSDKCommon/Network (= 2.8.4)
+  - KakaoSDKCommon/Common (2.8.4)
+  - KakaoSDKCommon/Network (2.8.4):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.8.4)
+  - KakaoSDKUser (2.8.4):
+    - KakaoSDKAuth (= 2.8.4)
+  - Kingfisher (7.1.1)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.45.1)
+
+DEPENDENCIES:
+  - JJFloatingActionButton
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
+  - Kingfisher (~> 7.0)
+  - Moya (~> 15.0)
+  - SnapKit (~> 5.0.0)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - JJFloatingActionButton
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
+    - Kingfisher
+    - Moya
+    - SnapKit
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
+  KakaoSDKAuth: b9b693995f98b1821ccd22b39d383e1dede5ca45
+  KakaoSDKCommon: 33c9902ee9ce13e9d1cac3549896406229836ff5
+  KakaoSDKUser: d878977e0ba6b365cfeac3b6319cdf4231713bea
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
+
+PODFILE CHECKSUM: 6b1c80b96bfeace5043021e6e0708c1953e99156
+
+COCOAPODS: 1.11.2
