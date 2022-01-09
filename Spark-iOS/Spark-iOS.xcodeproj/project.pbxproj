@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
+		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
 		F8096F0B2784107D00B71D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8096F052784107D00B71D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 				C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */,
 				3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -120,6 +121,7 @@
 			children = (
 				F8096F112784107E00B71D38 /* Info.plist */,
 				F8096F0C2784107E00B71D38 /* Assets.xcassets */,
+				EBA77238278A2E14002958A5 /* Colors.xcassets */,
 				F8096F1927841A3100B71D38 /* Constants */,
 				F8096F1A27841A3A00B71D38 /* Fonts */,
 				F8096F1B27841A3D00B71D38 /* Storyboards */,
@@ -299,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
+				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
 				F8096F0B2784107D00B71D38 /* Main.storyboard in Resources */,
 			);
