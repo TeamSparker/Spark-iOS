@@ -11,7 +11,10 @@ extension Const {
     /// ViewController 의 identifier 을 상수로 관리합니다.
     struct ViewController {
         struct Identifier {
-            static let main = "MainVC"
+            static let mainTabBar = "MainTBC"
+            static let home = "HomeVC"
+            static let feed = "FeedVC"
+            static let storage = "StorageVC"
         }
     }
 }
