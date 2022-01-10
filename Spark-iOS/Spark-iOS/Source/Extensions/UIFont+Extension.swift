@@ -118,6 +118,8 @@ extension UIFont {
         return UIFont(name: "NotoSansKR-Regular", size: 12.0)!
     }
     
+    /// 기본 systemfont 내장함수를 Custom 하는 부분입니다.
+    /// 2. 원하는 파라미터(fontName) 변경 후 initializing -> 폰트가 만들어질 때 호출되는 함수 변경
     @objc convenience init(myCoder aDecoder: NSCoder) {
         if let fontDescriptor = aDecoder.decodeObject(forKey: "UIFontDescriptor") as? UIFontDescriptor {
             if let fontAttribute = fontDescriptor.fontAttributes[.nsctFontUIUsage] as? String {
@@ -143,6 +145,7 @@ extension UIFont {
         }
     }
     
+    /// 1. systemFont (ofSize:) 시스템 함수와 krRegularFont(ofSize:) 함수의 struct상 위치를 변경
     class func overrideInitialize() {
         if self == UIFont.self {
             let systemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:)))
