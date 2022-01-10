@@ -27,7 +27,6 @@ extension MainTBC {
               let storageVC = UIStoryboard(name: Const.Storyboard.Name.storage, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.storage) as? StorageVC else { return }
         
         feedVC.tabBarItem = UITabBarItem(title: "피드", image: UIImage(named: "icFeedInactive"), selectedImage: UIImage(named: "icFeedActive"))
-        
         homeVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "icHomeInactive"), selectedImage: UIImage(named: "icHomeActive"))
         storageVC.tabBarItem = UITabBarItem(title: "보관함", image: UIImage(named: "icMyboxInactive"), selectedImage: UIImage(named: "icMyboxActive"))
     
