@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "icFireDarkgray.png"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "universal",
+      "filename" : "icFireDarkgray@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "icFireDarkgray@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
