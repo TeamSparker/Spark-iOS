@@ -20,97 +20,97 @@ struct AppFontName {
 extension UIFont {
     /// font에 따라 사용하며, 폰트 크기 지정O
     /// ex) textLabel.font = .enBoldFont(ofSize: 30)
-    @objc class func enBoldFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func enBoldFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.enBold, size: size)!
     }
     
-    @objc class func enMediumFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func enMediumFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.enMedium, size: size)!
     }
     
-    @objc class func enMediumItatlicFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func enMediumItatlicFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.enMediumItalic, size: size)!
     }
     
-    @objc class func krBoldFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func krBoldFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.krBold, size: size)!
     }
     
-    @objc class func krMediumFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func krMediumFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.krMeduim, size: size)!
     }
     
-    @objc class func krRegularFont(ofSize size: CGFloat) -> UIFont {
+    @nonobjc class func krRegularFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.krRegular, size: size)!
     }
     
     /// typo에 따라 사용하며, 폰트 크기 지정X
     /// ex) textLabel.font = .h1BigtitleEng
-    class var h1BigtitleEng: UIFont {
+    @nonobjc class var h1BigtitleEng: UIFont {
         return UIFont(name: AppFontName.enBold, size: 31.0)!
     }
     
-    class var h1Bigtitle: UIFont {
+    @nonobjc class var h1Bigtitle: UIFont {
         return UIFont(name: AppFontName.krBold, size: 24.0)!
     }
     
-    class var h2TitleEng: UIFont {
+    @nonobjc class var h2TitleEng: UIFont {
         return UIFont(name: AppFontName.enBold, size: 20.0)!
     }
     
-    class var h2Title: UIFont {
+    @nonobjc class var h2Title: UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 20.0)!
     }
     
-    class var btn1Default: UIFont {
+    @nonobjc class var btn1Default: UIFont {
         return UIFont(name: AppFontName.krBold, size: 18.0)!
     }
     
-    class var h3SubtitleEng: UIFont {
+    @nonobjc class var h3SubtitleEng: UIFont {
         return UIFont(name: AppFontName.enMedium, size: 18.0)!
     }
     
-    class var h3SubtitleEngItalic: UIFont {
+    @nonobjc class var h3SubtitleEngItalic: UIFont {
         return UIFont(name: AppFontName.enMediumItalic, size: 18.0)!
     }
     
-    class var h3Subtitle: UIFont {
+    @nonobjc class var h3Subtitle: UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 18.0)!
     }
     
-    class var btn2: UIFont {
+    @nonobjc class var btn2: UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 16.0)!
     }
     
-    class var p1Title: UIFont {
+    @nonobjc class var p1Title: UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 16.0)!
     }
     
-    class var btn3: UIFont {
+    @nonobjc class var btn3: UIFont {
         return UIFont(name: AppFontName.krRegular, size: 16.0)!
     }
     
-    class var p1TitleLight: UIFont {
+    @nonobjc class var p1TitleLight: UIFont {
         return UIFont(name: AppFontName.krRegular, size: 16.0)!
     }
     
-    class var p2Subtitle2Eng: UIFont {
+    @nonobjc class var p2Subtitle2Eng: UIFont {
         return UIFont(name: AppFontName.enBold, size: 14.0)!
     }
     
-    class var p2SubtitleEng: UIFont {
+    @nonobjc class var p2SubtitleEng: UIFont {
         return UIFont(name: AppFontName.enMedium, size: 14.0)!
     }
     
-    class var p2Subtitle: UIFont {
+    @nonobjc class var p2Subtitle: UIFont {
         return UIFont(name: AppFontName.krRegular, size: 14.0)!
     }
     
-    class var captionEng: UIFont {
+    @nonobjc class var captionEng: UIFont {
         return UIFont(name: AppFontName.enMedium, size: 12.0)!
     }
     
-    class var caption: UIFont {
+    @nonobjc class var caption: UIFont {
         return UIFont(name: AppFontName.krRegular, size: 12.0)!
     }
 }
