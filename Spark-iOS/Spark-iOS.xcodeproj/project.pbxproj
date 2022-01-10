@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B9471F3278BE8B3005484C5 /* Futura Bold font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */; };
+		2B9471F4278BE8B3005484C5 /* futura medium bt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */; };
+		2B9471F5278BE8B3005484C5 /* Futura Medium Italic font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */; };
+		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
+		2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */; };
+		2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
@@ -14,7 +20,6 @@
 		F8096F0B2784107D00B71D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Main.storyboard */; };
 		F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8096F0C2784107E00B71D38 /* Assets.xcassets */; };
 		F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F0E2784107E00B71D38 /* LaunchScreen.storyboard */; };
-		F8096F2627841F0900B71D38 /* TempFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2527841F0900B71D38 /* TempFont.swift */; };
 		F8096F2927841F1E00B71D38 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2827841F1E00B71D38 /* Const.swift */; };
 		F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2A27841F4100B71D38 /* Storyboard.swift */; };
 		F8096F3027841F9200B71D38 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2F27841F9200B71D38 /* MainVC.swift */; };
@@ -32,6 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold font.ttf"; sourceTree = "<group>"; };
+		2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futura medium bt.ttf"; sourceTree = "<group>"; };
+		2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic font.ttf"; sourceTree = "<group>"; };
+		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +54,6 @@
 		F8096F0C2784107E00B71D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8096F0F2784107E00B71D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8096F112784107E00B71D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8096F2527841F0900B71D38 /* TempFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFont.swift; sourceTree = "<group>"; };
 		F8096F2827841F1E00B71D38 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		F8096F2A27841F4100B71D38 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F8096F2F27841F9200B71D38 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -161,7 +171,12 @@
 		F8096F1A27841A3A00B71D38 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F2527841F0900B71D38 /* TempFont.swift */,
+				2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */,
+				2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */,
+				2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */,
+				2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */,
+				2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */,
+				2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -300,10 +315,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9471F4278BE8B3005484C5 /* futura medium bt.ttf in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
+				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
+				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
+				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
 				F8096F0B2784107D00B71D38 /* Main.storyboard in Resources */,
+				2B9471F5278BE8B3005484C5 /* Futura Medium Italic font.ttf in Resources */,
+				2B9471F3278BE8B3005484C5 /* Futura Bold font.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +385,6 @@
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
-				F8096F2627841F0900B71D38 /* TempFont.swift in Sources */,
 				F8096F402784214000B71D38 /* TempCell.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
@@ -449,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -504,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -522,7 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
@@ -553,7 +573,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
