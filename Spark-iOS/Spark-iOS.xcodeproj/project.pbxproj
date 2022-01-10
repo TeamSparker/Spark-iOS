@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B9471F3278BE8B3005484C5 /* Futura Bold font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */; };
+		2B9471F4278BE8B3005484C5 /* futura medium bt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */; };
+		2B9471F5278BE8B3005484C5 /* Futura Medium Italic font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */; };
+		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
+		2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */; };
+		2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
@@ -32,6 +38,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold font.ttf"; sourceTree = "<group>"; };
+		2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futura medium bt.ttf"; sourceTree = "<group>"; };
+		2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic font.ttf"; sourceTree = "<group>"; };
+		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +173,12 @@
 		F8096F1A27841A3A00B71D38 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2B9471F0278BE8B3005484C5 /* Futura Bold font.ttf */,
+				2B9471F1278BE8B3005484C5 /* futura medium bt.ttf */,
+				2B9471F2278BE8B3005484C5 /* Futura Medium Italic font.ttf */,
+				2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */,
+				2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */,
+				2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */,
 				F8096F2527841F0900B71D38 /* TempFont.swift */,
 			);
 			path = Fonts;
@@ -300,10 +318,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9471F4278BE8B3005484C5 /* futura medium bt.ttf in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
+				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
+				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
+				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
 				F8096F0B2784107D00B71D38 /* Main.storyboard in Resources */,
+				2B9471F5278BE8B3005484C5 /* Futura Medium Italic font.ttf in Resources */,
+				2B9471F3278BE8B3005484C5 /* Futura Bold font.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
