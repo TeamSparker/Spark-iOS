@@ -4,9 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Futura Bold font.ttf</string>
-		<string>futura medium bt.ttf</string>
-		<string>Futura Medium Italic font.ttf</string>
+		<string>Futura Bold.otf</string>
+		<string>Futura Medium.otf</string>
+		<string>Futura Medium Italic.otf</string>
 		<string>NotoSansKR-Bold.otf</string>
 		<string>NotoSansKR-Medium.otf</string>
 		<string>NotoSansKR-Regular.otf</string>
