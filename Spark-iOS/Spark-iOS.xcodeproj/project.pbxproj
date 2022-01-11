@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
 		2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */; };
 		2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				F8096F3F2784214000B71D38 /* TempCell.swift */,
+				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				F8096F422784214900B71D38 /* TempAppModel.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
+				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+Extension.swift in Sources */,
