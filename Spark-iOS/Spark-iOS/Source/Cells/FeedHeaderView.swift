@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 import SwiftUI
+import SnapKit
 
 class FeedHeaderView: UICollectionReusableView {
     
@@ -16,6 +18,8 @@ class FeedHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        setUI()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -33,6 +37,16 @@ class FeedHeaderView: UICollectionReusableView {
     }
     
     func setLayout() {
+        self.addSubview(dateLabel)
+        self.addSubview(dayLabel)
         
+        dateLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(20)
+        }
+        
+        dayLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.top.equalTo(dateLabel.snp.bottom)
+        }
     }
 }
