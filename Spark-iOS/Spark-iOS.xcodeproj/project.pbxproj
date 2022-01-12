@@ -45,7 +45,7 @@
 		F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E56278C1C2700728E07 /* FeedVC.swift */; };
 		F816F122278E1C760008ED00 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F816F121278E1C760008ED00 /* Login.storyboard */; };
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
-		F82B2E0B278EBC4400219628 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaults.swift */; };
+		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
@@ -94,7 +94,7 @@
 		F80A3E56278C1C2700728E07 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		F816F121278E1C760008ED00 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		F82B2E0A278EBC4400219628 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
 				F8096F432784221900B71D38 /* Xib.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
-				F82B2E0A278EBC4400219628 /* UserDefaults.swift */,
+				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
 				F8096F422784214900B71D38 /* TempAppModel.swift in Sources */,
-				F82B2E0B278EBC4400219628 /* UserDefaults.swift in Sources */,
+				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
