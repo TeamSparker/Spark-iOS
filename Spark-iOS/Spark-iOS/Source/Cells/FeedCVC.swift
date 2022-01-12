@@ -10,11 +10,13 @@ import UIKit
 import SnapKit
 
 class FeedCVC: UICollectionViewCell {
+    static let identifier = "FeedCVC"
     
     // MARK: - Properties
     
-    let feedImageView = UIImageView() ///
-    let timeLabel = UILabel() ///
+    let feedImageView = UIImageView()
+    let fadeImageView = UIImageView()
+    let timeLabel = UILabel()
     let profileImageView = UIImageView()
     let nameLabel = UILabel() /// 힛이
     
@@ -45,8 +47,9 @@ class FeedCVC: UICollectionViewCell {
     
     // MARK: - Methods
     func setUI() {
-        feedImageView.backgroundColor = .sparkDarkGray
+        feedImageView.backgroundColor = .orange
         profileImageView.backgroundColor = .yellow
+        fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
         sparkLabel.text = "받은 스파크"
         // TODO: - 서버 데이터 연결 후 삭제
@@ -62,19 +65,28 @@ class FeedCVC: UICollectionViewCell {
         sparkCountLabel.font = .p2SubtitleEng
         heartCountLabel.font = .h2TitleEng
         
+        timeLabel.textColor = .sparkWhite
+        nameLabel.textColor = .sparkDeepGray
+        titleLabel.textColor = .sparkDeepGray
+        sparkLabel.textColor = .sparkDarkGray
+        sparkCountLabel.textColor = .sparkDarkGray
+        heartCountLabel.textColor = .sparkGray
+        
         doneImageView.image = UIImage(named: "tagDone")
-        sparkIconImageView.image = UIImage(named: "icFireDefault")
+        sparkIconImageView.image = UIImage(named: "icFire")
         heartImageView.image = UIImage(named: "icHeartInactive")
     }
     
     func setStackView() {
         titleStackView.axis = .horizontal
+        titleStackView.alignment = .fill
         titleStackView.distribution = .equalSpacing
         titleStackView.spacing = 8
-        titleStackView.addArrangedSubview(timeLabel)
+        titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(doneImageView)
         
         sparkStackView.axis = .horizontal
+        sparkStackView.alignment = .fill
         sparkStackView.distribution = .equalSpacing
         sparkStackView.spacing = 2
         sparkStackView.addArrangedSubview(sparkLabel)
@@ -83,15 +95,18 @@ class FeedCVC: UICollectionViewCell {
     }
     
     func setLayout() {
-        self.addSubviews([feedImageView, timeLabel, profileImageView,
-                          nameLabel, titleStackView, titleLabel,
-                          doneImageView, sparkStackView, sparkLabel,
-                          sparkIconImageView, sparkCountLabel, heartImageView,
+        self.addSubviews([feedImageView, fadeImageView, profileImageView,
+                          nameLabel, titleStackView, timeLabel,
+                          sparkStackView, heartImageView,
                           heartCountLabel])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(feedImageView.snp.width).multipliedBy(1.0 / 1.0)
+        }
+        
+        fadeImageView.snp.makeConstraints { make in
+            make.edges.equalTo(feedImageView.snp.edges)
         }
         
         timeLabel.snp.makeConstraints { make in
@@ -120,11 +135,13 @@ class FeedCVC: UICollectionViewCell {
         }
         
         heartImageView.snp.makeConstraints { make in
+            make.top.equalTo(feedImageView.snp.bottom).offset(20)
             make.trailing.equalToSuperview().inset(50)
         }
         
         heartCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(heartImageView.snp.trailing).offset(5)
+            make.centerY.equalTo(heartImageView.snp.centerY)
         }
     }
 }

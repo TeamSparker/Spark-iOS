@@ -11,6 +11,7 @@ import SwiftUI
 import SnapKit
 
 class FeedHeaderView: UICollectionReusableView {
+    static let identifier = "FeedHeaderView"
     
     // MARK: - Properties
     
@@ -32,6 +33,7 @@ class FeedHeaderView: UICollectionReusableView {
     // MARK: - Methods
     
     func setUI() {
+        self.backgroundColor = .sparkWhite
         dateLabel.font = .h3SubtitleEng
         dateLabel.text = "2022년 1월 7일"
         dateLabel.textColor = .sparkDeepGray
