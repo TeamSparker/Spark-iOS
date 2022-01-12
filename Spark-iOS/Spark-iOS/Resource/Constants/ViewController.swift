@@ -16,6 +16,7 @@ extension Const {
             static let feed = "FeedVC"
             static let storage = "StorageVC"
             static let login = "LoginVC"
+            static let splash = "SplashVC"
         }
     }
 }

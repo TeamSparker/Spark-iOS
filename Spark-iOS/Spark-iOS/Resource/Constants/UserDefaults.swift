@@ -10,5 +10,6 @@ import Foundation
 extension Const {
     struct UserDefaultsKey {
         static let isAppleLogin = "isAppleLogin"
+        static let isOnboarding = "isOnboarding"
     }
 }

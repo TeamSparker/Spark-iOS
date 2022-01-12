@@ -48,8 +48,7 @@ extension LoginVC {
         loginLabel.text = "로그인 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
         loginLabel.textColor = .sparkWhite
         
-        // TODO: - 로그인 라벨 폰트 적용
-//        loginLabel.font = .
+        loginLabel.font = .krMediumFont(ofSize: 12)
         
         kakaoLoginButton.setImage(UIImage(named: "btnKakaoLogin"), for: .normal)
         appleLoginButton.setImage(UIImage(named: "btnAppleLogin"), for: .normal)
@@ -118,6 +117,7 @@ extension LoginVC {
     private func presentToMainTabBar() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
         nextVC.modalPresentationStyle = .fullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
         
         present(nextVC, animated: true, completion: nil)
     }

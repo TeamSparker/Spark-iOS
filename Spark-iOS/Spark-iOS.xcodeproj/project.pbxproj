@@ -43,6 +43,8 @@
 		F816F122278E1C760008ED00 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F816F121278E1C760008ED00 /* Login.storyboard */; };
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
 		F82B2E0B278EBC4400219628 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaults.swift */; };
+		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
+		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		F816F121278E1C760008ED00 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F82B2E0A278EBC4400219628 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				F8096F0E2784107E00B71D38 /* LaunchScreen.storyboard */,
+				F82B2E0F278F54B000219628 /* Splash */,
 				F816F120278E1C550008ED00 /* Login */,
 				F80A3E59278C239F00728E07 /* TabBar */,
 			);
@@ -229,6 +234,7 @@
 		F8096F1E27841DC100B71D38 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F82B2E10278F54C200219628 /* Splash */,
 				F816F123278E1C800008ED00 /* Login */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
 			);
@@ -314,6 +320,22 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		F82B2E0F278F54B000219628 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				F82B2E0D278ED01F00219628 /* Splash.storyboard */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		F82B2E10278F54C200219628 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				F82B2E11278F54CD00219628 /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,6 +404,7 @@
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
+				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
@@ -458,6 +481,7 @@
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+Extension.swift in Sources */,
+				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
