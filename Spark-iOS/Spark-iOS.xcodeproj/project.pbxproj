@@ -110,6 +110,15 @@
 			path = Waiting;
 			sourceTree = "<group>";
 		};
+		2BC17271278F551F00BA3029 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
+				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		98B179D2EEBCF1113A785423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,9 +289,8 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2BC17271278F551F00BA3029 /* Feed */,
 				F8096F3F2784214000B71D38 /* TempCell.swift */,
-				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
-				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
