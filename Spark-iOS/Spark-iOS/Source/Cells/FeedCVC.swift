@@ -88,7 +88,7 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.axis = .horizontal
         sparkStackView.alignment = .fill
         sparkStackView.distribution = .equalSpacing
-        sparkStackView.spacing = 2
+        sparkStackView.spacing = 3
         sparkStackView.addArrangedSubview(sparkLabel)
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
@@ -97,8 +97,7 @@ class FeedCVC: UICollectionViewCell {
     func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, heartImageView,
-                          heartCountLabel])
+                          sparkStackView, heartImageView, heartCountLabel])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -132,6 +131,10 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleStackView.snp.bottom).offset(8)
+        }
+        
+        sparkIconImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(16)
         }
         
         heartImageView.snp.makeConstraints { make in
