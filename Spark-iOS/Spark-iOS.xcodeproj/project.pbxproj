@@ -18,6 +18,7 @@
 		2BC1726D278E8F1000BA3029 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
+		2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
+		2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingFriendCVC.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,14 @@
 			isa = PBXGroup;
 			children = (
 				2BC17273278F56D100BA3029 /* Waiting.storyboard */,
+			);
+			path = Waiting;
+			sourceTree = "<group>";
+		};
+		2BC17275278F763600BA3029 /* Waiting */ = {
+			isa = PBXGroup;
+			children = (
+				2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */,
 			);
 			path = Waiting;
 			sourceTree = "<group>";
@@ -300,6 +310,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
 				F8096F3F2784214000B71D38 /* TempCell.swift */,
 			);
@@ -470,6 +481,7 @@
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				F8096F402784214000B71D38 /* TempCell.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
+				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
