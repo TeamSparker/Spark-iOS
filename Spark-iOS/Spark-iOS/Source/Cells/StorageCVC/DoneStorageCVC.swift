@@ -1,13 +1,13 @@
 //
-//  doneStorageCVC.swift
+//  DoneStorageCVC.swift
 //  Spark-iOS
 //
-//  Created by Junho Lee on 2022/01/12.
+//  Created by Junho Lee on 2022/01/13.
 //
 
 import UIKit
 
-class doneStorageCVC: UICollectionViewCell {
+class DoneStorageCVC: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

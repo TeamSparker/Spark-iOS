@@ -1,13 +1,13 @@
 //
-//  failedStorageCVC.swift
+//  FailStorageCVC.swift
 //  Spark-iOS
 //
-//  Created by Junho Lee on 2022/01/12.
+//  Created by Junho Lee on 2022/01/13.
 //
 
 import UIKit
 
-class failedStorageCVC: UICollectionViewCell {
+class FailStorageCVC: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
