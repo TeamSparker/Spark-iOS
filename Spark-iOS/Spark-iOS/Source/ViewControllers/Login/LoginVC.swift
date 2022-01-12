@@ -5,6 +5,7 @@
 //  Created by kimhyungyu on 2022/01/12.
 //
 
+import AuthenticationServices
 import UIKit
 
 import KakaoSDKUser
@@ -32,6 +33,7 @@ class LoginVC: UIViewController {
     // MARK: - @IBOutlet Action
     
     @IBAction func touchAppleLoginButton(_ sender: Any) {
+        signupWithApple()
     }
     
     @IBAction func touchKakaoLoginButton(_ sender: Any) {
@@ -53,6 +55,16 @@ extension LoginVC {
         appleLoginButton.setImage(UIImage(named: "btnAppleLogin"), for: .normal)
     }
     
+    private func signupWithApple() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
     
     private func signupWithKakao() {
         if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -93,10 +105,11 @@ extension LoginVC {
                 print(error)
             } else {
                 if let userID = user?.id {
-                    self.signupWithAPI(userID: Int(userID))
+                    self.signupWithAPI(userID: String(userID))
                     
-                    // TODO: - 키체인
+                    // TODO: - 키체인으로 id 등록
                     
+                    UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                 }
             }
         }
@@ -113,8 +126,37 @@ extension LoginVC {
 // MARK: - Network
 
 extension LoginVC {
-    private func signupWithAPI(userID: Int) {
-        // TODO: - 회원가입 성공 시 화면전환
+    private func signupWithAPI(userID: String) {
+        
+        // TODO: -
+        
         presentToMainTabBar()
+    }
+}
+
+// MARK: - AppleSignIn
+
+extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    // Apple ID 연동 성공 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            let userIdentifier = appleIDCredential.user
+            signupWithAPI(userID: userIdentifier)
+            
+            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
+        default:
+            break
+        }
+    }
+    
+    // Apple ID 연동 실패 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
     }
 }
