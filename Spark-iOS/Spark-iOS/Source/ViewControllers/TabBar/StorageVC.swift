@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class StorageVC: UIViewController {
+    let firstViewButton = MyButton()
+    let secondViewButton = MyButton()
+    let thirdViewButton = MyButton()
+    
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
@@ -46,12 +51,15 @@ class StorageVC: UIViewController {
         
         return name
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         setCarousels()
         addSubviews(firstViewButton, secondViewButton, thirdViewButton, DoingCV, DoneCV, FailCV)
+        setButtons()
+        addTargets(firstViewButton, secondViewButton, thirdViewButton)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,6 +75,69 @@ class StorageVC: UIViewController {
         DoneCV.isHidden = true
         FailCV.isHidden = true
     }
+    
+    // TODO: 컬렉션뷰 위치 스냅킷으로 잡아주기.
+    
+    // MARK: 버튼 레이아웃 설정
+    func setButtons() {
+        firstViewButton.statusCV = 0
+        firstViewButton.backgroundColor = .clear
+        firstViewButton.setTitle("캐러셀 1", for: .normal)
+        firstViewButton.setTitleColor(.black, for: .normal)
+        firstViewButton.setTitleColor(.gray, for: .highlighted)
+        secondViewButton.statusCV = 1
+        secondViewButton.backgroundColor = .clear
+        secondViewButton.setTitle("캐러셀 2", for: .normal)
+        secondViewButton.setTitleColor(.black, for: .normal)
+        secondViewButton.setTitleColor(.gray, for: .highlighted)
+        thirdViewButton.statusCV = 2
+        thirdViewButton.backgroundColor = .clear
+        thirdViewButton.setTitle("캐러셀 3", for: .normal)
+        thirdViewButton.setTitleColor(.black, for: .normal)
+        thirdViewButton.setTitleColor(.gray, for: .highlighted)
+        
+        secondViewButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.centerX.equalToSuperview()
+        }
+        
+        firstViewButton.snp.makeConstraints { make in
+            make.centerY.equalTo(secondViewButton.snp.centerY)
+            make.trailing.equalTo(secondViewButton.snp.leading).offset(-40)
+        }
+        
+        thirdViewButton.snp.makeConstraints { make in
+            make.centerY.equalTo(secondViewButton.snp.centerY)
+            make.leading.equalTo(secondViewButton.snp.trailing).offset(40)
+        }
+    }
+
+    // MARK: 버튼 기능 설정
+    func addTargets(_ buttons: MyButton...) {
+        for button in buttons {
+            button.addTarget(self, action: #selector(changeCollectionView), for: .touchUpInside)
+        }
+    }
+    
+    @objc func changeCollectionView(sender: MyButton) {
+        let status: Int = (sender.statusCV)!
+        switch status {
+        case 1:
+            DoingCV.isHidden = true
+            DoneCV.isHidden = false
+            FailCV.isHidden = true
+        case 2:
+            DoingCV.isHidden = true
+            DoneCV.isHidden = true
+            FailCV.isHidden = false
+        default:
+            DoingCV.isHidden = false
+            DoneCV.isHidden = true
+            FailCV.isHidden = true
+        }
+    }
+}
+
 extension StorageVC {
     
     func addSubviews(_ views: UIView...) {
@@ -117,7 +188,4 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
          return cell
      }
-
-        // Do any additional setup after loading the view.
-    }
 }
