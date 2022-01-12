@@ -50,14 +50,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 self.isLogin = false
                             }
                         } else {
+                            // 토큰 유효성 확인한 경우.
                             self.isLogin = true
                         }
                     }
                 } else {
+                    // 유효한 토큰이 없는 경우.
                     self.isLogin = false
                 }
             }
         } else {
+            // access token 이 없는 경우.
             self.isLogin = false
         }
 
