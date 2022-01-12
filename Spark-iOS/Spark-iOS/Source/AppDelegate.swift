@@ -16,7 +16,7 @@ import KakaoSDKUser
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var isLogin = false
-    // TODO: - 키체인 넣기
+    // TODO: - 엑세스 토큰 유저 아이디 키체인 넣기
     var accessToken = ""
     var userID = ""
 

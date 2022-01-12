@@ -126,9 +126,12 @@ extension LoginVC {
 // MARK: - Network
 
 extension LoginVC {
+    
+    // TODO: - 회원가입 로직
+    
     private func signupWithAPI(userID: String) {
         
-        // TODO: -
+        // TODO: - 엑세스 토큰 키체인에 등록하고 화면전환
         
         presentToMainTabBar()
     }
