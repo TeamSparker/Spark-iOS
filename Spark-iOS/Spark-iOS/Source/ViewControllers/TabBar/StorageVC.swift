@@ -266,10 +266,19 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
-
-         return cell
-     }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nextSB = UIStoryboard.init(name: "StorageMore", bundle:nil)
+        
+        guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated:true, completion:nil)
+    }
 }
