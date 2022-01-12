@@ -21,6 +21,7 @@
 		EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E81278F273200C43DE9 /* FailStorageCVC.swift */; };
 		EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E82278F273200C43DE9 /* FailStorageCVC.xib */; };
 		EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */; };
+		EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E89278F29D300C43DE9 /* CarouselLayout.swift */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
@@ -64,6 +65,7 @@
 		EB625E81278F273200C43DE9 /* FailStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E82278F273200C43DE9 /* FailStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListDataModel.swift; sourceTree = "<group>"; };
+		EB625E89278F29D300C43DE9 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,14 @@
 			path = StorageList;
 			sourceTree = "<group>";
 		};
+		EB625E88278F29B500C43DE9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		F8096EF72784107D00B71D38 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +199,7 @@
 				F8096F052784107D00B71D38 /* SceneDelegate.swift */,
 				F8096F1C27841DAE00B71D38 /* AppModels */,
 				F8096F2327841DF800B71D38 /* Cells */,
+				EB625E88278F29B500C43DE9 /* Classes */,
 				F8096F2227841DF000B71D38 /* Extensions */,
 				F8096F2127841DD600B71D38 /* NetworkModels */,
 				F8096F2027841DCC00B71D38 /* NetworkServices */,
@@ -457,6 +468,7 @@
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
+				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
@@ -618,7 +630,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = FY8N9XTH66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
@@ -627,13 +639,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-Sparker.Spark";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Sparks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -649,7 +661,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = FY8N9XTH66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
@@ -658,13 +670,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-Sparker.Spark";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Sparks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
