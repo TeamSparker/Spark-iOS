@@ -13,6 +13,9 @@ class StorageVC: UIViewController {
     let secondViewButton = MyButton()
     let thirdViewButton = MyButton()
     
+    let upperLabel = UILabel()
+    let lowerLabel = UILabel()
+    
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
@@ -21,7 +24,7 @@ class StorageVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .red
+        name.backgroundColor = .clear
         
         return name
     }()
@@ -33,7 +36,7 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 200,y: 400,width: 200,height: 200), collectionViewLayout: layout)
+        let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
         name.backgroundColor = .blue
         
         return name
@@ -57,6 +60,7 @@ class StorageVC: UIViewController {
         setDelegate()
         setCarousels()
         addSubviews(firstViewButton, secondViewButton, thirdViewButton, DoingCV, DoneCV, FailCV)
+        addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
         setButtons()
         addTargets(firstViewButton, secondViewButton, thirdViewButton)
     }
@@ -80,13 +84,13 @@ class StorageVC: UIViewController {
     
     // MARK: 버튼 레이아웃 설정
     func setButtons() {
-        firstViewButton.statusCV = 0
-        firstViewButton.backgroundColor = .clear
-        firstViewButton.setTitle("캐러셀 1", for: .normal)
-        firstViewButton.setTitleColor(.black, for: .normal)
-        firstViewButton.setTitleColor(.gray, for: .highlighted)
-        secondViewButton.statusCV = 1
-        secondViewButton.backgroundColor = .clear
+        upperLabel.text = "나는야쿵짝지혜 님의"
+        upperLabel.font = .h2Title
+        upperLabel.textColor = .sparkBlack
+        
+        lowerLabel.text = "19가지 스파크"
+        lowerLabel.font = .h2Title
+        lowerLabel.textColor = .sparkBlack
         secondViewButton.setTitle("캐러셀 2", for: .normal)
         secondViewButton.setTitleColor(.black, for: .normal)
         secondViewButton.setTitleColor(.gray, for: .highlighted)
