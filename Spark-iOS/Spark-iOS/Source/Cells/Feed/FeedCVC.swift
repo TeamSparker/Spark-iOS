@@ -52,6 +52,8 @@ class FeedCVC: UICollectionViewCell {
         profileImageView.backgroundColor = .black
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
+        profileImageView.layer.borderWidth = 2
+        profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
         
         sparkLabel.text = "받은 스파크"
