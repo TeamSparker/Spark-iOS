@@ -19,15 +19,22 @@ extension UINavigationController {
         self.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    /// 뒤로가기 버튼 + 제목.
-    /// - title 에는 네비게이션바 타이틀을 넣어주세요.
-    func initWithBackButton(title: String) {
+    /// 뒤로가기 버튼
+    func initWithBackButton(tintColor: UIColor) {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.initBackButtonAppearance()
         
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
+        
+        self.navigationBar.tintColor = tintColor
+    }
+    
+    /// 뒤로가기 버튼 + 제목.
+    /// - title 에는 네비게이션바 타이틀을 넣어주세요.
+    func initWithTitle(title: String) {
+        initWithBackButton(tintColor: .sparkWhite)
         
         self.navigationController?.title = title
     }
@@ -36,7 +43,7 @@ extension UINavigationController {
     /// - navigationItem 에는 해당 뷰컨트롤러의 네비게이션바를 넣어주세요
     /// - clouser 에는 해당 버튼이 눌렸을 때 화면전환을 넣어주세요
     func initWithTwoCustomButtons(navigationItem: UINavigationItem?, firstButtonClosure: Selector, secondButtonClosure: Selector) {
-        initWithBackButton(title: "")
+        initWithBackButton(tintColor: .sparkBlack)
         
         let firstButton = UIBarButtonItem(image: UIImage(named: "icProfile"), style: .plain, target: self.topViewController, action: firstButtonClosure)
         let secondButton = UIBarButtonItem(image: UIImage(named: "icNotice"), style: .plain, target: self.topViewController, action: secondButtonClosure)
