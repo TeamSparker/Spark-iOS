@@ -50,15 +50,16 @@ class WaitingVC: UIViewController {
     }
     
     func setUI() {
-        copyButton.backgroundColor = .blue
-        toolTipButton.backgroundColor = .purple
-        editButton.backgroundColor = .orange
-        profileImageView.backgroundColor = .sparkBrightPinkred
-        refreshButton.backgroundColor = .sparkBrightPinkred
-        startButton.backgroundColor = .green
-        firstDivideLabel.backgroundColor = .sparkDarkGray
-        secondDivideLabel.backgroundColor = .sparkDarkGray
+        profileImageView.backgroundColor = .purple
+        firstDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
+        secondDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
+        
+        copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
+        toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
+        editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
+        refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
+        startButton.setImage(UIImage(named: "btnPrimary"), for: .normal)
         
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
