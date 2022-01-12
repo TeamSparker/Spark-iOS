@@ -15,6 +15,8 @@ extension Const {
             static let home = "Home"
             static let feed = "Feed"
             static let storage = "Storage"
+            static let login = "Login"
+            static let splash = "Splash"
         }
     }
 }
