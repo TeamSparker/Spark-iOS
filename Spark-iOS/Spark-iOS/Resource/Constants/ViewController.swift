@@ -15,6 +15,7 @@ extension Const {
             static let home = "HomeVC"
             static let feed = "FeedVC"
             static let storage = "StorageVC"
+            static let waiting = "WaitingVC"
         }
     }
 }

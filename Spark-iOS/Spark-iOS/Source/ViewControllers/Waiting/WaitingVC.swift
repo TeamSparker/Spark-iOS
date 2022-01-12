@@ -8,11 +8,13 @@
 import UIKit
 
 class WaitingVC: UIViewController {
+    
+    let testlabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        }
     }
     
 

@@ -15,6 +15,7 @@ extension Const {
             static let home = "Home"
             static let feed = "Feed"
             static let storage = "Storage"
+            static let waiting = "Waiting"
         }
     }
 }

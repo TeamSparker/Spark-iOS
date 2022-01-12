@@ -29,6 +29,7 @@ class FeedCVC: UICollectionViewCell {
     let sparkIconImageView = UIImageView()
     let sparkCountLabel = UILabel() /// 12
     
+    // FIXME: - button으로 변경
     let heartImageView = UIImageView()
     let heartCountLabel = UILabel()
     
