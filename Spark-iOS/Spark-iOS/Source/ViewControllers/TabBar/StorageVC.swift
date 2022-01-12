@@ -9,9 +9,14 @@ import UIKit
 import SnapKit
 
 class StorageVC: UIViewController {
-    let firstViewButton = MyButton()
-    let secondViewButton = MyButton()
+    
+    let doingButton = MyButton()
     let doneButton = MyButton()
+    let failButton = MyButton()
+    
+    let doingLabel = UILabel()
+    let doneLabel = UILabel()
+    let failLabel = UILabel()
     
     let upperLabel = UILabel()
     let lowerLabel = UILabel()
@@ -187,14 +192,32 @@ class StorageVC: UIViewController {
             DoingCV.isHidden = true
             DoneCV.isHidden = false
             FailCV.isHidden = true
+            doingButton.isSelected = false
+            doneButton.isSelected = true
+            failButton.isSelected = false
+            doingLabel.textColor = .sparkDarkGray
+            doneLabel.textColor = .sparkDarkPinkred
+            failLabel.textColor = .sparkDarkGray
         case 2:
             DoingCV.isHidden = true
             DoneCV.isHidden = true
             FailCV.isHidden = false
+            doingButton.isSelected = false
+            doneButton.isSelected = false
+            failButton.isSelected = true
+            doingLabel.textColor = .sparkDarkGray
+            doneLabel.textColor = .sparkDarkGray
+            failLabel.textColor = .sparkDarkPinkred
         default:
             DoingCV.isHidden = false
             DoneCV.isHidden = true
             FailCV.isHidden = true
+            doingButton.isSelected = true
+            doneButton.isSelected = false
+            failButton.isSelected = false
+            doingLabel.textColor = .sparkDarkPinkred
+            doneLabel.textColor = .sparkDarkGray
+            failLabel.textColor = .sparkDarkGray
         }
     }
 }
