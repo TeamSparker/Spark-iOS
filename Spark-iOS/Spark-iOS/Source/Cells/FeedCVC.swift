@@ -47,9 +47,11 @@ class FeedCVC: UICollectionViewCell {
     
     // MARK: - Methods
     func setUI() {
-        feedImageView.backgroundColor = .orange
-        profileImageView.backgroundColor = .yellow
+        feedImageView.backgroundColor = .yellow
+        profileImageView.backgroundColor = .black
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
+        
+        profileImageView.layer.cornerRadius = 32
         
         sparkLabel.text = "받은 스파크"
         // TODO: - 서버 데이터 연결 후 삭제

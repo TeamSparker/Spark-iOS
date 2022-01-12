@@ -11,8 +11,6 @@ class FeedVC: UIViewController {
     
     // MARK: - Dummy Data
     
-    /// 9
-    /// 20210107(3) 20210106(4) 20210105(2)
     var dummyDataList: Array = [
         ["date": "2021-01-07", "day": "월요일", "userId": "1","recordId": "1", "nickname": "맥북1", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방1"],
         ["date": "2021-01-07", "day": "월요일", "userId": "1","recordId": "1","nickname": "맥북2", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방2"],
@@ -25,7 +23,6 @@ class FeedVC: UIViewController {
         ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1","nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방9"]
     ]
     
-    /// 20210105(1) 20210104(1) 20210103(3) 20210102(3) 20210101(1)
     var newDummyDataList: Array = [
         ["date": "2021-01-05", "day": "토요일", "userId": "1","recordId": "1", "nickname": "그램", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
         ["date": "2021-01-04", "day": "금요일", "userId": "1","recordId": "1","nickname": "맥북2", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
@@ -43,21 +40,24 @@ class FeedVC: UIViewController {
     let collectionViewFlowlayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
     
-    var index = 0
-    var dateList: [String] = [] /// dateList에는 그냥 2021-01-04 형태로 받음 -> cell에 넣으줄 때 변환
-    var firstList: [Any] = []
-    var secondList: [Any] = []
-    var thirdList: [Any] = []
-    var fourthList: [Any] = []
-    var fifthList: [Any] = []
-    var sixthList: [Any] = []
-    var seventhList: [Any] = []
+    private var dateList: [String] = []
+    private var dayList: [String] = []
+    private var firstList: [Any] = []
+    private var secondList: [Any] = []
+    private var thirdList: [Any] = []
+    private var fourthList: [Any] = []
+    private var fifthList: [Any] = []
+    private var sixthList: [Any] = []
+    private var seventhList: [Any] = []
+    private var page = 0
+    private var isInfiniteScroll = true
+    
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /// 맨 처음 빌드할 때 바로? FeedVC가 불려지는 것인가?
+        /// 맨 처음 빌드할 때 원래 FeedVC가 불려지는 것인가?
         setLayout()
         setCollectionView()
         setData(datalist: dummyDataList)
@@ -82,68 +82,54 @@ class FeedVC: UIViewController {
         var indexPath = 0
         var sectionCount = 0 /// section을 돌기 위한 변수
         
-//        print(dummyDataList[indexPath]["date"])
-//        print(type(of: dummyDataList[indexPath]["date"]))
-//        print(dummyDataList[indexPath])
-        
-//        print(datalist)
-//        print(type(of: datalist))
-//        print(dummyDataList)
-//        print(type(of: dummyDataList))
         while indexPath < datalist.count {
             if dateList.isEmpty {
                 dateList.append(datalist[indexPath]["date"] as! String)
+                dayList.append(datalist[indexPath]["day"] as! String)
                 indexPath += 1
             } else {
-                let day: String = datalist[indexPath]["date"] as! String
+                let date: String = datalist[indexPath]["date"] as! String
+                let day: String = datalist[indexPath]["day"] as! String
 
-                if !(dateList.contains(day)) {
-                    dateList.append(day)
+                if !(dateList.contains(date)) {
+                    dateList.append(date)
+                    dayList.append(day)
                 }
 
                 indexPath += 1
             }
         }
 
-        // TODO: - section별 리스트 생성
+        // section별 리스트 생성
         while sectionCount < dateList.count {
-            var index = 0
-            while index < datalist.count && !datalist.isEmpty && sectionCount != dateList.count {
+            var indexinsection = 0
+            while indexinsection < datalist.count && !datalist.isEmpty && sectionCount != dateList.count {
 
-                if dateList[sectionCount] == datalist[index]["date"] as! String {
+                if dateList[sectionCount] == datalist[indexinsection]["date"] as! String {
                     switch sectionCount {
                     case 0:
-                        firstList.append(datalist[index])
+                        firstList.append(datalist[indexinsection])
                     case 1:
-                        secondList.append(datalist[index])
+                        secondList.append(datalist[indexinsection])
                     case 2:
-                        thirdList.append(datalist[index])
+                        thirdList.append(datalist[indexinsection])
                     case 3:
-                        fourthList.append(datalist[index])
+                        fourthList.append(datalist[indexinsection])
                     case 4:
-                        fifthList.append(datalist[index])
+                        fifthList.append(datalist[indexinsection])
                     case 5:
-                        sixthList.append(datalist[index])
+                        sixthList.append(datalist[indexinsection])
                     case 6:
-                        seventhList.append(datalist[index])
+                        seventhList.append(datalist[indexinsection])
                     default:
-                        seventhList.append(datalist[index])
+                        seventhList.append(datalist[indexinsection])
                     }
 
                 }
-                index += 1
+                indexinsection += 1
             }
             sectionCount += 1
         }
-        
-        print("1: ", firstList)
-        print("2: ", secondList)
-        print("2: ", thirdList)
-        print("4: ", fourthList)
-        print("5: ", fifthList)
-        print("6: ", sixthList)
-        print("7: ", seventhList)
-        print("-------------------------------------------------------")
     }
     
     func setLayout() {
@@ -157,23 +143,104 @@ class FeedVC: UIViewController {
 
 extension FeedVC: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 7
+        return dateList.count
+    }
+    
+    // 무한 스크롤 방법 1
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
+//            if isInfiniteScroll {
+//                print("??", isInfiniteScroll)
+//                page += 1
+//                isInfiniteScroll = false
+//                // TODO: - 서버 데이터 추가로 받아오면서 isInfiniteScroll true 처리
+//                dummyDataList.append(contentsOf: newDummyDataList)
+//                setData(datalist: newDummyDataList)
+//                collectionView.reloadData()
+//            } else {
+//                print("끝")
+//            }
+//        }
+//    }
+    
+    // 무한 스크롤 방법 2
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            if page < 1 {
+                dummyDataList.append(contentsOf: newDummyDataList)
+                setData(datalist: newDummyDataList)
+                collectionView.reloadData()
+                page += 1
+            } else {
+                print("끝입니다")
+            }
+        }
     }
 }
 
 extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        var itemCount = 0
+        var indexPath = 0
+        
+        while indexPath < dummyDataList.count {
+            if dateList[section] == dummyDataList[indexPath]["date"] as! String {
+                itemCount += 1
+                indexPath += 1
+            } else {
+                indexPath += 1
+            }
+        }
+        
+        return itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCVC.identifier, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
+        
+        var alist: [String:Any] = [:]
+
+        // section별 데이터 넣기
+        switch indexPath.section {
+        case 0:
+            alist = firstList[indexPath.item] as! [String:Any]
+        case 1:
+            alist = secondList[indexPath.item] as! [String : Any]
+        case 2:
+            alist = thirdList[indexPath.item] as! [String:Any]
+        case 3:
+            alist = fourthList[indexPath.item] as! [String:Any]
+        case 4:
+            alist = fifthList[indexPath.item] as! [String:Any]
+        case 5:
+            alist = sixthList[indexPath.item] as! [String:Any]
+        case 6:
+            alist = seventhList[indexPath.item] as! [String:Any]
+        default:
+            alist = firstList[indexPath.item] as! [String:Any]
+        }
+        
+//        print("alist: ", alist)
+
+        if let roomname = alist["roomName"], let name = alist["nickname"],
+            let sparkcount = alist["sparkCount"], let heartcount = alist["totalFeedNum"] {
+            cell.titleLabel.text = "\(roomname)"
+            cell.nameLabel.text = "\(name)"
+            cell.sparkCountLabel.text = "\(sparkcount)"
+            cell.heartCountLabel.text = "\(heartcount)"
+        }
+        
+        cell.backgroundColor = .white
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
+        
+        let date = dateList[indexPath.section].split(separator: "-")
+        header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+        header.dayLabel.text = "\(dayList[indexPath.section])"
         
         return header
     }
