@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class WaitingVC: UIViewController {
     
     // MARK: - Properties
@@ -30,10 +32,11 @@ class WaitingVC: UIViewController {
     let friendTitleLabel = UILabel()
     let friendCountLabel = UILabel()
     let friendSubTitleLabel = UILabel()
-//    let collectionView = UICollectionView()
     let refreshButton = UIButton()
-    
     let startButton = UIButton()
+    
+    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
 
     
     // MARK: - View Life Cycles
@@ -43,6 +46,7 @@ class WaitingVC: UIViewController {
 
         setUI()
         setLayout()
+        setCollectionView()
     }
     
     func setUI() {
@@ -97,13 +101,64 @@ class WaitingVC: UIViewController {
         friendSubTitleLabel.textColor = .gray
     }
     
+    func setCollectionView() {
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: WaitingFriendCVC.identifier)
+        
+        collectionViewFlowLayout.scrollDirection = .horizontal
+    }
+}
+
+extension WaitingVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
+        return cell
+    }
+}
+
+extension WaitingVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: 85)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 24
+    }
+}
+
+extension WaitingVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    }
+}
+
+extension UILabel {
+    // string 일부 폰트를 .p1Title로 바꿔주는 함수
+    func medium(targetString: String) {
+        let font = UIFont.p1Title
+        let fullText = self.text ?? ""
+        let range = (fullText as NSString).range(of: targetString)
+        let attributedString = NSMutableAttributedString(string: fullText)
+        attributedString.addAttribute(.font, value: font, range: range)
+        self.attributedText = attributedString
+    }
+}
+
+// MARK: - Layout
+extension WaitingVC {
     func setLayout() {
         view.addSubviews([copyButton, checkTitleLabel, toolTipButton,
                          stopwatchLabel, checkDivideView, photoLabel,
                           firstDivideLabel, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
                          secondDivideLabel, friendTitleLabel, friendCountLabel,
-                          friendSubTitleLabel, refreshButton, startButton]) /// collectionView
+                          friendSubTitleLabel, refreshButton, collectionView, startButton])
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -206,27 +261,16 @@ class WaitingVC: UIViewController {
             make.width.height.equalTo(44)
         }
         
-//        collectionView.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview()
-//            make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(24)
-//            make.height.equalTo(85)
-//        }
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(24)
+            make.height.equalTo(85)
+        }
         
         startButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(54)
             make.height.equalTo(48)
         }
-    }
-}
-
-extension UILabel {
-    func medium(targetString: String) {
-        let font = UIFont.p1Title
-        let fullText = self.text ?? ""
-        let range = (fullText as NSString).range(of: targetString)
-        let attributedString = NSMutableAttributedString(string: fullText)
-        attributedString.addAttribute(.font, value: font, range: range)
-        self.attributedText = attributedString
     }
 }

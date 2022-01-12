@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class WaitingFriendCVC: UICollectionViewCell {
     static let identifier = "WaitingFriendCVC"
     
@@ -31,7 +33,7 @@ class WaitingFriendCVC: UICollectionViewCell {
         profileImageView.backgroundColor = .sparkBrightPinkred
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
-        profileImageView.layer.cornerRadius = 32
+        profileImageView.layer.cornerRadius = 30
         
         nameLabel.text = "수슈슉"
         nameLabel.font = .p1Title
@@ -43,7 +45,7 @@ class WaitingFriendCVC: UICollectionViewCell {
         
         profileImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.profileImageView.snp.width).multipliedBy(1.0/1.0)
+            make.width.height.equalTo(60)
         }
         
         nameLabel.snp.makeConstraints { make in
