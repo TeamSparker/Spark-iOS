@@ -146,6 +146,7 @@ extension FeedVC: UICollectionViewDelegate {
         return dateList.count
     }
     
+    // FIXME: - 서버 연결 후 수정
     // 무한 스크롤 방법 1
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
