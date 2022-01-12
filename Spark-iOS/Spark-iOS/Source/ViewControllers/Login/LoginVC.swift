@@ -106,8 +106,7 @@ extension LoginVC {
                 if let userID = user?.id {
                     self.signupWithAPI(userID: String(userID))
                     
-                    // TODO: - 키체인으로 id 등록
-                    
+                    UserDefaults.standard.set(String(userID), forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                 }
             }
@@ -127,11 +126,11 @@ extension LoginVC {
 
 extension LoginVC {
     
-    // TODO: - 회원가입 로직
+    // TODO: - Network. 회원가입 서버통신
     
     private func signupWithAPI(userID: String) {
         
-        // TODO: - 엑세스 토큰 키체인에 등록하고 화면전환
+        // TODO: - 엑세스 토큰 userdefaults 등록하고 화면전환
         
         presentToMainTabBar()
     }
