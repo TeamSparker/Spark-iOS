@@ -16,18 +16,17 @@ import KakaoSDKUser
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var isLogin = false
-    // TODO: - 엑세스 토큰 유저 아이디 키체인 넣기
-    var accessToken = ""
-    var userID = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: "d51e83bca123750446afc70ab65225b9")
+        
+        let accessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
         
         if accessToken != nil {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
                 // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: userID) { (credentialState, error) in
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { (credentialState, error) in
                     switch credentialState {
                     case .authorized:
                         print("해당 ID는 연동되어있습니다.")
