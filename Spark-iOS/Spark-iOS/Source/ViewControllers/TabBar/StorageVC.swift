@@ -11,7 +11,7 @@ import SnapKit
 class StorageVC: UIViewController {
     let firstViewButton = MyButton()
     let secondViewButton = MyButton()
-    let thirdViewButton = MyButton()
+    let doneButton = MyButton()
     
     let upperLabel = UILabel()
     let lowerLabel = UILabel()
@@ -49,7 +49,7 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 200,y: 600,width: 200,height: 200), collectionViewLayout: layout)
+        let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
         name.backgroundColor = .purple
         
         return name
@@ -59,10 +59,10 @@ class StorageVC: UIViewController {
         super.viewDidLoad()
         setDelegate()
         setCarousels()
-        addSubviews(firstViewButton, secondViewButton, thirdViewButton, DoingCV, DoneCV, FailCV)
+        addSubviews(doingButton, doneButton, failButton, DoingCV, DoneCV, FailCV)
         addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
         setButtons()
-        addTargets(firstViewButton, secondViewButton, thirdViewButton)
+        addTargets(doingButton, doneButton, failButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,28 +91,85 @@ class StorageVC: UIViewController {
         lowerLabel.text = "19가지 스파크"
         lowerLabel.font = .h2Title
         lowerLabel.textColor = .sparkBlack
-        secondViewButton.setTitle("캐러셀 2", for: .normal)
-        secondViewButton.setTitleColor(.black, for: .normal)
-        secondViewButton.setTitleColor(.gray, for: .highlighted)
-        thirdViewButton.statusCV = 2
-        thirdViewButton.backgroundColor = .clear
-        thirdViewButton.setTitle("캐러셀 3", for: .normal)
-        thirdViewButton.setTitleColor(.black, for: .normal)
-        thirdViewButton.setTitleColor(.gray, for: .highlighted)
         
-        secondViewButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(150)
-            make.centerX.equalToSuperview()
+        doingButton.statusCV = 0
+        doingButton.backgroundColor = .clear
+        doingButton.setTitle("진행중", for: .normal)
+        doingButton.titleLabel?.font = .h3Subtitle
+        doingButton.setTitleColor(.sparkDarkGray, for: .normal)
+        doingButton.setTitleColor(.sparkDarkPinkred, for: .selected)
+        doingButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
+        doingButton.isSelected = true
+        
+        doingLabel.text = "6"
+        doingLabel.font = .h3Subtitle
+        doingLabel.textColor = .sparkDarkPinkred
+        doingLabel.font = .enMediumFont(ofSize: 14)
+        
+        doneButton.statusCV = 1
+        doneButton.backgroundColor = .clear
+        doneButton.setTitle("완료", for: .normal)
+        doneButton.titleLabel?.font = .h3Subtitle
+        doneButton.setTitleColor(.sparkDarkGray, for: .normal)
+        doneButton.setTitleColor(.sparkDarkPinkred, for: .selected)
+        doneButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
+        
+        doneLabel.text = "12"
+        doneLabel.font = .h3Subtitle
+        doneLabel.textColor = .sparkDarkGray
+        doneLabel.font = .enMediumFont(ofSize: 14)
+        
+        failButton.statusCV = 2
+        failButton.backgroundColor = .clear
+        failButton.setTitle("미완료", for: .normal)
+        failButton.titleLabel?.font = .h3Subtitle
+        failButton.setTitleColor(.sparkDarkGray, for: .normal)
+        failButton.setTitleColor(.sparkDarkPinkred, for: .selected)
+        failButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
+        
+        failLabel.text = "1"
+        failLabel.font = .h3Subtitle
+        failLabel.textColor = .sparkDarkGray
+        failLabel.font = .enMediumFont(ofSize: 14)
+        
+        upperLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
+            make.leading.equalTo(doingButton)
         }
         
-        firstViewButton.snp.makeConstraints { make in
-            make.centerY.equalTo(secondViewButton.snp.centerY)
-            make.trailing.equalTo(secondViewButton.snp.leading).offset(-40)
+        lowerLabel.snp.makeConstraints { make in
+            make.top.equalTo(upperLabel.snp.bottom).offset(4)
+            make.leading.equalTo(doingButton)
         }
         
-        thirdViewButton.snp.makeConstraints { make in
-            make.centerY.equalTo(secondViewButton.snp.centerY)
-            make.leading.equalTo(secondViewButton.snp.trailing).offset(40)
+        doingButton.snp.makeConstraints { make in
+            make.top.equalTo(lowerLabel.snp.bottom).offset(23)
+            make.leading.equalTo(DoingCV).offset(23)
+        }
+        
+        doingLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(doingButton.snp.centerY).offset(2)
+            make.leading.equalTo(doingButton.snp.trailing).offset(2)
+        }
+        
+        doneButton.snp.makeConstraints { make in
+            make.centerY.equalTo(doingButton.snp.centerY)
+            make.leading.equalTo(doingLabel.snp.trailing).offset(32)
+        }
+        
+        doneLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(doneButton.snp.centerY).offset(2)
+            make.leading.equalTo(doneButton.snp.trailing).offset(2)
+        }
+        
+        failButton.snp.makeConstraints { make in
+            make.centerY.equalTo(doingButton.snp.centerY)
+            make.leading.equalTo(doneLabel.snp.trailing).offset(32)
+        }
+        
+        failLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(failButton.snp.centerY).offset(2)
+            make.leading.equalTo(failButton.snp.trailing).offset(2)
         }
     }
 
