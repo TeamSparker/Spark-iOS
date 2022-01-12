@@ -12,9 +12,12 @@ import SnapKit
 
 class FeedHeaderView: UICollectionReusableView {
     
+    // MARK: - Properties
+    
     let dateLabel = UILabel()
     let dayLabel = UILabel()
-       
+    
+    // MARK: - View Life Cycles
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -25,6 +28,8 @@ class FeedHeaderView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Methods
     
     func setUI() {
         dateLabel.font = .h3SubtitleEng
@@ -37,8 +42,7 @@ class FeedHeaderView: UICollectionReusableView {
     }
     
     func setLayout() {
-        self.addSubview(dateLabel)
-        self.addSubview(dayLabel)
+        self.addSubviews([dayLabel, dateLabel])
         
         dateLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(20)
