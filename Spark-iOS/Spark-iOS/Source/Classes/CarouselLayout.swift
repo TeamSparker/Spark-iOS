@@ -115,3 +115,7 @@ class CarouselLayout: UICollectionViewFlowLayout {
             return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: proposedContentOffset.y)
         }
 }
+
+class MyButton: UIButton {
+    public var statusCV: Int?
+}
