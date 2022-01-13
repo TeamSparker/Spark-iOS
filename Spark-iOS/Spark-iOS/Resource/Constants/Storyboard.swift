@@ -19,7 +19,8 @@ extension Const {
             static let login = "Login"
             static let splash = "Splash"
             static let waiting = "Waiting"
-            static let createroom = "CreateRoom"
+            static let createRoom = "CreateRoom"
+            static let createAuth = "CreateAuth"
         }
     }
 }
