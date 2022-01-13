@@ -28,6 +28,11 @@ class WaitingFriendCVC: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        nameLabel.text = ""
+        profileImageView.backgroundColor = .sparkBrightPinkred
+    }
+    
     // MARK: - Methods
     func setUI() {
         profileImageView.backgroundColor = .sparkBrightPinkred
@@ -35,7 +40,6 @@ class WaitingFriendCVC: UICollectionViewCell {
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 30
         
-        nameLabel.text = "수슈슉"
         nameLabel.font = .p1Title
         nameLabel.textColor = .sparkDeepGray
     }
@@ -52,5 +56,10 @@ class WaitingFriendCVC: UICollectionViewCell {
             make.top.equalTo(profileImageView.snp.bottom).offset(4)
             make.centerX.equalTo(profileImageView.snp.centerX)
         }
+    }
+    
+    func initCell() {
+        nameLabel.text = "이름"
+        /// 파라미터 추가 + 이미지 넣기
     }
 }

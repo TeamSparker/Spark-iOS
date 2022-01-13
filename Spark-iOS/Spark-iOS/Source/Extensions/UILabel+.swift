@@ -8,7 +8,7 @@ import UIKit
 
 extension UILabel {
     // string 일부 폰트를 .p1Title로 바꿔주는 함수
-    func medium(targetString: String) {
+    func partP1Title(targetString: String) {
         let font = UIFont.p1Title
         let fullText = self.text ?? ""
         let range = (fullText as NSString).range(of: targetString)

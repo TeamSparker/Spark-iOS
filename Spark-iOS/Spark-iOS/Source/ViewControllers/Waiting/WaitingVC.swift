@@ -13,7 +13,7 @@ import SwiftUI
 class WaitingVC: UIViewController {
     
     // MARK: - Dummy Data
-    var dummydata = [
+    var dummydata: [String : Any] = [
         "roomId": 1,
         "roomName": "미라클 모닝",
         "roomCode": "gkjakljdalk",
@@ -57,9 +57,9 @@ class WaitingVC: UIViewController {
                 "userId": 7,
                 "nickname": "보라돌이",
                 "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
-            ],
+            ]
         ]
-    ] as [String : Any] as [String : Any] as [String : Any]
+    ]
     
     // MARK: - Properties
     
@@ -69,7 +69,7 @@ class WaitingVC: UIViewController {
     let stopwatchLabel = UILabel()
     let checkDivideView = UIView()
     let photoLabel = UILabel()
-    let firstDivideLabel = UIView()
+    let firstDivideView = UIView()
     
     let goalTitleLabel = UILabel()
     let profileImageView = UIImageView()
@@ -77,7 +77,7 @@ class WaitingVC: UIViewController {
     let timeLabel = UILabel()
     let goalLabel = UILabel()
     let editButton = UIButton()
-    let secondDivideLabel = UIView()
+    let secondDivideView = UIView()
     
     let friendTitleLabel = UILabel()
     let friendCountLabel = UILabel()
@@ -106,8 +106,8 @@ class WaitingVC: UIViewController {
         navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))")
         
         profileImageView.backgroundColor = .purple
-        firstDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
-        secondDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
+        firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
+        secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
         
         copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
@@ -147,8 +147,8 @@ class WaitingVC: UIViewController {
         [checkTitleLabel, goalTitleLabel, friendTitleLabel].forEach {$0.font = .h2Title}
         [photoLabel, stopwatchLabel, timeLabel, goalLabel].forEach {$0.font = .p1TitleLight}
         
-        timeLabel.medium(targetString: "시간")
-        goalLabel.medium(targetString: "목표")
+        timeLabel.partP1Title(targetString: "시간")
+        goalLabel.partP1Title(targetString: "목표")
         
         [checkTitleLabel, goalTitleLabel, friendTitleLabel,
          nicknameLabel, friendCountLabel, timeLabel, goalLabel].forEach {
@@ -208,7 +208,7 @@ class WaitingVC: UIViewController {
     }
     
     @objc
-    func goToHome() {
+    func goToHomeVC() {
         /// 홈으로 화면 전환
     }
     
@@ -253,9 +253,9 @@ extension WaitingVC {
     func setLayout() {
         view.addSubviews([copyButton, checkTitleLabel, toolTipButton,
                          stopwatchLabel, checkDivideView, photoLabel,
-                          firstDivideLabel, goalTitleLabel, profileImageView,
+                          firstDivideView, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
-                         secondDivideLabel, friendTitleLabel, friendCountLabel,
+                         secondDivideView, friendTitleLabel, friendCountLabel,
                           friendSubTitleLabel, refreshButton, collectionView, startButton])
         
         copyButton.snp.makeConstraints { make in
@@ -294,7 +294,7 @@ extension WaitingVC {
             make.centerY.equalTo(photoLabel.snp.centerY)
         }
         
-        firstDivideLabel.snp.makeConstraints { make in
+        firstDivideView.snp.makeConstraints { make in
             make.top.equalTo(checkTitleLabel.snp.bottom).offset(36)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
@@ -302,7 +302,7 @@ extension WaitingVC {
         
         goalTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(firstDivideLabel.snp.bottom).offset(33)
+            make.top.equalTo(firstDivideView.snp.bottom).offset(33)
         }
         
         editButton.snp.makeConstraints { make in
@@ -332,7 +332,7 @@ extension WaitingVC {
             make.leading.equalTo(nicknameLabel.snp.leading)
         }
         
-        secondDivideLabel.snp.makeConstraints { make in
+        secondDivideView.snp.makeConstraints { make in
             make.top.equalTo(goalLabel.snp.bottom).offset(45)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
@@ -340,7 +340,7 @@ extension WaitingVC {
         
         friendTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(secondDivideLabel.snp.bottom).offset(32)
+            make.top.equalTo(secondDivideView.snp.bottom).offset(32)
         }
         
         friendCountLabel.snp.makeConstraints { make in
