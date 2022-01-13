@@ -65,6 +65,7 @@ class StorageVC: UIViewController {
         setDelegate()
         registerXib()
         setCarousels()
+        // TODO: setLayout에서 애드서브뷰 같이해주기
         addSubviews(doingButton, doneButton, failButton, DoingCV, DoneCV, FailCV)
         addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
         setButtons()
@@ -101,6 +102,7 @@ class StorageVC: UIViewController {
     // TODO: 컬렉션뷰 위치 스냅킷으로 잡아주기.
     
     // MARK: 버튼 레이아웃 설정
+    // TODO: setUI와 setLayout으로 나눠주기
     func setButtons() {
         upperLabel.text = "나는야쿵짝지혜 님의"
         upperLabel.font = .h2Title
@@ -216,6 +218,7 @@ class StorageVC: UIViewController {
         }
     }
     
+    // TODO: foreach 사용하기
     @objc func changeCollectionView(sender: MyButton) {
         let status: Int = (sender.statusCV)!
         switch status {
