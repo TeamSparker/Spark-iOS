@@ -17,6 +17,14 @@
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
+		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
+		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
+		EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */; };
+		EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */; };
+		EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E81278F273200C43DE9 /* FailStorageCVC.swift */; };
+		EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E82278F273200C43DE9 /* FailStorageCVC.xib */; };
+		EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */; };
+		EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E89278F29D300C43DE9 /* CarouselLayout.swift */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
@@ -64,6 +72,14 @@
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoingStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoneStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E81278F273200C43DE9 /* FailStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E82278F273200C43DE9 /* FailStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListDataModel.swift; sourceTree = "<group>"; };
+		EB625E89278F29D300C43DE9 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +146,35 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB625E68278ECF6E00C43DE9 /* StorageCVC */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */,
+				EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */,
+				EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */,
+				EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */,
+				EB625E81278F273200C43DE9 /* FailStorageCVC.swift */,
+				EB625E82278F273200C43DE9 /* FailStorageCVC.xib */,
+			);
+			path = StorageCVC;
+			sourceTree = "<group>";
+		};
+		EB625E85278F27C300C43DE9 /* StorageList */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */,
+			);
+			path = StorageList;
+			sourceTree = "<group>";
+		};
+		EB625E88278F29B500C43DE9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		F8096EF72784107D00B71D38 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +223,7 @@
 				F8096F052784107D00B71D38 /* SceneDelegate.swift */,
 				F8096F1C27841DAE00B71D38 /* AppModels */,
 				F8096F2327841DF800B71D38 /* Cells */,
+				EB625E88278F29B500C43DE9 /* Classes */,
 				F8096F2227841DF000B71D38 /* Extensions */,
 				F8096F2127841DD600B71D38 /* NetworkModels */,
 				F8096F2027841DCC00B71D38 /* NetworkServices */,
@@ -228,7 +274,7 @@
 		F8096F1C27841DAE00B71D38 /* AppModels */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F412784214900B71D38 /* TempAppModel.swift */,
+				EB625E85278F27C300C43DE9 /* StorageList */,
 			);
 			path = AppModels;
 			sourceTree = "<group>";
@@ -289,9 +335,9 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F3F2784214000B71D38 /* TempCell.swift */,
 				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
 				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
+				EB625E68278ECF6E00C43DE9 /* StorageCVC */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -410,6 +456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */,
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
@@ -422,8 +469,10 @@
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
+				EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
 				2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */,
+				EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */,
 				F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,17 +534,19 @@
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
+				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
+				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
-				F8096F402784214000B71D38 /* TempCell.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
+				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
@@ -503,6 +554,8 @@
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
+				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
+				EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,7 +715,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -694,7 +747,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
