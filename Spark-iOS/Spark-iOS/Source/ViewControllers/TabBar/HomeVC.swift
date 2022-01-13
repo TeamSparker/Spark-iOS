@@ -9,6 +9,10 @@ import UIKit
 
 class HomeVC: UIViewController {
 
+    // MARK: - Properties
+    
+    private func habitRoomList = []
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -27,11 +31,11 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         // set navigationController
-        navigationController?.initWithTwoCustomButtons(navigationItem: self.navigationItem,
-                                                       tintColor: .sparkBlack,
-                                                       backgroundColor: .sparkWhite,
-                                                       firstButtonClosure: #selector(presentToProfileVC),
-                                                       secondButtonClosure: #selector(presentToAertVC))
+        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
+                                                            tintColor: .sparkBlack,
+                                                            backgroundColor: .sparkWhite,
+                                                            firstButtonClosure: #selector(presentToProfileVC),
+                                                            secondButtonClosure: #selector(presentToAertVC))
         
         // set collectionView
         mainCollectionView.backgroundColor = .clear
