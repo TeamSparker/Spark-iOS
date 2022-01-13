@@ -22,6 +22,19 @@
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
 		2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
+		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
+		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
+		EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */; };
+		EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */; };
+		EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E81278F273200C43DE9 /* FailStorageCVC.swift */; };
+		EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E82278F273200C43DE9 /* FailStorageCVC.xib */; };
+		EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */; };
+		EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E89278F29D300C43DE9 /* CarouselLayout.swift */; };
+		EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */; };
+		EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */; };
+		EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */; };
+		EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */; };
+		EB625E99278F8EF200C43DE9 /* StorageMore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
@@ -38,8 +51,6 @@
 		F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F392784210A00B71D38 /* TempModel.swift */; };
 		F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+.swift */; };
 		F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+.swift */; };
-		F8096F402784214000B71D38 /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3F2784214000B71D38 /* TempCell.swift */; };
-		F8096F422784214900B71D38 /* TempAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F412784214900B71D38 /* TempAppModel.swift */; };
 		F8096F442784221900B71D38 /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Xib.swift */; };
 		F8096F462784247100B71D38 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F452784247100B71D38 /* Notification.swift */; };
 		F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80A3E4C278C182100728E07 /* MainTabBar.storyboard */; };
@@ -54,6 +65,10 @@
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
+		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
+		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
+		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
+		F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9752790346000C4190F /* HomeWaitingCVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +89,19 @@
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoingStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoneStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E81278F273200C43DE9 /* FailStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E82278F273200C43DE9 /* FailStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListDataModel.swift; sourceTree = "<group>"; };
+		EB625E89278F29D300C43DE9 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
+		EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreListDataModel.swift; sourceTree = "<group>"; };
+		EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreVC.swift; sourceTree = "<group>"; };
+		EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreStorageCVC.swift; sourceTree = "<group>"; };
+		EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreStorageCVC.xib; sourceTree = "<group>"; };
+		EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StorageMore.storyboard; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,8 +120,6 @@
 		F8096F392784210A00B71D38 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
 		F8096F3B2784211D00B71D38 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F8096F3D2784213700B71D38 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		F8096F3F2784214000B71D38 /* TempCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
-		F8096F412784214900B71D38 /* TempAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAppModel.swift; sourceTree = "<group>"; };
 		F8096F432784221900B71D38 /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8096F452784247100B71D38 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F80A3E4C278C182100728E07 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
@@ -109,6 +135,10 @@
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
+		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
+		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
+		F8FAA9752790346000C4190F /* HomeWaitingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWaitingCVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +203,61 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB625E68278ECF6E00C43DE9 /* StorageCVC */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */,
+				EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */,
+				EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */,
+				EB625E7E278F272300C43DE9 /* DoneStorageCVC.xib */,
+				EB625E81278F273200C43DE9 /* FailStorageCVC.swift */,
+				EB625E82278F273200C43DE9 /* FailStorageCVC.xib */,
+			);
+			path = StorageCVC;
+			sourceTree = "<group>";
+		};
+		EB625E85278F27C300C43DE9 /* StorageList */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */,
+				EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */,
+			);
+			path = StorageList;
+			sourceTree = "<group>";
+		};
+		EB625E88278F29B500C43DE9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EB625E8B278F8D5400C43DE9 /* StorageMore */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */,
+			);
+			path = StorageMore;
+			sourceTree = "<group>";
+		};
+		EB625E92278F8E4700C43DE9 /* StorageMoreCVC */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */,
+				EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */,
+			);
+			path = StorageMoreCVC;
+			sourceTree = "<group>";
+		};
+		EB625E97278F8ED200C43DE9 /* StorageMore */ = {
+			isa = PBXGroup;
+			children = (
+				EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */,
+			);
+			path = StorageMore;
+			sourceTree = "<group>";
+		};
 		F8096EF72784107D00B71D38 = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +306,7 @@
 				F8096F052784107D00B71D38 /* SceneDelegate.swift */,
 				F8096F1C27841DAE00B71D38 /* AppModels */,
 				F8096F2327841DF800B71D38 /* Cells */,
+				EB625E88278F29B500C43DE9 /* Classes */,
 				F8096F2227841DF000B71D38 /* Extensions */,
 				F8096F2127841DD600B71D38 /* NetworkModels */,
 				F8096F2027841DCC00B71D38 /* NetworkServices */,
@@ -264,6 +350,7 @@
 				F82B2E0F278F54B000219628 /* Splash */,
 				F816F120278E1C550008ED00 /* Login */,
 				F80A3E59278C239F00728E07 /* TabBar */,
+				EB625E97278F8ED200C43DE9 /* StorageMore */,
 				2BC17272278F56BA00BA3029 /* Waiting */,
 			);
 			path = Storyboards;
@@ -272,7 +359,7 @@
 		F8096F1C27841DAE00B71D38 /* AppModels */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F412784214900B71D38 /* TempAppModel.swift */,
+				EB625E85278F27C300C43DE9 /* StorageList */,
 			);
 			path = AppModels;
 			sourceTree = "<group>";
@@ -292,6 +379,7 @@
 				F816F123278E1C800008ED00 /* Login */,
 				2BC1726E278F54B300BA3029 /* Waiting */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
+				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -336,9 +424,11 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F8FAA96B2790336E00C4190F /* Home */,
 				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
-				F8096F3F2784214000B71D38 /* TempCell.swift */,
+				EB625E68278ECF6E00C43DE9 /* StorageCVC */,
+				EB625E92278F8E4700C43DE9 /* StorageMoreCVC */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -395,6 +485,17 @@
 				F82B2E11278F54CD00219628 /* SplashVC.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		F8FAA96B2790336E00C4190F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */,
+				F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */,
+				F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */,
+				F8FAA9752790346000C4190F /* HomeWaitingCVC.xib */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,7 +558,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */,
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
+				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
@@ -468,10 +571,15 @@
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
+				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
+				EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
 				2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */,
+				EB625E99278F8EF200C43DE9 /* StorageMore.storyboard in Resources */,
+				EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */,
+				F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */,
 				F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,9 +634,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
-				F8096F422784214900B71D38 /* TempAppModel.swift in Sources */,
+				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
+				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
@@ -536,25 +645,32 @@
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
+				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
+				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
-				F8096F402784214000B71D38 /* TempCell.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
+				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
+				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
+				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
+				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
+				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
+				EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +819,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
@@ -714,7 +831,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -736,6 +853,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
@@ -747,7 +865,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

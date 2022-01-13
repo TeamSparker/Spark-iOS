@@ -103,7 +103,7 @@ class WaitingVC: UIViewController {
     }
     
     func setUI() {
-        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))")
+        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))", tintColor: .sparkBlack, backgroundColor: .white)
         
         profileImageView.backgroundColor = .purple
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
