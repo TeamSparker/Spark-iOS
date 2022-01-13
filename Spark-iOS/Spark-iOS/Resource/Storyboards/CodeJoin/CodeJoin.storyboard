@@ -36,14 +36,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-Oa-Wul">
-                                        <rect key="frame" x="85" y="124" width="166" height="2"/>
+                                        <rect key="frame" x="85" y="121" width="166" height="2"/>
                                         <color key="backgroundColor" name="sparkGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="qjp-eN-YG0"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4K-kQ-8LO">
-                                        <rect key="frame" x="84.666666666666686" y="170" width="166" height="40"/>
+                                        <rect key="frame" x="84.666666666666686" y="167" width="166" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="확인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-PX-cJN">
                                                 <rect key="frame" x="62" y="8" width="49" height="27"/>
@@ -54,12 +54,14 @@
                                         </subviews>
                                         <color key="backgroundColor" name="sparkDarkPinkRed"/>
                                         <constraints>
+                                            <constraint firstItem="yYx-PX-cJN" firstAttribute="leading" secondItem="c4K-kQ-8LO" secondAttribute="leading" constant="62" id="3QV-n5-aQq"/>
                                             <constraint firstItem="yYx-PX-cJN" firstAttribute="centerX" secondItem="c4K-kQ-8LO" secondAttribute="centerX" id="4od-AD-XiW"/>
                                             <constraint firstItem="yYx-PX-cJN" firstAttribute="centerY" secondItem="c4K-kQ-8LO" secondAttribute="centerY" id="Aqa-GT-sMB"/>
+                                            <constraint firstItem="yYx-PX-cJN" firstAttribute="top" secondItem="c4K-kQ-8LO" secondAttribute="topMargin" id="vb0-il-SYK"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8P-CO-Z8D">
-                                        <rect key="frame" x="84.666666666666686" y="90.333333333333314" width="166" height="27.666666666666671"/>
+                                        <rect key="frame" x="84.666666666666686" y="87.333333333333314" width="166" height="27.666666666666671"/>
                                         <color key="textColor" name="sparkBlack"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -68,7 +70,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="c4K-kQ-8LO" secondAttribute="bottom" constant="28" id="EPX-tC-zgx"/>
-                                    <constraint firstItem="o8P-CO-Z8D" firstAttribute="top" secondItem="iog-KD-yhY" secondAttribute="bottom" constant="36" id="FOM-xP-H1Q"/>
+                                    <constraint firstItem="o8P-CO-Z8D" firstAttribute="top" secondItem="iog-KD-yhY" secondAttribute="bottom" constant="33" id="FOM-xP-H1Q"/>
                                     <constraint firstItem="c4K-kQ-8LO" firstAttribute="width" secondItem="TUe-Oa-Wul" secondAttribute="width" id="In3-y1-yIq"/>
                                     <constraint firstItem="TUe-Oa-Wul" firstAttribute="leading" secondItem="YVR-jV-Ewd" secondAttribute="leading" constant="85" id="Tic-9P-0av"/>
                                     <constraint firstItem="o8P-CO-Z8D" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="UEw-a7-0ib"/>
@@ -81,17 +83,30 @@
                                     <constraint firstItem="TUe-Oa-Wul" firstAttribute="top" secondItem="o8P-CO-Z8D" secondAttribute="bottom" constant="6" id="xYx-MQ-zKd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-Df-KPl">
+                                <rect key="frame" x="104.66666666666669" y="458" width="166" height="43"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="LWG-Df-KPl" firstAttribute="centerY" secondItem="c4K-kQ-8LO" secondAttribute="centerY" id="DKl-L5-wqZ"/>
                             <constraint firstItem="YVR-jV-Ewd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="FkK-db-nh9"/>
                             <constraint firstAttribute="bottom" secondItem="YVR-jV-Ewd" secondAttribute="bottom" constant="283" id="JTN-by-HHW"/>
+                            <constraint firstItem="LWG-Df-KPl" firstAttribute="height" secondItem="c4K-kQ-8LO" secondAttribute="height" id="YQg-aj-3LM"/>
                             <constraint firstItem="YVR-jV-Ewd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="291" id="ppW-Pn-BWw"/>
+                            <constraint firstItem="LWG-Df-KPl" firstAttribute="width" secondItem="c4K-kQ-8LO" secondAttribute="width" id="quM-sr-dTO"/>
                             <constraint firstAttribute="trailing" secondItem="YVR-jV-Ewd" secondAttribute="trailing" constant="20" id="vMD-DM-OvT"/>
+                            <constraint firstItem="LWG-Df-KPl" firstAttribute="centerX" secondItem="c4K-kQ-8LO" secondAttribute="centerX" id="xt9-yx-dGq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="okButton" destination="LWG-Df-KPl" id="SDP-Hu-Kq6"/>
+                        <outlet property="okView" destination="c4K-kQ-8LO" id="hSE-gx-jUg"/>
                         <outlet property="popUpView" destination="YVR-jV-Ewd" id="whc-oh-2fZ"/>
                     </connections>
                 </viewController>
