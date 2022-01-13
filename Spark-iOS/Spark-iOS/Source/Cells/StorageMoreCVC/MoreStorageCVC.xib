@@ -5,33 +5,59 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MoreStorageCVC" customModule="Spark_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <rect key="frame" x="0.0" y="0.0" width="160" height="203"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <rect key="frame" x="0.0" y="0.0" width="160" height="203"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bjP-XQ-8o4">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjP-XQ-8o4">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="203"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="ywz-cO-r8W">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="height" multiplier="1:1" id="UsK-Vq-hro"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClD-wt-IXN">
+                                <rect key="frame" x="0.0" y="164" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ywz-cO-r8W" firstAttribute="top" secondItem="bjP-XQ-8o4" secondAttribute="top" id="Amb-ll-C4v"/>
+                            <constraint firstItem="ywz-cO-r8W" firstAttribute="width" secondItem="bjP-XQ-8o4" secondAttribute="height" multiplier="160:203" id="cHw-n2-PWS"/>
+                            <constraint firstItem="ClD-wt-IXN" firstAttribute="leading" secondItem="ywz-cO-r8W" secondAttribute="leading" id="iIr-zs-vWP"/>
+                            <constraint firstItem="ywz-cO-r8W" firstAttribute="leading" secondItem="bjP-XQ-8o4" secondAttribute="leading" id="pOK-wx-yUc"/>
+                            <constraint firstItem="ClD-wt-IXN" firstAttribute="top" secondItem="ywz-cO-r8W" secondAttribute="bottom" constant="4" id="qqw-Pl-XoM"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <point key="canvasLocation" x="139" y="154"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="bjP-XQ-8o4" secondAttribute="bottom" id="1mg-Ka-IVX"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="bjP-XQ-8o4" secondAttribute="top" constant="44" id="FWz-62-mOG"/>
+                <constraint firstItem="bjP-XQ-8o4" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="I0c-Dh-gqf"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="bjP-XQ-8o4" secondAttribute="trailing" id="WOp-Sl-3RF"/>
+            </constraints>
+            <connections>
+                <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Ugc-Wf-lwp"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="153.68303571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="bgLogin" width="375" height="812"/>
     </resources>
 </document>
