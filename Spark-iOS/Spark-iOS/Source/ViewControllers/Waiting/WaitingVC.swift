@@ -98,6 +98,7 @@ class WaitingVC: UIViewController {
         setUI()
         setLayout()
         setCollectionView()
+        setAddTarget()
     }
     
     func setUI() {
@@ -164,6 +165,10 @@ class WaitingVC: UIViewController {
         }
     }
     
+    func setAddTarget() {
+        copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
+    }
+    
     func setCollectionView() {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
@@ -171,6 +176,11 @@ class WaitingVC: UIViewController {
         collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: WaitingFriendCVC.identifier)
         
         collectionViewFlowLayout.scrollDirection = .horizontal
+    }
+    
+    @objc
+    func copyToClipboard() {
+        UIPasteboard.general.string = dummydata["roomCode"]! as! String
     }
 }
 
