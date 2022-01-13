@@ -72,6 +72,7 @@ class StorageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func setDelegate() {
@@ -279,6 +280,6 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
         
         nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated:true, completion:nil)
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }

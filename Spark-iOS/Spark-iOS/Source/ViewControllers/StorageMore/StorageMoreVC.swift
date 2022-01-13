@@ -46,11 +46,14 @@ class StorageMoreVC: UIViewController {
     func setLayout() {
         storageMoreCV.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(120)
-            make.leading.equalToSuperview().offset(15)
-            make.trailing.equalToSuperview().offset(-15)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-50)
         }
         self.view.backgroundColor = .sparkBlack
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
 
 }
@@ -61,22 +64,23 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         // 컬렉션뷰 위드에 맞게 셀 위드 정하기
         // 셀 위드에 대해서 간격과 높이 정하기
         let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/335
-        let widthHeightRatio: CGFloat = 197/160
+        let cellWidthRatio: CGFloat = 160/350
+        let widthHeightRatio: CGFloat = 203/160
         let cell = CGSize(width: cellWidth*cellWidthRatio, height: cellWidth*cellWidthRatio*widthHeightRatio)
         return cell
     }
     
+    // TODO: 엣지 인셋 고치기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/335
+        let cellWidthRatio: CGFloat = 160/350
         let newCellWidth = cellWidth*cellWidthRatio
         let spacingRatio: CGFloat = 15/160
         let totalCellWidth = newCellWidth * 2
         let totalSpacingWidth = spacingRatio*newCellWidth
         print(totalCellWidth)
         print(totalSpacingWidth)
-        let leftInset = totalSpacingWidth/4
+        let leftInset = totalSpacingWidth/2
         print(leftInset)
         let rightInset = leftInset
         let A = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
