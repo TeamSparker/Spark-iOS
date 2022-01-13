@@ -129,18 +129,21 @@ class CreateRoomVC: UIViewController {
                 /// 글자가 바뀔 때마다 countLabel 업데이트
                 countLabel.text = "\(text.count)/15"
                 
-                /// 글자수 count
+                /// 글자수 count 초과한 경우
                 if text.count > maxLength {
                     let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
                     let newString = String(text[text.startIndex..<maxIndex])
                     textField.text = newString
-                }
-                
-                /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
-                if text.count > 0 {
-                    let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
-                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of:"\(text.count)"))
-                    countLabel.attributedText = attributedString
+                    countLabel.text = "15/15"
+                    countLabel.textColor = .sparkPinkred
+                } else {
+                    /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
+                    if text.count > 0 {
+                        let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
+                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of:"\(text.count)"))
+                        countLabel.textColor = .sparkDarkGray
+                        countLabel.attributedText = attributedString
+                    }
                 }
             }
         }
