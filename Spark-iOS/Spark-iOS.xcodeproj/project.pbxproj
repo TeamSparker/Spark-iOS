@@ -16,6 +16,7 @@
 		2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947201278CB00E005484C5 /* Futura Medium Italic.otf */; };
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
 		2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9851FC278FCBF400CE40A7 /* UILabel+.swift */; };
+		2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9852062790984C00CE40A7 /* UIViewController+.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
@@ -65,6 +66,7 @@
 		2B947201278CB00E005484C5 /* Futura Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic.otf"; sourceTree = "<group>"; };
 		2B947202278CB00E005484C5 /* Futura Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold.otf"; sourceTree = "<group>"; };
 		2B9851FC278FCBF400CE40A7 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		2B9852062790984C00CE40A7 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2BC1726C278E8F1000BA3029 /* UIView+.swift */,
 				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
+				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
 				F8096F422784214900B71D38 /* TempAppModel.swift in Sources */,
+				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
