@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SwiftUI
 
 class WaitingVC: UIViewController {
     
@@ -102,6 +103,8 @@ class WaitingVC: UIViewController {
     }
     
     func setUI() {
+        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))")
+        
         profileImageView.backgroundColor = .purple
         firstDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideLabel.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
@@ -202,6 +205,16 @@ class WaitingVC: UIViewController {
     func copyToClipboard() {
         UIPasteboard.general.string = dummydata["roomCode"]! as? String
         showToast()
+    }
+    
+    @objc
+    func goToHome() {
+        /// 홈으로 화면 전환
+    }
+    
+    @objc
+    func touchToMore() {
+        /// 더보기 버튼
     }
 }
 
