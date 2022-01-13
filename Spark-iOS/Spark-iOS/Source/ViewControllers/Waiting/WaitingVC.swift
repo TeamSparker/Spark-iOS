@@ -11,6 +11,55 @@ import SnapKit
 
 class WaitingVC: UIViewController {
     
+    // MARK: - Dummy Data
+    var dummydata = [
+        "roomId": 1,
+        "roomName": "미라클 모닝",
+        "roomCode": "abcdefghij",
+        "fromStart": false,
+        "isSet": false,
+        "momentDetail": "",
+        "moment": "잠깨기 전에",
+        "purpose": "집에 가자",
+        "members": [
+            [
+                "userId": 1,
+                "nickname": "힛이",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 2,
+                "nickname": "수아",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 3,
+                "nickname": "애진",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 4,
+                "nickname": "뚜비",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 5,
+                "nickname": "나나",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 6,
+                "nickname": "뽀",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+            [
+                "userId": 7,
+                "nickname": "보라돌이",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+            ],
+        ]
+    ] as [String : Any] as [String : Any] as [String : Any]
+    
     // MARK: - Properties
     
     let copyButton = UIButton()
@@ -37,13 +86,15 @@ class WaitingVC: UIViewController {
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-
+    
+    var memberList: [Any] = []
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setData()
         setUI()
         setLayout()
         setCollectionView()
@@ -64,28 +115,33 @@ class WaitingVC: UIViewController {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
-        
+
         checkTitleLabel.text = "습관 인증 방식"
         photoLabel.text = "사진 인증"
         stopwatchLabel.text = "스톱워치"
         goalTitleLabel.text = "나의 목표"
         nicknameLabel.text = "힛이"
-        timeLabel.text = "시간  잠들기 전에"
-        goalLabel.text = "목표  일단 책부터 펴자!"
         friendTitleLabel.text = "함께하는 스파커들"
-        friendCountLabel.text = "10"
         friendSubTitleLabel.text = "습관을 시작한 후에는 인원 추가가 불가능합니다."
         
-        checkTitleLabel.font = .h2Title
-        photoLabel.font = .p1TitleLight
-        stopwatchLabel.font = .p1TitleLight
-        goalTitleLabel.font = .h2Title
+        if let fromstart = dummydata["fromStart"]  {
+            if !(fromstart as! Bool) {
+                [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
+            } else {
+                [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
+            }
+        }
+        
+        // FIXME: - 강제언래핑 제거
+        timeLabel.text = "시간  \(String(describing: dummydata["moment"]!))"
+        goalLabel.text = "목표  \(String(describing: dummydata["purpose"]!))"
+        friendCountLabel.text = "\(memberList.count)"
+        
         nicknameLabel.font = .h3Subtitle
-        timeLabel.font = .p1TitleLight
-        goalLabel.font = .p1TitleLight
-        friendTitleLabel.font = .h2Title
         friendCountLabel.font = .p2SubtitleEng
         friendSubTitleLabel.font = .p2Subtitle
+        [checkTitleLabel, goalTitleLabel, friendTitleLabel].forEach {$0.font = .h2Title}
+        [photoLabel, stopwatchLabel, timeLabel, goalLabel].forEach {$0.font = .p1TitleLight}
         
         timeLabel.medium(targetString: "시간")
         goalLabel.medium(targetString: "목표")
@@ -102,6 +158,12 @@ class WaitingVC: UIViewController {
         friendSubTitleLabel.textColor = .gray
     }
     
+    func setData() {
+        if let member = dummydata["members"] {
+            memberList = member as! [Any]
+        }
+    }
+    
     func setCollectionView() {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
@@ -114,11 +176,14 @@ class WaitingVC: UIViewController {
 
 extension WaitingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return memberList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
+        // FIXME: - 강제언래핑 제거
+        let member: Dictionary<String, Any> = memberList[indexPath.item] as! Dictionary<String, Any>
+        cell.nameLabel.text = "\(String(describing: member["nickname"]!))"
         return cell
     }
 }
@@ -136,18 +201,6 @@ extension WaitingVC: UICollectionViewDelegate {
 extension WaitingVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    }
-}
-
-extension UILabel {
-    // string 일부 폰트를 .p1Title로 바꿔주는 함수
-    func medium(targetString: String) {
-        let font = UIFont.p1Title
-        let fullText = self.text ?? ""
-        let range = (fullText as NSString).range(of: targetString)
-        let attributedString = NSMutableAttributedString(string: fullText)
-        attributedString.addAttribute(.font, value: font, range: range)
-        self.attributedText = attributedString
     }
 }
 
