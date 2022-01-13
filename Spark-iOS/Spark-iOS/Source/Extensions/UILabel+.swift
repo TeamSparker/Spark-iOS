@@ -16,4 +16,24 @@ extension UILabel {
         attributedString.addAttribute(.font, value: font, range: range)
         self.attributedText = attributedString
     }
+    
+//    func colorChange(targetString: String) {
+//        let textcolor = UIColor.sparkGray
+//        let fullText = self.text ?? ""
+//        let range = (fullText as NSString).range(of: targetString)
+//        let attributedString = nsforegroun(string: fullText)
+//        attributedString.addAttribute(.textColor, range: )
+//    }
+    
+//    func orangeHighlight(_ value:String) -> NSMutableAttributedString {
+//
+//        let attributes:[NSAttributedString.Key : Any] = [
+////            .font: normalFont,
+//            .foregroundColor: UIColor.white,
+//            .backgroundColor: UIColor.orange
+//        ]
+//
+//        self.append(NSAttributedString(string: value, attributes:attributes))
+//        return self
+//    }
 }
