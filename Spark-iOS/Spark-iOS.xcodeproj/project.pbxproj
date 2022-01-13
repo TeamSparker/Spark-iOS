@@ -15,7 +15,7 @@
 		2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947200278CB00E005484C5 /* Futura Medium.otf */; };
 		2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947201278CB00E005484C5 /* Futura Medium Italic.otf */; };
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
-		2BC1726D278E8F1000BA3029 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */; };
+		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
@@ -31,8 +31,8 @@
 		F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F35278420FA00B71D38 /* TempProtocol.swift */; };
 		F8096F382784210000B71D38 /* TempService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F372784210000B71D38 /* TempService.swift */; };
 		F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F392784210A00B71D38 /* TempModel.swift */; };
-		F8096F3C2784211D00B71D38 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */; };
-		F8096F3E2784213700B71D38 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+Extension.swift */; };
+		F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+.swift */; };
+		F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+.swift */; };
 		F8096F402784214000B71D38 /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3F2784214000B71D38 /* TempCell.swift */; };
 		F8096F422784214900B71D38 /* TempAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F412784214900B71D38 /* TempAppModel.swift */; };
 		F8096F442784221900B71D38 /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Xib.swift */; };
@@ -48,6 +48,7 @@
 		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
+		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +60,7 @@
 		2B947200278CB00E005484C5 /* Futura Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium.otf"; sourceTree = "<group>"; };
 		2B947201278CB00E005484C5 /* Futura Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic.otf"; sourceTree = "<group>"; };
 		2B947202278CB00E005484C5 /* Futura Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold.otf"; sourceTree = "<group>"; };
-		2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,8 +80,8 @@
 		F8096F35278420FA00B71D38 /* TempProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempProtocol.swift; sourceTree = "<group>"; };
 		F8096F372784210000B71D38 /* TempService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempService.swift; sourceTree = "<group>"; };
 		F8096F392784210A00B71D38 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
-		F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		F8096F3D2784213700B71D38 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		F8096F3B2784211D00B71D38 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		F8096F3D2784213700B71D38 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		F8096F3F2784214000B71D38 /* TempCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
 		F8096F412784214900B71D38 /* TempAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAppModel.swift; sourceTree = "<group>"; };
 		F8096F432784221900B71D38 /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
+		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,9 +278,10 @@
 		F8096F2227841DF000B71D38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */,
-				F8096F3D2784213700B71D38 /* UIFont+Extension.swift */,
-				2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */,
+				F8096F3B2784211D00B71D38 /* UIColor+.swift */,
+				F8096F3D2784213700B71D38 /* UIFont+.swift */,
+				2BC1726C278E8F1000BA3029 /* UIView+.swift */,
+				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -474,7 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BC1726D278E8F1000BA3029 /* UIView+Extension.swift in Sources */,
+				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
 				F8096F422784214900B71D38 /* TempAppModel.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
@@ -482,7 +485,8 @@
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
-				F8096F3C2784211D00B71D38 /* UIColor+Extension.swift in Sources */,
+				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
+				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
@@ -494,7 +498,7 @@
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
-				F8096F3E2784213700B71D38 /* UIFont+Extension.swift in Sources */,
+				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
