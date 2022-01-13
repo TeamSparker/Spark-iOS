@@ -32,7 +32,9 @@ extension MainTBC {
     
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
-        setViewControllers([feedVC, homeVC, storageVC], animated: false)
+        let homeNVC = UINavigationController(rootViewController: homeVC)
+        
+        setViewControllers([feedVC, homeNVC, storageVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered
