@@ -19,10 +19,12 @@ extension UINavigationController {
         self.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    /// 뒤로가기 버튼
+    /// 뒤로가기 버튼(불투명)
     func initWithBackButton(tintColor: UIColor) {
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = .clear
+        appearance.backgroundColor = .sparkWhite
         appearance.initBackButtonAppearance()
         
         self.navigationBar.standardAppearance = appearance
