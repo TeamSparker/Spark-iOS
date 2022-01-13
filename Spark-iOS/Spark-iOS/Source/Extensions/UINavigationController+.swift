@@ -85,9 +85,8 @@ extension UINavigationController {
 extension UINavigationBarAppearance {
     func initBackButtonAppearance() {
         var backButtonImage: UIImage? {
-            // TODO: - 뒤로가기 버튼 어색하면 위치 조정 예정
-//            return UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -12.0, bottom: -5.0, right: 0.0))
-            return UIImage(named: "icBackWhite")
+            // back button 위치 조정
+            return UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -10.0, bottom: 0, right: 0.0))
         }
 
         var backButtonAppearance: UIBarButtonItemAppearance {
