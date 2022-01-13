@@ -30,6 +30,7 @@ class CreateRoomVC: UIViewController {
         setUI()
         setLayout()
         setNotification()
+        setAddTarget()
     }
     
     // MARK: - Methods
@@ -44,7 +45,11 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.backgroundColor = .gray
+        nextButton.layer.cornerRadius = 2
+        nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
+        nextButton.setTitle("다음", for: .normal)
+        nextButton.backgroundColor = .sparkGray
+        nextButton.isEnabled = false
         
         textField.borderStyle = .none
         textField.placeholder = "30분 독서"
@@ -59,7 +64,7 @@ class CreateRoomVC: UIViewController {
     
     private func setLayout() {
         view.addSubviews([titleLabel, subTitleLabel, textField,
-                          lineView, countLabel,nextButton])
+                          lineView, countLabel, nextButton])
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(12)
@@ -92,7 +97,8 @@ class CreateRoomVC: UIViewController {
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(48) /// 버튼 이미지
+            make.width.equalToSuperview().inset(20)
+            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
     
@@ -100,14 +106,20 @@ class CreateRoomVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
+    private func setAddTarget() {
+        nextButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
+    }
+    
     private func ableButton() {
         lineView.backgroundColor = .sparkPinkred
         nextButton.backgroundColor = .sparkPinkred
+        nextButton.isEnabled = true
     }
     
     private func disableButton() {
         lineView.backgroundColor = .sparkGray
         nextButton.backgroundColor = .sparkGray
+        nextButton.isEnabled = false
     }
     
     @objc
@@ -132,6 +144,12 @@ class CreateRoomVC: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc
+    func touchNextButton() {
+        // TODO: - 화면전환
+        print("다음")
     }
 }
 
