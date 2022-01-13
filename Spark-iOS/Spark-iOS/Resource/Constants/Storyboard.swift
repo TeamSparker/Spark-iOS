@@ -18,6 +18,7 @@ extension Const {
             static let storageMore = "StorageMore"
             static let login = "Login"
             static let splash = "Splash"
+            static let waiting = "Waiting"
         }
     }
 }

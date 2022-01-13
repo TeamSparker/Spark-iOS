@@ -15,7 +15,12 @@
 		2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947200278CB00E005484C5 /* Futura Medium.otf */; };
 		2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947201278CB00E005484C5 /* Futura Medium Italic.otf */; };
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
+		2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9851FC278FCBF400CE40A7 /* UILabel+.swift */; };
+		2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9852062790984C00CE40A7 /* UIViewController+.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
+		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
+		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
+		2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
@@ -75,7 +80,12 @@
 		2B947200278CB00E005484C5 /* Futura Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium.otf"; sourceTree = "<group>"; };
 		2B947201278CB00E005484C5 /* Futura Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic.otf"; sourceTree = "<group>"; };
 		2B947202278CB00E005484C5 /* Futura Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold.otf"; sourceTree = "<group>"; };
+		2B9851FC278FCBF400CE40A7 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		2B9852062790984C00CE40A7 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
+		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
+		2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingFriendCVC.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +153,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BC1726E278F54B300BA3029 /* Waiting */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1726F278F54DB00BA3029 /* WaitingVC.swift */,
+			);
+			path = Waiting;
+			sourceTree = "<group>";
+		};
+		2BC17271278F551F00BA3029 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
+				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		2BC17272278F56BA00BA3029 /* Waiting */ = {
+			isa = PBXGroup;
+			children = (
+				2BC17273278F56D100BA3029 /* Waiting.storyboard */,
+			);
+			path = Waiting;
+			sourceTree = "<group>";
+		};
+		2BC17275278F763600BA3029 /* Waiting */ = {
+			isa = PBXGroup;
+			children = (
+				2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */,
+			);
+			path = Waiting;
+			sourceTree = "<group>";
+		};
 		98B179D2EEBCF1113A785423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +351,7 @@
 				F816F120278E1C550008ED00 /* Login */,
 				F80A3E59278C239F00728E07 /* TabBar */,
 				EB625E97278F8ED200C43DE9 /* StorageMore */,
+				2BC17272278F56BA00BA3029 /* Waiting */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -333,6 +377,7 @@
 			children = (
 				F82B2E10278F54C200219628 /* Splash */,
 				F816F123278E1C800008ED00 /* Login */,
+				2BC1726E278F54B300BA3029 /* Waiting */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 			);
@@ -370,6 +415,8 @@
 				F8096F3D2784213700B71D38 /* UIFont+.swift */,
 				2BC1726C278E8F1000BA3029 /* UIView+.swift */,
 				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
+				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
+				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,8 +425,8 @@
 			isa = PBXGroup;
 			children = (
 				F8FAA96B2790336E00C4190F /* Home */,
-				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
-				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
+				2BC17275278F763600BA3029 /* Waiting */,
+				2BC17271278F551F00BA3029 /* Feed */,
 				EB625E68278ECF6E00C43DE9 /* StorageCVC */,
 				EB625E92278F8E4700C43DE9 /* StorageMoreCVC */,
 			);
@@ -520,6 +567,7 @@
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
+				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
@@ -587,6 +635,7 @@
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
+				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
@@ -600,10 +649,13 @@
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
+				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
+				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
+				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
@@ -770,7 +822,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FY8N9XTH66;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
@@ -785,7 +837,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Sparks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -804,7 +856,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FY8N9XTH66;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
@@ -819,7 +871,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Sparks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

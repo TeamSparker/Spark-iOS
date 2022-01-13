@@ -29,6 +29,7 @@ class FeedCVC: UICollectionViewCell {
     let sparkIconImageView = UIImageView()
     let sparkCountLabel = UILabel() /// 12
     
+    // FIXME: - button으로 변경
     let heartImageView = UIImageView()
     let heartCountLabel = UILabel()
     
@@ -51,6 +52,8 @@ class FeedCVC: UICollectionViewCell {
         profileImageView.backgroundColor = .black
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
+        profileImageView.layer.borderWidth = 2
+        profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
         
         sparkLabel.text = "받은 스파크"

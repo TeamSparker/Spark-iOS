@@ -17,6 +17,7 @@ extension Const {
             static let storage = "StorageVC"
             static let login = "LoginVC"
             static let splash = "SplashVC"
+            static let waiting = "WaitingVC"
         }
     }
 }
