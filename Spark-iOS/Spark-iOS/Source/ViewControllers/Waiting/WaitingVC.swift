@@ -15,7 +15,7 @@ class WaitingVC: UIViewController {
     var dummydata = [
         "roomId": 1,
         "roomName": "미라클 모닝",
-        "roomCode": "abcdefghij",
+        "roomCode": "gkjakljdalk",
         "fromStart": false,
         "isSet": false,
         "momentDetail": "",
@@ -178,9 +178,30 @@ class WaitingVC: UIViewController {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
+    func showToast() {
+        let toastLabel = UILabel(frame: CGRect(x: 20,
+                                               y: 652,
+                                               width: self.view.frame.size.width - 40,
+                                               height: 40))
+        
+        toastLabel.backgroundColor = .sparkDeepGray
+        toastLabel.textColor = .sparkWhite
+        toastLabel.font = .p1TitleLight
+        toastLabel.textAlignment = .center
+        toastLabel.alpha = 0.9
+        toastLabel.text = "코드를 복사했어요"
+        toastLabel.layer.cornerRadius = 2
+        toastLabel.clipsToBounds = true
+        view.addSubview(toastLabel)
+        UIView.animate(withDuration: 2.0, delay: 0.6,
+                       options: .curveEaseIn, animations: { toastLabel.alpha = 0.0 },
+                       completion: {_ in toastLabel.removeFromSuperview() })
+    }
+    
     @objc
     func copyToClipboard() {
-        UIPasteboard.general.string = dummydata["roomCode"]! as! String
+        UIPasteboard.general.string = dummydata["roomCode"]! as? String
+        showToast()
     }
 }
 
