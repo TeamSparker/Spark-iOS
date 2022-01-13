@@ -11,7 +11,6 @@ class HomeVC: UIViewController {
 
     // MARK: - Properties
     
-    private func habitRoomList = []
     
     // MARK: - @IBOutlet Properties
     

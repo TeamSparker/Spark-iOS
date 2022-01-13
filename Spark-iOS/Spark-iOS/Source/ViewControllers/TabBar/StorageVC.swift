@@ -42,7 +42,7 @@ class StorageVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .blue
+        name.backgroundColor = .clear
         
         return name
     }()
@@ -55,7 +55,7 @@ class StorageVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .purple
+        name.backgroundColor = .clear
         
         return name
     }()
@@ -63,6 +63,7 @@ class StorageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
+        registerXib()
         setCarousels()
         addSubviews(doingButton, doneButton, failButton, DoingCV, DoneCV, FailCV)
         addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
@@ -84,6 +85,17 @@ class StorageVC: UIViewController {
         FailCV.dataSource = self
         DoneCV.isHidden = true
         FailCV.isHidden = true
+    }
+    
+    func registerXib() {
+        let xibDoingCVName = UINib(nibName: "DoingStorageCVC", bundle: nil)
+        DoingCV.register(xibDoingCVName, forCellWithReuseIdentifier: "DoingStorageCVC")
+        
+        let xibDoneCVName = UINib(nibName: "DoneStorageCVC", bundle: nil)
+        DoneCV.register(xibDoneCVName, forCellWithReuseIdentifier: "DoneStorageCVC")
+        
+        let xibFailCVName = UINib(nibName: "FailStorageCVC", bundle: nil)
+        FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
     }
     
     // TODO: 컬렉션뷰 위치 스냅킷으로 잡아주기.
@@ -177,6 +189,24 @@ class StorageVC: UIViewController {
             make.centerY.equalTo(failButton.snp.centerY).offset(2)
             make.leading.equalTo(failButton.snp.trailing).offset(2)
         }
+        
+        DoingCV.snp.makeConstraints { make in
+            make.top.equalTo(failButton.snp.bottom).offset(14)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+        }
+        
+        DoneCV.snp.makeConstraints { make in
+            make.top.equalTo(failButton.snp.bottom).offset(14)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+        }
+        
+        FailCV.snp.makeConstraints { make in
+            make.top.equalTo(failButton.snp.bottom).offset(14)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+        }
     }
 
     // MARK: 버튼 기능 설정
@@ -243,7 +273,7 @@ extension StorageVC {
         let layout = CarouselLayout()
         
         let centerItemWidthScale: CGFloat = 327/375
-        let centerItemHeightScale: CGFloat = 1
+        let centerItemHeightScale: CGFloat = 0.95
         
         layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale)
 
@@ -252,9 +282,6 @@ extension StorageVC {
         layout.sideItemAlpha = 0.4
         
         collectionView.collectionViewLayout = layout
-        
-        let xibCollectionViewName = UINib(nibName: "DoingStorageCVC", bundle: nil)
-        collectionView.register(xibCollectionViewName, forCellWithReuseIdentifier: "DoingStorageCVC")
         collectionView.reloadData()
     }
 }
@@ -269,9 +296,22 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
         
-        return cell
+        let cellCase = collectionView
+        switch cellCase {
+        case DoingCV:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
+            
+            return cell
+        case DoneCV:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoneStorageCVC", for: indexPath) as! DoneStorageCVC
+            
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FailStorageCVC", for: indexPath) as! FailStorageCVC
+            
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -8,10 +8,14 @@
 import UIKit
 
 class FailStorageCVC: UICollectionViewCell {
+    @IBOutlet weak var gradationUIView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    func setUIView() {
+        gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
+    }
 }

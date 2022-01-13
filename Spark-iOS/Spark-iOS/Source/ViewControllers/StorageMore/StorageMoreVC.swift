@@ -18,10 +18,10 @@ class StorageMoreVC: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0,y: 120,width: 375,height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let cv = UICollectionView(frame: CGRect(x: 0,y: 120,width: 375,height: 520), collectionViewLayout: layout)
+        cv.backgroundColor = .clear
         
-        return name
+        return cv
     }()
     
     override func viewDidLoad() {
@@ -52,6 +52,7 @@ class StorageMoreVC: UIViewController {
         }
         self.view.backgroundColor = .sparkBlack
         self.tabBarController?.tabBar.isHidden = true
+        
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
