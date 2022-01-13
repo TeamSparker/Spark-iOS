@@ -10,6 +10,7 @@ import SnapKit
 
 class StorageVC: UIViewController {
     
+    // MARK: - Properties
     let doingButton = MyButton()
     let doneButton = MyButton()
     let failButton = MyButton()
@@ -60,16 +61,17 @@ class StorageVC: UIViewController {
         return name
     }()
     
+    // MARK: - @IBOutlet Properties
+
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         registerXib()
         setCarousels()
-        // TODO: setLayout에서 애드서브뷰 같이해주기
-        addSubviews(doingButton, doneButton, failButton, DoingCV, DoneCV, FailCV)
-        addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
-        setButtons()
-        addTargets(doingButton, doneButton, failButton)
+        setUI()
+        setLayout()
+        setAddTargets(doingButton, doneButton, failButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +79,7 @@ class StorageVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    // MARK: - Methods
     func setDelegate() {
         DoingCV.delegate = self
         DoingCV.dataSource = self
@@ -99,11 +102,7 @@ class StorageVC: UIViewController {
         FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
     }
     
-    // TODO: 컬렉션뷰 위치 스냅킷으로 잡아주기.
-    
-    // MARK: 버튼 레이아웃 설정
-    // TODO: setUI와 setLayout으로 나눠주기
-    func setButtons() {
+    func setUI() {
         upperLabel.text = "나는야쿵짝지혜 님의"
         upperLabel.font = .h2Title
         upperLabel.textColor = .sparkBlack
@@ -152,6 +151,13 @@ class StorageVC: UIViewController {
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
+    }
+    
+    func setLayout() {
+        view.addSubviews([doingButton, doneButton, failButton,
+                               DoingCV, DoneCV, FailCV,
+                               upperLabel, lowerLabel, doingLabel,
+                               doneLabel, failLabel])
         
         upperLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
@@ -212,14 +218,14 @@ class StorageVC: UIViewController {
         }
     }
 
-    // MARK: 버튼 기능 설정
-    func addTargets(_ buttons: MyButton...) {
+    // 버튼 타겟 설정
+    func setAddTargets(_ buttons: MyButton...) {
         for button in buttons {
             button.addTarget(self, action: #selector(changeCollectionView), for: .touchUpInside)
         }
     }
     
-    // TODO: foreach 사용하기
+    // MARK: - @objc Function
     @objc func changeCollectionView(sender: MyButton) {
         let status: Int = (sender.statusCV)!
         switch status {
@@ -258,21 +264,17 @@ class StorageVC: UIViewController {
     }
 }
 
+// MARK: - Methods
+
+
+// MARK: Carousel 레이아웃 세팅
 extension StorageVC {
-    
-    func addSubviews(_ views: UIView...) {
-        for view in views {
-            self.view.addSubview(view)
-        }
-    }
-    
     func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
         setCarouselLayout(collectionView: DoneCV)
         setCarouselLayout(collectionView: FailCV)
     }
     
-    // TODO: 하나 레이아웃 다 잡고 레지스터 부분 밖으로 빼주자
     // 컬렉션뷰의 레이아웃을 캐러셀 형식으로 변환시키는 함수
     func setCarouselLayout(collectionView: UICollectionView) {
         let layout = CarouselLayout()
@@ -291,6 +293,7 @@ extension StorageVC {
     }
 }
 
+// MARK: collectionView Delegate
 extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

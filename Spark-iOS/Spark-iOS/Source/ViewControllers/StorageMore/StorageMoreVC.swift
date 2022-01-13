@@ -9,6 +9,7 @@ import UIKit
 
 class StorageMoreVC: UIViewController {
     
+    // MARK: - Properties
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -24,15 +25,18 @@ class StorageMoreVC: UIViewController {
         return cv
     }()
     
+    // MARK: - @IBOutlet Properties
+  
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.addSubview(storageMoreCV)
         setDelegate()
         registerXib()
+        setUI()
         setLayout()
     }
     
+    // MARK: - Methods
     func setDelegate() {
         storageMoreCV.delegate = self
         storageMoreCV.dataSource = self
@@ -43,22 +47,29 @@ class StorageMoreVC: UIViewController {
         storageMoreCV.register(xibCollectionViewName, forCellWithReuseIdentifier: "MoreStorageCVC")
     }
     
+    func setUI() {
+        self.view.backgroundColor = .sparkBlack
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+    }
+    
     func setLayout() {
+        view.addSubview(storageMoreCV)
         storageMoreCV.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(120)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-50)
         }
-        self.view.backgroundColor = .sparkBlack
-        self.tabBarController?.tabBar.isHidden = true
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
-
+    
+    // MARK: - @IBAction Properties
+    // MARK: - @objc Function
 }
 
+
+// MARK: - collectionView Delegate
 extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 컬렉션뷰 크기 정하기
@@ -77,16 +88,11 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         let cellWidthRatio: CGFloat = 160/350
         let newCellWidth = cellWidth*cellWidthRatio
         let spacingRatio: CGFloat = 15/160
-        let totalCellWidth = newCellWidth * 2
         let totalSpacingWidth = spacingRatio*newCellWidth
-        print(totalCellWidth)
-        print(totalSpacingWidth)
         let leftInset = totalSpacingWidth/2
-        print(leftInset)
         let rightInset = leftInset
-        let A = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-        print(A)
-        return A
+        let insets = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        return insets
     }
 }
 
@@ -101,3 +107,5 @@ extension StorageMoreVC: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - Network
