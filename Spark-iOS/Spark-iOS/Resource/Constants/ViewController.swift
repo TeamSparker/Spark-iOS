@@ -18,6 +18,7 @@ extension Const {
             static let login = "LoginVC"
             static let splash = "SplashVC"
             static let waiting = "WaitingVC"
+            static let createroom = "CreateRoomVC"
         }
     }
 }
