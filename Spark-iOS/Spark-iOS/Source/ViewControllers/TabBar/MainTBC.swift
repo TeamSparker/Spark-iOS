@@ -39,5 +39,20 @@ extension MainTBC {
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered
         selectedIndex = 1
+        
+        let appearance = UITabBarAppearance()
+        // set tabbar opacity
+        appearance.configureWithOpaqueBackground()
+        // remove tabbar border line
+        appearance.shadowColor = UIColor.clear
+        // set tabbar background color
+        appearance.backgroundColor = .white
+
+        tabBar.standardAppearance = appearance
+
+        if #available(iOS 15.0, *) {
+                // set tabbar opacity
+                tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
     }
 }

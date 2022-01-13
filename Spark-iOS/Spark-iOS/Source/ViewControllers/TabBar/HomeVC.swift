@@ -20,10 +20,16 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     private func setUI() {
-        navigationController?.initWithTwoCustomButtons(navigationItem: self.navigationItem, firstButtonClosure: #selector(presentToProfileVC), secondButtonClosure: #selector(presentToAertVC))
+        navigationController?.initWithTwoCustomButtons(navigationItem: self.navigationItem,
+                                                       tintColor: .sparkBlack,
+                                                       backgroundColor: .sparkWhite,
+                                                       firstButtonClosure: #selector(presentToProfileVC),
+                                                       secondButtonClosure: #selector(presentToAertVC))
     }
     
     // MARK: - @objc
+    
+    // TODO: - 화면전환 코드 생성
     
     @objc
     private func presentToProfileVC() {
