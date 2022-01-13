@@ -119,6 +119,7 @@ class StorageVC: UIViewController {
         doingButton.setTitleColor(.sparkDarkGray, for: .normal)
         doingButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doingButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
+        doingButton.setTitleColor(.sparkDarkPinkred, for: .focused)
         doingButton.isSelected = true
         
         doingLabel.text = "6"
@@ -130,7 +131,7 @@ class StorageVC: UIViewController {
         doneButton.backgroundColor = .clear
         doneButton.setTitle("완료", for: .normal)
         doneButton.titleLabel?.font = .h3Subtitle
-        doneButton.setTitleColor(.sparkDarkGray, for: .normal)
+        doneButton.setTitleColor(.red, for: .normal)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         
@@ -229,6 +230,7 @@ class StorageVC: UIViewController {
             doingButton.isSelected = false
             doneButton.isSelected = true
             failButton.isSelected = false
+            doneButton.isHighlighted = true
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
