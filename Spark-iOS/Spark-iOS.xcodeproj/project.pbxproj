@@ -15,7 +15,7 @@
 		2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947200278CB00E005484C5 /* Futura Medium.otf */; };
 		2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947201278CB00E005484C5 /* Futura Medium Italic.otf */; };
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
-		2BC1726D278E8F1000BA3029 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */; };
+		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
@@ -44,8 +44,8 @@
 		F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F35278420FA00B71D38 /* TempProtocol.swift */; };
 		F8096F382784210000B71D38 /* TempService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F372784210000B71D38 /* TempService.swift */; };
 		F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F392784210A00B71D38 /* TempModel.swift */; };
-		F8096F3C2784211D00B71D38 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */; };
-		F8096F3E2784213700B71D38 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+Extension.swift */; };
+		F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+.swift */; };
+		F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+.swift */; };
 		F8096F442784221900B71D38 /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Xib.swift */; };
 		F8096F462784247100B71D38 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F452784247100B71D38 /* Notification.swift */; };
 		F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80A3E4C278C182100728E07 /* MainTabBar.storyboard */; };
@@ -56,9 +56,10 @@
 		F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E56278C1C2700728E07 /* FeedVC.swift */; };
 		F816F122278E1C760008ED00 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F816F121278E1C760008ED00 /* Login.storyboard */; };
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
-		F82B2E0B278EBC4400219628 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaults.swift */; };
+		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
+		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +71,7 @@
 		2B947200278CB00E005484C5 /* Futura Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium.otf"; sourceTree = "<group>"; };
 		2B947201278CB00E005484C5 /* Futura Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic.otf"; sourceTree = "<group>"; };
 		2B947202278CB00E005484C5 /* Futura Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold.otf"; sourceTree = "<group>"; };
-		2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,8 +104,8 @@
 		F8096F35278420FA00B71D38 /* TempProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempProtocol.swift; sourceTree = "<group>"; };
 		F8096F372784210000B71D38 /* TempService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempService.swift; sourceTree = "<group>"; };
 		F8096F392784210A00B71D38 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
-		F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		F8096F3D2784213700B71D38 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		F8096F3B2784211D00B71D38 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		F8096F3D2784213700B71D38 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		F8096F432784221900B71D38 /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
 		F8096F452784247100B71D38 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F80A3E4C278C182100728E07 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
@@ -115,10 +116,11 @@
 		F80A3E56278C1C2700728E07 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		F816F121278E1C760008ED00 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		F82B2E0A278EBC4400219628 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
+		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +274,7 @@
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
 				F8096F432784221900B71D38 /* Xib.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
-				F82B2E0A278EBC4400219628 /* UserDefaults.swift */,
+				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -356,9 +358,10 @@
 		F8096F2227841DF000B71D38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F3B2784211D00B71D38 /* UIColor+Extension.swift */,
-				F8096F3D2784213700B71D38 /* UIFont+Extension.swift */,
-				2BC1726C278E8F1000BA3029 /* UIView+Extension.swift */,
+				F8096F3B2784211D00B71D38 /* UIColor+.swift */,
+				F8096F3D2784213700B71D38 /* UIFont+.swift */,
+				2BC1726C278E8F1000BA3029 /* UIView+.swift */,
+				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -560,15 +563,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BC1726D278E8F1000BA3029 /* UIView+Extension.swift in Sources */,
+				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
+				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
-				F82B2E0B278EBC4400219628 /* UserDefaults.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
-				F8096F3C2784211D00B71D38 /* UIColor+Extension.swift in Sources */,
+				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
+				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				F8096F34278420F100B71D38 /* TempView.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
@@ -582,8 +586,8 @@
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
+				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,
-				F8096F3E2784213700B71D38 /* UIFont+Extension.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
