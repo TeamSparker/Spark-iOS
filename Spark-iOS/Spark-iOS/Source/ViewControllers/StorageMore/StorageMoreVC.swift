@@ -48,10 +48,10 @@ class StorageMoreVC: UIViewController {
     }
     
     func setUI() {
-        self.view.backgroundColor = .sparkBlack
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        view.backgroundColor = .sparkBlack
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
     func setLayout() {

@@ -76,7 +76,8 @@ class StorageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Methods
@@ -323,11 +324,17 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextSB = UIStoryboard.init(name: "StorageMore", bundle:nil)
+//        let nextSB = UIStoryboard.init(name: "StorageMore", bundle:nil)
+//
+//        guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
+//
+//        nextVC.modalPresentationStyle = .fullScreen
+//        navigationController?.pushViewController(nextVC, animated: true)
+        let nextSB = UIStoryboard.init(name: "CodeJoin", bundle:nil)
         
-        guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
+        guard let nextVC = nextSB.instantiateViewController(identifier: "CodeJoinVC") as? CodeJoinVC else {return}
         
-        nextVC.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(nextVC, animated: true)
+        nextVC.modalPresentationStyle = .overFullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
 }

@@ -1,31 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansKR-Bold.otf">
+            <string>NotoSansKR-Bold</string>
+        </array>
+        <array key="NotoSansKR-Medium.otf">
+            <string>NotoSansKR-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Code JoinVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CodeJoinVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CodeJoinVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CodeJoinVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVR-jV-Ewd">
+                                <rect key="frame" x="20" y="291" width="335" height="238"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구에게 받은 코드를 입력해주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iog-KD-yhY">
+                                        <rect key="frame" x="32.666666666666657" y="28" width="270" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
+                                        <color key="textColor" name="sparkDarkGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-Oa-Wul">
+                                        <rect key="frame" x="85" y="124" width="166" height="2"/>
+                                        <color key="backgroundColor" name="sparkGray"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="qjp-eN-YG0"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4K-kQ-8LO">
+                                        <rect key="frame" x="84.666666666666686" y="170" width="166" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="확인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-PX-cJN">
+                                                <rect key="frame" x="62" y="8" width="49" height="27"/>
+                                                <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
+                                                <color key="textColor" name="sparkWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="sparkDarkPinkRed"/>
+                                        <constraints>
+                                            <constraint firstItem="yYx-PX-cJN" firstAttribute="centerX" secondItem="c4K-kQ-8LO" secondAttribute="centerX" id="4od-AD-XiW"/>
+                                            <constraint firstItem="yYx-PX-cJN" firstAttribute="centerY" secondItem="c4K-kQ-8LO" secondAttribute="centerY" id="Aqa-GT-sMB"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8P-CO-Z8D">
+                                        <rect key="frame" x="84.666666666666686" y="90.333333333333314" width="166" height="27.666666666666671"/>
+                                        <color key="textColor" name="sparkBlack"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="c4K-kQ-8LO" secondAttribute="bottom" constant="28" id="EPX-tC-zgx"/>
+                                    <constraint firstItem="o8P-CO-Z8D" firstAttribute="top" secondItem="iog-KD-yhY" secondAttribute="bottom" constant="36" id="FOM-xP-H1Q"/>
+                                    <constraint firstItem="c4K-kQ-8LO" firstAttribute="width" secondItem="TUe-Oa-Wul" secondAttribute="width" id="In3-y1-yIq"/>
+                                    <constraint firstItem="TUe-Oa-Wul" firstAttribute="leading" secondItem="YVR-jV-Ewd" secondAttribute="leading" constant="85" id="Tic-9P-0av"/>
+                                    <constraint firstItem="o8P-CO-Z8D" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="UEw-a7-0ib"/>
+                                    <constraint firstItem="c4K-kQ-8LO" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="Y76-WB-RGM"/>
+                                    <constraint firstItem="iog-KD-yhY" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="gBI-vb-g6d"/>
+                                    <constraint firstAttribute="trailing" secondItem="TUe-Oa-Wul" secondAttribute="trailing" constant="84" id="iFc-ek-gjh"/>
+                                    <constraint firstItem="c4K-kQ-8LO" firstAttribute="top" secondItem="TUe-Oa-Wul" secondAttribute="bottom" constant="44" id="jTM-Hw-Wg0"/>
+                                    <constraint firstItem="o8P-CO-Z8D" firstAttribute="width" secondItem="TUe-Oa-Wul" secondAttribute="width" id="mt6-U9-tvI"/>
+                                    <constraint firstItem="iog-KD-yhY" firstAttribute="top" secondItem="YVR-jV-Ewd" secondAttribute="top" constant="28" id="u91-B5-aKd"/>
+                                    <constraint firstItem="TUe-Oa-Wul" firstAttribute="top" secondItem="o8P-CO-Z8D" secondAttribute="bottom" constant="6" id="xYx-MQ-zKd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YVR-jV-Ewd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="FkK-db-nh9"/>
+                            <constraint firstAttribute="bottom" secondItem="YVR-jV-Ewd" secondAttribute="bottom" constant="283" id="JTN-by-HHW"/>
+                            <constraint firstItem="YVR-jV-Ewd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="291" id="ppW-Pn-BWw"/>
+                            <constraint firstAttribute="trailing" secondItem="YVR-jV-Ewd" secondAttribute="trailing" constant="20" id="vMD-DM-OvT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="popUpView" destination="YVR-jV-Ewd" id="whc-oh-2fZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="46" y="94"/>
+            <point key="canvasLocation" x="45.600000000000001" y="93.842364532019715"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="sparkBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDarkGray">
+            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDarkPinkRed">
+            <color red="1" green="0.0" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkGray">
+            <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
