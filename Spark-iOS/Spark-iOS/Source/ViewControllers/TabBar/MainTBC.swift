@@ -33,11 +33,27 @@ extension MainTBC {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
         let homeNVC = UINavigationController(rootViewController: homeVC)
+        let storageNVC = UINavigationController(rootViewController: storageVC)
         
-        setViewControllers([feedVC, homeNVC, storageVC], animated: false)
+        setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered
         selectedIndex = 1
+        
+        let appearance = UITabBarAppearance()
+        // set tabbar opacity
+        appearance.configureWithOpaqueBackground()
+        // remove tabbar border line
+        appearance.shadowColor = UIColor.clear
+        // set tabbar background color
+        appearance.backgroundColor = .white
+
+        tabBar.standardAppearance = appearance
+
+        if #available(iOS 15.0, *) {
+                // set tabbar opacity
+                tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
     }
 }
