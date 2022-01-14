@@ -16,6 +16,8 @@ extension Const {
             static let doneStorageCVC = "DoneStorageCVC"
             static let failStorageCVC = "FailStorageCVC"
             static let moreStorageCVC = "MoreStorageCVC"
+            static let homeHabitCVC = "HomeHabitCVC"
+            static let homeWaitingCVC = "HomeWaitingCVC"
         }
     }
 }

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-om-6bn">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NRt-6s-e02">
                                     <size key="itemSize" width="128" height="128"/>
@@ -44,14 +44,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RxS-om-6bn" secondAttribute="trailing" constant="20" id="ARS-hs-rm7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RxS-om-6bn" secondAttribute="trailing" id="ARS-hs-rm7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sqg-Wy-fj3" secondAttribute="trailing" id="BFz-qZ-ZNe"/>
                             <constraint firstItem="RxS-om-6bn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BOC-kQ-qjc"/>
                             <constraint firstItem="Sqg-Wy-fj3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IeI-L5-32z"/>
                             <constraint firstAttribute="bottom" secondItem="Sqg-Wy-fj3" secondAttribute="bottom" id="ZIW-DD-9lc"/>
                             <constraint firstItem="Sqg-Wy-fj3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZMj-YB-gq1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RxS-om-6bn" secondAttribute="bottom" id="jbq-Db-2Qd"/>
-                            <constraint firstItem="RxS-om-6bn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wMc-qe-enf"/>
+                            <constraint firstItem="RxS-om-6bn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wMc-qe-enf"/>
                         </constraints>
                     </view>
                     <connections>
