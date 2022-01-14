@@ -8,13 +8,74 @@
 import UIKit
 
 class PhotoAuthView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    // MARK: - Properties
+    let titleLabel = UILabel()
+    let subTitleLabel = UILabel()
+    
+    let firstDivideView = UIView()
+    let secondDivideView = UIView()
+    let photoImageView = UIImageView()
+    
+    // MARK: - View Life Cycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setUI()
+        setSelectedUI()
+        setLayout()
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    func setUI() {
+        titleLabel.text = "사진으로 인증하기"
+        titleLabel.font = .h3Subtitle
+        
+        subTitleLabel.text = "미라클 모닝, 영양제 먹기처럼 결과를 \n인증하는 습관에 추천해요."
+        subTitleLabel.textColor = .sparkDarkGray
+        subTitleLabel.font = .p1TitleLight
+        subTitleLabel.numberOfLines = 2
+        
+        self.layer.borderWidth = 2
+    }
+    
+    func setSelectedUI() {
+        titleLabel.textColor = .sparkPinkred
+        
+//        photoImageView.image = UIImage(named: "")
+        photoImageView.backgroundColor = .blue
+        
+        self.backgroundColor = .sparkPinkred.withAlphaComponent(0.05)
+        self.layer.borderColor = UIColor.sparkPinkred.cgColor
+    }
+    
+    func setDeselectedUI() {
+        titleLabel.textColor = .sparkDeepGray
+        photoImageView.backgroundColor = .sparkDeepGray
+        
+        self.backgroundColor = .clear
+        self.layer.borderColor = UIColor.sparkLightGray.cgColor
+    }
+    
+    func setLayout() {
+        addSubviews([titleLabel, subTitleLabel, photoImageView])
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().inset(20)
+        }
+        
+        subTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.equalToSuperview().inset(20)
+        }
+        
+        photoImageView.snp.makeConstraints { make in
+            make.trailing.bottom.equalToSuperview().inset(16)
+            make.width.height.equalTo(72)
+        }
+    }
 }
