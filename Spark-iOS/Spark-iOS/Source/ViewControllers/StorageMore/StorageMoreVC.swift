@@ -10,6 +10,7 @@ import UIKit
 class StorageMoreVC: UIViewController {
     
     // MARK: - Properties
+    
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -28,6 +29,7 @@ class StorageMoreVC: UIViewController {
     // MARK: - @IBOutlet Properties
   
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -37,6 +39,7 @@ class StorageMoreVC: UIViewController {
     }
     
     // MARK: - Methods
+    
     func setDelegate() {
         storageMoreCV.delegate = self
         storageMoreCV.dataSource = self
@@ -65,11 +68,14 @@ class StorageMoreVC: UIViewController {
     }
     
     // MARK: - @IBAction Properties
+    
     // MARK: - @objc Function
+    
 }
 
 
 // MARK: - collectionView Delegate
+
 extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 컬렉션뷰 크기 정하기

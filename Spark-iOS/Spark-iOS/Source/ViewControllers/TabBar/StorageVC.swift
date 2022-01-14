@@ -11,6 +11,7 @@ import SnapKit
 class StorageVC: UIViewController {
     
     // MARK: - Properties
+    
     let doingButton = MyButton()
     let doneButton = MyButton()
     let failButton = MyButton()
@@ -64,6 +65,7 @@ class StorageVC: UIViewController {
     // MARK: - @IBOutlet Properties
 
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -81,6 +83,7 @@ class StorageVC: UIViewController {
     }
     
     // MARK: - Methods
+    
     func setDelegate() {
         DoingCV.delegate = self
         DoingCV.dataSource = self
@@ -227,6 +230,7 @@ class StorageVC: UIViewController {
     }
     
     // MARK: - @objc Function
+    
     @objc func changeCollectionView(sender: MyButton) {
         let status: Int = (sender.statusCV)!
         switch status {
@@ -264,10 +268,10 @@ class StorageVC: UIViewController {
     }
 }
 
-// MARK: - Methods
-
+// MARK: - extension Methods
 
 // MARK: Carousel 레이아웃 세팅
+
 extension StorageVC {
     func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
@@ -294,6 +298,7 @@ extension StorageVC {
 }
 
 // MARK: collectionView Delegate
+
 extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
