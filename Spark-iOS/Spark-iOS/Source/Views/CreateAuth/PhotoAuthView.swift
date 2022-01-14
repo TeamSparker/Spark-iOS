@@ -41,13 +41,12 @@ class PhotoAuthView: UIView {
         subTitleLabel.numberOfLines = 2
         
         self.layer.borderWidth = 2
+        self.layer.cornerRadius = 2
     }
     
     func setSelectedUI() {
         titleLabel.textColor = .sparkPinkred
-        
-//        photoImageView.image = UIImage(named: "")
-        photoImageView.backgroundColor = .blue
+        photoImageView.image = UIImage(named: "stickerPhotoDefault")
         
         self.backgroundColor = .sparkPinkred.withAlphaComponent(0.05)
         self.layer.borderColor = UIColor.sparkPinkred.cgColor
@@ -55,7 +54,7 @@ class PhotoAuthView: UIView {
     
     func setDeselectedUI() {
         titleLabel.textColor = .sparkDeepGray
-        photoImageView.backgroundColor = .sparkDeepGray
+        photoImageView.image = UIImage(named: "stickerPhotoGrayscale")
         
         self.backgroundColor = .clear
         self.layer.borderColor = UIColor.sparkLightGray.cgColor
