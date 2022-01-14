@@ -51,31 +51,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-NR-SRK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-NR-SRK">
                                 <rect key="frame" x="20" y="601.33333333333337" width="335" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KJJ-HB-Rs4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="코드 다시 입력하기">
-                                            <attributes>
-                                                <color key="NSColor" red="0.65124677800807829" green="0.49239676339285715" blue="0.51438851907950678" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="18" name="NotoSansKR-Medium"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="코드 다시 입력하기">
+                                    <color key="titleColor" name="sparkPinkRed"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchReinputCode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="y2M-Ef-5u1"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-oV-XpG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-oV-XpG">
                                 <rect key="frame" x="20" y="665.33333333333337" width="335" height="48"/>
+                                <color key="backgroundColor" name="sparkDarkPinkRed"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="HmT-gM-mxw"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="대기방 입장하기"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
+                                <color key="tintColor" name="sparkGray"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="대기방 입장하기">
+                                    <color key="titleColor" name="sparkWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchEnterWaitingVC:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="KZa-Ch-VkV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="힛이님이 초대한 방" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgJ-xi-AEd">
                                 <rect key="frame" x="109.33333333333333" y="467" width="156.33333333333337" height="29"/>
@@ -112,6 +117,8 @@
                     <connections>
                         <outlet property="enterButton" destination="Vtz-oV-XpG" id="ULA-W8-j5K"/>
                         <outlet property="reInputButton" destination="XBD-NR-SRK" id="sat-3t-wWL"/>
+                        <outlet property="roomNameLabel" destination="BMl-yz-8ft" id="nVN-WR-Aph"/>
+                        <outlet property="userInviteLabel" destination="MgJ-xi-AEd" id="yW4-oE-CFd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -125,8 +132,17 @@
         <namedColor name="sparkDarkGray">
             <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="sparkDarkPinkRed">
+            <color red="1" green="0.0" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="sparkDeepGray">
             <color red="0.16899999976158142" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkGray">
+            <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkPinkRed">
+            <color red="1" green="0.13300000131130219" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sparkWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
