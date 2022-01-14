@@ -16,8 +16,9 @@ class CreateAuthVC: UIViewController {
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let photoAuthView = PhotoAuthView()
-//    let secondVie = aithou
+    let timerAuthView = TimerAuthView()
     let enterButton = UIButton()
+    var photoSelected: Bool = true
 
     // MARK: - View Life Cycles
     
@@ -27,6 +28,8 @@ class CreateAuthVC: UIViewController {
         setUI()
         setLayout()
         setAddTarget()
+        setView()
+        setGesture()
     }
     
     // MARK: - Methods
@@ -47,10 +50,11 @@ class CreateAuthVC: UIViewController {
         enterButton.backgroundColor = .sparkPinkred
         
         photoAuthView.setSelectedUI()
+        timerAuthView.setDeselectedUI()
     }
     
     private func setLayout() {
-        view.addSubviews([titleLabel, subTitleLabel, photoAuthView, enterButton])
+        view.addSubviews([titleLabel, subTitleLabel, photoAuthView, timerAuthView, enterButton])
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(12)
@@ -68,6 +72,12 @@ class CreateAuthVC: UIViewController {
             make.height.equalTo(206)
         }
         
+        timerAuthView.snp.makeConstraints { make in
+            make.top.equalTo(photoAuthView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(206)
+        }
+        
         enterButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
@@ -76,23 +86,40 @@ class CreateAuthVC: UIViewController {
         }
     }
     
+    private func setView() {
+        if photoSelected {
+            photoAuthView.setSelectedUI()
+            timerAuthView.setDeselectedUI()
+        } else {
+            photoAuthView.setDeselectedUI()
+            timerAuthView.setSelectedUI()
+        }
+    }
+    
+    private func setGesture() {
+        let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        let timerTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        photoAuthView.addGestureRecognizer(photoTapGesture)
+        timerAuthView.addGestureRecognizer(timerTapGesture)
+    }
+    
     private func setAddTarget() {
         enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
-    }
-    
-    private func ableButton() {
-        enterButton.backgroundColor = .sparkPinkred
-        enterButton.isEnabled = true
-    }
-    
-    private func disableButton() {
-        enterButton.backgroundColor = .sparkGray
-        enterButton.isEnabled = false
     }
     
     @objc
     func touchEnterButton() {
         // TODO: - 화면전환
         print("다음")
+    }
+    
+    @objc func tapped(_ gesture: UITapGestureRecognizer) {
+        print(photoSelected)
+        if photoSelected {
+            photoSelected = false
+        } else {
+            photoSelected = true
+        }
+        setView()
     }
 }

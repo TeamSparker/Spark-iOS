@@ -7,14 +7,13 @@
 
 import UIKit
 
+import SnapKit
+
 class PhotoAuthView: UIView {
     
     // MARK: - Properties
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
-    
-    let firstDivideView = UIView()
-    let secondDivideView = UIView()
     let photoImageView = UIImageView()
     
     // MARK: - View Life Cycle
@@ -22,7 +21,6 @@ class PhotoAuthView: UIView {
         super.init(frame: frame)
         
         setUI()
-        setSelectedUI()
         setLayout()
     }
     
