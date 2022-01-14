@@ -131,7 +131,7 @@ class StorageVC: UIViewController {
         doneButton.backgroundColor = .clear
         doneButton.setTitle("완료", for: .normal)
         doneButton.titleLabel?.font = .h3Subtitle
-        doneButton.setTitleColor(.red, for: .normal)
+        doneButton.setTitleColor(.sparkDarkGray, for: .normal)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         

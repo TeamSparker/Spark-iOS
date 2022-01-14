@@ -38,4 +38,8 @@ class CodeJoinVC: UIViewController {
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
+    
+    @IBAction func touchOutsideButton(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
 }
