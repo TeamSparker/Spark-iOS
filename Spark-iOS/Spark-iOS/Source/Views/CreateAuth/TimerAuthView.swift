@@ -28,6 +28,7 @@ class TimerAuthView: UIView {
     }
     
     // MARK: - Methods
+    /// 기본 UI
     func setUI() {
         titleLabel.text = "시간 측정 후 사진으로 인증하기"
         titleLabel.font = .h3Subtitle
@@ -41,6 +42,7 @@ class TimerAuthView: UIView {
         self.layer.cornerRadius = 2
     }
     
+    /// 선택된 경우 UI
     func setSelectedUI() {
         titleLabel.textColor = .sparkPinkred
         photoImageView.image = UIImage(named: "stickerPhotoDefault")
@@ -50,6 +52,7 @@ class TimerAuthView: UIView {
         self.layer.borderColor = UIColor.sparkPinkred.cgColor
     }
     
+    /// 선택해제된 경우 UI
     func setDeselectedUI() {
         titleLabel.textColor = .sparkDeepGray
         photoImageView.image = UIImage(named: "stickerPhotoGrayscale")

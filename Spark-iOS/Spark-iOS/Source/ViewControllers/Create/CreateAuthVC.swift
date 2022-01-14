@@ -86,6 +86,7 @@ class CreateAuthVC: UIViewController {
         }
     }
     
+    /// view가 선택됐을 떄, view의 UI 변경
     private func setView() {
         if photoSelected {
             photoAuthView.setSelectedUI()
@@ -113,8 +114,8 @@ class CreateAuthVC: UIViewController {
         print("다음")
     }
     
-    @objc func tapped(_ gesture: UITapGestureRecognizer) {
-        print(photoSelected)
+    @objc
+    func tapped(_ gesture: UITapGestureRecognizer) {
         if photoSelected {
             photoSelected = false
         } else {
