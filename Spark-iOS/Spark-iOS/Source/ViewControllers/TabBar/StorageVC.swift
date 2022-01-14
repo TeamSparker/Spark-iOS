@@ -162,6 +162,8 @@ class StorageVC: UIViewController {
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
+        
+        makeFirstDraw()
     }
     
     func setLayout() {
