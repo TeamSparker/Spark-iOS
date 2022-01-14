@@ -25,9 +25,14 @@ class JoinCheckVC: UIViewController {
         // 이거 왜 핑크색이냐
         reInputButton.layer.borderWidth = 1
         enterButton.setTitleColor(.white, for: .normal)
+        enterButton.setTitleColor(.white, for: .selected)
+        enterButton.setTitleColor(.sparkLightGray, for: .highlighted)
         enterButton.backgroundColor = .sparkDarkPinkred
         enterButton.titleLabel?.font = .btn1Default
-        enterButton.titleLabel?.textColor = .sparkWhite
+//        var titleAttribute: NSAttributedString
+//        titleAttribute.value(forKey: .)
+//        enterButton.setAttributedTitle(NSAttributedString.Key.font: UIFont.btn1Default, for: .selected)
+//        enterButton.setAttributedTitle(title: NSAttributedString.Key.font: UIFont.btn1Default, for: <#T##UIControl.State#>)
         enterButton.layer.borderWidth = 0
     }
 }
