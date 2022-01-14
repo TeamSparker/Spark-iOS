@@ -9,6 +9,11 @@ import UIKit
 
 class CodeJoinVC: UIViewController {
 
+    // MARK: - Properties
+    var maxLength: Int = 7
+    
+    // MARK: - @IBOutlet Properties
+
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var okView: UIView!
     @IBOutlet weak var okButton: UIButton!
@@ -16,8 +21,7 @@ class CodeJoinVC: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var lineView: UIView!
     
-    var maxLength: Int = 7
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -26,6 +30,7 @@ class CodeJoinVC: UIViewController {
         setDelegate()
     }
     
+    // MARK: - Methods
     func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
@@ -56,6 +61,7 @@ class CodeJoinVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
+    // MARK: - @objc Function
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
@@ -87,11 +93,13 @@ class CodeJoinVC: UIViewController {
         self.present(nextVC, animated: false, completion: nil)
     }
     
+    // MARK: - @IBAction Properties
     @IBAction func touchOutsideButton(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
 }
 
+// MARK: - textField Delegate
 extension CodeJoinVC: UITextFieldDelegate {
     /// 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -119,3 +127,5 @@ extension CodeJoinVC: UITextFieldDelegate {
         }
     }
 }
+
+// MARK: - Network > 네트워크 목적을 가진 함수들

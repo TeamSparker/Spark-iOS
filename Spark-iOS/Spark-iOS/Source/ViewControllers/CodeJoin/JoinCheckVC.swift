@@ -9,17 +9,22 @@ import UIKit
 
 class JoinCheckVC: UIViewController {
 
+    // MARK: - Properties
+    
+    // MARK: - @IBOutlet Properties
+
     @IBOutlet weak var reInputButton: UIButton!
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var userInviteLabel: UILabel!
     @IBOutlet weak var roomNameLabel: UILabel!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUI()
     }
     
+    // MARK: - Methods
     func setUI() {
         reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
         reInputButton.layer.borderColor = .init(_colorLiteralRed: 1, green: 0, blue: 66/255, alpha: 1)
@@ -33,6 +38,8 @@ class JoinCheckVC: UIViewController {
         enterButton.layer.borderWidth = 0
     }
     
+    // MARK: - @IBAction Properties
+    // TODO: - 코드 다시 입력하기 기능 구현
     @IBAction func touchReinputCode(_ sender: Any) {
         
     }
@@ -45,4 +52,8 @@ class JoinCheckVC: UIViewController {
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
+    
+    // MARK: - @objc Function
 }
+
+// MARK: - Network

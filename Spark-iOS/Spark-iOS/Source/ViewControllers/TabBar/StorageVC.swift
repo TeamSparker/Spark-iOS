@@ -323,17 +323,11 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle:nil)
-//
-//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.sotrageMore) as? StorageMoreVC else {return}
-//
-//        nextVC.modalPresentationStyle = .fullScreen
-//        navigationController?.pushViewController(nextVC, animated: true)
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle:nil)
-        
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.codeJoin) as? CodeJoinVC else {return}
-        
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle:nil)
+
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+
+        nextVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
