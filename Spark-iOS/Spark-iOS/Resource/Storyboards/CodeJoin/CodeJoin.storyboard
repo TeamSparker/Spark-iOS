@@ -127,9 +127,11 @@
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="zPc-Fa-Piz" id="xgS-UJ-tH3"/>
+                        <outlet property="lineView" destination="TUe-Oa-Wul" id="qjZ-qh-z9S"/>
                         <outlet property="okButton" destination="LWG-Df-KPl" id="SDP-Hu-Kq6"/>
                         <outlet property="okView" destination="c4K-kQ-8LO" id="hSE-gx-jUg"/>
                         <outlet property="popUpView" destination="YVR-jV-Ewd" id="whc-oh-2fZ"/>
+                        <outlet property="textField" destination="o8P-CO-Z8D" id="o2y-fZ-I2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -20,8 +20,8 @@ extension Const {
             static let splash = "Splash"
             static let waiting = "Waiting"
             static let createroom = "CreateRoom"
-            static let codejoin = "CodeJoin"
-            static let joincheck = "JoinCheck"
+            static let codeJoin = "CodeJoin"
+            static let joinCheck = "JoinCheck"
         }
     }
 }

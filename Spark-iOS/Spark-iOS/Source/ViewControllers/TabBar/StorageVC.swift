@@ -329,7 +329,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
 //
 //        nextVC.modalPresentationStyle = .fullScreen
 //        navigationController?.pushViewController(nextVC, animated: true)
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codejoin, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle:nil)
         
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.codeJoin) as? CodeJoinVC else {return}
         
