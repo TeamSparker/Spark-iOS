@@ -237,7 +237,6 @@ class StorageVC: UIViewController {
             doingButton.isSelected = false
             doneButton.isSelected = true
             failButton.isSelected = false
-            doneButton.isHighlighted = true
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
@@ -309,30 +308,30 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cellCase = collectionView
         switch cellCase {
         case DoingCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as! DoingStorageCVC
             
             return cell
         case DoneCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoneStorageCVC", for: indexPath) as! DoneStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as! DoneStorageCVC
             
             return cell
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FailStorageCVC", for: indexPath) as! FailStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as! FailStorageCVC
             
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let nextSB = UIStoryboard.init(name: "StorageMore", bundle:nil)
+//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle:nil)
 //
-//        guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
+//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.sotrageMore) as? StorageMoreVC else {return}
 //
 //        nextVC.modalPresentationStyle = .fullScreen
 //        navigationController?.pushViewController(nextVC, animated: true)
-        let nextSB = UIStoryboard.init(name: "CodeJoin", bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codejoin, bundle:nil)
         
-        guard let nextVC = nextSB.instantiateViewController(identifier: "CodeJoinVC") as? CodeJoinVC else {return}
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.codeJoin) as? CodeJoinVC else {return}
         
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)

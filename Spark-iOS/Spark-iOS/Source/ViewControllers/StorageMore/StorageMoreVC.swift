@@ -102,7 +102,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreStorageCVC", for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
 
         return cell
     }

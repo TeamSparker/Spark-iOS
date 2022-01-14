@@ -12,6 +12,10 @@ extension Const {
     struct Xib {
         struct NibName {
 //            static let mainCVC = "MainCVC"
+            static let doingStorageCVC = "DoingStorageCVC"
+            static let doneStorageCVC = "DoneStorageCVC"
+            static let failStorageCVC = "FailStorageCVC"
+            static let moreStorageCVC = "MoreStorageCVC"
         }
     }
 }

@@ -21,7 +21,8 @@ class JoinCheckVC: UIViewController {
     
     func setUI() {
         reInputButton.setTitleColor(.sparkDarkPinkred, for: .normal)
-        reInputButton.layer.borderColor = .init(_colorLiteralRed: 255, green: 0, blue: 11, alpha: 1)
+        reInputButton.layer.borderColor = .init(_colorLiteralRed: 255, green: 0, blue: 66, alpha: 1)
+        // 이거 왜 핑크색이냐
         reInputButton.layer.borderWidth = 1
         enterButton.setTitleColor(.white, for: .normal)
         enterButton.backgroundColor = .sparkDarkPinkred

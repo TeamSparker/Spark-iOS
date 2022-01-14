@@ -15,8 +15,11 @@ extension Const {
             static let home = "HomeVC"
             static let feed = "FeedVC"
             static let storage = "StorageVC"
+            static let storageMore = "StorageMoreVC"
             static let login = "LoginVC"
             static let splash = "SplashVC"
+            static let codeJoin = "CodeJoinVC"
+            static let joinCheck = "JoinCheckVC"
         }
     }
 }
