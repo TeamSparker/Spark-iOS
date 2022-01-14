@@ -12,7 +12,7 @@ class CodeJoinVC: UIViewController {
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var okView: UIView!
     @IBOutlet weak var okButton: UIButton!
-    
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,9 @@ class CodeJoinVC: UIViewController {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         popUpView.layer.cornerRadius = 2
+        
+        errorLabel.textColor = .sparkBrightPinkred
+        errorLabel.font = .p2Subtitle
     }
     
     func setAddTargets() {

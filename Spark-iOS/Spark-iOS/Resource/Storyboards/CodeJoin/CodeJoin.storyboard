@@ -75,16 +75,24 @@
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="참여할 수 없는 코드에요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-Fa-Piz">
+                                        <rect key="frame" x="85.666666666666686" y="129" width="165" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="c4K-kQ-8LO" secondAttribute="bottom" constant="28" id="EPX-tC-zgx"/>
                                     <constraint firstItem="o8P-CO-Z8D" firstAttribute="top" secondItem="iog-KD-yhY" secondAttribute="bottom" constant="33" id="FOM-xP-H1Q"/>
                                     <constraint firstItem="c4K-kQ-8LO" firstAttribute="width" secondItem="TUe-Oa-Wul" secondAttribute="width" id="In3-y1-yIq"/>
+                                    <constraint firstItem="zPc-Fa-Piz" firstAttribute="centerX" secondItem="TUe-Oa-Wul" secondAttribute="centerX" id="Pl1-WV-Nx3"/>
                                     <constraint firstItem="TUe-Oa-Wul" firstAttribute="leading" secondItem="YVR-jV-Ewd" secondAttribute="leading" constant="85" id="Tic-9P-0av"/>
                                     <constraint firstItem="o8P-CO-Z8D" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="UEw-a7-0ib"/>
                                     <constraint firstItem="c4K-kQ-8LO" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="Y76-WB-RGM"/>
                                     <constraint firstItem="iog-KD-yhY" firstAttribute="centerX" secondItem="YVR-jV-Ewd" secondAttribute="centerX" id="gBI-vb-g6d"/>
+                                    <constraint firstItem="zPc-Fa-Piz" firstAttribute="top" secondItem="TUe-Oa-Wul" secondAttribute="bottom" constant="6" id="huR-XL-fhQ"/>
                                     <constraint firstAttribute="trailing" secondItem="TUe-Oa-Wul" secondAttribute="trailing" constant="84" id="iFc-ek-gjh"/>
                                     <constraint firstItem="c4K-kQ-8LO" firstAttribute="top" secondItem="TUe-Oa-Wul" secondAttribute="bottom" constant="44" id="jTM-Hw-Wg0"/>
                                     <constraint firstItem="o8P-CO-Z8D" firstAttribute="width" secondItem="TUe-Oa-Wul" secondAttribute="width" id="mt6-U9-tvI"/>
@@ -118,6 +126,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="zPc-Fa-Piz" id="xgS-UJ-tH3"/>
                         <outlet property="okButton" destination="LWG-Df-KPl" id="SDP-Hu-Kq6"/>
                         <outlet property="okView" destination="c4K-kQ-8LO" id="hSE-gx-jUg"/>
                         <outlet property="popUpView" destination="YVR-jV-Ewd" id="whc-oh-2fZ"/>
