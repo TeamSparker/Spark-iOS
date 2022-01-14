@@ -231,7 +231,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EB625E68278ECF6E00C43DE9 /* StorageCVC */ = {
+		EB625E68278ECF6E00C43DE9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */,
@@ -241,7 +241,7 @@
 				EB625E81278F273200C43DE9 /* FailStorageCVC.swift */,
 				EB625E82278F273200C43DE9 /* FailStorageCVC.xib */,
 			);
-			path = StorageCVC;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EB625E85278F27C300C43DE9 /* StorageList */ = {
@@ -269,13 +269,13 @@
 			path = StorageMore;
 			sourceTree = "<group>";
 		};
-		EB625E92278F8E4700C43DE9 /* StorageMoreCVC */ = {
+		EB625E92278F8E4700C43DE9 /* StorageMore */ = {
 			isa = PBXGroup;
 			children = (
 				EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */,
 				EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */,
 			);
-			path = StorageMoreCVC;
+			path = StorageMore;
 			sourceTree = "<group>";
 		};
 		EB625E97278F8ED200C43DE9 /* StorageMore */ = {
@@ -477,8 +477,8 @@
 				F8FAA96B2790336E00C4190F /* Home */,
 				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
-				EB625E68278ECF6E00C43DE9 /* StorageCVC */,
-				EB625E92278F8E4700C43DE9 /* StorageMoreCVC */,
+				EB625E68278ECF6E00C43DE9 /* Storage */,
+				EB625E92278F8E4700C43DE9 /* StorageMore */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

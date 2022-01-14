@@ -12,7 +12,7 @@ class FailStorageCVC: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setUIView()
     }
 
     func setUIView() {
