@@ -16,6 +16,8 @@
 		2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947201278CB00E005484C5 /* Futura Medium Italic.otf */; };
 		2B947205278CB00E005484C5 /* Futura Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B947202278CB00E005484C5 /* Futura Bold.otf */; };
 		2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9851FC278FCBF400CE40A7 /* UILabel+.swift */; };
+		2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9852022790310800CE40A7 /* CreateRoom.storyboard */; };
+		2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B985204279031D000CE40A7 /* CreateRoomVC.swift */; };
 		2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9852062790984C00CE40A7 /* UIViewController+.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
@@ -81,6 +83,8 @@
 		2B947201278CB00E005484C5 /* Futura Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Medium Italic.otf"; sourceTree = "<group>"; };
 		2B947202278CB00E005484C5 /* Futura Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura Bold.otf"; sourceTree = "<group>"; };
 		2B9851FC278FCBF400CE40A7 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		2B9852022790310800CE40A7 /* CreateRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateRoom.storyboard; sourceTree = "<group>"; };
+		2B985204279031D000CE40A7 /* CreateRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
 		2B9852062790984C00CE40A7 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
@@ -153,6 +157,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B9851FE27902F2B00CE40A7 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				2B985204279031D000CE40A7 /* CreateRoomVC.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		2B98520127902F8900CE40A7 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				2B9852022790310800CE40A7 /* CreateRoom.storyboard */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
 		2BC1726E278F54B300BA3029 /* Waiting */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +372,7 @@
 				F80A3E59278C239F00728E07 /* TabBar */,
 				EB625E97278F8ED200C43DE9 /* StorageMore */,
 				2BC17272278F56BA00BA3029 /* Waiting */,
+				2B98520127902F8900CE40A7 /* Create */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -378,6 +399,7 @@
 				F82B2E10278F54C200219628 /* Splash */,
 				F816F123278E1C800008ED00 /* Login */,
 				2BC1726E278F54B300BA3029 /* Waiting */,
+				2B9851FE27902F2B00CE40A7 /* Create */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 			);
@@ -573,6 +595,7 @@
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
+				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
 				EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */,
 				F8096F0D2784107E00B71D38 /* Assets.xcassets in Resources */,
@@ -640,6 +663,7 @@
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
+				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
