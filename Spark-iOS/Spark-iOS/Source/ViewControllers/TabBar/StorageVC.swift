@@ -11,7 +11,6 @@ import SnapKit
 class StorageVC: UIViewController {
     
     // MARK: - Properties
-    
     let doingButton = MyButton()
     let doneButton = MyButton()
     let failButton = MyButton()
@@ -22,6 +21,10 @@ class StorageVC: UIViewController {
     
     let upperLabel = UILabel()
     let lowerLabel = UILabel()
+    
+    var doingBlockingView = UIView()
+    var doneBlockingView = UIView()
+    var failBlockingView = UIView()
     
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -115,6 +118,10 @@ class StorageVC: UIViewController {
         lowerLabel.font = .h2Title
         lowerLabel.textColor = .sparkBlack
         
+        doingBlockingView.backgroundColor = .sparkWhite
+        doneBlockingView.backgroundColor = .sparkWhite
+        failBlockingView.backgroundColor = .sparkWhite
+        
         doingButton.statusCV = 0
         doingButton.backgroundColor = .clear
         doingButton.setTitle("진행중", for: .normal)
@@ -161,7 +168,8 @@ class StorageVC: UIViewController {
         view.addSubviews([doingButton, doneButton, failButton,
                                DoingCV, DoneCV, FailCV,
                                upperLabel, lowerLabel, doingLabel,
-                               doneLabel, failLabel])
+                               doneLabel, failLabel, doingBlockingView,
+                          doneBlockingView, failBlockingView])
         
         upperLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
@@ -171,6 +179,24 @@ class StorageVC: UIViewController {
         lowerLabel.snp.makeConstraints { make in
             make.top.equalTo(upperLabel.snp.bottom).offset(4)
             make.leading.equalTo(doingButton)
+        }
+        
+        doingBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(doingButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(doingButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
+        }
+        
+        doneBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(doneButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(doneButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
+        }
+
+        failBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(failButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(failButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
         }
         
         doingButton.snp.makeConstraints { make in
@@ -221,6 +247,18 @@ class StorageVC: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
         }
     }
+    
+    func makeDraw(rect: CGRect) -> Void {
+        let animateView = LineAnimationView(frame: rect)
+        view.addSubview(animateView)
+    }
+    
+    // 레이아웃이 다 로딩된 후에 애니메이션 실행
+    func makeFirstDraw() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [self] in
+            self.makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
+        }
+    }
 
     // 버튼 타겟 설정
     func setAddTargets(_ buttons: MyButton...) {
@@ -244,6 +282,11 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
+    
+            makeDraw(rect: CGRect(x: doneButton.frame.origin.x, y: doneButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doingBlockingView)
+            self.view.bringSubviewToFront(failBlockingView)
+
         case 2:
             DoingCV.isHidden = true
             DoneCV.isHidden = true
@@ -254,6 +297,11 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkPinkred
+
+            makeDraw(rect: CGRect(x: failButton.frame.origin.x, y: failButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doingBlockingView)
+            self.view.bringSubviewToFront(doneBlockingView)
+            
         default:
             DoingCV.isHidden = false
             DoneCV.isHidden = true
@@ -264,6 +312,10 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkPinkred
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkGray
+
+            makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doneBlockingView)
+            self.view.bringSubviewToFront(failBlockingView)
         }
     }
 }
