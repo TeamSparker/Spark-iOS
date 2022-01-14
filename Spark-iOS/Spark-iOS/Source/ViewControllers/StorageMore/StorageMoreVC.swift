@@ -60,10 +60,10 @@ class StorageMoreVC: UIViewController {
     func setLayout() {
         view.addSubview(storageMoreCV)
         storageMoreCV.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(120)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-50)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     
@@ -82,7 +82,7 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         // 컬렉션뷰 위드에 맞게 셀 위드 정하기
         // 셀 위드에 대해서 간격과 높이 정하기
         let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/350
+        let cellWidthRatio: CGFloat = 160/375
         let widthHeightRatio: CGFloat = 203/160
         let cell = CGSize(width: cellWidth*cellWidthRatio, height: cellWidth*cellWidthRatio*widthHeightRatio)
         return cell
@@ -90,15 +90,12 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     
     // TODO: 엣지 인셋 고치기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/350
-        let newCellWidth = cellWidth*cellWidthRatio
-        let spacingRatio: CGFloat = 15/160
-        let totalSpacingWidth = spacingRatio*newCellWidth
-        let leftInset = totalSpacingWidth/2
-        let rightInset = leftInset
-        let insets = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        let insets = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         return insets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 15
     }
 }
 
