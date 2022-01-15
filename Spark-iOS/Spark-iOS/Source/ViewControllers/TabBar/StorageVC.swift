@@ -89,7 +89,7 @@ class StorageVC: UIViewController {
     
     // MARK: - Methods
     
-    func setDelegate() {
+    private func setDelegate() {
         DoingCV.delegate = self
         DoingCV.dataSource = self
         DoneCV.delegate = self
@@ -100,7 +100,7 @@ class StorageVC: UIViewController {
         FailCV.isHidden = true
     }
     
-    func registerXib() {
+    private func registerXib() {
         let xibDoingCVName = UINib(nibName: "DoingStorageCVC", bundle: nil)
         DoingCV.register(xibDoingCVName, forCellWithReuseIdentifier: "DoingStorageCVC")
         
@@ -111,7 +111,7 @@ class StorageVC: UIViewController {
         FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
     }
     
-    func setUI() {
+    private func setUI() {
         upperLabel.text = "나는야쿵짝지혜 님의"
         upperLabel.font = .h2Title
         upperLabel.textColor = .sparkBlack
@@ -168,7 +168,7 @@ class StorageVC: UIViewController {
         makeFirstDraw()
     }
     
-    func setLayout() {
+    private func setLayout() {
         view.addSubviews([doingButton, doneButton, failButton,
                                DoingCV, DoneCV, FailCV,
                                upperLabel, lowerLabel, doingLabel,
@@ -252,20 +252,20 @@ class StorageVC: UIViewController {
         }
     }
     
-    func makeDraw(rect: CGRect) -> Void {
+    private func makeDraw(rect: CGRect) -> Void {
         let animateView = LineAnimationView(frame: rect)
         view.addSubview(animateView)
     }
     
     // 레이아웃이 다 로딩된 후에 애니메이션 실행
-    func makeFirstDraw() {
+    private func makeFirstDraw() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [self] in
             self.makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
         }
     }
 
     // 버튼 타겟 설정
-    func setAddTargets(_ buttons: MyButton...) {
+    private func setAddTargets(_ buttons: MyButton...) {
         for button in buttons {
             button.addTarget(self, action: #selector(changeCollectionView), for: .touchUpInside)
         }
@@ -329,14 +329,14 @@ class StorageVC: UIViewController {
 // MARK: Carousel 레이아웃 세팅
 
 extension StorageVC {
-    func setCarousels() {
+    private func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
         setCarouselLayout(collectionView: DoneCV)
         setCarouselLayout(collectionView: FailCV)
     }
     
     // 컬렉션뷰의 레이아웃을 캐러셀 형식으로 변환시키는 함수
-    func setCarouselLayout(collectionView: UICollectionView) {
+    private func setCarouselLayout(collectionView: UICollectionView) {
         let layout = CarouselLayout()
         
         let centerItemWidthScale: CGFloat = 327/375

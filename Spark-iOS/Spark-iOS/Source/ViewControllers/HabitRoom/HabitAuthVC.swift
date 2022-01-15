@@ -11,8 +11,8 @@ class HabitAuthVC: UIViewController {
 
     // MARK: - Properties
     
-    let picker = UIImagePickerController()
-    var imageContainer = UIImage()
+    private let picker = UIImagePickerController()
+    private var imageContainer = UIImage()
     
     // MARK: - @IBOutlet Properties
     
@@ -32,7 +32,7 @@ class HabitAuthVC: UIViewController {
 
 // MARK: Methods
 extension HabitAuthVC {
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
@@ -57,15 +57,15 @@ extension HabitAuthVC {
         restButton.layer.cornerRadius = 2
     }
     
-    func setAddTargets() {
+    private func setAddTargets() {
         okButton.addTarget(self, action: #selector(touchOkayButton), for:. touchUpInside)
     }
     
-    func setDelegate() {
+    private func setDelegate() {
         picker.delegate = self
     }
     
-    @objc func touchOkayButton() {
+    @objc private func touchOkayButton() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
@@ -87,13 +87,13 @@ extension HabitAuthVC {
         present(alter, animated: true, completion: nil)
     }
     
-    func openLibrary() {
+    private func openLibrary() {
         /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
     
-    func openCamera() {
+    private func openCamera() {
         /// 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
