@@ -30,7 +30,14 @@ class CodeJoinVC: UIViewController {
         setDelegate()
     }
     
-    // MARK: - Methods
+    // MARK: - @IBAction Properties
+    @IBAction func touchOutsideButton(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+}
+
+// MARK: - Methods
+extension CodeJoinVC {
     func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
@@ -93,19 +100,12 @@ class CodeJoinVC: UIViewController {
         self.present(nextVC, animated: false, completion: nil)
     }
     
-    // MARK: - @IBAction Properties
-    @IBAction func touchOutsideButton(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-    }
 }
 
 // MARK: - textField Delegate
-extension CodeJoinVC: UITextFieldDelegate {
-    /// 여백 클릭 시
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-    }
+// TODO: - iqKeyboard로 세팅하기
 
+extension CodeJoinVC: UITextFieldDelegate {
     /// 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -127,5 +127,3 @@ extension CodeJoinVC: UITextFieldDelegate {
         }
     }
 }
-
-// MARK: - Network > 네트워크 목적을 가진 함수들

@@ -12,10 +12,10 @@ class DoneStorageCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUIView()
+        setUI()
     }
     
-    func setUIView() {
+    func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
     }
 }

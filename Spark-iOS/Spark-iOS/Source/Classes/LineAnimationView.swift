@@ -15,9 +15,9 @@ class LineAnimationView: UIView {
         aPath.addLine(to: CGPoint(x: CGFloat(16), y: 0))
         
         let shape = CAShapeLayer()
-        shape.lineWidth = 2 // 라인 굵기는 3
+        shape.lineWidth = 2 // 라인 굵기는 2
         shape.path = aPath.cgPath // 해당 경로는 위 aPath을 사용
-        shape.strokeColor = UIColor.sparkDarkPinkred.cgColor // 외부 경계선은 검정색
+        shape.strokeColor = UIColor.sparkDarkPinkred.cgColor // 외부 경계선의 색상 지정
         shape.fillColor = UIColor.clear.cgColor // 내부 색은 비우고
         self.layer.addSublayer(shape) // 해당 레이어를 서브로 추가
         
@@ -28,6 +28,6 @@ class LineAnimationView: UIView {
         // 애니메이션 그리는 시간
         animation.duration = 0.2
         // 그려진 레이어에 애니메이션을 추가
-        shape.add(animation, forKey: "MyAnimation")
+        shape.add(animation, forKey: "PinkLineAnimation")
     }
 }

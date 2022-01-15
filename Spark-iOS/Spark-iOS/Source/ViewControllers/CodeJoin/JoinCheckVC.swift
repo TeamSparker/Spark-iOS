@@ -24,20 +24,6 @@ class JoinCheckVC: UIViewController {
         setUI()
     }
     
-    // MARK: - Methods
-    func setUI() {
-        reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        reInputButton.layer.borderColor = .init(_colorLiteralRed: 1, green: 0, blue: 66/255, alpha: 1)
-        reInputButton.layer.borderWidth = 1
-        
-        enterButton.setTitleColor(.white, for: .normal)
-        enterButton.setTitleColor(.white, for: .selected)
-        enterButton.setTitleColor(.sparkGray, for: .highlighted)
-        enterButton.backgroundColor = .sparkDarkPinkred
-        enterButton.titleLabel?.font = .btn1Default
-        enterButton.layer.borderWidth = 0
-    }
-    
     // MARK: - @IBAction Properties
     // TODO: - 코드 다시 입력하기 기능 구현
     @IBAction func touchReinputCode(_ sender: Any) {
@@ -52,8 +38,21 @@ class JoinCheckVC: UIViewController {
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
-    
-    // MARK: - @objc Function
 }
 
-// MARK: - Network
+// MARK: - Methods
+
+extension JoinCheckVC {
+    func setUI() {
+        reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
+        reInputButton.layer.borderColor = .init(_colorLiteralRed: 1, green: 0, blue: 66/255, alpha: 1)
+        reInputButton.layer.borderWidth = 1
+        
+        enterButton.setTitleColor(.white, for: .normal)
+        enterButton.setTitleColor(.white, for: .selected)
+        enterButton.setTitleColor(.sparkGray, for: .highlighted)
+        enterButton.backgroundColor = .sparkDarkPinkred
+        enterButton.titleLabel?.font = .btn1Default
+        enterButton.layer.borderWidth = 0
+    }
+}

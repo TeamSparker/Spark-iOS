@@ -37,9 +37,11 @@ class StorageMoreVC: UIViewController {
         setUI()
         setLayout()
     }
-    
-    // MARK: - Methods
-    
+}
+
+// MARK: - Methods
+
+extension StorageMoreVC {
     func setDelegate() {
         storageMoreCV.delegate = self
         storageMoreCV.dataSource = self
@@ -66,13 +68,7 @@ class StorageMoreVC: UIViewController {
             make.bottom.equalToSuperview()
         }
     }
-    
-    // MARK: - @IBAction Properties
-    
-    // MARK: - @objc Function
-    
 }
-
 
 // MARK: - collectionView Delegate
 
@@ -110,5 +106,3 @@ extension StorageMoreVC: UICollectionViewDataSource {
         return cell
     }
 }
-
-// MARK: - Network
