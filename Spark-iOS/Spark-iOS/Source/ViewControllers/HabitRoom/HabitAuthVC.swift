@@ -51,11 +51,31 @@ extension HabitAuthVC {
     }
     
     @objc func touchOkayButton() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.photoAuth, bundle:nil)
+        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alter.view.tintColor = .sparkBlack
         
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.photoAuth) as? PhotoAuthVC else {return}
+        /// alter에 들어갈 액션 생성
+        let library = UIAlertAction(title: "카메라 촬영", style: .default) { action in
+//            self.openLibrary()
+        }
+        let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { action in
+//            self.openCamera()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        /// alter에 액션을 넣어줌
+        alter.addAction(library)
+        alter.addAction(camera)
+        alter.addAction(cancel)
+        
+        /// button tap했을 때 alter present
+        present(alter, animated: true, completion: nil)
+        
+//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.photoAuth, bundle:nil)
+//
+//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.photoAuth) as? PhotoAuthVC else {return}
+//
+//        nextVC.modalPresentationStyle = .fullScreen
+//        self.present(nextVC, animated: false, completion: nil)
     }
 }
