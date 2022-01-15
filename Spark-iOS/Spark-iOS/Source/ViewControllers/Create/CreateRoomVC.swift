@@ -170,7 +170,6 @@ class CreateRoomVC: UIViewController {
     
     @objc
     func touchNextButton() {
-        print("다음")
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
         navigationController?.pushViewController(nextVC, animated: true)

@@ -117,15 +117,15 @@ class CreateAuthVC: UIViewController {
     
     @objc
     func touchEnterButton() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
         
-        let navi = UINavigationController(rootViewController: nextVC)
+        let nextVC = UINavigationController(rootViewController: rootVC)
         
-        navi.modalTransitionStyle = .crossDissolve
-        navi.modalPresentationStyle = .fullScreen
-        nextVC.photoOnly = photoOnly
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        rootVC.photoOnly = photoOnly
         
-        present(navi, animated: true, completion: nil)
+        present(nextVC, animated: true, completion: nil)
     }
     
     @objc
