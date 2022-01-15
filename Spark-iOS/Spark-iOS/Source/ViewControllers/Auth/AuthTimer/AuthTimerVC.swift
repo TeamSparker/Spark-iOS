@@ -21,9 +21,11 @@ class AuthTimerVC: UIViewController {
     let divideLine = UIView()
     let timeLabel = UILabel()
     let startButton = UIButton()
-    
     let pauseButton = UIButton()
     let resetButton = UIButton()
+    
+    let stopwatch: Stopwatch = Stopwatch()
+    var isPlay: Bool = false
     
     // MARK: - View Life Cycles
 
@@ -32,7 +34,8 @@ class AuthTimerVC: UIViewController {
 
         setUI()
         setLayout()
-        setDefaultButton()
+        setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setAddTarget()
     }
     
     // MARK: - Methods
@@ -65,23 +68,103 @@ class AuthTimerVC: UIViewController {
         resetButton.backgroundColor = .yellow
     }
     
-    private func setDefaultButton() {
-        startButton.setTitle("시간 측정 시작", for: .normal)
-        startButton.backgroundColor = .sparkDarkPinkred
+    private func setAddTarget() {
+        pauseButton.addTarget(self, action: #selector(startPauseTimer(_:)), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(resetTimer(_:)), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
     }
     
-    private func setUnactiveNextButton() {
-        startButton.setTitle("다음 인증으로", for: .normal)
-        startButton.isEnabled = true
-        startButton.backgroundColor = .sparkGray
+    private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
+        button.setTitle(title, for: UIControl.State())
+        button.isEnabled = isEnable
+        button.backgroundColor = backgroundColor
     }
     
-    private func setActiveNextButton() {
-        startButton.setTitle("다음 인증으로", for: .normal)
-        startButton.isEnabled = false
-        startButton.backgroundColor = .sparkDarkPinkred
+    private func resetMainTimer() {
+        resetTimer(stopwatch, label: timeLabel)
     }
     
+    /// stopwatch를 멈추고, label을 reset하는 함수
+    private func resetTimer(_ stopwatch: Stopwatch, label: UILabel) {
+        stopwatch.timer.invalidate()
+        stopwatch.counter = 0.0
+        label.text = "00:00:00"
+    }
+    
+    /// timer를 증가시키면서 label의 값에 반영시키는 함수
+    private func updateTimer(_ stopwatch: Stopwatch, label: UILabel) {
+        stopwatch.counter = stopwatch.counter + 0.035
+        
+        var minutes: String = "\((Int)(stopwatch.counter / 60))"
+        if (Int)(stopwatch.counter / 60) < 10 {
+            minutes = "0\((Int)(stopwatch.counter / 60))"
+        }
+        
+        var seconds: String = String(format: "%.2f", (stopwatch.counter.truncatingRemainder(dividingBy: 60)))
+        if stopwatch.counter.truncatingRemainder(dividingBy: 60) < 10 {
+            seconds = "0" + seconds
+        }
+        
+        label.text = minutes + ":" + seconds
+    }
+    
+    // MARK: - @objc
+    /// start 버튼을 눌렀을 때 isPlay의 상태에 따라 버튼, 라벨 상태 변경
+    @objc
+    func startPauseTimer(_ sender: AnyObject) {
+        /// 실행중 X, 스톱워치 시작 + 버튼 변경
+        /// 실행중 O, 스톱워치
+        if !isPlay {
+            unowned let weakSelf = self
+            
+            /// 0.035초마다 updateMainTimer 함수 호출하는 타이머
+            stopwatch.timer = Timer.scheduledTimer(timeInterval: 0.035, target: weakSelf, selector: #selector(updateMainTimer), userInfo: nil, repeats: true)
+            
+            /// RunLoop에서 timer 객체를 추가해서 관리
+            RunLoop.current.add(stopwatch.timer, forMode: .common)
+            
+            /// 실행X -> 실행O
+            isPlay = true
+            pauseButton.backgroundColor = .blue
+            setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
+        } else {
+            /// RunLoop 객체로부터 timer를 제거하기 위한 함수 (반복 타이머 중지)
+            stopwatch.timer.invalidate()
+            
+            /// 실행O -> 실행X
+            isPlay = false
+            pauseButton.backgroundColor = .red
+            setButton(startButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        }
+    }
+    
+    @objc
+    func resetTimer(_ sender: AnyObject) {
+        /// 실행중 X (스톱워치가 멈춘 상태라면), reset
+        /// 실행중 O (스톱워치가 돌아가는 상태라면), print
+        if !isPlay {
+            resetMainTimer()
+            // TODO: - alter 띄우기
+            print("리셋하겠어요?")
+            setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+            pauseButton.backgroundColor = .blue
+        }
+    }
+    
+    @objc
+    func updateMainTimer() {
+        updateTimer(stopwatch, label: timeLabel)
+    }
+    
+    @objc
+    func touchNextButton() {
+        // TODO: - 화면 전환 + timeLabel.text 넘겨주기
+        print("time: \(timeLabel.text)")
+    }
+}
+
+// MARK: - Layout
+extension AuthTimerVC {
     private func setLayout() {
         view.addSubviews([firstLabel, secondLabel, stopwatchLabel, photoLabel,
                          betweenLine, divideLine, timeLabel, startButton,
