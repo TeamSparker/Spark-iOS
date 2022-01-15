@@ -28,7 +28,7 @@ class CreateAuthVC: UIViewController {
         setUI()
         setLayout()
         setAddTarget()
-        setView()
+        setAuthViewState()
         setGesture()
     }
     
@@ -87,7 +87,7 @@ class CreateAuthVC: UIViewController {
     }
     
     /// view가 선택됐을 떄, view의 UI 변경
-    private func setView() {
+    private func setAuthViewState() {
         if photoSelected {
             photoAuthView.setSelectedUI()
             timerAuthView.setDeselectedUI()
@@ -121,6 +121,6 @@ class CreateAuthVC: UIViewController {
         } else {
             photoSelected = true
         }
-        setView()
+        setAuthViewState()
     }
 }
