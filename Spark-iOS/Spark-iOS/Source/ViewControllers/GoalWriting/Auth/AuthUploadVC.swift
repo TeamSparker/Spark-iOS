@@ -7,9 +7,16 @@
 
 import UIKit
 
-class AuthUploadVC: UIViewController {
+@frozen enum VCCase {
+    case cameraTimer
+    case albumTimer
+    case cameraOnly
+    case albumOnly
+}
 
-    @IBOutlet weak var uploadImageView: UIImageView!
+class AuthUploadVC: UIViewController {
+    
+    // MARK: - Properties
     
     var vcType: VCCase = .cameraTimer
     
@@ -21,12 +28,16 @@ class AuthUploadVC: UIViewController {
     var retakeButton = UIButton()
     
     var timerLabel = UILabel()
-    var uploadImage = UIImage()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setLayout()
+    }
+}
+
+// MARK: - Methods
 extension AuthUploadVC {
     func setUI() {
         uploadImageView.image = uploadImage
@@ -53,7 +64,28 @@ extension AuthUploadVC {
         uploadButton.setTitle("업로드", for: .normal)
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
-        uploadImageView.image = uploadImage
+        
+        switch vcType
+        {
+        case .cameraOnly:
+            print("카메라")
+            timerLabel.isHidden = true
+            
+        case .albumOnly:
+            print("앨범")
+            retakeButton.setTitle("다시 선택", for: .normal)
+            timerLabel.isHidden = true
+
+        case .cameraTimer:
+            print("카메라타이머")
+            
+        case .albumTimer:
+            print("앨범타이머")
+            retakeButton.setTitle("다시 선택", for: .normal)
+        }
+        
+    }
+    
     func setLayout() {
         view.addSubviews([uploadImageView, buttonStackView, timerLabel])
         
@@ -81,6 +113,22 @@ extension AuthUploadVC {
         timerLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(uploadImageView)
         }
+        
+        switch vcType
+        {
+        case .cameraOnly:
+            print("")
+            
+        case .albumOnly:
+            print("")
+
+        case .cameraTimer:
+            print("")
+            
+        case .albumTimer:
+            print("")
+        }
+    }
     
     func setStackView() {
         buttonStackView.axis = .horizontal
