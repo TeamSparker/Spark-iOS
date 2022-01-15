@@ -226,8 +226,6 @@ extension FeedVC: UICollectionViewDataSource {
         default:
             alist = firstList[indexPath.item] as! [String:Any]
         }
-        
-//        print("alist: ", alist)
 
         if let roomname = alist["roomName"], let name = alist["nickname"],
             let sparkcount = alist["sparkCount"], let heartcount = alist["totalFeedNum"] {
