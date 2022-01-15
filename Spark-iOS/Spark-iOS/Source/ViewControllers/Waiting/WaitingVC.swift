@@ -74,8 +74,10 @@ class WaitingVC: UIViewController {
     let goalTitleLabel = UILabel()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
-    let timeLabel = UILabel()
-    let goalLabel = UILabel()
+    let timeLabel = UILabel() /// 시간 --하기 전에
+    let goalLabel = UILabel() /// 목표 -- 집에 가자
+    // FIXME: - emptylabel 추가
+    let emptyLabel = UILabel()
     let editButton = UIButton()
     let secondDivideView = UIView()
     
@@ -89,17 +91,19 @@ class WaitingVC: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var memberList: [Any] = []
+    var photoOnly: Bool = true /// 사진 인증만
+    var roomName: String = ""
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setData()
         setUI()
         setLayout()
         setCollectionView()
         setAddTarget()
+        setAuthLabel()
     }
     
     func setUI() {
@@ -114,7 +118,6 @@ class WaitingVC: UIViewController {
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
         editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
         refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
-        startButton.setImage(UIImage(named: "btnPrimary"), for: .normal)
         
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
@@ -160,6 +163,11 @@ class WaitingVC: UIViewController {
         }
         
         friendSubTitleLabel.textColor = .gray
+        
+        startButton.layer.cornerRadius = 2
+        startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
+        startButton.setTitle("습관 시작하기", for: .normal)
+        startButton.backgroundColor = .sparkPinkred
     }
     
     func setData() {
@@ -168,8 +176,18 @@ class WaitingVC: UIViewController {
         }
     }
     
+    /// 선택한 인증 방식
+    func setAuthLabel() {
+        if photoOnly {
+            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = true }
+        } else {
+            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = false }
+        }
+    }
+    
     func setAddTarget() {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
     }
     
     func setCollectionView() {
@@ -188,10 +206,19 @@ class WaitingVC: UIViewController {
     }
     
     @objc
+    func touchEditButton() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
+    
+    @objc
     func goToHomeVC() {
         /// 홈으로 화면 전환
     }
     
+    // TODO: - 더보기
     @objc
     func touchToMore() {
         /// 더보기 버튼
@@ -344,11 +371,12 @@ extension WaitingVC {
             make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(24)
             make.height.equalTo(85)
         }
-        
+
         startButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(54)
-            make.height.equalTo(48)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.width.equalToSuperview().inset(20)
+            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
