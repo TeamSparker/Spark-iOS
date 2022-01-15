@@ -25,6 +25,7 @@ extension Const {
             static let createAuth = "CreateAuthVC"
             static let goalWriting = "GoalWritingVC"
             static let authTimer = "AuthTimerVC"
+            static let resetPopup = "ResetPopupVC"
         }
     }
 }

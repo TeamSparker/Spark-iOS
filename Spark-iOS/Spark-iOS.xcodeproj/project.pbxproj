@@ -22,7 +22,6 @@
 		2B9852092790ACF000CE40A7 /* CreateAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9852082790ACF000CE40A7 /* CreateAuth.storyboard */; };
 		2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520A2790AD0000CE40A7 /* CreateAuthVC.swift */; };
 		2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */; };
-		2B9852102790AE1500CE40A7 /* TimerAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */; };
 		2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */; };
 		2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
@@ -32,6 +31,9 @@
 		2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D80727930A06007A544D /* AuthTimerVC.swift */; };
 		2BE5D80C27930A35007A544D /* AuthTimer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5D80B27930A35007A544D /* AuthTimer.storyboard */; };
 		2BE5D80E2793203C007A544D /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D80D2793203C007A544D /* Stopwatch.swift */; };
+		2BE5D81227932EF3007A544D /* ResetPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5D81127932EF3007A544D /* ResetPopup.storyboard */; };
+		2BE5D81627932F31007A544D /* ResetPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D81527932F31007A544D /* ResetPopupVC.swift */; };
+		2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D817279330A6007A544D /* TimerAuthView.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
@@ -102,7 +104,6 @@
 		2B9852082790ACF000CE40A7 /* CreateAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAuth.storyboard; sourceTree = "<group>"; };
 		2B98520A2790AD0000CE40A7 /* CreateAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthVC.swift; sourceTree = "<group>"; };
 		2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAuthView.swift; sourceTree = "<group>"; };
-		2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAuthView.swift; sourceTree = "<group>"; };
 		2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoalWriting.storyboard; sourceTree = "<group>"; };
 		2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWritingVC.swift; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -112,6 +113,9 @@
 		2BE5D80727930A06007A544D /* AuthTimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTimerVC.swift; sourceTree = "<group>"; };
 		2BE5D80B27930A35007A544D /* AuthTimer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthTimer.storyboard; sourceTree = "<group>"; };
 		2BE5D80D2793203C007A544D /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		2BE5D81127932EF3007A544D /* ResetPopup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPopup.storyboard; sourceTree = "<group>"; };
+		2BE5D81527932F31007A544D /* ResetPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPopupVC.swift; sourceTree = "<group>"; };
+		2BE5D817279330A6007A544D /* TimerAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAuthView.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */,
-				2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */,
+				2BE5D817279330A6007A544D /* TimerAuthView.swift */,
 			);
 			path = CreateAuth;
 			sourceTree = "<group>";
@@ -279,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
+				2BE5D81527932F31007A544D /* ResetPopupVC.swift */,
 			);
 			path = AuthTimer;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE5D80B27930A35007A544D /* AuthTimer.storyboard */,
+				2BE5D81127932EF3007A544D /* ResetPopup.storyboard */,
 			);
 			path = AuthTimer;
 			sourceTree = "<group>";
@@ -701,6 +707,7 @@
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
+				2BE5D81227932EF3007A544D /* ResetPopup.storyboard in Resources */,
 				2BE5D80C27930A35007A544D /* AuthTimer.storyboard in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
@@ -783,8 +790,8 @@
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F8096F3A2784210A00B71D38 /* TempModel.swift in Sources */,
-				2B9852102790AE1500CE40A7 /* TimerAuthView.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
+				2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */,
 				2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */,
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
@@ -818,6 +825,7 @@
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
 				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
 				2BE5D80E2793203C007A544D /* Stopwatch.swift in Sources */,
+				2BE5D81627932F31007A544D /* ResetPopupVC.swift in Sources */,
 				EB625E83278F273200C43DE9 /* FailStorageCVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
