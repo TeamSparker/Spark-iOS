@@ -9,14 +9,19 @@ import UIKit
 
 class HabitAuthVC: UIViewController {
 
-    @IBOutlet weak var popUpView: UIView!
-    @IBOutlet weak var okButton: UIButton!
-    @IBOutlet weak var considerButton: UIButton!
-    @IBOutlet weak var restButton: UIButton!
+    // MARK: - Properties
     
     let picker = UIImagePickerController()
     var imageContainer = UIImage()
     
+    // MARK: - @IBOutlet Properties
+    
+    @IBOutlet weak var popUpView: UIView!
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var considerButton: UIButton!
+    @IBOutlet weak var restButton: UIButton!
+
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -25,6 +30,7 @@ class HabitAuthVC: UIViewController {
     }
 }
 
+// MARK: Methods
 extension HabitAuthVC {
     func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
@@ -39,6 +45,7 @@ extension HabitAuthVC {
         okButton.tintColor = .sparkGray
         okButton.setTitleColor(.sparkGray, for: .highlighted)
         
+        // TODO: 고민중, 쉴래요 버튼 기능 구현
         considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
         considerButton.layer.borderColor = .init(_colorLiteralRed: 1, green: 137/255, blue: 165/255, alpha: 1)
         considerButton.layer.borderWidth = 1
@@ -78,13 +85,6 @@ extension HabitAuthVC {
         
         /// button tap했을 때 alter present
         present(alter, animated: true, completion: nil)
-        
-//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.photoAuth, bundle:nil)
-//
-//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.photoAuth) as? PhotoAuthVC else {return}
-//
-        //        nextVC.modalPresentationStyle = .fullScreen
-        //        self.present(nextVC, animated: false, completion: nil)
     }
     
     func openLibrary() {
@@ -105,6 +105,7 @@ extension HabitAuthVC {
     }
 }
 
+// MARK: UIImagePickerDelegate
 extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -120,13 +121,13 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
     }
     
+    // TODO: 케이스 나눠서 화면전환 하기
     private func presentAuthUpload() {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle:nil)
         
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
         
-        nextVC.uploadImageView?.image = self.imageContainer
-        nextVC.imageCont = self.imageContainer
+        nextVC.uploadImage = self.imageContainer
         
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: false, completion: nil)
