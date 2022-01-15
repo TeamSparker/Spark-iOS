@@ -41,7 +41,12 @@
 		EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */; };
 		EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */; };
 		EB625E99278F8EF200C43DE9 /* StorageMore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */; };
+		EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C507C27922F2E00588155 /* LineAnimationView.swift */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
+		EBA93A7D27907EF9009AE771 /* CodeJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */; };
+		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
+		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
+		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
 		F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Home.storyboard */; };
@@ -113,7 +118,12 @@
 		EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StorageMore.storyboard; sourceTree = "<group>"; };
+		EB9C507C27922F2E00588155 /* LineAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineAnimationView.swift; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinVC.swift; sourceTree = "<group>"; };
+		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
+		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
+		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8096F052784107D00B71D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,7 +250,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EB625E68278ECF6E00C43DE9 /* StorageCVC */ = {
+		EB625E68278ECF6E00C43DE9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */,
@@ -250,7 +260,7 @@
 				EB625E81278F273200C43DE9 /* FailStorageCVC.swift */,
 				EB625E82278F273200C43DE9 /* FailStorageCVC.xib */,
 			);
-			path = StorageCVC;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EB625E85278F27C300C43DE9 /* StorageList */ = {
@@ -266,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
+				EB9C507C27922F2E00588155 /* LineAnimationView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -278,13 +289,13 @@
 			path = StorageMore;
 			sourceTree = "<group>";
 		};
-		EB625E92278F8E4700C43DE9 /* StorageMoreCVC */ = {
+		EB625E92278F8E4700C43DE9 /* StorageMore */ = {
 			isa = PBXGroup;
 			children = (
 				EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */,
 				EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */,
 			);
-			path = StorageMoreCVC;
+			path = StorageMore;
 			sourceTree = "<group>";
 		};
 		EB625E97278F8ED200C43DE9 /* StorageMore */ = {
@@ -293,6 +304,24 @@
 				EB625E98278F8EF200C43DE9 /* StorageMore.storyboard */,
 			);
 			path = StorageMore;
+			sourceTree = "<group>";
+		};
+		EB625E9A2790792F00C43DE9 /* CodeJoin */ = {
+			isa = PBXGroup;
+			children = (
+				EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */,
+				EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */,
+			);
+			path = CodeJoin;
+			sourceTree = "<group>";
+		};
+		EBA93A80279080FC009AE771 /* CodeJoin */ = {
+			isa = PBXGroup;
+			children = (
+				EBA93A81279082A5009AE771 /* CodeJoin.storyboard */,
+				EBA93A83279082B0009AE771 /* JoinCheck.storyboard */,
+			);
+			path = CodeJoin;
 			sourceTree = "<group>";
 		};
 		F8096EF72784107D00B71D38 = {
@@ -390,6 +419,7 @@
 				EB625E97278F8ED200C43DE9 /* StorageMore */,
 				2BC17272278F56BA00BA3029 /* Waiting */,
 				2B98520127902F8900CE40A7 /* Create */,
+				EBA93A80279080FC009AE771 /* CodeJoin */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -419,6 +449,7 @@
 				2B9851FE27902F2B00CE40A7 /* Create */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
+				EB625E9A2790792F00C43DE9 /* CodeJoin */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -466,8 +497,8 @@
 				F8FAA96B2790336E00C4190F /* Home */,
 				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
-				EB625E68278ECF6E00C43DE9 /* StorageCVC */,
-				EB625E92278F8E4700C43DE9 /* StorageMoreCVC */,
+				EB625E68278ECF6E00C43DE9 /* Storage */,
+				EB625E92278F8E4700C43DE9 /* StorageMore */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -603,6 +634,7 @@
 				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
+				EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */,
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
@@ -612,6 +644,7 @@
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
+				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
@@ -700,8 +733,10 @@
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
+				EBA93A7D27907EF9009AE771 /* CodeJoinVC.swift in Sources */,
 				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
+				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
 				F8096F382784210000B71D38 /* TempService.swift in Sources */,
@@ -710,6 +745,7 @@
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
+				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
 				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
