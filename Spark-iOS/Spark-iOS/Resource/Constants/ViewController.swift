@@ -27,6 +27,8 @@ extension Const {
             static let habitAuth = "HabitAuthVC"
             static let completeAuth = "CompleteAuthVC"
             static let authUpload = "AuthUploadVC"
+            static let authTimer = "AuthTimerVC"
+            static let resetPopup = "ResetPopupVC"
         }
     }
 }
