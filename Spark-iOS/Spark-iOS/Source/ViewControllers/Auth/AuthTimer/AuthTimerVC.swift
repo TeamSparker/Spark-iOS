@@ -65,8 +65,8 @@ class AuthTimerVC: UIViewController {
         startButton.layer.cornerRadius = 2
         startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
         
-        pauseButton.backgroundColor = .blue
-        resetButton.backgroundColor = .yellow
+        pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
+        resetButton.setImage(UIImage(named: "btnReset"), for: .normal)
     }
     
     private func setAddTarget() {
@@ -130,7 +130,7 @@ class AuthTimerVC: UIViewController {
             
             /// 실행X -> 실행O
             isPlay = true
-            pauseButton.backgroundColor = .blue
+            pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
         } else {
             /// RunLoop 객체로부터 timer를 제거하기 위한 함수 (반복 타이머 중지)
@@ -138,7 +138,7 @@ class AuthTimerVC: UIViewController {
             
             /// 실행O -> 실행X
             isPlay = false
-            pauseButton.backgroundColor = .red
+            pauseButton.setImage(UIImage(named: "btnPlay"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
         }
     }
@@ -161,7 +161,7 @@ class AuthTimerVC: UIViewController {
         if !isPlay {
             resetMainTimer()
             setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
-            pauseButton.backgroundColor = .blue /// 재생버튼
+            pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         }
     }
     
