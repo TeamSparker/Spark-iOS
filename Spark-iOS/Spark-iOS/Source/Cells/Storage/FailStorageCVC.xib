@@ -45,15 +45,15 @@
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="property1MyboxCardOngoingSparkflake3" translatesAutoresizingMaskIntoConstraints="NO" id="abg-9z-5Jj">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="property1MyboxCardFailedSparkflake3" translatesAutoresizingMaskIntoConstraints="NO" id="abg-9z-5Jj">
                                         <rect key="frame" x="133.5" y="49" width="60" height="57"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="5e8-nZ-Fjo"/>
                                             <constraint firstAttribute="height" constant="57" id="vlS-vD-qOr"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqM-hK-Mg4">
-                                        <rect key="frame" x="138" y="84" width="51.5" height="27.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32 DAYS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqM-hK-Mg4">
+                                        <rect key="frame" x="116" y="84" width="95" height="27.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="21"/>
                                         <color key="textColor" name="sparkWhite"/>
                                         <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@
                                     <constraint firstAttribute="bottom" secondItem="ayp-qh-YU2" secondAttribute="bottom" constant="-10" id="ltw-zJ-6YW"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="property1MyboxTicketOngoingLine3" translatesAutoresizingMaskIntoConstraints="NO" id="6xr-ex-Byb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myboxTicketFailedLine" translatesAutoresizingMaskIntoConstraints="NO" id="6xr-ex-Byb">
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                             </imageView>
                         </subviews>
@@ -142,8 +142,8 @@
     <resources>
         <image name="bgSplash" width="375" height="812"/>
         <image name="icFire" width="12" height="12"/>
-        <image name="property1MyboxCardOngoingSparkflake3" width="144" height="84"/>
-        <image name="property1MyboxTicketOngoingLine3" width="330" height="523"/>
+        <image name="myboxTicketFailedLine" width="330" height="523"/>
+        <image name="property1MyboxCardFailedSparkflake3" width="144" height="84"/>
         <namedColor name="sparkBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -10,5 +10,6 @@ import UIKit
 
 // notification name 을 확장시켜서 상수로 관리합니다.
 extension Notification.Name {
-    // static let sendData = Notification.Name("sendData")
+    static let appearFloatingButton = Notification.Name("appearFloatingButton")
+    static let disappearFloatingButton = Notification.Name("disappearFloatingButton")
 }

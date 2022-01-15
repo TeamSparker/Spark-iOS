@@ -19,7 +19,11 @@ extension Const {
             static let login = "Login"
             static let splash = "Splash"
             static let waiting = "Waiting"
-            static let createroom = "CreateRoom"
+            static let codeJoin = "CodeJoin"
+            static let joinCheck = "JoinCheck"
+            static let createRoom = "CreateRoom"
+            static let createAuth = "CreateAuth"
+            static let goalWriting = "GoalWriting"
         }
     }
 }
