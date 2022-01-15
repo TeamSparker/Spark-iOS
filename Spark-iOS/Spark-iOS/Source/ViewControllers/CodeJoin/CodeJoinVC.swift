@@ -30,6 +30,11 @@ class CodeJoinVC: UIViewController {
         setDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        resetUI()
+    }
+    
     // MARK: - @IBAction Properties
     @IBAction func touchOutsideButton(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
@@ -66,6 +71,13 @@ extension CodeJoinVC {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
+    func resetUI() {
+        textField.text = ""
+        lineView.backgroundColor = .sparkGray
+        okView.backgroundColor = .sparkGray
+        okButton.isEnabled = false
     }
     
     // MARK: - @objc Function
