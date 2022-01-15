@@ -59,7 +59,7 @@ class CreateRoomVC: UIViewController {
         nextButton.isEnabled = false
         
         textField.borderStyle = .none
-        textField.placeholder = "30분 독서"
+        textField.placeholder = "ex. 30분 독서"
         textField.delegate = self
 
         lineView.backgroundColor = .sparkGray

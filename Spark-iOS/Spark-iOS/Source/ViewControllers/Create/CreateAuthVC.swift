@@ -18,18 +18,18 @@ class CreateAuthVC: UIViewController {
     let photoAuthView = PhotoAuthView()
     let timerAuthView = TimerAuthView()
     let enterButton = UIButton()
-    var photoSelected: Bool = true
+    var photoOnly: Bool = true /// 사진 인증만
     var roomName: String = ""
 
     // MARK: - View Life Cycles
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
+//        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.isNavigationBarHidden = false
         setUI()
         setLayout()
         setAddTarget()
@@ -40,7 +40,8 @@ class CreateAuthVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        navigationController?.initWithBackButton(tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+        navigationController?.initWithTitle(title: "ff", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+//        title = "dd"
         
         titleLabel.text = "어떻게 습관을 인증할까요?"
         titleLabel.font = .h2Title
@@ -95,7 +96,7 @@ class CreateAuthVC: UIViewController {
     
     /// view가 선택됐을 떄, view의 UI 변경
     private func setAuthViewState() {
-        if photoSelected {
+        if photoOnly {
             photoAuthView.setSelectedUI()
             timerAuthView.setDeselectedUI()
         } else {
@@ -117,24 +118,23 @@ class CreateAuthVC: UIViewController {
     
     @objc
     func touchEnterButton() {
-        // TODO: - 화면전환
-        print("입장")
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
         
         let navi = UINavigationController(rootViewController: nextVC)
         
         navi.modalTransitionStyle = .crossDissolve
         navi.modalPresentationStyle = .fullScreen
+        nextVC.photoOnly = photoOnly
         
         present(navi, animated: true, completion: nil)
     }
     
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
-        if photoSelected {
-            photoSelected = false
+        if photoOnly {
+            photoOnly = false
         } else {
-            photoSelected = true
+            photoOnly = true
         }
         setAuthViewState()
     }

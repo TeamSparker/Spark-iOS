@@ -245,8 +245,10 @@ extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
         
-        let date = dateList[indexPath.section].split(separator: "-")
-        header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+        let date = dateList[indexPath.section].split(separator: "-").map {
+            Int($0) ?? 0
+        }
+        header.dateLabel.text = "\(String(date[0]))년 \(String(date[1]))월 \(String(date[2]))일"
         header.dayLabel.text = "\(dayList[indexPath.section])"
         
         return header

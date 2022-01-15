@@ -74,8 +74,10 @@ class WaitingVC: UIViewController {
     let goalTitleLabel = UILabel()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
-    let timeLabel = UILabel()
-    let goalLabel = UILabel()
+    let timeLabel = UILabel() /// 시간 --하기 전에
+    let goalLabel = UILabel() /// 목표 -- 집에 가자
+    // FIXME: - emptylabel 추가
+    let emptyLabel = UILabel()
     let editButton = UIButton()
     let secondDivideView = UIView()
     
@@ -89,18 +91,19 @@ class WaitingVC: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var memberList: [Any] = []
+    var photoOnly: Bool = true /// 사진 인증만
     var roomName: String = ""
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setData()
         setUI()
         setLayout()
         setCollectionView()
         setAddTarget()
+        setAuthLabel()
     }
     
     func setUI() {
@@ -115,7 +118,6 @@ class WaitingVC: UIViewController {
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
         editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
         refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
-//        startButton.setImage(UIImage(named: "btnPrimary"), for: .normal)
         
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
@@ -171,6 +173,15 @@ class WaitingVC: UIViewController {
     func setData() {
         if let member = dummydata["members"] {
             memberList = member as! [Any]
+        }
+    }
+    
+    /// 선택한 인증 방식
+    func setAuthLabel() {
+        if photoOnly {
+            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = true }
+        } else {
+            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = false }
         }
     }
     
