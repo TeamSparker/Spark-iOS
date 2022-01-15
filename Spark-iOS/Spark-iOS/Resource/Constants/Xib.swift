@@ -11,6 +11,11 @@ extension Const {
     /// 셀 혹은 커스텀 뷰 Xib 의 nibName 을 상수로 관리합니다.
     struct Xib {
         struct NibName {
+//            static let mainCVC = "MainCVC"
+            static let doingStorageCVC = "DoingStorageCVC"
+            static let doneStorageCVC = "DoneStorageCVC"
+            static let failStorageCVC = "FailStorageCVC"
+            static let moreStorageCVC = "MoreStorageCVC"
             static let homeHabitCVC = "HomeHabitCVC"
             static let homeWaitingCVC = "HomeWaitingCVC"
         }

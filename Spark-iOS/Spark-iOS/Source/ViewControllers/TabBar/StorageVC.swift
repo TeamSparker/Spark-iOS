@@ -10,6 +10,7 @@ import SnapKit
 
 class StorageVC: UIViewController {
     
+    // MARK: - Properties
     let doingButton = MyButton()
     let doneButton = MyButton()
     let failButton = MyButton()
@@ -20,6 +21,10 @@ class StorageVC: UIViewController {
     
     let upperLabel = UILabel()
     let lowerLabel = UILabel()
+    
+    var doingBlockingView = UIView()
+    var doneBlockingView = UIView()
+    var failBlockingView = UIView()
     
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -60,16 +65,18 @@ class StorageVC: UIViewController {
         return name
     }()
     
+    // MARK: - @IBOutlet Properties
+
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         registerXib()
         setCarousels()
-        // TODO: setLayout에서 애드서브뷰 같이해주기
-        addSubviews(doingButton, doneButton, failButton, DoingCV, DoneCV, FailCV)
-        addSubviews(upperLabel, lowerLabel, doingLabel, doneLabel, failLabel)
-        setButtons()
-        addTargets(doingButton, doneButton, failButton)
+        setUI()
+        setLayout()
+        setAddTargets(doingButton, doneButton, failButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +86,8 @@ class StorageVC: UIViewController {
         tabBarController?.tabBar.isHidden = false
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
+    
+    // MARK: - Methods
     
     func setDelegate() {
         DoingCV.delegate = self
@@ -102,11 +111,7 @@ class StorageVC: UIViewController {
         FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
     }
     
-    // TODO: 컬렉션뷰 위치 스냅킷으로 잡아주기.
-    
-    // MARK: 버튼 레이아웃 설정
-    // TODO: setUI와 setLayout으로 나눠주기
-    func setButtons() {
+    func setUI() {
         upperLabel.text = "나는야쿵짝지혜 님의"
         upperLabel.font = .h2Title
         upperLabel.textColor = .sparkBlack
@@ -115,6 +120,10 @@ class StorageVC: UIViewController {
         lowerLabel.font = .h2Title
         lowerLabel.textColor = .sparkBlack
         
+        doingBlockingView.backgroundColor = .sparkWhite
+        doneBlockingView.backgroundColor = .sparkWhite
+        failBlockingView.backgroundColor = .sparkWhite
+        
         doingButton.statusCV = 0
         doingButton.backgroundColor = .clear
         doingButton.setTitle("진행중", for: .normal)
@@ -122,6 +131,7 @@ class StorageVC: UIViewController {
         doingButton.setTitleColor(.sparkDarkGray, for: .normal)
         doingButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doingButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
+        doingButton.setTitleColor(.sparkDarkPinkred, for: .focused)
         doingButton.isSelected = true
         
         doingLabel.text = "6"
@@ -155,6 +165,16 @@ class StorageVC: UIViewController {
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
+        makeFirstDraw()
+    }
+    
+    func setLayout() {
+        view.addSubviews([doingButton, doneButton, failButton,
+                               DoingCV, DoneCV, FailCV,
+                               upperLabel, lowerLabel, doingLabel,
+                               doneLabel, failLabel, doingBlockingView,
+                          doneBlockingView, failBlockingView])
+        
         upperLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
             make.leading.equalTo(doingButton)
@@ -163,6 +183,24 @@ class StorageVC: UIViewController {
         lowerLabel.snp.makeConstraints { make in
             make.top.equalTo(upperLabel.snp.bottom).offset(4)
             make.leading.equalTo(doingButton)
+        }
+        
+        doingBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(doingButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(doingButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
+        }
+        
+        doneBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(doneButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(doneButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
+        }
+
+        failBlockingView.snp.makeConstraints { make in
+            make.centerX.equalTo(failButton.snp.centerX).offset(-14)
+            make.centerY.equalTo(failButton.snp.centerY).offset(-22)
+            make.height.width.equalTo(25)
         }
         
         doingButton.snp.makeConstraints { make in
@@ -213,15 +251,28 @@ class StorageVC: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
         }
     }
+    
+    func makeDraw(rect: CGRect) -> Void {
+        let animateView = LineAnimationView(frame: rect)
+        view.addSubview(animateView)
+    }
+    
+    // 레이아웃이 다 로딩된 후에 애니메이션 실행
+    func makeFirstDraw() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [self] in
+            self.makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
+        }
+    }
 
-    // MARK: 버튼 기능 설정
-    func addTargets(_ buttons: MyButton...) {
+    // 버튼 타겟 설정
+    func setAddTargets(_ buttons: MyButton...) {
         for button in buttons {
             button.addTarget(self, action: #selector(changeCollectionView), for: .touchUpInside)
         }
     }
     
-    // TODO: foreach 사용하기
+    // MARK: - @objc Function
+    
     @objc func changeCollectionView(sender: MyButton) {
         let status: Int = (sender.statusCV)!
         switch status {
@@ -235,6 +286,11 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
+    
+            makeDraw(rect: CGRect(x: doneButton.frame.origin.x, y: doneButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doingBlockingView)
+            self.view.bringSubviewToFront(failBlockingView)
+
         case 2:
             DoingCV.isHidden = true
             DoneCV.isHidden = true
@@ -245,6 +301,11 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkPinkred
+
+            makeDraw(rect: CGRect(x: failButton.frame.origin.x, y: failButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doingBlockingView)
+            self.view.bringSubviewToFront(doneBlockingView)
+            
         default:
             DoingCV.isHidden = false
             DoneCV.isHidden = true
@@ -255,25 +316,25 @@ class StorageVC: UIViewController {
             doingLabel.textColor = .sparkDarkPinkred
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkGray
+
+            makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
+            self.view.bringSubviewToFront(doneBlockingView)
+            self.view.bringSubviewToFront(failBlockingView)
         }
     }
 }
 
+// MARK: - extension Methods
+
+// MARK: Carousel 레이아웃 세팅
+
 extension StorageVC {
-    
-    func addSubviews(_ views: UIView...) {
-        for view in views {
-            self.view.addSubview(view)
-        }
-    }
-    
     func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
         setCarouselLayout(collectionView: DoneCV)
         setCarouselLayout(collectionView: FailCV)
     }
     
-    // TODO: 하나 레이아웃 다 잡고 레지스터 부분 밖으로 빼주자
     // 컬렉션뷰의 레이아웃을 캐러셀 형식으로 변환시키는 함수
     func setCarouselLayout(collectionView: UICollectionView) {
         let layout = CarouselLayout()
@@ -292,6 +353,8 @@ extension StorageVC {
     }
 }
 
+// MARK: collectionView Delegate
+
 extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -306,25 +369,25 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cellCase = collectionView
         switch cellCase {
         case DoingCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoingStorageCVC", for: indexPath) as! DoingStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as! DoingStorageCVC
             
             return cell
         case DoneCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DoneStorageCVC", for: indexPath) as! DoneStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as! DoneStorageCVC
             
             return cell
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FailStorageCVC", for: indexPath) as! FailStorageCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as! FailStorageCVC
             
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextSB = UIStoryboard.init(name: "StorageMore", bundle:nil)
-        
-        guard let nextVC = nextSB.instantiateViewController(identifier: "StorageMoreVC") as? StorageMoreVC else {return}
-        
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle:nil)
+
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
     }

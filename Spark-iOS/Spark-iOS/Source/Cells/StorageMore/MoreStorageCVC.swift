@@ -13,10 +13,10 @@ class MoreStorageCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setLayout()
+        setUI()
     }
 
-    func setLayout() {
+    func setUI() {
         dDayLabel.font = .p2Subtitle2Eng
         dDayLabel.textColor = .sparkGray
         dDayLabel.text = "D-day"
