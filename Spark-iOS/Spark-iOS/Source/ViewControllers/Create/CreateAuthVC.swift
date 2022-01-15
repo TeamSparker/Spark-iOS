@@ -23,6 +23,10 @@ class CreateAuthVC: UIViewController {
 
     // MARK: - View Life Cycles
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +40,8 @@ class CreateAuthVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
+        navigationController?.initWithBackButton(tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+        
         titleLabel.text = "어떻게 습관을 인증할까요?"
         titleLabel.font = .h2Title
         titleLabel.textColor = .sparkBlack

@@ -110,10 +110,10 @@ extension MainTBC {
     }
     
     private func presentToWaitingVC() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createRoom) as? CreateRoomVC else { return }
-        let navi = UINavigationController(rootViewController: nextVC)
-        navi.modalPresentationStyle = .fullScreen
-        present(navi, animated: true, completion: nil)
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.createRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createRoom) as? CreateRoomVC else { return }
+        let nextVC = UINavigationController(rootViewController: rootVC)
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
     }
     
     // MARK: - @objc

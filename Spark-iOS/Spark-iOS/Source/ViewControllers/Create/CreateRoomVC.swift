@@ -13,6 +13,7 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Properties
     
+    let closeButton = UIButton()
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let textField = UITextField()
@@ -23,6 +24,10 @@ class CreateRoomVC: UIViewController {
     var maxLength: Int = 15
 
     // MARK: - View Life Cycles
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +41,7 @@ class CreateRoomVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        // FIXME: - 타이틀 컬러 흰색이라 안보이는 상태
-        navigationController?.initWithTitle(title: "_", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
         titleLabel.text = "어떤 습관방을 만들건가요?"
         titleLabel.font = .h2Title
@@ -67,10 +71,16 @@ class CreateRoomVC: UIViewController {
     
     private func setLayout() {
         view.addSubviews([titleLabel, subTitleLabel, textField,
-                          lineView, countLabel, nextButton])
+                          lineView, countLabel, nextButton, closeButton])
+        
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(14)
+            make.leading.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(12)
+            make.top.equalTo(closeButton.snp.bottom).offset(24)
             make.leading.equalToSuperview().inset(20)
         }
         
@@ -111,6 +121,7 @@ class CreateRoomVC: UIViewController {
     
     private func setAddTarget() {
         nextButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
     }
     
     private func ableButton() {
@@ -159,11 +170,15 @@ class CreateRoomVC: UIViewController {
     
     @objc
     func touchNextButton() {
-        // TODO: - 화면전환
         print("다음")
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
         navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @objc
+    func touchCloseButton() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
