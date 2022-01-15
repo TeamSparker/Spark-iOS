@@ -278,6 +278,7 @@
 		2BE5D80327930743007A544D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				EB9C509C27935B3B00588155 /* AuthUpload */,
 				2BE5D80A27930A20007A544D /* AuthTimer */,
 			);
 			path = Auth;
@@ -419,12 +420,12 @@
 			path = HabitRoom;
 			sourceTree = "<group>";
 		};
-		EB9C50932792E3FA00588155 /* Auth */ = {
+		EB9C509C27935B3B00588155 /* AuthUpload */ = {
 			isa = PBXGroup;
 			children = (
 				EB9C509927931E5F00588155 /* AuthUpload.storyboard */,
 			);
-			path = Auth;
+			path = AuthUpload;
 			sourceTree = "<group>";
 		};
 		EBA93A80279080FC009AE771 /* CodeJoin */ = {
@@ -534,7 +535,6 @@
 				EBA93A80279080FC009AE771 /* CodeJoin */,
 				2B9C6BC72792777900CD914F /* GoalWriting */,
 				EB9C50862792A65C00588155 /* HabitRoom */,
-				EB9C50932792E3FA00588155 /* Auth */,
 				2BE5D80327930743007A544D /* Auth */,
 			);
 			path = Storyboards;
