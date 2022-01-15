@@ -101,6 +101,31 @@ class GoalWritingVC: UIViewController {
         completeButton.isEnabled = false
     }
     
+    // TODO: - 애니메이션
+    private func upAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            self.subTitleLabel.alpha = 0
+            
+            let frame = CGAffineTransform(translationX: 0, y: -118)
+            [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
+             self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
+    private func downAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            self.subTitleLabel.alpha = 1.0
+            
+            let frame = CGAffineTransform(translationX: 0, y: 0)
+            [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
+             self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
@@ -179,18 +204,20 @@ class GoalWritingVC: UIViewController {
 extension GoalWritingVC: UITextFieldDelegate {
     /// 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        downAnimation()
         self.view.endEditing(true)
     }
 
     /// 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        downAnimation()
         self.view.endEditing(true)
         return true
     }
     
     /// 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        ableButton()
+        upAnimation()
         return true
     }
     
