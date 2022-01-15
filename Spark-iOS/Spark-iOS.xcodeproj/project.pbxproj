@@ -23,6 +23,8 @@
 		2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520A2790AD0000CE40A7 /* CreateAuthVC.swift */; };
 		2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */; };
 		2B9852102790AE1500CE40A7 /* TimerAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */; };
+		2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */; };
+		2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
@@ -98,6 +100,8 @@
 		2B98520A2790AD0000CE40A7 /* CreateAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthVC.swift; sourceTree = "<group>"; };
 		2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAuthView.swift; sourceTree = "<group>"; };
 		2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAuthView.swift; sourceTree = "<group>"; };
+		2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoalWriting.storyboard; sourceTree = "<group>"; };
+		2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWritingVC.swift; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
@@ -198,6 +202,22 @@
 				2B98520F2790AE1500CE40A7 /* TimerAuthView.swift */,
 			);
 			path = CreateAuth;
+			sourceTree = "<group>";
+		};
+		2B9C6BC72792777900CD914F /* GoalWriting */ = {
+			isa = PBXGroup;
+			children = (
+				2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */,
+			);
+			path = GoalWriting;
+			sourceTree = "<group>";
+		};
+		2B9C6BCC279277F500CD914F /* GoalWriting */ = {
+			isa = PBXGroup;
+			children = (
+				2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */,
+			);
+			path = GoalWriting;
 			sourceTree = "<group>";
 		};
 		2BC1726E278F54B300BA3029 /* Waiting */ = {
@@ -420,6 +440,7 @@
 				2BC17272278F56BA00BA3029 /* Waiting */,
 				2B98520127902F8900CE40A7 /* Create */,
 				EBA93A80279080FC009AE771 /* CodeJoin */,
+				2B9C6BC72792777900CD914F /* GoalWriting */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -450,6 +471,7 @@
 				F80A3E58278C22BA00728E07 /* TabBar */,
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 				EB625E9A2790792F00C43DE9 /* CodeJoin */,
+				2B9C6BCC279277F500CD914F /* GoalWriting */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -641,6 +663,7 @@
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
+				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
@@ -729,6 +752,7 @@
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
+				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,

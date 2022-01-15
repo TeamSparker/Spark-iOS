@@ -23,6 +23,7 @@ extension Const {
             static let joinCheck = "JoinCheck"
             static let createRoom = "CreateRoom"
             static let createAuth = "CreateAuth"
+            static let goalWriting = "GoalWriting"
         }
     }
 }
