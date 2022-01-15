@@ -16,6 +16,10 @@ class HabitAuthVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+        setAddTargets()
+    }
+}
 
 extension HabitAuthVC {
     func setUI() {
@@ -41,6 +45,17 @@ extension HabitAuthVC {
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
     }
+    
+    func setAddTargets() {
+        okButton.addTarget(self, action: #selector(touchOkayButton), for:. touchUpInside)
+    }
+    
+    @objc func touchOkayButton() {
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.photoAuth, bundle:nil)
         
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.photoAuth) as? PhotoAuthVC else {return}
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
 }
