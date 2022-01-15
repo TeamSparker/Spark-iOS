@@ -6,15 +6,23 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class MainTBC: UITabBarController {
 
+    private let floatingButton = JJFloatingActionButton()
+    private let tapGestrueRecognizer = UITapGestureRecognizer()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setTabBar()
+        setGestureRecognizer()
+        setAddTarget()
+        setFloatingButton()
+        setNotification()
     }
 }
 
@@ -54,6 +62,83 @@ extension MainTBC {
         if #available(iOS 15.0, *) {
                 // set tabbar opacity
                 tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
+    }
+    
+    private func setGestureRecognizer() {
+        tapGestrueRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestrueRecognizer)
+    }
+    
+    private func setAddTarget() {
+        floatingButton.addTarget(self, action: #selector(setButtonColor), for: .touchUpInside)
+        tapGestrueRecognizer.addTarget(self, action: #selector(setButtonColor))
+    }
+    
+    private func setFloatingButton() {
+        // set floatingButton
+        // buttonImage 와 itemAnimationConfiguration 은 default.
+        floatingButton.buttonColor = .sparkDarkPinkred
+        floatingButton.buttonImageColor = .sparkWhite
+        floatingButton.layer.shadowColor = UIColor.sparkDarkPinkred.cgColor
+        floatingButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        floatingButton.layer.shadowOpacity = Float(0.3)
+        floatingButton.layer.shadowRadius = CGFloat(10)
+        
+        // set floatingButton items
+        floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
+            self.presentToCodeJoinVC()
+        }
+        floatingButton.addItem(title: "방 만들기", image: UIImage(named: "icRoomWhite")) { _ in
+            self.presentToWaitingVC()
+        }
+        // 아이템 버튼 컬러 변경. defualt 는 white 임.
+        floatingButton.configureDefaultItem { item in
+            item.buttonColor = .sparkDarkPinkred
+        }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setAppearFloatingButtonLayout), name: .appearFloatingButton, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setDisappearFloatingButton), name: .disappearFloatingButton, object: nil)
+    }
+    
+    // TODO: - 화면전환
+    
+    private func presentToCodeJoinVC() {
+    
+    }
+    
+    // TODO: - 화면전환
+    
+    private func presentToWaitingVC() {
+        
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func setAppearFloatingButtonLayout() {
+        view.addSubview(floatingButton)
+        floatingButton.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(32)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(72)
+        }
+    }
+    
+    @objc
+    private func setDisappearFloatingButton() {
+        floatingButton.removeFromSuperview()
+    }
+    
+    @objc
+    private func setButtonColor() {
+        if floatingButton.buttonState.rawValue == 2 {
+            floatingButton.buttonColor = .sparkWhite
+            floatingButton.buttonImageColor = .sparkDarkPinkred
+        } else {
+            floatingButton.buttonColor = .sparkDarkPinkred
+            floatingButton.buttonImageColor = .sparkWhite
         }
     }
 }

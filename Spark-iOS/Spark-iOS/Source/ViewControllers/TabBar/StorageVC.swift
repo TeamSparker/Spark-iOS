@@ -74,8 +74,10 @@ class StorageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = false
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     func setDelegate() {
