@@ -43,8 +43,7 @@ class GoalWritingVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-//        closeButton.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
-        closeButton.backgroundColor = .yellow
+        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
         titleLabel.text = "나의 목표 작성"
         titleLabel.font = .h3Subtitle
@@ -98,6 +97,7 @@ class GoalWritingVC: UIViewController {
     
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
     }
     
     private func ableButton() {
@@ -202,6 +202,7 @@ class GoalWritingVC: UIViewController {
         }
     }
     
+    // MARK: - 화면전환
     @objc
     func touchCompleteButton() {
         print("작성 완료")
@@ -209,7 +210,7 @@ class GoalWritingVC: UIViewController {
     
     @objc
     func touchCloseButton() {
-        
+        dismiss(animated: true, completion: nil)
     }
 }
 
