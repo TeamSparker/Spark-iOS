@@ -36,6 +36,7 @@ class AuthTimerVC: UIViewController {
         setLayout()
         setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
+        setNotification()
     }
     
     // MARK: - Methods
@@ -70,8 +71,12 @@ class AuthTimerVC: UIViewController {
     
     private func setAddTarget() {
         pauseButton.addTarget(self, action: #selector(startPauseTimer(_:)), for: .touchUpInside)
-        resetButton.addTarget(self, action: #selector(resetTimer(_:)), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(showResetPopup), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
@@ -139,15 +144,24 @@ class AuthTimerVC: UIViewController {
     }
     
     @objc
+    func showResetPopup() {
+        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
+        
+        popupVC.modalPresentationStyle = .overFullScreen
+        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.time = timeLabel.text ?? ""
+        
+        present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc
     func resetTimer(_ sender: AnyObject) {
         /// 실행중 X (스톱워치가 멈춘 상태라면), reset
         /// 실행중 O (스톱워치가 돌아가는 상태라면), print
         if !isPlay {
             resetMainTimer()
-            // TODO: - alter 띄우기
-            print("리셋하겠어요?")
             setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
-            pauseButton.backgroundColor = .blue
+            pauseButton.backgroundColor = .blue /// 재생버튼
         }
     }
     

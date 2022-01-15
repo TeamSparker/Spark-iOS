@@ -16,6 +16,7 @@ class ResetPopupVC: UIViewController {
     let resetButton = UIButton()
     let horizontalLine = UIView()
     let verticalLine = UIView()
+    var time: String = ""
     
     // MARK: - View Life Cycles
 
@@ -30,7 +31,7 @@ class ResetPopupVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        view.backgroundColor = .gray
+        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         backView.backgroundColor = .white
         backView.layer.cornerRadius = 2
         
@@ -58,15 +59,17 @@ class ResetPopupVC: UIViewController {
     // TODO: - 화면전환
     @objc
     func touchCancelButton() {
-        print("취소")
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
     func touchResetButton() {
-        print("리셋")
+        NotificationCenter.default.post(name: .resetStopWatch, object: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
+// MARK: - Layout
 extension ResetPopupVC {
     private func setLayout() {
         view.addSubviews([backView])
