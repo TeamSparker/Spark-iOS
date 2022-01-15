@@ -27,6 +27,8 @@ extension Const {
             static let habitAuth = "HabitAuth"
             static let completeAuth = "CompleteAuth"
             static let authUpload = "AuthUpload"
+            static let authTimer = "AuthTimer"
+            static let resetPopup = "ResetPopup"
         }
     }
 }
