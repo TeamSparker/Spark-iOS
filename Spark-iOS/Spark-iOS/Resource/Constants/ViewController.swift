@@ -26,6 +26,7 @@ extension Const {
             static let goalWriting = "GoalWritingVC"
             static let habitAuth = "HabitAuthVC"
             static let completeAuth = "CompleteAuthVC"
+            static let photoAuth = "PhotoAuthVC"
         }
     }
 }
