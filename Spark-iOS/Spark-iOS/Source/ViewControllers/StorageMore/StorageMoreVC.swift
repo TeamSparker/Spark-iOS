@@ -22,6 +22,8 @@ class StorageMoreVC: UIViewController {
         
         let cv = UICollectionView(frame: CGRect(x: 0,y: 120,width: 375,height: 520), collectionViewLayout: layout)
         cv.backgroundColor = .clear
+        cv.indicatorStyle = .white
+        cv.showsVerticalScrollIndicator = true
         
         return cv
     }()
