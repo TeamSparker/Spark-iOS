@@ -18,7 +18,7 @@ final class MoyaLoggerPlugin: PluginType {
     }
     let url = httpRequest.description
     let method = httpRequest.httpMethod ?? "unknown method"
-    var log = "----------------------------------------------------\n[✅\(method)] \(url)\n----------------------------------------------------\n"
+    var log = "----------------------------------------------------\n✅[\(method)] \(url)\n----------------------------------------------------\n"
     log.append("API: \(target)\n")
     if let headers = httpRequest.allHTTPHeaderFields, !headers.isEmpty {
       log.append("header: \(headers)\n")
@@ -26,7 +26,7 @@ final class MoyaLoggerPlugin: PluginType {
     if let body = httpRequest.httpBody, let bodyString = String(bytes: body, encoding: String.Encoding.utf8) {
       log.append("\(bodyString)\n")
     }
-    log.append("------------------- END \(method) --------------------------")
+    log.append("------------------- END \(method) -------------------")
     print(log)
   }
     
@@ -45,13 +45,10 @@ final class MoyaLoggerPlugin: PluginType {
     let url = request?.url?.absoluteString ?? "nil"
     let statusCode = response.statusCode
     var log = "------------------- 네트워크 통신 성공 -------------------"
-    log.append("\n[✅\(statusCode)] \(url)\n----------------------------------------------------\n")
-    log.append("API: \(target)\n")
-//    response.response?.allHeaderFields.forEach {
-//      log.append("\($0): \($1)\n")
-//    }
+    log.append("\n✅[\(statusCode)] \(url)\n----------------------------------------------------\n")
+    log.append("✅API: \(target)\n")
     if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
-      log.append("\(reString)\n")
+      log.append("✅\(reString)\n")
     }
     log.append("------------------- END HTTP -------------------")
     print(log)
