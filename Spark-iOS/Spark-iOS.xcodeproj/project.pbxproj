@@ -286,6 +286,7 @@
 		2BE5D80627930774007A544D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5D8192793583B007A544D /* AuthUpload */,
 				2BE5D80927930A0F007A544D /* AuthTimer */,
 			);
 			path = Auth;
@@ -307,6 +308,14 @@
 				2BE5D81127932EF3007A544D /* ResetPopup.storyboard */,
 			);
 			path = AuthTimer;
+			sourceTree = "<group>";
+		};
+		2BE5D8192793583B007A544D /* AuthUpload */ = {
+			isa = PBXGroup;
+			children = (
+				EB9C509727931E4600588155 /* AuthUploadVC.swift */,
+			);
+			path = AuthUpload;
 			sourceTree = "<group>";
 		};
 		98B179D2EEBCF1113A785423 /* Frameworks */ = {
@@ -408,15 +417,6 @@
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
 			);
 			path = HabitRoom;
-			sourceTree = "<group>";
-		};
-		EB9C508D2792E3A200588155 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				EB9C509727931E4600588155 /* AuthUploadVC.swift */,
-			);
-			name = Auth;
-			path = GoalWriting/Auth;
 			sourceTree = "<group>";
 		};
 		EB9C50932792E3FA00588155 /* Auth */ = {
@@ -568,7 +568,6 @@
 				EB625E9A2790792F00C43DE9 /* CodeJoin */,
 				2B9C6BCC279277F500CD914F /* GoalWriting */,
 				EB9C50822792A5C600588155 /* HabitRoom */,
-				EB9C508D2792E3A200588155 /* Auth */,
 				2BE5D80627930774007A544D /* Auth */,
 			);
 			path = ViewControllers;
