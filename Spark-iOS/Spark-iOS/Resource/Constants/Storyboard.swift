@@ -24,6 +24,9 @@ extension Const {
             static let createRoom = "CreateRoom"
             static let createAuth = "CreateAuth"
             static let goalWriting = "GoalWriting"
+            static let habitAuth = "HabitAuth"
+            static let completeAuth = "CompleteAuth"
+            static let authUpload = "AuthUpload"
             static let authTimer = "AuthTimer"
             static let resetPopup = "ResetPopup"
         }
