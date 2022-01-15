@@ -29,6 +29,8 @@
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
 		2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */; };
+		2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D80727930A06007A544D /* AuthTimerVC.swift */; };
+		2BE5D80C27930A35007A544D /* AuthTImer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5D80B27930A35007A544D /* AuthTImer.storyboard */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
@@ -106,6 +108,8 @@
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
 		2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingFriendCVC.swift; sourceTree = "<group>"; };
+		2BE5D80727930A06007A544D /* AuthTimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTimerVC.swift; sourceTree = "<group>"; };
+		2BE5D80B27930A35007A544D /* AuthTImer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthTImer.storyboard; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +255,38 @@
 				2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */,
 			);
 			path = Waiting;
+			sourceTree = "<group>";
+		};
+		2BE5D80327930743007A544D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5D80A27930A20007A544D /* AuthTimer */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2BE5D80627930774007A544D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5D80927930A0F007A544D /* AuthTimer */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2BE5D80927930A0F007A544D /* AuthTimer */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
+			);
+			path = AuthTimer;
+			sourceTree = "<group>";
+		};
+		2BE5D80A27930A20007A544D /* AuthTimer */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5D80B27930A35007A544D /* AuthTImer.storyboard */,
+			);
+			path = AuthTimer;
 			sourceTree = "<group>";
 		};
 		98B179D2EEBCF1113A785423 /* Frameworks */ = {
@@ -441,6 +477,7 @@
 				2B98520127902F8900CE40A7 /* Create */,
 				EBA93A80279080FC009AE771 /* CodeJoin */,
 				2B9C6BC72792777900CD914F /* GoalWriting */,
+				2BE5D80327930743007A544D /* Auth */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -472,6 +509,7 @@
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 				EB625E9A2790792F00C43DE9 /* CodeJoin */,
 				2B9C6BCC279277F500CD914F /* GoalWriting */,
+				2BE5D80627930774007A544D /* Auth */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -660,6 +698,7 @@
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
+				2BE5D80C27930A35007A544D /* AuthTImer.storyboard in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
 				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
@@ -748,6 +787,7 @@
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
+				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,

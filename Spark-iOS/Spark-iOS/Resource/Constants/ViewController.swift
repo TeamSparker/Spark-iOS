@@ -24,6 +24,7 @@ extension Const {
             static let createRoom = "CreateRoomVC"
             static let createAuth = "CreateAuthVC"
             static let goalWriting = "GoalWritingVC"
+            static let authTimer = "AuthTimerVC"
         }
     }
 }
