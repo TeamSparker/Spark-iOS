@@ -14,10 +14,14 @@ class HabitAuthVC: UIViewController {
     @IBOutlet weak var considerButton: UIButton!
     @IBOutlet weak var restButton: UIButton!
     
+    let picker = UIImagePickerController()
+    var imageContainer = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setAddTargets()
+        setDelegate()
     }
 }
 
@@ -50,16 +54,20 @@ extension HabitAuthVC {
         okButton.addTarget(self, action: #selector(touchOkayButton), for:. touchUpInside)
     }
     
+    func setDelegate() {
+        picker.delegate = self
+    }
+    
     @objc func touchOkayButton() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
         /// alter에 들어갈 액션 생성
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { action in
-//            self.openLibrary()
+            self.openCamera()
         }
         let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { action in
-//            self.openCamera()
+            self.openLibrary()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
@@ -75,7 +83,38 @@ extension HabitAuthVC {
 //
 //        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.photoAuth) as? PhotoAuthVC else {return}
 //
-//        nextVC.modalPresentationStyle = .fullScreen
-//        self.present(nextVC, animated: false, completion: nil)
+        //        nextVC.modalPresentationStyle = .fullScreen
+        //        self.present(nextVC, animated: false, completion: nil)
+    }
+    
+    func openLibrary() {
+        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        picker.sourceType = .photoLibrary
+        present(picker, animated: false, completion: nil)
+    }
+    
+    func openCamera() {
+        /// 카메라 촬영 타입이 가능하다면
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            picker.sourceType = .camera
+            present(picker, animated: false, completion: nil)
+        } else {
+            print("카메라 안됩니다.")
+        }
+    }
+}
+
+extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageContainer = image
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
