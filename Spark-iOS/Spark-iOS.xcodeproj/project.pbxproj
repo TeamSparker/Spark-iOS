@@ -71,6 +71,7 @@
 		F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F580327928975003E4174 /* MoyaLoggerPlugin.swift */; };
 		F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F5807279289B2003E4174 /* HomeAPI.swift */; };
 		F82F580A279289C4003E4174 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F5809279289C4003E4174 /* HomeService.swift */; };
+		F82F580C27929F74003E4174 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F580B27929F74003E4174 /* Header.swift */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
@@ -147,6 +148,7 @@
 		F82F580327928975003E4174 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		F82F5807279289B2003E4174 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		F82F5809279289C4003E4174 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		F82F580B27929F74003E4174 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				F8096F452784247100B71D38 /* Notification.swift */,
 				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 				F82F57FE27928588003E4174 /* URL.swift */,
+				F82F580B27929F74003E4174 /* Header.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
+				F82F580C27929F74003E4174 /* Header.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
