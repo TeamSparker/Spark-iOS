@@ -9,6 +9,8 @@ import UIKit
 
 class StorageMoreVC: UIViewController {
     
+    // MARK: - Properties
+    
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -24,15 +26,22 @@ class StorageMoreVC: UIViewController {
         return cv
     }()
     
+    // MARK: - @IBOutlet Properties
+  
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.addSubview(storageMoreCV)
         setDelegate()
         registerXib()
+        setUI()
         setLayout()
     }
-    
+}
+
+// MARK: - Methods
+
+extension StorageMoreVC {
     func setDelegate() {
         storageMoreCV.delegate = self
         storageMoreCV.dataSource = self
@@ -43,21 +52,25 @@ class StorageMoreVC: UIViewController {
         storageMoreCV.register(xibCollectionViewName, forCellWithReuseIdentifier: "MoreStorageCVC")
     }
     
-    func setLayout() {
-        storageMoreCV.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(120)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-50)
-        }
-        self.view.backgroundColor = .sparkBlack
-        self.tabBarController?.tabBar.isHidden = true
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+    func setUI() {
+        view.backgroundColor = .sparkBlack
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
-
+    
+    func setLayout() {
+        view.addSubview(storageMoreCV)
+        storageMoreCV.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+    }
 }
+
+// MARK: - collectionView Delegate
 
 extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -65,7 +78,7 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         // 컬렉션뷰 위드에 맞게 셀 위드 정하기
         // 셀 위드에 대해서 간격과 높이 정하기
         let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/350
+        let cellWidthRatio: CGFloat = 160/375
         let widthHeightRatio: CGFloat = 203/160
         let cell = CGSize(width: cellWidth*cellWidthRatio, height: cellWidth*cellWidthRatio*widthHeightRatio)
         return cell
@@ -73,20 +86,12 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     
     // TODO: 엣지 인셋 고치기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/350
-        let newCellWidth = cellWidth*cellWidthRatio
-        let spacingRatio: CGFloat = 15/160
-        let totalCellWidth = newCellWidth * 2
-        let totalSpacingWidth = spacingRatio*newCellWidth
-        print(totalCellWidth)
-        print(totalSpacingWidth)
-        let leftInset = totalSpacingWidth/2
-        print(leftInset)
-        let rightInset = leftInset
-        let A = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-        print(A)
-        return A
+        let insets = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
+        return insets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 15
     }
 }
 
@@ -96,7 +101,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreStorageCVC", for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
 
         return cell
     }

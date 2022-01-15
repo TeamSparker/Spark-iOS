@@ -21,10 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let rootViewController = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar)
         let rootViewController = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting)
         window?.rootViewController = rootViewController
-        
-        // 코드베이스로 테스트할 때 다음과 같이 사용 가능합니다.
-        // window?.rootViewController = MainVC()
-        
         window?.makeKeyAndVisible()
     }
     

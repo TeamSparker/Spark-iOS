@@ -7,12 +7,18 @@
 
 import UIKit
 
+import SnapKit
+import JJFloatingActionButton
+
 class HomeVC: UIViewController {
 
     // MARK: - Properties
     
     private var habitRoomList = [String]()
-    private var isWating = true
+    private var isWating = false
+    
+    private let floatingButton = JJFloatingActionButton()
+    private let tapGestrueRecognizer = UITapGestureRecognizer()
     
     // MARK: - @IBOutlet Properties
     
@@ -26,6 +32,12 @@ class HomeVC: UIViewController {
         setUI()
         setDelegate()
         registerXib()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
 }
 
@@ -46,6 +58,9 @@ extension HomeVC {
         flowLayout.estimatedItemSize = .zero
         flowLayout.scrollDirection = .vertical
         mainCollectionView.collectionViewLayout = flowLayout
+        
+        mainCollectionView.indicatorStyle = .black
+        mainCollectionView.showsVerticalScrollIndicator = true
     }
     
     private func setDelegate() {
@@ -58,9 +73,7 @@ extension HomeVC {
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeWaitingCVC)
     }
     
-    // MARK: - @objc
-    
-    // TODO: - 화면전환 코드 생성
+    // TODO: - 화면전환
     
     @objc
     private func presentToProfileVC() {

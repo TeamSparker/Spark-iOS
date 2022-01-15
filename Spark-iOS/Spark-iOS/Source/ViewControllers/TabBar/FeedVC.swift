@@ -63,6 +63,12 @@ class FeedVC: UIViewController {
         setData(datalist: dummyDataList)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+    }
+    
     // MARK: - Methods
     
     func setCollectionView() {
