@@ -40,8 +40,7 @@ class CreateAuthVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        navigationController?.initWithTitle(title: "ff", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
-//        title = "dd"
+        navigationController?.initWithTitle(title: "", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
         
         titleLabel.text = "어떻게 습관을 인증할까요?"
         titleLabel.font = .h2Title
