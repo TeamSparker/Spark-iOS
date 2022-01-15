@@ -109,10 +109,11 @@ extension MainTBC {
     
     }
     
-    // TODO: - 화면전환
-    
     private func presentToWaitingVC() {
-        
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createRoom) as? CreateRoomVC else { return }
+        let navi = UINavigationController(rootViewController: nextVC)
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true, completion: nil)
     }
     
     // MARK: - @objc

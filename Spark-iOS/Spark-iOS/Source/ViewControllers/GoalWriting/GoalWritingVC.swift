@@ -13,6 +13,8 @@ class GoalWritingVC: UIViewController {
     
     // MARK: - Properties
     
+    let closeButton = UIButton()
+    let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let whenLabel = UILabel()
     let whenExLabel = UILabel()
@@ -41,6 +43,13 @@ class GoalWritingVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
+//        closeButton.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
+        closeButton.backgroundColor = .yellow
+        
+        titleLabel.text = "나의 목표 작성"
+        titleLabel.font = .h3Subtitle
+        titleLabel.textColor = .sparkBlack
+        
         subTitleLabel.text = "\(titleText) 습관방의 \n시간과 목표를 적어봐요."
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
@@ -101,7 +110,6 @@ class GoalWritingVC: UIViewController {
         completeButton.isEnabled = false
     }
     
-    // TODO: - 애니메이션
     private func upAnimation() {
         UIView.animate(withDuration: 0.4,
                        delay: 0,
@@ -198,6 +206,11 @@ class GoalWritingVC: UIViewController {
     func touchCompleteButton() {
         print("작성 완료")
     }
+    
+    @objc
+    func touchCloseButton() {
+        
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -234,13 +247,25 @@ extension GoalWritingVC: UITextFieldDelegate {
 // MARK: - Layout
 extension GoalWritingVC {
     private func setLayout() {
-        view.addSubviews([subTitleLabel, whenLabel, whenExLabel,
+        view.addSubviews([closeButton, titleLabel, subTitleLabel,
+                          whenLabel, whenExLabel,
                           goalLabel, goalExLabel, whenTextField,
                           whenLineView, whenCountLabel, goalTextField,
                           goalLineView, goalCountLabel, completeButton])
         
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.leading.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
+        
         subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.top.equalTo(titleLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
         

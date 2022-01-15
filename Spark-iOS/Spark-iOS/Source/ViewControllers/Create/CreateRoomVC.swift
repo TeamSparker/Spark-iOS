@@ -36,6 +36,9 @@ class CreateRoomVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
+        // FIXME: - 타이틀 컬러 흰색이라 안보이는 상태
+        navigationController?.initWithTitle(title: "_", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+        
         titleLabel.text = "어떤 습관방을 만들건가요?"
         titleLabel.font = .h2Title
         titleLabel.textColor = .sparkBlack
@@ -158,6 +161,9 @@ class CreateRoomVC: UIViewController {
     func touchNextButton() {
         // TODO: - 화면전환
         print("다음")
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
+        nextVC.roomName = textField.text ?? ""
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

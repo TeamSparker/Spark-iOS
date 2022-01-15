@@ -19,6 +19,7 @@ class CreateAuthVC: UIViewController {
     let timerAuthView = TimerAuthView()
     let enterButton = UIButton()
     var photoSelected: Bool = true
+    var roomName: String = ""
 
     // MARK: - View Life Cycles
     
@@ -111,7 +112,15 @@ class CreateAuthVC: UIViewController {
     @objc
     func touchEnterButton() {
         // TODO: - 화면전환
-        print("다음")
+        print("입장")
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+        
+        let navi = UINavigationController(rootViewController: nextVC)
+        
+        navi.modalTransitionStyle = .crossDissolve
+        navi.modalPresentationStyle = .fullScreen
+        
+        present(navi, animated: true, completion: nil)
     }
     
     @objc
