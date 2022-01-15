@@ -86,11 +86,11 @@ extension MainTBC {
         floatingButton.layer.shadowRadius = CGFloat(10)
         
         // set floatingButton items
-        floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
-            self.presentToCodeJoinVC()
-        }
         floatingButton.addItem(title: "방 만들기", image: UIImage(named: "icRoomWhite")) { _ in
             self.presentToWaitingVC()
+        }
+        floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
+            self.presentToCodeJoinVC()
         }
         // 아이템 버튼 컬러 변경. defualt 는 white 임.
         floatingButton.configureDefaultItem { item in
