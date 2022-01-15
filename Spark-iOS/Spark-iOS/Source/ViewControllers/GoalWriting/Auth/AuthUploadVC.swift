@@ -9,21 +9,12 @@ import UIKit
 
 class AuthUploadVC: UIViewController {
 
+    @IBOutlet weak var uploadImageView: UIImageView!
+    
+    var uploadImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        uploadImageView.image = uploadImage
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

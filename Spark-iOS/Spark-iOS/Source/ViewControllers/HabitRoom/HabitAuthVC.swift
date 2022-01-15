@@ -115,6 +115,20 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageContainer = image
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.presentAuthUpload()
+        }
+    }
+    
+    private func presentAuthUpload() {
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle:nil)
+        
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
+        
+        nextVC.uploadImageView?.image = self.imageContainer
+        nextVC.imageCont = self.imageContainer
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: false, completion: nil)
     }
 }
