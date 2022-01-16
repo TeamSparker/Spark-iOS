@@ -10,10 +10,12 @@ import UIKit
 class CodeJoinVC: UIViewController {
 
     // MARK: - Properties
+    
     var maxLength: Int = 7
     
     // MARK: - @IBOutlet Properties
 
+    @IBOutlet weak var standardLine: UIView!
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var okView: UIView!
     @IBOutlet weak var okButton: UIButton!
@@ -22,6 +24,7 @@ class CodeJoinVC: UIViewController {
     @IBOutlet weak var lineView: UIView!
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -33,17 +36,20 @@ class CodeJoinVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetUI()
+        resetLayout()
     }
     
     // MARK: - @IBAction Properties
+    
     @IBAction func touchOutsideButton(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
 }
 
 // MARK: - Methods
+
 extension CodeJoinVC {
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
@@ -61,11 +67,11 @@ extension CodeJoinVC {
         okButton.setTitleColor(.clear, for: .disabled)
     }
     
-    func setAddTargets() {
+    private func setAddTargets() {
         okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
     }
     
-    func setDelegate() {
+    private func setDelegate() {
         textField.delegate = self
     }
     
@@ -73,11 +79,17 @@ extension CodeJoinVC {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
-    func resetUI() {
+    private func resetUI() {
         textField.text = ""
         lineView.backgroundColor = .sparkGray
         okView.backgroundColor = .sparkGray
         okButton.isEnabled = false
+    }
+    
+    private func resetLayout() {
+        if standardLine.frame.origin.y > popUpView.frame.origin.y {
+            downAnimation()
+        }
     }
     
     // MARK: - @objc Function
@@ -111,21 +123,47 @@ extension CodeJoinVC {
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: false, completion: nil)
     }
+}
+
+// MARK: - Animation
+
+extension CodeJoinVC {
+    private func upAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            
+            let frame = CGAffineTransform(translationX: 0, y: -65)
+            self.popUpView.transform = frame
+            self.okButton.transform = frame
+        }
+    }
     
+    private func downAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            
+            let frame = CGAffineTransform(translationX: 0, y: 0)
+            self.popUpView.transform = frame
+            self.okButton.transform = frame
+        }
+    }
 }
 
 // MARK: - textField Delegate
-// TODO: - iqKeyboard로 세팅하기
 
 extension CodeJoinVC: UITextFieldDelegate {
     /// 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        downAnimation()
         self.view.endEditing(true)
         return true
     }
     
     /// 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        upAnimation()
         lineView.backgroundColor = .sparkPinkred
         return true
     }
