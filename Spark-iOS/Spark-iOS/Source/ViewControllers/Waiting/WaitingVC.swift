@@ -11,56 +11,6 @@ import SnapKit
 import SwiftUI
 
 class WaitingVC: UIViewController {
-    
-    // MARK: - Dummy Data
-    var dummydata: [String: Any] = [
-        "roomId": 1,
-        "roomName": "미라클 모닝",
-        "roomCode": "gkjakljdalk",
-        "fromStart": false,
-        "isSet": false,
-        "momentDetail": "",
-        "moment": "잠깨기 전에",
-        "purpose": "집에 가자",
-        "members": [
-            [
-                "userId": 1,
-                "nickname": "힛이",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 2,
-                "nickname": "수아",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 3,
-                "nickname": "애진",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 4,
-                "nickname": "뚜비",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 5,
-                "nickname": "나나",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 6,
-                "nickname": "뽀",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ],
-            [
-                "userId": 7,
-                "nickname": "보라돌이",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
-            ]
-        ]
-    ]
-    
     var members: [Member] = []
     
     // MARK: - Properties
@@ -95,24 +45,24 @@ class WaitingVC: UIViewController {
     var memberList: [Any] = []
     var photoOnly: Bool = true /// 사진 인증만
     var roomName: String = ""
+    var roomCode: String = ""
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setData()
+        getWaitingRoomWithAPI(roomID: 2)
         setUI()
         setLayout()
         setCollectionView()
         setAddTarget()
         setAuthLabel()
-        getWaitingRoomWithAPI(roomID: 2)
     }
     
     func setUI() {
 //        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))", tintColor: .sparkBlack, backgroundColor: .white)
         
-        profileImageView.backgroundColor = .purple
+        profileImageView.backgroundColor = .sparkLightGray
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
@@ -134,27 +84,11 @@ class WaitingVC: UIViewController {
         friendTitleLabel.text = "함께하는 스파커들"
         friendSubTitleLabel.text = "습관을 시작한 후에는 인원 추가가 불가능합니다."
         
-        if let fromstart = dummydata["fromStart"] {
-            if !(fromstart as? Bool ?? false) {
-                [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
-            } else {
-                [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
-            }
-        }
-        
-        // FIXME: - 강제언래핑 제거
-//        timeLabel.text = "시간  \(String(describing: dummydata["moment"]!))"
-//        goalLabel.text = "목표  \(String(describing: dummydata["purpose"]!))"
-        friendCountLabel.text = "\(members.count)"
-        
         nicknameLabel.font = .h3Subtitle
         friendCountLabel.font = .p2SubtitleEng
         friendSubTitleLabel.font = .p2Subtitle
         [checkTitleLabel, goalTitleLabel, friendTitleLabel].forEach {$0.font = .h2Title}
         [photoLabel, stopwatchLabel, timeLabel, goalLabel].forEach {$0.font = .p1TitleLight}
-        
-//        timeLabel.partP1Title(targetString: "시간")
-//        goalLabel.partP1Title(targetString: "목표")
         
         [checkTitleLabel, goalTitleLabel, friendTitleLabel,
          nicknameLabel, friendCountLabel, timeLabel, goalLabel].forEach {
@@ -171,11 +105,6 @@ class WaitingVC: UIViewController {
         startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
         startButton.setTitle("습관 시작하기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
-    }
-    
-    // FIXME: - 서버통신 시 수정 요함
-    func setData() {
-        memberList = [dummydata["members"] as Any]
     }
     
     /// 선택한 인증 방식
@@ -203,7 +132,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func copyToClipboard() {
-        UIPasteboard.general.string = dummydata["roomCode"]! as? String
+        UIPasteboard.general.string = roomCode
         showToast(message: "코드를 복사했어요", font: .p1TitleLight)
     }
     
@@ -242,15 +171,23 @@ extension WaitingVC {
                     user = waitingRoom.reqUser
                     self.members.append(contentsOf: waitingRoom.members ?? [])
                     
-                    print("user:")
-                    print(user)
-                    print("members:")
-                    print(self.members)
+                    // 스파커 멤버 수
+                    self.friendCountLabel.text = "\(self.members.count)"
+                    
+                    // 인증 방식
+                    if waitingRoom.fromStart {
+                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = false }
+                    } else {
+                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = true }
+                    }
+                    
+                    // 방 코드
+                    self.roomCode = waitingRoom.roomCode
                     
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
                     
-                    // 목표가 있을 경우, 세팅
+                    // 목표가 있을 경우, 목표와 시간 세팅
                     if user.isPurposeSet {
                         self.timeLabel.text = "시간 \(user.moment)"
                         self.goalLabel.text = "목표 \(user.purpose)"
@@ -262,9 +199,10 @@ extension WaitingVC {
                     
                     // 사용자 이미지 설정
                     if (user.profileImg != nil) {
+                        // TODO: - 이미지 URL 넣기
                         self.profileImageView.image = UIImage(named: "")
                     } else {
-                        self.profileImageView.backgroundColor = .sparkGray
+                        self.profileImageView.image = UIImage(named: "profileEmpty")
                     }
                     
                     self.collectionView.reloadData()
@@ -301,10 +239,10 @@ extension WaitingVC: UICollectionViewDataSource {
                 let data = try Data(contentsOf: url)
                 cell.profileImageView.image = UIImage(data: data)
             } catch {
-                cell.profileImageView.backgroundColor = .black
+                cell.profileImageView.backgroundColor = .sparkGray
             }
         } else {
-            cell.profileImageView.backgroundColor = .sparkGray
+            cell.profileImageView.image = UIImage(named: "profileEmpty")
         }
         
         return cell
@@ -343,7 +281,7 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().inset(13)
+//            make.top.equalToSuperview().inset(13)
             make.top.equalToSuperview().inset(104)
             make.width.equalTo(87)
             make.height.equalTo(36)
