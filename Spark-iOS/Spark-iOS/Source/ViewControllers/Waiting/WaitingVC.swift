@@ -104,6 +104,8 @@ class WaitingVC: UIViewController {
         setCollectionView()
         setAddTarget()
         setAuthLabel()
+        print("내가?")
+        getWaitingRoomWithAPI(roomID: 2)
     }
     
     func setUI() {
@@ -197,6 +199,27 @@ class WaitingVC: UIViewController {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
+    func getWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.waitingFetch(roomID: roomID) { response in
+            print("끌끌")
+            switch response {
+            case .success(let data):
+                if let waitingRoom = data as? WaitingRoom {
+                    print("쿠쿠루삥뽕")
+                    print(waitingRoom)
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = dummydata["roomCode"]! as? String
@@ -231,8 +254,9 @@ extension WaitingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
         // FIXME: - 강제언래핑 제거
-        let member: Dictionary<String, Any> = memberList[indexPath.item] as! Dictionary<String, Any>
-        cell.nameLabel.text = "\(String(describing: member["nickname"]!))"
+//        let member: Dictionary<String, Any> = memberList[indexPath.item] as! Dictionary<String, Any>
+//        cell.nameLabel.text = "\(String(describing: member["nickname"]!))"
+        cell.nameLabel.text = "으아"
         return cell
     }
 }
