@@ -8,6 +8,8 @@
 import AuthenticationServices
 import UIKit
 
+import Firebase
+import FirebaseMessaging
 import KakaoSDKAuth
 import KakaoSDKCommon
 import KakaoSDKUser
@@ -26,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
                 // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { (credentialState, error) in
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { credentialState, error in
                     switch credentialState {
                     case .authorized:
                         print("해당 ID는 연동되어있습니다.")
@@ -43,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             } else {
                 if AuthApi.hasToken() {
-                    UserApi.shared.accessTokenInfo { (_, error) in
+                    UserApi.shared.accessTokenInfo { _, error in
                         if let error = error {
                             if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
                                 self.isLogin = false
@@ -63,11 +65,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.isLogin = false
         }
 
-        // 앱 실행 중 애플 ID 강제로 연결 취소 시
-        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+        // FIXME: 앱 실행 중 애플 ID 강제로 연결 취소 시
+        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { _ in
             print("Revoked Notification")
             self.isLogin = false
         }
+        
+        // Firebase 초기화 세팅.
+        FirebaseApp.configure()
+        
+        // 메시지 대리자 설정
+        Messaging.messaging().delegate = self
+        // FCM 다시 사용 설정
+        Messaging.messaging().isAutoInitEnabled = true
+        
+        // 푸시 알림 권한 설정 및 푸시 알림에 앱 등록
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
+        application.registerForRemoteNotifications()
+        
+        // device token 요청.
+        UIApplication.shared.registerForRemoteNotifications()
         
         return true
     }
@@ -80,7 +99,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
-
-
+    
+    // MARK: - APNs
+    
+    /// APN 토큰과 등록 토큰 매핑
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
 }
 
+// 메시지 수신
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        completionHandler([.sound, .banner, .list])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        completionHandler()
+    }
+    
+    // 백그라운드에서 자동 푸시 알림 처리
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    /// 현재 등록 토큰 가져오기.
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+
+        // TODO: - 디바이스 토큰을 보내는 서버통신 구현
+        
+        sendDeviceTokenWithAPI(fcmToken: fcmToken ?? "")
+    }
+}
+
+extension AppDelegate {
+    private func sendDeviceTokenWithAPI(fcmToken: String) {
+        
+    }
+}
