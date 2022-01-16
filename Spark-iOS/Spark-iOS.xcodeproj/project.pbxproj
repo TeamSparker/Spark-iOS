@@ -70,6 +70,7 @@
 		EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382E27947C9E00B5736A /* MyRoomService.swift */; };
 		EBEA3831279480A700B5736A /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA3830279480A700B5736A /* MyRoom.swift */; };
 		EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA383427948C2D00B5736A /* ticket_welcome.json */; };
+		EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA38362794B34300B5736A /* CodeJoinCheck.swift */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
 		F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Home.storyboard */; };
@@ -178,6 +179,7 @@
 		EBEA382E27947C9E00B5736A /* MyRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomService.swift; sourceTree = "<group>"; };
 		EBEA3830279480A700B5736A /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
 		EBEA383427948C2D00B5736A /* ticket_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticket_welcome.json; sourceTree = "<group>"; };
+		EBEA38362794B34300B5736A /* CodeJoinCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinCheck.swift; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8096F052784107D00B71D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */,
+				EBEA38362794B34300B5736A /* CodeJoinCheck.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
+				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,

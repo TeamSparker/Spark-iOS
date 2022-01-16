@@ -22,11 +22,7 @@ public class RoomAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
-                print("한번만")
-                
                 let networkResult = self.judgeWaitingFetchStatus(by: statusCode, data)
-                print("networkresult", networkResult)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -40,6 +36,40 @@ public class RoomAPI {
         let decoder = JSONDecoder()
         guard let decodedData = try?
                 decoder.decode(GenericResponse<Waiting>.self, from: data)
+        else { return .pathErr }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    func codeJoinCheckFetch(code: String, completion: @escaping(NetworkResult<Any>) -> Void) {
+        roomProvider.request(.codeJoinCheckFetch(code: code)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeCodeJoinCheckFetchStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func judgeCodeJoinCheckFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try?
+                decoder.decode(GenericResponse<CodeWaitingData>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {

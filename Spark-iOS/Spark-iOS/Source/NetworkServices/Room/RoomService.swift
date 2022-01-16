@@ -11,7 +11,7 @@ import Moya
 
 enum RoomService {
     case waitingFetch(roomID: Int)
-    case codeFetch(code: String)
+    case codeJoinCheckFetch(code: String)
 }
 
 extension RoomService: TargetType {
@@ -23,28 +23,28 @@ extension RoomService: TargetType {
         switch self {
         case .waitingFetch(let roomID):
             return "/room/\(roomID)/waiting"
-        case .codeFetch(let code):
+        case .codeJoinCheckFetch(let code):
             return "/room/code/\(code)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .waitingFetch, .codeFetch:
+        case .waitingFetch, .codeJoinCheckFetch:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .waitingFetch, .codeFetch:
+        case .waitingFetch, .codeJoinCheckFetch:
             return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .waitingFetch, .codeFetch:
+        case .waitingFetch, .codeJoinCheckFetch:
             return Const.Header.authrizationHeader
         }
     }
