@@ -75,7 +75,6 @@ extension AuthUploadVC {
         photoAuthButton.backgroundColor = .sparkDarkPinkred
         
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
-        // TODO: - uploadImageView 사이즈 수정 필요
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.layer.masksToBounds = true
         
@@ -151,8 +150,6 @@ extension AuthUploadVC {
         
         uploadImageView.image = UIImage(named: "uploadEmptyView")
     }
-    
-    // TODO: - 사진 받아왔을 경우 넣어주고, 타이머도 보이도록
     
     private func setStackView() {
         buttonStackView.axis = .horizontal
