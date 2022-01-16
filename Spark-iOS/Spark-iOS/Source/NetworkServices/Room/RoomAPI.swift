@@ -23,10 +23,7 @@ public class RoomAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                print("한번만")
-                
                 let networkResult = self.judgeWaitingFetchStatus(by: statusCode, data)
-                print("networkresult", networkResult)
                 completion(networkResult)
                 
             case .failure(let err):

@@ -61,6 +61,8 @@ class WaitingVC: UIViewController {
         ]
     ]
     
+    var members: [Member] = []
+    
     // MARK: - Properties
     
     let copyButton = UIButton()
@@ -104,12 +106,11 @@ class WaitingVC: UIViewController {
         setCollectionView()
         setAddTarget()
         setAuthLabel()
-        print("내가?")
         getWaitingRoomWithAPI(roomID: 2)
     }
     
     func setUI() {
-        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))", tintColor: .sparkBlack, backgroundColor: .white)
+//        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))", tintColor: .sparkBlack, backgroundColor: .white)
         
         profileImageView.backgroundColor = .purple
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
@@ -124,7 +125,7 @@ class WaitingVC: UIViewController {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
-
+        
         checkTitleLabel.text = "습관 인증 방식"
         photoLabel.text = "사진 인증"
         stopwatchLabel.text = "스톱워치"
@@ -142,9 +143,9 @@ class WaitingVC: UIViewController {
         }
         
         // FIXME: - 강제언래핑 제거
-        timeLabel.text = "시간  \(String(describing: dummydata["moment"]!))"
-        goalLabel.text = "목표  \(String(describing: dummydata["purpose"]!))"
-        friendCountLabel.text = "\(memberList.count)"
+//        timeLabel.text = "시간  \(String(describing: dummydata["moment"]!))"
+//        goalLabel.text = "목표  \(String(describing: dummydata["purpose"]!))"
+        friendCountLabel.text = "\(members.count)"
         
         nicknameLabel.font = .h3Subtitle
         friendCountLabel.font = .p2SubtitleEng
@@ -152,8 +153,8 @@ class WaitingVC: UIViewController {
         [checkTitleLabel, goalTitleLabel, friendTitleLabel].forEach {$0.font = .h2Title}
         [photoLabel, stopwatchLabel, timeLabel, goalLabel].forEach {$0.font = .p1TitleLight}
         
-        timeLabel.partP1Title(targetString: "시간")
-        goalLabel.partP1Title(targetString: "목표")
+//        timeLabel.partP1Title(targetString: "시간")
+//        goalLabel.partP1Title(targetString: "목표")
         
         [checkTitleLabel, goalTitleLabel, friendTitleLabel,
          nicknameLabel, friendCountLabel, timeLabel, goalLabel].forEach {
@@ -171,6 +172,7 @@ class WaitingVC: UIViewController {
         startButton.setTitle("습관 시작하기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
     }
+    
     // FIXME: - 서버통신 시 수정 요함
     func setData() {
         memberList = [dummydata["members"] as Any]
@@ -199,27 +201,6 @@ class WaitingVC: UIViewController {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
-    func getWaitingRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.waitingFetch(roomID: roomID) { response in
-            print("끌끌")
-            switch response {
-            case .success(let data):
-                if let waitingRoom = data as? WaitingRoom {
-                    print("쿠쿠루삥뽕")
-                    print(waitingRoom)
-                }
-            case .requestErr(let message):
-                print("requestErr")
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
-    
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = dummydata["roomCode"]! as? String
@@ -246,20 +227,91 @@ class WaitingVC: UIViewController {
     }
 }
 
+// MARK: - Network
+
+extension WaitingVC {
+    func getWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.waitingFetch(roomID: roomID) { response in
+            switch response {
+            case .success(let data):
+                if let waitingRoom = data as? Waiting {
+                    var user: ReqUser
+                    
+                    self.navigationController?.initWithTitle(title: "\(waitingRoom.roomName)", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+                    
+                    user = waitingRoom.reqUser
+                    self.members.append(contentsOf: waitingRoom.members ?? [])
+                    
+                    print("user:")
+                    print(user)
+                    print("members:")
+                    print(self.members)
+                    
+                    // 사용자 본인 이름
+                    self.nicknameLabel.text = user.nickname
+                    
+                    // 목표가 있을 경우, 세팅
+                    if user.isPurposeSet {
+                        self.timeLabel.text = "시간 \(user.moment)"
+                        self.goalLabel.text = "목표 \(user.purpose)"
+                        self.timeLabel.partP1Title(targetString: "시간")
+                        self.goalLabel.partP1Title(targetString: "목표")
+                    } else {
+                        // 엠티라벨 설정
+                    }
+                    
+                    // 사용자 이미지 설정
+                    if (user.profileImg != nil) {
+                        self.profileImageView.image = UIImage(named: "")
+                    } else {
+                        self.profileImageView.backgroundColor = .sparkGray
+                    }
+                    
+                    self.collectionView.reloadData()
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
 extension WaitingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memberList.count
+        return members.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
-        // FIXME: - 강제언래핑 제거
-//        let member: Dictionary<String, Any> = memberList[indexPath.item] as! Dictionary<String, Any>
-//        cell.nameLabel.text = "\(String(describing: member["nickname"]!))"
-        cell.nameLabel.text = "으아"
+
+        // 이름
+        cell.nameLabel.text = members[indexPath.item].nickname
+        
+        // 이미지
+        if let url = URL(string: members[indexPath.item].profileImg ?? "") {
+            do {
+                let data = try Data(contentsOf: url)
+                cell.profileImageView.image = UIImage(data: data)
+            } catch {
+                cell.profileImageView.backgroundColor = .black
+            }
+        } else {
+            cell.profileImageView.backgroundColor = .sparkGray
+        }
+        
         return cell
     }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension WaitingVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -271,6 +323,8 @@ extension WaitingVC: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension WaitingVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -281,15 +335,15 @@ extension WaitingVC: UICollectionViewDelegateFlowLayout {
 extension WaitingVC {
     func setLayout() {
         view.addSubviews([copyButton, checkTitleLabel, toolTipButton,
-                         stopwatchLabel, checkDivideView, photoLabel,
+                          stopwatchLabel, checkDivideView, photoLabel,
                           firstDivideView, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
-                         secondDivideView, friendTitleLabel, friendCountLabel,
+                          secondDivideView, friendTitleLabel, friendCountLabel,
                           friendSubTitleLabel, refreshButton, collectionView, startButton])
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-//            make.top.equalToSuperview().inset(13)
+            //            make.top.equalToSuperview().inset(13)
             make.top.equalToSuperview().inset(104)
             make.width.equalTo(87)
             make.height.equalTo(36)
@@ -393,7 +447,7 @@ extension WaitingVC {
             make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(24)
             make.height.equalTo(85)
         }
-
+        
         startButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)

@@ -31,6 +31,7 @@ class WaitingFriendCVC: UICollectionViewCell {
     override func prepareForReuse() {
         nameLabel.text = ""
         profileImageView.backgroundColor = .sparkBrightPinkred
+        profileImageView.layer.masksToBounds = true
     }
     
     // MARK: - Methods
@@ -39,6 +40,7 @@ class WaitingFriendCVC: UICollectionViewCell {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 30
+        profileImageView.layer.masksToBounds = true
         
         nameLabel.font = .p1Title
         nameLabel.textColor = .sparkDeepGray
