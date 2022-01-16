@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+// MARK: - MyRoom
+struct MyRoom: Codable {
+    let rooms: [Room]
+}
+
+// MARK: - Room

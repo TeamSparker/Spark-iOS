@@ -15,7 +15,7 @@ class JoinCheckVC: UIViewController {
     lazy var ticketView: AnimationView = {
         let animationView = AnimationView(name: "ticket_welcome")
         animationView.frame = animationFrameView.bounds
-        animationView.contentMode = .scaleAspectFit
+        animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .repeat(100)
         return animationView
     }()
@@ -72,7 +72,7 @@ extension JoinCheckVC {
     
     private func setAnimation() {
         animationFrameView.addSubview(ticketView)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [self] in
             ticketView.play()
         }
     }

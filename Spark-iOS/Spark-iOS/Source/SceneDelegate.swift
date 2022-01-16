@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let rootViewController = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth)
+        let rootViewController = UIStoryboard(name: Const.Storyboard.Name.codeJoin, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.codeJoin)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
