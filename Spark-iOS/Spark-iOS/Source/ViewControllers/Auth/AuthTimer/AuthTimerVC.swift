@@ -100,7 +100,7 @@ class AuthTimerVC: UIViewController {
     
     /// timer를 증가시키면서 label의 값에 반영시키는 함수
     private func updateTimer(_ stopwatch: Stopwatch, label: UILabel) {
-        stopwatch.counter = stopwatch.counter + 0.035
+        stopwatch.counter += 0.035
         
         var minutes: String = "\((Int)(stopwatch.counter / 60))"
         if (Int)(stopwatch.counter / 60) < 10 {

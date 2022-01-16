@@ -44,24 +44,24 @@ class StorageMoreVC: UIViewController {
 // MARK: - Methods
 
 extension StorageMoreVC {
-    func setDelegate() {
+    private func setDelegate() {
         storageMoreCV.delegate = self
         storageMoreCV.dataSource = self
     }
     
-    func registerXib() {
+    private func registerXib() {
         let xibCollectionViewName = UINib(nibName: "MoreStorageCVC", bundle: nil)
         storageMoreCV.register(xibCollectionViewName, forCellWithReuseIdentifier: "MoreStorageCVC")
     }
     
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .sparkBlack
         tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
         navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
-    func setLayout() {
+    private func setLayout() {
         view.addSubview(storageMoreCV)
         storageMoreCV.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)

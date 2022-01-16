@@ -1,31 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansKR-Bold.otf">
+            <string>NotoSansKR-Bold</string>
+        </array>
+        <array key="NotoSansKR-Regular.otf">
+            <string>NotoSansKR-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Complete AuthVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="CompleteAuth" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CompleteAuthVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompleteAuthVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CompleteAuthVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tna-Uq-rNe">
+                                <rect key="frame" x="20" y="187" width="335" height="438"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WOW!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY4-Ef-lwe">
+                                        <rect key="frame" x="124.66666666666666" y="28" width="86" height="31"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
+                                        <color key="textColor" name="sparkPinkRed"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sparkflakePattern" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CEp-69-sDa">
+                                        <rect key="frame" x="21" y="52" width="293" height="254"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illustHandClap" translatesAutoresizingMaskIntoConstraints="NO" id="cm5-OK-aky">
+                                        <rect key="frame" x="46" y="61" width="243" height="172"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="방금 업로드한 멋진 인증, 더 많은 친구들에게 자랑해 볼까요?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxE-3q-J17">
+                                        <rect key="frame" x="34" y="227" width="267" height="69"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-yb-TR2">
+                                        <rect key="frame" x="105" y="375.66666666666663" width="125.33333333333331" height="34.333333333333314"/>
+                                        <color key="tintColor" name="sparkDarkGray"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="아니요, 안 할래요">
+                                                    <attributes>
+                                                        <font key="NSFont" size="14" name="NotoSansKR-Regular"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="touchNoDismiss:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rgz-SM-G39"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcm-Se-nlb">
+                                        <rect key="frame" x="64" y="311" width="207" height="47.666666666666686"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="M8A-RE-7hu">
+                                                <rect key="frame" x="20.666666666666671" y="10.666666666666684" width="165.66666666666663" height="26.333333333333329"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-Bv-HWW">
+                                                        <rect key="frame" x="0.0" y="1.3333333333333144" width="24" height="24"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인스타에 자랑하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ks5-Da-Afd">
+                                                        <rect key="frame" x="27.999999999999986" y="0.0" width="137.66666666666663" height="26.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
+                                                        <color key="textColor" name="sparkWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="sparkBlack"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="sparkBlack"/>
+                                        <constraints>
+                                            <constraint firstItem="M8A-RE-7hu" firstAttribute="centerY" secondItem="Jcm-Se-nlb" secondAttribute="centerY" id="YLX-yc-jiN"/>
+                                            <constraint firstItem="M8A-RE-7hu" firstAttribute="centerX" secondItem="Jcm-Se-nlb" secondAttribute="centerX" id="rJF-Ch-AF9"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-TD-Inj">
+                                        <rect key="frame" x="117.33333333333334" y="400.66666666666663" width="100.33333333333334" height="1"/>
+                                        <color key="backgroundColor" name="sparkDarkGray"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="UTo-GP-sq1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="wxE-3q-J17" firstAttribute="trailing" secondItem="CEp-69-sDa" secondAttribute="trailing" constant="-13" id="1rY-bj-Ayo"/>
+                                    <constraint firstItem="uYS-yb-TR2" firstAttribute="bottom" secondItem="N8R-TD-Inj" secondAttribute="top" constant="9.5" id="DJf-AU-1GT"/>
+                                    <constraint firstItem="cm5-OK-aky" firstAttribute="trailing" secondItem="CEp-69-sDa" secondAttribute="trailing" constant="-25" id="GfA-gN-6Bw"/>
+                                    <constraint firstItem="cm5-OK-aky" firstAttribute="top" secondItem="CEp-69-sDa" secondAttribute="top" constant="9" id="JTB-Ix-LaC"/>
+                                    <constraint firstItem="cm5-OK-aky" firstAttribute="top" secondItem="JY4-Ef-lwe" secondAttribute="bottom" constant="2" id="LYm-4u-cag"/>
+                                    <constraint firstItem="N8R-TD-Inj" firstAttribute="width" secondItem="uYS-yb-TR2" secondAttribute="width" multiplier="0.8" id="OnV-os-d9D"/>
+                                    <constraint firstItem="Jcm-Se-nlb" firstAttribute="leading" secondItem="Tna-Uq-rNe" secondAttribute="leading" constant="64" id="Ord-T4-ZTt"/>
+                                    <constraint firstAttribute="bottom" secondItem="uYS-yb-TR2" secondAttribute="bottom" constant="28" id="Pkj-ep-6MY"/>
+                                    <constraint firstItem="N8R-TD-Inj" firstAttribute="centerX" secondItem="Tna-Uq-rNe" secondAttribute="centerX" id="Rcu-4a-HVR"/>
+                                    <constraint firstItem="wxE-3q-J17" firstAttribute="bottom" secondItem="CEp-69-sDa" secondAttribute="bottom" constant="-10" id="TEF-p3-k0E"/>
+                                    <constraint firstItem="JY4-Ef-lwe" firstAttribute="centerX" secondItem="Tna-Uq-rNe" secondAttribute="centerX" id="Vvn-fV-A7d"/>
+                                    <constraint firstItem="CEp-69-sDa" firstAttribute="leading" secondItem="Tna-Uq-rNe" secondAttribute="leading" constant="21" id="Y0i-vL-BAq"/>
+                                    <constraint firstItem="wxE-3q-J17" firstAttribute="top" secondItem="cm5-OK-aky" secondAttribute="bottom" constant="-6" id="a8k-sd-fA9"/>
+                                    <constraint firstItem="cm5-OK-aky" firstAttribute="bottom" secondItem="CEp-69-sDa" secondAttribute="bottom" constant="-73" id="gyy-DC-nA2"/>
+                                    <constraint firstItem="wxE-3q-J17" firstAttribute="leading" secondItem="CEp-69-sDa" secondAttribute="leading" constant="13" id="j5v-0r-LGs"/>
+                                    <constraint firstItem="cm5-OK-aky" firstAttribute="leading" secondItem="CEp-69-sDa" secondAttribute="leading" constant="25" id="kGG-98-Pyh"/>
+                                    <constraint firstItem="JY4-Ef-lwe" firstAttribute="top" secondItem="Tna-Uq-rNe" secondAttribute="top" constant="28" id="oS9-dI-hFB"/>
+                                    <constraint firstItem="Jcm-Se-nlb" firstAttribute="top" secondItem="wxE-3q-J17" secondAttribute="bottom" constant="15" id="p7j-Ih-rmy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jcm-Se-nlb" secondAttribute="trailing" constant="64" id="pUZ-YS-Q4z"/>
+                                    <constraint firstAttribute="bottom" secondItem="CEp-69-sDa" secondAttribute="bottom" constant="132" id="rSh-VD-SmJ"/>
+                                    <constraint firstItem="uYS-yb-TR2" firstAttribute="top" secondItem="Jcm-Se-nlb" secondAttribute="bottom" constant="17" id="toX-tA-RA0"/>
+                                    <constraint firstAttribute="trailing" secondItem="CEp-69-sDa" secondAttribute="trailing" constant="21" id="vMN-KS-nBb"/>
+                                    <constraint firstItem="CEp-69-sDa" firstAttribute="top" secondItem="Tna-Uq-rNe" secondAttribute="top" constant="52" id="ymu-pQ-u5v"/>
+                                    <constraint firstItem="uYS-yb-TR2" firstAttribute="centerX" secondItem="Tna-Uq-rNe" secondAttribute="centerX" id="zEO-P6-2K8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Tna-Uq-rNe" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="187" id="Hin-1o-a6J"/>
+                            <constraint firstAttribute="bottom" secondItem="Tna-Uq-rNe" secondAttribute="bottom" constant="187" id="a1I-Ol-tqm"/>
+                            <constraint firstItem="Tna-Uq-rNe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="aqR-4z-V5F"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Tna-Uq-rNe" secondAttribute="trailing" constant="20" id="wOT-1S-aX0"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="instaView" destination="Jcm-Se-nlb" id="jHd-vh-64a"/>
+                        <outlet property="noButton" destination="uYS-yb-TR2" id="Dc9-cr-hij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="46"/>
+            <point key="canvasLocation" x="42.399999999999999" y="45.812807881773402"/>
         </scene>
     </scenes>
     <resources>
+        <image name="illustHandClap" width="242" height="172"/>
+        <image name="instagram" width="24" height="24"/>
+        <image name="sparkflakePattern" width="335" height="290"/>
+        <namedColor name="sparkBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDarkGray">
+            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkPinkRed">
+            <color red="1" green="0.13300000131130219" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
