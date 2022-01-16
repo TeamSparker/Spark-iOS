@@ -155,7 +155,7 @@ class GoalWritingVC: UIViewController {
                     /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
                     else if text.count > 0 {
                         let attributedString = NSMutableAttributedString(string: whenCountLabel.text ?? "")
-                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((whenCountLabel.text ?? "") as NSString).range(of:"\(text.count)"))
+                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((whenCountLabel.text ?? "") as NSString).range(of: "\(text.count)"))
                         whenCountLabel.textColor = .sparkDarkGray
                         whenCountLabel.attributedText = attributedString
                         whenLineView.backgroundColor = .sparkPinkred
@@ -184,7 +184,7 @@ class GoalWritingVC: UIViewController {
                     /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
                     else if text.count > 0 {
                         let attributedString = NSMutableAttributedString(string: goalCountLabel.text ?? "")
-                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((goalCountLabel.text ?? "") as NSString).range(of:"\(text.count)"))
+                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((goalCountLabel.text ?? "") as NSString).range(of: "\(text.count)"))
                         goalCountLabel.textColor = .sparkDarkGray
                         goalCountLabel.attributedText = attributedString
                         goalLineView.backgroundColor = .sparkPinkred
@@ -217,7 +217,7 @@ class GoalWritingVC: UIViewController {
 // MARK: - UITextFieldDelegate
 extension GoalWritingVC: UITextFieldDelegate {
     /// 여백 클릭 시
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         downAnimation()
         self.view.endEditing(true)
     }

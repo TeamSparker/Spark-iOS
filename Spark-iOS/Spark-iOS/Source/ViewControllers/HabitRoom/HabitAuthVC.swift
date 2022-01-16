@@ -58,7 +58,7 @@ extension HabitAuthVC {
     }
     
     func setAddTargets() {
-        okButton.addTarget(self, action: #selector(touchOkayButton), for:. touchUpInside)
+        okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
     }
     
     func setDelegate() {
@@ -70,10 +70,10 @@ extension HabitAuthVC {
         alter.view.tintColor = .sparkBlack
         
         /// alter에 들어갈 액션 생성
-        let library = UIAlertAction(title: "카메라 촬영", style: .default) { action in
+        let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
-        let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { action in
+        let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
             self.openLibrary()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -112,7 +112,7 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageContainer = image
         }
@@ -123,7 +123,7 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     
     // TODO: 케이스 나눠서 화면전환 하기
     private func presentAuthUpload() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle: nil)
         
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
         

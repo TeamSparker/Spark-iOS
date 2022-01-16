@@ -27,7 +27,6 @@ class HomeHabitCVC: UICollectionViewCell {
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
     
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
@@ -42,7 +41,6 @@ class HomeHabitCVC: UICollectionViewCell {
         restLabel.text = ""
         ddayTitleLabel.text = ""
         ddaySubtitleLabel.text = ""
-        
         
         habitTitleLabel.text = ""
         tagDoneImage.isHidden = true

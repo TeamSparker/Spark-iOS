@@ -66,16 +66,15 @@ extension LoginVC {
     }
     
     private func signupWithKakao() {
-        if (UserApi.isKakaoTalkLoginAvailable()) {
+        if UserApi.isKakaoTalkLoginAvailable() {
             loginWithKakaoApp()
-        }
-        else {
+        } else {
             loginWithWeb()
         }
     }
     
     private func loginWithKakaoApp() {
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoTalk { _, error in
             if let error = error {
                 print(error)
             } else {
@@ -87,7 +86,7 @@ extension LoginVC {
     }
     
     private func loginWithWeb() {
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+        UserApi.shared.loginWithKakaoAccount { _, error in
             if let error = error {
                 print(error)
             } else {

@@ -1,0 +1,14 @@
+disabled_rules:
+- line_length
+- trailing_whitespace
+- function_parameter_count
+- identifier_name
+- function_body_length
+# force_cast 는 서버 붙이고 비활성화할 예정
+- force_cast
+- nesting
+
+excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
+  - Pods
+  - Spark-iOS/Resource/AppDelegate.swift
+  - Spark-iOS/Resource/SceneDelegate.swift

@@ -62,7 +62,7 @@ extension CodeJoinVC {
     }
     
     func setAddTargets() {
-        okButton.addTarget(self, action: #selector(touchOkayButton), for:. touchUpInside)
+        okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
     }
     
     func setDelegate() {
@@ -104,7 +104,7 @@ extension CodeJoinVC {
     }
 
     @objc func touchOkayButton() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
         
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
         

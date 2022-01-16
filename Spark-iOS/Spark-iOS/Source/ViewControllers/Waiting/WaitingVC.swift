@@ -13,7 +13,7 @@ import SwiftUI
 class WaitingVC: UIViewController {
     
     // MARK: - Dummy Data
-    var dummydata: [String : Any] = [
+    var dummydata: [String: Any] = [
         "roomId": 1,
         "roomName": "미라클 모닝",
         "roomCode": "gkjakljdalk",
@@ -26,37 +26,37 @@ class WaitingVC: UIViewController {
             [
                 "userId": 1,
                 "nickname": "힛이",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 2,
                 "nickname": "수아",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 3,
                 "nickname": "애진",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 4,
                 "nickname": "뚜비",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 5,
                 "nickname": "나나",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 6,
                 "nickname": "뽀",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ],
             [
                 "userId": 7,
                 "nickname": "보라돌이",
-                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/...",
+                "profileImg": "https://storage.googleapis.com/we-sopt-29-server.appspot.com/..."
             ]
         ]
     ]
@@ -131,8 +131,8 @@ class WaitingVC: UIViewController {
         friendTitleLabel.text = "함께하는 스파커들"
         friendSubTitleLabel.text = "습관을 시작한 후에는 인원 추가가 불가능합니다."
         
-        if let fromstart = dummydata["fromStart"]  {
-            if !(fromstart as! Bool) {
+        if let fromstart = dummydata["fromStart"] {
+            if !(fromstart as? Bool ?? false) {
                 [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
             } else {
                 [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
@@ -169,19 +169,17 @@ class WaitingVC: UIViewController {
         startButton.setTitle("습관 시작하기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
     }
-    
+    // FIXME: - 서버통신 시 수정 요함
     func setData() {
-        if let member = dummydata["members"] {
-            memberList = member as! [Any]
-        }
+        memberList = [dummydata["members"] as Any]
     }
     
     /// 선택한 인증 방식
     func setAuthLabel() {
         if photoOnly {
-            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = true }
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
         } else {
-            [stopwatchLabel, checkDivideView].forEach{ $0.isHidden = false }
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
         }
     }
     

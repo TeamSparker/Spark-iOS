@@ -20,7 +20,7 @@ class StorageMoreVC: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let cv = UICollectionView(frame: CGRect(x: 0,y: 120,width: 375,height: 520), collectionViewLayout: layout)
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 120, width: 375, height: 520), collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.indicatorStyle = .white
         cv.showsVerticalScrollIndicator = true
