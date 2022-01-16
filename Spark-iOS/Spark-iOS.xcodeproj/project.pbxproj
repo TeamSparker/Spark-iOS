@@ -94,6 +94,7 @@
 		F82F580A279289C4003E4174 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F5809279289C4003E4174 /* HomeService.swift */; };
 		F82F580C27929F74003E4174 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F580B27929F74003E4174 /* Header.swift */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
+		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
@@ -193,6 +194,7 @@
 		F82F5809279289C4003E4174 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		F82F580B27929F74003E4174 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		F82F580D27930FD4003E4174 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */,
+				F82F580D27930FD4003E4174 /* GoogleService-Info.plist */,
 				F8096F18278410F600B71D38 /* Source */,
 				F8096F17278410E200B71D38 /* Resource */,
 			);
@@ -798,6 +801,7 @@
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
 				EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */,
 				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
+				F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
 				EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */,
