@@ -16,7 +16,6 @@ class ResetPopupVC: UIViewController {
     let resetButton = UIButton()
     let horizontalLine = UIView()
     let verticalLine = UIView()
-    var time: String = ""
     
     // MARK: - View Life Cycles
 
