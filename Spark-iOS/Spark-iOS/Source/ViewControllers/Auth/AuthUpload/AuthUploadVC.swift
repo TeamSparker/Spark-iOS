@@ -20,7 +20,7 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .cameraTimer
+    var vcType: VCCase = .albumTimer
     var uploadImageView = UIImageView()
     var uploadImage = UIImage()
     var buttonStackView = UIStackView()
@@ -33,6 +33,7 @@ class AuthUploadVC: UIViewController {
     let photoLabel = UILabel()
     let betweenLine = UIView()
     let photoAuthButton = UIButton()
+    var getTime : String = ""
     
     // MARK: - Life Cycle
     
@@ -40,22 +41,22 @@ class AuthUploadVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        setSecondFlowUI()
     }
 }
 
 // MARK: - Methods
+
 extension AuthUploadVC {
     private func setUI() {
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
-        photoLabel.text = "사진 인증"
+        photoLabel.text = "사진"
         
-        firstLabel.textColor = .sparkPinkred
-        secondLabel.textColor = .sparkGray
-        stopwatchLabel.textColor = .sparkPinkred
-        photoLabel.textColor = .sparkGray
+        firstLabel.textColor = .sparkGray
+        secondLabel.textColor = .sparkPinkred
+        stopwatchLabel.textColor = .sparkGray
+        photoLabel.textColor = .sparkPinkred
         
         firstLabel.font = .enMediumFont(ofSize: 18)
         secondLabel.font = .enMediumFont(ofSize: 18)
@@ -69,9 +70,9 @@ extension AuthUploadVC {
         photoAuthButton.setTitle("사진 인증하기", for: .normal)
         photoAuthButton.backgroundColor = .sparkDarkPinkred
         
+        uploadImageView.contentMode = .scaleToFill
         uploadImageView.backgroundColor = .sparkLightGray
         uploadImageView.image = uploadImage
-        uploadImageView.contentMode = .scaleToFill
         
         setStackView()
         
@@ -99,28 +100,42 @@ extension AuthUploadVC {
         case .cameraOnly:
             print("카메라")
             timerLabel.isHidden = true
+            setFirstFlowUI()
             
         case .albumOnly:
             print("앨범")
             retakeButton.setTitle("다시 선택", for: .normal)
             timerLabel.isHidden = true
+            setFirstFlowUI()
 
         case .cameraTimer:
             print("카메라타이머")
+            setSecondFlowUI()
             
         case .albumTimer:
             print("앨범타이머")
             retakeButton.setTitle("다시 선택", for: .normal)
+            setSecondFlowUI()
         }
     }
     
+    // 사진 인증만 하는 플로우 UI
     func setFirstFlowUI() {
-        
+        [firstLabel, secondLabel, stopwatchLabel,
+         photoLabel, betweenLine, photoAuthButton].forEach{ $0.isHidden = true }
+        [uploadImageView, buttonStackView].forEach{ $0.isHidden = false }
     }
     
+    // 스톱워치 + 사진 인증하는 플로우 UI
     func setSecondFlowUI() {
+        [firstLabel, secondLabel, stopwatchLabel,
+         photoLabel, betweenLine, photoAuthButton].forEach{ $0.isHidden = false }
+        [buttonStackView, timerLabel].forEach{ $0.isHidden = true }
         
+        uploadImageView.image = UIImage(named: "uploadEmptyView")
     }
+    
+    // TODO: - 사진 받아왔을 경우 넣어주고, 타이머도 보이도록
     
     private func setStackView() {
         buttonStackView.axis = .horizontal
@@ -133,6 +148,7 @@ extension AuthUploadVC {
 }
 
 // MARK: - Layout
+
 extension AuthUploadVC {
     private func setLayout() {
         view.addSubviews([uploadImageView, buttonStackView, timerLabel,

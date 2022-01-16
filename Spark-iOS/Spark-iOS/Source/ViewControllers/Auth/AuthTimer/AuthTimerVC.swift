@@ -45,7 +45,7 @@ class AuthTimerVC: UIViewController {
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
-        photoLabel.text = "사진 인증"
+        photoLabel.text = "사진"
         timeLabel.text = "00:00:00"
         
         firstLabel.font = .enMediumFont(ofSize: 18)
