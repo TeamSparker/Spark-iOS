@@ -61,7 +61,7 @@ extension CompleteAuthVC {
         // 인스타 공유 기능
     }
     
-    func setAnimation() {
+    private func setAnimation() {
         animationFrameView.addSubview(confettiView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [self] in
             confettiView.play()

@@ -57,7 +57,7 @@ class JoinCheckVC: UIViewController {
 // MARK: - Methods
 
 extension JoinCheckVC {
-    func setUI() {
+    private func setUI() {
         reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
         reInputButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         reInputButton.layer.borderWidth = 2
@@ -70,7 +70,7 @@ extension JoinCheckVC {
         enterButton.layer.borderWidth = 0
     }
     
-    func setAnimation() {
+    private func setAnimation() {
         animationFrameView.addSubview(ticketView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [self] in
             ticketView.play()
