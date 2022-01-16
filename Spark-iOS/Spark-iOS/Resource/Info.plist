@@ -6,6 +6,10 @@
 	<string>test</string>
 	<key>NSCameraUsageDescription</key>
 	<string>test</string>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<string>No</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ko_KR</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -48,5 +52,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
