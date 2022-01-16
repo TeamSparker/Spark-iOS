@@ -26,10 +26,8 @@ class WaitingVC: UIViewController {
     let goalTitleLabel = UILabel()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
-    let timeLabel = UILabel() /// 시간 --하기 전에
-    let goalLabel = UILabel() /// 목표 -- 집에 가자
-    // FIXME: - emptylabel 추가
-    let emptyLabel = UILabel()
+    let timeLabel = UILabel()
+    let goalLabel = UILabel()
     let editButton = UIButton()
     let secondDivideView = UIView()
     
@@ -169,7 +167,7 @@ extension WaitingVC {
                     self.navigationController?.initWithTitle(title: "\(waitingRoom.roomName)", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
                     
                     user = waitingRoom.reqUser
-                    self.members.append(contentsOf: waitingRoom.members ?? [])
+                    self.members.append(contentsOf: waitingRoom.members)
                     
                     // 스파커 멤버 수
                     self.friendCountLabel.text = "\(self.members.count)"
@@ -194,15 +192,18 @@ extension WaitingVC {
                         self.timeLabel.partP1Title(targetString: "시간")
                         self.goalLabel.partP1Title(targetString: "목표")
                     } else {
-                        // 엠티라벨 설정
+                        // 엠티라벨
+                        self.timeLabel.text = "습관을 시작하기 전에"
+                        self.goalLabel.text = "시간과 목표를 작성해주세요!"
                     }
                     
                     // 사용자 이미지 설정
-                    if (user.profileImg != nil) {
+                    if user.profileImg != nil {
                         // TODO: - 이미지 URL 넣기
                         self.profileImageView.image = UIImage(named: "")
                     } else {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
+                        self.profileImageView.backgroundColor = .sparkGray
                     }
                     
                     self.collectionView.reloadData()
@@ -243,6 +244,7 @@ extension WaitingVC: UICollectionViewDataSource {
             }
         } else {
             cell.profileImageView.image = UIImage(named: "profileEmpty")
+            cell.profileImageView.backgroundColor = .sparkGray
         }
         
         return cell

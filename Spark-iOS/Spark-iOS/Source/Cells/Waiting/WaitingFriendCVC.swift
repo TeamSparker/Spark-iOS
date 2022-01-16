@@ -30,13 +30,13 @@ class WaitingFriendCVC: UICollectionViewCell {
     
     override func prepareForReuse() {
         nameLabel.text = ""
-        profileImageView.backgroundColor = .sparkLightGray
+        profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.masksToBounds = true
     }
     
     // MARK: - Methods
     func setUI() {
-        profileImageView.backgroundColor = .sparkLightGray
+        profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 30
