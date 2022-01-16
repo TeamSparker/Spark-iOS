@@ -60,8 +60,8 @@ class WaitingFriendCVC: UICollectionViewCell {
         }
     }
     
-    func initCell() {
-        nameLabel.text = "이름"
-        // 파라미터 추가 + 이미지 넣기
+    func initCell(name: String, image: Data) {
+        nameLabel.text = name
+        profileImageView.image = UIImage(data: image)
     }
 }

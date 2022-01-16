@@ -232,19 +232,18 @@ extension WaitingVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
 
         // 이름
-        cell.nameLabel.text = members[indexPath.item].nickname
+        let name = members[indexPath.item].nickname
         
         // 이미지
         if let url = URL(string: members[indexPath.item].profileImg ?? "") {
             do {
                 let data = try Data(contentsOf: url)
-                cell.profileImageView.image = UIImage(data: data)
+                cell.initCell(name: name, image: data)
             } catch {
                 cell.profileImageView.backgroundColor = .sparkGray
             }
         } else {
             cell.profileImageView.image = UIImage(named: "profileEmpty")
-            cell.profileImageView.backgroundColor = .sparkGray
         }
         
         return cell
