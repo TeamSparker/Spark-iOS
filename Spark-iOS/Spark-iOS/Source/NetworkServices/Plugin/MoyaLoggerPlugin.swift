@@ -66,4 +66,3 @@ final class MoyaLoggerPlugin: PluginType {
     print(log)
   }
 }
-

@@ -155,7 +155,7 @@ class CreateRoomVC: UIViewController {
                 /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
                 else if text.count > 0 {
                     let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
-                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of:"\(text.count)"))
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(text.count)"))
                     countLabel.textColor = .sparkDarkGray
                     countLabel.attributedText = attributedString
                 }
@@ -183,7 +183,7 @@ class CreateRoomVC: UIViewController {
 
 extension CreateRoomVC: UITextFieldDelegate {
     /// 여백 클릭 시
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
                 // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { (credentialState, error) in
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { (credentialState, _) in
                     switch credentialState {
                     case .authorized:
                         print("해당 ID는 연동되어있습니다.")
@@ -63,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.isLogin = false
         }
 
-        // 앱 실행 중 애플 ID 강제로 연결 취소 시
-        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+        // FIXME: 앱 실행 중 애플 ID 강제로 연결 취소 시
+        NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { _ in
             print("Revoked Notification")
             self.isLogin = false
         }
@@ -80,7 +80,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
-
-
 }
-

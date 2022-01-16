@@ -33,7 +33,7 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
+        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
         return name
@@ -46,7 +46,7 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
+        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
         return name
@@ -59,13 +59,11 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0,y: 197,width: 375,height: 520), collectionViewLayout: layout)
+        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
         return name
     }()
-    
-    // MARK: - @IBOutlet Properties
 
     // MARK: - View Life Cycle
     
@@ -87,7 +85,11 @@ class StorageVC: UIViewController {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
-    // MARK: - Methods
+}
+
+// MARK: - Methods
+
+extension StorageVC {
     
     func setDelegate() {
         DoingCV.delegate = self
@@ -252,7 +254,7 @@ class StorageVC: UIViewController {
         }
     }
     
-    func makeDraw(rect: CGRect) -> Void {
+    func makeDraw(rect: CGRect) {
         let animateView = LineAnimationView(frame: rect)
         view.addSubview(animateView)
     }
@@ -366,25 +368,24 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cellCase = collectionView
-        switch cellCase {
+        switch collectionView {
         case DoingCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as! DoingStorageCVC
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
             
             return cell
         case DoneCV:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as! DoneStorageCVC
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
             
             return cell
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as! FailStorageCVC
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
             
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle: nil)
 
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
 

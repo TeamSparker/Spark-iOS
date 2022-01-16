@@ -106,7 +106,7 @@ class CreateAuthVC: UIViewController {
     
     private func setGesture() {
         let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-        let timerTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
         photoAuthView.addGestureRecognizer(photoTapGesture)
         timerAuthView.addGestureRecognizer(timerTapGesture)
     }

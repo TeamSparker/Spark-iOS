@@ -106,7 +106,7 @@ extension MainTBC {
     // TODO: - 화면전환
     
     private func presentToCodeJoinVC() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle: nil)
 
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.codeJoin) as? CodeJoinVC else {return}
 

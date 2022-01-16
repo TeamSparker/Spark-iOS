@@ -65,8 +65,7 @@ extension AuthUploadVC {
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
         
-        switch vcType
-        {
+        switch vcType {
         case .cameraOnly:
             print("카메라")
             timerLabel.isHidden = true
@@ -114,8 +113,7 @@ extension AuthUploadVC {
             make.centerX.centerY.equalTo(uploadImageView)
         }
         
-        switch vcType
-        {
+        switch vcType {
         case .cameraOnly:
             print("")
             

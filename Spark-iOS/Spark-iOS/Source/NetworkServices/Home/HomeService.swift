@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum HomeService {
-    case habitRoomFetch(lastID: Int, size:Int)
+    case habitRoomFetch(lastID: Int, size: Int)
 }
 
 extension HomeService: TargetType {
@@ -40,12 +40,10 @@ extension HomeService: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .habitRoomFetch:
             return Const.Header.authrizationHeader
         }
     }
-    
-    
 }

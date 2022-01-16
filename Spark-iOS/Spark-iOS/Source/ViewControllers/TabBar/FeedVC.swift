@@ -12,27 +12,27 @@ class FeedVC: UIViewController {
     // MARK: - Dummy Data
     
     var dummyDataList: Array = [
-        ["date": "2021-01-07", "day": "월요일", "userId": "1","recordId": "1", "nickname": "맥북1", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방1"],
-        ["date": "2021-01-07", "day": "월요일", "userId": "1","recordId": "1","nickname": "맥북2", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방2"],
-        ["date": "2021-01-07", "day": "월요일", "userId": "1","recordId": "1","nickname": "맥북3", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방3"],
-        ["date": "2021-01-06", "day": "일요일", "userId": "1","recordId": "1","nickname": "맥북3", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방4"],
-        ["date": "2021-01-06", "day": "일요일", "userId": "1","recordId": "1","nickname": "맥북4", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방5"],
-        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1","nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방6"],
-        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1","nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1","nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방8"],
-        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1","nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방9"]
+        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북1", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방1"],
+        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북2", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방2"],
+        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방3"],
+        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방4"],
+        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북4", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방5"],
+        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방6"],
+        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
+        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방8"],
+        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방9"]
     ]
     
     var newDummyDataList: Array = [
-        ["date": "2021-01-05", "day": "토요일", "userId": "1","recordId": "1", "nickname": "그램", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
-        ["date": "2021-01-04", "day": "금요일", "userId": "1","recordId": "1","nickname": "맥북2", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
-        ["date": "2021-01-03", "day": "목요일", "userId": "1","recordId": "1","nickname": "맥북3", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
-        ["date": "2021-01-03", "day": "목요일", "userId": "1","recordId": "1","nickname": "맥북3", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true,"totalFeedNum ": 20, "like": false, "roomName": "방0"],
-        ["date": "2021-01-03", "day": "목요일", "userId": "1","recordId": "1","nickname": "맥북4", "profileImage": "~~","certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1","nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1","nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1","nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"],
-        ["date": "2021-01-01", "day": "화요일", "userId": "1", "recordId": "1","nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"]
+        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "그램", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
+        ["date": "2021-01-04", "day": "금요일", "userId": "1", "recordId": "1", "nickname": "맥북2", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
+        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
+        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
+        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북4", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
+        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
+        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
+        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"],
+        ["date": "2021-01-01", "day": "화요일", "userId": "1", "recordId": "1", "nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"]
     ]
     
     // MARK: - Properties
@@ -52,12 +52,11 @@ class FeedVC: UIViewController {
     private var page = 0
     private var isInfiniteScroll = true
     
-    
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /// 맨 처음 빌드할 때 원래 FeedVC가 불려지는 것인가?
+        // TODO: - 맨 처음 빌드할 때 원래 FeedVC가 불려지는 것인가?
         setLayout()
         setCollectionView()
         setData(datalist: dummyDataList)
@@ -86,16 +85,16 @@ class FeedVC: UIViewController {
     
     func setData(datalist: Array<Dictionary<String, Any>>) {
         var indexPath = 0
-        var sectionCount = 0 /// section을 돌기 위한 변수
+        var sectionCount = 0 // section을 돌기 위한 변수
         
         while indexPath < datalist.count {
             if dateList.isEmpty {
-                dateList.append(datalist[indexPath]["date"] as! String)
-                dayList.append(datalist[indexPath]["day"] as! String)
+                dateList.append(datalist[indexPath]["date"] as? String ?? "")
+                dayList.append(datalist[indexPath]["day"] as? String ?? "")
                 indexPath += 1
             } else {
-                let date: String = datalist[indexPath]["date"] as! String
-                let day: String = datalist[indexPath]["day"] as! String
+                let date: String = datalist[indexPath]["date"] as? String ?? ""
+                let day: String = datalist[indexPath]["day"] as? String ?? ""
 
                 if !(dateList.contains(date)) {
                     dateList.append(date)
@@ -111,7 +110,7 @@ class FeedVC: UIViewController {
             var indexinsection = 0
             while indexinsection < datalist.count && !datalist.isEmpty && sectionCount != dateList.count {
 
-                if dateList[sectionCount] == datalist[indexinsection]["date"] as! String {
+                if dateList[sectionCount] == datalist[indexinsection]["date"] as? String ?? "" {
                     switch sectionCount {
                     case 0:
                         firstList.append(datalist[indexinsection])
@@ -191,7 +190,7 @@ extension FeedVC: UICollectionViewDataSource {
         var indexPath = 0
         
         while indexPath < dummyDataList.count {
-            if dateList[section] == dummyDataList[indexPath]["date"] as! String {
+            if dateList[section] == dummyDataList[indexPath]["date"] as? String {
                 itemCount += 1
                 indexPath += 1
             } else {
@@ -205,26 +204,26 @@ extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCVC.identifier, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
         
-        var alist: [String:Any] = [:]
+        var alist: [String: Any] = [:]
 
         // section별 데이터 넣기
         switch indexPath.section {
         case 0:
-            alist = firstList[indexPath.item] as! [String:Any]
+            alist = firstList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 1:
-            alist = secondList[indexPath.item] as! [String : Any]
+            alist = secondList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 2:
-            alist = thirdList[indexPath.item] as! [String:Any]
+            alist = thirdList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 3:
-            alist = fourthList[indexPath.item] as! [String:Any]
+            alist = fourthList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 4:
-            alist = fifthList[indexPath.item] as! [String:Any]
+            alist = fifthList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 5:
-            alist = sixthList[indexPath.item] as! [String:Any]
+            alist = sixthList[indexPath.item] as? [String: Any] ?? ["": ""]
         case 6:
-            alist = seventhList[indexPath.item] as! [String:Any]
+            alist = seventhList[indexPath.item] as? [String: Any] ?? ["": ""]
         default:
-            alist = firstList[indexPath.item] as! [String:Any]
+            alist = firstList[indexPath.item] as? [String: Any] ?? ["": ""]
         }
 
         if let roomname = alist["roomName"], let name = alist["nickname"],

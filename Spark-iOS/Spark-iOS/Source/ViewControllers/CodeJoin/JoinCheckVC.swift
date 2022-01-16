@@ -31,7 +31,7 @@ class JoinCheckVC: UIViewController {
     }
     
     @IBAction func touchEnterWaitingVC(_ sender: Any) {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle:nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
         
         guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
         
