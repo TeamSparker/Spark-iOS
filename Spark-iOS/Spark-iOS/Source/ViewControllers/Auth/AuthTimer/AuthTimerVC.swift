@@ -67,6 +67,8 @@ class AuthTimerVC: UIViewController {
         
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         resetButton.setImage(UIImage(named: "btnReset"), for: .normal)
+        
+        [pauseButton, resetButton].forEach{ $0.isHidden = true }
     }
     
     private func setAddTarget() {
@@ -132,6 +134,7 @@ class AuthTimerVC: UIViewController {
             isPlay = true
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
+            [pauseButton, resetButton].forEach{ $0.isHidden = false }
         } else {
             /// RunLoop 객체로부터 timer를 제거하기 위한 함수 (반복 타이머 중지)
             stopwatch.timer.invalidate()
@@ -149,7 +152,6 @@ class AuthTimerVC: UIViewController {
         
         popupVC.modalPresentationStyle = .overFullScreen
         popupVC.modalTransitionStyle = .crossDissolve
-        popupVC.time = timeLabel.text ?? ""
         
         present(popupVC, animated: true, completion: nil)
     }
@@ -162,6 +164,7 @@ class AuthTimerVC: UIViewController {
             resetMainTimer()
             setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
+            [pauseButton, resetButton].forEach{ $0.isHidden = true }
         }
     }
     
@@ -172,8 +175,13 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func touchNextButton() {
-        // TODO: - 화면 전환 + timeLabel.text 넘겨주기
-        print("time: \(timeLabel.text)")
+        if timeLabel.text == "00:00:00" {
+            // 재생X -> 스톱워치 시작
+            startPauseTimer(startButton)
+        } else {
+            // TODO: - 재생O -> 화면전환 + timeLabel.text 넘겨주기
+            print("재생되었음")
+        }
     }
 }
 
