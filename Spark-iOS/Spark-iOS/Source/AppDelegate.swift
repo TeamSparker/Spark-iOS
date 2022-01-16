@@ -74,16 +74,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase 초기화 세팅.
         FirebaseApp.configure()
         
+        // 메시지 대리자 설정
         Messaging.messaging().delegate = self
+        // FCM 다시 사용 설정
+        Messaging.messaging().isAutoInitEnabled = true
         
-        // 푸시알림 권한 설정.
+        // 푸시 알림 권한 설정 및 푸시 알림에 앱 등록
         UNUserNotificationCenter.current().delegate = self
-        
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
-        
-        // 푸시 알림에 앱 등록.
         application.registerForRemoteNotifications()
+        
         // device token 요청.
         UIApplication.shared.registerForRemoteNotifications()
         
@@ -107,9 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// 메시지 수신
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
         completionHandler([.sound, .banner, .list])
@@ -117,15 +120,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
         completionHandler()
     }
     
+    // 백그라운드에서 자동 푸시 알림 처리
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        completionHandler(.noData)
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }
 
