@@ -12,11 +12,11 @@ struct MyRoom: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: DataClass
+    let data: MyRoomData
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct MyRoomData: Codable {
     let nickname: String
     let totalRoomNum, ongoingRoomNum, completeRoomNum, failRoomNum: Int
     let rooms: [Rooms]
@@ -35,5 +35,32 @@ struct Rooms: Codable {
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
         case roomName, leftDay, thumbnail, totalRecievedSpark, startDate, endDate, failDay, comment
+    }
+}
+
+// MARK: - MyRoomCerti
+struct MyRoomCerti: Codable {
+    let status: Int
+    let success: Bool
+    let message: String
+    let data: MyRoomCertiData
+}
+
+// MARK: - MyRoomCertiData
+struct MyRoomCertiData: Codable {
+    let roomName: String
+    let records: [CertiRecord]
+}
+
+// MARK: - CertiRecord
+struct CertiRecord: Codable {
+    let recordID: Int
+    let leftDay, certifyingImg: JSONNull?
+    let sparkNum: Int
+    let status: String
+
+    enum CodingKeys: String, CodingKey {
+        case recordID = "recordId"
+        case leftDay, certifyingImg, sparkNum, status
     }
 }

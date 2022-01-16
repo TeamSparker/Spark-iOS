@@ -35,6 +35,7 @@ class CompleteAuthVC: UIViewController {
         setAnimation()
         view.bringSubviewToFront(handImageVIew)
         getMyRoomWithAPI()
+        getMyRoomCertiWithAPI()
     }
 
     // MARK: IBActions
@@ -75,8 +76,8 @@ extension CompleteAuthVC {
         MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in
             switch response {
             case .success(let data):
-                if let waitingRoom = data as? MyRoom {
-                    print(waitingRoom)
+                if let myRoom = data as? MyRoom {
+                    print(myRoom)
                 }
             case .requestErr(let message):
                 print("requestErr")
@@ -90,5 +91,23 @@ extension CompleteAuthVC {
         }
     }
     
+    func getMyRoomCertiWithAPI() {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCerti {
+                    print(myRoomCerti)
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
     
 }
