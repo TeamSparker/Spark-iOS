@@ -76,6 +76,7 @@ extension AuthUploadVC {
         
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         // TODO: - uploadImageView 사이즈 수정 필요
+        uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.layer.masksToBounds = true
         
         setStackView()
