@@ -26,7 +26,7 @@ extension UINavigationController {
     func initWithBackButton(tintColor: UIColor, backgroundColor: UIColor) {
         let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
         appearance.initBackButtonAppearance()
-        appearance.initTitleTextAttributes()
+        appearance.initTitleTextAttributes(tintColor: tintColor)
         
         self.navigationBar.tintColor = tintColor
         self.navigationBar.standardAppearance = appearance
@@ -68,7 +68,7 @@ extension UINavigationController {
     /// - closure 에는 해당 버튼이 눌렸을 때 액션을 넣어주세요.
     func initWithTwoCustomButtonsTitle(navigationItem: UINavigationItem?, title: String, tintColor: UIColor, backgroundColor: UIColor, reftButtonImage: UIImage, rightButtonImage: UIImage, reftButtonClosure: Selector, rightButtonClosure: Selector) {
         let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
-        appearance.initTitleTextAttributes()
+        appearance.initTitleTextAttributes(tintColor: .sparkBlack)
         
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
@@ -101,7 +101,7 @@ extension UINavigationBarAppearance {
         self.backButtonAppearance = backButtonAppearance
     }
     
-    func initTitleTextAttributes() {
-        self.titleTextAttributes = [NSAttributedString.Key.font: UIFont.h3Subtitle, NSAttributedString.Key.foregroundColor: UIColor.sparkWhite]
+    func initTitleTextAttributes(tintColor: UIColor) {
+        self.titleTextAttributes = [NSAttributedString.Key.font: UIFont.h3Subtitle, NSAttributedString.Key.foregroundColor: tintColor]
     }
 }

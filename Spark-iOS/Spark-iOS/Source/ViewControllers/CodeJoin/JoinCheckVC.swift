@@ -27,16 +27,17 @@ class JoinCheckVC: UIViewController {
     // MARK: - @IBAction Properties
     // TODO: - 코드 다시 입력하기 기능 구현
     @IBAction func touchReinputCode(_ sender: Any) {
-        
+        self.dismiss(animated: true)
     }
     
     @IBAction func touchEnterWaitingVC(_ sender: Any) {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle:nil)
         
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+        guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
         
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        let nextVC = UINavigationController(rootViewController: rootViewController)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true)
     }
 }
 

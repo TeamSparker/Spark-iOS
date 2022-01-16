@@ -106,13 +106,20 @@ extension MainTBC {
     // TODO: - 화면전환
     
     private func presentToCodeJoinVC() {
-    
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle:nil)
+
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.codeJoin) as? CodeJoinVC else {return}
+
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        self.present(nextVC, animated: true)
     }
     
-    // TODO: - 화면전환
-    
     private func presentToWaitingVC() {
-        
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.createRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createRoom) as? CreateRoomVC else { return }
+        let nextVC = UINavigationController(rootViewController: rootVC)
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
     }
     
     // MARK: - @objc
