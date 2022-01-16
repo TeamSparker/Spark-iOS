@@ -240,9 +240,9 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             uploadImageView.image = image
             timerLabel.isHidden = false
+            fadeImageView.isHidden = false
             photoAuthButton.isHidden = true
             buttonStackView.isHidden = false
-            fadeImageView.isHidden = false
         }
         dismiss(animated: true, completion: nil)
     }
@@ -252,9 +252,9 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
 
 extension AuthUploadVC {
     private func setLayout() {
-        view.addSubviews([uploadImageView, fadeImageView, buttonStackView, timerLabel,
-                          firstLabel, secondLabel, stopwatchLabel,
-                          photoLabel, betweenLine, photoAuthButton])
+        view.addSubviews([uploadImageView, fadeImageView, buttonStackView,
+                          timerLabel, firstLabel, secondLabel,
+                          stopwatchLabel, photoLabel, betweenLine, photoAuthButton])
 
         betweenLine.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
