@@ -33,11 +33,11 @@ class JoinCheckVC: UIViewController {
     @IBAction func touchEnterWaitingVC(_ sender: Any) {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle:nil)
         
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+        guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
         
-        let navi = UINavigationController(rootViewController: nextVC)
-        navi.modalPresentationStyle = .fullScreen
-        self.present(navi, animated: true)
+        let nextVC = UINavigationController(rootViewController: rootViewController)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true)
     }
 }
 
