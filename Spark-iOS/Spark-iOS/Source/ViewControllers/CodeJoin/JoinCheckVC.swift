@@ -46,7 +46,7 @@ class JoinCheckVC: UIViewController {
 extension JoinCheckVC {
     func setUI() {
         reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        reInputButton.layer.borderColor = .init(_colorLiteralRed: 1, green: 0, blue: 66/255, alpha: 1)
+        reInputButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         reInputButton.layer.borderWidth = 1
         
         enterButton.setTitleColor(.white, for: .normal)

@@ -58,7 +58,7 @@ extension HabitAuthVC {
     }
     
     private func setAddTargets() {
-        okButton.addTarget(self, action:#selector(touchOkayButton),  for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
     }
     
     private func setDelegate() {

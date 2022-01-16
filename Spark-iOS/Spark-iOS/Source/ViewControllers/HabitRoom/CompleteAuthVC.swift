@@ -9,8 +9,12 @@ import UIKit
 
 class CompleteAuthVC: UIViewController {
 
+    // MARK: IBoutlet properties
+    
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var instaView: UIView!
+    
+    // MARK: Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +22,13 @@ class CompleteAuthVC: UIViewController {
         setGesture()
     }
 
+    // MARK: IBActions
     @IBAction func touchNoDismiss(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
 }
 
+// MARK: Methods
 extension CompleteAuthVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)

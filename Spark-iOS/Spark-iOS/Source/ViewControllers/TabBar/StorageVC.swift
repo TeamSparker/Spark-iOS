@@ -89,6 +89,7 @@ class StorageVC: UIViewController {
 
 // MARK: - Methods
 
+// UI및 레이아웃
 extension StorageVC {
     
     private func setDelegate() {
@@ -253,8 +254,11 @@ extension StorageVC {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
         }
     }
-    
-    private func makeDraw(rect: CGRect) -> Void {
+}
+
+// 애니메이션 및 버튼액션
+extension StorageVC {
+    private func makeDraw(rect: CGRect) {
         let animateView = LineAnimationView(frame: rect)
         view.addSubview(animateView)
     }
@@ -328,8 +332,7 @@ extension StorageVC {
 
 // MARK: - extension Methods
 
-// MARK: Carousel 레이아웃 세팅
-
+//Carousel 레이아웃 세팅
 extension StorageVC {
     private func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
