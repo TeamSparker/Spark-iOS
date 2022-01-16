@@ -15,8 +15,8 @@ public class MyRoomAPI {
     
     public init() { }
     
-    func myRoomFetch(lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.myRoomFetch(lastID: lastID, size: size)) { (result) in
+    func myRoomFetch(roomType: String, lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.myRoomFetch(roomType: roomType, lastID: lastID, size: size)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

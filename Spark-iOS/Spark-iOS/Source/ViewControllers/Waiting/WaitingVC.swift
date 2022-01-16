@@ -201,11 +201,9 @@ class WaitingVC: UIViewController {
     
     func getWaitingRoomWithAPI(roomID: Int) {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
-            print("끌끌")
             switch response {
             case .success(let data):
-                if let waitingRoom = data as? WaitingRoom {
-                    print("쿠쿠루삥뽕")
+                if let waitingRoom = data as? Waiting {
                     print(waitingRoom)
                 }
             case .requestErr(let message):

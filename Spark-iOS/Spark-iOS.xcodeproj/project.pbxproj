@@ -684,8 +684,8 @@
 				F82F57FA27928437003E4174 /* NetworkResult.swift */,
 				F82F57FC2792847D003E4174 /* GenericResponse.swift */,
 				F82F5800279287EC003E4174 /* Home */,
-				EBEA382B27947C6600B5736A /* MyRoom */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
+				EBEA382B27947C6600B5736A /* MyRoom */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";

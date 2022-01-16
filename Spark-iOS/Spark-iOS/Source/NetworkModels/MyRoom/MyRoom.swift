@@ -9,7 +9,31 @@ import Foundation
 
 // MARK: - MyRoom
 struct MyRoom: Codable {
-    let rooms: [Room]
+    let status: Int
+    let success: Bool
+    let message: String
+    let data: DataClass
 }
 
-// MARK: - Room
+// MARK: - DataClass
+struct DataClass: Codable {
+    let nickname: String
+    let totalRoomNum, ongoingRoomNum, completeRoomNum, failRoomNum: Int
+    let rooms: [Rooms]
+}
+
+// MARK: - Rooms
+struct Rooms: Codable {
+    let roomID: Int
+    let roomName: String
+    let leftDay: Int
+    let thumbnail: String
+    let totalRecievedSpark: Int
+    let startDate, endDate: String
+    let failDay, comment: JSONNull?
+
+    enum CodingKeys: String, CodingKey {
+        case roomID = "roomId"
+        case roomName, leftDay, thumbnail, totalRecievedSpark, startDate, endDate, failDay, comment
+    }
+}

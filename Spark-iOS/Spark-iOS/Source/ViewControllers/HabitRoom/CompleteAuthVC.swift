@@ -34,6 +34,7 @@ class CompleteAuthVC: UIViewController {
         setGesture()
         setAnimation()
         view.bringSubviewToFront(handImageVIew)
+        getMyRoomWithAPI()
     }
 
     // MARK: IBActions
@@ -67,4 +68,27 @@ extension CompleteAuthVC {
             confettiView.play()
         }
     }
+}
+
+extension CompleteAuthVC {
+    func getMyRoomWithAPI() {
+        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in
+            switch response {
+            case .success(let data):
+                if let waitingRoom = data as? MyRoom {
+                    print(waitingRoom)
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    
 }

@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum MyRoomService {
-    case myRoomFetch(lastID: Int, size: Int)
+    case myRoomFetch(roomType: String, lastID: Int, size: Int)
+    case myRoomCertiFetch(roomID: Int, lastID: Int, size: Int)
 }
 
 extension MyRoomService: TargetType {
@@ -20,20 +21,27 @@ extension MyRoomService: TargetType {
     var path: String {
         switch self {
         case .myRoomFetch:
-            return "/myroom?type=&lastid=&size="
+            return "/myroom"
+        case .myRoomCertiFetch(let roomID, _, _):
+            return "/myroom/\(roomID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .myRoomFetch:
+        case .myRoomFetch, .myRoomCertiFetch:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .myRoomFetch(let lastID, let size):
+        case .myRoomFetch(let roomType, let lastID, let size):
+            return .requestParameters(parameters: ["type": roomType,
+                                                   "lastid": lastID,
+                                                   "size": size],
+                                      encoding: URLEncoding.queryString)
+        case .myRoomCertiFetch(_, let lastID, let size):
             return .requestParameters(parameters: ["lastid": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
@@ -42,7 +50,7 @@ extension MyRoomService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .myRoomFetch:
+        case .myRoomFetch, .myRoomCertiFetch:
             return Const.Header.authrizationHeader
         }
     }
