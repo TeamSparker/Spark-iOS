@@ -15,6 +15,7 @@ class CodeJoinVC: UIViewController {
     
     // MARK: - @IBOutlet Properties
 
+    @IBOutlet weak var standardLine: UIView!
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var okView: UIView!
     @IBOutlet weak var okButton: UIButton!
@@ -35,6 +36,7 @@ class CodeJoinVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetUI()
+        resetLayout()
     }
     
     // MARK: - @IBAction Properties
@@ -84,6 +86,12 @@ extension CodeJoinVC {
         okButton.isEnabled = false
     }
     
+    private func resetLayout() {
+        if standardLine.frame.origin.y > popUpView.frame.origin.y {
+            downAnimation()
+        }
+    }
+    
     // MARK: - @objc Function
     @objc
     private func textFieldDidChange(_ notification: Notification) {
@@ -125,7 +133,7 @@ extension CodeJoinVC {
                        delay: 0,
                        options: .curveEaseInOut) {
             
-            let frame = CGAffineTransform(translationX: 0, y: -60)
+            let frame = CGAffineTransform(translationX: 0, y: -65)
             self.popUpView.transform = frame
             self.okButton.transform = frame
         }

@@ -26,6 +26,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lks-WJ-JjB">
+                                <rect key="frame" x="67.666666666666686" y="263" width="240" height="18"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="45L-JN-NI1"/>
+                                    <constraint firstAttribute="height" constant="18" id="BTV-JV-EDh"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXA-Od-SQr">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,10 +126,12 @@
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="centerY" secondItem="c4K-kQ-8LO" secondAttribute="centerY" id="XtN-2o-4Fg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LXA-Od-SQr" secondAttribute="bottom" id="YfU-Dj-qx1"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="height" secondItem="c4K-kQ-8LO" secondAttribute="height" id="dDI-gn-PIH"/>
+                            <constraint firstItem="lks-WJ-JjB" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="fh9-sv-rJY"/>
                             <constraint firstItem="YVR-jV-Ewd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="291" id="ppW-Pn-BWw"/>
                             <constraint firstAttribute="trailing" secondItem="YVR-jV-Ewd" secondAttribute="trailing" constant="20" id="vMD-DM-OvT"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="width" secondItem="c4K-kQ-8LO" secondAttribute="width" id="wpx-TF-ekk"/>
                             <constraint firstItem="LXA-Od-SQr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yBW-9j-uzk"/>
+                            <constraint firstItem="YVR-jV-Ewd" firstAttribute="top" secondItem="lks-WJ-JjB" secondAttribute="bottom" constant="10" id="ySe-5P-Lza"/>
                         </constraints>
                     </view>
                     <connections>
@@ -130,6 +140,7 @@
                         <outlet property="okButton" destination="LWG-Df-KPl" id="SDP-Hu-Kq6"/>
                         <outlet property="okView" destination="c4K-kQ-8LO" id="hSE-gx-jUg"/>
                         <outlet property="popUpView" destination="YVR-jV-Ewd" id="whc-oh-2fZ"/>
+                        <outlet property="standardLine" destination="lks-WJ-JjB" id="R5P-so-AkQ"/>
                         <outlet property="textField" destination="o8P-CO-Z8D" id="o2y-fZ-I2Q"/>
                     </connections>
                 </viewController>
