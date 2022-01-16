@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import Lottie
 
 class JoinCheckVC: UIViewController {
 
     // MARK: - Properties
+    
+    lazy var ticketView: AnimationView = {
+        let animationView = AnimationView(name: "ticket_welcome")
+        animationView.frame = animationFrameView.bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .repeat(100)
+        return animationView
+    }()
     
     // MARK: - @IBOutlet Properties
 
@@ -17,15 +26,19 @@ class JoinCheckVC: UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var userInviteLabel: UILabel!
     @IBOutlet weak var roomNameLabel: UILabel!
+    @IBOutlet weak var animationFrameView: UIView!
+    @IBOutlet weak var ticketImageView: UIImageView!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setAnimation()
     }
     
     // MARK: - @IBAction Properties
     // TODO: - 코드 다시 입력하기 기능 구현
+    
     @IBAction func touchReinputCode(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -47,7 +60,7 @@ extension JoinCheckVC {
     func setUI() {
         reInputButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
         reInputButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-        reInputButton.layer.borderWidth = 1
+        reInputButton.layer.borderWidth = 2
         
         enterButton.setTitleColor(.white, for: .normal)
         enterButton.setTitleColor(.white, for: .selected)
@@ -55,5 +68,12 @@ extension JoinCheckVC {
         enterButton.backgroundColor = .sparkDarkPinkred
         enterButton.titleLabel?.font = .btn1Default
         enterButton.layer.borderWidth = 0
+    }
+    
+    func setAnimation() {
+        animationFrameView.addSubview(ticketView)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [self] in
+            ticketView.play()
+        }
     }
 }
