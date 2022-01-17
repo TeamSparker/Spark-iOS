@@ -23,6 +23,7 @@ struct Record: Codable {
     let userID, recordID: Int
     let nickname: String
     let profileImg: String?
+    let roomName: String
     let certifyingImg: String?
     let likeNum, sparkCount: Int
     let isLiked: Bool
@@ -32,6 +33,6 @@ struct Record: Codable {
         case date, day
         case userID = "userId"
         case recordID = "recordId"
-        case nickname, profileImg, certifyingImg, likeNum, sparkCount, isLiked, timerRecord
+        case nickname, profileImg, certifyingImg, likeNum, sparkCount, isLiked, timerRecord, roomName
     }
 }

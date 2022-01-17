@@ -47,9 +47,27 @@ class FeedCVC: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func setUI() {
-        feedImageView.backgroundColor = .yellow
-        profileImageView.backgroundColor = .black
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool) {
+        titleLabel.text = "\(title)"
+        nameLabel.text = "\(nickName)"
+        sparkCountLabel.text = "\(sparkCount)"
+        heartCountLabel.text = "\(likeCount)"
+        feedImageView.image = UIImage(named: "\(certifyingImg)")
+        
+        if let profile = profileImg {
+            profileImageView.image = UIImage(named: "\(profile)")
+        } else {
+            profileImageView.image = UIImage(named: "profileEmpty")
+        }
+        
+        if let time = timeRecord {
+            timeLabel.text = "\(time)"
+        } else {
+            timeLabel.text = ""
+        }
+    }
+    
+    private func setUI() {
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
         profileImageView.layer.borderWidth = 2
@@ -57,12 +75,6 @@ class FeedCVC: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 32
         
         sparkLabel.text = "받은 스파크"
-        // TODO: - 서버 데이터 연결 후 삭제
-        timeLabel.text = "00:30:18"
-        nameLabel.text = "힛이"
-        titleLabel.text = "아침 독서"
-        sparkCountLabel.text = "12"
-        heartCountLabel.text = "21"
         
         timeLabel.font = .enBoldFont(ofSize: 40)
         nameLabel.font = .p1Title
@@ -82,7 +94,7 @@ class FeedCVC: UICollectionViewCell {
         heartImageView.image = UIImage(named: "icHeartInactive")
     }
     
-    func setStackView() {
+    private func setStackView() {
         titleStackView.axis = .horizontal
         titleStackView.alignment = .fill
         titleStackView.distribution = .equalSpacing
@@ -99,7 +111,7 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
     
-    func setLayout() {
+    private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
                           sparkStackView, heartImageView, heartCountLabel])

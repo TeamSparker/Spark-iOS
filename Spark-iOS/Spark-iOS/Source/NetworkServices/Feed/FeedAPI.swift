@@ -36,7 +36,7 @@ public class FeedAPI {
         
         let decoder = JSONDecoder()
         guard let decodedData = try?
-                decoder.decode(GenericResponse<Feed>.self, from: data)
+                decoder.decode(GenericResponse<RecordList>.self, from: data)
         else {
             return .pathErr
         }
