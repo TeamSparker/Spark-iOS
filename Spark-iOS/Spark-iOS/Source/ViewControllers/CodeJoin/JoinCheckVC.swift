@@ -47,13 +47,7 @@ class JoinCheckVC: UIViewController {
     }
     
     @IBAction func touchEnterWaitingVC(_ sender: Any) {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
-        
-        guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
-        
-        let nextVC = UINavigationController(rootViewController: rootViewController)
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true)
+        enterRoomWithAPI()
     }
 }
 
@@ -80,6 +74,38 @@ extension JoinCheckVC {
         animationFrameView.addSubview(ticketView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [self] in
             ticketView.play()
+        }
+    }
+}
+
+// MARK: Network
+
+extension JoinCheckVC {
+    func enterRoomWithAPI() {
+        RoomAPI.shared.enterRoom(roomID: 2) {  response in
+            switch response {
+            case .success(let data):
+                if let enterRoom = data as? EnterRoom {
+                    print(enterRoom)
+                    
+                    let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
+
+                    guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+
+                    let nextVC = UINavigationController(rootViewController: rootViewController)
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self.present(nextVC, animated: true)
+                }
+            case .requestErr(let message):
+                print(message)
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
 }
