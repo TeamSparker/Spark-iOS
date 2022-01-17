@@ -68,10 +68,15 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
+		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
-		EBEA382227945F5A00B5736A /* ticket_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382027945F5A00B5736A /* ticket_welcome.json */; };
 		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
+		EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382C27947C9100B5736A /* MyRoomAPI.swift */; };
+		EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382E27947C9E00B5736A /* MyRoomService.swift */; };
+		EBEA3831279480A700B5736A /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA3830279480A700B5736A /* MyRoom.swift */; };
+		EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA383427948C2D00B5736A /* ticket_welcome.json */; };
+		EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA38362794B34300B5736A /* CodeJoinCheck.swift */; };
 		EBEA383927953BC700B5736A /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA383827953BC700B5736A /* Lottie.swift */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
@@ -182,10 +187,15 @@
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
+		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
-		EBEA382027945F5A00B5736A /* ticket_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticket_welcome.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
+		EBEA382C27947C9100B5736A /* MyRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomAPI.swift; sourceTree = "<group>"; };
+		EBEA382E27947C9E00B5736A /* MyRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomService.swift; sourceTree = "<group>"; };
+		EBEA3830279480A700B5736A /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
+		EBEA383427948C2D00B5736A /* ticket_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticket_welcome.json; sourceTree = "<group>"; };
+		EBEA38362794B34300B5736A /* CodeJoinCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinCheck.swift; sourceTree = "<group>"; };
 		EBEA383827953BC700B5736A /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -399,6 +409,7 @@
 			children = (
 				2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */,
 				2BBED12C279539B90052CA5C /* WaitingMember.swift */,
+				EBEA38362794B34300B5736A /* CodeJoinCheck.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -524,12 +535,30 @@
 		EBEA3819279441BD00B5736A /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				EBEA383427948C2D00B5736A /* ticket_welcome.json */,
 				EBEA381E279450B800B5736A /* illust_confetti.json */,
 				EBEA381B279441DF00B5736A /* splash_iOS.json */,
 				EBEA382127945F5A00B5736A /* ic_heart_active.json */,
-				EBEA382027945F5A00B5736A /* ticket_welcome.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		EBEA382A27947C4100B5736A /* MyRoom */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA382C27947C9100B5736A /* MyRoomAPI.swift */,
+				EBEA382E27947C9E00B5736A /* MyRoomService.swift */,
+			);
+			path = MyRoom;
+			sourceTree = "<group>";
+		};
+		EBEA382B27947C6600B5736A /* MyRoom */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA3830279480A700B5736A /* MyRoom.swift */,
+				EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */,
+			);
+			path = MyRoom;
 			sourceTree = "<group>";
 		};
 		F8096EF72784107D00B71D38 = {
@@ -689,6 +718,7 @@
 				F82F5806279289AC003E4174 /* Home */,
 				2BF3AB42279475B9001A9042 /* Room */,
 				2BBED13127956D040052CA5C /* Feed */,
+				EBEA382A27947C4100B5736A /* MyRoom */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -701,6 +731,7 @@
 				F82F5800279287EC003E4174 /* Home */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
 				2BBED12E27956C4F0052CA5C /* Feed */,
+				EBEA382B27947C6600B5736A /* MyRoom */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -902,7 +933,6 @@
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
-				EBEA382227945F5A00B5736A /* ticket_welcome.json in Resources */,
 				2BE5D81227932EF3007A544D /* ResetPopup.storyboard in Resources */,
 				2BE5D80C27930A35007A544D /* AuthTimer.storyboard in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
@@ -911,6 +941,7 @@
 				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
+				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
@@ -1004,6 +1035,7 @@
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
+				EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
@@ -1015,12 +1047,15 @@
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
+				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
+				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
+				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
@@ -1055,6 +1090,7 @@
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
 				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
+				EBEA3831279480A700B5736A /* MyRoom.swift in Sources */,
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
 				F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */,
 				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
