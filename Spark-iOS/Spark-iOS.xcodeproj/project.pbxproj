@@ -70,6 +70,8 @@
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
 		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
+		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
+		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
 		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
@@ -190,6 +192,8 @@
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
+		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
+		EBE90FDB279612CA00157075 /* SendSpark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendSpark.storyboard; sourceTree = "<group>"; };
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
@@ -505,6 +509,7 @@
 			children = (
 				EB9C50832792A61D00588155 /* HabitAuthVC.swift */,
 				EB9C50892792A86D00588155 /* CompleteAuthVC.swift */,
+				EBE90FD92796128800157075 /* SendSparkVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 			children = (
 				EB9C50872792A67B00588155 /* HabitAuth.storyboard */,
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
+				EBE90FDB279612CA00157075 /* SendSpark.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -943,6 +949,7 @@
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
+				EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
@@ -1066,6 +1073,7 @@
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
+				EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
