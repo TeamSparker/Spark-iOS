@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Lottie
 
 class FeedCVC: UICollectionViewCell {
     static let identifier = "FeedCVC"
@@ -29,9 +30,12 @@ class FeedCVC: UICollectionViewCell {
     let sparkIconImageView = UIImageView()
     let sparkCountLabel = UILabel()
     
-    // FIXME: - button으로 변경
-    let heartImageView = UIImageView()
-    let heartCountLabel = UILabel()
+    let likeButton = UIButton()
+    let likeCountLabel = UILabel()
+    let lottieView = AnimationView(name: "icHeartActive")
+    var likeState: Bool = false
+    var likeDelegate: FeedCellDelegate?
+    var cellId: Int = 0
     
     // MARK: - View Life Cycles
     
@@ -40,6 +44,7 @@ class FeedCVC: UICollectionViewCell {
         setUI()
         setStackView()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -50,19 +55,20 @@ class FeedCVC: UICollectionViewCell {
         titleLabel.text = ""
         nameLabel.text = ""
         sparkCountLabel.text = ""
-        heartCountLabel.text = ""
+        likeCountLabel.text = ""
         timeLabel.text = ""
         feedImageView.image = UIImage()
         profileImageView.image = UIImage()
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
-        heartCountLabel.text = "\(likeCount)"
+        likeCountLabel.text = "\(likeCount)"
         feedImageView.updateImage(certifyingImg)
+        cellId = recordId
         
         if let profile = profileImg {
             profileImageView.updateImage(profile)
@@ -75,8 +81,49 @@ class FeedCVC: UICollectionViewCell {
         } else {
             timeLabel.text = ""
         }
+        
+        if isLiked {
+            likeState = true
+            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            likeCountLabel.textColor = .sparkDarkPinkred
+        } else {
+            likeState = false
+            likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+            likeCountLabel.textColor = .sparkGray
+        }
     }
     
+    private func setAddTarget() {
+        likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func tapLikeButton() {
+        let originLike = Int(likeCountLabel.text ?? "") ?? 0
+        if !likeState {
+            lottieView.isHidden = false
+            lottieView.play {_ in
+                self.lottieView.isHidden = true
+            }
+
+            self.likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            self.likeCountLabel.textColor = .sparkDarkPinkred
+            self.likeCountLabel.text = "\(originLike + 1)"
+            likeState = true
+        } else {
+            if originLike > 0 {
+                likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+                likeCountLabel.textColor = .sparkGray
+                likeCountLabel.text = "\(originLike - 1)"
+                likeState = false
+            }
+        }
+        self.likeDelegate?.likeButtonTapped(recordID: cellId)
+    }
+}
+
+// MARK: - UI
+extension FeedCVC {
     private func setUI() {
         self.backgroundColor = .white
         
@@ -94,18 +141,25 @@ class FeedCVC: UICollectionViewCell {
         nameLabel.font = .p1Title
         titleLabel.font = .krBoldFont(ofSize: 20)
         sparkCountLabel.font = .p2SubtitleEng
-        heartCountLabel.font = .h2TitleEng
+        likeCountLabel.font = .h2TitleEng
         
         timeLabel.textColor = .sparkWhite
         nameLabel.textColor = .sparkDeepGray
         titleLabel.textColor = .sparkDeepGray
         sparkLabel.textColor = .sparkDarkGray
         sparkCountLabel.textColor = .sparkDarkGray
-        heartCountLabel.textColor = .sparkGray
+        likeCountLabel.textColor = .sparkGray
         
         doneImageView.image = UIImage(named: "tagDone")
         sparkIconImageView.image = UIImage(named: "icFire")
-        heartImageView.image = UIImage(named: "icHeartInactive")
+        likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+        
+        lottieView.backgroundColor = .clear
+        lottieView.center = likeButton.center
+        lottieView.loopMode = .playOnce
+        lottieView.contentMode = .scaleAspectFit
+        lottieView.layer.masksToBounds = true
+        lottieView.isHidden = true
     }
     
     private func setStackView() {
@@ -124,11 +178,16 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
-    
+}
+
+
+// MARK: - Layout
+extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, heartImageView, heartCountLabel])
+                          sparkStackView, likeButton, likeCountLabel,
+                          lottieView])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -168,14 +227,19 @@ class FeedCVC: UICollectionViewCell {
             make.width.height.equalTo(16)
         }
         
-        heartImageView.snp.makeConstraints { make in
+        likeButton.snp.makeConstraints { make in
             make.top.equalTo(feedImageView.snp.bottom).offset(20)
             make.trailing.equalToSuperview().inset(50)
         }
         
-        heartCountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(heartImageView.snp.trailing).offset(5)
-            make.centerY.equalTo(heartImageView.snp.centerY)
+        lottieView.snp.makeConstraints { make in
+            make.center.equalTo(likeButton.snp.center)
+            make.width.height.equalTo(40)
+        }
+        
+        likeCountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(likeButton.snp.trailing).offset(5)
+            make.centerY.equalTo(likeButton.snp.centerY)
         }
     }
 }
