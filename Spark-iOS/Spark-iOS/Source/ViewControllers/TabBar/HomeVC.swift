@@ -200,6 +200,7 @@ extension HomeVC {
                     self.mainCollectionView.reloadData()
                 }
                 
+                // FIXME: - 아래의 목적인데 한번 체크해야할듯
                 // 성공적으로 한번의 통신이 마무리된 후 무한스크롤 허용. 즉, 연속적으로 통신을 요청하지 않게 하기 위함.
                 completion()
             case .requestErr(let message):
