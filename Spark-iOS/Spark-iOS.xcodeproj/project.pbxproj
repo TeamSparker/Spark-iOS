@@ -60,6 +60,11 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
+		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
+		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
+		EBEA382227945F5A00B5736A /* ticket_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382027945F5A00B5736A /* ticket_welcome.json */; };
+		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
+		EBEA383927953BC700B5736A /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA383827953BC700B5736A /* Lottie.swift */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
 		F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Home.storyboard */; };
@@ -160,6 +165,11 @@
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
+		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
+		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
+		EBEA382027945F5A00B5736A /* ticket_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticket_welcome.json; sourceTree = "<group>"; };
+		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
+		EBEA383827953BC700B5736A /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8096F052784107D00B71D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -457,6 +467,17 @@
 			path = CodeJoin;
 			sourceTree = "<group>";
 		};
+		EBEA3819279441BD00B5736A /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA381E279450B800B5736A /* illust_confetti.json */,
+				EBEA381B279441DF00B5736A /* splash_iOS.json */,
+				EBEA382127945F5A00B5736A /* ic_heart_active.json */,
+				EBEA382027945F5A00B5736A /* ticket_welcome.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		F8096EF72784107D00B71D38 = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +514,7 @@
 				F8096F112784107E00B71D38 /* Info.plist */,
 				F8096F0C2784107E00B71D38 /* Assets.xcassets */,
 				EBA77238278A2E14002958A5 /* Colors.xcassets */,
+				EBEA3819279441BD00B5736A /* Lottie */,
 				F8096F1927841A3100B71D38 /* Constants */,
 				F8096F1A27841A3A00B71D38 /* Fonts */,
 				F8096F1B27841A3D00B71D38 /* Storyboards */,
@@ -523,6 +545,7 @@
 			children = (
 				F8096F2827841F1E00B71D38 /* Const.swift */,
 				F8096F2A27841F4100B71D38 /* Storyboard.swift */,
+				EBEA383827953BC700B5736A /* Lottie.swift */,
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
 				F8096F432784221900B71D38 /* Xib.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
@@ -811,12 +834,16 @@
 				F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
+				EBEA381D279441E000B5736A /* splash_iOS.json in Resources */,
+				EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */,
 				EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */,
 				EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */,
 				EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */,
+				EBEA381F279450B900B5736A /* illust_confetti.json in Resources */,
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
 				2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */,
 				2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */,
+				EBEA382227945F5A00B5736A /* ticket_welcome.json in Resources */,
 				2BE5D81227932EF3007A544D /* ResetPopup.storyboard in Resources */,
 				2BE5D80C27930A35007A544D /* AuthTimer.storyboard in Resources */,
 				EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */,
@@ -935,6 +962,7 @@
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
+				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
