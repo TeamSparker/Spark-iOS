@@ -25,6 +25,10 @@
 		2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */; };
 		2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */; };
 		2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12C279539B90052CA5C /* WaitingMember.swift */; };
+		2BBED13027956C9F0052CA5C /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12F27956C9F0052CA5C /* Feed.swift */; };
+		2BBED13327956D170052CA5C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13227956D170052CA5C /* FeedService.swift */; };
+		2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13427956EAB0052CA5C /* FeedAPI.swift */; };
+		2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
@@ -138,6 +142,10 @@
 		2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoalWriting.storyboard; sourceTree = "<group>"; };
 		2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWritingVC.swift; sourceTree = "<group>"; };
 		2BBED12C279539B90052CA5C /* WaitingMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingMember.swift; sourceTree = "<group>"; };
+		2BBED12F27956C9F0052CA5C /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		2BBED13227956D170052CA5C /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		2BBED13427956EAB0052CA5C /* FeedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAPI.swift; sourceTree = "<group>"; };
+		2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmptyCVC.swift; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
@@ -292,6 +300,23 @@
 			path = GoalWriting;
 			sourceTree = "<group>";
 		};
+		2BBED12E27956C4F0052CA5C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2BBED12F27956C9F0052CA5C /* Feed.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		2BBED13127956D040052CA5C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2BBED13427956EAB0052CA5C /* FeedAPI.swift */,
+				2BBED13227956D170052CA5C /* FeedService.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		2BC1726E278F54B300BA3029 /* Waiting */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +330,7 @@
 			children = (
 				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
 				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
+				2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -691,6 +717,7 @@
 				F82F58052792897B003E4174 /* Plugin */,
 				F82F5806279289AC003E4174 /* Home */,
 				2BF3AB42279475B9001A9042 /* Room */,
+				2BBED13127956D040052CA5C /* Feed */,
 				EBEA382A27947C4100B5736A /* MyRoom */,
 			);
 			path = NetworkServices;
@@ -703,6 +730,7 @@
 				F82F57FC2792847D003E4174 /* GenericResponse.swift */,
 				F82F5800279287EC003E4174 /* Home */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
+				2BBED12E27956C4F0052CA5C /* Feed */,
 				EBEA382B27947C6600B5736A /* MyRoom */,
 			);
 			path = NetworkModels;
@@ -1000,6 +1028,7 @@
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
+				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
@@ -1008,6 +1037,7 @@
 				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
 				EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
+				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F82F580C27929F74003E4174 /* Header.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
@@ -1024,11 +1054,13 @@
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
+				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
+				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
