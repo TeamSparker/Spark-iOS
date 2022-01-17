@@ -29,6 +29,7 @@ extension Const {
             static let authUpload = "AuthUploadVC"
             static let authTimer = "AuthTimerVC"
             static let resetPopup = "ResetPopupVC"
+            static let sendSpark = "SendSparkVC"
         }
     }
 }
