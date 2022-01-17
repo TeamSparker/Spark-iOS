@@ -15,7 +15,5 @@ struct Const {
      Notification.Name 을 extension 했기 때문에 .sendData 와 같이 사용가능.
      */
     
-//    static let accessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""
-    
-    static let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJpYXQiOjE2NDE5NTk1MTUsImV4cCI6MTY0NDU1MTUxNSwiaXNzIjoid2Vzb3B0In0.MT_7RGrTbk8DRve87CkZbwKRw3f1T8NyF3CSE0yXLP4"
+    static let accessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""
 }
