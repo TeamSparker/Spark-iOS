@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
                 // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { credentialState, error in
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { credentialState, _ in
                     switch credentialState {
                     case .authorized:
                         print("해당 ID는 연동되어있습니다.")

@@ -8,11 +8,12 @@
 import Foundation
 
 struct GenericResponse<T: Codable>: Codable {
-    let statusCode: Int
-    let success, message: String
+    let status: Int
+    let success: Bool
+    let message: String
     let data: T?
     
     enum CodingKeys: String, CodingKey {
-        case statusCode, success, message, data
+        case status, success, message, data
     }
 }

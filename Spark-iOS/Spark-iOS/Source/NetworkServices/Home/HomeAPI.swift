@@ -8,9 +8,9 @@
 import Foundation
 import Moya
 
-public class UserAPI {
+public class HomeAPI {
      
-    static let shared = UserAPI()
+    static let shared = HomeAPI()
     var userProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggerPlugin()])
     
     public init() { }

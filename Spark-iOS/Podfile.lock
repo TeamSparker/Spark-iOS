@@ -107,6 +107,7 @@ PODS:
   - KakaoSDKUser (2.8.4):
     - KakaoSDKAuth (= 2.8.4)
   - Kingfisher (7.1.1)
+  - lottie-ios (3.3.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -128,6 +129,7 @@ DEPENDENCIES:
   - KakaoSDKCommon
   - KakaoSDKUser
   - Kingfisher (~> 7.0)
+  - lottie-ios
   - Moya (~> 15.0)
   - SnapKit (~> 5.0.0)
   - SwiftLint
@@ -149,6 +151,7 @@ SPEC REPOS:
     - KakaoSDKCommon
     - KakaoSDKUser
     - Kingfisher
+    - lottie-ios
     - Moya
     - nanopb
     - PromisesObjC
@@ -171,12 +174,13 @@ SPEC CHECKSUMS:
   KakaoSDKCommon: 33c9902ee9ce13e9d1cac3549896406229836ff5
   KakaoSDKUser: d878977e0ba6b365cfeac3b6319cdf4231713bea
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
 
-PODFILE CHECKSUM: 99bb7b057908d0f95fe91e4057c9f92ebe7c1d01
+PODFILE CHECKSUM: 8e8f7262effc93cf79006d0a8eaf7145a51d68c4
 
 COCOAPODS: 1.11.2

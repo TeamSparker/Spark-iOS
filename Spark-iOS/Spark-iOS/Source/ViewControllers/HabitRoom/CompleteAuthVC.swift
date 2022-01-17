@@ -6,11 +6,23 @@
 //
 
 import UIKit
+import Lottie
 
 class CompleteAuthVC: UIViewController {
 
+    // MARK: Properties
+    lazy var confettiView: AnimationView = {
+        let animationView = AnimationView(name: Const.Lottie.Name.confetti)
+        animationView.frame = animationFrameView.bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        return animationView
+    }()
+    
     // MARK: IBoutlet properties
     
+    @IBOutlet weak var handImageVIew: UIImageView!
+    @IBOutlet weak var animationFrameView: UIView!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var instaView: UIView!
     
@@ -20,6 +32,7 @@ class CompleteAuthVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setGesture()
+        setAnimation()
     }
 
     // MARK: IBActions
@@ -45,5 +58,12 @@ extension CompleteAuthVC {
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
         // 인스타 공유 기능
+    }
+    
+    private func setAnimation() {
+        animationFrameView.addSubview(confettiView)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [self] in
+            confettiView.play()
+        }
     }
 }
