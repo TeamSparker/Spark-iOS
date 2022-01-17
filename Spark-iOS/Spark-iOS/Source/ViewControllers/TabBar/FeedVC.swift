@@ -221,7 +221,7 @@ extension FeedVC: UICollectionViewDataSource {
                 alist = firstList[indexPath.item]
             }
             
-            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked)
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID)
             cell.likeDelegate = self
 //            delega
             return cell
@@ -279,5 +279,6 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 extension FeedVC: FeedCellDelegate {
     func likeButtonTapped(recordID: Int) {
         // TODO: - 서버 연결
+        print(recordID)
     }
 }

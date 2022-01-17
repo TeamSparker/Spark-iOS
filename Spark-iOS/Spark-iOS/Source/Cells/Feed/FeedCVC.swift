@@ -35,7 +35,7 @@ class FeedCVC: UICollectionViewCell {
     let likeCountLabel = UILabel()
     var likeState: Bool = false
     var likeDelegate: FeedCellDelegate?
-    var index: Int = 0
+    var cellId: Int = 0
     
     // MARK: - View Life Cycles
     
@@ -62,12 +62,13 @@ class FeedCVC: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
         likeCountLabel.text = "\(likeCount)"
         feedImageView.updateImage(certifyingImg)
+        cellId = recordId
         
         if let profile = profileImg {
             profileImageView.updateImage(profile)
@@ -112,7 +113,7 @@ class FeedCVC: UICollectionViewCell {
                 likeState = false
             }
         }
-        self.likeDelegate?.likeButtonTapped(recordID: index)
+        self.likeDelegate?.likeButtonTapped(recordID: cellId)
     }
 }
 
