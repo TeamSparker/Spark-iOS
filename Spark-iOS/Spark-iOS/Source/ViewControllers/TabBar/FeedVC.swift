@@ -16,13 +16,13 @@ class FeedVC: UIViewController {
     
     private var dateList: [String] = []
     private var dayList: [String] = []
-    private var firstList: [Any] = []
-    private var secondList: [Any] = []
-    private var thirdList: [Any] = []
-    private var fourthList: [Any] = []
-    private var fifthList: [Any] = []
-    private var sixthList: [Any] = []
-    private var seventhList: [Any] = []
+    private var firstList: [Record] = []
+    private var secondList: [Record] = []
+    private var thirdList: [Record] = []
+    private var fourthList: [Record] = []
+    private var fifthList: [Record] = []
+    private var sixthList: [Record] = []
+    private var seventhList: [Record] = []
     
     private var feedList: [Record] = []
     private var feedLastID: Int = -1
@@ -35,23 +35,18 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setCollectionView()
+        
+        DispatchQueue.main.async {
+            self.feedListFetchWithAPI(lastID: self.feedLastID) {
+                self.collectionView.reloadData()
+            }
+        }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        
-        DispatchQueue.main.async {
-            self.feedLastID = -1
-            self.feedList.removeAll()
-        }
-        
-        DispatchQueue.main.async {
-            self.feedListFetchWithAPI(lastID: self.feedLastID) {
-                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-            }
-        }
     }
     
     // MARK: - Methods
@@ -64,6 +59,7 @@ class FeedVC: UIViewController {
         
         collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FeedHeaderView.identifier)
         collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: FeedCVC.identifier)
+        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: FeedEmptyCVC.identifier)
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
@@ -73,6 +69,7 @@ class FeedVC: UIViewController {
         var indexPath = 0
         var sectionCount = 0 // section을 돌기 위한 변수
         
+        // 섹션에 들어갈 날짜 리스트 구함
         while indexPath < datalist.count {
             if dateList.isEmpty {
                 dateList.append(datalist[indexPath].date)
@@ -81,44 +78,42 @@ class FeedVC: UIViewController {
             } else {
                 let date: String = datalist[indexPath].date
                 let day: String = datalist[indexPath].day
-
+                
                 if !(dateList.contains(date)) {
                     dateList.append(date)
                     dayList.append(day)
                 }
-
+                
                 indexPath += 1
             }
         }
-
+        
         // section별 리스트 생성
-        while sectionCount < dateList.count {
-            var indexinsection = 0
-            while indexinsection < datalist.count && !datalist.isEmpty && sectionCount != dateList.count {
-                if dateList[sectionCount] == datalist[indexinsection].date {
-                    switch sectionCount {
-                    case 0:
-                        firstList.append(datalist[indexinsection])
-                    case 1:
-                        secondList.append(datalist[indexinsection])
-                    case 2:
-                        thirdList.append(datalist[indexinsection])
-                    case 3:
-                        fourthList.append(datalist[indexinsection])
-                    case 4:
-                        fifthList.append(datalist[indexinsection])
-                    case 5:
-                        sixthList.append(datalist[indexinsection])
-                    case 6:
-                        seventhList.append(datalist[indexinsection])
-                    default:
-                        seventhList.append(datalist[indexinsection])
-                    }
-
+        var indexInSection = 0
+        while indexInSection < datalist.count && !datalist.isEmpty && sectionCount < dateList.count {
+            if dateList[sectionCount] == datalist[indexInSection].date {
+                switch sectionCount {
+                case 0:
+                    firstList.append(datalist[indexInSection])
+                case 1:
+                    secondList.append(datalist[indexInSection])
+                case 2:
+                    thirdList.append(datalist[indexInSection])
+                case 3:
+                    fourthList.append(datalist[indexInSection])
+                case 4:
+                    fifthList.append(datalist[indexInSection])
+                case 5:
+                    sixthList.append(datalist[indexInSection])
+                case 6:
+                    seventhList.append(datalist[indexInSection])
+                default:
+                    seventhList.append(datalist[indexInSection])
                 }
-                indexinsection += 1
+                indexInSection += 1
+            } else {
+                sectionCount += 1
             }
-            sectionCount += 1
         }
     }
     
@@ -141,11 +136,10 @@ extension FeedVC {
             case .success(let data):
                 if let feed = data as? RecordList {
                     self.feedList.append(contentsOf: feed.records)
-                    self.setData(datalist: self.feedList)
+                    self.setData(datalist: feed.records)
+                    self.collectionView.reloadData()
                 }
-                
-                self.collectionView.reloadData()
-                
+                completion()
             case .requestErr(let message):
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -163,14 +157,14 @@ extension FeedVC {
 
 extension FeedVC: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dateList.count
+        return dateList.count == 0 ? 1: dateList.count
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
             if isInfiniteScroll {
                 isInfiniteScroll = false
-
+                
                 feedLastID = feedList.last?.recordID ?? 0
                 feedListFetchWithAPI(lastID: feedLastID) {
                     self.isInfiniteScroll = true
@@ -180,76 +174,101 @@ extension FeedVC: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var itemCount = 0
-        var indexPath = 0
-        while indexPath < feedList.count {
-            if dateList[section] == feedList[indexPath].date {
-                itemCount += 1
-                indexPath += 1
-            } else {
-                indexPath += 1
+        if dateList.count != 0 {
+            var itemCount = 0
+            var indexPath = 0
+            while indexPath < feedList.count {
+                if dateList[section] == feedList[indexPath].date {
+                    itemCount += 1
+                    indexPath += 1
+                } else {
+                    indexPath += 1
+                }
             }
+            return itemCount
+        } else {
+            return 1
         }
-        
-        return itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCVC.identifier, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
-        var alist: Record
-
-        // section별 데이터 넣기
-        switch indexPath.section {
-        case 0:
-            alist = firstList[indexPath.item] as! Record
-        case 1:
-            alist = secondList[indexPath.item] as! Record
-        case 2:
-            alist = thirdList[indexPath.item] as! Record
-        case 3:
-            alist = fourthList[indexPath.item] as! Record
-        case 4:
-            alist = fifthList[indexPath.item] as! Record
-        case 5:
-            alist = sixthList[indexPath.item] as! Record
-        case 6:
-            alist = seventhList[indexPath.item] as! Record
-        default:
-            alist = firstList[indexPath.item] as! Record
+        if dateList.count != 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCVC.identifier, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
+            
+            var alist: Record
+            
+            // section별 데이터 넣기
+            switch indexPath.section {
+            case 0:
+                alist = firstList[indexPath.item]
+            case 1:
+                alist = secondList[indexPath.item]
+            case 2:
+                alist = thirdList[indexPath.item]
+            case 3:
+                alist = fourthList[indexPath.item]
+            case 4:
+                alist = fifthList[indexPath.item]
+            case 5:
+                alist = sixthList[indexPath.item]
+            case 6:
+                alist = seventhList[indexPath.item]
+            default:
+                alist = firstList[indexPath.item]
+            }
+            
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: "profileEmpty", certifyingImg: "uploadEmptyView", hasTime: true)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
+            return cell
         }
-        
-        cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: "profileEmpty", certifyingImg: "uploadEmptyView", hasTime: true)
-
-        cell.backgroundColor = .white
-        
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
-        
-        let date = dateList[indexPath.section].split(separator: "-")
-        header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
-        header.dayLabel.text = "\(dayList[indexPath.section])"
-        
-        return header
+        if dateList.count != 0 {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
+            
+            let date = dateList[indexPath.section].split(separator: "-")
+            header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+            header.dayLabel.text = "\(dayList[indexPath.section])"
+            
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        let height = width*85/375
-        
-        return CGSize(width: width, height: height)
+        if dateList.count != 0 {
+            let width = UIScreen.main.bounds.width
+            let height = width*85/375
+            
+            return CGSize(width: width, height: height)
+        } else {
+            return .zero
+        }
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension FeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        let height = width*535/375
+        var width: CGFloat
+        var height: CGFloat
         
+        if dateList.count != 0 {
+            width = UIScreen.main.bounds.width
+            height = width*535/375
+        } else {
+            width = UIScreen.main.bounds.width
+            height = self.collectionView.frame.height
+        }
         return CGSize(width: width, height: height)
     }
 }
