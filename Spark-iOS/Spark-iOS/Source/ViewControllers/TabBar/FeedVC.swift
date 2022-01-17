@@ -134,7 +134,7 @@ extension FeedVC {
             
             switch response {
             case .success(let data):
-                if let feed = data as? RecordList {
+                if let feed = data as? Feed {
                     self.feedList.append(contentsOf: feed.records)
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()

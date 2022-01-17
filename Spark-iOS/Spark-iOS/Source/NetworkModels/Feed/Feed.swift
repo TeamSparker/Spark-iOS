@@ -9,11 +9,6 @@ import Foundation
 
 // MARK: - Feed
 struct Feed: Codable {
-    let data: RecordList
-}
-
-// MARK: - DataClass
-struct RecordList: Codable {
     let records: [Record]
 }
 
