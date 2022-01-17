@@ -45,7 +45,7 @@ class AuthTimerVC: UIViewController {
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
-        photoLabel.text = "사진 인증"
+        photoLabel.text = "사진"
         timeLabel.text = "00:00:00"
         
         firstLabel.font = .enMediumFont(ofSize: 18)
@@ -164,7 +164,7 @@ class AuthTimerVC: UIViewController {
             resetMainTimer()
             setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
-            [pauseButton, resetButton].forEach{ $0.isHidden = true }
+            [pauseButton, resetButton].forEach { $0.isHidden = true }
         }
     }
     
@@ -179,8 +179,11 @@ class AuthTimerVC: UIViewController {
             // 재생X -> 스톱워치 시작
             startPauseTimer(startButton)
         } else {
-            // TODO: - 재생O -> 화면전환 + timeLabel.text 넘겨주기
-            print("재생되었음")
+            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.authUpload, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else { return }
+            
+            // TODO: - timeLabel.text 넘겨주기
+            
+            navigationController?.pushViewController(nextVC, animated: true)
         }
     }
 }
