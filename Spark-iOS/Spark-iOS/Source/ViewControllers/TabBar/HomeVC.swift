@@ -114,8 +114,8 @@ extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let habitRoomList = habitRoomList else { return UICollectionViewCell() }
-//        if habitRoomList.count != 0 {
-            if false {
+        if habitRoomList.count != 0 {
+            if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
                 // TODO: - initCell()
@@ -132,25 +132,34 @@ extension HomeVC: UICollectionViewDataSource {
                 
                 return habitCVC
             }
-        }
-//    else {
+    }
+    else {
             // empty view.
             // TODO: - 엠티뷰
-//            return UICollectionViewCell()
-//        }
+            return UICollectionViewCell()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let habitRoomList = habitRoomList else { return .zero }
+        
         let cellWidth = collectionView.frame.width
-        if false {
-            let waitingCellHeight = cellWidth * (98/335)
-            return CGSize(width: cellWidth, height: waitingCellHeight)
+        let collectionViewHeight = collectionView.frame.height
+        
+        if habitRoomList.count != 0 {
+            if habitRoomList[indexPath.item].isStarted == false {
+                let waitingCellHeight = cellWidth * (98/335)
+                return CGSize(width: cellWidth, height: waitingCellHeight)
+            } else {
+                let habitCellHeight = cellWidth * (196/335)
+                return CGSize(width: cellWidth, height: habitCellHeight)
+            }
         } else {
-            let habitCellHeight = cellWidth * (196/335)
-            return CGSize(width: cellWidth, height: habitCellHeight)
+            return CGSize(width: cellWidth, height: collectionViewHeight)
         }
     }
     
