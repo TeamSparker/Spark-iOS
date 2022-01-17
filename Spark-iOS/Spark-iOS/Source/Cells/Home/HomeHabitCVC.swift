@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeHabitCVC: UICollectionViewCell {
-
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var flakeImage: UIImageView!
@@ -47,9 +47,15 @@ class HomeHabitCVC: UICollectionViewCell {
         habitTitleLabel.text = ""
         tagDoneImage.isHidden = true
         memberLabel.text = ""
-        firstLifeImage.image = UIImage()
-        secondLifeImage.image = UIImage()
-        thirdLifeImage.image = UIImage()
+        
+        [firstLifeImage, secondLifeImage, thirdLifeImage].forEach {
+            $0?.image = UIImage()
+        }
+        
+        [firstProfileImage, secondProfileImage, thirdProfileImage, fourthProfileImage].forEach {
+            $0?.image = UIImage()
+            $0?.isHidden = true
+        }
     }
 }
 
@@ -67,6 +73,7 @@ extension HomeHabitCVC {
             $0?.layer.cornerRadius = 13
             $0?.layer.borderWidth = 2
             $0?.layer.borderColor = UIColor.sparkWhite.cgColor
+            $0?.contentMode = .scaleToFill
         }
         
         restLabel.font = .enMediumFont(ofSize: 10)
@@ -76,12 +83,13 @@ extension HomeHabitCVC {
         habitTitleLabel.textColor = .sparkDeepGray
         habitTitleLabel.numberOfLines = 2
         habitTitleLabel.lineBreakMode = .byTruncatingTail
-    
+        
         tagDoneImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
     }
     
+    /// 셀 초기화
     func initCell(roomName: String,
                   leftDay: Int,
                   profileImg: [String?],
@@ -95,19 +103,60 @@ extension HomeHabitCVC {
             ddayTitleLabel.text = "D-\(leftDay)"
         }
         
-        // TODO: - 프로필 이미지 구현
+        // 프로필 이미지 구현
+        let profileImageList = [firstProfileImage, secondProfileImage, thirdProfileImage]
+        
         if profileImg.count > 3 {
+            for index in 0..<3 {
+                profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                profileImageList[index]?.isHidden = false
+            }
+            
             fourthProfileImage.isHidden = false
             restLabel.isHidden = false
             restLabel.text = "+\(profileImg.count - 3)"
         } else {
+            if profileImg.count == 0 {
+                profileImageList.forEach { $0?.isHidden = true }
+            } else if profileImg.count == 3 {
+                for index in 0..<3 {
+                    profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                    profileImageList[index]?.isHidden = false
+                }
+            } else {
+                for index in 0..<profileImg.count {
+                    profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                    profileImageList[index]?.isHidden = false
+                    
+                    fourthProfileImage.isHidden = true
+                    restLabel.isHidden = true
+                }
+                for index in profileImg.count...2 {
+                    profileImageList[index]?.isHidden = true
+                }
+            }
+            
             fourthProfileImage.isHidden = true
             restLabel.isHidden = true
         }
         
         habitTitleLabel.text = roomName
         
-        // TODO: - 목숨 이미지 구현
+        // 방 생명 이미지 구현
+        let lifeImgaeList = [firstLifeImage, secondLifeImage, thirdLifeImage]
+        
+        if life == 3 {
+            lifeImgaeList.forEach { $0?.image = UIImage(named: "icRoomlifeFullBlack")}
+        } else if life == 0 {
+            lifeImgaeList.forEach { $0?.image = UIImage(named: "icRoomlifeEmpty")}
+        } else {
+            for index in 0..<life {
+                lifeImgaeList[index]?.image = UIImage(named: "icRoomlifeFullBlack")
+            }
+            for index in life...2 {
+                lifeImgaeList[index]?.image = UIImage(named: "icRoomlifeEmpty")
+            }
+        }
         
         if isDone {
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
@@ -119,7 +168,7 @@ extension HomeHabitCVC {
         
         // spark flake
         let sparkFlake: SparkFlake =  SparkFlake(leftDay: leftDay)
-
+        
         ddayTitleLabel.textColor = sparkFlake.sparkFlakeColor()
         ddaySubtitleLabel.text = sparkFlake.sparkFlakeMent()
         ddaySubtitleLabel.textColor = sparkFlake.sparkFlakeColor()

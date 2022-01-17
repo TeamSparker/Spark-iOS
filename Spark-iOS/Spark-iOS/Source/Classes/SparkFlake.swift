@@ -75,7 +75,7 @@ public class SparkFlake {
         case .day32:
             return "반도 안 남았어!"
         case .day6:
-            return "막판 스퍼트!"
+            return "조금만 더 힘내"
         case .dDay:
             return "오늘이면 끝!"
         }
