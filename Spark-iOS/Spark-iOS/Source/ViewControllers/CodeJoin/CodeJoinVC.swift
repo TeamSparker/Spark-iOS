@@ -117,7 +117,7 @@ extension CodeJoinVC {
     }
 
     @objc func touchOkayButton() {
-        getCodeWaitingWithAPI()
+        codeJoinCheckFetchWithAPI()
     }
 }
 
@@ -177,16 +177,16 @@ extension CodeJoinVC: UITextFieldDelegate {
 // MARK: Network
 
 extension CodeJoinVC {
-    func getCodeWaitingWithAPI() {
-        RoomAPI.shared.codeJoinCheckFetch(code: "vtfasBO") {  response in
+    func codeJoinCheckFetchWithAPI() {
+        RoomAPI.shared.codeJoinCheckFetch(code: textField.text ?? "") {  response in
             switch response {
             case .success(let data):
-                if let codeWaiting = data as? CodeWaitingData {
+                if let codeWaiting = data as? CodeWaiting {
                     let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
                     guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
                     
                     nextVC.creatorName = codeWaiting.creatorName
-                    nextVC.roomName = codeWaiting.roomName
+                    nextVC.roomName = "\(codeWaiting.roomName)님이 초대한 방"
                     nextVC.roomID = codeWaiting.roomID
 
                     nextVC.modalPresentationStyle = .fullScreen
@@ -195,13 +195,13 @@ extension CodeJoinVC {
             case .requestErr(let message):
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = message as? String
-                print("requestErr")
+                print("getCodeWaitingWithAPI - requestErr")
             case .pathErr:
-                print("pathErr")
+                print("getCodeWaitingWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getCodeWaitingWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getCodeWaitingWithAPI - networkFail")
             }
         }
     }

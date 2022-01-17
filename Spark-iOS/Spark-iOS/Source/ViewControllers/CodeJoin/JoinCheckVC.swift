@@ -20,7 +20,7 @@ class JoinCheckVC: UIViewController {
         return animationView
     }()
     
-    var roomID: Int?
+    var roomID: Int = 0
     var creatorName: String?
     var roomName: String?
     
@@ -82,29 +82,24 @@ extension JoinCheckVC {
 
 extension JoinCheckVC {
     func enterRoomWithAPI() {
-        RoomAPI.shared.enterRoom(roomID: 2) {  response in
+        RoomAPI.shared.enterRoom(roomID: roomID) {  response in
             switch response {
-            case .success(let data):
-                if let enterRoom = data as? EnterRoom {
-                    print(enterRoom)
-                    
-                    let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
-
-                    guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
-
-                    let nextVC = UINavigationController(rootViewController: rootViewController)
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true)
-                }
+            case .success(_):
+                let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
+                
+                guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+                
+                let nextVC = UINavigationController(rootViewController: rootViewController)
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true)
             case .requestErr(let message):
-                print(message)
-                print("requestErr")
+                print("enterRoomWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("pathErr")
+                print("enterRoomWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("enterRoomWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("enterRoomWithAPI - networkFail")
             }
         }
     }

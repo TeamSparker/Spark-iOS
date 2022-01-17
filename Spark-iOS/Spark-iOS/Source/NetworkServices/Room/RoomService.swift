@@ -39,7 +39,9 @@ extension RoomService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .waitingFetch, .codeJoinCheckFetch:
+        case .waitingFetch:
+            return .get
+        case .codeJoinCheckFetch:
             return .get
         case .waitingMemberFetch:
             return .get
@@ -50,7 +52,9 @@ extension RoomService: TargetType {
     
     var task: Task {
         switch self {
-        case .waitingFetch, .codeJoinCheckFetch:
+        case .waitingFetch:
+            return .requestPlain
+        case .codeJoinCheckFetch:
             return .requestPlain
         case .waitingMemberFetch:
             return .requestPlain
@@ -71,7 +75,11 @@ extension RoomService: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .waitingFetch, .codeJoinCheckFetch, .enterRoom, .authUpload:
+        case .waitingFetch:
+            return Const.Header.authrizationHeader
+        case .codeJoinCheckFetch:
+            return Const.Header.authrizationHeader
+        case .enterRoom:
             return Const.Header.authrizationHeader
         case .waitingMemberFetch:
             return Const.Header.authrizationHeader

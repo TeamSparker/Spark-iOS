@@ -51,8 +51,7 @@ public class RoomAPI {
     private func judgeWaitingFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<Waiting>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<Waiting>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
@@ -70,8 +69,7 @@ public class RoomAPI {
     private func judgeWaitingMembersFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<WaitingMember>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<WaitingMember>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
@@ -104,8 +102,7 @@ public class RoomAPI {
     private func judgeCodeJoinCheckFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<CodeWaitingData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<CodeWaiting>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
@@ -126,7 +123,7 @@ public class RoomAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeEnterRoomStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -135,16 +132,14 @@ public class RoomAPI {
         }
     }
     
-    private func judgeEnterRoomStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-        
+    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<EnterRoom>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
         case 200:
-            return .success(decodedData ?? "None-Data")
+            return .success(decodedData.message)
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:
