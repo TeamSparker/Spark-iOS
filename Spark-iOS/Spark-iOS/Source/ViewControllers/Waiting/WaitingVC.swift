@@ -117,6 +117,7 @@ class WaitingVC: UIViewController {
     func setAddTarget() {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
     }
     
     func setCollectionView() {
@@ -151,6 +152,11 @@ class WaitingVC: UIViewController {
     @objc
     func touchToMore() {
         /// 더보기 버튼
+    }
+    
+    @objc
+    func touchToRefreshButton() {
+        getWaitingMembersWithAPI(roomID: 2)
     }
 }
 
@@ -199,8 +205,15 @@ extension WaitingVC {
                     
                     // 사용자 이미지 설정
                     if user.profileImg != nil {
-                        // TODO: - 이미지 URL 넣기
-                        self.profileImageView.image = UIImage(named: "")
+                        if let url = URL(string: user.profileImg ?? "") {
+                            do {
+                                let data = try Data(contentsOf: url)
+                                self.profileImageView.image = UIImage(data: data)
+                            } catch {
+                                self.profileImageView.image = UIImage(named: "profileEmpty")
+                                self.profileImageView.backgroundColor = .sparkGray
+                            }
+                        }
                     } else {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
@@ -212,6 +225,34 @@ extension WaitingVC {
                 print("requestErr")
             case .pathErr:
                 print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func getWaitingMembersWithAPI(roomID: Int) {
+        RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
+            print(response)
+            switch response {
+            case .success(let data):
+                if let waitingMembers = data as? WaitingMember {
+                    
+                    // 기존 스파커 삭제 & 다시 데이터 추가
+                    self.members.removeAll()
+                    self.members.append(contentsOf: waitingMembers.members)
+                    
+                    // 스파커 멤버 수
+                    self.friendCountLabel.text = "\(self.members.count)"
+                    
+                    self.collectionView.reloadData()
+                }
+            case .requestErr(let message):
+                print("getWaitingMembersWithAPI - requestErr", message)
+            case .pathErr:
+                print("getWaitingMembersWithAPI - pathErr")
             case .serverErr:
                 print("serverErr")
             case .networkFail:
@@ -233,12 +274,15 @@ extension WaitingVC: UICollectionViewDataSource {
 
         // 이름
         let name = members[indexPath.item].nickname
+        cell.nameLabel.text = name
         
         // 이미지
         if let url = URL(string: members[indexPath.item].profileImg ?? "") {
             do {
                 let data = try Data(contentsOf: url)
-                cell.initCell(name: name, image: data)
+                // FIXME: - 서버에서 디폴트 이미지도 보내준다고 하셨는데 지금은 nil 값으로 넘어와서 나중에 수정해서 initCell 사용
+//                cell.initCell(name: name, image: data)
+                cell.profileImageView.image = UIImage(data: data)
             } catch {
                 cell.profileImageView.backgroundColor = .sparkGray
             }
