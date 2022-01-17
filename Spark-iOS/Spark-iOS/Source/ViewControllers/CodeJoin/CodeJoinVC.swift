@@ -117,7 +117,7 @@ extension CodeJoinVC {
     }
 
     @objc func touchOkayButton() {
-        getCodeWaitingWithAPI()
+        codeJoinCheckFetchWithAPI()
     }
 }
 
@@ -177,7 +177,7 @@ extension CodeJoinVC: UITextFieldDelegate {
 // MARK: Network
 
 extension CodeJoinVC {
-    func getCodeWaitingWithAPI() {
+    func codeJoinCheckFetchWithAPI() {
         RoomAPI.shared.codeJoinCheckFetch(code: textField.text ?? "") {  response in
             switch response {
             case .success(let data):

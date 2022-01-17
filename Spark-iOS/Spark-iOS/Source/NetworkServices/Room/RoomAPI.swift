@@ -50,8 +50,7 @@ public class RoomAPI {
     private func judgeWaitingFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<Waiting>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<Waiting>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
@@ -69,8 +68,7 @@ public class RoomAPI {
     private func judgeWaitingMembersFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<WaitingMember>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<WaitingMember>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
@@ -103,8 +101,7 @@ public class RoomAPI {
     private func judgeCodeJoinCheckFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try?
-                decoder.decode(GenericResponse<CodeWaiting>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<CodeWaiting>.self, from: data)
         else { return .pathErr }
         
         switch statusCode {
