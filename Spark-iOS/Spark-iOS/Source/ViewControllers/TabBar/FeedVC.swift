@@ -151,6 +151,23 @@ extension FeedVC {
             }
         }
     }
+    
+    func feedLikeWithAPI(recordID: Int) {
+        FeedAPI.shared.feedLike(recordID: recordID) { response in
+            switch response {
+            case .success(let message):
+                print("feedLikeWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("feedLikeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("feedLikeWithAPI - pathErr")
+            case .serverErr:
+                print("feedLikeWithAPI - serverErr")
+            case .networkFail:
+                print("feedLikeWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -221,7 +238,8 @@ extension FeedVC: UICollectionViewDataSource {
                 alist = firstList[indexPath.item]
             }
             
-            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true)
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID)
+            cell.likeDelegate = self
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
@@ -270,5 +288,12 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
             height = self.collectionView.frame.height
         }
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - Protocol
+extension FeedVC: FeedCellDelegate {
+    func likeButtonTapped(recordID: Int) {
+        feedLikeWithAPI(recordID: recordID)
     }
 }
