@@ -62,10 +62,10 @@ class FeedCVC: UICollectionViewCell {
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
         heartCountLabel.text = "\(likeCount)"
-        feedImageView.image = UIImage(named: "\(certifyingImg)")
+        feedImageView.updateImage(certifyingImg)
         
         if let profile = profileImg {
-            profileImageView.image = UIImage(named: "\(profile)")
+            profileImageView.updateImage(profile)
         } else {
             profileImageView.image = UIImage(named: "profileEmpty")
         }
@@ -86,6 +86,7 @@ class FeedCVC: UICollectionViewCell {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
+        profileImageView.layer.masksToBounds = true
         
         sparkLabel.text = "받은 스파크"
         
