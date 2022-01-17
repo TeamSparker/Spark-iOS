@@ -15,7 +15,7 @@ class CompleteAuthVC: UIViewController {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
         animationView.frame = animationFrameView.bounds
         animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .repeat(100)
+        animationView.loopMode = .loop
         return animationView
     }()
     
@@ -33,7 +33,6 @@ class CompleteAuthVC: UIViewController {
         setUI()
         setGesture()
         setAnimation()
-        view.bringSubviewToFront(handImageVIew)
     }
 
     // MARK: IBActions
