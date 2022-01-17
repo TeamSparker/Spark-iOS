@@ -12,10 +12,10 @@ class CompleteAuthVC: UIViewController {
 
     // MARK: Properties
     lazy var confettiView: AnimationView = {
-        let animationView = AnimationView(name: "illust_confetti")
+        let animationView = AnimationView(name: Const.Lottie.Name.confetti)
         animationView.frame = animationFrameView.bounds
         animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .repeat(100)
+        animationView.loopMode = .loop
         return animationView
     }()
     
@@ -33,8 +33,6 @@ class CompleteAuthVC: UIViewController {
         setUI()
         setGesture()
         setAnimation()
-        view.bringSubviewToFront(handImageVIew)
-        
         getCodeWaitingWithAPI()
         getMyRoomWithAPI()
         getMyRoomCertiWithAPI()

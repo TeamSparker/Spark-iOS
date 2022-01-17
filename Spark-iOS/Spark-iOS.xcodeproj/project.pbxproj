@@ -66,6 +66,7 @@
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
 		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
+		EBEA383927953BC700B5736A /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA383827953BC700B5736A /* Lottie.swift */; };
 		EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382C27947C9100B5736A /* MyRoomAPI.swift */; };
 		EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382E27947C9E00B5736A /* MyRoomService.swift */; };
 		EBEA3831279480A700B5736A /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA3830279480A700B5736A /* MyRoom.swift */; };
@@ -175,6 +176,7 @@
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
+		EBEA383827953BC700B5736A /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		EBEA382C27947C9100B5736A /* MyRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomAPI.swift; sourceTree = "<group>"; };
 		EBEA382E27947C9E00B5736A /* MyRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomService.swift; sourceTree = "<group>"; };
 		EBEA3830279480A700B5736A /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			children = (
 				F8096F2827841F1E00B71D38 /* Const.swift */,
 				F8096F2A27841F4100B71D38 /* Storyboard.swift */,
+				EBEA383827953BC700B5736A /* Lottie.swift */,
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
 				F8096F432784221900B71D38 /* Xib.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
@@ -1010,6 +1013,7 @@
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
+				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,

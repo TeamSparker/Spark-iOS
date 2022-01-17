@@ -13,10 +13,10 @@ class JoinCheckVC: UIViewController {
     // MARK: - Properties
     
     lazy var ticketView: AnimationView = {
-        let animationView = AnimationView(name: "ticket_welcome")
+        let animationView = AnimationView(name: Const.Lottie.Name.ticket_welcome)
         animationView.frame = animationFrameView.bounds
         animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .repeat(100)
+        animationView.loopMode = .loop
         return animationView
     }()
     
