@@ -62,8 +62,8 @@ extension HomeVC {
         navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
                                                             tintColor: .sparkBlack,
                                                             backgroundColor: .sparkWhite,
-                                                            firstButtonClosure: #selector(presentToProfileVC),
-                                                            secondButtonClosure: #selector(presentToAertVC))
+                                                            firstButtonSelector: #selector(presentToProfileVC),
+                                                            secondButtonSelector: #selector(presentToAertVC))
         
         // set collectionView
         mainCollectionView.backgroundColor = .clear
