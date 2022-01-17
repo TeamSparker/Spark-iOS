@@ -9,32 +9,6 @@ import UIKit
 
 class FeedVC: UIViewController {
     
-    // MARK: - Dummy Data
-    
-//    var dummyDataList: Array = [
-//        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북1", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방1"],
-//        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북2", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방2"],
-//        ["date": "2021-01-07", "day": "월요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방3"],
-//        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방4"],
-//        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북4", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방5"],
-//        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방6"],
-//        ["date": "2021-01-06", "day": "일요일", "userId": "1", "recordId": "1", "nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-//        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방8"],
-//        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방9"]
-//    ]
-//
-//    var newDummyDataList: Array = [
-//        ["date": "2021-01-05", "day": "토요일", "userId": "1", "recordId": "1", "nickname": "그램", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
-//        ["date": "2021-01-04", "day": "금요일", "userId": "1", "recordId": "1", "nickname": "맥북2", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
-//        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
-//        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북3", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방0"],
-//        ["date": "2021-01-03", "day": "목요일", "userId": "1", "recordId": "1", "nickname": "맥북4", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-//        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북5", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-//        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북6", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방7"],
-//        ["date": "2021-01-02", "day": "수요일", "userId": "1", "recordId": "1", "nickname": "맥북7", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"],
-//        ["date": "2021-01-01", "day": "화요일", "userId": "1", "recordId": "1", "nickname": "맥북8", "profileImage": "~~", "certifyingImg": "~~~", "sparkCount": 3, "isDone": true, "totalFeedNum ": 20, "like": false, "roomName": "방10"]
-//    ]
-    
     // MARK: - Properties
     
     let collectionViewFlowlayout = UICollectionViewFlowLayout()
@@ -49,7 +23,7 @@ class FeedVC: UIViewController {
     private var fifthList: [Any] = []
     private var sixthList: [Any] = []
     private var seventhList: [Any] = []
-    private var page = 0
+    
     private var feedList: [Record] = []
     private var feedLastID: Int = -1
     private var feedCountSize: Int = 3
@@ -121,7 +95,6 @@ class FeedVC: UIViewController {
         while sectionCount < dateList.count {
             var indexinsection = 0
             while indexinsection < datalist.count && !datalist.isEmpty && sectionCount != dateList.count {
-
                 if dateList[sectionCount] == datalist[indexinsection].date {
                     switch sectionCount {
                     case 0:
@@ -186,7 +159,6 @@ extension FeedVC {
     }
 }
 
-
 // MARK: - UICollectionViewDelegate
 
 extension FeedVC: UICollectionViewDelegate {
@@ -212,7 +184,6 @@ extension FeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var itemCount = 0
         var indexPath = 0
-        
         while indexPath < feedList.count {
             if dateList[section] == feedList[indexPath].date {
                 itemCount += 1
