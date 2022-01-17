@@ -58,7 +58,14 @@ class WaitingVC: UIViewController {
     }
     
     func setUI() {
-//        navigationController?.initWithTitle(title: "\(String(describing: dummydata["roomName"]!))", tintColor: .sparkBlack, backgroundColor: .white)
+        navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                            title: "30분 독서",
+                                                            tintColor: .sparkBlack,
+                                                            backgroundColor: .sparkWhite,
+                                                            reftButtonImage: UIImage(named: "icHome"),
+                                                            rightButtonImage: UIImage(),
+                                                            reftButtonSelector: #selector(goToHomeVC),
+                                                            rightButtonSelector: #selector(touchToMore))
         
         profileImageView.backgroundColor = .sparkLightGray
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
@@ -186,8 +193,6 @@ extension WaitingVC {
             case .success(let data):
                 if let waitingRoom = data as? Waiting {
                     var user: ReqUser
-                    
-                    self.navigationController?.initWithTitle(title: "\(waitingRoom.roomName)", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
                     
                     user = waitingRoom.reqUser
                     self.members.append(contentsOf: waitingRoom.members)

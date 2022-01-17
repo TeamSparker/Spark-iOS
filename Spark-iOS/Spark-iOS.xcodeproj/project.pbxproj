@@ -114,6 +114,7 @@
 		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
+		F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B627955ABA009A5296 /* SparkFlake.swift */; };
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
 		F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C14A992795094800498687 /* HomeEmptyCVC.swift */; };
 		F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */; };
@@ -236,6 +237,7 @@
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		F8C14A992795094800498687 /* HomeEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCVC.swift; sourceTree = "<group>"; };
 		F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeEmptyCVC.xib; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
 				EB9C507C27922F2E00588155 /* LineAnimationView.swift */,
 				2BE5D80D2793203C007A544D /* Stopwatch.swift */,
+				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
+				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,

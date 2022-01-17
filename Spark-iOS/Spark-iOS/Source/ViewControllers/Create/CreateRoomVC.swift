@@ -41,6 +41,12 @@ class CreateRoomVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
+        navigationController?.initWithLeftButtonTitle(title: "",
+                                                      tintColor: .sparkBlack,
+                                                      backgroundColor: .white,
+                                                      image: UIImage(named: "icQuit"),
+                                                      selector: #selector(touchCloseButton))
+        
         closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
         titleLabel.text = "어떤 습관방을 만들건가요?"

@@ -40,7 +40,9 @@ class CreateAuthVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        navigationController?.initWithTitle(title: "", tintColor: .sparkBlack, backgroundColor: .sparkWhite)
+        navigationController?.initWithBackButtonTitle(title: "",
+                                                      tintColor: .sparkBlack,
+                                                      backgroundColor: .sparkWhite)
         
         titleLabel.text = "어떻게 습관을 인증할까요?"
         titleLabel.font = .h2Title
@@ -116,7 +118,7 @@ class CreateAuthVC: UIViewController {
     }
     
     @objc
-    func touchEnterButton() {
+    private func touchEnterButton() {
         guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
         
         let nextVC = UINavigationController(rootViewController: rootVC)
@@ -129,12 +131,17 @@ class CreateAuthVC: UIViewController {
     }
     
     @objc
-    func tapped(_ gesture: UITapGestureRecognizer) {
+    private func tapped(_ gesture: UITapGestureRecognizer) {
         if photoOnly {
             photoOnly = false
         } else {
             photoOnly = true
         }
         setAuthViewState()
+    }
+    
+    @objc
+    private func popToCreateRoomVC() {
+        navigationController?.popViewController(animated: true)
     }
 }
