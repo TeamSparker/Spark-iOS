@@ -9,6 +9,8 @@ import UIKit
 
 import SnapKit
 
+/// 해당 셀의 아이디값을 뷰컨으로 보내서 뷰컨에서 작업
+
 class FeedCVC: UICollectionViewCell {
     static let identifier = "FeedCVC"
     
@@ -31,6 +33,9 @@ class FeedCVC: UICollectionViewCell {
     
     let likeButton = UIButton()
     let likeCountLabel = UILabel()
+    var likeState: Bool = false
+    var likeDelegate: FeedCellDelegate?
+    var index: Int = 0
     
     // MARK: - View Life Cycles
     
@@ -39,6 +44,7 @@ class FeedCVC: UICollectionViewCell {
         setUI()
         setStackView()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -76,14 +82,42 @@ class FeedCVC: UICollectionViewCell {
         }
         
         if isLiked {
+            likeState = true
             likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
             likeCountLabel.textColor = .sparkDarkPinkred
         } else {
+            likeState = false
             likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
             likeCountLabel.textColor = .sparkGray
         }
     }
     
+    private func setAddTarget() {
+        likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func tapLikeButton() {
+        let originLike = Int(likeCountLabel.text ?? "") ?? 0
+        if !likeState {
+            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            likeCountLabel.textColor = .sparkDarkPinkred
+            likeCountLabel.text = "\(originLike + 1)"
+            likeState = true
+        } else {
+            if originLike > 0 {
+                likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+                likeCountLabel.textColor = .sparkGray
+                likeCountLabel.text = "\(originLike - 1)"
+                likeState = false
+            }
+        }
+        self.likeDelegate?.likeButtonTapped(recordID: index)
+    }
+}
+
+// MARK: - UI
+extension FeedCVC {
     private func setUI() {
         self.backgroundColor = .white
         
@@ -131,7 +165,11 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
-    
+}
+
+
+// MARK: - Layout
+extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,

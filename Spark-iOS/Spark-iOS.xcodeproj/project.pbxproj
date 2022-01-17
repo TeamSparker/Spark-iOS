@@ -29,6 +29,7 @@
 		2BBED13327956D170052CA5C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13227956D170052CA5C /* FeedService.swift */; };
 		2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13427956EAB0052CA5C /* FeedAPI.swift */; };
 		2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */; };
+		2BBED1392795F4500052CA5C /* FeedCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
@@ -141,6 +142,7 @@
 		2BBED13227956D170052CA5C /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		2BBED13427956EAB0052CA5C /* FeedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAPI.swift; sourceTree = "<group>"; };
 		2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmptyCVC.swift; sourceTree = "<group>"; };
+		2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellDelegate.swift; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
@@ -678,6 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				F8096F35278420FA00B71D38 /* TempProtocol.swift */,
+				2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
+				2BBED1392795F4500052CA5C /* FeedCellDelegate.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
