@@ -14,11 +14,9 @@ class HomeVC: UIViewController {
 
     // MARK: - Properties
     
-    private var habitRoomList = [String]()
-    private var isWating = false
-    
-    private let floatingButton = JJFloatingActionButton()
-    private let tapGestrueRecognizer = UITapGestureRecognizer()
+    private var habitRoomList: [Room]? = []
+    private var lastID: Int = -1
+    private var isInfiniteScroll: Bool = false
     
     // MARK: - @IBOutlet Properties
     
@@ -38,6 +36,19 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+        
+        // TODO: - 로딩창붙이기 위한 dispatch queue
+        
+        DispatchQueue.main.async {
+            self.lastID = -1
+            self.habitRoomList?.removeAll()
+        }
+
+        DispatchQueue.main.async {
+            self.habitRoomFetchWithAPI(lastID: self.lastID) {
+                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
+        }
     }
 }
 
@@ -96,29 +107,37 @@ extension HomeVC: UICollectionViewDelegate {
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return habitRoomList.count
-        return 5
+        guard let habitRoomList = habitRoomList else { return 0 }
+        let count = habitRoomList.count
+        return count == 0 ? 1 : count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if isWating {
-            guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
-            
-            // TODO: - initCell()
-            
-            waitingCVC.initCell()
-            
-            return waitingCVC
-        } else {
-            guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
-            
-            // TODO: - initCell()
-            
-            habitCVC.initCell()
-            
-            return habitCVC
+        guard let habitRoomList = habitRoomList else { return UICollectionViewCell() }
+//        if habitRoomList.count != 0 {
+            if false {
+                guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
+                
+                // TODO: - initCell()
+                
+                waitingCVC.initCell()
+                
+                return waitingCVC
+            } else {
+                guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
+                
+                // TODO: - initCell()
+                
+                habitCVC.initCell()
+                
+                return habitCVC
+            }
         }
-    }
+//    else {
+            // empty view.
+            // TODO: - 엠티뷰
+//            return UICollectionViewCell()
+//        }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -126,7 +145,7 @@ extension HomeVC: UICollectionViewDataSource {
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.frame.width
-        if isWating {
+        if false {
             let waitingCellHeight = cellWidth * (98/335)
             return CGSize(width: cellWidth, height: waitingCellHeight)
         } else {
@@ -145,5 +164,33 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 20, bottom: 0, right: 20)
+    }
+}
+
+// MARK: - Network
+
+extension HomeVC {
+    private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) {
+        HomeAPI.shared.habitRoomFetch(lastID: lastID, size: 6) { response in
+            switch response {
+            case .success(let data):
+                if let habitRooms = data as? HabitRoom {
+                    self.habitRoomList?.append(contentsOf: habitRooms.rooms)
+                    self.mainCollectionView.reloadData()
+                }
+                
+                // 성공적으로 한번의 통신이 마무리된 후 무한스크롤 허용. 즉, 연속적으로 통신을 요청하지 않게 하기 위함.
+                completion()
+            case .requestErr(let message):
+                print("habitRoomFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("habitRoomFetchWithAPI - pathErr")
+            case .serverErr:
+                print("habitRoomFetchWithAPI - serverErr")
+            case .networkFail:
+                print("habitRoomFetchWithAPI - networkFail")
+            }
+            
+        }
     }
 }
