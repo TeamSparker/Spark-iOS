@@ -82,6 +82,7 @@ extension HomeVC {
     private func registerXib() {
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeHabitCVC)
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeWaitingCVC)
+        mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeEmptyCVC)
     }
     
     // TODO: - 화면전환
@@ -135,8 +136,9 @@ extension HomeVC: UICollectionViewDataSource {
     }
     else {
             // empty view.
-            // TODO: - 엠티뷰
-            return UICollectionViewCell()
+        guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
+        
+            return emptyCVC
         }
     }
 }
