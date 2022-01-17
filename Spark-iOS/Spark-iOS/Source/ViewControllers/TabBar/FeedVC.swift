@@ -221,7 +221,7 @@ extension FeedVC: UICollectionViewDataSource {
                 alist = firstList[indexPath.item]
             }
             
-            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true)
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked)
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }

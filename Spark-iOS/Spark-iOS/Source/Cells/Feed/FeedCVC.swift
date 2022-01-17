@@ -29,9 +29,8 @@ class FeedCVC: UICollectionViewCell {
     let sparkIconImageView = UIImageView()
     let sparkCountLabel = UILabel()
     
-    // FIXME: - button으로 변경
-    let heartImageView = UIImageView()
-    let heartCountLabel = UILabel()
+    let likeButton = UIButton()
+    let likeCountLabel = UILabel()
     
     // MARK: - View Life Cycles
     
@@ -50,18 +49,18 @@ class FeedCVC: UICollectionViewCell {
         titleLabel.text = ""
         nameLabel.text = ""
         sparkCountLabel.text = ""
-        heartCountLabel.text = ""
+        likeCountLabel.text = ""
         timeLabel.text = ""
         feedImageView.image = UIImage()
         profileImageView.image = UIImage()
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
-        heartCountLabel.text = "\(likeCount)"
+        likeCountLabel.text = "\(likeCount)"
         feedImageView.updateImage(certifyingImg)
         
         if let profile = profileImg {
@@ -74,6 +73,14 @@ class FeedCVC: UICollectionViewCell {
             timeLabel.text = "\(time)"
         } else {
             timeLabel.text = ""
+        }
+        
+        if isLiked {
+            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            likeCountLabel.textColor = .sparkDarkPinkred
+        } else {
+            likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+            likeCountLabel.textColor = .sparkGray
         }
     }
     
@@ -94,18 +101,18 @@ class FeedCVC: UICollectionViewCell {
         nameLabel.font = .p1Title
         titleLabel.font = .krBoldFont(ofSize: 20)
         sparkCountLabel.font = .p2SubtitleEng
-        heartCountLabel.font = .h2TitleEng
+        likeCountLabel.font = .h2TitleEng
         
         timeLabel.textColor = .sparkWhite
         nameLabel.textColor = .sparkDeepGray
         titleLabel.textColor = .sparkDeepGray
         sparkLabel.textColor = .sparkDarkGray
         sparkCountLabel.textColor = .sparkDarkGray
-        heartCountLabel.textColor = .sparkGray
+        likeCountLabel.textColor = .sparkGray
         
         doneImageView.image = UIImage(named: "tagDone")
         sparkIconImageView.image = UIImage(named: "icFire")
-        heartImageView.image = UIImage(named: "icHeartInactive")
+        likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
     }
     
     private func setStackView() {
@@ -128,7 +135,7 @@ class FeedCVC: UICollectionViewCell {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, heartImageView, heartCountLabel])
+                          sparkStackView, likeButton, likeCountLabel])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -168,14 +175,14 @@ class FeedCVC: UICollectionViewCell {
             make.width.height.equalTo(16)
         }
         
-        heartImageView.snp.makeConstraints { make in
+        likeButton.snp.makeConstraints { make in
             make.top.equalTo(feedImageView.snp.bottom).offset(20)
             make.trailing.equalToSuperview().inset(50)
         }
         
-        heartCountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(heartImageView.snp.trailing).offset(5)
-            make.centerY.equalTo(heartImageView.snp.centerY)
+        likeCountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(likeButton.snp.trailing).offset(5)
+            make.centerY.equalTo(likeButton.snp.centerY)
         }
     }
 }
