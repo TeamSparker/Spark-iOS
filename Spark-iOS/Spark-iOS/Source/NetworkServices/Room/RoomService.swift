@@ -59,21 +59,21 @@ extension RoomService: TargetType {
         case .waitingMemberFetch:
             return .requestPlain
         case .enterRoom(let roomID):
-            return .requestParameters(parameters:["roomId": roomID], encoding: JSONEncoding.default)
-        case .authUpload(let roomID, let timer, let image):
+            return .requestParameters(parameters: ["roomId": roomID], encoding: JSONEncoding.default)
+        case .authUpload(_, let timer, let image):
             var multiPartData: [Moya.MultipartFormData] = []
             
             let timerData = timer.data(using: .utf8) ?? Data()
-            multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timer"))
+            multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timerRecord"))
             
-            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 1) ?? Data()), name: "image", fileName: "image", mimeType: "image/jpeg")
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .waitingFetch:
             return Const.Header.authrizationHeader
@@ -82,6 +82,8 @@ extension RoomService: TargetType {
         case .enterRoom:
             return Const.Header.authrizationHeader
         case .waitingMemberFetch:
+            return Const.Header.authrizationHeader
+        case .authUpload:
             return Const.Header.authrizationHeader
         }
     }

@@ -318,10 +318,10 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: 27, timer: "15:20:30", image: UIImage.strokedCheckmark) {  response in
+        RoomAPI.shared.authUpload(roomID: 31, timer: "15:20:30", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
-                if let authUpload = data as? EnterRoom {
+                if let authUpload = data as? AuthUpload {
                     print(authUpload)
                     
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}

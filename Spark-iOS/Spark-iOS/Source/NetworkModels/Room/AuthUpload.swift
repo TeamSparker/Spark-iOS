@@ -9,14 +9,6 @@ import Foundation
 
 // MARK: - AuthUpload
 struct AuthUpload: Codable {
-    let status: Int
-    let success: Bool
-    let message: String
-    let data: AuthUploadData?
-}
-
-// MARK: - DataClass
-struct AuthUploadData: Codable {
     let userID: Int
     let nickname: String
     let profileImg: String?
