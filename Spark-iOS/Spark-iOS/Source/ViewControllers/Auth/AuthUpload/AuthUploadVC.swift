@@ -217,12 +217,7 @@ extension AuthUploadVC {
     // 업로드
     @objc
     func touchUploadButton() {
-        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
-        
-        popupVC.modalTransitionStyle = .crossDissolve
-        popupVC.modalPresentationStyle = .overFullScreen
-        
-        present(popupVC, animated: true, completion: nil)
+        authUploadWithAPI()
     }
 }
 
@@ -315,6 +310,37 @@ extension AuthUploadVC {
         
         timerLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(uploadImageView)
+        }
+    }
+}
+
+// MARK: Network
+
+extension AuthUploadVC {
+    func authUploadWithAPI() {
+        RoomAPI.shared.authUpload(roomID: 27, timer: "15:20:30", image: UIImage.strokedCheckmark) {  response in
+            switch response {
+            case .success(let data):
+                if let authUpload = data as? EnterRoom {
+                    print(authUpload)
+                    
+                    guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
+                    
+                    popupVC.modalTransitionStyle = .crossDissolve
+                    popupVC.modalPresentationStyle = .overFullScreen
+                    
+                    self.present(popupVC, animated: true, completion: nil)
+                }
+            case .requestErr(let message):
+                print(message)
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
 }

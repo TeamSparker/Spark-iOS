@@ -14,6 +14,7 @@ enum RoomService {
     case waitingMemberFetch(roomID: Int)
     case codeJoinCheckFetch(code: String)
     case enterRoom(roomID: Int)
+    case authUpload(roomID: Int, timer: String, image: UIImage)
 }
 
 extension RoomService: TargetType {
@@ -31,6 +32,8 @@ extension RoomService: TargetType {
             return "/room/code/\(code)"
         case .enterRoom(let roomID):
             return "/room/\(roomID)/enter"
+        case .authUpload(let roomID, _, _):
+            return "/room/\(roomID)/record"
         }
     }
     
@@ -40,7 +43,7 @@ extension RoomService: TargetType {
             return .get
         case .waitingMemberFetch:
             return .get
-        case .enterRoom:
+        case .enterRoom, .authUpload:
             return .post
         }
     }
@@ -53,12 +56,22 @@ extension RoomService: TargetType {
             return .requestPlain
         case .enterRoom(let roomID):
             return .requestParameters(parameters:["roomId": roomID], encoding: JSONEncoding.default)
+        case .authUpload(let roomID, let timer, let image):
+            var multiPartData: [Moya.MultipartFormData] = []
+            
+            let timerData = timer.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timer"))
+            
+            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
+            multiPartData.append(imageData)
+            
+            return .uploadMultipart(multiPartData)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .waitingFetch, .codeJoinCheckFetch, .enterRoom:
+        case .waitingFetch, .codeJoinCheckFetch, .enterRoom, .authUpload:
             return Const.Header.authrizationHeader
         case .waitingMemberFetch:
             return Const.Header.authrizationHeader
