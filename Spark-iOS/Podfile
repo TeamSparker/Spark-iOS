@@ -17,4 +17,5 @@ target 'Spark-iOS' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'lottie-ios'
+  pod 'Kingfisher', '~> 7.0'
 end
