@@ -126,8 +126,9 @@ extension HomeVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if habitRoomList?.count ?? 0 != 0 {
-            if habitRoomList?[indexPath.item].isStarted == false {
+        guard let habitRoomList = habitRoomList else { return UICollectionViewCell()}
+        if habitRoomList.count != 0 {
+            if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
                 // TODO: - initCell()
@@ -140,7 +141,13 @@ extension HomeVC: UICollectionViewDataSource {
                 
                 // TODO: - initCell()
                 
-                habitCVC.initCell()
+                habitCVC.initCell(roomName: habitRoomList[indexPath.item].roomName,
+                                  leftDay: habitRoomList[indexPath.item].leftDay ?? 0,
+                                  profileImg: habitRoomList[indexPath.item].profileImg,
+                                  life: habitRoomList[indexPath.item].life ?? 0,
+                                  isDone: habitRoomList[indexPath.item].isDone,
+                                  memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
+                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0)
                 
                 return habitCVC
             }
@@ -159,7 +166,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let habitRoomList = habitRoomList else { return .zero }
         
-        let cellWidth = collectionView.frame.width
+        let cellWidth = collectionView.frame.width - 40
         let collectionViewHeight = collectionView.frame.height
         
         if habitRoomList.count != 0 {

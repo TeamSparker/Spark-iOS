@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "filename" : "property1BgHabitroomSparkflake3.png",
+      "scale" : "1x",
       "idiom" : "universal"
     },
     {
-      "filename" : "property1BgHabitroomSparkflake3@2x.png",
       "idiom" : "universal",
+      "filename" : "property1BgHabitroomSparkflake3@2x.png",
       "scale" : "2x"
     },
     {
