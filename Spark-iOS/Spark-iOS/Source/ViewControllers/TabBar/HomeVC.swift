@@ -15,8 +15,10 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     
     private var habitRoomList: [Room]? = []
-    private var lastID: Int = -1
-    private var isInfiniteScroll: Bool = false
+    private var habitRoomLastID: Int = -1
+    // FIXME: - 현재 size 임의 설정
+    private var habitRoomCountSize: Int = 6
+    private var isInfiniteScroll: Bool = true
     
     // MARK: - @IBOutlet Properties
     
@@ -40,12 +42,12 @@ class HomeVC: UIViewController {
         // TODO: - 로딩창붙이기 위한 dispatch queue
         
         DispatchQueue.main.async {
-            self.lastID = -1
+            self.habitRoomLastID = -1
             self.habitRoomList?.removeAll()
         }
 
         DispatchQueue.main.async {
-            self.habitRoomFetchWithAPI(lastID: self.lastID) {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             }
         }
@@ -101,22 +103,31 @@ extension HomeVC {
 // MARK: - UICollectionViewDelegate
 
 extension HomeVC: UICollectionViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                
+                habitRoomLastID = habitRoomList?.last?.roomID ?? 0
+                habitRoomFetchWithAPI(lastID: habitRoomLastID) {
+                    self.isInfiniteScroll = true
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let habitRoomList = habitRoomList else { return 0 }
-        let count = habitRoomList.count
+        let count = habitRoomList?.count ?? 0
         return count == 0 ? 1 : count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let habitRoomList = habitRoomList else { return UICollectionViewCell() }
-        if habitRoomList.count != 0 {
-            if habitRoomList[indexPath.item].isStarted == false {
+        if habitRoomList?.count ?? 0 != 0 {
+            if habitRoomList?[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
                 // TODO: - initCell()
@@ -133,8 +144,7 @@ extension HomeVC: UICollectionViewDataSource {
                 
                 return habitCVC
             }
-    }
-    else {
+    } else {
             // empty view.
         guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
         
@@ -182,7 +192,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 
 extension HomeVC {
     private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) {
-        HomeAPI.shared.habitRoomFetch(lastID: lastID, size: 6) { response in
+        HomeAPI.shared.habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
             switch response {
             case .success(let data):
                 if let habitRooms = data as? HabitRoom {
