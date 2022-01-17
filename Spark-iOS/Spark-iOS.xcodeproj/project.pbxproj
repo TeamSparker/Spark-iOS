@@ -64,15 +64,16 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
+		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
 		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
-		EBEA383927953BC700B5736A /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA383827953BC700B5736A /* Lottie.swift */; };
 		EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382C27947C9100B5736A /* MyRoomAPI.swift */; };
 		EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382E27947C9E00B5736A /* MyRoomService.swift */; };
 		EBEA3831279480A700B5736A /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA3830279480A700B5736A /* MyRoom.swift */; };
 		EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA383427948C2D00B5736A /* ticket_welcome.json */; };
 		EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA38362794B34300B5736A /* CodeJoinCheck.swift */; };
+		EBEA383927953BC700B5736A /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA383827953BC700B5736A /* Lottie.swift */; };
 		F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F032784107D00B71D38 /* AppDelegate.swift */; };
 		F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F052784107D00B71D38 /* SceneDelegate.swift */; };
 		F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8096F092784107D00B71D38 /* Home.storyboard */; };
@@ -109,6 +110,7 @@
 		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
+		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
 		F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C14A992795094800498687 /* HomeEmptyCVC.swift */; };
 		F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
@@ -177,15 +179,16 @@
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
+		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
-		EBEA383827953BC700B5736A /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		EBEA382C27947C9100B5736A /* MyRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomAPI.swift; sourceTree = "<group>"; };
 		EBEA382E27947C9E00B5736A /* MyRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomService.swift; sourceTree = "<group>"; };
 		EBEA3830279480A700B5736A /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
 		EBEA383427948C2D00B5736A /* ticket_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticket_welcome.json; sourceTree = "<group>"; };
 		EBEA38362794B34300B5736A /* CodeJoinCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinCheck.swift; sourceTree = "<group>"; };
+		EBEA383827953BC700B5736A /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F8096F002784107D00B71D38 /* Spark-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spark-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8096F032784107D00B71D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8096F052784107D00B71D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		F8C14A992795094800498687 /* HomeEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCVC.swift; sourceTree = "<group>"; };
 		F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeEmptyCVC.xib; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
@@ -526,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				EBEA3830279480A700B5736A /* MyRoom.swift */,
+				EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */,
 			);
 			path = MyRoom;
 			sourceTree = "<group>";
@@ -712,6 +717,7 @@
 				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
 				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
+				F86C68B827958AA9009A5296 /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1018,6 +1024,7 @@
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
+				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
@@ -1045,6 +1052,7 @@
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
+				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
