@@ -396,6 +396,7 @@
 				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
 				EB9C507C27922F2E00588155 /* LineAnimationView.swift */,
 				2BE5D80D2793203C007A544D /* Stopwatch.swift */,
+				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -658,7 +659,6 @@
 				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
 				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
-				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

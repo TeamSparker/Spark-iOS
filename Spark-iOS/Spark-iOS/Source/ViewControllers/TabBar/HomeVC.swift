@@ -133,13 +133,11 @@ extension HomeVC: UICollectionViewDataSource {
                 
                 // TODO: - initCell()
                 
-                waitingCVC.initCell()
+                waitingCVC.initCell(roomName: habitRoomList[indexPath.item].roomName)
                 
                 return waitingCVC
             } else {
                 guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
-                
-                // TODO: - initCell()
                 
                 habitCVC.initCell(roomName: habitRoomList[indexPath.item].roomName,
                                   leftDay: habitRoomList[indexPath.item].leftDay ?? 0,
@@ -191,7 +189,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 20, bottom: 0, right: 20)
+        return UIEdgeInsets(top: 16, left: 20, bottom: 16, right: 20)
     }
 }
 

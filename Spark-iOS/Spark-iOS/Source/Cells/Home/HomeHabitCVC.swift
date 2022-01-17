@@ -76,21 +76,10 @@ extension HomeHabitCVC {
         habitTitleLabel.textColor = .sparkDeepGray
         habitTitleLabel.numberOfLines = 2
         habitTitleLabel.lineBreakMode = .byTruncatingTail
-        
+    
         tagDoneImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
-    }
-    
-    private func setFlake(day: Int) {
-        // TODO: - D-day 에 따라서 분기 처리(결정배경, 멘트 텍스트&색, 디데이텍스트색)
-        //        ddayTitleLabel.textColor
-//        ddaySubtitleLabel.text
-//        ddaySubtitleLabel.textColor
-//        flakeImage.image
-//        let attributedString = NSMutableAttributedString(string: "\(doneMemberNum)/\(memberNum)명")
-//        attributedString.addAttribute(.foregroundColor, value: UIColor.sparkMostLightPinkred, range: NSRange(location: 0, length: "\(doneMemberNum)".count))
-//        memberLabel.attributedText = attributedString
     }
     
     func initCell(roomName: String,
@@ -100,7 +89,11 @@ extension HomeHabitCVC {
                   isDone: Bool,
                   memberNum: Int,
                   doneMemberNum: Int) {
-        ddayTitleLabel.text = "\(leftDay)"
+        if leftDay == 0 {
+            ddayTitleLabel.text = "D-day"
+        } else {
+            ddayTitleLabel.text = "D-\(leftDay)"
+        }
         
         // TODO: - 프로필 이미지 구현
         if profileImg.count > 3 {
@@ -118,8 +111,23 @@ extension HomeHabitCVC {
         
         if isDone {
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
+            tagDoneImage.isHidden = false
         } else {
             ticketImage.image = UIImage(named: "property1TicketRight4")
+            tagDoneImage.isHidden = true
         }
+        
+        // spark flake
+        let sparkFlake: SparkFlake =  SparkFlake(leftDay: leftDay)
+
+        ddayTitleLabel.textColor = sparkFlake.sparkFlakeColor()
+        ddaySubtitleLabel.text = sparkFlake.sparkFlakeMent()
+        ddaySubtitleLabel.textColor = sparkFlake.sparkFlakeColor()
+        
+        flakeImage.image = sparkFlake.sparkFlakeTicketImage()
+        
+        let attributedString = NSMutableAttributedString(string: "\(doneMemberNum)/\(memberNum)명")
+        attributedString.addAttribute(.foregroundColor, value: sparkFlake.sparkFlakeColor(), range: NSRange(location: 0, length: "\(doneMemberNum)".count))
+        memberLabel.attributedText = attributedString
     }
 }
