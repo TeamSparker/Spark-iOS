@@ -78,6 +78,8 @@ class FeedCVC: UICollectionViewCell {
     }
     
     private func setUI() {
+        self.backgroundColor = .white
+        
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
         profileImageView.backgroundColor = .sparkGray
