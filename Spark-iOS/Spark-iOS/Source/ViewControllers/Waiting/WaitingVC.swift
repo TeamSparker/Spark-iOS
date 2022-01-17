@@ -70,6 +70,11 @@ class WaitingVC: UIViewController {
         editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
         refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
         
+        copyButton.isHighlighted = false
+        toolTipButton.isHighlighted = false
+        editButton.isHighlighted = false
+        refreshButton.isHighlighted = false
+        
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
@@ -129,6 +134,17 @@ class WaitingVC: UIViewController {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
+    func refreshButtonAnimtation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.1,
+                       options: .curveEaseInOut) {
+            let rotate = CGAffineTransform(rotationAngle: .pi)
+            self.refreshButton.transform = rotate
+        } completion: { _ in
+            self.refreshButton.transform = .identity
+        }
+    }
+    
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = roomCode
@@ -156,6 +172,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func touchToRefreshButton() {
+        refreshButtonAnimtation()
         getWaitingMembersWithAPI(roomID: 2)
     }
 }
