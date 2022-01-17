@@ -18,13 +18,13 @@ struct CodeWaiting: Codable {
 // MARK: - DataClass
 struct CodeWaitingData: Codable {
     let roomID: Int
-    let roomName, createrName: String
-    let createrImg: String?
+    let roomName, creatorName: String
+    let createrImg: String
     let profileImgs: [String]?
-    let totalNums: Int?
+    let totalNums: Int
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, createrName, createrImg, profileImgs, totalNums
+        case roomName, creatorName, createrImg, profileImgs, totalNums
     }
 }

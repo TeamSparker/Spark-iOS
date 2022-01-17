@@ -33,7 +33,7 @@ class CompleteAuthVC: UIViewController {
         setUI()
         setGesture()
         setAnimation()
-        getCodeWaitingWithAPI()
+
         getMyRoomWithAPI()
         getMyRoomCertiWithAPI()
     }
@@ -72,25 +72,6 @@ extension CompleteAuthVC {
 }
 
 extension CompleteAuthVC {
-    func getCodeWaitingWithAPI() {
-        RoomAPI.shared.codeJoinCheckFetch(code: "vtfasBO") {  response in
-            switch response {
-            case .success(let data):
-                if let codeWaiting = data as? CodeWaitingData {
-                    print(codeWaiting)
-                }
-            case .requestErr(let message):
-                print(message)
-                print("requestErr")
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
     
     func getMyRoomWithAPI() {
         MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in

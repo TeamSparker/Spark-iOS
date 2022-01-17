@@ -20,6 +20,10 @@ class JoinCheckVC: UIViewController {
         return animationView
     }()
     
+    var roomID: Int?
+    var creatorName: String?
+    var roomName: String?
+    
     // MARK: - @IBOutlet Properties
 
     @IBOutlet weak var reInputButton: UIButton!
@@ -37,7 +41,6 @@ class JoinCheckVC: UIViewController {
     }
     
     // MARK: - @IBAction Properties
-    // TODO: - 코드 다시 입력하기 기능 구현
     
     @IBAction func touchReinputCode(_ sender: Any) {
         self.dismiss(animated: true)
@@ -68,6 +71,9 @@ extension JoinCheckVC {
         enterButton.backgroundColor = .sparkDarkPinkred
         enterButton.titleLabel?.font = .btn1Default
         enterButton.layer.borderWidth = 0
+        
+        roomNameLabel.text = roomName
+        userInviteLabel.text = creatorName
     }
     
     private func setAnimation() {
