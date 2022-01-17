@@ -8,8 +8,7 @@
 import UIKit
 
 import SnapKit
-
-/// 해당 셀의 아이디값을 뷰컨으로 보내서 뷰컨에서 작업
+import Lottie
 
 class FeedCVC: UICollectionViewCell {
     static let identifier = "FeedCVC"
@@ -33,6 +32,7 @@ class FeedCVC: UICollectionViewCell {
     
     let likeButton = UIButton()
     let likeCountLabel = UILabel()
+    let lottieView = AnimationView(name: "ic_heart_active")
     var likeState: Bool = false
     var likeDelegate: FeedCellDelegate?
     var cellId: Int = 0
@@ -101,9 +101,14 @@ class FeedCVC: UICollectionViewCell {
     func tapLikeButton() {
         let originLike = Int(likeCountLabel.text ?? "") ?? 0
         if !likeState {
-            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
-            likeCountLabel.textColor = .sparkDarkPinkred
-            likeCountLabel.text = "\(originLike + 1)"
+            lottieView.isHidden = false
+            lottieView.play {_ in
+                self.lottieView.isHidden = true
+            }
+
+            self.likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            self.likeCountLabel.textColor = .sparkDarkPinkred
+            self.likeCountLabel.text = "\(originLike + 1)"
             likeState = true
         } else {
             if originLike > 0 {
@@ -148,6 +153,13 @@ extension FeedCVC {
         doneImageView.image = UIImage(named: "tagDone")
         sparkIconImageView.image = UIImage(named: "icFire")
         likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+        
+        lottieView.backgroundColor = .clear
+        lottieView.center = likeButton.center
+        lottieView.loopMode = .playOnce
+        lottieView.contentMode = .scaleAspectFit
+        lottieView.layer.masksToBounds = true
+        lottieView.isHidden = true
     }
     
     private func setStackView() {
@@ -174,7 +186,8 @@ extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, likeButton, likeCountLabel])
+                          sparkStackView, likeButton, likeCountLabel,
+                          lottieView])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -217,6 +230,11 @@ extension FeedCVC {
         likeButton.snp.makeConstraints { make in
             make.top.equalTo(feedImageView.snp.bottom).offset(20)
             make.trailing.equalToSuperview().inset(50)
+        }
+        
+        lottieView.snp.makeConstraints { make in
+            make.center.equalTo(likeButton.snp.center)
+            make.width.height.equalTo(40)
         }
         
         likeCountLabel.snp.makeConstraints { make in
