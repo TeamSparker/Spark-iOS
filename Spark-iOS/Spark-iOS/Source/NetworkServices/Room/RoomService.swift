@@ -11,6 +11,7 @@ import Moya
 
 enum RoomService {
     case waitingFetch(roomID: Int)
+    case waitingMemberFetch(roomID: Int)
 }
 
 extension RoomService: TargetType {
@@ -22,12 +23,16 @@ extension RoomService: TargetType {
         switch self {
         case .waitingFetch(let roomID):
             return "/room/\(roomID)/waiting"
+        case .waitingMemberFetch(let roomID):
+            return "/room/\(roomID)/waiting/member"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .waitingFetch:
+            return .get
+        case .waitingMemberFetch:
             return .get
         }
     }
@@ -36,12 +41,16 @@ extension RoomService: TargetType {
         switch self {
         case .waitingFetch:
             return .requestPlain
+        case .waitingMemberFetch:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
         case .waitingFetch:
+            return Const.Header.authrizationHeader
+        case .waitingMemberFetch:
             return Const.Header.authrizationHeader
         }
     }
