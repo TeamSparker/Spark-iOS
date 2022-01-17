@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-Gi-Xm5">
-                                <rect key="frame" x="124.33333333333334" y="112.00000000000001" width="126.33333333333334" height="46.666666666666671"/>
+                                <rect key="frame" x="123.00000000000001" y="112" width="129.33333333333337" height="58"/>
                                 <string key="text">잠깐!
 이 방이 맞나요?</string>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="20"/>
@@ -37,26 +37,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sparkflakePattern" translatesAutoresizingMaskIntoConstraints="NO" id="K9Q-Mh-9RA">
-                                <rect key="frame" x="20" y="178.66666666666663" width="335" height="290"/>
+                                <rect key="frame" x="20" y="190" width="335" height="290"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="K9Q-Mh-9RA" secondAttribute="height" multiplier="335:290" id="Xhy-bD-8US"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticketWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-20-0XK">
-                                <rect key="frame" x="114" y="250.66666666666663" width="147" height="104"/>
+                                <rect key="frame" x="114" y="262" width="147" height="104"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYL-iK-EZi">
-                                <rect key="frame" x="114" y="250.66666666666663" width="147" height="104"/>
+                                <rect key="frame" x="98.333333333333329" y="251.33333333333331" width="198.33333333333337" height="145.33333333333331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아침 독서" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-yz-8ft">
-                                <rect key="frame" x="142.66666666666666" y="488" width="90" height="28"/>
+                                <rect key="frame" x="140" y="505" width="95.333333333333314" height="35"/>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-NR-SRK">
-                                <rect key="frame" x="20" y="580.66666666666663" width="335" height="48"/>
+                                <rect key="frame" x="20" y="605" width="335" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KJJ-HB-Rs4"/>
                                 </constraints>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-oV-XpG">
-                                <rect key="frame" x="20" y="644.66666666666663" width="335" height="48"/>
+                                <rect key="frame" x="20" y="669" width="335" height="48"/>
                                 <color key="backgroundColor" name="sparkDarkPinkRed"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="HmT-gM-mxw"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="힛이님이 초대한 방" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgJ-xi-AEd">
-                                <rect key="frame" x="112.66666666666667" y="455.66666666666669" width="149.66666666666663" height="23.333333333333314"/>
+                                <rect key="frame" x="109.33333333333333" y="467" width="156.33333333333337" height="29"/>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="20"/>
                                 <color key="textColor" name="sparkDarkGray"/>
                                 <nil key="highlightedColor"/>
@@ -101,25 +101,25 @@
                             <constraint firstItem="CQc-20-0XK" firstAttribute="bottom" secondItem="K9Q-Mh-9RA" secondAttribute="bottom" constant="-114" id="Ae0-KE-RL2"/>
                             <constraint firstItem="BMl-yz-8ft" firstAttribute="top" secondItem="MgJ-xi-AEd" secondAttribute="bottom" constant="9" id="Bsi-xp-x00"/>
                             <constraint firstItem="MgJ-xi-AEd" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="DDv-0U-ItK"/>
-                            <constraint firstItem="hYL-iK-EZi" firstAttribute="height" secondItem="CQc-20-0XK" secondAttribute="height" id="FNK-UN-Bdn"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="height" secondItem="CQc-20-0XK" secondAttribute="height" multiplier="1.4" id="FNK-UN-Bdn"/>
                             <constraint firstItem="Vtz-oV-XpG" firstAttribute="top" secondItem="XBD-NR-SRK" secondAttribute="bottom" constant="16" id="G0R-kU-j0v"/>
                             <constraint firstItem="MgJ-xi-AEd" firstAttribute="top" secondItem="K9Q-Mh-9RA" secondAttribute="bottom" constant="-13" id="HKF-NB-wFR"/>
                             <constraint firstItem="PnJ-Gi-Xm5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="68" id="IiF-P0-HNJ"/>
                             <constraint firstItem="CQc-20-0XK" firstAttribute="top" secondItem="K9Q-Mh-9RA" secondAttribute="top" constant="72" id="J5T-KR-m1P"/>
-                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerY" secondItem="CQc-20-0XK" secondAttribute="centerY" id="JXc-PF-ThZ"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerY" secondItem="CQc-20-0XK" secondAttribute="centerY" constant="10" id="JXc-PF-ThZ"/>
                             <constraint firstItem="Vtz-oV-XpG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Kbr-2q-Lj0"/>
-                            <constraint firstItem="XBD-NR-SRK" firstAttribute="firstBaseline" secondItem="BMl-yz-8ft" secondAttribute="baseline" constant="100" id="RpH-XT-ODU"/>
-                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerX" secondItem="CQc-20-0XK" secondAttribute="centerX" id="VxB-NU-kbC"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerX" secondItem="CQc-20-0XK" secondAttribute="centerX" constant="10" id="VxB-NU-kbC"/>
                             <constraint firstItem="BMl-yz-8ft" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="WDd-qV-UT2"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vtz-oV-XpG" secondAttribute="trailing" constant="20" id="bcl-Bm-O1B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="20" id="d0W-c5-wHe"/>
                             <constraint firstItem="CQc-20-0XK" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="-94" id="dJO-Cn-btK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XBD-NR-SRK" secondAttribute="trailing" constant="20" id="dQI-A0-NPS"/>
+                            <constraint firstAttribute="bottom" secondItem="Vtz-oV-XpG" secondAttribute="bottom" constant="95" id="dnY-b3-wc4"/>
                             <constraint firstItem="Vtz-oV-XpG" firstAttribute="height" secondItem="XBD-NR-SRK" secondAttribute="height" id="pHd-ho-A9h"/>
                             <constraint firstItem="K9Q-Mh-9RA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="srl-Ec-oPD"/>
                             <constraint firstItem="PnJ-Gi-Xm5" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="vas-DF-QOF"/>
                             <constraint firstItem="CQc-20-0XK" firstAttribute="leading" secondItem="K9Q-Mh-9RA" secondAttribute="leading" constant="94" id="x8z-U9-A4s"/>
-                            <constraint firstItem="hYL-iK-EZi" firstAttribute="width" secondItem="CQc-20-0XK" secondAttribute="width" id="y8w-5D-d0J"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="width" secondItem="CQc-20-0XK" secondAttribute="width" multiplier="1.35" id="y8w-5D-d0J"/>
                         </constraints>
                     </view>
                     <connections>

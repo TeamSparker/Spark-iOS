@@ -84,6 +84,7 @@ extension CodeJoinVC {
         lineView.backgroundColor = .sparkGray
         okView.backgroundColor = .sparkGray
         okButton.isEnabled = false
+        errorLabel.isHidden = true
     }
     
     private func resetLayout() {
@@ -116,12 +117,7 @@ extension CodeJoinVC {
     }
 
     @objc func touchOkayButton() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
-        
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: false, completion: nil)
+        codeJoinCheckFetchWithAPI()
     }
 }
 
@@ -174,6 +170,39 @@ extension CodeJoinVC: UITextFieldDelegate {
             lineView.backgroundColor = .sparkPinkred
         } else {
             lineView.backgroundColor = .sparkGray
+        }
+    }
+}
+
+// MARK: Network
+
+extension CodeJoinVC {
+    func codeJoinCheckFetchWithAPI() {
+        RoomAPI.shared.codeJoinCheckFetch(code: textField.text ?? "") {  response in
+            switch response {
+            case .success(let data):
+                if let codeWaiting = data as? CodeWaiting {
+                    let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
+                    guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
+                    
+                    nextVC.creatorName = codeWaiting.creatorName
+                    nextVC.roomName = "\(codeWaiting.roomName)님이 초대한 방"
+                    nextVC.roomID = codeWaiting.roomID
+
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self.present(nextVC, animated: false, completion: nil)
+                }
+            case .requestErr(let message):
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = message as? String
+                print("getCodeWaitingWithAPI - requestErr")
+            case .pathErr:
+                print("getCodeWaitingWithAPI - pathErr")
+            case .serverErr:
+                print("getCodeWaitingWithAPI - serverErr")
+            case .networkFail:
+                print("getCodeWaitingWithAPI - networkFail")
+            }
         }
     }
 }

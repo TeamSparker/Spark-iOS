@@ -39,7 +39,7 @@
                                         <rect key="frame" x="21" y="52" width="293" height="254"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-yb-TR2">
-                                        <rect key="frame" x="105" y="375.66666666666663" width="125.33333333333331" height="34.333333333333314"/>
+                                        <rect key="frame" x="107.33333333333331" y="379.66666666666663" width="120.66666666666669" height="30.333333333333314"/>
                                         <color key="tintColor" name="sparkDarkGray"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -56,16 +56,16 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcm-Se-nlb">
-                                        <rect key="frame" x="64" y="311" width="207" height="47.666666666666686"/>
+                                        <rect key="frame" x="64" y="311" width="207" height="51.666666666666686"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="M8A-RE-7hu">
-                                                <rect key="frame" x="20.666666666666671" y="10.666666666666684" width="165.66666666666663" height="26.333333333333329"/>
+                                                <rect key="frame" x="24.666666666666671" y="14" width="157.66666666666663" height="24"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-Bv-HWW">
-                                                        <rect key="frame" x="0.0" y="1.3333333333333144" width="24" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인스타에 자랑하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ks5-Da-Afd">
-                                                        <rect key="frame" x="27.999999999999986" y="0.0" width="137.66666666666663" height="26.333333333333332"/>
+                                                        <rect key="frame" x="27.999999999999986" y="1.3333333333333712" width="129.66666666666663" height="21"/>
                                                         <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
                                                         <color key="textColor" name="sparkWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-TD-Inj">
-                                        <rect key="frame" x="117.33333333333334" y="400.66666666666663" width="100.33333333333334" height="1"/>
+                                        <rect key="frame" x="119.33333333333334" y="400.66666666666663" width="96.333333333333343" height="1"/>
                                         <color key="backgroundColor" name="sparkDarkGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="UTo-GP-sq1"/>
