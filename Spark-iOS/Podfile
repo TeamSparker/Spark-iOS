@@ -16,4 +16,5 @@ target 'Spark-iOS' do
   pod 'KakaoSDKAuth'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
+  pod 'lottie-ios'
 end
