@@ -18,16 +18,16 @@ class FeedCVC: UICollectionViewCell {
     let fadeImageView = UIImageView()
     let timeLabel = UILabel()
     let profileImageView = UIImageView()
-    let nameLabel = UILabel() /// 힛이
+    let nameLabel = UILabel()
     
-    let titleStackView = UIStackView() /// titleLabel, doneImageView
-    let titleLabel = UILabel() /// 아침 독서
-    let doneImageView = UIImageView() /// done
+    let titleStackView = UIStackView()
+    let titleLabel = UILabel()
+    let doneImageView = UIImageView()
     
-    let sparkStackView = UIStackView() /// 받은 스파크 + icon + 12
-    let sparkLabel = UILabel() /// 받은 스파크 개수
+    let sparkStackView = UIStackView()
+    let sparkLabel = UILabel()
     let sparkIconImageView = UIImageView()
-    let sparkCountLabel = UILabel() /// 12
+    let sparkCountLabel = UILabel()
     
     // FIXME: - button으로 변경
     let heartImageView = UIImageView()
@@ -46,23 +46,49 @@ class FeedCVC: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        titleLabel.text = ""
+        nameLabel.text = ""
+        sparkCountLabel.text = ""
+        heartCountLabel.text = ""
+        timeLabel.text = ""
+        feedImageView.image = UIImage()
+        profileImageView.image = UIImage()
+    }
+    
     // MARK: - Methods
-    func setUI() {
-        feedImageView.backgroundColor = .yellow
-        profileImageView.backgroundColor = .black
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool) {
+        titleLabel.text = "\(title)"
+        nameLabel.text = "\(nickName)"
+        sparkCountLabel.text = "\(sparkCount)"
+        heartCountLabel.text = "\(likeCount)"
+        feedImageView.updateImage(certifyingImg)
+        
+        if let profile = profileImg {
+            profileImageView.updateImage(profile)
+        } else {
+            profileImageView.image = UIImage(named: "profileEmpty")
+        }
+        
+        if let time = timeRecord {
+            timeLabel.text = "\(time)"
+        } else {
+            timeLabel.text = ""
+        }
+    }
+    
+    private func setUI() {
+        self.backgroundColor = .white
+        
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
+        profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
+        profileImageView.layer.masksToBounds = true
         
         sparkLabel.text = "받은 스파크"
-        // TODO: - 서버 데이터 연결 후 삭제
-        timeLabel.text = "00:30:18"
-        nameLabel.text = "힛이"
-        titleLabel.text = "아침 독서"
-        sparkCountLabel.text = "12"
-        heartCountLabel.text = "21"
         
         timeLabel.font = .enBoldFont(ofSize: 40)
         nameLabel.font = .p1Title
@@ -82,7 +108,7 @@ class FeedCVC: UICollectionViewCell {
         heartImageView.image = UIImage(named: "icHeartInactive")
     }
     
-    func setStackView() {
+    private func setStackView() {
         titleStackView.axis = .horizontal
         titleStackView.alignment = .fill
         titleStackView.distribution = .equalSpacing
@@ -99,7 +125,7 @@ class FeedCVC: UICollectionViewCell {
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
     
-    func setLayout() {
+    private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
                           sparkStackView, heartImageView, heartCountLabel])
