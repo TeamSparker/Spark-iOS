@@ -26,6 +26,7 @@
 		2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */; };
 		2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12C279539B90052CA5C /* WaitingMember.swift */; };
 		2BBED13027956C9F0052CA5C /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12F27956C9F0052CA5C /* Feed.swift */; };
+		2BBED13327956D170052CA5C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13227956D170052CA5C /* FeedService.swift */; };
 		2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726C278E8F1000BA3029 /* UIView+.swift */; };
 		2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1726F278F54DB00BA3029 /* WaitingVC.swift */; };
 		2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC17273278F56D100BA3029 /* Waiting.storyboard */; };
@@ -134,6 +135,7 @@
 		2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWritingVC.swift; sourceTree = "<group>"; };
 		2BBED12C279539B90052CA5C /* WaitingMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingMember.swift; sourceTree = "<group>"; };
 		2BBED12F27956C9F0052CA5C /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		2BBED13227956D170052CA5C /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		2BC1726C278E8F1000BA3029 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2BC1726F278F54DB00BA3029 /* WaitingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingVC.swift; sourceTree = "<group>"; };
 		2BC17273278F56D100BA3029 /* Waiting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Waiting.storyboard; sourceTree = "<group>"; };
@@ -286,6 +288,14 @@
 			isa = PBXGroup;
 			children = (
 				2BBED12F27956C9F0052CA5C /* Feed.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		2BBED13127956D040052CA5C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2BBED13227956D170052CA5C /* FeedService.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -670,6 +680,7 @@
 				F82F58052792897B003E4174 /* Plugin */,
 				F82F5806279289AC003E4174 /* Home */,
 				2BF3AB42279475B9001A9042 /* Room */,
+				2BBED13127956D040052CA5C /* Feed */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -977,6 +988,7 @@
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
+				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
