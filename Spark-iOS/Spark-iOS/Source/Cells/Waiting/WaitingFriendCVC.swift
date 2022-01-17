@@ -30,15 +30,17 @@ class WaitingFriendCVC: UICollectionViewCell {
     
     override func prepareForReuse() {
         nameLabel.text = ""
-        profileImageView.backgroundColor = .sparkBrightPinkred
+        profileImageView.backgroundColor = .sparkGray
+        profileImageView.layer.masksToBounds = true
     }
     
     // MARK: - Methods
     func setUI() {
-        profileImageView.backgroundColor = .sparkBrightPinkred
+        profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 30
+        profileImageView.layer.masksToBounds = true
         
         nameLabel.font = .p1Title
         nameLabel.textColor = .sparkDeepGray
@@ -58,8 +60,8 @@ class WaitingFriendCVC: UICollectionViewCell {
         }
     }
     
-    func initCell() {
-        nameLabel.text = "이름"
-        // 파라미터 추가 + 이미지 넣기
+    func initCell(name: String, image: Data) {
+        nameLabel.text = name
+        profileImageView.image = UIImage(data: image)
     }
 }
