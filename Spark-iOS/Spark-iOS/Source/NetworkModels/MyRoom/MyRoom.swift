@@ -19,7 +19,7 @@ struct MyRoom: Codable {
 struct MyRoomData: Codable {
     let nickname: String
     let totalRoomNum, ongoingRoomNum, completeRoomNum, failRoomNum: Int
-    let rooms: [Rooms]
+    let rooms: [Rooms]?
 }
 
 // MARK: - Rooms
@@ -30,7 +30,8 @@ struct Rooms: Codable {
     let thumbnail: String
     let totalRecievedSpark: Int
     let startDate, endDate: String
-    let failDay, comment: JSONNull?
+    let failDay: Int?
+    let comment: String?
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
@@ -49,13 +50,14 @@ struct MyRoomCerti: Codable {
 // MARK: - MyRoomCertiData
 struct MyRoomCertiData: Codable {
     let roomName: String
-    let records: [CertiRecord]
+    let records: [CertiRecord]?
 }
 
 // MARK: - CertiRecord
 struct CertiRecord: Codable {
     let recordID: Int
-    let leftDay, certifyingImg: JSONNull?
+    let leftDay: Int?
+    let certifyingImg: String?
     let sparkNum: Int
     let status: String
 

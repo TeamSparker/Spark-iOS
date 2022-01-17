@@ -142,22 +142,6 @@ class WaitingVC: UIViewController {
             self.refreshButton.transform = rotate
         } completion: { _ in
             self.refreshButton.transform = .identity
-    func getWaitingRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.waitingFetch(roomID: roomID) { response in
-            switch response {
-            case .success(let data):
-                if let waitingRoom = data as? Waiting {
-                    print(waitingRoom)
-                }
-            case .requestErr(let message):
-                print("requestErr")
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
         }
     }
     
