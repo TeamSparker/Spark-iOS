@@ -33,6 +33,9 @@ class CompleteAuthVC: UIViewController {
         setUI()
         setGesture()
         setAnimation()
+
+        getMyRoomWithAPI()
+        getMyRoomCertiWithAPI()
     }
 
     // MARK: IBActions
@@ -66,4 +69,46 @@ extension CompleteAuthVC {
             confettiView.play()
         }
     }
+}
+
+extension CompleteAuthVC {
+    
+    func getMyRoomWithAPI() {
+        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    print(myRoom)
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func getMyRoomCertiWithAPI() {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCerti {
+                    print(myRoomCerti)
+                }
+            case .requestErr(let message):
+                print("requestErr")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
 }
