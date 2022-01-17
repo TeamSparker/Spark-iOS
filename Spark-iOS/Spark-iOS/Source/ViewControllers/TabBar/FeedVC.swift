@@ -151,6 +151,23 @@ extension FeedVC {
             }
         }
     }
+    
+    func feedLikeWithAPI(recordID: Int) {
+        FeedAPI.shared.feedLike(recordID: recordID) { response in
+            switch response {
+            case .success(let message):
+                print("feedLikeWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("feedLikeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("feedLikeWithAPI - pathErr")
+            case .serverErr:
+                print("feedLikeWithAPI - serverErr")
+            case .networkFail:
+                print("feedLikeWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -223,7 +240,6 @@ extension FeedVC: UICollectionViewDataSource {
             
             cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID)
             cell.likeDelegate = self
-//            delega
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
@@ -278,7 +294,6 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
     func likeButtonTapped(recordID: Int) {
-        // TODO: - 서버 연결
-        print(recordID)
+        feedLikeWithAPI(recordID: recordID)
     }
 }
