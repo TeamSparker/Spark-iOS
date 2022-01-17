@@ -7,16 +7,8 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct CodeWaiting: Codable {
-    let status: Int
-    let success: Bool
-    let message: String
-    let data: CodeWaitingData?
-}
-
 // MARK: - DataClass
-struct CodeWaitingData: Codable {
+struct CodeWaiting: Codable {
     let roomID: Int
     let roomName, creatorName: String
     let createrImg: String
