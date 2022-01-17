@@ -32,7 +32,7 @@ class FeedCVC: UICollectionViewCell {
     
     let likeButton = UIButton()
     let likeCountLabel = UILabel()
-    let lottieView = AnimationView(name: "ic_heart_active")
+    let lottieView = AnimationView(name: "icHeartActive")
     var likeState: Bool = false
     var likeDelegate: FeedCellDelegate?
     var cellId: Int = 0

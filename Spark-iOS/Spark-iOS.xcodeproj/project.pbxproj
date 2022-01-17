@@ -72,7 +72,7 @@
 		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
-		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
+		EBEA382327945F5A00B5736A /* icHeartActive.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* icHeartActive.json */; };
 		EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382C27947C9100B5736A /* MyRoomAPI.swift */; };
 		EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382E27947C9E00B5736A /* MyRoomService.swift */; };
 		EBEA3831279480A700B5736A /* MyRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA3830279480A700B5736A /* MyRoom.swift */; };
@@ -192,7 +192,7 @@
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
-		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
+		EBEA382127945F5A00B5736A /* icHeartActive.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icHeartActive.json; sourceTree = "<group>"; };
 		EBEA382C27947C9100B5736A /* MyRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomAPI.swift; sourceTree = "<group>"; };
 		EBEA382E27947C9E00B5736A /* MyRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomService.swift; sourceTree = "<group>"; };
 		EBEA3830279480A700B5736A /* MyRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoom.swift; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 				EBEA383427948C2D00B5736A /* ticket_welcome.json */,
 				EBEA381E279450B800B5736A /* illust_confetti.json */,
 				EBEA381B279441DF00B5736A /* splash_iOS.json */,
-				EBEA382127945F5A00B5736A /* ic_heart_active.json */,
+				EBEA382127945F5A00B5736A /* icHeartActive.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -928,7 +928,7 @@
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
 				EBEA381D279441E000B5736A /* splash_iOS.json in Resources */,
-				EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */,
+				EBEA382327945F5A00B5736A /* icHeartActive.json in Resources */,
 				EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */,
 				EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */,
 				EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */,
