@@ -88,7 +88,6 @@
 		F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2A27841F4100B71D38 /* Storyboard.swift */; };
 		F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F2F27841F9200B71D38 /* HomeVC.swift */; };
 		F8096F3227841FE100B71D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3127841FE100B71D38 /* ViewController.swift */; };
-		F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F35278420FA00B71D38 /* TempProtocol.swift */; };
 		F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+.swift */; };
 		F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+.swift */; };
 		F8096F442784221900B71D38 /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Xib.swift */; };
@@ -211,7 +210,6 @@
 		F8096F2A27841F4100B71D38 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F8096F2F27841F9200B71D38 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		F8096F3127841FE100B71D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F8096F35278420FA00B71D38 /* TempProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempProtocol.swift; sourceTree = "<group>"; };
 		F8096F3B2784211D00B71D38 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F8096F3D2784213700B71D38 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		F8096F432784221900B71D38 /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
@@ -711,7 +709,6 @@
 		F8096F1F27841DC600B71D38 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				F8096F35278420FA00B71D38 /* TempProtocol.swift */,
 				2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */,
 			);
 			path = Protocols;
@@ -1078,7 +1075,6 @@
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
 				EBA93A7D27907EF9009AE771 /* CodeJoinVC.swift in Sources */,
-				F8096F36278420FA00B71D38 /* TempProtocol.swift in Sources */,
 				F8096F062784107D00B71D38 /* SceneDelegate.swift in Sources */,
 				2BF3AB472794765F001A9042 /* RoomService.swift in Sources */,
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
