@@ -7,13 +7,13 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "property1BgHabitroomSparkflake4@2x.png"
+      "filename" : "property1BgHabitroomSparkflake4@2x.png",
+      "scale" : "2x"
     },
     {
+      "filename" : "property1BgHabitroomSparkflake4@3x.png",
       "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "property1BgHabitroomSparkflake4@3x.png"
+      "idiom" : "universal"
     }
   ],
   "info" : {

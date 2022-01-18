@@ -38,7 +38,7 @@ extension HomeWaitingCVC {
     
     // TODO: - initCell
     
-    func initCell() {
-        
+    func initCell(roomName: String) {
+        habitTitleLabel.text = roomName
     }
 }

@@ -29,6 +29,9 @@
                             <constraint firstAttribute="width" secondItem="9Du-ii-TZh" secondAttribute="height" multiplier="120:196" id="UuF-WU-ft2"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kx6-AG-z5B">
+                        <rect key="frame" x="190.5" y="0.0" width="363.5" height="311"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSD-GR-Jpo">
                         <rect key="frame" x="74.5" y="20" width="41.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -94,41 +97,40 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YFa-UX-ELK">
-                        <rect key="frame" x="38" y="265" width="26" height="26"/>
+                        <rect key="frame" x="34" y="265" width="26" height="26"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yXX-Nd-yQ1">
-                        <rect key="frame" x="60" y="265" width="26" height="26"/>
+                        <rect key="frame" x="52" y="265" width="26" height="26"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hfx-UP-nMx">
-                        <rect key="frame" x="82" y="265" width="26" height="26"/>
+                        <rect key="frame" x="70" y="265" width="26" height="26"/>
+                        <color key="backgroundColor" name="sparkDeepGray"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orD-dh-U1F">
-                        <rect key="frame" x="74.5" y="268" width="41.5" height="20.5"/>
+                        <rect key="frame" x="62.5" y="268" width="41.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kx6-AG-z5B">
-                        <rect key="frame" x="190.5" y="0.0" width="363.5" height="311"/>
-                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="YFa-UX-ELK" firstAttribute="leading" secondItem="cPm-jJ-q7U" secondAttribute="trailing" constant="-4" id="3Y9-b6-U8w"/>
+                <constraint firstItem="YFa-UX-ELK" firstAttribute="leading" secondItem="cPm-jJ-q7U" secondAttribute="trailing" constant="-8" id="3Y9-b6-U8w"/>
                 <constraint firstItem="YFa-UX-ELK" firstAttribute="height" secondItem="cPm-jJ-q7U" secondAttribute="height" id="5Kp-PM-8R2"/>
                 <constraint firstAttribute="bottom" secondItem="Kx6-AG-z5B" secondAttribute="bottom" id="5Yq-CZ-8s1"/>
                 <constraint firstItem="9Du-ii-TZh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7pC-iQ-izF"/>
                 <constraint firstAttribute="bottom" secondItem="KeQ-cC-H4Q" secondAttribute="bottom" constant="22" id="8EL-0x-soj"/>
                 <constraint firstItem="cPm-jJ-q7U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="A4f-pT-MMh"/>
                 <constraint firstItem="YFa-UX-ELK" firstAttribute="width" secondItem="cPm-jJ-q7U" secondAttribute="width" id="Acd-Rf-37x"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Epc-P3-1Fk" secondAttribute="trailing" constant="37" id="B8p-AL-AX3"/>
                 <constraint firstItem="Epc-P3-1Fk" firstAttribute="leading" secondItem="9Du-ii-TZh" secondAttribute="trailing" constant="24" id="BML-Fd-KSc"/>
                 <constraint firstItem="KeQ-cC-H4Q" firstAttribute="leading" secondItem="9Du-ii-TZh" secondAttribute="trailing" constant="24" id="FgW-05-UaK"/>
                 <constraint firstItem="KeQ-cC-H4Q" firstAttribute="top" secondItem="B2Z-8t-uoZ" secondAttribute="bottom" constant="11" id="JHU-Df-AUx"/>
                 <constraint firstItem="hfx-UP-nMx" firstAttribute="width" secondItem="yXX-Nd-yQ1" secondAttribute="width" id="Jon-cH-56P"/>
                 <constraint firstItem="GSD-GR-Jpo" firstAttribute="centerX" secondItem="9Du-ii-TZh" secondAttribute="centerX" id="Key-Hz-C6J"/>
                 <constraint firstItem="hfx-UP-nMx" firstAttribute="height" secondItem="yXX-Nd-yQ1" secondAttribute="height" id="Nmn-ty-zbd"/>
-                <constraint firstItem="hfx-UP-nMx" firstAttribute="leading" secondItem="yXX-Nd-yQ1" secondAttribute="trailing" constant="-4" id="Rsj-b1-mIi"/>
+                <constraint firstItem="hfx-UP-nMx" firstAttribute="leading" secondItem="yXX-Nd-yQ1" secondAttribute="trailing" constant="-8" id="Rsj-b1-mIi"/>
                 <constraint firstAttribute="trailing" secondItem="Kx6-AG-z5B" secondAttribute="trailing" id="SLL-Ec-QBx"/>
                 <constraint firstItem="Kx6-AG-z5B" firstAttribute="leading" secondItem="9Du-ii-TZh" secondAttribute="trailing" id="U36-J5-qrI"/>
                 <constraint firstAttribute="trailing" secondItem="ZI8-Nx-VAn" secondAttribute="trailing" constant="19" id="Ulz-Vx-ie7"/>
@@ -144,7 +146,7 @@
                 <constraint firstItem="DTR-9m-lul" firstAttribute="top" secondItem="Epc-P3-1Fk" secondAttribute="bottom" constant="12" id="iRV-UR-UTb"/>
                 <constraint firstItem="yXX-Nd-yQ1" firstAttribute="height" secondItem="YFa-UX-ELK" secondAttribute="height" id="kBV-8I-emB"/>
                 <constraint firstItem="orD-dh-U1F" firstAttribute="centerY" secondItem="hfx-UP-nMx" secondAttribute="centerY" id="mFc-ob-a2t"/>
-                <constraint firstItem="yXX-Nd-yQ1" firstAttribute="leading" secondItem="YFa-UX-ELK" secondAttribute="trailing" constant="-4" id="ny7-3w-0Gk"/>
+                <constraint firstItem="yXX-Nd-yQ1" firstAttribute="leading" secondItem="YFa-UX-ELK" secondAttribute="trailing" constant="-8" id="ny7-3w-0Gk"/>
                 <constraint firstItem="Kx6-AG-z5B" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="r0E-El-nNm"/>
                 <constraint firstAttribute="bottom" secondItem="cPm-jJ-q7U" secondAttribute="bottom" constant="20" id="td7-5j-VkM"/>
                 <constraint firstItem="YFa-UX-ELK" firstAttribute="top" secondItem="cPm-jJ-q7U" secondAttribute="top" id="urH-cl-Xp9"/>
@@ -180,6 +182,9 @@
         <image name="tagDone" width="60" height="23"/>
         <namedColor name="sparkDarkGray">
             <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDeepGray">
+            <color red="0.16899999976158142" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
