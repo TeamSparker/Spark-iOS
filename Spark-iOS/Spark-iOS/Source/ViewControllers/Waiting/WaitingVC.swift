@@ -121,7 +121,7 @@ class WaitingVC: UIViewController {
         
         startButton.layer.cornerRadius = 2
         startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        startButton.setTitle("습관 시작하기", for: .normal)
+        startButton.setTitle("습관방 만들기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
     }
     
@@ -138,6 +138,7 @@ class WaitingVC: UIViewController {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
     }
     
     func setCollectionView() {
@@ -163,7 +164,7 @@ class WaitingVC: UIViewController {
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = roomCode
-        showToast(message: "코드를 복사했어요", font: .p1TitleLight)
+        showToast(x: 20, y: startButton.frame.minY - 60, message: "코드를 복사했어요", font: .p1TitleLight)
     }
     
     @objc
@@ -178,18 +179,24 @@ class WaitingVC: UIViewController {
     
     @objc
     func goToHomeVC() {
-        /// 홈으로 화면 전환
+        // TODO: - 홈으로 화면 전환
     }
     
     @objc
     func touchToMore() {
-        /// 더보기 버튼
+        // 더보기 버튼
     }
     
     @objc
     func touchToRefreshButton() {
         refreshButtonAnimtation()
         getWaitingMembersWithAPI(roomID: roomId ?? 0)
+    }
+    
+    @objc
+    func touchToCreateButton() {
+        postStartRoomWithAPI(roomID: roomId ?? 0)
+        // TODO: - 상세뷰로 화면 전환
     }
 }
 
@@ -224,6 +231,13 @@ extension WaitingVC {
                     
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
+                    
+                    // 본인 방장 여부
+                    if user.isHost {
+                        self.startButton.isHidden = false
+                    } else {
+                        self.startButton.isHidden = true
+                    }
                     
                     // 목표가 있을 경우, 목표와 시간 세팅
                     if user.isPurposeSet {
@@ -290,6 +304,23 @@ extension WaitingVC {
                 print("serverErr")
             case .networkFail:
                 print("networkFail")
+            }
+        }
+    }
+    
+    func postStartRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
+            switch response {
+            case .success(let message):
+                print("postStartRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("postStartRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postStartRoomWithAPI - pathErr")
+            case .serverErr:
+                print("postStartRoomWithAPI - serverErr")
+            case .networkFail:
+                print("postStartRoomWithAPI - networkFail")
             }
         }
     }
