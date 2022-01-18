@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
+		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
 		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E6278E28B2000F927F /* FeedCVC.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
@@ -125,6 +127,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
+		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
 		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B69E7E6278E28B2000F927F /* FeedCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCVC.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */,
 				2BBED12C279539B90052CA5C /* WaitingMember.swift */,
 				EBEA38362794B34300B5736A /* CodeJoinCheck.swift */,
+				2B57F37B27968A28002A677D /* CreateRoom.swift */,
+				2B57F37D27969791002A677D /* RoomId.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -1065,6 +1071,7 @@
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
+				2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
@@ -1094,6 +1101,7 @@
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
 				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
+				2B57F37E27969791002A677D /* RoomId.swift in Sources */,
 				EBEA3831279480A700B5736A /* MyRoom.swift in Sources */,
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
 				F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */,
