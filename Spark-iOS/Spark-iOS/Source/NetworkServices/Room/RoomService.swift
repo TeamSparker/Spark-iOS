@@ -18,6 +18,7 @@ enum RoomService {
     case createRoom(createRoom: CreateRoom)
     case sendSpark(roomID: Int, recordID: Int, content: String)
     case startRoom(roomID: Int)
+    case setConsiderRest(roomID: Int, statusType: String)
 }
 
 extension RoomService: TargetType {
@@ -43,6 +44,8 @@ extension RoomService: TargetType {
             return "/room/\(roomID)/spark"
         case .startRoom(let roomID):
             return "/room/\(roomID)/start"
+        case .setConsiderRest(let roomID, _):
+            return "/room/\(roomID)/status"
         }
     }
     
@@ -63,6 +66,8 @@ extension RoomService: TargetType {
         case .sendSpark:
             return .post
         case .startRoom:
+            return .post
+        case .setConsiderRest:
             return .post
         }
     }
@@ -94,6 +99,8 @@ extension RoomService: TargetType {
         case .startRoom(let roomID):
             return .requestParameters(parameters: ["roomId": roomID],
                                       encoding: URLEncoding.queryString)
+        case .setConsiderRest(_, let statusType):
+            return .requestParameters(parameters: ["statusType": statusType], encoding: JSONEncoding.default)
         }
     }
     
@@ -114,6 +121,8 @@ extension RoomService: TargetType {
         case .sendSpark:
             return Const.Header.authrizationHeader
         case .startRoom:
+            return Const.Header.authrizationHeader
+        case .setConsiderRest:
             return Const.Header.authrizationHeader
         }
     }

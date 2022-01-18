@@ -19,6 +19,7 @@ class HabitAuthVC: UIViewController {
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
     var authType: AuthType?
+    var roomID: Int?
     
     // MARK: - @IBOutlet Properties
     
@@ -115,12 +116,12 @@ extension HabitAuthVC {
     
     @objc
     private func touchConsiderButton() {
-        
+        setConsiderRestWithAPI(statusType: "CONSIDER")
     }
     
     @objc
     private func touchRestButton() {
-        
+        setConsiderRestWithAPI(statusType: "REST")
     }
     
     private func openLibrary() {
@@ -167,5 +168,26 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: false, completion: nil)
+    }
+}
+
+// MARK: Network
+
+extension HabitAuthVC {
+    func setConsiderRestWithAPI(statusType: String) {
+        RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
+            switch response {
+            case .success(_):
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(let message):
+                print("setConsiderRestWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("setConsiderRestWithAPI - pathErr")
+            case .serverErr:
+                print("setConsiderRestWithAPI - serverErr")
+            case .networkFail:
+                print("setConsiderRestWithAPI - networkFail")
+            }
+        }
     }
 }
