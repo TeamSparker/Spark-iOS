@@ -44,8 +44,6 @@ extension HabitAuthVC {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
-        authType = .photoOnly
-        
         switch authType {
         case .photoOnly:
             authTypeImageView.image = UIImage(named: "stickerPhotoDefault")
@@ -80,13 +78,16 @@ extension HabitAuthVC {
     
     private func setAddTargets() {
         okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
+        considerButton.addTarget(self, action: #selector(touchConsiderButton), for: .touchUpInside)
+        restButton.addTarget(self, action: #selector(touchRestButton), for: .touchUpInside)
     }
     
     private func setDelegate() {
         picker.delegate = self
     }
     
-    @objc private func touchOkayButton() {
+    @objc
+    private func touchOkayButton() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
@@ -110,6 +111,16 @@ extension HabitAuthVC {
         dismiss(animated: true) {
             presentingVC?.present(alter, animated: true, completion: nil)
         }
+    }
+    
+    @objc
+    private func touchConsiderButton() {
+        
+    }
+    
+    @objc
+    private func touchRestButton() {
+        
     }
     
     private func openLibrary() {
