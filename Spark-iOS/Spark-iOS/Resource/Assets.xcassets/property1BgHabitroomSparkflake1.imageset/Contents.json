@@ -2,8 +2,8 @@
   "images" : [
     {
       "scale" : "1x",
-      "idiom" : "universal",
-      "filename" : "property1BgHabitroomSparkflake1.png"
+      "filename" : "property1BgHabitroomSparkflake1.png",
+      "idiom" : "universal"
     },
     {
       "scale" : "2x",

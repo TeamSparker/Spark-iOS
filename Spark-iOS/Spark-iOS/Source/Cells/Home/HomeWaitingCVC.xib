@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -40,7 +41,7 @@ Room</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2C-z7-fTc">
-                        <rect key="frame" x="165" y="21" width="42" height="21"/>
+                        <rect key="frame" x="165" y="21" width="41.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -63,6 +64,7 @@ Room</string>
                 <constraint firstItem="4Ij-88-tcj" firstAttribute="centerX" secondItem="Sbl-hS-w3b" secondAttribute="centerX" id="Dbk-2O-h3P"/>
                 <constraint firstItem="0Je-SE-b9g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EZC-zO-uIQ"/>
                 <constraint firstAttribute="bottom" secondItem="0Je-SE-b9g" secondAttribute="bottom" id="HMY-lw-4Qm"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D2C-z7-fTc" secondAttribute="trailing" constant="37" id="Tc2-dZ-eer"/>
                 <constraint firstAttribute="bottom" secondItem="Sbl-hS-w3b" secondAttribute="bottom" id="VAH-Ak-fjW"/>
                 <constraint firstItem="0Je-SE-b9g" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" id="X3K-I2-vkB"/>
                 <constraint firstItem="D2C-z7-fTc" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" constant="24" id="hHR-Jn-F6T"/>

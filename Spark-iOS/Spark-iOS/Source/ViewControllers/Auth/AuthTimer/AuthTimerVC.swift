@@ -42,6 +42,7 @@ class AuthTimerVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
+        
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"

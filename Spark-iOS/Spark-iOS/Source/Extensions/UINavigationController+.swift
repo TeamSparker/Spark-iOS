@@ -20,10 +20,7 @@ extension UINavigationController {
         return appearance
     }
     
-    /// 뒤로가기 버튼(불투명)
-    /// - tintColor 에는 틴트컬러를 넣어주세요.
-    /// - backgounrdColor 에는 배경색을 넣어주세요.
-    func initWithBackButton(tintColor: UIColor, backgroundColor: UIColor) {
+    private func initWithBackButton(tintColor: UIColor, backgroundColor: UIColor) {
         let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
         appearance.initBackButtonAppearance()
         appearance.initTitleTextAttributes(tintColor: tintColor)
@@ -37,10 +34,28 @@ extension UINavigationController {
     /// - title 에는 네비게이션바 타이틀을 넣어주세요.
     /// - tintColor 에는 틴트컬러를 넣어주세요.
     /// - backgounrdColor 에는 배경색을 넣어주세요.
-    func initWithTitle(title: String, tintColor: UIColor, backgroundColor: UIColor) {
+    public func initWithBackButtonTitle(title: String, tintColor: UIColor, backgroundColor: UIColor) {
         initWithBackButton(tintColor: tintColor, backgroundColor: backgroundColor)
         
         self.navigationBar.topItem?.title = title
+    }
+
+    /// 좌측 버튼 + 텍스트
+    /// - title 에는 타이틀 텍스트를 넣어주세요.
+    /// - tintColor 에는 틴트컬러를 넣어주세요.
+    /// - backgounrdColor 에는 배경색을 넣어주세요.
+    /// - image 에는 좌측 버튼의 이미지를 넣어주세요.
+    /// - selector 에는 작동하는 액션을 넣어주세요.
+    public func initWithLeftButtonTitle(title: String, tintColor: UIColor, backgroundColor: UIColor, image: UIImage?, selector: Selector) {
+        let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
+        appearance.initTitleTextAttributes(tintColor: tintColor)
+        self.navigationBar.topItem?.title = title
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: selector)
+        
+        self.navigationBar.tintColor = tintColor
+        self.navigationBar.standardAppearance = appearance
+        self.navigationBar.scrollEdgeAppearance = appearance
     }
     
     /// 홈 우측 버튼 두개.
@@ -48,14 +63,14 @@ extension UINavigationController {
     /// - tintColor 에는 틴트컬러를 넣어주세요.
     /// - backgounrdColor 에는 배경색을 넣어주세요.
     /// - closure 에는 해당 버튼이 눌렸을 때 액션을 넣어주세요.
-    func initWithRightTwoCustomButtons(navigationItem: UINavigationItem?, tintColor: UIColor, backgroundColor: UIColor, firstButtonClosure: Selector, secondButtonClosure: Selector) {
+    public func initWithRightTwoCustomButtons(navigationItem: UINavigationItem?, tintColor: UIColor, backgroundColor: UIColor, firstButtonSelector: Selector, secondButtonSelector: Selector) {
         let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
         self.navigationBar.tintColor = tintColor
         
-        let firstButton = UIBarButtonItem(image: UIImage(named: "icProfile"), style: .plain, target: self.topViewController, action: firstButtonClosure)
-        let secondButton = UIBarButtonItem(image: UIImage(named: "icNotice"), style: .plain, target: self.topViewController, action: secondButtonClosure)
+        let firstButton = UIBarButtonItem(image: UIImage(named: "icProfile"), style: .plain, target: self.topViewController, action: firstButtonSelector)
+        let secondButton = UIBarButtonItem(image: UIImage(named: "icNotice"), style: .plain, target: self.topViewController, action: secondButtonSelector)
         navigationItem?.rightBarButtonItems = [firstButton, secondButton]
     }
     
@@ -66,7 +81,7 @@ extension UINavigationController {
     /// - backgounrdColor 에는 배경색을 넣어주세요.
     /// - reftButtonIcon 에는 좌측 버튼 이미지를. rightButtonIcon 에는 우측 버튼 이미지를 넣어주세요.
     /// - closure 에는 해당 버튼이 눌렸을 때 액션을 넣어주세요.
-    func initWithTwoCustomButtonsTitle(navigationItem: UINavigationItem?, title: String, tintColor: UIColor, backgroundColor: UIColor, reftButtonImage: UIImage, rightButtonImage: UIImage, reftButtonClosure: Selector, rightButtonClosure: Selector) {
+    public func initWithTwoCustomButtonsTitle(navigationItem: UINavigationItem?, title: String, tintColor: UIColor, backgroundColor: UIColor, reftButtonImage: UIImage?, rightButtonImage: UIImage, reftButtonSelector: Selector, rightButtonSelector: Selector) {
         let appearance: UINavigationBarAppearance = initNavigationBarAppearance(backgroundColor: backgroundColor)
         appearance.initTitleTextAttributes(tintColor: .sparkBlack)
         
@@ -74,9 +89,9 @@ extension UINavigationController {
         self.navigationBar.scrollEdgeAppearance = appearance
         self.navigationBar.tintColor = tintColor
         
-        let reftButton = UIBarButtonItem(image: reftButtonImage, style: .plain, target: self.topViewController, action: reftButtonClosure)
-        let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: rightButtonClosure)
-        navigationItem?.backBarButtonItem = reftButton
+        let reftButton = UIBarButtonItem(image: reftButtonImage, style: .plain, target: self.topViewController, action: reftButtonSelector)
+        let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: rightButtonSelector)
+        navigationItem?.leftBarButtonItem = reftButton
         navigationItem?.rightBarButtonItem = rightButton
         
         self.navigationBar.topItem?.title = title
@@ -87,7 +102,7 @@ extension UINavigationBarAppearance {
     func initBackButtonAppearance() {
         var backButtonImage: UIImage? {
             // back button 위치 조정
-            return UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -10.0, bottom: 0.0, right: 0.0))
+            return UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -5.0, bottom: 0.0, right: 0.0))
         }
 
         var backButtonAppearance: UIBarButtonItemAppearance {

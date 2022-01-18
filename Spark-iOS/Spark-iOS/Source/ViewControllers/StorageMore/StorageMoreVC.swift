@@ -58,7 +58,7 @@ extension StorageMoreVC {
         view.backgroundColor = .sparkBlack
         tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        navigationController?.initWithBackButtonTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
     private func setLayout() {
@@ -69,6 +69,13 @@ extension StorageMoreVC {
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func popToStorageVC() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
