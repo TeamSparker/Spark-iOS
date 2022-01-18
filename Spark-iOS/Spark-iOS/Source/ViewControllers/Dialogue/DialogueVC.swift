@@ -28,12 +28,17 @@ class DialogueVC: UIViewController {
     @IBOutlet weak var cancelLabel: UILabel!
     @IBOutlet weak var resetOrExitLabel: UILabel!
     @IBOutlet weak var dialogueVIew: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var resetOrExitButton: UIButton!
+    @IBOutlet weak var cancelView: UIView!
+    @IBOutlet weak var resetOrExitView: UIView!
     
     // MARK: Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setAddtargets()
     }
     
 }
@@ -80,5 +85,46 @@ extension DialogueVC {
             print("dialogueType을 지정해주세요")
             
         }
+    }
+    
+    private func setAddtargets() {
+        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(giveAlphaCancelViewColor), for: .touchDown)
+        cancelButton.addTarget(self, action: #selector(eraseAlphaCancelViewColor), for: .touchDragOutside)
+        resetOrExitButton.addTarget(self, action: #selector(resetOrExitAction), for: .touchUpInside)
+        resetOrExitButton.addTarget(self, action: #selector(giveAlphaResetOrExitViewColor), for: .touchDown)
+        resetOrExitButton.addTarget(self, action: #selector(eraseAlphaResetOrExitViewColor), for: .touchDragOutside)
+    }
+    
+    // MARK: objc methods
+    
+    @objc
+    private func cancelAction() {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    @objc
+    private func resetOrExitAction() {
+        // 나가기 또는 초기화 액션을 넣어주세요
+    }
+    
+    @objc
+    private func giveAlphaCancelViewColor() {
+        cancelView.alpha = 0.5
+    }
+    
+    @objc
+    private func eraseAlphaCancelViewColor() {
+        cancelView.alpha = 1
+    }
+    
+    @objc
+    private func giveAlphaResetOrExitViewColor() {
+        resetOrExitView.alpha = 0.5
+    }
+    
+    @objc
+    private func eraseAlphaResetOrExitViewColor() {
+        resetOrExitView.alpha = 1
     }
 }
