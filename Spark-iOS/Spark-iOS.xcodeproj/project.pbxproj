@@ -378,8 +378,8 @@
 		2BE5D80927930A0F007A544D /* AuthTimer */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
 				2BE5D81527932F31007A544D /* ResetPopupVC.swift */,
+				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
 			);
 			path = AuthTimer;
 			sourceTree = "<group>";

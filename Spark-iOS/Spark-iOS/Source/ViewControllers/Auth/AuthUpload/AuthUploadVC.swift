@@ -21,6 +21,7 @@ class AuthUploadVC: UIViewController {
     // MARK: - Properties
     
     var vcType: VCCase = .albumTimer
+    var roomID: Int = -1
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
     var uploadImage = UIImage()
@@ -217,6 +218,7 @@ extension AuthUploadVC {
     // 업로드
     @objc
     func touchUploadButton() {
+        uploadButton.isEnabled = false
         authUploadWithAPI()
     }
 }
@@ -318,7 +320,7 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: 31, timer: "15:20:30", image: uploadImageView.image ?? UIImage()) {  response in
+        RoomAPI.shared.authUpload(roomID: roomID, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
@@ -330,6 +332,8 @@ extension AuthUploadVC {
                     popupVC.modalPresentationStyle = .overFullScreen
                     
                     self.present(popupVC, animated: true, completion: nil)
+                    
+                    self.uploadButton.isEnabled = true
                 }
             case .requestErr(let message):
                 print(message)
