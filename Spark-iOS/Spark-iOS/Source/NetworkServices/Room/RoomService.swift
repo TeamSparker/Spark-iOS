@@ -14,6 +14,7 @@ enum RoomService {
     case waitingMemberFetch(roomID: Int)
     case codeJoinCheckFetch(code: String)
     case enterRoom(roomID: Int)
+    case authUpload(roomID: Int, timer: String, image: UIImage)
     case createRoom(createRoom: CreateRoom)
 }
 
@@ -32,6 +33,8 @@ extension RoomService: TargetType {
             return "/room/code/\(code)"
         case .enterRoom(let roomID):
             return "/room/\(roomID)/enter"
+        case .authUpload(let roomID, _, _):
+            return "/room/\(roomID)/record"
         case .createRoom:
             return "/room"
         }
@@ -47,6 +50,8 @@ extension RoomService: TargetType {
             return .get
         case .enterRoom:
             return .post
+        case .authUpload:
+            return .post
         case .createRoom:
             return .post
         }
@@ -61,13 +66,23 @@ extension RoomService: TargetType {
         case .waitingMemberFetch:
             return .requestPlain
         case .enterRoom(let roomID):
-            return .requestParameters(parameters:["roomId": roomID], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["roomId": roomID], encoding: JSONEncoding.default)
+        case .authUpload(_, let timer, let image):
+            var multiPartData: [Moya.MultipartFormData] = []
+            
+            let timerData = timer.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timerRecord"))
+            
+            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
+            multiPartData.append(imageData)
+            
+            return .uploadMultipart(multiPartData)
         case .createRoom(let createRoom):
             return .requestJSONEncodable(createRoom)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .waitingFetch:
             return Const.Header.authrizationHeader
@@ -76,6 +91,8 @@ extension RoomService: TargetType {
         case .enterRoom:
             return Const.Header.authrizationHeader
         case .waitingMemberFetch:
+            return Const.Header.authrizationHeader
+        case .authUpload:
             return Const.Header.authrizationHeader
         case .createRoom:
             return Const.Header.authrizationHeader

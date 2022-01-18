@@ -72,6 +72,11 @@
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
 		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
+		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
+		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
+		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
+		EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FDD2796C45900157075 /* StatusButton.swift */; };
+		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
 		EBEA382327945F5A00B5736A /* icHeartActive.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* icHeartActive.json */; };
 		EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA382C27947C9100B5736A /* MyRoomAPI.swift */; };
@@ -195,6 +200,11 @@
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
+		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
+		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
+		EBE90FDB279612CA00157075 /* SendSpark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendSpark.storyboard; sourceTree = "<group>"; };
+		EBE90FDD2796C45900157075 /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
+		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* icHeartActive.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icHeartActive.json; sourceTree = "<group>"; };
 		EBEA382C27947C9100B5736A /* MyRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomAPI.swift; sourceTree = "<group>"; };
@@ -380,8 +390,8 @@
 		2BE5D80927930A0F007A544D /* AuthTimer */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
 				2BE5D81527932F31007A544D /* ResetPopupVC.swift */,
+				2BE5D80727930A06007A544D /* AuthTimerVC.swift */,
 			);
 			path = AuthTimer;
 			sourceTree = "<group>";
@@ -418,6 +428,7 @@
 				2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */,
 				2BBED12C279539B90052CA5C /* WaitingMember.swift */,
 				EBEA38362794B34300B5736A /* CodeJoinCheck.swift */,
+				EBE90FD32795D67500157075 /* AuthUpload.swift */,
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
 			);
@@ -469,6 +480,7 @@
 				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
 				EB9C507C27922F2E00588155 /* LineAnimationView.swift */,
 				2BE5D80D2793203C007A544D /* Stopwatch.swift */,
+				EBE90FDD2796C45900157075 /* StatusButton.swift */,
 				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 			);
 			path = Classes;
@@ -513,6 +525,7 @@
 			children = (
 				EB9C50832792A61D00588155 /* HabitAuthVC.swift */,
 				EB9C50892792A86D00588155 /* CompleteAuthVC.swift */,
+				EBE90FD92796128800157075 /* SendSparkVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -522,6 +535,7 @@
 			children = (
 				EB9C50872792A67B00588155 /* HabitAuth.storyboard */,
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
+				EBE90FDB279612CA00157075 /* SendSpark.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -952,6 +966,7 @@
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
+				EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
@@ -1078,6 +1093,7 @@
 				2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
+				EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
 				2BBED1392795F4500052CA5C /* FeedCellDelegate.swift in Sources */,
@@ -1091,6 +1107,8 @@
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
+				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
+				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
 				F82F580A279289C4003E4174 /* HomeService.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,

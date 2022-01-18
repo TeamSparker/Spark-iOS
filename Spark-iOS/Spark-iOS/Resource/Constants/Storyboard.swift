@@ -29,6 +29,7 @@ extension Const {
             static let authUpload = "AuthUpload"
             static let authTimer = "AuthTimer"
             static let resetPopup = "ResetPopup"
+            static let sendSpark = "SendSpark"
         }
     }
 }

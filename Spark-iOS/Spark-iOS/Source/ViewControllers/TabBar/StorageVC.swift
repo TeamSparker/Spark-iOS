@@ -11,9 +11,9 @@ import SnapKit
 class StorageVC: UIViewController {
     
     // MARK: - Properties
-    let doingButton = MyButton()
-    let doneButton = MyButton()
-    let failButton = MyButton()
+    let doingButton = StatusButton()
+    let doneButton = StatusButton()
+    let failButton = StatusButton()
     
     let doingLabel = UILabel()
     let doneLabel = UILabel()
@@ -127,7 +127,7 @@ extension StorageVC {
         doneBlockingView.backgroundColor = .sparkWhite
         failBlockingView.backgroundColor = .sparkWhite
         
-        doingButton.statusCV = 0
+        doingButton.status = 0
         doingButton.backgroundColor = .clear
         doingButton.setTitle("진행중", for: .normal)
         doingButton.titleLabel?.font = .h3Subtitle
@@ -142,7 +142,7 @@ extension StorageVC {
         doingLabel.textColor = .sparkDarkPinkred
         doingLabel.font = .enMediumFont(ofSize: 14)
         
-        doneButton.statusCV = 1
+        doneButton.status = 1
         doneButton.backgroundColor = .clear
         doneButton.setTitle("완료", for: .normal)
         doneButton.titleLabel?.font = .h3Subtitle
@@ -155,7 +155,7 @@ extension StorageVC {
         doneLabel.textColor = .sparkDarkGray
         doneLabel.font = .enMediumFont(ofSize: 14)
         
-        failButton.statusCV = 2
+        failButton.status = 2
         failButton.backgroundColor = .clear
         failButton.setTitle("미완료", for: .normal)
         failButton.titleLabel?.font = .h3Subtitle
@@ -271,7 +271,7 @@ extension StorageVC {
     }
 
     // 버튼 타겟 설정
-    private func setAddTargets(_ buttons: MyButton...) {
+    private func setAddTargets(_ buttons: StatusButton...) {
         for button in buttons {
             button.addTarget(self, action: #selector(changeCollectionView), for: .touchUpInside)
         }
@@ -279,8 +279,8 @@ extension StorageVC {
     
     // MARK: - @objc Function
     
-    @objc func changeCollectionView(sender: MyButton) {
-        let status: Int = (sender.statusCV)!
+    @objc func changeCollectionView(sender: StatusButton) {
+        let status: Int = (sender.status)
         switch status {
         case 1:
             DoingCV.isHidden = true
