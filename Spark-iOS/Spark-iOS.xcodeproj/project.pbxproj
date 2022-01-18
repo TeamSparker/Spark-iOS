@@ -126,6 +126,9 @@
 		F8ABAEFF2796163300C0F774 /* splash_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFE2796163300C0F774 /* splash_logo.json */; };
 		F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C14A992795094800498687 /* HomeEmptyCVC.swift */; };
 		F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */; };
+		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
+		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
+		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -257,6 +260,9 @@
 		F8ABAEFE2796163300C0F774 /* splash_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_logo.json; sourceTree = "<group>"; };
 		F8C14A992795094800498687 /* HomeEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCVC.swift; sourceTree = "<group>"; };
 		F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeEmptyCVC.xib; sourceTree = "<group>"; };
+		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				F82F58052792897B003E4174 /* Plugin */,
+				F8E3496627969B4F001B67E7 /* Auth */,
 				F82F5806279289AC003E4174 /* Home */,
 				2BF3AB42279475B9001A9042 /* Room */,
 				2BBED13127956D040052CA5C /* Feed */,
@@ -754,6 +761,7 @@
 			children = (
 				F82F57FA27928437003E4174 /* NetworkResult.swift */,
 				F82F57FC2792847D003E4174 /* GenericResponse.swift */,
+				F8E3496B2796B7DF001B67E7 /* Auth */,
 				F82F5800279287EC003E4174 /* Home */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
 				2BBED12E27956C4F0052CA5C /* Feed */,
@@ -865,6 +873,23 @@
 				F82F5809279289C4003E4174 /* HomeService.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		F8E3496627969B4F001B67E7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F8E3496727969B61001B67E7 /* AuthAPI.swift */,
+				F8E3496927969B67001B67E7 /* AuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		F8E3496B2796B7DF001B67E7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F8E3496C2796B7F6001B67E7 /* Signup.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		F8FAA96B2790336E00C4190F /* Home */ = {
@@ -1068,6 +1093,7 @@
 				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F82F580C27929F74003E4174 /* Header.swift in Sources */,
+				F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */,
 				2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */,
@@ -1118,6 +1144,8 @@
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
+				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
+				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
