@@ -10,12 +10,11 @@ import UIKit
 class SendSparkVC: UIViewController {
 
     // MARK: Properties
-    var selectedIndex: Int = -1
     var selectedMessage: String = ""
-    var firstButton = MyButton()
-    var secondButton = MyButton()
-    var thirdButton = MyButton()
-    var fourthButton = MyButton()
+    var firstButton = StatusButton()
+    var secondButton = StatusButton()
+    var thirdButton = StatusButton()
+    var fourthButton = StatusButton()
     
     // MARK: IBoutlet properties
     
@@ -53,10 +52,10 @@ extension SendSparkVC {
         thirdButton.setTitle("👉 너만 하면 돼!", for: .normal)
         fourthButton.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
         
-        firstButton.statusCV = 1
-        secondButton.statusCV = 2
-        thirdButton.statusCV = 3
-        fourthButton.statusCV = 4
+        firstButton.status = 1
+        secondButton.status = 2
+        thirdButton.status = 3
+        fourthButton.status = 4
     }
     
     private func setLayout() {
@@ -100,20 +99,21 @@ extension SendSparkVC {
     
     // MARK: - @objc Function
     
-    @objc func setSelectedButton(sender: MyButton) {
-        let status = sender.statusCV
-        selectedIndex = status
+    @objc func setSelectedButton(sender: StatusButton) {
+        
+        let status = sender.status
+        
         sender.setTitleColor(.sparkDarkPinkred, for: .normal)
         sender.backgroundColor = .sparkMostLightPinkred
         sender.titleLabel?.backgroundColor = .sparkMostLightPinkred
         sender.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+        
         selectedMessage = sender.titleLabel?.text ?? ""
-        print(selectedMessage)
         
         switch status {
         case 1:
             [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.statusCV != 1 {
+                if $0.status != 1 {
                     $0.tintColor = .sparkLightPinkred
                     $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
                     $0.setTitleColor(.sparkLightPinkred, for: .normal)
@@ -124,7 +124,7 @@ extension SendSparkVC {
 
         case 2:
             [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.statusCV != 2 {
+                if $0.status != 2 {
                     $0.tintColor = .sparkLightPinkred
                     $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
                     $0.setTitleColor(.sparkLightPinkred, for: .normal)
@@ -135,7 +135,7 @@ extension SendSparkVC {
 
         case 3:
             [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.statusCV != 3 {
+                if $0.status != 3 {
                     $0.tintColor = .sparkLightPinkred
                     $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
                     $0.setTitleColor(.sparkLightPinkred, for: .normal)
@@ -146,7 +146,7 @@ extension SendSparkVC {
 
         default:
             [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.statusCV != 4 {
+                if $0.status != 4 {
                     $0.tintColor = .sparkLightPinkred
                     $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
                     $0.setTitleColor(.sparkLightPinkred, for: .normal)

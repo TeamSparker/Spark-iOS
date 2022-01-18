@@ -18,8 +18,9 @@ class CreateAuthVC: UIViewController {
     let photoAuthView = PhotoAuthView()
     let timerAuthView = TimerAuthView()
     let enterButton = UIButton()
-    var photoOnly: Bool = true /// 사진 인증만
+    var photoOnly: Bool = true /// photoOnly가 true이면 fromStart가 false
     var roomName: String = ""
+    var roomId: Int?
 
     // MARK: - View Life Cycles
     
@@ -62,6 +63,84 @@ class CreateAuthVC: UIViewController {
         timerAuthView.setDeselectedUI()
     }
     
+    /// view가 선택됐을 떄, view의 UI 변경
+    private func setAuthViewState() {
+        if photoOnly {
+            photoAuthView.setSelectedUI()
+            timerAuthView.setDeselectedUI()
+        } else {
+            photoAuthView.setDeselectedUI()
+            timerAuthView.setSelectedUI()
+        }
+    }
+    
+    private func setGesture() {
+        let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        photoAuthView.addGestureRecognizer(photoTapGesture)
+        timerAuthView.addGestureRecognizer(timerTapGesture)
+    }
+    
+    private func setAddTarget() {
+        enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func touchEnterButton() {
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+        
+        let nextVC = UINavigationController(rootViewController: rootVC)
+        
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
+            rootVC.roomId = self.roomId
+            self.present(nextVC, animated: true)
+        }
+    }
+    
+    @objc
+    private func tapped(_ gesture: UITapGestureRecognizer) {
+        if photoOnly {
+            photoOnly = false
+        } else {
+            photoOnly = true
+        }
+        setAuthViewState()
+    }
+    
+    @objc
+    private func popToCreateRoomVC() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - Network
+extension CreateAuthVC {
+    func postCreateRoomWithAPI(roomName: String, fromStart: Bool, completion: @escaping () -> Void) {
+        let createRoomRequest = CreateRoom(roomName: roomName, fromStart: fromStart)
+        RoomAPI.shared.createRoom(createRoom: createRoomRequest) { response in
+            switch response {
+            case .success(let data):
+                if let createdRoom = data as? RoomId {
+                    self.roomId = createdRoom.roomID
+                }
+                completion()
+            case .requestErr(let message):
+                print("postCreateRoom - requestErr: \(message)")
+            case .pathErr:
+                print("postCreateRoom - pathErr")
+            case .serverErr:
+                print("postCreateRoom - serverErr")
+            case .networkFail:
+                print("postCreateRoom - networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - Layout
+extension CreateAuthVC {
     private func setLayout() {
         view.addSubviews([titleLabel, subTitleLabel, photoAuthView, timerAuthView, enterButton])
         
@@ -93,55 +172,5 @@ class CreateAuthVC: UIViewController {
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
         }
-    }
-    
-    /// view가 선택됐을 떄, view의 UI 변경
-    private func setAuthViewState() {
-        if photoOnly {
-            photoAuthView.setSelectedUI()
-            timerAuthView.setDeselectedUI()
-        } else {
-            photoAuthView.setDeselectedUI()
-            timerAuthView.setSelectedUI()
-        }
-    }
-    
-    private func setGesture() {
-        let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-        let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-        photoAuthView.addGestureRecognizer(photoTapGesture)
-        timerAuthView.addGestureRecognizer(timerTapGesture)
-    }
-    
-    private func setAddTarget() {
-        enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
-    }
-    
-    @objc
-    private func touchEnterButton() {
-        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-        
-        let nextVC = UINavigationController(rootViewController: rootVC)
-        
-        nextVC.modalTransitionStyle = .crossDissolve
-        nextVC.modalPresentationStyle = .fullScreen
-        rootVC.photoOnly = photoOnly
-        
-        present(nextVC, animated: true, completion: nil)
-    }
-    
-    @objc
-    private func tapped(_ gesture: UITapGestureRecognizer) {
-        if photoOnly {
-            photoOnly = false
-        } else {
-            photoOnly = true
-        }
-        setAuthViewState()
-    }
-    
-    @objc
-    private func popToCreateRoomVC() {
-        navigationController?.popViewController(animated: true)
     }
 }

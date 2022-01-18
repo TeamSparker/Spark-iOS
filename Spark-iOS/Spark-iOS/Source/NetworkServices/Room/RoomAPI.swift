@@ -132,6 +132,38 @@ public class RoomAPI {
         }
     }
     
+    func createRoom(createRoom: CreateRoom, completion: @escaping(NetworkResult<Any>) -> Void) {
+        roomProvider.request(.createRoom(createRoom: createRoom)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeCreateStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func judgeCreateStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<RoomId>.self, from: data)
+        else { return .pathErr }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)

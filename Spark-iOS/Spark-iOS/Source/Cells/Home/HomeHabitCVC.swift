@@ -145,7 +145,7 @@ extension HomeHabitCVC {
         // 방 생명 이미지 구현
         let lifeImgaeList = [firstLifeImage, secondLifeImage, thirdLifeImage]
         
-        if life == 3 {
+        if life >= 3 {
             lifeImgaeList.forEach { $0?.image = UIImage(named: "icRoomlifeFullBlack")}
         } else if life == 0 {
             lifeImgaeList.forEach { $0?.image = UIImage(named: "icRoomlifeEmpty")}
@@ -161,6 +161,7 @@ extension HomeHabitCVC {
         if isDone {
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
             tagDoneImage.isHidden = false
+            
         } else {
             ticketImage.image = UIImage(named: "property1TicketRight4")
             tagDoneImage.isHidden = true

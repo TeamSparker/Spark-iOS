@@ -15,6 +15,7 @@ enum RoomService {
     case codeJoinCheckFetch(code: String)
     case enterRoom(roomID: Int)
     case authUpload(roomID: Int, timer: String, image: UIImage)
+    case createRoom(createRoom: CreateRoom)
 }
 
 extension RoomService: TargetType {
@@ -34,6 +35,8 @@ extension RoomService: TargetType {
             return "/room/\(roomID)/enter"
         case .authUpload(let roomID, _, _):
             return "/room/\(roomID)/record"
+        case .createRoom:
+            return "/room"
         }
     }
     
@@ -45,7 +48,11 @@ extension RoomService: TargetType {
             return .get
         case .waitingMemberFetch:
             return .get
-        case .enterRoom, .authUpload:
+        case .enterRoom:
+            return .post
+        case .authUpload:
+            return .post
+        case .createRoom:
             return .post
         }
     }
@@ -66,10 +73,12 @@ extension RoomService: TargetType {
             let timerData = timer.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timerRecord"))
             
-            let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 1) ?? Data()), name: "image", fileName: "image", mimeType: "image/jpeg")
+            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)
+        case .createRoom(let createRoom):
+            return .requestJSONEncodable(createRoom)
         }
     }
     
@@ -84,6 +93,8 @@ extension RoomService: TargetType {
         case .waitingMemberFetch:
             return Const.Header.authrizationHeader
         case .authUpload:
+            return Const.Header.authrizationHeader
+        case .createRoom:
             return Const.Header.authrizationHeader
         }
     }
