@@ -243,8 +243,8 @@ extension WaitingVC {
                     if user.isPurposeSet {
                         self.timeLabel.text = "시간 \(user.moment)"
                         self.goalLabel.text = "목표 \(user.purpose)"
-                        self.timeLabel.partP1Title(targetString: "시간")
-                        self.goalLabel.partP1Title(targetString: "목표")
+                        self.timeLabel.partFontChange(targetString: "시간", font: .p1Title)
+                        self.goalLabel.partFontChange(targetString: "목표", font: .p1Title)
                     } else {
                         // 엠티라벨
                         self.timeLabel.text = "습관을 시작하기 전에"
