@@ -22,12 +22,20 @@ class ProfileSettingVC: UIViewController {
     let lineView = UIView()
     let countLabel = UILabel()
     let completeButton = UIButton()
+    
+    var maxLength: Int = 15
 
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setNotification()
+        setAddTarget()
     }
+    
+    // MARK: - Methods
     
     private func setUI() {
         closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
@@ -49,7 +57,7 @@ class ProfileSettingVC: UIViewController {
         
         textField.borderStyle = .none
         textField.placeholder = "닉네임 입력"
-//        textField.delegate = self
+        textField.delegate = self
 
         lineView.backgroundColor = .sparkGray
 
@@ -62,6 +70,101 @@ class ProfileSettingVC: UIViewController {
         completeButton.setTitle("가입 완료", for: .normal)
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
+    private func setAddTarget() {
+        completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
+    }
+    
+    private func ableButton() {
+        lineView.backgroundColor = .sparkPinkred
+        completeButton.backgroundColor = .sparkPinkred
+        completeButton.isEnabled = true
+    }
+    
+    private func disableButton() {
+        lineView.backgroundColor = .sparkGray
+        completeButton.backgroundColor = .sparkGray
+        completeButton.isEnabled = false
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func textFieldDidChange(_ notification: Notification) {
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                /// 글자가 바뀔 때마다 countLabel 업데이트
+                countLabel.text = "\(text.count)/15"
+                
+                /// 글자수 count 초과한 경우
+                if text.count >= maxLength {
+                    let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                    let newString = String(text[text.startIndex..<maxIndex])
+                    textField.text = newString
+                    countLabel.text = "15/15"
+                    countLabel.textColor = .sparkPinkred
+                }
+                
+                /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
+                else if text.count > 0 {
+                    let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(text.count)"))
+                    countLabel.textColor = .sparkDarkGray
+                    countLabel.attributedText = attributedString
+                }
+                
+                /// 그 외 0인 경우
+                else {
+                    countLabel.textColor = .sparkDarkGray
+                }
+            }
+        }
+    }
+    
+    @objc
+    func touchCompleteButton() {
+        // TODO: - 화면 전환
+    }
+    
+    @objc
+    func touchCloseButton() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension ProfileSettingVC: UITextFieldDelegate {
+    /// 여백 클릭 시
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
+    /// 리턴 눌렀을 때
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    /// 입력 시작
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        ableButton()
+        return true
+    }
+    
+    /// 입력 끝
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.hasText {
+            ableButton()
+        } else {
+            disableButton()
+        }
     }
 }
 
