@@ -11,6 +11,8 @@ class SendSparkVC: UIViewController {
 
     // MARK: Properties
     var selectedMessage: String = ""
+    var roomID: Int?
+    var recordID: Int?
     var firstButton = StatusButton()
     var secondButton = StatusButton()
     var thirdButton = StatusButton()
@@ -25,10 +27,15 @@ class SendSparkVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUI()
         setLayout()
         setAddTargets(firstButton, secondButton, thirdButton, fourthButton)
+    }
+    
+    // MARK: IBAction Properties
+    
+    @IBAction func touchOutsideButton(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -153,6 +160,29 @@ extension SendSparkVC {
                     $0.backgroundColor = .sparkWhite
                     $0.titleLabel?.backgroundColor = .sparkWhite
                 }
+            }
+        }
+        
+        sendSparkWithAPI()
+    }
+}
+
+// MARK: Network
+
+extension SendSparkVC {
+    func sendSparkWithAPI() {
+        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: selectedMessage) {  response in
+            switch response {
+            case .success(_):
+                self.dismiss(animated: true)
+            case .requestErr(let message):
+                print("sendSparkWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("sendSparkWithAPI - pathErr")
+            case .serverErr:
+                print("sendSparkWithAPI - serverErr")
+            case .networkFail:
+                print("sendSparkWithAPI - networkFail")
             }
         }
     }
