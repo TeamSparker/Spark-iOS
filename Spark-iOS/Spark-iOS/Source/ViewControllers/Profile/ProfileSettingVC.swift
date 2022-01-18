@@ -22,9 +22,11 @@ class ProfileSettingVC: UIViewController {
     let lineView = UIView()
     let countLabel = UILabel()
     let completeButton = UIButton()
+    let picker = UIImagePickerController()
+    let tap = UITapGestureRecognizer()
     
     var maxLength: Int = 15
-
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -33,6 +35,7 @@ class ProfileSettingVC: UIViewController {
         setLayout()
         setNotification()
         setAddTarget()
+        setDelegate()
     }
     
     // MARK: - Methods
@@ -52,15 +55,15 @@ class ProfileSettingVC: UIViewController {
         
         fadeView.backgroundColor = .sparkBlack.withAlphaComponent(0.6)
         fadeView.layer.cornerRadius = 58
+        fadeView.addGestureRecognizer(tap)
         
         photoIconImageView.image = UIImage(named: "icImage")
         
         textField.borderStyle = .none
         textField.placeholder = "닉네임 입력"
-        textField.delegate = self
-
+        
         lineView.backgroundColor = .sparkGray
-
+        
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
@@ -72,6 +75,11 @@ class ProfileSettingVC: UIViewController {
         completeButton.isEnabled = false
     }
     
+    private func setDelegate() {
+        textField.delegate = self
+        picker.delegate = self
+    }
+    
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
@@ -79,6 +87,7 @@ class ProfileSettingVC: UIViewController {
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
+        tap.addTarget(self, action: #selector(showAlter))
     }
     
     private func ableButton() {
@@ -91,6 +100,18 @@ class ProfileSettingVC: UIViewController {
         lineView.backgroundColor = .sparkGray
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
+    }
+    
+    private func openLibrary() {
+        picker.sourceType = .photoLibrary
+        present(picker, animated: false, completion: nil)
+    }
+    
+    private func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+            present(picker, animated: false, completion: nil)
+        }
     }
     
     // MARK: - @objc
@@ -128,6 +149,28 @@ class ProfileSettingVC: UIViewController {
     }
     
     @objc
+    func showAlter() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = .sparkBlack
+        
+        let library = UIAlertAction(title: "앨범에서 선택", style: .default) { _ in
+            self.openLibrary()
+        }
+        
+        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
+            self.openCamera()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(library)
+        alert.addAction(camera)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc
     func touchCompleteButton() {
         // TODO: - 화면 전환
     }
@@ -145,7 +188,7 @@ extension ProfileSettingVC: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     /// 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -168,11 +211,24 @@ extension ProfileSettingVC: UITextFieldDelegate {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // UIImage 타입인 originalImage를 빼옴
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageView.image = image
+            profileImageView.contentMode = .scaleAspectFill
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
 // MARK: - Layout
+
 extension ProfileSettingVC {
     private func setLayout() {
         view.addSubviews([closeButton, titleLabel, profileImageView,
-                         fadeView, textField, lineView,
+                          fadeView, textField, lineView,
                           countLabel, completeButton])
         fadeView.addSubview(photoIconImageView)
         
