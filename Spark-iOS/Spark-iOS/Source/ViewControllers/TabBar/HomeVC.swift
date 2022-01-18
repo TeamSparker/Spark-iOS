@@ -117,6 +117,16 @@ extension HomeVC: UICollectionViewDelegate {
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let habitRoomList = habitRoomList else { return }
+        if habitRoomList[indexPath.item].isStarted == true {
+            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+            nextVC.roomID = habitRoomList[indexPath.item].roomID
+            
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
