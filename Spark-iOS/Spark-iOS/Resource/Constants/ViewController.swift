@@ -31,6 +31,7 @@ extension Const {
             static let resetPopup = "ResetPopupVC"
             static let sendSpark = "SendSparkVC"
             static let profileSetting = "ProfileSettingVC"
+            static let dialogue = "DialogueVC"
         }
     }
 }
