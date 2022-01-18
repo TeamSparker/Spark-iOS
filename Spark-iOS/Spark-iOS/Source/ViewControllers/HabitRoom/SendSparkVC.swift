@@ -25,10 +25,15 @@ class SendSparkVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUI()
         setLayout()
         setAddTargets(firstButton, secondButton, thirdButton, fourthButton)
+    }
+    
+    // MARK: IBAction Properties
+    
+    @IBAction func touchOutsideButton(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
