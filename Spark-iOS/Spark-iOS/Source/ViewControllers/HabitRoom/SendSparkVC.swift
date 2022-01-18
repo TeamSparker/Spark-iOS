@@ -9,12 +9,18 @@ import UIKit
 
 class SendSparkVC: UIViewController {
 
+    // MARK: Properties
+    var selectedIndex: Int = -1
+    var selectedMessage: String = ""
+    var firstButton = MyButton()
+    var secondButton = MyButton()
+    var thirdButton = MyButton()
+    var fourthButton = MyButton()
+    
     // MARK: IBoutlet properties
     
-    @IBOutlet weak var firstButton: UIButton!
-    @IBOutlet weak var secondButton: UIButton!
-    @IBOutlet weak var thirdButton: UIButton!
-    @IBOutlet weak var fourthButton: UIButton!
+    @IBOutlet weak var popUpView: UIView!
+    @IBOutlet weak var guideLabel: UILabel!
     
     // MARK: Life Cycle
     
@@ -22,6 +28,8 @@ class SendSparkVC: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setLayout()
+        setAddTargets(firstButton, secondButton, thirdButton, fourthButton)
     }
 }
 
@@ -33,11 +41,119 @@ extension SendSparkVC {
         tabBarController?.tabBar.isHidden = true
         
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            $0?.tintColor = .sparkLightPinkred
-            $0?.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-            $0?.layer.cornerRadius = 2
-            $0?.layer.borderWidth = 1
-            $0?.setTitleColor(.sparkLightPinkred, for: .normal)
+            $0.tintColor = .sparkLightPinkred
+            $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+            $0.layer.cornerRadius = 2
+            $0.layer.borderWidth = 1
+            $0.setTitleColor(.sparkLightPinkred, for: .normal)
+        }
+        
+        firstButton.setTitle("👊 아자아자 파이팅!", for: .normal)
+        secondButton.setTitle("🔥오늘 안 해? 같이 해!", for: .normal)
+        thirdButton.setTitle("👉 너만 하면 돼!", for: .normal)
+        fourthButton.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
+        
+        firstButton.statusCV = 1
+        secondButton.statusCV = 2
+        thirdButton.statusCV = 3
+        fourthButton.statusCV = 4
+    }
+    
+    private func setLayout() {
+        view.addSubviews([firstButton, secondButton, thirdButton, fourthButton])
+        
+        firstButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(guideLabel.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(170)
+        }
+        
+        secondButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(firstButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(186)
+        }
+        
+        thirdButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(secondButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(147)
+        }
+        
+        fourthButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(thirdButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(230)
+        }
+    }
+    
+    // 버튼 타겟 설정
+    private func setAddTargets(_ buttons: UIButton...) {
+        for button in buttons {
+            button.addTarget(self, action: #selector(setSelectedButton), for: .touchUpInside)
+        }
+    }
+    
+    // MARK: - @objc Function
+    
+    @objc func setSelectedButton(sender: MyButton) {
+        let status = sender.statusCV
+        selectedIndex = status
+        sender.setTitleColor(.sparkDarkPinkred, for: .normal)
+        sender.backgroundColor = .sparkMostLightPinkred
+        sender.titleLabel?.backgroundColor = .sparkMostLightPinkred
+        sender.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+        selectedMessage = sender.titleLabel?.text ?? ""
+        print(selectedMessage)
+        
+        switch status {
+        case 1:
+            [firstButton, secondButton, thirdButton, fourthButton].forEach {
+                if $0.statusCV != 1 {
+                    $0.tintColor = .sparkLightPinkred
+                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
+                    $0.backgroundColor = .sparkWhite
+                    $0.titleLabel?.backgroundColor = .sparkWhite
+                }
+            }
+
+        case 2:
+            [firstButton, secondButton, thirdButton, fourthButton].forEach {
+                if $0.statusCV != 2 {
+                    $0.tintColor = .sparkLightPinkred
+                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
+                    $0.backgroundColor = .sparkWhite
+                    $0.titleLabel?.backgroundColor = .sparkWhite
+                }
+            }
+
+        case 3:
+            [firstButton, secondButton, thirdButton, fourthButton].forEach {
+                if $0.statusCV != 3 {
+                    $0.tintColor = .sparkLightPinkred
+                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
+                    $0.backgroundColor = .sparkWhite
+                    $0.titleLabel?.backgroundColor = .sparkWhite
+                }
+            }
+
+        default:
+            [firstButton, secondButton, thirdButton, fourthButton].forEach {
+                if $0.statusCV != 4 {
+                    $0.tintColor = .sparkLightPinkred
+                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
+                    $0.backgroundColor = .sparkWhite
+                    $0.titleLabel?.backgroundColor = .sparkWhite
+                }
+            }
         }
     }
 }

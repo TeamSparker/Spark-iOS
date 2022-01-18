@@ -280,7 +280,7 @@ extension StorageVC {
     // MARK: - @objc Function
     
     @objc func changeCollectionView(sender: MyButton) {
-        let status: Int = (sender.statusCV)!
+        let status: Int = (sender.statusCV)
         switch status {
         case 1:
             DoingCV.isHidden = true

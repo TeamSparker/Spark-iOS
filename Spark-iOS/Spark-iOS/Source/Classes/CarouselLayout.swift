@@ -117,5 +117,5 @@ class CarouselLayout: UICollectionViewFlowLayout {
 }
 
 class MyButton: UIButton {
-    public var statusCV: Int?
+    public var statusCV: Int = -1
 }

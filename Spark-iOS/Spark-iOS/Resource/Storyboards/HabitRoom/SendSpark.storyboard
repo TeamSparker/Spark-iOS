@@ -41,159 +41,12 @@
                                         <color key="textColor" name="sparkDarkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qn8-PW-rdH">
-                                        <rect key="frame" x="137" y="119.5" width="140" height="33"/>
-                                        <color key="tintColor" name="sparkLightPinkred"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="   ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="👊">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name=".AppleColorEmojiUI"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" 아자아자 파이팅!   ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a06-Zj-vAS">
-                                        <rect key="frame" x="130" y="172.5" width="154" height="33"/>
-                                        <color key="tintColor" name="sparkLightPinkred"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="   🔥">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name=".AppleColorEmojiUI"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="오늘 안 해? 같이 해!   ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4o1-K9-YaG">
-                                        <rect key="frame" x="150" y="225.5" width="114" height="32.5"/>
-                                        <color key="tintColor" name="sparkLightPinkred"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content=" ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <font key="NSOriginalFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="  ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="👉">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name=".AppleColorEmojiUI"/>
-                                                        <font key="NSOriginalFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" 너만 하면 돼!">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <font key="NSOriginalFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="  ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mFM-1V-9Fh">
-                                        <rect key="frame" x="110" y="278" width="194" height="33"/>
-                                        <color key="tintColor" name="sparkLightPinkred"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="   ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="👍">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name=".AppleColorEmojiUI"/>
-                                                        <font key="NSOriginalFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" 얼마 안 남았어, 어서 하자!">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Medium"/>
-                                                        <font key="NSOriginalFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="   ">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="Times-Roman"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="4o1-K9-YaG" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="2Id-hq-tl0"/>
-                                    <constraint firstItem="a06-Zj-vAS" firstAttribute="top" secondItem="qn8-PW-rdH" secondAttribute="bottom" constant="20" id="4eS-yb-ZBN"/>
-                                    <constraint firstItem="qn8-PW-rdH" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="AW1-iZ-Oem"/>
                                     <constraint firstItem="mx8-nr-Syp" firstAttribute="top" secondItem="ELg-0t-yft" secondAttribute="top" constant="32" id="EMb-5y-4tF"/>
                                     <constraint firstItem="Qix-as-tzS" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="F0o-BF-BuN"/>
-                                    <constraint firstItem="mFM-1V-9Fh" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="H2h-5m-oiV"/>
-                                    <constraint firstItem="qn8-PW-rdH" firstAttribute="top" secondItem="Qix-as-tzS" secondAttribute="bottom" constant="32" id="Oqm-H6-LSG"/>
-                                    <constraint firstItem="4o1-K9-YaG" firstAttribute="top" secondItem="a06-Zj-vAS" secondAttribute="bottom" constant="20" id="S58-Hw-FuN"/>
-                                    <constraint firstItem="a06-Zj-vAS" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="b3T-xc-OXu"/>
                                     <constraint firstItem="mx8-nr-Syp" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="fgL-l5-akU"/>
-                                    <constraint firstItem="mFM-1V-9Fh" firstAttribute="top" secondItem="4o1-K9-YaG" secondAttribute="bottom" constant="20" id="j0t-xn-s4s"/>
                                     <constraint firstItem="Qix-as-tzS" firstAttribute="top" secondItem="mx8-nr-Syp" secondAttribute="bottom" constant="8" id="ov0-ev-f6s"/>
                                     <constraint firstAttribute="width" secondItem="ELg-0t-yft" secondAttribute="height" multiplier="375:372" id="pUx-3e-Fnw"/>
                                 </constraints>
@@ -208,10 +61,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="firstButton" destination="qn8-PW-rdH" id="dWB-H7-XOB"/>
-                        <outlet property="fourthButton" destination="mFM-1V-9Fh" id="CDu-nm-Pxj"/>
-                        <outlet property="secondButton" destination="a06-Zj-vAS" id="hJA-fQ-DCq"/>
-                        <outlet property="thirdButton" destination="4o1-K9-YaG" id="ymp-bj-ksN"/>
+                        <outlet property="guideLabel" destination="Qix-as-tzS" id="jx6-iS-3sa"/>
+                        <outlet property="popUpView" destination="ELg-0t-yft" id="AYr-Pm-aTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -222,9 +73,6 @@
     <resources>
         <namedColor name="sparkDarkGray">
             <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="sparkLightPinkred">
-            <color red="1" green="0.53700000047683716" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
