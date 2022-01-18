@@ -33,8 +33,16 @@ class FeedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setLayout()
         setCollectionView()
+        
+        // FIXME: - getFeedListFetchWithAPI 위치 변경
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+//                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,11 +50,8 @@ class FeedVC: UIViewController {
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-            }
-        }
+        // FIXME: - getFeedListFetchWithAPI를 여기서 호출하는거로 변경
+//        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
     
     // MARK: - Methods
