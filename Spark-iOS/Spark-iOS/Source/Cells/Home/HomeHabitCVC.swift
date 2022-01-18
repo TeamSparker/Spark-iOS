@@ -161,6 +161,7 @@ extension HomeHabitCVC {
         if isDone {
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
             tagDoneImage.isHidden = false
+            
         } else {
             ticketImage.image = UIImage(named: "property1TicketRight4")
             tagDoneImage.isHidden = true
