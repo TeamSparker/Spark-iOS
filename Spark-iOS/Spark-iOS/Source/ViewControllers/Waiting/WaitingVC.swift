@@ -44,12 +44,12 @@ class WaitingVC: UIViewController {
     var photoOnly: Bool = true /// 사진 인증만
     var roomName: String = ""
     var roomCode: String = ""
+    var roomId: Int?
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWaitingRoomWithAPI(roomID: 2)
         setUI()
         setLayout()
         setCollectionView()
@@ -57,6 +57,12 @@ class WaitingVC: UIViewController {
         setAuthLabel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("-----------🥕 roomId: \(roomId)")
+        getWaitingRoomWithAPI(roomID: roomId ?? 0)
+    }
+
     func setUI() {
         navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                             title: "30분 독서",
@@ -180,7 +186,7 @@ class WaitingVC: UIViewController {
     @objc
     func touchToRefreshButton() {
         refreshButtonAnimtation()
-        getWaitingMembersWithAPI(roomID: 2)
+        getWaitingMembersWithAPI(roomID: roomId ?? 0)
     }
 }
 
@@ -257,7 +263,7 @@ extension WaitingVC {
     
     func getWaitingMembersWithAPI(roomID: Int) {
         RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
-            print(response)
+            print("getWaitingMembersWithAPI -", response)
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {

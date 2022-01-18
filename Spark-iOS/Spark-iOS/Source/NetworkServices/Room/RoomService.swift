@@ -14,6 +14,7 @@ enum RoomService {
     case waitingMemberFetch(roomID: Int)
     case codeJoinCheckFetch(code: String)
     case enterRoom(roomID: Int)
+    case createRoom(createRoom: CreateRoom)
 }
 
 extension RoomService: TargetType {
@@ -31,6 +32,8 @@ extension RoomService: TargetType {
             return "/room/code/\(code)"
         case .enterRoom(let roomID):
             return "/room/\(roomID)/enter"
+        case .createRoom:
+            return "/room"
         }
     }
     
@@ -43,6 +46,8 @@ extension RoomService: TargetType {
         case .waitingMemberFetch:
             return .get
         case .enterRoom:
+            return .post
+        case .createRoom:
             return .post
         }
     }
@@ -57,6 +62,8 @@ extension RoomService: TargetType {
             return .requestPlain
         case .enterRoom(let roomID):
             return .requestParameters(parameters:["roomId": roomID], encoding: JSONEncoding.default)
+        case .createRoom(let createRoom):
+            return .requestJSONEncodable(createRoom)
         }
     }
     
@@ -69,6 +76,8 @@ extension RoomService: TargetType {
         case .enterRoom:
             return Const.Header.authrizationHeader
         case .waitingMemberFetch:
+            return Const.Header.authrizationHeader
+        case .createRoom:
             return Const.Header.authrizationHeader
         }
     }
