@@ -147,7 +147,7 @@ public class RoomAPI {
         }
     }
     
-    func startRoom(roomID: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
+    func startRoomWithAPI(roomID: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
         roomProvider.request(.startRoom(roomID: roomID)) { result in
             switch result {
             case .success(let response):

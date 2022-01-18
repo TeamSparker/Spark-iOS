@@ -309,7 +309,7 @@ extension WaitingVC {
     }
     
     func postStartRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.startRoom(roomID: roomID) { response in
+        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
                 print("postStartRoomWithAPI - success: \(message)")
