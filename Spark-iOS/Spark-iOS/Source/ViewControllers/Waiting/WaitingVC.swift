@@ -42,8 +42,8 @@ class WaitingVC: UIViewController {
     
     var memberList: [Any] = []
     var photoOnly: Bool = true /// 사진 인증만
-    var roomName: String = ""
-    var roomCode: String = ""
+    var roomName: String?
+    var roomCode: String?
     var roomId: Int?
     
     // MARK: - View Life Cycles
@@ -59,20 +59,24 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("-----------🥕 roomId: \(roomId)")
-        getWaitingRoomWithAPI(roomID: roomId ?? 0)
+        getWaitingRoomWithAPI(roomID: roomId ?? 0) {
+            self.setNavigation(title: self.roomName ?? "")
+        }
     }
 
-    func setUI() {
+    // MARK: - Methods
+    func setNavigation(title: String) {
         navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                            title: "30분 독서",
+                                                            title: "\(title)",
                                                             tintColor: .sparkBlack,
                                                             backgroundColor: .sparkWhite,
                                                             reftButtonImage: UIImage(named: "icHome"),
                                                             rightButtonImage: UIImage(),
                                                             reftButtonSelector: #selector(goToHomeVC),
                                                             rightButtonSelector: #selector(touchToMore))
-        
+    }
+    
+    func setUI() {
         profileImageView.backgroundColor = .sparkLightGray
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
@@ -172,12 +176,13 @@ class WaitingVC: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
+    // MARK: - 화면 전환
+    
     @objc
     func goToHomeVC() {
         /// 홈으로 화면 전환
     }
     
-    // TODO: - 더보기
     @objc
     func touchToMore() {
         /// 더보기 버튼
@@ -193,7 +198,7 @@ class WaitingVC: UIViewController {
 // MARK: - Network
 
 extension WaitingVC {
-    func getWaitingRoomWithAPI(roomID: Int) {
+    func getWaitingRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
@@ -215,6 +220,9 @@ extension WaitingVC {
                     
                     // 방 코드
                     self.roomCode = waitingRoom.roomCode
+                    
+                    // 방 이름
+                    self.roomName = waitingRoom.roomName
                     
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
@@ -246,8 +254,8 @@ extension WaitingVC {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
                     }
-                    
                     self.collectionView.reloadData()
+                    completion()
                 }
             case .requestErr(let message):
                 print("requestErr")
@@ -354,7 +362,6 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-//            make.top.equalToSuperview().inset(13)
             make.top.equalToSuperview().inset(104)
             make.width.equalTo(87)
             make.height.equalTo(36)
