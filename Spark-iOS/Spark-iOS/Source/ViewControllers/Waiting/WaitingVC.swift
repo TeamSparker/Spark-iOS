@@ -121,7 +121,7 @@ class WaitingVC: UIViewController {
         
         startButton.layer.cornerRadius = 2
         startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        startButton.setTitle("습관 시작하기", for: .normal)
+        startButton.setTitle("습관방 만들기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
     }
     
@@ -224,6 +224,13 @@ extension WaitingVC {
                     
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
+                    
+                    // 본인 방장 여부
+                    if user.isHost {
+                        self.startButton.isHidden = false
+                    } else {
+                        self.startButton.isHidden = true
+                    }
                     
                     // 목표가 있을 경우, 목표와 시간 세팅
                     if user.isPurposeSet {
