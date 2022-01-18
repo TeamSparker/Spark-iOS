@@ -138,6 +138,7 @@ class WaitingVC: UIViewController {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
     }
     
     func setCollectionView() {
@@ -178,18 +179,24 @@ class WaitingVC: UIViewController {
     
     @objc
     func goToHomeVC() {
-        /// 홈으로 화면 전환
+        // TODO: - 홈으로 화면 전환
     }
     
     @objc
     func touchToMore() {
-        /// 더보기 버튼
+        // 더보기 버튼
     }
     
     @objc
     func touchToRefreshButton() {
         refreshButtonAnimtation()
         getWaitingMembersWithAPI(roomID: roomId ?? 0)
+    }
+    
+    @objc
+    func touchToCreateButton() {
+        postStartRoomWithAPI(roomID: roomId ?? 0)
+        // TODO: - 상세뷰로 화면 전환
     }
 }
 
@@ -297,6 +304,23 @@ extension WaitingVC {
                 print("serverErr")
             case .networkFail:
                 print("networkFail")
+            }
+        }
+    }
+    
+    func postStartRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.startRoom(roomID: roomID) { response in
+            switch response {
+            case .success(let message):
+                print("postStartRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("postStartRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postStartRoomWithAPI - pathErr")
+            case .serverErr:
+                print("postStartRoomWithAPI - serverErr")
+            case .networkFail:
+                print("postStartRoomWithAPI - networkFail")
             }
         }
     }
