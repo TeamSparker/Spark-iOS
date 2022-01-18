@@ -28,9 +28,6 @@ class AuthTimerVC: UIViewController {
     var currentTimeCount: Int = 0
     var timer: Timer?
     
-    let stopwatch: Stopwatch = Stopwatch()
-    var isPlay: Bool = false
-    
     // MARK: - View Life Cycles
 
     override func viewDidLoad() {
