@@ -7,12 +7,18 @@
 
 import UIKit
 
+@frozen enum AuthType {
+    case photoOnly
+    case photoTimer
+}
+
 class HabitAuthVC: UIViewController {
 
     // MARK: - Properties
     
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
+    var authType: AuthType?
     
     // MARK: - @IBOutlet Properties
     
@@ -20,7 +26,8 @@ class HabitAuthVC: UIViewController {
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var considerButton: UIButton!
     @IBOutlet weak var restButton: UIButton!
-
+    @IBOutlet weak var authTypeImageView: UIImageView!
+    
     // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +43,17 @@ extension HabitAuthVC {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
+        authType = .photoOnly
+        
+        switch authType {
+        case .photoOnly:
+            authTypeImageView.image = UIImage(named: "stickerPhotoDefault")
+        case .photoTimer:
+            authTypeImageView.image = UIImage(named: "stickerPhotoBoth")
+        case .none:
+            print("authType을 지정해주세요")
+        }
+        
         popUpView.layer.cornerRadius = 2
         
         okButton.isEnabled = true
@@ -45,14 +63,13 @@ extension HabitAuthVC {
         okButton.tintColor = .sparkGray
         okButton.setTitleColor(.sparkGray, for: .highlighted)
         
-        // TODO: 고민중, 쉴래요 버튼 기능 구현
         considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        considerButton.layer.borderColor = UIColor.sparkLightGray.cgColor
+        considerButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         considerButton.layer.borderWidth = 1
         considerButton.layer.cornerRadius = 2
         
         restButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        restButton.layer.borderColor = UIColor.sparkLightGray.cgColor
+        restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
     }

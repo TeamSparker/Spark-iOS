@@ -183,6 +183,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="authTypeImageView" destination="zz0-Ms-rNq" id="hwN-RT-Zcd"/>
                         <outlet property="considerButton" destination="N1k-GB-OYv" id="jNg-EO-F5D"/>
                         <outlet property="okButton" destination="Re3-cM-dzs" id="ZN3-1X-bRg"/>
                         <outlet property="popUpView" destination="z0p-0Q-vit" id="NVX-ba-n0Z"/>
