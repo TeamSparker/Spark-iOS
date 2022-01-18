@@ -15,8 +15,8 @@ public class AuthAPI {
     
     public init() { }
     
-    func signup(socailID: String, profileImg: UIImage, nickname: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.signup(socialId: socailID, profileImg: profileImg, nickname: nickname)) { result in
+    func signup(socailID: String, profileImg: UIImage, nickname: String, fcmToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.signup(socialId: socailID, profileImg: profileImg, nickname: nickname, fcmToken: fcmToken)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
