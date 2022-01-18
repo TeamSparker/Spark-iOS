@@ -161,11 +161,19 @@ class ProfileSettingVC: UIViewController {
             self.openCamera()
         }
         
+        let delete = UIAlertAction(title: "사진 삭제", style: .default) { _ in
+            self.profileImageView.image = UIImage(named: "profileEmpty")
+        }
+        
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         alert.addAction(library)
         alert.addAction(camera)
         alert.addAction(cancel)
+        
+        if profileImageView.image != UIImage(named: "profileEmpty") {
+            alert.addAction(delete)
+        }
         
         present(alert, animated: true, completion: nil)
     }
@@ -173,6 +181,7 @@ class ProfileSettingVC: UIViewController {
     @objc
     func touchCompleteButton() {
         // TODO: - 화면 전환
+        // profileImageView.image, textField.text 전달
     }
     
     @objc
