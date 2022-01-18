@@ -45,7 +45,9 @@ extension RoomService: TargetType {
             return .get
         case .waitingMemberFetch:
             return .get
-        case .enterRoom, .authUpload:
+        case .enterRoom:
+            return .post
+        case .authUpload:
             return .post
         }
     }

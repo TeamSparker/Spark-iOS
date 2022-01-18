@@ -21,7 +21,7 @@ class AuthUploadVC: UIViewController {
     // MARK: - Properties
     
     var vcType: VCCase = .albumTimer
-    var roomID: Int = -1
+    var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
     var uploadImage = UIImage()
@@ -320,7 +320,7 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: roomID, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
+        RoomAPI.shared.authUpload(roomID: roomID ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
@@ -337,13 +337,13 @@ extension AuthUploadVC {
                 }
             case .requestErr(let message):
                 print(message)
-                print("requestErr")
+                print("authUploadWithAPI - requestErr")
             case .pathErr:
-                print("pathErr")
+                print("authUploadWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("authUploadWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("authUploadWithAPI - networkFail")
             }
         }
     }

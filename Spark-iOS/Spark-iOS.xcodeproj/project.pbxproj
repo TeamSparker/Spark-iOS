@@ -72,6 +72,7 @@
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
+		EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FDD2796C45900157075 /* StatusButton.swift */; };
 		EBEA381D279441E000B5736A /* splash_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381B279441DF00B5736A /* splash_iOS.json */; };
 		EBEA381F279450B900B5736A /* illust_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA381E279450B800B5736A /* illust_confetti.json */; };
 		EBEA382327945F5A00B5736A /* ic_heart_active.json in Resources */ = {isa = PBXBuildFile; fileRef = EBEA382127945F5A00B5736A /* ic_heart_active.json */; };
@@ -194,6 +195,7 @@
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
 		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
 		EBE90FDB279612CA00157075 /* SendSpark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendSpark.storyboard; sourceTree = "<group>"; };
+		EBE90FDD2796C45900157075 /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
 		EBEA381B279441DF00B5736A /* splash_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_iOS.json; sourceTree = "<group>"; };
 		EBEA381E279450B800B5736A /* illust_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = illust_confetti.json; sourceTree = "<group>"; };
 		EBEA382127945F5A00B5736A /* ic_heart_active.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ic_heart_active.json; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				EB625E89278F29D300C43DE9 /* CarouselLayout.swift */,
 				EB9C507C27922F2E00588155 /* LineAnimationView.swift */,
 				2BE5D80D2793203C007A544D /* Stopwatch.swift */,
+				EBE90FDD2796C45900157075 /* StatusButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
+				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
 				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
 				F82F580A279289C4003E4174 /* HomeService.swift in Sources */,
