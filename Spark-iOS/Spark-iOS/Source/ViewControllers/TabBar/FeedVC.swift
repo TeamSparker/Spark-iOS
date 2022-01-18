@@ -35,18 +35,18 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setCollectionView()
-        
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-                self.collectionView.reloadData()
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
+        }
     }
     
     // MARK: - Methods

@@ -138,7 +138,6 @@ public class RoomAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeCreateStatus(by: statusCode, data)
-                print("🙆‍♀️", networkResult)
                 completion(networkResult)
                 
             case .failure(let err):

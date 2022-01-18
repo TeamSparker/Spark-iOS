@@ -41,7 +41,7 @@ class WaitingVC: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var memberList: [Any] = []
-    var photoOnly: Bool = true /// 사진 인증만
+    var photoOnly: Bool? /// 사진 인증만
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
@@ -59,9 +59,7 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getWaitingRoomWithAPI(roomID: roomId ?? 0) {
-            self.setNavigation(title: self.roomName ?? "")
-        }
+        getWaitingRoomWithAPI(roomID: roomId ?? 0)
     }
 
     // MARK: - Methods
@@ -129,7 +127,7 @@ class WaitingVC: UIViewController {
     
     /// 선택한 인증 방식
     func setAuthLabel() {
-        if photoOnly {
+        if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
         } else {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
@@ -198,7 +196,7 @@ class WaitingVC: UIViewController {
 // MARK: - Network
 
 extension WaitingVC {
-    func getWaitingRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
+    func getWaitingRoomWithAPI(roomID: Int) {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
@@ -254,8 +252,8 @@ extension WaitingVC {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
                     }
+                    self.setNavigation(title: self.roomName ?? "")
                     self.collectionView.reloadData()
-                    completion()
                 }
             case .requestErr(let message):
                 print("requestErr")
@@ -271,7 +269,6 @@ extension WaitingVC {
     
     func getWaitingMembersWithAPI(roomID: Int) {
         RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
-            print("getWaitingMembersWithAPI -", response)
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
