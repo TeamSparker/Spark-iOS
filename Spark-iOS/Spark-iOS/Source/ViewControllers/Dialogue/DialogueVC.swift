@@ -27,7 +27,7 @@ class DialogueVC: UIViewController {
     @IBOutlet weak var guideLabel: UILabel!
     @IBOutlet weak var cancelLabel: UILabel!
     @IBOutlet weak var resetOrExitLabel: UILabel!
-    @IBOutlet weak var dialogueVIew: UIView!
+    @IBOutlet weak var dialogueView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var resetOrExitButton: UIButton!
     @IBOutlet weak var cancelView: UIView!
@@ -38,7 +38,7 @@ class DialogueVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setAddtargets()
+        setAddTargets()
     }
     
 }
@@ -48,7 +48,7 @@ extension DialogueVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         
-        dialogueVIew.layer.cornerRadius = 2
+        dialogueView.layer.cornerRadius = 2
         
         dialogueType = .exitTimer
         
@@ -87,7 +87,7 @@ extension DialogueVC {
         }
     }
     
-    private func setAddtargets() {
+    private func setAddTargets() {
         cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(giveAlphaCancelViewColor), for: .touchDown)
         cancelButton.addTarget(self, action: #selector(eraseAlphaCancelViewColor), for: .touchDragOutside)

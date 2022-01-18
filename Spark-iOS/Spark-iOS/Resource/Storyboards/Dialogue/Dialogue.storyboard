@@ -138,7 +138,7 @@
                         <outlet property="cancelButton" destination="TSw-JK-bjt" id="GU4-Ux-8xJ"/>
                         <outlet property="cancelLabel" destination="f6E-dr-Sp0" id="KDB-BU-Rdt"/>
                         <outlet property="cancelView" destination="Phi-9Q-ATe" id="f5O-BR-EkB"/>
-                        <outlet property="dialogueVIew" destination="j4s-M0-BpU" id="QDA-m8-kzd"/>
+                        <outlet property="dialogueView" destination="j4s-M0-BpU" id="AGH-Ld-Imj"/>
                         <outlet property="guideLabel" destination="XIe-ns-Hlq" id="QgI-sD-FZc"/>
                         <outlet property="resetOrExitButton" destination="VGC-GZ-g7L" id="CUe-BD-UCK"/>
                         <outlet property="resetOrExitLabel" destination="w5g-YB-25v" id="FjM-3Y-pPn"/>
