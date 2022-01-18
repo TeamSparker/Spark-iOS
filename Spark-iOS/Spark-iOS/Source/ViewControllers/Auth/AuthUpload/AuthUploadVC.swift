@@ -215,10 +215,10 @@ extension AuthUploadVC {
         }
     }
     
+    // TODO: 업로드 시간이 길다. 로딩 넣기.
     // 업로드
     @objc
     func touchUploadButton() {
-        uploadButton.isEnabled = false
         authUploadWithAPI()
     }
 }
@@ -332,12 +332,9 @@ extension AuthUploadVC {
                     popupVC.modalPresentationStyle = .overFullScreen
                     
                     self.present(popupVC, animated: true, completion: nil)
-                    
-                    self.uploadButton.isEnabled = true
                 }
             case .requestErr(let message):
-                print(message)
-                print("authUploadWithAPI - requestErr")
+                print("authUploadWithAPI - requestErr \(message)")
             case .pathErr:
                 print("authUploadWithAPI - pathErr")
             case .serverErr:
