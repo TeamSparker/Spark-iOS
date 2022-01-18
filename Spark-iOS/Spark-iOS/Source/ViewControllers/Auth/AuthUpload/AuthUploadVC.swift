@@ -21,6 +21,7 @@ class AuthUploadVC: UIViewController {
     // MARK: - Properties
     
     var vcType: VCCase = .albumTimer
+    var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
     var uploadImage = UIImage()
@@ -214,15 +215,11 @@ extension AuthUploadVC {
         }
     }
     
+    // TODO: 업로드 시간이 길다. 로딩 넣기.
     // 업로드
     @objc
     func touchUploadButton() {
-        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
-        
-        popupVC.modalTransitionStyle = .crossDissolve
-        popupVC.modalPresentationStyle = .overFullScreen
-        
-        present(popupVC, animated: true, completion: nil)
+        authUploadWithAPI()
     }
 }
 
@@ -315,6 +312,36 @@ extension AuthUploadVC {
         
         timerLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(uploadImageView)
+        }
+    }
+}
+
+// MARK: Network
+
+extension AuthUploadVC {
+    func authUploadWithAPI() {
+        RoomAPI.shared.authUpload(roomID: roomID ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
+            switch response {
+            case .success(let data):
+                if let authUpload = data as? AuthUpload {
+                    print(authUpload)
+                    
+                    guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
+                    
+                    popupVC.modalTransitionStyle = .crossDissolve
+                    popupVC.modalPresentationStyle = .overFullScreen
+                    
+                    self.present(popupVC, animated: true, completion: nil)
+                }
+            case .requestErr(let message):
+                print("authUploadWithAPI - requestErr \(message)")
+            case .pathErr:
+                print("authUploadWithAPI - pathErr")
+            case .serverErr:
+                print("authUploadWithAPI - serverErr")
+            case .networkFail:
+                print("authUploadWithAPI - networkFail")
+            }
         }
     }
 }

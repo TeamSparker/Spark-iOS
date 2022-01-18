@@ -47,7 +47,7 @@ Room</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다른 스파커를 기다리는 중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRF-lP-dsT">
-                        <rect key="frame" x="165" y="55" width="165.5" height="20.5"/>
+                        <rect key="frame" x="165" y="73.5" width="165.5" height="20.5"/>
                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="14"/>
                         <color key="textColor" name="sparkDarkGray"/>
                         <nil key="highlightedColor"/>
@@ -58,7 +58,6 @@ Room</string>
             <constraints>
                 <constraint firstItem="4Ij-88-tcj" firstAttribute="centerY" secondItem="Sbl-hS-w3b" secondAttribute="centerY" id="5kg-U7-OKm"/>
                 <constraint firstItem="XRF-lP-dsT" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" constant="24" id="7H3-UC-Na8"/>
-                <constraint firstItem="XRF-lP-dsT" firstAttribute="top" secondItem="D2C-z7-fTc" secondAttribute="bottom" constant="13" id="7aa-Em-faw"/>
                 <constraint firstItem="D2C-z7-fTc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="21" id="AO5-6i-fhj"/>
                 <constraint firstItem="Sbl-hS-w3b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AZn-GA-24X"/>
                 <constraint firstItem="4Ij-88-tcj" firstAttribute="centerX" secondItem="Sbl-hS-w3b" secondAttribute="centerX" id="Dbk-2O-h3P"/>
@@ -68,6 +67,7 @@ Room</string>
                 <constraint firstAttribute="bottom" secondItem="Sbl-hS-w3b" secondAttribute="bottom" id="VAH-Ak-fjW"/>
                 <constraint firstItem="0Je-SE-b9g" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" id="X3K-I2-vkB"/>
                 <constraint firstItem="D2C-z7-fTc" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" constant="24" id="hHR-Jn-F6T"/>
+                <constraint firstAttribute="bottom" secondItem="XRF-lP-dsT" secondAttribute="bottom" constant="21" id="ryn-wH-zcw"/>
                 <constraint firstAttribute="trailing" secondItem="0Je-SE-b9g" secondAttribute="trailing" id="vXd-tk-Z6h"/>
                 <constraint firstItem="Sbl-hS-w3b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zPF-Fj-U9d"/>
             </constraints>

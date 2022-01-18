@@ -13,5 +13,6 @@ extension Const {
         static let isOnboarding = "isOnboarding"
         static let userID = "userID"
         static let accessToken = "accessToekn"
+        static let fcmToken = "fcmToken"
     }
 }

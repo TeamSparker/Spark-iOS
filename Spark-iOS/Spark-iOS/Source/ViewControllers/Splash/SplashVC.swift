@@ -7,29 +7,61 @@
 
 import UIKit
 
+import Lottie
+import SnapKit
+
 class SplashVC: UIViewController {
 
     // MARK: - Properties
     
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
  
+    lazy var lottieLogoView: AnimationView =  {
+        let animationView = AnimationView(name: Const.Lottie.Name.splashLogo)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.contentMode = .scaleAspectFill
+        animationView.stop()
+        animationView.isHidden = true
+        
+        return animationView
+    }()
+    lazy var lottieBgView: AnimationView = {
+        let animationView = AnimationView(name: Const.Lottie.Name.splashBackground)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.contentMode = .scaleAspectFill
+        animationView.stop()
+        animationView.isHidden = true
+       
+        return animationView
+    }()
+    
+    let splashLabel = UILabel()
+    
+    // MARK: - @IBOutlet Properties
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUI()
+        setLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            if self.appDelegate?.isLogin == true {
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//            if self.appDelegate?.isLogin == true {
+            if true {
                 self.presentToMain()
             } else {
-                
+
                 // FIXME: - 온보딩 만들면 적용하기
-//
+
 //                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
                     self.presentToLogin()
 //                } else {
@@ -38,8 +70,37 @@ class SplashVC: UIViewController {
             }
         }
     }
+}
     
-    // MARK: - Functions
+// MARK: - Functions
+
+extension SplashVC {
+    private func setUI() {
+        lottieBgView.isHidden = false
+        lottieBgView.play()
+        lottieLogoView.isHidden = false
+        lottieLogoView.play()
+        
+        splashLabel.text = "습관에 불을 지펴봐!"
+        splashLabel.font = .krMediumFont(ofSize: 18)
+        splashLabel.textColor = .sparkWhite
+    }
+    
+    private func setLayout() {
+        view.addSubviews([lottieBgView, lottieLogoView, splashLabel])
+        
+        lottieBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        lottieLogoView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(232)
+        }
+        splashLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(45)
+        }
+    }
     
     private func presentToMain() {
         guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
@@ -55,7 +116,8 @@ class SplashVC: UIViewController {
         self.present(loginVC, animated: true, completion: nil)
     }
     
+    // TODO: - 온보딩 뷰 화면전환
+    
     private func presentToOnboarding() {
-        // TODO: - 온보딩 뷰 화면전환
     }
 }

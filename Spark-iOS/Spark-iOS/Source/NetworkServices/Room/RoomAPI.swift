@@ -8,6 +8,7 @@
 import Foundation
 
 import Moya
+import UIKit
 
 public class RoomAPI {
     
@@ -185,6 +186,39 @@ public class RoomAPI {
         switch statusCode {
         case 200:
             return .success(decodedData.message)
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    func authUpload(roomID: Int, timer: String, image: UIImage, completion: @escaping(NetworkResult<Any>) -> Void) {
+        roomProvider.request(.authUpload(roomID: roomID, timer: timer, image: image)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeAuthUploadStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func judgeAuthUploadStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try?
+                decoder.decode(GenericResponse<AuthUpload>.self, from: data)
+        else { return .pathErr }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:

@@ -142,14 +142,6 @@ extension AppDelegate: MessagingDelegate {
     /// 현재 등록 토큰 가져오기.
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
-        // TODO: - 디바이스 토큰을 보내는 서버통신 구현
-        
-        sendDeviceTokenWithAPI(fcmToken: fcmToken ?? "")
-    }
-}
-
-extension AppDelegate {
-    private func sendDeviceTokenWithAPI(fcmToken: String) {
-        
+        UserDefaults.standard.set(fcmToken, forKey: Const.UserDefaultsKey.fcmToken)
     }
 }

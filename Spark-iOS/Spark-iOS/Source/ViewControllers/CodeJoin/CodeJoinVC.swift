@@ -185,11 +185,12 @@ extension CodeJoinVC {
                     let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
                     guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
                     
-                    nextVC.creatorName = codeWaiting.creatorName
-                    nextVC.roomName = "\(codeWaiting.roomName)님이 초대한 방"
+                    nextVC.creatorName = "\(codeWaiting.creatorName)님이 초대한 방"
+                    nextVC.roomName = codeWaiting.roomName
                     nextVC.roomID = codeWaiting.roomID
 
                     nextVC.modalPresentationStyle = .fullScreen
+                    nextVC.modalTransitionStyle = .crossDissolve
                     self.present(nextVC, animated: false, completion: nil)
                 }
             case .requestErr(let message):

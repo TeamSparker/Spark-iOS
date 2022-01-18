@@ -12,9 +12,10 @@ extension Const {
     struct Lottie {
         struct Name {
             static let confetti = "illust_confetti"
-            static let splash = "splash_iOS"
-            static let heart_effect = "ic_heart_active"
-            static let ticket_welcome = "ticket_welcome"
+            static let heartEffect = "ic_heart_active"
+            static let ticketWelcome = "ticket_welcome"
+            static let splashLogo = "splash_logo"
+            static let splashBackground = "splash_bg_iOS"
         }
     }
 }
