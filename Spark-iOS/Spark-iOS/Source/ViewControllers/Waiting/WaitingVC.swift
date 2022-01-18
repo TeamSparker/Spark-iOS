@@ -164,7 +164,7 @@ class WaitingVC: UIViewController {
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = roomCode
-        showToast(message: "코드를 복사했어요", font: .p1TitleLight)
+        showToast(x: 20, y: startButton.frame.minY - 60, message: "코드를 복사했어요", font: .p1TitleLight)
     }
     
     @objc

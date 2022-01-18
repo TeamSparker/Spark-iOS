@@ -8,10 +8,10 @@
 import UIKit
 
 extension UIViewController {
-    func showToast(message: String, font: UIFont) {
+    func showToast(x: CGFloat, y: CGFloat, message: String, font: UIFont) {
         var toastLabel = UILabel()
-        toastLabel = UILabel(frame: CGRect(x: 20,
-                                           y: 652,
+        toastLabel = UILabel(frame: CGRect(x: x,
+                                           y: y,
                                            width: self.view.frame.size.width - 40,
                                            height: 40))
         
