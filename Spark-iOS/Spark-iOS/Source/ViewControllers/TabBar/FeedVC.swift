@@ -35,18 +35,18 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setCollectionView()
-        
-        DispatchQueue.main.async {
-            self.feedListFetchWithAPI(lastID: self.feedLastID) {
-                self.collectionView.reloadData()
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
+        }
     }
     
     // MARK: - Methods
@@ -129,7 +129,7 @@ class FeedVC: UIViewController {
 // MARK: - Network
 
 extension FeedVC {
-    private func feedListFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
+    private func getFeedListFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
         FeedAPI.shared.feedFetch(lastID: lastID, size: feedCountSize) { response in
             
             switch response {
@@ -152,7 +152,7 @@ extension FeedVC {
         }
     }
     
-    func feedLikeWithAPI(recordID: Int) {
+    func postFeedLikeWithAPI(recordID: Int) {
         FeedAPI.shared.feedLike(recordID: recordID) { response in
             switch response {
             case .success(let message):
@@ -183,7 +183,7 @@ extension FeedVC: UICollectionViewDelegate {
                 isInfiniteScroll = false
                 
                 feedLastID = feedList.last?.recordID ?? 0
-                feedListFetchWithAPI(lastID: feedLastID) {
+                getFeedListFetchWithAPI(lastID: feedLastID) {
                     self.isInfiniteScroll = true
                 }
             }
@@ -294,6 +294,6 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
     func likeButtonTapped(recordID: Int) {
-        feedLikeWithAPI(recordID: recordID)
+        postFeedLikeWithAPI(recordID: recordID)
     }
 }
