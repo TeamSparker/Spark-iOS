@@ -14,7 +14,8 @@ struct WaitingRoom: Codable {
 
 // MARK: - Waiting
 struct Waiting: Codable {
-    let roomID, roomName, roomCode: String
+    let roomID: Int
+    let roomName, roomCode: String
     let fromStart: Bool
     let reqUser: ReqUser
     let members: [Member]
@@ -43,7 +44,7 @@ struct ReqUser: Codable {
     let nickname: String
     let profileImg: String?
     let isPurposeSet: Bool
-    let moment, purpose: String
+    let moment, purpose: String?
     let isHost: Bool
 
     enum CodingKeys: String, CodingKey {

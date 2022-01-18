@@ -41,15 +41,15 @@ class WaitingVC: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var memberList: [Any] = []
-    var photoOnly: Bool = true /// 사진 인증만
-    var roomName: String = ""
-    var roomCode: String = ""
+    var photoOnly: Bool? /// 사진 인증만
+    var roomName: String?
+    var roomCode: String?
+    var roomId: Int?
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWaitingRoomWithAPI(roomID: 2)
         setUI()
         setLayout()
         setCollectionView()
@@ -57,16 +57,24 @@ class WaitingVC: UIViewController {
         setAuthLabel()
     }
     
-    func setUI() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getWaitingRoomWithAPI(roomID: roomId ?? 0)
+    }
+
+    // MARK: - Methods
+    func setNavigation(title: String) {
         navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                            title: "30분 독서",
+                                                            title: "\(title)",
                                                             tintColor: .sparkBlack,
                                                             backgroundColor: .sparkWhite,
                                                             reftButtonImage: UIImage(named: "icHome"),
                                                             rightButtonImage: UIImage(),
                                                             reftButtonSelector: #selector(goToHomeVC),
                                                             rightButtonSelector: #selector(touchToMore))
-        
+    }
+    
+    func setUI() {
         profileImageView.backgroundColor = .sparkLightGray
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
@@ -119,7 +127,7 @@ class WaitingVC: UIViewController {
     
     /// 선택한 인증 방식
     func setAuthLabel() {
-        if photoOnly {
+        if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
         } else {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
@@ -166,12 +174,13 @@ class WaitingVC: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
+    // MARK: - 화면 전환
+    
     @objc
     func goToHomeVC() {
         /// 홈으로 화면 전환
     }
     
-    // TODO: - 더보기
     @objc
     func touchToMore() {
         /// 더보기 버튼
@@ -180,7 +189,7 @@ class WaitingVC: UIViewController {
     @objc
     func touchToRefreshButton() {
         refreshButtonAnimtation()
-        getWaitingMembersWithAPI(roomID: 2)
+        getWaitingMembersWithAPI(roomID: roomId ?? 0)
     }
 }
 
@@ -209,6 +218,9 @@ extension WaitingVC {
                     
                     // 방 코드
                     self.roomCode = waitingRoom.roomCode
+                    
+                    // 방 이름
+                    self.roomName = waitingRoom.roomName
                     
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
@@ -240,7 +252,7 @@ extension WaitingVC {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
                     }
-                    
+                    self.setNavigation(title: self.roomName ?? "")
                     self.collectionView.reloadData()
                 }
             case .requestErr(let message):
@@ -257,7 +269,6 @@ extension WaitingVC {
     
     func getWaitingMembersWithAPI(roomID: Int) {
         RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
-            print(response)
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
@@ -348,7 +359,6 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-//            make.top.equalToSuperview().inset(13)
             make.top.equalToSuperview().inset(104)
             make.width.equalTo(87)
             make.height.equalTo(36)

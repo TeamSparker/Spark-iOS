@@ -17,7 +17,7 @@ class HomeVC: UIViewController {
     private var habitRoomList: [Room]? = []
     private var habitRoomLastID: Int = -1
     // FIXME: - 현재 size 임의 설정
-    private var habitRoomCountSize: Int = 6
+    private var habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
     
     // MARK: - @IBOutlet Properties

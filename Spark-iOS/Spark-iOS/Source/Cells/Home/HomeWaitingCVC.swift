@@ -40,5 +40,8 @@ extension HomeWaitingCVC {
     
     func initCell(roomName: String) {
         habitTitleLabel.text = roomName
+        
+        flakeImage.image = UIImage(named: "property1TicketLeftWaitingroomHalf4")
+        ticketImage.image = UIImage(named: "property1TicketRightWaitingroomHalf4")
     }
 }
