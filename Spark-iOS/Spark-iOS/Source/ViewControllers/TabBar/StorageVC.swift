@@ -388,11 +388,12 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle: nil)
+        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.habitAuth, bundle: nil)
 
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.habitAuth) as? HabitAuthVC else {return}
 
         nextVC.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(nextVC, animated: true)
+        self.present(nextVC, animated: true)
+//        navigationController?.pushViewController(nextVC, animated: true)
     }
 }

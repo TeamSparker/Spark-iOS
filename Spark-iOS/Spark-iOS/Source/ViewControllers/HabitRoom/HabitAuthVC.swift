@@ -27,6 +27,7 @@ class HabitAuthVC: UIViewController {
     @IBOutlet weak var considerButton: UIButton!
     @IBOutlet weak var restButton: UIButton!
     @IBOutlet weak var authTypeImageView: UIImageView!
+    @IBOutlet weak var restNumberLabel: UILabel!
     
     // MARK: Life Cycles
     override func viewDidLoad() {
@@ -72,6 +73,9 @@ extension HabitAuthVC {
         restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
+//        if restNumber == 0 {
+//            restButton.isEnabled = false
+//        }
     }
     
     private func setAddTargets() {
@@ -100,8 +104,12 @@ extension HabitAuthVC {
         alter.addAction(library)
         alter.addAction(cancel)
         
+        let presentingVC = self.presentingViewController
         /// button tap했을 때 alter present
-        present(alter, animated: true, completion: nil)
+        self.modalTransitionStyle = .coverVertical
+        dismiss(animated: true) {
+            presentingVC?.present(alter, animated: true, completion: nil)
+        }
     }
     
     private func openLibrary() {
