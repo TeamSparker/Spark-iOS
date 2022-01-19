@@ -60,7 +60,7 @@ class CreateRoomVC: UIViewController {
         
         nextButton.layer.cornerRadius = 2
         nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        nextButton.setTitle("다음", for: .normal)
+        nextButton.setTitle("다음으로", for: .normal)
         nextButton.backgroundColor = .sparkGray
         nextButton.isEnabled = false
         
@@ -115,7 +115,7 @@ class CreateRoomVC: UIViewController {
         
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
         }

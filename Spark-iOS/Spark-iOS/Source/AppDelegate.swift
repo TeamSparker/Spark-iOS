@@ -100,6 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
     
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        /// 세로방향 고정
+        return UIInterfaceOrientationMask.portrait
+    }
+    
     // MARK: - APNs
     
     /// APN 토큰과 등록 토큰 매핑

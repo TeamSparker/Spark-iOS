@@ -56,7 +56,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-NR-SRK">
-                                <rect key="frame" x="20" y="605" width="335" height="48"/>
+                                <rect key="frame" x="20" y="646" width="335" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KJJ-HB-Rs4"/>
                                 </constraints>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-oV-XpG">
-                                <rect key="frame" x="20" y="669" width="335" height="48"/>
+                                <rect key="frame" x="20" y="710" width="335" height="48"/>
                                 <color key="backgroundColor" name="sparkDarkPinkRed"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="HmT-gM-mxw"/>
@@ -114,7 +114,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="20" id="d0W-c5-wHe"/>
                             <constraint firstItem="CQc-20-0XK" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="-94" id="dJO-Cn-btK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XBD-NR-SRK" secondAttribute="trailing" constant="20" id="dQI-A0-NPS"/>
-                            <constraint firstAttribute="bottom" secondItem="Vtz-oV-XpG" secondAttribute="bottom" constant="95" id="dnY-b3-wc4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Vtz-oV-XpG" secondAttribute="bottom" constant="20" id="dnY-b3-wc4"/>
                             <constraint firstItem="Vtz-oV-XpG" firstAttribute="height" secondItem="XBD-NR-SRK" secondAttribute="height" id="pHd-ho-A9h"/>
                             <constraint firstItem="K9Q-Mh-9RA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="srl-Ec-oPD"/>
                             <constraint firstItem="PnJ-Gi-Xm5" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="vas-DF-QOF"/>

@@ -30,7 +30,9 @@ extension Const {
             static let authTimer = "AuthTimerVC"
             static let resetPopup = "ResetPopupVC"
             static let sendSpark = "SendSparkVC"
+            static let profileSetting = "ProfileSettingVC"
             static let dialogue = "DialogueVC"
+            static let habitRoom = "HabitRoomVC"
         }
     }
 }

@@ -27,8 +27,12 @@ class GoalWritingVC: UIViewController {
     let goalLineView = UIView()
     let goalCountLabel = UILabel()
     let completeButton = UIButton()
-    var titleText = "아침독서"
+    
     var maxLength: Int = 15
+    var titleText: String?
+    var roomId: Int?
+    var moment: String?
+    var purpose: String?
     
     // MARK: - View Life Cycles
     
@@ -38,6 +42,8 @@ class GoalWritingVC: UIViewController {
         setLayout()
         setNotification()
         setAddTarget()
+        setInitTextField(textField: whenTextField, countLabel: whenCountLabel, lineView: whenLineView)
+        setInitTextField(textField: goalTextField, countLabel: goalCountLabel, lineView: goalLineView)
     }
     
     // MARK: - Methods
@@ -49,7 +55,7 @@ class GoalWritingVC: UIViewController {
         titleLabel.font = .h3Subtitle
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "\(titleText) 습관방의 \n시간과 목표를 적어봐요."
+        subTitleLabel.text = "\(titleText ?? "기본") 습관방에서의 \n시간과 목표를 적어 보세요!"
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -62,7 +68,7 @@ class GoalWritingVC: UIViewController {
         whenExLabel.font = .p2Subtitle
         whenExLabel.textColor = .sparkDarkGray
         
-        goalLabel.text = "이 방에서 나만의 목표는 무엇인가요?"
+        goalLabel.text = "나만의 목표는 무엇인가요?"
         goalLabel.font = .h2Title
         goalLabel.textColor = .sparkBlack
         
@@ -76,6 +82,7 @@ class GoalWritingVC: UIViewController {
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
         
+        whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
         whenTextField.delegate = self
         whenLineView.backgroundColor = .sparkGray
@@ -83,6 +90,7 @@ class GoalWritingVC: UIViewController {
         whenCountLabel.font = .p2SubtitleEng
         whenCountLabel.textColor = .sparkDarkGray
         
+        goalTextField.text = "\(purpose ?? "")"
         goalTextField.borderStyle = .none
         goalTextField.delegate = self
         goalLineView.backgroundColor = .sparkGray
@@ -131,6 +139,21 @@ class GoalWritingVC: UIViewController {
             let frame = CGAffineTransform(translationX: 0, y: 0)
             [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
              self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
+    private func setInitTextField(textField: UITextField, countLabel: UILabel, lineView: UIView) {
+        if textField.hasText {
+            countLabel.text = "\(String(describing: textField.text?.count ?? 0))/15"
+            
+            let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(String(describing: textField.text?.count ?? 0))"))
+            
+            countLabel.textColor = .sparkDarkGray
+            countLabel.attributedText = attributedString
+            lineView.backgroundColor = .sparkPinkred
+            
+            ableButton()
         }
     }
     
@@ -205,12 +228,34 @@ class GoalWritingVC: UIViewController {
     // MARK: - 화면전환
     @objc
     func touchCompleteButton() {
-        print("작성 완료")
+        setPurposeWithAPI(moment: whenTextField.text ?? "", purpose: goalTextField.text ?? "")
     }
     
     @objc
     func touchCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Network
+
+extension GoalWritingVC {
+    func setPurposeWithAPI(moment: String, purpose: String) {
+        RoomAPI.shared.setPurpose(roomID: roomId ?? 0, moment: moment, purpose: purpose) { response in
+            switch response {
+            case .success(let message):
+                print("setPurposeWithAPI - success: \(message)")
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(let message):
+                print("setPurposeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("setPurposeWithAPI - pathErr")
+            case .serverErr:
+                print("setPurposeWithAPI - serverErr")
+            case .networkFail:
+                print("setPurposeWithAPI - networkFail")
+            }
+        }
     }
 }
 
@@ -328,7 +373,7 @@ extension GoalWritingVC {
         
         completeButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
         }

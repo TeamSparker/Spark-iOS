@@ -49,7 +49,7 @@ class CreateAuthVC: UIViewController {
         titleLabel.font = .h2Title
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "66일간의 습관에 알맞는 인증 방식을 \n선택해주세요."
+        subTitleLabel.text = "습관 유형에 알맞는 인증 방식을 \n선택해 주세요."
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -168,7 +168,7 @@ extension CreateAuthVC {
         
         enterButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
         }

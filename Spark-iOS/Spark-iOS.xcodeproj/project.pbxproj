@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
+		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
+		2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B57F38327971F7A002A677D /* ProfileSetting.storyboard */; };
 		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E6278E28B2000F927F /* FeedCVC.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
@@ -130,6 +132,12 @@
 		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
 		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
+		F8F6D70027982D6400725537 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FF27982D6400725537 /* Login.swift */; };
+		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
+		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
+		F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */; };
+		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
+		F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -139,6 +147,8 @@
 /* Begin PBXFileReference section */
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
+		2B57F38027971D1D002A677D /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
+		2B57F38327971F7A002A677D /* ProfileSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetting.storyboard; sourceTree = "<group>"; };
 		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B69E7E6278E28B2000F927F /* FeedCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCVC.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
@@ -265,6 +275,12 @@
 		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		F8F6D6FF27982D6400725537 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
+		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
+		F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
+		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
+		F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomDetail.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -283,6 +299,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B57F37F27971C87002A677D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2B57F38027971D1D002A677D /* ProfileSettingVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2B57F38227971F5E002A677D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2B57F38327971F7A002A677D /* ProfileSetting.storyboard */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		2B9851FE27902F2B00CE40A7 /* Create */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +471,7 @@
 				EBE90FD32795D67500157075 /* AuthUpload.swift */,
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
+				F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -550,6 +583,7 @@
 				EB9C50832792A61D00588155 /* HabitAuthVC.swift */,
 				EB9C50892792A86D00588155 /* CompleteAuthVC.swift */,
 				EBE90FD92796128800157075 /* SendSparkVC.swift */,
+				F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -560,6 +594,7 @@
 				EB9C50872792A67B00588155 /* HabitAuth.storyboard */,
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
 				EBE90FDB279612CA00157075 /* SendSpark.storyboard */,
+				F8F6D6F42797359600725537 /* HabitRoom.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -717,6 +752,7 @@
 				EB9C50862792A65C00588155 /* HabitRoom */,
 				EB874AEC2797070B000DD20B /* Dialogue */,
 				2BE5D80327930743007A544D /* Auth */,
+				2B57F38227971F5E002A677D /* Profile */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -751,6 +787,7 @@
 				EB9C50822792A5C600588155 /* HabitRoom */,
 				EB874AE9279706DB000DD20B /* Dialogue */,
 				2BE5D80627930774007A544D /* Auth */,
+				2B57F37F27971C87002A677D /* Profile */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -807,6 +844,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F8F6D6F82797525700725537 /* HabitRoom */,
 				F8FAA96B2790336E00C4190F /* Home */,
 				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
@@ -908,8 +946,18 @@
 			isa = PBXGroup;
 			children = (
 				F8E3496C2796B7F6001B67E7 /* Signup.swift */,
+				F8F6D6FF27982D6400725537 /* Login.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		F8F6D6F82797525700725537 /* HabitRoom */ = {
+			isa = PBXGroup;
+			children = (
+				F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */,
+				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
+			);
+			path = HabitRoom;
 			sourceTree = "<group>";
 		};
 		F8FAA96B2790336E00C4190F /* Home */ = {
@@ -1011,13 +1059,16 @@
 				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
+				F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
+				2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
+				F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
 				F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */,
@@ -1099,10 +1150,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
+				F8F6D70027982D6400725537 /* Login.swift in Sources */,
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
+				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
@@ -1127,10 +1180,12 @@
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
+				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
+				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
@@ -1154,6 +1209,7 @@
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
+				F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */,
 				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
 				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
@@ -1336,11 +1392,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1370,11 +1429,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
