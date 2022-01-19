@@ -12,6 +12,7 @@ import SwiftUI
 
 class WaitingVC: UIViewController {
     var members: [Member] = []
+    var isFromHome: Bool?
     
     // MARK: - Properties
     
@@ -57,23 +58,37 @@ class WaitingVC: UIViewController {
         setCollectionView()
         setAddTarget()
         setAuthLabel()
+        setNavigation(title: roomName ?? "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
+//        getWaitingRoomWithAPI(roomID: 235)
     }
 
     // MARK: - Methods
     func setNavigation(title: String) {
-        navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                            title: "\(title)",
-                                                            tintColor: .sparkBlack,
-                                                            backgroundColor: .sparkWhite,
-                                                            reftButtonImage: UIImage(named: "icHome"),
-                                                            rightButtonImage: UIImage(),
-                                                            reftButtonSelector: #selector(goToHomeVC),
-                                                            rightButtonSelector: #selector(touchToMore))
+        if isFromHome ?? false {
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icBackWhite"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        } else {
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icHome"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        }
     }
     
     func setUI() {
@@ -96,6 +111,7 @@ class WaitingVC: UIViewController {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
+        profileImageView.contentMode = .scaleAspectFill
         
         checkTitleLabel.text = "습관 인증 방식"
         photoLabel.text = "사진 인증"
@@ -187,7 +203,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func goToHomeVC() {
-        // TODO: - 홈으로 화면 전환
+        navigationController?.popViewController(animated: true)
     }
     
     @objc
@@ -278,17 +294,16 @@ extension WaitingVC {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
                     }
-                    self.setNavigation(title: self.roomName ?? "")
                     self.collectionView.reloadData()
                 }
             case .requestErr(let message):
-                print("requestErr")
+                print("getWaitingRoomWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("pathErr")
+                print("getWaitingRoomWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getWaitingRoomWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getWaitingRoomWithAPI - networkFail")
             }
         }
     }
@@ -313,9 +328,9 @@ extension WaitingVC {
             case .pathErr:
                 print("getWaitingMembersWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getWaitingMembersWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getWaitingMembersWithAPI - networkFail")
             }
         }
     }
@@ -402,7 +417,7 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(104)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }

@@ -66,23 +66,23 @@ class TimerAuthView: UIView {
         addSubviews([titleLabel, subTitleLabel, photoImageView, stopwatchImageView])
         
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().inset(20)
+            make.top.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 20 : 18)
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().inset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 16 : 8)
+            make.leading.equalTo(titleLabel.snp.leading)
         }
         
         photoImageView.snp.makeConstraints { make in
-            make.trailing.bottom.equalToSuperview().inset(16)
-            make.width.height.equalTo(72)
+            make.trailing.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 16 : 14)
+            make.width.height.equalTo(UIScreen.main.hasNotch ? 72 : 60)
         }
         
         stopwatchImageView.snp.makeConstraints { make in
             make.trailing.equalTo(photoImageView.snp.leading).offset(-8)
             make.bottom.equalToSuperview().inset(16)
-            make.width.height.equalTo(72)
+            make.width.height.equalTo(UIScreen.main.hasNotch ? 72 : 60)
         }
     }
 }

@@ -217,7 +217,7 @@ extension AuthTimerVC {
         
         timeLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(275)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 275 : 200)
         }
         
         startButton.snp.makeConstraints { make in

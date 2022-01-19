@@ -260,7 +260,6 @@ public class RoomAPI {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
         else { return .pathErr }
-        
         switch statusCode {
         case 200:
             return .success(decodedData.message)

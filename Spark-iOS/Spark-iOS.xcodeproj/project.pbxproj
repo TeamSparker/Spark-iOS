@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
 		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
@@ -132,12 +133,12 @@
 		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
 		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
-		F8F6D70027982D6400725537 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FF27982D6400725537 /* Login.swift */; };
 		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
 		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
 		F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */; };
 		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
 		F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */; };
+		F8F6D70027982D6400725537 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FF27982D6400725537 /* Login.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -145,6 +146,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
 		2B57F38027971D1D002A677D /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
@@ -275,12 +277,12 @@
 		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
-		F8F6D6FF27982D6400725537 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
 		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
 		F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
 		F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomDetail.swift; sourceTree = "<group>"; };
+		F8F6D6FF27982D6400725537 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
 				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
 				F86C68B827958AA9009A5296 /* UIImageView+.swift */,
+				2B13FB22279899C6004CCE46 /* UIScreen+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				EBEA3831279480A700B5736A /* MyRoom.swift in Sources */,
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
 				F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */,
+				2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */,
 				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
 				2BE5D80E2793203C007A544D /* Stopwatch.swift in Sources */,
 				2BE5D81627932F31007A544D /* ResetPopupVC.swift in Sources */,
@@ -1387,7 +1391,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
@@ -1424,7 +1428,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";

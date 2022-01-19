@@ -49,7 +49,7 @@ class CreateAuthVC: UIViewController {
         titleLabel.font = .h2Title
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "습관 유형에 알맞는 인증 방식을 \n선택해 주세요."
+        subTitleLabel.text = "습관 유형에 알맞는 인증 방식을\n선택해 주세요."
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -150,20 +150,20 @@ extension CreateAuthVC {
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
+            make.top.equalTo(titleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 12 : 8)
             make.leading.equalToSuperview().inset(20)
         }
         
         photoAuthView.snp.makeConstraints { make in
             make.top.equalTo(subTitleLabel.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(206)
+            make.height.equalTo(UIScreen.main.hasNotch ? 206 : 180)
         }
         
         timerAuthView.snp.makeConstraints { make in
-            make.top.equalTo(photoAuthView.snp.bottom).offset(16)
+            make.top.equalTo(photoAuthView.snp.bottom).offset(UIScreen.main.hasNotch ? 16 : 12)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(206)
+            make.height.equalTo(UIScreen.main.hasNotch ? 206 : 180)
         }
         
         enterButton.snp.makeConstraints { make in
