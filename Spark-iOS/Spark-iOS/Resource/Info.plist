@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>사진을 촬영하여 첨부할 수 있습니다.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>사진을 선택하여 첨부할 수 있습니다.</string>
-	<key>FirebaseMessagingAutoInitEnabled</key>
-	<string>No</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>ko_KR</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -21,6 +13,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<string>No</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
