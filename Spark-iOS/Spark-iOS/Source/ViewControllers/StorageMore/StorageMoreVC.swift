@@ -12,6 +12,14 @@ class StorageMoreVC: UIViewController {
     // MARK: - Properties
     
     var roomID: Int?
+    var titleText: String?
+    private var myRoomCountSize: Int = 8
+    private var isInfiniteScroll: Bool = true
+    
+    private var myRoomCertificationList: [CertiRecord]? = []
+    private var myRoomCertificationLastID: Int = -1
+    
+    
     
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -40,6 +48,12 @@ class StorageMoreVC: UIViewController {
         registerXib()
         setUI()
         setLayout()
+        
+        DispatchQueue.main.async { [self] in
+            self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                
+            }
+        }
     }
 }
 
@@ -60,7 +74,7 @@ extension StorageMoreVC {
         view.backgroundColor = .sparkBlack
         tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithBackButtonTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        navigationController?.initWithBackButtonTitle(title: titleText, tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
     private func setLayout() {
@@ -95,7 +109,6 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         return cell
     }
     
-    // TODO: 엣지 인셋 고치기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let insets = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         return insets
@@ -108,7 +121,7 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
 
 extension StorageMoreVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return myRoomCertificationList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -121,13 +134,15 @@ extension StorageMoreVC: UICollectionViewDataSource {
 // MARK: Network
 
 extension StorageMoreVC {
-    func getMyRoomCertiWithAPI() {
-        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
+    func getMyRoomCertiWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: roomID ?? 0, lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
                     print(myRoomCerti)
                 }
+                
+                completion()
             case .requestErr(let message):
                 print("getMyRoomCertiWithAPI - requestErr: \(message)")
             case .pathErr:

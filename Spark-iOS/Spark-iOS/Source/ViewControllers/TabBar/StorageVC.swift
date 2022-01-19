@@ -21,7 +21,7 @@ class StorageVC: UIViewController {
 
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
-    private var isInfiniteScroll: Bool = false
+    private var isInfiniteScroll: Bool = true
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -464,6 +464,20 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle: nil)
 
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+        
+        switch collectionView {
+        case DoingCV:
+            nextVC.roomID = onGoingRoomList?[indexPath.row].roomID
+            nextVC.titleText = onGoingRoomList?[indexPath.row].roomName
+        case DoneCV:
+            nextVC.roomID = completeRoomList?[indexPath.row].roomID
+            nextVC.titleText = completeRoomList?[indexPath.row].roomName
+        case FailCV:
+            nextVC.roomID = failRoomList?[indexPath.row].roomID
+            nextVC.titleText = failRoomList?[indexPath.row].roomName
+        default:
+            return
+        }
 
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
