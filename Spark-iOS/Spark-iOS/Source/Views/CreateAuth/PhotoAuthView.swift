@@ -34,7 +34,7 @@ class PhotoAuthView: UIView {
         titleLabel.text = "사진으로 인증하기"
         titleLabel.font = .h3Subtitle
         
-        subTitleLabel.text = "미라클 모닝, 영양제 먹기처럼 결과를 \n인증하는 습관에 추천해요."
+        subTitleLabel.text = "미라클 모닝, 영양제 먹기처럼 특정 순간을 \n인증하는 습관에 추천해요."
         subTitleLabel.textColor = .sparkDarkGray
         subTitleLabel.font = .p1TitleLight
         subTitleLabel.numberOfLines = 2

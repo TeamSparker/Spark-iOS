@@ -248,7 +248,7 @@ extension WaitingVC {
                     } else {
                         // 엠티라벨
                         self.timeLabel.text = "습관을 시작하기 전에"
-                        self.goalLabel.text = "시간과 목표를 작성해주세요!"
+                        self.goalLabel.text = "시간과 목표를 작성해 주세요!"
                     }
                     
                     // 사용자 이미지 설정

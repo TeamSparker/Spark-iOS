@@ -49,7 +49,7 @@ class GoalWritingVC: UIViewController {
         titleLabel.font = .h3Subtitle
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "\(titleText) 습관방의 \n시간과 목표를 적어봐요."
+        subTitleLabel.text = "\(titleText) 습관방에서의 \n시간과 목표를 적어 보세요!"
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -62,7 +62,7 @@ class GoalWritingVC: UIViewController {
         whenExLabel.font = .p2Subtitle
         whenExLabel.textColor = .sparkDarkGray
         
-        goalLabel.text = "이 방에서 나만의 목표는 무엇인가요?"
+        goalLabel.text = "나만의 목표는 무엇인가요?"
         goalLabel.font = .h2Title
         goalLabel.textColor = .sparkBlack
         

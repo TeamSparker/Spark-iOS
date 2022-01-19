@@ -35,7 +35,7 @@ class AuthTimerVC: UIViewController {
 
         setUI()
         setLayout()
-        setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setButton(startButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
         setNotification()
     }

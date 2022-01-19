@@ -34,7 +34,7 @@ class ResetPopupVC: UIViewController {
         backView.backgroundColor = .white
         backView.layer.cornerRadius = 2
         
-        titleLabel.text = "스톱워치를 초기화 할까요?"
+        titleLabel.text = "스톱워치를 초기화하시겠습니까?"
         cancelButton.setTitle("취소", for: .normal)
         resetButton.setTitle("초기화", for: .normal)
         

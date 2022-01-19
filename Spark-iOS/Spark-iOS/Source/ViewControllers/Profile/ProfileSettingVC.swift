@@ -70,7 +70,7 @@ class ProfileSettingVC: UIViewController {
         
         completeButton.layer.cornerRadius = 2
         completeButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        completeButton.setTitle("가입 완료", for: .normal)
+        completeButton.setTitle("가입완료", for: .normal)
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
     }

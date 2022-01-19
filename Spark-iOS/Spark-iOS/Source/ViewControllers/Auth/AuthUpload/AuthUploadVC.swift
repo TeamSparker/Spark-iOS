@@ -18,7 +18,7 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .photoOnly
+    var vcType: VCCase = .photoTimer
     var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
@@ -95,7 +95,7 @@ extension AuthUploadVC {
         
         uploadButton.layer.cornerRadius = 2
         uploadButton.titleLabel?.font = .btn1Default
-        uploadButton.setTitle("업로드", for: .normal)
+        uploadButton.setTitle("업로드하기", for: .normal)
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
         
@@ -170,7 +170,7 @@ extension AuthUploadVC {
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
-        let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
+        let camera = UIAlertAction(title: "앨범에서 선택", style: .default) { _ in
             self.openLibrary()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)

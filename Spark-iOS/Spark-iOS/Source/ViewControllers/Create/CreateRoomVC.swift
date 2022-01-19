@@ -60,7 +60,7 @@ class CreateRoomVC: UIViewController {
         
         nextButton.layer.cornerRadius = 2
         nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        nextButton.setTitle("다음", for: .normal)
+        nextButton.setTitle("다음으로", for: .normal)
         nextButton.backgroundColor = .sparkGray
         nextButton.isEnabled = false
         
