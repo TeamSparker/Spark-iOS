@@ -99,6 +99,12 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myboxTicketCompleteLine" translatesAutoresizingMaskIntoConstraints="NO" id="TPJ-hK-IAz">
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVD-9B-e8E">
+                                <rect key="frame" x="20" y="254" width="287" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="0.0"/>
+                                <color key="textColor" name="sparkWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -109,13 +115,16 @@
                             <constraint firstItem="zjs-TB-eup" firstAttribute="centerX" secondItem="SMW-pe-rPY" secondAttribute="centerX" id="MIW-wD-hfS"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="centerY" secondItem="SMW-pe-rPY" secondAttribute="centerY" id="NJw-BY-RX6"/>
                             <constraint firstAttribute="trailing" secondItem="SMW-pe-rPY" secondAttribute="trailing" id="NcV-L2-bt7"/>
+                            <constraint firstItem="eVD-9B-e8E" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" constant="20" id="TVh-bF-QEw"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="bBb-vm-QF8"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="width" secondItem="SMW-pe-rPY" secondAttribute="width" id="cTi-10-dEB"/>
                             <constraint firstAttribute="bottom" secondItem="TPJ-hK-IAz" secondAttribute="bottom" id="cW6-6p-Niy"/>
+                            <constraint firstAttribute="trailing" secondItem="eVD-9B-e8E" secondAttribute="trailing" constant="20" id="cdz-19-Baa"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="height" secondItem="SMW-pe-rPY" secondAttribute="height" id="eLY-yt-YP2"/>
                             <constraint firstItem="SMW-pe-rPY" firstAttribute="top" secondItem="AOj-nn-gQh" secondAttribute="bottom" id="evF-me-37g"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" id="hDb-V2-rSa"/>
                             <constraint firstAttribute="trailing" secondItem="AOj-nn-gQh" secondAttribute="trailing" id="jY2-QW-OaB"/>
+                            <constraint firstItem="eVD-9B-e8E" firstAttribute="top" secondItem="Aj5-A6-BNH" secondAttribute="bottom" constant="20" id="vCu-3l-MOq"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -128,6 +137,7 @@
                 <constraint firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="yql-gB-r7H"/>
             </constraints>
             <connections>
+                <outlet property="commentLabel" destination="eVD-9B-e8E" id="4q1-Ir-KZG"/>
                 <outlet property="dateLabel" destination="Aj5-A6-BNH" id="4Cd-Gi-bcz"/>
                 <outlet property="gradationUIView" destination="zjs-TB-eup" id="Hg6-av-YQx"/>
                 <outlet property="roomNameLabel" destination="Yb6-ig-5g3" id="pV6-zw-pAx"/>

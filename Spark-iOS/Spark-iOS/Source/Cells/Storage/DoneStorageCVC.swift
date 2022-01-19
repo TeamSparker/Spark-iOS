@@ -13,6 +13,7 @@ class DoneStorageCVC: UICollectionViewCell {
     @IBOutlet weak var roomNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sparkCountLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,15 +23,18 @@ class DoneStorageCVC: UICollectionViewCell {
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
         thumbnailImage.contentMode = .scaleToFill
+        commentLabel.font = .p1TitleLight
     }
     
     func initCell(roomName: String,
                   thumbnail: String,
                   sparkCount: Int,
                   startDate: String,
-                  endDate: String) {
+                  endDate: String,
+                  comment: String) {
         sparkCountLabel.text = String(sparkCount)
         roomNameLabel.text = roomName
+        commentLabel.text = comment
         
         let startDate = startDate.split(separator: "-")
         let endDate = endDate.split(separator: "-")

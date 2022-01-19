@@ -438,7 +438,8 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                           thumbnail: completeRoomList[indexPath.row].thumbnail,
                           sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
                           startDate: completeRoomList[indexPath.row].startDate,
-                          endDate: completeRoomList[indexPath.row].endDate)
+                          endDate: completeRoomList[indexPath.row].endDate,
+                          comment: completeRoomList[indexPath.row].comment ?? "")
             cell.layer.cornerRadius = 4
             
             return cell
