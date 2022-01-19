@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum AuthService {
-    case signup(socialId: String, profileImg: UIImage, nickname: String, fcmToken: String)
+    case signup(socialID: String, profileImg: UIImage, nickname: String, fcmToken: String)
+    case login(socialID: String, fcmToken: String)
 }
 
 extension AuthService: TargetType {
@@ -21,6 +22,8 @@ extension AuthService: TargetType {
         switch self {
         case .signup:
             return "/auth/signup"
+        case .login:
+            return "/auth/doorbell"
         }
     }
     
@@ -28,6 +31,8 @@ extension AuthService: TargetType {
         switch self {
         case .signup:
             return .post
+        case .login:
+            return .get
         }
     }
     
@@ -47,13 +52,19 @@ extension AuthService: TargetType {
             multiPartData.append(profileImgData)
             
             return .uploadMultipart(multiPartData)
+        case .login(let socialID, let fcmToken):
+            return .requestParameters(parameters: ["socialId": socialID,
+                                                   "fcmToken": fcmToken],
+                                      encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String: String]? {
         switch self {
         case .signup:
-            return Const.Header.authrizationHeader
+            return Const.Header.basicHeader
+        case .login:
+            return Const.Header.basicHeader
         }
     }
 }

@@ -52,9 +52,9 @@ extension FeedService: TargetType {
     var headers: [String : String]? {
         switch self {
         case .feedFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .feedLike:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         }
     }
 }

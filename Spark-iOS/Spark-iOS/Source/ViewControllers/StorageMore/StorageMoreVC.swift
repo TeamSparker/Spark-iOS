@@ -11,6 +11,14 @@ class StorageMoreVC: UIViewController {
     
     // MARK: - Properties
     
+    var roomID: Int?
+    var titleText: String?
+    private var myRoomCountSize: Int = 8
+    private var isInfiniteScroll: Bool = true
+    
+    private var myRoomCertificationList: [CertiRecord]? = []
+    private var myRoomCertificationLastID: Int = -1
+    
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -27,8 +35,6 @@ class StorageMoreVC: UIViewController {
         
         return cv
     }()
-    
-    // MARK: - @IBOutlet Properties
   
     // MARK: - View Life Cycle
     
@@ -38,6 +44,12 @@ class StorageMoreVC: UIViewController {
         registerXib()
         setUI()
         setLayout()
+        
+        DispatchQueue.main.async { [self] in
+            self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                storageMoreCV.reloadData()
+            }
+        }
     }
 }
 
@@ -58,7 +70,7 @@ extension StorageMoreVC {
         view.backgroundColor = .sparkBlack
         tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithBackButtonTitle(title: "아침마다 요거트 먹기", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        navigationController?.initWithBackButtonTitle(title: titleText ?? "", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
     private func setLayout() {
@@ -93,7 +105,6 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
         return cell
     }
     
-    // TODO: 엣지 인셋 고치기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let insets = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         return insets
@@ -106,12 +117,54 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
 
 extension StorageMoreVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return myRoomCertificationList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
-
+        
+        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0, mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0)
+        
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                
+                myRoomCertificationLastID = myRoomCertificationList?.last?.recordID ?? 0
+                getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                    self.isInfiniteScroll = true
+                }
+            }
+        }
+    }
+}
+
+// MARK: Network
+
+extension StorageMoreVC {
+    func getMyRoomCertiWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: roomID ?? 0, lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCertification {
+                    print(myRoomCerti)
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    self.storageMoreCV.reloadData()
+                }
+                
+                completion()
+            case .requestErr(let message):
+                print("getMyRoomCertiWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getMyRoomCertiWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomCertiWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomCertiWithAPI - networkFail")
+            }
+        }
     }
 }
