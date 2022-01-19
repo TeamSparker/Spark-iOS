@@ -258,6 +258,21 @@ public class RoomAPI {
         }
     }
     
+    func setPurpose(roomID: Int, moment: String, purpose: String, completion: @escaping(NetworkResult<Any>) -> Void) {
+        roomProvider.request(.setPurpose(roomID: roomID, moment: moment, purpose: purpose)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)

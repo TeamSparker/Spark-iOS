@@ -47,6 +47,8 @@ class WaitingVC: UIViewController {
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
+    var userMoment: String?
+    var userPurpose: String?
     
     // MARK: - View Life Cycles
     
@@ -186,6 +188,11 @@ class WaitingVC: UIViewController {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
         
         nextVC.modalPresentationStyle = .fullScreen
+        nextVC.titleText = roomName
+        nextVC.roomId = roomId
+        nextVC.moment = userMoment
+        nextVC.purpose = userPurpose
+        
         present(nextVC, animated: true, completion: nil)
     }
     
@@ -246,6 +253,10 @@ extension WaitingVC {
                     // 사용자 본인 이름
                     self.nicknameLabel.text = user.nickname
                     
+                    // 사용자 목표, 시간
+                    self.userPurpose = user.purpose
+                    self.userMoment = user.moment
+                    
                     // 본인 방장 여부
                     if user.isHost {
                         self.startButton.isHidden = false
@@ -255,8 +266,8 @@ extension WaitingVC {
                     
                     // 목표가 있을 경우, 목표와 시간 세팅
                     if user.isPurposeSet {
-                        self.timeLabel.text = "시간 \(user.moment)"
-                        self.goalLabel.text = "목표 \(user.purpose)"
+                        self.timeLabel.text = "시간  \(String(describing: user.moment!))"
+                        self.goalLabel.text = "목표  \(String(describing: user.purpose!))"
                         self.timeLabel.partFontChange(targetString: "시간", font: .p1Title)
                         self.goalLabel.partFontChange(targetString: "목표", font: .p1Title)
                     } else {

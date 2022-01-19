@@ -10,19 +10,11 @@ import Foundation
 // MARK: - Login
 
 struct Login: Codable {
-    let accesstoken: Accesstoken
+    let accesstoken: String?
+    let isNew: Bool
     
     enum CodingKeys: String, CodingKey {
         case accesstoken
-    }
-}
-
-// MARK: - Accesstoken
-
-struct Accesstoken: Codable {
-    let accesstoken: String
-    
-    enum CodingKeys: String, CodingKey {
-        case accesstoken
+        case isNew
     }
 }
