@@ -7,16 +7,8 @@
 
 import Foundation
 
-// MARK: - MyRoomCerti
-struct MyRoomCerti: Codable {
-    let status: Int
-    let success: Bool
-    let message: String
-    let data: MyRoomCertiData
-}
-
 // MARK: - MyRoomCertiData
-struct MyRoomCertiData: Codable {
+struct MyRoomCertification: Codable {
     let roomName: String
     let records: [CertiRecord]?
 }

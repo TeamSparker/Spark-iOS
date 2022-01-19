@@ -50,7 +50,11 @@ class AuthUploadVC: UIViewController {
 // MARK: - Methods
 
 extension AuthUploadVC {
+
+    
     private func setUI() {
+        navigationController?.initWithLeftButtonTitle(title: "기본 앨범", tintColor: .sparkBlack, backgroundColor: .sparkWhite, image: UIImage(named: "icQuit"), selector: #selector(presentToDialogue))
+        
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
@@ -201,6 +205,17 @@ extension AuthUploadVC {
     @objc
     func touchUploadButton() {
         authUploadWithAPI()
+    }
+    
+    // TODO: 케이스별 액션 구분하기
+    @objc
+    private func presentToDialogue() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        
+        nextVC.clousure = {
+            self.dismiss(animated: true)
+        }
+        present(nextVC, animated: true, completion: nil)
     }
 }
 

@@ -33,9 +33,6 @@ class CompleteAuthVC: UIViewController {
         setUI()
         setGesture()
         setAnimation()
-
-        getMyRoomWithAPI()
-        getMyRoomCertiWithAPI()
     }
 
     // MARK: IBActions
