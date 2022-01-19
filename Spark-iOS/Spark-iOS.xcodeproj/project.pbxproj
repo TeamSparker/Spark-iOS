@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
 		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
@@ -144,6 +145,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
 		2B57F38027971D1D002A677D /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
@@ -835,6 +837,7 @@
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
 				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
 				F86C68B827958AA9009A5296 /* UIImageView+.swift */,
+				2B13FB22279899C6004CCE46 /* UIScreen+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1229,6 +1232,7 @@
 				EBEA3831279480A700B5736A /* MyRoom.swift in Sources */,
 				F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */,
 				F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */,
+				2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */,
 				EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */,
 				2BE5D80E2793203C007A544D /* Stopwatch.swift in Sources */,
 				2BE5D81627932F31007A544D /* ResetPopupVC.swift in Sources */,
