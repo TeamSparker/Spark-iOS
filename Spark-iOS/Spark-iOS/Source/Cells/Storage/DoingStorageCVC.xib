@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="193"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-ha-kvM">
-                                        <rect key="frame" x="84.333333333333329" y="216" width="158.66666666666669" height="18"/>
+                                        <rect key="frame" x="82" y="216" width="163" height="18.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Futura" family="Futura" pointSize="14"/>
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
@@ -136,8 +136,12 @@
             <connections>
                 <outlet property="cardBorderImageView" destination="m5x-6b-Xxs" id="nUh-7g-j6R"/>
                 <outlet property="dDayLabel" destination="GHk-jj-mc1" id="Aco-dQ-Qku"/>
+                <outlet property="dateLabel" destination="UHD-ha-kvM" id="OTs-Im-L94"/>
                 <outlet property="flakeImage" destination="MHT-q9-d5W" id="ucz-hu-Twl"/>
                 <outlet property="gradationUIView" destination="CnH-6S-xaz" id="Vcb-n3-fS1"/>
+                <outlet property="roomNameLabel" destination="R1V-eF-ogN" id="SDz-wS-Kz5"/>
+                <outlet property="sparkCountLabel" destination="RAD-hP-JYn" id="gJg-Dw-1Ab"/>
+                <outlet property="thumbnailImage" destination="NC1-RV-FLH" id="jp2-mB-OFu"/>
             </connections>
             <point key="canvasLocation" x="151.19999999999999" y="152.95566502463055"/>
         </collectionViewCell>

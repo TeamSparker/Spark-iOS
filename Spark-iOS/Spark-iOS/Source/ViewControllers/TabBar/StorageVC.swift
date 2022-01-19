@@ -21,7 +21,7 @@ class StorageVC: UIViewController {
 
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
-    private var isInfiniteScroll: Bool = true
+    private var isInfiniteScroll: Bool = false
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -387,16 +387,30 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        switch collectionView {
+        case DoingCV:
+            return onGoingRoomList?.count ?? 0
+        case DoneCV:
+            return onGoingRoomList?.count ?? 0
+        case FailCV:
+            return onGoingRoomList?.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
         case DoingCV:
+            guard let onGoingRoomList = onGoingRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
             
+            cell.initCell(roomName: onGoingRoomList[indexPath.row].roomName, leftDay: onGoingRoomList[indexPath.row].leftDay , thumbnail: onGoingRoomList[indexPath.row].thumbnail , sparkCount: onGoingRoomList[indexPath.row].totalReceivedSpark, startDate: onGoingRoomList[indexPath.row].startDate, endDate: onGoingRoomList[indexPath.row].endDate)
+            
             return cell
+            
         case DoneCV:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
             

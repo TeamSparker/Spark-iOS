@@ -13,6 +13,10 @@ class DoingStorageCVC: UICollectionViewCell {
     @IBOutlet weak var cardBorderImageView: UIImageView!
     @IBOutlet weak var dDayLabel: UILabel!
     @IBOutlet weak var flakeImage: UIImageView!
+    @IBOutlet weak var roomNameLabel: UILabel!
+    @IBOutlet weak var sparkCountLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var thumbnailImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +25,7 @@ class DoingStorageCVC: UICollectionViewCell {
 
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
+        flakeImage.contentMode = .scaleAspectFit
     }
     
     func initCell(roomName: String,
@@ -31,10 +36,22 @@ class DoingStorageCVC: UICollectionViewCell {
                   endDate: String) {
         let sparkFlake: SparkFlake = SparkFlake(leftDay: leftDay)
         
+        flakeImage.image = sparkFlake.sparkFlakeGoingStorage()
+        
+        sparkCountLabel.text = String(sparkCount)
+        
+        roomNameLabel.text = roomName
+        
+        let startDate = startDate.split(separator: "-")
+        let endDate = endDate.split(separator: "-")
+        dateLabel.text = "\(startDate[0]).\(startDate[1]).\(startDate[2]) - \(endDate[0]).\(endDate[1]).\(endDate[2])"
+        
         if leftDay == 0 {
             dDayLabel.text = "D-day"
         } else {
             dDayLabel.text = "D-\(leftDay)"
         }
+        
+        thumbnailImage.updateImage(thumbnail)
     }
 }
