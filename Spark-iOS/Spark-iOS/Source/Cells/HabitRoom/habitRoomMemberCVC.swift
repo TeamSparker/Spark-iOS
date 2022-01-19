@@ -45,14 +45,15 @@ class HabitRoomMemberCVC: UICollectionViewCell {
 extension HabitRoomMemberCVC {
     private func setUI() {
         profileImage.layer.cornerRadius = 32
+        profileImage.contentMode = .scaleAspectFill
         
         nicknameLabel.font = .h3Subtitle
         nicknameLabel.textColor = .sparkBlack
         
-        statusLabel.font = .h3Subtitle
+        statusLabel.font = .p2Subtitle
         statusLabel.textColor = .sparkDarkGray
         
-        sparkCountLabel.font = .p2Subtitle
+        sparkCountLabel.font = .captionEng
         sparkCountLabel.textColor = .sparkWhite
     }
     

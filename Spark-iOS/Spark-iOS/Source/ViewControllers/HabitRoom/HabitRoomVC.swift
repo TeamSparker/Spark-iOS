@@ -30,6 +30,7 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var thirdLifeImage: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var authButton: UIButton!
     
     // MARK: - View Life Cycle
     
@@ -44,15 +45,35 @@ class HabitRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
+//        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
+        fetchHabitRoomDetailWithAPI(roomID: 163) {
             self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
     }
+    
+    // FIXME: - update??
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//
+//        guard let habitRoomDetail = habitRoomDetail else { return }
+//        setUIByData(habitRoomDetail)
+//    }
     
     // MARK: - @IBOutlet Action
     
     @IBAction func popToHomeVC(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func presentToHabitAuthVC(_ sender: Any) {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitAuth) as? HabitAuthVC else { return }
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.roomID = roomID
+        nextVC.fromStart = habitRoomDetail?.fromStart
+        nextVC.rest = habitRoomDetail?.myRecord.rest
+        
+        present(nextVC, animated: true, completion: nil)
     }
 }
 
@@ -86,6 +107,16 @@ extension HabitRoomVC {
         goalLabel.font = .p2Subtitle
         
         moreButton.isHidden = true
+        
+        authButton.setTitle("오늘의 인증", for: .normal)
+        authButton.setTitleColor(.sparkWhite, for: .normal)
+        authButton.titleLabel?.font = .btn1Default
+        authButton.backgroundColor = .sparkDarkPinkred
+        authButton.layer.cornerRadius = 2
+        authButton.layer.shadowColor = UIColor.sparkDarkPinkred.cgColor
+        authButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        authButton.layer.shadowOpacity = Float(0.3)
+        authButton.layer.shadowRadius = 10
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
@@ -103,7 +134,7 @@ extension HabitRoomVC {
         flakeImageView.image = sparkFlake.sparkFlakeHabitBackground()
         progessView.progressTintColor = sparkFlake.sparkFlakeColor()
         // 맞나..?
-        progessView.setProgress(Float((66 - leftDay )/66), animated: false)
+        progessView.setProgress(Float((66 - leftDay )/66), animated: true)
         
         startDateLabel.text = habitRoomDetail.startDate
         endDateLabel.text = habitRoomDetail.endDate
@@ -148,11 +179,10 @@ extension HabitRoomVC: UICollectionViewDelegate {
 
 extension HabitRoomVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return habitRoomDetail?.otherRecords.count ?? 0 + 1
+        return 1 + (habitRoomDetail?.otherRecords.count ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let data = habitRoomDetail else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC, for: indexPath) as? HabitRoomMemberCVC else { return UICollectionViewCell() }
         if indexPath.item == 0 {
             cell.initCellMe(recordID: habitRoomDetail?.myRecord.recordID ?? 0,
@@ -160,15 +190,15 @@ extension HabitRoomVC: UICollectionViewDataSource {
                             profileImg: habitRoomDetail?.myRecord.profileImg ?? "",
                             nickname: habitRoomDetail?.myRecord.nickname ?? "",
                             status: habitRoomDetail?.myRecord.status ?? "",
-                            receivedSpark: habitRoomDetail?.myRecord.recievedSpark ?? 0)
+                            receivedSpark: habitRoomDetail?.myRecord.receivedSpark ?? 0)
             
             return cell
         } else {
-            cell.initCellOthers(recordID: habitRoomDetail?.otherRecords[indexPath.item - 1].recordID ?? 0,
-                                userID: habitRoomDetail?.otherRecords[indexPath.item - 1].userID ?? 0,
-                                profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1].profileImg ?? "",
-                                nickname: habitRoomDetail?.otherRecords[indexPath.item - 1].nickname ?? "",
-                                status: habitRoomDetail?.otherRecords[indexPath.item - 1].status ?? "",
+            cell.initCellOthers(recordID: habitRoomDetail?.otherRecords[indexPath.item - 1]?.recordID ?? 0,
+                                userID: habitRoomDetail?.otherRecords[indexPath.item - 1]?.userID ?? 0,
+                                profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1]?.profileImg ?? "",
+                                nickname: habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "",
+                                status: habitRoomDetail?.otherRecords[indexPath.item - 1]?.status ?? "",
                                 sparkDone: false)
             
             return cell
@@ -208,7 +238,7 @@ extension HabitRoomVC {
             case .success(let data):
                 if let habitRoomDetail = data as? HabitRoomDetail {
                     self.setUIByData(habitRoomDetail)
-                    
+                    self.habitRoomDetail = habitRoomDetail
                     self.mainCollectionView.reloadData()
                 }
                 

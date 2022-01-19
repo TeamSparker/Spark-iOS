@@ -264,7 +264,7 @@ public class RoomAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeFetchHabitRoomDetailStatus(by: statusCode, data)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -280,7 +280,7 @@ public class RoomAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.message)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:
