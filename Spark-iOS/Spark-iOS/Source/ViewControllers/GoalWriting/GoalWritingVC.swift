@@ -42,6 +42,8 @@ class GoalWritingVC: UIViewController {
         setLayout()
         setNotification()
         setAddTarget()
+        setInitTextField(textField: whenTextField, countLabel: whenCountLabel, lineView: whenLineView)
+        setInitTextField(textField: goalTextField, countLabel: goalCountLabel, lineView: goalLineView)
     }
     
     // MARK: - Methods
@@ -137,6 +139,21 @@ class GoalWritingVC: UIViewController {
             let frame = CGAffineTransform(translationX: 0, y: 0)
             [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
              self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
+    private func setInitTextField(textField: UITextField, countLabel: UILabel, lineView: UIView) {
+        if textField.hasText {
+            countLabel.text = "\(String(describing: textField.text?.count ?? 0))/15"
+            
+            let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(String(describing: textField.text?.count ?? 0))"))
+            
+            countLabel.textColor = .sparkDarkGray
+            countLabel.attributedText = attributedString
+            lineView.backgroundColor = .sparkPinkred
+            
+            ableButton()
         }
     }
     
