@@ -19,8 +19,6 @@ class StorageMoreVC: UIViewController {
     private var myRoomCertificationList: [CertiRecord]? = []
     private var myRoomCertificationLastID: Int = -1
     
-    
-    
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -51,7 +49,7 @@ class StorageMoreVC: UIViewController {
         
         DispatchQueue.main.async { [self] in
             self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
-                
+                storageMoreCV.reloadData()
             }
         }
     }
@@ -74,7 +72,7 @@ extension StorageMoreVC {
         view.backgroundColor = .sparkBlack
         tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithBackButtonTitle(title: titleText, tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        navigationController?.initWithBackButtonTitle(title: titleText ?? "", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }
     
     private func setLayout() {
@@ -126,11 +124,25 @@ extension StorageMoreVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
-
+        
+        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0, mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0)
+        
         return cell
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                
+                myRoomCertificationLastID = myRoomCertificationList?.last?.recordID ?? 0
+                getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                    self.isInfiniteScroll = true
+                }
+            }
+        }
+    }
 }
-
 // MARK: Network
 
 extension StorageMoreVC {
@@ -140,6 +152,8 @@ extension StorageMoreVC {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
                     print(myRoomCerti)
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    self.storageMoreCV.reloadData()
                 }
                 
                 completion()

@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjP-XQ-8o4">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="203"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="ywz-cO-r8W">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="ywz-cO-r8W">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="height" multiplier="1:1" id="UsK-Vq-hro"/>
@@ -73,7 +73,9 @@
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="bjP-XQ-8o4" secondAttribute="trailing" id="WOp-Sl-3RF"/>
             </constraints>
             <connections>
-                <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Ugc-Wf-lwp"/>
+                <outlet property="certificationImage" destination="ywz-cO-r8W" id="Dh5-68-KEp"/>
+                <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Bgm-uB-6Hz"/>
+                <outlet property="sparkCountLabel" destination="5no-YH-587" id="KTy-fw-Ske"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="153.01339285714286"/>
         </collectionViewCell>
