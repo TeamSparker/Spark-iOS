@@ -93,7 +93,7 @@ extension CompleteAuthVC {
         MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
             switch response {
             case .success(let data):
-                if let myRoomCerti = data as? MyRoomCerti {
+                if let myRoomCerti = data as? MyRoomCertification {
                     print(myRoomCerti)
                 }
             case .requestErr(let message):
