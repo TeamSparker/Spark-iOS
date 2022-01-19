@@ -12,7 +12,6 @@ import SwiftUI
 
 class WaitingVC: UIViewController {
     var members: [Member] = []
-    var roomID: Int?
     var isFromHome: Bool?
     
     // MARK: - Properties
@@ -59,10 +58,12 @@ class WaitingVC: UIViewController {
         setCollectionView()
         setAddTarget()
         setAuthLabel()
+        setNavigation(title: roomName ?? "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
     }
 
@@ -200,7 +201,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func goToHomeVC() {
-        // TODO: - 홈으로 화면 전환
+        navigationController?.popViewController(animated: true)
     }
     
     @objc
@@ -291,7 +292,6 @@ extension WaitingVC {
                         self.profileImageView.image = UIImage(named: "profileEmpty")
                         self.profileImageView.backgroundColor = .sparkGray
                     }
-                    self.setNavigation(title: self.roomName ?? "")
                     self.collectionView.reloadData()
                 }
             case .requestErr(let message):

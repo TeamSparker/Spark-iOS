@@ -129,8 +129,9 @@ extension HomeVC: UICollectionViewDelegate {
         } else {
             // 대기방
             guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-            waitingVC.roomID = habitRoomList[indexPath.item].roomID
+            waitingVC.roomId = habitRoomList[indexPath.item].roomID
             waitingVC.isFromHome = true
+            waitingVC.roomName = habitRoomList[indexPath.item].roomName
             
             navigationController?.pushViewController(waitingVC, animated: true)
         }

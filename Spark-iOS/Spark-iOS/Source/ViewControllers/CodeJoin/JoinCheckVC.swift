@@ -20,7 +20,7 @@ class JoinCheckVC: UIViewController {
         return animationView
     }()
     
-    var roomID: Int = 0
+    var roomID: Int?
     var creatorName: String?
     var roomName: String?
     
@@ -47,7 +47,11 @@ class JoinCheckVC: UIViewController {
     }
     
     @IBAction func touchEnterWaitingVC(_ sender: Any) {
-        enterRoomWithAPI()
+        enterRoomWithAPI(roomID: roomID ?? 0)
+    }
+    
+    @IBAction func touchCloseButton(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
 
@@ -81,23 +85,23 @@ extension JoinCheckVC {
 // MARK: Network
 
 extension JoinCheckVC {
-    func enterRoomWithAPI() {
+    func enterRoomWithAPI(roomID: Int) {
         RoomAPI.shared.enterRoom(roomID: roomID) {  response in
             switch response {
-            case .success(let data):
-                if let roomID = data as? RoomId {
-                    let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
-                    
-                    guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
-                    rootViewController.roomID = roomID.roomID
-                    rootViewController.isFromHome = false
-                    
-                    let nextVC = UINavigationController(rootViewController: rootViewController)
-                    nextVC.modalPresentationStyle = .fullScreen
-                    nextVC.modalTransitionStyle = .crossDissolve
-                    
-                    self.present(nextVC, animated: true)
-                }
+            case .success(let message):
+                let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
+                
+                guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+                rootViewController.roomId = roomID
+                rootViewController.isFromHome = false
+                rootViewController.roomName = self.roomName
+                
+                let nextVC = UINavigationController(rootViewController: rootViewController)
+                nextVC.modalPresentationStyle = .fullScreen
+                nextVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(nextVC, animated: true, completion: nil)
+                print("enterRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("enterRoomWithAPI - requestErr: \(message)")
             case .pathErr:
