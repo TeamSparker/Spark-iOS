@@ -13,6 +13,7 @@ import SwiftUI
 class WaitingVC: UIViewController {
     var members: [Member] = []
     var roomID: Int?
+    var isFromHome: Bool?
     
     // MARK: - Properties
     
@@ -65,14 +66,25 @@ class WaitingVC: UIViewController {
 
     // MARK: - Methods
     func setNavigation(title: String) {
-        navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                            title: "\(title)",
-                                                            tintColor: .sparkBlack,
-                                                            backgroundColor: .sparkWhite,
-                                                            reftButtonImage: UIImage(named: "icHome"),
-                                                            rightButtonImage: UIImage(),
-                                                            reftButtonSelector: #selector(goToHomeVC),
-                                                            rightButtonSelector: #selector(touchToMore))
+        if isFromHome ?? false {
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icBackWhite"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        } else {
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icHome"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        }
     }
     
     func setUI() {

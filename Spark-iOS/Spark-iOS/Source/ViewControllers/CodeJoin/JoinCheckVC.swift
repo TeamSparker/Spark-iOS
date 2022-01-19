@@ -90,6 +90,7 @@ extension JoinCheckVC {
                     
                     guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
                     rootViewController.roomID = roomID.roomID
+                    rootViewController.isFromHome = false
                     
                     let nextVC = UINavigationController(rootViewController: rootViewController)
                     nextVC.modalPresentationStyle = .fullScreen
