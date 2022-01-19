@@ -140,12 +140,14 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func showResetPopup() {
-        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
-        
-        popupVC.modalPresentationStyle = .overFullScreen
-        popupVC.modalTransitionStyle = .crossDissolve
-        
-        present(popupVC, animated: true, completion: nil)
+        if !isTimerOn {
+            guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
+            
+            popupVC.modalPresentationStyle = .overFullScreen
+            popupVC.modalTransitionStyle = .crossDissolve
+            
+            present(popupVC, animated: true, completion: nil)
+        }
     }
     
     @objc
@@ -159,7 +161,6 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func touchNextButton() {
-        print("🔫 \(isTimerOn)")
         if timeLabel.text == "00:00:00" {
             // 재생X -> 스톱워치 시작
             startPauseTimer(startButton)
