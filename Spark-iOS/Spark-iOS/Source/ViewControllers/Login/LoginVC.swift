@@ -102,7 +102,7 @@ extension LoginVC {
                 print(error)
             } else {
                 if let userID = user?.id {
-                    UserDefaults.standard.set(String("Kakao@\(userID)"), forKey: Const.UserDefaultsKey.userID)
+                    UserDefaults.standard.set(String(userID), forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                     
                     self.loginWithAPI(userID: String("Kakao@\(userID)"))
@@ -133,7 +133,7 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             let userIdentifier = appleIDCredential.user
             
-            UserDefaults.standard.set("Apple@\(userIdentifier)", forKey: Const.UserDefaultsKey.userID)
+            UserDefaults.standard.set(userIdentifier, forKey: Const.UserDefaultsKey.userID)
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             
             loginWithAPI(userID: "Apple@\(userIdentifier)")

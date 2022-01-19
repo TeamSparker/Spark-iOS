@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,6 +92,14 @@
                                 <color key="textColor" name="sparkDarkGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7G-mr-14i">
+                                <rect key="frame" x="20" y="64" width="24" height="24"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="icQuit"/>
+                                <connections>
+                                    <action selector="touchCloseButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="x3Z-QG-7cA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="sparkWhite"/>
@@ -108,6 +116,8 @@
                             <constraint firstItem="CQc-20-0XK" firstAttribute="top" secondItem="K9Q-Mh-9RA" secondAttribute="top" constant="72" id="J5T-KR-m1P"/>
                             <constraint firstItem="hYL-iK-EZi" firstAttribute="centerY" secondItem="CQc-20-0XK" secondAttribute="centerY" constant="10" id="JXc-PF-ThZ"/>
                             <constraint firstItem="Vtz-oV-XpG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Kbr-2q-Lj0"/>
+                            <constraint firstItem="f7G-mr-14i" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Khs-Jj-bZ8"/>
+                            <constraint firstItem="f7G-mr-14i" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="MiF-Ow-pe4"/>
                             <constraint firstItem="hYL-iK-EZi" firstAttribute="centerX" secondItem="CQc-20-0XK" secondAttribute="centerX" constant="10" id="VxB-NU-kbC"/>
                             <constraint firstItem="BMl-yz-8ft" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="WDd-qV-UT2"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vtz-oV-XpG" secondAttribute="trailing" constant="20" id="bcl-Bm-O1B"/>
@@ -137,6 +147,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icQuit" width="24" height="24"/>
         <image name="sparkflakePattern" width="335" height="290"/>
         <image name="ticketWelcome" width="147" height="104"/>
         <namedColor name="sparkDarkGray">

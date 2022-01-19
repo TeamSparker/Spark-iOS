@@ -67,3 +67,45 @@ extension CompleteAuthVC {
         }
     }
 }
+
+extension CompleteAuthVC {
+    
+    func getMyRoomWithAPI() {
+        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    print(myRoom)
+                }
+            case .requestErr(let message):
+                print("getMyRoomWithAPI - requestErr")
+            case .pathErr:
+                print("getMyRoomWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getMyRoomCertiWithAPI() {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCerti {
+                    print(myRoomCerti)
+                }
+            case .requestErr(let message):
+                print("getMyRoomCertiWithAPI - requestErr")
+            case .pathErr:
+                print("getMyRoomCertiWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomCertiWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomCertiWithAPI - networkFail")
+            }
+        }
+    }
+    
+}

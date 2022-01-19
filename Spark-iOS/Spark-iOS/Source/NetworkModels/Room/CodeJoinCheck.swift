@@ -11,12 +11,12 @@ import Foundation
 struct CodeWaiting: Codable {
     let roomID: Int
     let roomName, creatorName: String
-    let createrImg: String
+    let creatorImg: String
     let profileImgs: [String]?
     let totalNums: Int
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, creatorName, createrImg, profileImgs, totalNums
+        case roomName, creatorName, creatorImg, profileImgs, totalNums
     }
 }

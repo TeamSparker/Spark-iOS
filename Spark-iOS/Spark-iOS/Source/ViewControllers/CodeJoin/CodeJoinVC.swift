@@ -118,6 +118,7 @@ extension CodeJoinVC {
 
     @objc func touchOkayButton() {
         codeJoinCheckFetchWithAPI()
+        
     }
 }
 
@@ -182,6 +183,8 @@ extension CodeJoinVC {
             switch response {
             case .success(let data):
                 if let codeWaiting = data as? CodeWaiting {
+                    self.downAnimation()
+
                     let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.joinCheck, bundle: nil)
                     guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.joinCheck) as? JoinCheckVC else {return}
                     
