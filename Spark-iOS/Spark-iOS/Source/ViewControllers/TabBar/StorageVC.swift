@@ -444,16 +444,16 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             
             return cell
         default:
-            guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
+            guard let failRoomList = failRoomList else { return UICollectionViewCell()}
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
             
-            cell.initCell(roomName: completeRoomList[indexPath.row].roomName,
-                          leftDay: completeRoomList[indexPath.row].leftDay,
-                          thumbnail: completeRoomList[indexPath.row].thumbnail,
-                          sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
-                          startDate: completeRoomList[indexPath.row].startDate,
-                          endDate: completeRoomList[indexPath.row].endDate)
+            cell.initCell(roomName: failRoomList[indexPath.row].roomName,
+                          leftDay: failRoomList[indexPath.row].failDay ?? 0,
+                          thumbnail: failRoomList[indexPath.row].thumbnail,
+                          sparkCount: failRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: failRoomList[indexPath.row].startDate,
+                          endDate: failRoomList[indexPath.row].endDate)
             cell.layer.cornerRadius = 4
             
             return cell

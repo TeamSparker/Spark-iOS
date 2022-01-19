@@ -35,8 +35,6 @@ class StorageMoreVC: UIViewController {
         
         return cv
     }()
-    
-    // MARK: - @IBOutlet Properties
   
     // MARK: - View Life Cycle
     
@@ -143,6 +141,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
         }
     }
 }
+
 // MARK: Network
 
 extension StorageMoreVC {
