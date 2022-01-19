@@ -579,23 +579,4 @@ extension StorageVC {
             }
         }
     }
-    
-    func getMyRoomCertiWithAPI() {
-        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
-            switch response {
-            case .success(let data):
-                if let myRoomCerti = data as? MyRoomCertification {
-                    print(myRoomCerti)
-                }
-            case .requestErr(let message):
-                print("getMyRoomCertiWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("getMyRoomCertiWithAPI - pathErr")
-            case .serverErr:
-                print("getMyRoomCertiWithAPI - serverErr")
-            case .networkFail:
-                print("getMyRoomCertiWithAPI - networkFail")
-            }
-        }
-    }
 }
