@@ -134,6 +134,9 @@
                 <constraint firstItem="do0-Bb-P3U" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="xSx-mD-EnE"/>
             </constraints>
             <connections>
+                <outlet property="cardBorderImageView" destination="m5x-6b-Xxs" id="nUh-7g-j6R"/>
+                <outlet property="dDayLabel" destination="GHk-jj-mc1" id="Aco-dQ-Qku"/>
+                <outlet property="flakeImage" destination="MHT-q9-d5W" id="ucz-hu-Twl"/>
                 <outlet property="gradationUIView" destination="CnH-6S-xaz" id="Vcb-n3-fS1"/>
             </connections>
             <point key="canvasLocation" x="151.19999999999999" y="152.95566502463055"/>

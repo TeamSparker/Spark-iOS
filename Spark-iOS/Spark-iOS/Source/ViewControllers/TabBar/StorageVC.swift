@@ -463,9 +463,10 @@ extension StorageVC {
         MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
-                print("1")
                 if let myRoom = data as? MyRoom {
-                    print("2")
+                    self.doingLabel.text = String(myRoom.ongoingRoomNum)
+                    self.doneLabel.text = String(myRoom.completeRoomNum)
+                    self.failLabel.text = String(myRoom.failRoomNum)
                     self.onGoingRoomList?.append(contentsOf: myRoom.rooms ?? [])
                     self.DoingCV.reloadData()
                 }
@@ -545,5 +546,4 @@ extension StorageVC {
             }
         }
     }
-    
 }

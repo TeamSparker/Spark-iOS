@@ -101,6 +101,26 @@ public class SparkFlake {
         }
     }
     
+    /// 진행중 보관함 테두리
+    public func sparkBorderStorage() -> UIImage? {
+        switch state {
+        case .day66:
+            return UIImage(named: "property1MyboxTicketOngoingLine1")
+        case .day65:
+            return UIImage(named: "property1MyboxTicketOngoingLine1")
+        case .day62:
+            return UIImage(named: "property1MyboxTicketOngoingLine2")
+        case .day58:
+            return UIImage(named: "property1MyboxTicketOngoingLine3")
+        case .day32:
+            return UIImage(named: "property1MyboxTicketOngoingLine4")
+        case .day6:
+            return UIImage(named: "property1MyboxTicketOngoingLine5")
+        case .dDay:
+            return UIImage()
+        }
+    }
+    
     /// 진행중 보관함 flake
     public func sparkFlakeGoingStorage() -> UIImage? {
         switch state {
