@@ -81,13 +81,13 @@ extension CompleteAuthVC {
                     print(myRoom)
                 }
             case .requestErr(let message):
-                print("requestErr")
+                print("getMyRoomWithAPI - requestErr")
             case .pathErr:
-                print("pathErr")
+                print("getMyRoomWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getMyRoomWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getMyRoomWithAPI - networkFail")
             }
         }
     }
@@ -100,13 +100,13 @@ extension CompleteAuthVC {
                     print(myRoomCerti)
                 }
             case .requestErr(let message):
-                print("requestErr")
+                print("getMyRoomCertiWithAPI - requestErr")
             case .pathErr:
-                print("pathErr")
+                print("getMyRoomCertiWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getMyRoomCertiWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getMyRoomCertiWithAPI - networkFail")
             }
         }
     }
