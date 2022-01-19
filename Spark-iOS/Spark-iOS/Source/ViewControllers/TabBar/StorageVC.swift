@@ -20,7 +20,7 @@ class StorageVC: UIViewController {
     private var failRoomLastID: Int = -1
 
     // 사이즈 임의설정
-    private var myRoomCountSize: Int = 9
+    private var myRoomCountSize: Int = 30
     private var isInfiniteScroll: Bool = true
     
     let doingButton = StatusButton()
@@ -91,9 +91,9 @@ class StorageVC: UIViewController {
         DispatchQueue.main.async { [self] in
             self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
             }
-            self.getFailRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+            self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
             }
-            self.getCompleteRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+            self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
             }
         }
     }
@@ -416,6 +416,43 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == DoingCV {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    onGoingRoomLastID = onGoingRoomList?.last?.roomID ?? 0
+                    getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        } else if scrollView == DoneCV {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    completeRoomLastID = completeRoomList?.last?.roomID ?? 0
+                    getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        } else {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    failRoomLastID = failRoomList?.last?.roomID ?? 0
+                    getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: Networks
@@ -426,7 +463,9 @@ extension StorageVC {
         MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
+                print("1")
                 if let myRoom = data as? MyRoom {
+                    print("2")
                     self.onGoingRoomList?.append(contentsOf: myRoom.rooms ?? [])
                     self.DoingCV.reloadData()
                 }
@@ -450,7 +489,7 @@ extension StorageVC {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
                     self.failRoomList?.append(contentsOf: myRoom.rooms ?? [])
-                    self.DoingCV.reloadData()
+                    self.DoneCV.reloadData()
                 }
                  
                 completion()
@@ -472,7 +511,7 @@ extension StorageVC {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
                     self.completeRoomList?.append(contentsOf: myRoom.rooms ?? [])
-                    self.DoingCV.reloadData()
+                    self.FailCV.reloadData()
                 }
                  
                 completion()

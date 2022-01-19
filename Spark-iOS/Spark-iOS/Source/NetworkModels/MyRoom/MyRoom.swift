@@ -20,13 +20,13 @@ struct MyRoomRooms: Codable {
     let roomName: String
     let leftDay: Int
     let thumbnail: String
-    let totalRecievedSpark: Int
+    let totalReceivedSpark: Int
     let startDate, endDate: String
     let failDay: Int?
     let comment: String?
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, leftDay, thumbnail, totalRecievedSpark, startDate, endDate, failDay, comment
+        case roomName, leftDay, thumbnail, totalReceivedSpark, startDate, endDate, failDay, comment
     }
 }
