@@ -11,6 +11,18 @@ import SnapKit
 class StorageVC: UIViewController {
     
     // MARK: - Properties
+    
+    private var onGoingRoomList: [MyRoomRooms]? = []
+    private var onGoingRoomLastID: Int = -1
+    private var completeRoomList: [MyRoomRooms]? = []
+    private var completeRoomLastID: Int = -1
+    private var failRoomList: [MyRoomRooms]? = []
+    private var failRoomLastID: Int = -1
+
+    // 사이즈 임의설정
+    private var myRoomCountSize: Int = 30
+    private var isInfiniteScroll: Bool = true
+    
     let doingButton = StatusButton()
     let doneButton = StatusButton()
     let failButton = StatusButton()
@@ -36,6 +48,9 @@ class StorageVC: UIViewController {
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
+        
         return name
     }()
     
@@ -48,6 +63,9 @@ class StorageVC: UIViewController {
         
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
+        
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
         
         return name
     }()
@@ -62,6 +80,9 @@ class StorageVC: UIViewController {
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
+        
         return name
     }()
 
@@ -75,6 +96,18 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
+        
+        DispatchQueue.main.async { [self] in
+            self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+                self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
+                    self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
+                        DoneCV.reloadData()
+                        FailCV.reloadData()
+                    }
+                }
+            }
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -366,22 +399,62 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        switch collectionView {
+        case DoingCV:
+            return onGoingRoomList?.count ?? 0
+        case DoneCV:
+            return completeRoomList?.count ?? 0
+        case FailCV:
+            return failRoomList?.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
         case DoingCV:
+            guard let onGoingRoomList = onGoingRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
             
+            cell.initCell(roomName: onGoingRoomList[indexPath.row].roomName,
+                          leftDay: onGoingRoomList[indexPath.row].leftDay,
+                          thumbnail: onGoingRoomList[indexPath.row].thumbnail,
+                          sparkCount: onGoingRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: onGoingRoomList[indexPath.row].startDate,
+                          endDate: onGoingRoomList[indexPath.row].endDate)
+            cell.layer.cornerRadius = 4
+            
             return cell
+            
         case DoneCV:
+            guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
+            
+            cell.initCell(roomName: completeRoomList[indexPath.row].roomName,
+                          thumbnail: completeRoomList[indexPath.row].thumbnail,
+                          sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: completeRoomList[indexPath.row].startDate,
+                          endDate: completeRoomList[indexPath.row].endDate,
+                          comment: completeRoomList[indexPath.row].comment ?? "")
+            cell.layer.cornerRadius = 4
             
             return cell
         default:
+            guard let failRoomList = failRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
+            
+            cell.initCell(roomName: failRoomList[indexPath.row].roomName,
+                          leftDay: failRoomList[indexPath.row].failDay ?? 0,
+                          thumbnail: failRoomList[indexPath.row].thumbnail,
+                          sparkCount: failRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: failRoomList[indexPath.row].startDate,
+                          endDate: failRoomList[indexPath.row].endDate)
+            cell.layer.cornerRadius = 4
             
             return cell
         }
@@ -391,8 +464,133 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle: nil)
 
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+        
+        switch collectionView {
+        case DoingCV:
+            nextVC.roomID = onGoingRoomList?[indexPath.row].roomID
+            nextVC.titleText = onGoingRoomList?[indexPath.row].roomName
+        case DoneCV:
+            nextVC.roomID = completeRoomList?[indexPath.row].roomID
+            nextVC.titleText = completeRoomList?[indexPath.row].roomName
+        case FailCV:
+            nextVC.roomID = failRoomList?[indexPath.row].roomID
+            nextVC.titleText = failRoomList?[indexPath.row].roomName
+        default:
+            return
+        }
 
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == DoingCV {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    onGoingRoomLastID = onGoingRoomList?.last?.roomID ?? 0
+                    getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        } else if scrollView == DoneCV {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    completeRoomLastID = completeRoomList?.last?.roomID ?? 0
+                    getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        } else {
+            if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
+                if isInfiniteScroll {
+                    isInfiniteScroll = false
+                    
+                    failRoomLastID = failRoomList?.last?.roomID ?? 0
+                    getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: Networks
+
+extension StorageVC {
+    
+    func getOnGoingRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.upperLabel.text = "\(myRoom.nickname) 님의"
+                    self.lowerLabel.text = "\(myRoom.totalRoomNum)가지 스파크"
+                    self.doingLabel.text = String(myRoom.ongoingRoomNum)
+                    self.doneLabel.text = String(myRoom.completeRoomNum)
+                    self.failLabel.text = String(myRoom.failRoomNum)
+                    self.onGoingRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                    self.DoingCV.reloadData()
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getOnGoingWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getOnGoingWithAPI - pathErr")
+            case .serverErr:
+                print("getOnGoingWithAPI - serverErr")
+            case .networkFail:
+                print("getOnGoingWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getFailRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "FAIL", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.failRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getFailRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getFailRoomWithAPI - pathErr")
+            case .serverErr:
+                print("getFailRoomWithAPI - serverErr")
+            case .networkFail:
+                print("getFailRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getCompleteRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "COMPLETE", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.completeRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getCompleteRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getCompleteRoomWithAPI - pathErr")
+            case .serverErr:
+                print("getCompleteRoomWithAPI - serverErr")
+            case .networkFail:
+                print("getCompleteRoomWithAPI - networkFail")
+            }
+        }
     }
 }

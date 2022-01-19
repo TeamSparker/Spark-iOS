@@ -29,10 +29,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="do0-Bb-P3U">
                         <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-RV-FLH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-RV-FLH">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NC1-RV-FLH" secondAttribute="height" multiplier="1:1" id="sKx-YL-pDk"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -107,7 +110,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NC1-RV-FLH" firstAttribute="width" secondItem="do0-Bb-P3U" secondAttribute="width" id="2ZR-qM-Pep"/>
                             <constraint firstItem="NC1-RV-FLH" firstAttribute="leading" secondItem="do0-Bb-P3U" secondAttribute="leading" id="3kg-Ka-zhY"/>
                             <constraint firstItem="CnH-6S-xaz" firstAttribute="height" secondItem="NC1-RV-FLH" secondAttribute="height" id="7M9-Ra-2nt"/>
                             <constraint firstItem="VdB-E5-Yh3" firstAttribute="top" secondItem="do0-Bb-P3U" secondAttribute="top" id="7mL-eE-kdk"/>
@@ -134,7 +136,14 @@
                 <constraint firstItem="do0-Bb-P3U" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="xSx-mD-EnE"/>
             </constraints>
             <connections>
+                <outlet property="cardBorderImageView" destination="m5x-6b-Xxs" id="nUh-7g-j6R"/>
+                <outlet property="dDayLabel" destination="GHk-jj-mc1" id="Aco-dQ-Qku"/>
+                <outlet property="dateLabel" destination="UHD-ha-kvM" id="OTs-Im-L94"/>
+                <outlet property="flakeImage" destination="MHT-q9-d5W" id="ucz-hu-Twl"/>
                 <outlet property="gradationUIView" destination="CnH-6S-xaz" id="Vcb-n3-fS1"/>
+                <outlet property="roomNameLabel" destination="R1V-eF-ogN" id="SDz-wS-Kz5"/>
+                <outlet property="sparkCountLabel" destination="RAD-hP-JYn" id="gJg-Dw-1Ab"/>
+                <outlet property="thumbnailImage" destination="NC1-RV-FLH" id="jp2-mB-OFu"/>
             </connections>
             <point key="canvasLocation" x="151.19999999999999" y="152.95566502463055"/>
         </collectionViewCell>
