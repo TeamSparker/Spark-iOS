@@ -400,9 +400,9 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case DoingCV:
             return onGoingRoomList?.count ?? 0
         case DoneCV:
-            return onGoingRoomList?.count ?? 0
+            return completeRoomList?.count ?? 0
         case FailCV:
-            return onGoingRoomList?.count ?? 0
+            return failRoomList?.count ?? 0
         default:
             return 0
         }
@@ -441,6 +441,13 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
+            
+            cell.initCell(roomName: completeRoomList[indexPath.row].roomName,
+                          leftDay: completeRoomList[indexPath.row].leftDay,
+                          thumbnail: completeRoomList[indexPath.row].thumbnail,
+                          sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: completeRoomList[indexPath.row].startDate,
+                          endDate: completeRoomList[indexPath.row].endDate)
             
             return cell
         }
