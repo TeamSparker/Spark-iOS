@@ -222,21 +222,24 @@ extension StorageVC {
         }
         
         doingBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(doingButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(doingButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
+            make.leading.equalTo(doingButton.snp.leading)
+            make.top.equalTo(doingButton.snp.centerY).offset(-16)
+            make.height.equalTo(4)
+            make.width.equalTo(18)
         }
         
         doneBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(doneButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(doneButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
+            make.leading.equalTo(doneButton.snp.leading)
+            make.top.equalTo(doneButton.snp.centerY).offset(-16)
+            make.height.equalTo(4)
+            make.width.equalTo(18)
         }
 
         failBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(failButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(failButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
+            make.leading.equalTo(failButton.snp.leading)
+            make.top.equalTo(failButton.snp.centerY).offset(-16)
+            make.height.equalTo(4)
+            make.width.equalTo(18)
         }
         
         doingButton.snp.makeConstraints { make in
