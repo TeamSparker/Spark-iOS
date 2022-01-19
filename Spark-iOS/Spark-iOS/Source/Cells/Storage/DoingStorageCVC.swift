@@ -25,7 +25,7 @@ class DoingStorageCVC: UICollectionViewCell {
 
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
-        flakeImage.contentMode = .scaleAspectFit
+        flakeImage.contentMode = .center
     }
     
     func initCell(roomName: String,
@@ -37,9 +37,7 @@ class DoingStorageCVC: UICollectionViewCell {
         let sparkFlake: SparkFlake = SparkFlake(leftDay: leftDay)
         
         flakeImage.image = sparkFlake.sparkFlakeGoingStorage()
-        
         sparkCountLabel.text = String(sparkCount)
-        
         roomNameLabel.text = roomName
         
         let startDate = startDate.split(separator: "-")

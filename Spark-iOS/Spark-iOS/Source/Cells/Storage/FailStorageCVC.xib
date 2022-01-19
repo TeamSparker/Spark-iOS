@@ -134,7 +134,10 @@
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Ej9-nc-oqb" secondAttribute="bottom" id="qyF-AM-FsW"/>
             </constraints>
             <connections>
+                <outlet property="dateLabel" destination="0lu-UT-RR9" id="VbR-Fj-VoN"/>
                 <outlet property="gradationUIView" destination="ZpD-q5-A5v" id="ynX-7X-vt3"/>
+                <outlet property="roomNameLabel" destination="ayp-qh-YU2" id="8OA-GT-d8Q"/>
+                <outlet property="sparkCountLabel" destination="ZLz-pW-Nr1" id="uic-tG-Ua4"/>
             </connections>
             <point key="canvasLocation" x="133" y="114"/>
         </collectionViewCell>

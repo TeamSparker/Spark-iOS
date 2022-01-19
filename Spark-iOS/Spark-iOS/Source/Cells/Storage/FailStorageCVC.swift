@@ -9,7 +9,10 @@ import UIKit
 
 class FailStorageCVC: UICollectionViewCell {
     @IBOutlet weak var gradationUIView: UIView!
-
+    @IBOutlet weak var roomNameLabel: UILabel!
+    @IBOutlet weak var sparkCountLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()

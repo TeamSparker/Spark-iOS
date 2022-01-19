@@ -48,6 +48,9 @@ class StorageVC: UIViewController {
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
+        
         return name
     }()
     
@@ -61,6 +64,9 @@ class StorageVC: UIViewController {
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
         
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
+        
         return name
     }()
     
@@ -73,6 +79,9 @@ class StorageVC: UIViewController {
         
         let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
         name.backgroundColor = .clear
+        
+        name.indicatorStyle = .white
+        name.showsVerticalScrollIndicator = true
         
         return name
     }()
@@ -407,15 +416,30 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
             
-            cell.initCell(roomName: onGoingRoomList[indexPath.row].roomName, leftDay: onGoingRoomList[indexPath.row].leftDay , thumbnail: onGoingRoomList[indexPath.row].thumbnail , sparkCount: onGoingRoomList[indexPath.row].totalReceivedSpark, startDate: onGoingRoomList[indexPath.row].startDate, endDate: onGoingRoomList[indexPath.row].endDate)
+            cell.initCell(roomName: onGoingRoomList[indexPath.row].roomName,
+                          leftDay: onGoingRoomList[indexPath.row].leftDay,
+                          thumbnail: onGoingRoomList[indexPath.row].thumbnail,
+                          sparkCount: onGoingRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: onGoingRoomList[indexPath.row].startDate,
+                          endDate: onGoingRoomList[indexPath.row].endDate)
             
             return cell
             
         case DoneCV:
+            guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
+            
+            cell.initCell(roomName: completeRoomList[indexPath.row].roomName,
+                          thumbnail: completeRoomList[indexPath.row].thumbnail,
+                          sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
+                          startDate: completeRoomList[indexPath.row].startDate,
+                          endDate: completeRoomList[indexPath.row].endDate)
             
             return cell
         default:
+            guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
             
             return cell

@@ -126,7 +126,11 @@
                 <constraint firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="yql-gB-r7H"/>
             </constraints>
             <connections>
+                <outlet property="dateLabel" destination="Aj5-A6-BNH" id="4Cd-Gi-bcz"/>
                 <outlet property="gradationUIView" destination="zjs-TB-eup" id="Hg6-av-YQx"/>
+                <outlet property="roomNameLabel" destination="Yb6-ig-5g3" id="pV6-zw-pAx"/>
+                <outlet property="sparkCountLabel" destination="Lnz-ma-zbE" id="WcH-yx-21r"/>
+                <outlet property="thumbnailImage" destination="SMW-pe-rPY" id="umb-q7-gH1"/>
             </connections>
             <point key="canvasLocation" x="133" y="114"/>
         </collectionViewCell>
