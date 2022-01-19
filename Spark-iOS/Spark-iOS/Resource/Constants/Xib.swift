@@ -18,6 +18,7 @@ extension Const {
             static let homeHabitCVC = "HomeHabitCVC"
             static let homeWaitingCVC = "HomeWaitingCVC"
             static let homeEmptyCVC = "HomeEmptyCVC"
+            static let habitRoomMemeberCVC = "HabitRoomMemberCVC"
         }
     }
 }

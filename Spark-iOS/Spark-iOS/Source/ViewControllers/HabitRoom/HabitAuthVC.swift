@@ -19,7 +19,9 @@ class HabitAuthVC: UIViewController {
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
     var authType: AuthType?
+    var fromStart: Bool?
     var roomID: Int?
+    var rest: Int?
     
     // MARK: - @IBOutlet Properties
     
