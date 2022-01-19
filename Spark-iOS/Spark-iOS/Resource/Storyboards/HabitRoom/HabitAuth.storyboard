@@ -183,10 +183,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="authTypeImageView" destination="zz0-Ms-rNq" id="hwN-RT-Zcd"/>
                         <outlet property="considerButton" destination="N1k-GB-OYv" id="jNg-EO-F5D"/>
                         <outlet property="okButton" destination="Re3-cM-dzs" id="ZN3-1X-bRg"/>
                         <outlet property="popUpView" destination="z0p-0Q-vit" id="NVX-ba-n0Z"/>
                         <outlet property="restButton" destination="BNv-lW-fXW" id="7NB-Ju-b60"/>
+                        <outlet property="restNumberLabel" destination="Shr-DX-2Uw" id="tHy-mF-QHS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

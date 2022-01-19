@@ -7,12 +7,19 @@
 
 import UIKit
 
+@frozen enum AuthType {
+    case photoOnly
+    case photoTimer
+}
+
 class HabitAuthVC: UIViewController {
 
     // MARK: - Properties
     
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
+    var authType: AuthType?
+    var roomID: Int?
     
     // MARK: - @IBOutlet Properties
     
@@ -20,7 +27,9 @@ class HabitAuthVC: UIViewController {
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var considerButton: UIButton!
     @IBOutlet weak var restButton: UIButton!
-
+    @IBOutlet weak var authTypeImageView: UIImageView!
+    @IBOutlet weak var restNumberLabel: UILabel!
+    
     // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +45,15 @@ extension HabitAuthVC {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
+        switch authType {
+        case .photoOnly:
+            authTypeImageView.image = UIImage(named: "stickerPhotoDefault")
+        case .photoTimer:
+            authTypeImageView.image = UIImage(named: "stickerPhotoBoth")
+        case .none:
+            print("authType을 지정해주세요")
+        }
+        
         popUpView.layer.cornerRadius = 2
         
         okButton.isEnabled = true
@@ -45,27 +63,32 @@ extension HabitAuthVC {
         okButton.tintColor = .sparkGray
         okButton.setTitleColor(.sparkGray, for: .highlighted)
         
-        // TODO: 고민중, 쉴래요 버튼 기능 구현
         considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        considerButton.layer.borderColor = UIColor.sparkLightGray.cgColor
+        considerButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         considerButton.layer.borderWidth = 1
         considerButton.layer.cornerRadius = 2
         
         restButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        restButton.layer.borderColor = UIColor.sparkLightGray.cgColor
+        restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
+//        if restNumber == 0 {
+//            restButton.isEnabled = false
+//        }
     }
     
     private func setAddTargets() {
         okButton.addTarget(self, action: #selector(touchOkayButton), for: .touchUpInside)
+        considerButton.addTarget(self, action: #selector(touchConsiderButton), for: .touchUpInside)
+        restButton.addTarget(self, action: #selector(touchRestButton), for: .touchUpInside)
     }
     
     private func setDelegate() {
         picker.delegate = self
     }
     
-    @objc private func touchOkayButton() {
+    @objc
+    private func touchOkayButton() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
@@ -83,8 +106,22 @@ extension HabitAuthVC {
         alter.addAction(library)
         alter.addAction(cancel)
         
+        let presentingVC = self.presentingViewController
         /// button tap했을 때 alter present
-        present(alter, animated: true, completion: nil)
+        self.modalTransitionStyle = .coverVertical
+        dismiss(animated: true) {
+            presentingVC?.present(alter, animated: true, completion: nil)
+        }
+    }
+    
+    @objc
+    private func touchConsiderButton() {
+        setConsiderRestWithAPI(statusType: "CONSIDER")
+    }
+    
+    @objc
+    private func touchRestButton() {
+        setConsiderRestWithAPI(statusType: "REST")
     }
     
     private func openLibrary() {
@@ -131,5 +168,26 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: false, completion: nil)
+    }
+}
+
+// MARK: Network
+
+extension HabitAuthVC {
+    func setConsiderRestWithAPI(statusType: String) {
+        RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
+            switch response {
+            case .success(_):
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(let message):
+                print("setConsiderRestWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("setConsiderRestWithAPI - pathErr")
+            case .serverErr:
+                print("setConsiderRestWithAPI - serverErr")
+            case .networkFail:
+                print("setConsiderRestWithAPI - networkFail")
+            }
+        }
     }
 }

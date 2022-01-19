@@ -221,7 +221,7 @@ extension AuthTimerVC {
         
         startButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
         }
