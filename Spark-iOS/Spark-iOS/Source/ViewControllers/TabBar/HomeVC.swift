@@ -227,7 +227,6 @@ extension HomeVC {
             case .networkFail:
                 print("habitRoomFetchWithAPI - networkFail")
             }
-            
         }
     }
 }

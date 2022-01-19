@@ -43,7 +43,7 @@ extension HomeService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .habitRoomFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         }
     }
 }
