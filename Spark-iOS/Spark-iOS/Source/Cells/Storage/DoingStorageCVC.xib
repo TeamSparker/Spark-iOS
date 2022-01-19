@@ -29,10 +29,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="do0-Bb-P3U">
                         <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-RV-FLH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="NC1-RV-FLH">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NC1-RV-FLH" secondAttribute="height" multiplier="1:1" id="sKx-YL-pDk"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -40,7 +43,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="193"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-ha-kvM">
-                                        <rect key="frame" x="82" y="216" width="163" height="18.333333333333343"/>
+                                        <rect key="frame" x="84.333333333333329" y="216" width="158.66666666666669" height="18"/>
                                         <fontDescription key="fontDescription" name="Futura" family="Futura" pointSize="14"/>
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
@@ -107,7 +110,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NC1-RV-FLH" firstAttribute="width" secondItem="do0-Bb-P3U" secondAttribute="width" id="2ZR-qM-Pep"/>
                             <constraint firstItem="NC1-RV-FLH" firstAttribute="leading" secondItem="do0-Bb-P3U" secondAttribute="leading" id="3kg-Ka-zhY"/>
                             <constraint firstItem="CnH-6S-xaz" firstAttribute="height" secondItem="NC1-RV-FLH" secondAttribute="height" id="7M9-Ra-2nt"/>
                             <constraint firstItem="VdB-E5-Yh3" firstAttribute="top" secondItem="do0-Bb-P3U" secondAttribute="top" id="7mL-eE-kdk"/>

@@ -99,12 +99,15 @@ class StorageVC: UIViewController {
         
         DispatchQueue.main.async { [self] in
             self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
-            }
-            self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
-            }
-            self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
+                self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
+                    self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
+                        DoneCV.reloadData()
+                        FailCV.reloadData()
+                    }
+                }
             }
         }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -422,6 +425,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                           sparkCount: onGoingRoomList[indexPath.row].totalReceivedSpark,
                           startDate: onGoingRoomList[indexPath.row].startDate,
                           endDate: onGoingRoomList[indexPath.row].endDate)
+            cell.layer.cornerRadius = 4
             
             return cell
             
@@ -435,6 +439,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                           sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
                           startDate: completeRoomList[indexPath.row].startDate,
                           endDate: completeRoomList[indexPath.row].endDate)
+            cell.layer.cornerRadius = 4
             
             return cell
         default:
@@ -448,6 +453,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                           sparkCount: completeRoomList[indexPath.row].totalReceivedSpark,
                           startDate: completeRoomList[indexPath.row].startDate,
                           endDate: completeRoomList[indexPath.row].endDate)
+            cell.layer.cornerRadius = 4
             
             return cell
         }
@@ -509,6 +515,8 @@ extension StorageVC {
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
+                    self.upperLabel.text = "\(myRoom.nickname) 님의"
+                    self.lowerLabel.text = "\(myRoom.totalRoomNum)가지 스파크"
                     self.doingLabel.text = String(myRoom.ongoingRoomNum)
                     self.doneLabel.text = String(myRoom.completeRoomNum)
                     self.failLabel.text = String(myRoom.failRoomNum)
@@ -535,7 +543,6 @@ extension StorageVC {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
                     self.failRoomList?.append(contentsOf: myRoom.rooms ?? [])
-                    self.DoneCV.reloadData()
                 }
                  
                 completion()
@@ -557,7 +564,6 @@ extension StorageVC {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
                     self.completeRoomList?.append(contentsOf: myRoom.rooms ?? [])
-                    self.FailCV.reloadData()
                 }
                  
                 completion()

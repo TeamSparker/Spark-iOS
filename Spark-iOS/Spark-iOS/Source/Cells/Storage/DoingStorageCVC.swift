@@ -26,6 +26,7 @@ class DoingStorageCVC: UICollectionViewCell {
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
         flakeImage.contentMode = .center
+        thumbnailImage.contentMode = .scaleToFill
     }
     
     func initCell(roomName: String,

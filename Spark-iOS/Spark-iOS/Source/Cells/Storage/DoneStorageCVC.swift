@@ -21,6 +21,7 @@ class DoneStorageCVC: UICollectionViewCell {
     
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
+        thumbnailImage.contentMode = .scaleToFill
     }
     
     func initCell(roomName: String,

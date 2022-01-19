@@ -29,15 +29,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ej9-nc-oqb">
                         <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="bS9-Hm-jAD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="bS9-Hm-jAD">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bS9-Hm-jAD" secondAttribute="height" multiplier="1:1" id="IQW-3a-7VE"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZpD-q5-A5v">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpD-q5-A5v">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHv-N8-cRw">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="193"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHv-N8-cRw">
+                                <rect key="frame" x="0.0" y="0.0" width="327" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-UT-RR9">
                                         <rect key="frame" x="84.5" y="216" width="158.5" height="18"/>
@@ -119,7 +122,6 @@
                             <constraint firstItem="6xr-ex-Byb" firstAttribute="top" secondItem="Ej9-nc-oqb" secondAttribute="top" id="T4Y-X1-gNQ"/>
                             <constraint firstAttribute="trailing" secondItem="bS9-Hm-jAD" secondAttribute="trailing" id="Wy6-Vf-hQ8"/>
                             <constraint firstAttribute="trailing" secondItem="6xr-ex-Byb" secondAttribute="trailing" id="Zwv-xY-cRZ"/>
-                            <constraint firstItem="bS9-Hm-jAD" firstAttribute="width" secondItem="Ej9-nc-oqb" secondAttribute="width" id="bQf-bX-VMo"/>
                             <constraint firstAttribute="bottom" secondItem="6xr-ex-Byb" secondAttribute="bottom" id="cMJ-Cn-BDF"/>
                             <constraint firstItem="sHv-N8-cRw" firstAttribute="bottom" secondItem="bS9-Hm-jAD" secondAttribute="top" id="oYZ-7l-9Rk"/>
                         </constraints>

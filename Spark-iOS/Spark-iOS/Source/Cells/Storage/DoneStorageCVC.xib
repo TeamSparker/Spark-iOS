@@ -29,15 +29,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDq-F4-Umy">
                         <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="SMW-pe-rPY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgSplash" translatesAutoresizingMaskIntoConstraints="NO" id="SMW-pe-rPY">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SMW-pe-rPY" secondAttribute="height" multiplier="1:1" id="een-Lq-lqC"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjs-TB-eup">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjs-TB-eup">
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AOj-nn-gQh">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="193"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOj-nn-gQh">
+                                <rect key="frame" x="0.0" y="0.0" width="327" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aj5-A6-BNH">
                                         <rect key="frame" x="84.5" y="216" width="158.5" height="18"/>
@@ -106,13 +109,12 @@
                             <constraint firstItem="zjs-TB-eup" firstAttribute="centerX" secondItem="SMW-pe-rPY" secondAttribute="centerX" id="MIW-wD-hfS"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="centerY" secondItem="SMW-pe-rPY" secondAttribute="centerY" id="NJw-BY-RX6"/>
                             <constraint firstAttribute="trailing" secondItem="SMW-pe-rPY" secondAttribute="trailing" id="NcV-L2-bt7"/>
-                            <constraint firstItem="SMW-pe-rPY" firstAttribute="width" secondItem="pDq-F4-Umy" secondAttribute="width" id="P2W-qj-iC8"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="bBb-vm-QF8"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="width" secondItem="SMW-pe-rPY" secondAttribute="width" id="cTi-10-dEB"/>
                             <constraint firstAttribute="bottom" secondItem="TPJ-hK-IAz" secondAttribute="bottom" id="cW6-6p-Niy"/>
                             <constraint firstItem="zjs-TB-eup" firstAttribute="height" secondItem="SMW-pe-rPY" secondAttribute="height" id="eLY-yt-YP2"/>
+                            <constraint firstItem="SMW-pe-rPY" firstAttribute="top" secondItem="AOj-nn-gQh" secondAttribute="bottom" id="evF-me-37g"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" id="hDb-V2-rSa"/>
-                            <constraint firstItem="AOj-nn-gQh" firstAttribute="bottom" secondItem="SMW-pe-rPY" secondAttribute="top" id="izR-nj-Inb"/>
                             <constraint firstAttribute="trailing" secondItem="AOj-nn-gQh" secondAttribute="trailing" id="jY2-QW-OaB"/>
                         </constraints>
                     </view>
