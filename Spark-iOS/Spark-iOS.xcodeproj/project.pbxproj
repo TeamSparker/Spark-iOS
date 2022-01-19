@@ -132,6 +132,7 @@
 		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
 		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
+		F8F6D70027982D6400725537 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FF27982D6400725537 /* Login.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -269,6 +270,7 @@
 		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		F8F6D6FF27982D6400725537 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -930,6 +932,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E3496C2796B7F6001B67E7 /* Signup.swift */,
+				F8F6D6FF27982D6400725537 /* Login.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1122,6 +1125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC1726D278E8F1000BA3029 /* UIView+.swift in Sources */,
+				F8F6D70027982D6400725537 /* Login.swift in Sources */,
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
