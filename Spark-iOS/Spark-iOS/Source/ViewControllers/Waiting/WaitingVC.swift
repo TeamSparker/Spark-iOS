@@ -90,6 +90,7 @@ class WaitingVC: UIViewController {
         editButton.isHighlighted = false
         refreshButton.isHighlighted = false
         
+        profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
