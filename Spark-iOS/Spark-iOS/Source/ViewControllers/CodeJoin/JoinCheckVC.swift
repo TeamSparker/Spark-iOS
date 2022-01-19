@@ -94,6 +94,7 @@ extension JoinCheckVC {
                     
                     let nextVC = UINavigationController(rootViewController: rootViewController)
                     nextVC.modalPresentationStyle = .fullScreen
+                    nextVC.modalTransitionStyle = .crossDissolve
                     
                     self.present(nextVC, animated: true)
                 }
