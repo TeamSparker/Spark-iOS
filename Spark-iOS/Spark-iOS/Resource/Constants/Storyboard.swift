@@ -32,6 +32,7 @@ extension Const {
             static let sendSpark = "SendSpark"
             static let profileSetting = "ProfileSetting"
             static let dialogue = "Dialogue"
+            static let habitRoom = "HabitRoom"
         }
     }
 }

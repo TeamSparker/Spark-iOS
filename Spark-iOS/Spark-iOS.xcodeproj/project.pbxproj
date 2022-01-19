@@ -132,6 +132,11 @@
 		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
 		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
+		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
+		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
+		F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */; };
+		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
+		F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -269,6 +274,11 @@
 		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
+		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
+		F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
+		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
+		F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomDetail.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -459,6 +469,7 @@
 				EBE90FD32795D67500157075 /* AuthUpload.swift */,
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
+				F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -570,6 +581,7 @@
 				EB9C50832792A61D00588155 /* HabitAuthVC.swift */,
 				EB9C50892792A86D00588155 /* CompleteAuthVC.swift */,
 				EBE90FD92796128800157075 /* SendSparkVC.swift */,
+				F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -580,6 +592,7 @@
 				EB9C50872792A67B00588155 /* HabitAuth.storyboard */,
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
 				EBE90FDB279612CA00157075 /* SendSpark.storyboard */,
+				F8F6D6F42797359600725537 /* HabitRoom.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -829,6 +842,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F8F6D6F82797525700725537 /* HabitRoom */,
 				F8FAA96B2790336E00C4190F /* Home */,
 				2BC17275278F763600BA3029 /* Waiting */,
 				2BC17271278F551F00BA3029 /* Feed */,
@@ -934,6 +948,15 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		F8F6D6F82797525700725537 /* HabitRoom */ = {
+			isa = PBXGroup;
+			children = (
+				F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */,
+				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
+			);
+			path = HabitRoom;
+			sourceTree = "<group>";
+		};
 		F8FAA96B2790336E00C4190F /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,6 +1056,7 @@
 				2BC17274278F56D100BA3029 /* Waiting.storyboard in Resources */,
 				2B947204278CB00E005484C5 /* Futura Medium Italic.otf in Resources */,
 				2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */,
+				F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
@@ -1041,6 +1065,7 @@
 				2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
+				F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
 				F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */,
@@ -1126,6 +1151,7 @@
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
+				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
@@ -1155,6 +1181,7 @@
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
+				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
@@ -1178,6 +1205,7 @@
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
+				F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */,
 				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
 				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,

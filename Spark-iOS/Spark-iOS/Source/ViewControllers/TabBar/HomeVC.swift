@@ -11,12 +11,12 @@ import SnapKit
 import JJFloatingActionButton
 
 class HomeVC: UIViewController {
-
+    
     // MARK: - Properties
     
     private var habitRoomList: [Room]? = []
     private var habitRoomLastID: Int = -1
-    // FIXME: - 현재 size 임의 설정
+    
     private var habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
     
@@ -28,7 +28,7 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUI()
         setDelegate()
         registerXib()
@@ -39,13 +39,15 @@ class HomeVC: UIViewController {
         
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
         
-        // TODO: - 로딩창붙이기 위한 dispatch queue
+        self.habitRoomLastID = -1
+        self.habitRoomList?.removeAll()
+        // 다른탭에서 돌아올때 엠티뷰가 habitRoomList 갯수만큼 여러개 등장하던 부분 해결.
+        self.mainCollectionView.reloadData()
         
-        DispatchQueue.main.async {
-            self.habitRoomLastID = -1
-            self.habitRoomList?.removeAll()
-        }
-
+//        DispatchQueue.main.async {
+            // TODO: - 로딩창붙이기 위한 dispatch queue
+//        }
+        
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
@@ -115,6 +117,16 @@ extension HomeVC: UICollectionViewDelegate {
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let habitRoomList = habitRoomList else { return }
+        if habitRoomList[indexPath.item].isStarted == true {
+            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+            nextVC.roomID = habitRoomList[indexPath.item].roomID
+            
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -130,8 +142,6 @@ extension HomeVC: UICollectionViewDataSource {
         if habitRoomList.count != 0 {
             if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
-                
-                // TODO: - initCell()
                 
                 waitingCVC.initCell(roomName: habitRoomList[indexPath.item].roomName)
                 
@@ -149,10 +159,10 @@ extension HomeVC: UICollectionViewDataSource {
                 
                 return habitCVC
             }
-    } else {
+        } else {
             // empty view.
-        guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
-        
+            guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
+
             return emptyCVC
         }
     }
