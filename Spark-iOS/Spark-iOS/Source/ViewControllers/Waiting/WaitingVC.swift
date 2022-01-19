@@ -65,6 +65,7 @@ class WaitingVC: UIViewController {
         super.viewWillAppear(animated)
 
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
+//        getWaitingRoomWithAPI(roomID: 235)
     }
 
     // MARK: - Methods
@@ -110,6 +111,7 @@ class WaitingVC: UIViewController {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
+        profileImageView.contentMode = .scaleAspectFill
         
         checkTitleLabel.text = "습관 인증 방식"
         photoLabel.text = "사진 인증"
@@ -415,7 +417,7 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(104)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }

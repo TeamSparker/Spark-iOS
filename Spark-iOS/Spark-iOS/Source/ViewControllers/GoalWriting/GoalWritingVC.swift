@@ -124,7 +124,7 @@ class GoalWritingVC: UIViewController {
                        options: .curveEaseInOut) {
             self.subTitleLabel.alpha = 0
             
-            let frame = CGAffineTransform(translationX: 0, y: -118)
+            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -118 : -98)
             [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
              self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
         }
@@ -311,12 +311,12 @@ extension GoalWritingVC {
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.top.equalTo(titleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 40 :30)
             make.leading.equalToSuperview().inset(20)
         }
         
         whenLabel.snp.makeConstraints { make in
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(72)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 72 : 50)
             make.leading.equalToSuperview().inset(20)
         }
         
@@ -344,7 +344,7 @@ extension GoalWritingVC {
         }
         
         goalLabel.snp.makeConstraints { make in
-            make.top.equalTo(whenLineView.snp.bottom).offset(96)
+            make.top.equalTo(whenLineView.snp.bottom).offset(UIScreen.main.hasNotch ? 96 : 66)
             make.leading.equalToSuperview().inset(20)
         }
         

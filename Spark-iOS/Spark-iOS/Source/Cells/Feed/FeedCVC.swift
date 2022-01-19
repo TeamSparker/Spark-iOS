@@ -134,6 +134,8 @@ extension FeedCVC {
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
         profileImageView.layer.masksToBounds = true
+        profileImageView.contentMode = .scaleAspectFill
+        feedImageView.contentMode = .scaleAspectFill
         
         sparkLabel.text = "받은 스파크"
         
