@@ -45,8 +45,7 @@ class HabitRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
-        fetchHabitRoomDetailWithAPI(roomID: 163) {
+        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
             self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
     }
