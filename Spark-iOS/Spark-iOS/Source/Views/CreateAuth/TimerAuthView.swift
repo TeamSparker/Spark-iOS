@@ -33,7 +33,7 @@ class TimerAuthView: UIView {
         titleLabel.text = "시간 측정 후 사진으로 인증하기"
         titleLabel.font = .h3Subtitle
         
-        subTitleLabel.text = "30분 책 읽기, 1시간 러닝처럼 진행 과정을\n인증하는 습관에 추천해요."
+        subTitleLabel.text = "30분 책 읽기, 1시간 러닝처럼 진행 시간을\n인증하는 습관에 추천해요."
         subTitleLabel.textColor = .sparkDarkGray
         subTitleLabel.font = .p1TitleLight
         subTitleLabel.numberOfLines = 2

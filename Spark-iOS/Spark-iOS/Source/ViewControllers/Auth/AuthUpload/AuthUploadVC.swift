@@ -10,24 +10,22 @@ import UIKit
 import SnapKit
 
 @frozen enum VCCase {
-    case cameraTimer
-    case albumTimer
-    case cameraOnly
-    case albumOnly
+    case photoTimer
+    case photoOnly
 }
 
 class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .albumTimer
+    var vcType: VCCase = .photoTimer
     var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
     var uploadImage = UIImage()
     var buttonStackView = UIStackView()
     var uploadButton = UIButton()
-    var retakeButton = UIButton()
+    var changePhotoButton = UIButton()
     var timerLabel = UILabel()
     let firstLabel = UILabel()
     let secondLabel = UILabel()
@@ -85,41 +83,27 @@ extension AuthUploadVC {
         timerLabel.font = .enBoldFont(ofSize: 40)
         timerLabel.textColor = .sparkWhite
         
-        retakeButton.layer.cornerRadius = 2
-        retakeButton.titleLabel?.font = .btn1Default
-        retakeButton.setTitle("다시 찍기", for: .normal)
-        retakeButton.backgroundColor = .sparkWhite
-        retakeButton.tintColor = .sparkDarkPinkred
-        retakeButton.setTitleColor(.sparkDarkPinkred, for: .normal)
-        retakeButton.layer.borderWidth = 2
-        retakeButton.layer.borderColor = .init(red: 1, green: 0, blue: 61/255, alpha: 1)
-        retakeButton.isEnabled = true
+        changePhotoButton.layer.cornerRadius = 2
+        changePhotoButton.titleLabel?.font = .btn1Default
+        changePhotoButton.setTitle("사진 변경", for: .normal)
+        changePhotoButton.backgroundColor = .sparkWhite
+        changePhotoButton.tintColor = .sparkDarkPinkred
+        changePhotoButton.setTitleColor(.sparkDarkPinkred, for: .normal)
+        changePhotoButton.layer.borderWidth = 2
+        changePhotoButton.layer.borderColor = .init(red: 1, green: 0, blue: 61/255, alpha: 1)
+        changePhotoButton.isEnabled = true
         
         uploadButton.layer.cornerRadius = 2
         uploadButton.titleLabel?.font = .btn1Default
-        uploadButton.setTitle("업로드", for: .normal)
+        uploadButton.setTitle("업로드하기", for: .normal)
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
         
         switch vcType {
-        case .cameraOnly:
-            print("카메라")
-            timerLabel.isHidden = true
+        case .photoOnly:
             setFirstFlowUI()
             
-        case .albumOnly:
-            print("앨범")
-            retakeButton.setTitle("다시 선택", for: .normal)
-            timerLabel.isHidden = true
-            setFirstFlowUI()
-
-        case .cameraTimer:
-            print("카메라타이머")
-            setSecondFlowUI()
-            
-        case .albumTimer:
-            print("앨범타이머")
-            retakeButton.setTitle("다시 선택", for: .normal)
+        case .photoTimer:
             setSecondFlowUI()
         }
     }
@@ -130,14 +114,14 @@ extension AuthUploadVC {
     
     private func setAddTarget() {
         photoAuthButton.addTarget(self, action: #selector(touchAuthButton), for: .touchUpInside)
-        retakeButton.addTarget(self, action: #selector(touchRetakeButton), for: .touchUpInside)
+        changePhotoButton.addTarget(self, action: #selector(touchChangePhotoButton), for: .touchUpInside)
         uploadButton.addTarget(self, action: #selector(touchUploadButton), for: .touchUpInside)
     }
     
     // 사진 인증만 하는 플로우 UI
     func setFirstFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
-         photoLabel, betweenLine, photoAuthButton].forEach { $0.isHidden = true }
+         photoLabel, betweenLine, photoAuthButton, timerLabel].forEach { $0.isHidden = true }
         [uploadImageView, buttonStackView, fadeImageView].forEach { $0.isHidden = false }
         
         uploadImageView.image = uploadImage
@@ -157,7 +141,7 @@ extension AuthUploadVC {
         buttonStackView.alignment = .fill
         buttonStackView.distribution = .fillEqually
         buttonStackView.spacing = 15
-        buttonStackView.addArrangedSubview(retakeButton)
+        buttonStackView.addArrangedSubview(changePhotoButton)
         buttonStackView.addArrangedSubview(uploadButton)
     }
     
@@ -165,8 +149,6 @@ extension AuthUploadVC {
         /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
-        vcType = .albumTimer
-        retakeButton.setTitle("다시 선택", for: .normal)
     }
     
     private func openCamera() {
@@ -175,15 +157,12 @@ extension AuthUploadVC {
             /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
-            vcType = .cameraTimer
-            retakeButton.setTitle("다시 찍기", for: .normal)
         } else {
-            print("카메라 안됩니다.")
+            print("카메라 접근 안됨")
         }
     }
     
-    @objc
-    func touchAuthButton() {
+    private func showAlert() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
@@ -191,7 +170,7 @@ extension AuthUploadVC {
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
-        let camera = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
+        let camera = UIAlertAction(title: "앨범에서 선택", style: .default) { _ in
             self.openLibrary()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -205,14 +184,16 @@ extension AuthUploadVC {
         present(alter, animated: true, completion: nil)
     }
     
-    // 다시 선택 & 다시 찍기
+    // 두번째 플로우에서 사진 인증하기 버튼
     @objc
-    func touchRetakeButton() {
-        if retakeButton.titleLabel?.text == "다시 선택" {
-            self.openLibrary()
-        } else {
-            self.openCamera()
-        }
+    func touchAuthButton() {
+        showAlert()
+    }
+    
+    // 모든 플로우에서 최초 사진 가져온 뒤, 사진 변경 버튼
+    @objc
+    func touchChangePhotoButton() {
+        showAlert()
     }
     
     // TODO: 업로드 시간이 길다. 로딩 넣기.
@@ -234,10 +215,14 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             uploadImageView.image = image
-            timerLabel.isHidden = false
             fadeImageView.isHidden = false
-            photoAuthButton.isHidden = true
             buttonStackView.isHidden = false
+            photoAuthButton.isHidden = true
+            if vcType == .photoOnly {
+                timerLabel.isHidden = true
+            } else {
+                timerLabel.isHidden = false
+            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -300,7 +285,7 @@ extension AuthUploadVC {
             make.height.equalTo(self.view.frame.width*48/335)
         }
         
-        retakeButton.snp.makeConstraints { make in
+        changePhotoButton.snp.makeConstraints { make in
             make.height.equalToSuperview()
             make.width.equalTo(160)
         }
