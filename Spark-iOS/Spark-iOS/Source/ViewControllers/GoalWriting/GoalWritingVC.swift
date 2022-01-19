@@ -27,8 +27,12 @@ class GoalWritingVC: UIViewController {
     let goalLineView = UIView()
     let goalCountLabel = UILabel()
     let completeButton = UIButton()
-    var titleText = "아침독서"
+    
     var maxLength: Int = 15
+    var titleText: String?
+    var roomId: Int?
+    var moment: String?
+    var purpose: String?
     
     // MARK: - View Life Cycles
     
@@ -49,7 +53,7 @@ class GoalWritingVC: UIViewController {
         titleLabel.font = .h3Subtitle
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "\(titleText) 습관방에서의 \n시간과 목표를 적어 보세요!"
+        subTitleLabel.text = "\(titleText ?? "기본") 습관방에서의 \n시간과 목표를 적어 보세요!"
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -76,6 +80,7 @@ class GoalWritingVC: UIViewController {
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
         
+        whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
         whenTextField.delegate = self
         whenLineView.backgroundColor = .sparkGray
@@ -83,6 +88,7 @@ class GoalWritingVC: UIViewController {
         whenCountLabel.font = .p2SubtitleEng
         whenCountLabel.textColor = .sparkDarkGray
         
+        goalTextField.text = "\(purpose ?? "")"
         goalTextField.borderStyle = .none
         goalTextField.delegate = self
         goalLineView.backgroundColor = .sparkGray
@@ -205,12 +211,34 @@ class GoalWritingVC: UIViewController {
     // MARK: - 화면전환
     @objc
     func touchCompleteButton() {
-        print("작성 완료")
+        setPurposeWithAPI(moment: whenTextField.text ?? "", purpose: goalTextField.text ?? "")
     }
     
     @objc
     func touchCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Network
+
+extension GoalWritingVC {
+    func setPurposeWithAPI(moment: String, purpose: String) {
+        RoomAPI.shared.setPurpose(roomID: roomId ?? 0, moment: moment, purpose: purpose) { response in
+            switch response {
+            case .success(let message):
+                print("setPurposeWithAPI - success: \(message)")
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(let message):
+                print("setPurposeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("setPurposeWithAPI - pathErr")
+            case .serverErr:
+                print("setPurposeWithAPI - serverErr")
+            case .networkFail:
+                print("setPurposeWithAPI - networkFail")
+            }
+        }
     }
 }
 
