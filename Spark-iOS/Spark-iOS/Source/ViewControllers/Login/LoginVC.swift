@@ -155,15 +155,18 @@ extension LoginVC {
         AuthAPI.shared.login(socialID: userID, fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
             switch response {
             case .success(let data):
-                if let message = data as? String {
-                    if message == "회원가입을 하지 않은 사용자입니다" {
+                if let data = data as? Login {
+                    if data.isNew {
+                        // 회원가입을 하지 않은 사용자입니다.
                         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.profileSetting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.profileSetting) as? ProfileSettingVC else { return }
                         
                         nextVC.modalPresentationStyle = .fullScreen
                         
                         self.present(nextVC, animated: true, completion: nil)
                     } else {
-                        // 회원 정보를 불러왔습니다
+                        // 회원 정보를 불러왔습니다.
+                        UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                        
                         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
                         
                         nextVC.modalPresentationStyle = .fullScreen

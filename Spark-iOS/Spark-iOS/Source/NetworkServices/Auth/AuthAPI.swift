@@ -57,7 +57,7 @@ public class AuthAPI {
         
         switch statusCode {
         case 200:
-            return .success(decodedData.message)
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:
