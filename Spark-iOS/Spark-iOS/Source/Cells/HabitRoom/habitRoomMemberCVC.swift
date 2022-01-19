@@ -8,11 +8,6 @@
 import UIKit
 
 class HabitRoomMemberCVC: UICollectionViewCell {
-    
-    // MARK: - Properties
-    
-    var recordID: Int?
-    var userID: Int?
 
     // MARK: - @IBOutlet Properties
     
