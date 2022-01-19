@@ -164,6 +164,8 @@ extension LoginVC {
                         self.present(nextVC, animated: true, completion: nil)
                     } else {
                         // 회원 정보를 불러왔습니다
+                        
+                        
                         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
                         
                         nextVC.modalPresentationStyle = .fullScreen

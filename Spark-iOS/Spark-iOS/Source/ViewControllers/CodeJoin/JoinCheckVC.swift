@@ -84,14 +84,18 @@ extension JoinCheckVC {
     func enterRoomWithAPI() {
         RoomAPI.shared.enterRoom(roomID: roomID) {  response in
             switch response {
-            case .success(_):
-                let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
-                
-                guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
-                
-                let nextVC = UINavigationController(rootViewController: rootViewController)
-                nextVC.modalPresentationStyle = .fullScreen
-                self.present(nextVC, animated: true)
+            case .success(let data):
+                if let roomID = data as? RoomId {
+                    let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)
+                    
+                    guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
+                    rootViewController.roomID = roomID.roomID
+                    
+                    let nextVC = UINavigationController(rootViewController: rootViewController)
+                    nextVC.modalPresentationStyle = .fullScreen
+                    
+                    self.present(nextVC, animated: true)
+                }
             case .requestErr(let message):
                 print("enterRoomWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -123,12 +123,29 @@ public class RoomAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data)
+                let networkResult = self.judgeEnterRoomStatus(by: statusCode, data)
                 completion(networkResult)
                 
             case .failure(let err):
                 print(err)
             }
+        }
+    }
+    
+    private func judgeEnterRoomStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<RoomId>.self, from: data)
+        else { return .pathErr }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
         }
     }
     
@@ -245,7 +262,6 @@ public class RoomAPI {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
         else { return .pathErr }
-        
         switch statusCode {
         case 200:
             return .success(decodedData.message)

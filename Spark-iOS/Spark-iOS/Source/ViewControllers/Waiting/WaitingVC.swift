@@ -12,6 +12,7 @@ import SwiftUI
 
 class WaitingVC: UIViewController {
     var members: [Member] = []
+    var roomID: Int?
     
     // MARK: - Properties
     
@@ -271,13 +272,13 @@ extension WaitingVC {
                     self.collectionView.reloadData()
                 }
             case .requestErr(let message):
-                print("requestErr")
+                print("getWaitingRoomWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("pathErr")
+                print("getWaitingRoomWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getWaitingRoomWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getWaitingRoomWithAPI - networkFail")
             }
         }
     }
@@ -302,9 +303,9 @@ extension WaitingVC {
             case .pathErr:
                 print("getWaitingMembersWithAPI - pathErr")
             case .serverErr:
-                print("serverErr")
+                print("getWaitingMembersWithAPI - serverErr")
             case .networkFail:
-                print("networkFail")
+                print("getWaitingMembersWithAPI - networkFail")
             }
         }
     }
