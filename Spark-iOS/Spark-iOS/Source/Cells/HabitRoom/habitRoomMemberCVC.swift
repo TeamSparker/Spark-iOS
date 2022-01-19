@@ -53,7 +53,7 @@ extension HabitRoomMemberCVC {
         statusLabel.textColor = .sparkDarkGray
         
         sparkCountLabel.font = .p2Subtitle
-        sparkCountLabel.textColor = .sparkDarkGray
+        sparkCountLabel.textColor = .sparkWhite
     }
     
     /// 내 셀 초기화

@@ -44,8 +44,6 @@ class HabitRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO: - 서버통신
-        
         fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
             self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
@@ -89,8 +87,6 @@ extension HabitRoomVC {
         
         moreButton.isHidden = true
     }
-    
-    // TODO: - 서버통신 이후 세팅
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
         habitTitleLabel.text = habitRoomDetail.roomName
@@ -156,28 +152,27 @@ extension HabitRoomVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let data = habitRoomDetail else { return UICollectionViewCell() }
+//        guard let data = habitRoomDetail else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC, for: indexPath) as? HabitRoomMemberCVC else { return UICollectionViewCell() }
         if indexPath.item == 0 {
-            cell.initCellMe(recordID: data.myRecord.recordID,
-                            userID: data.myRecord.userID,
-                            profileImg: data.myRecord.profileImg ?? "",
-                            nickname: data.myRecord.nickname,
-                            status: data.myRecord.status,
-                            receivedSpark: data.myRecord.recievedSpark)
+            cell.initCellMe(recordID: habitRoomDetail?.myRecord.recordID ?? 0,
+                            userID: habitRoomDetail?.myRecord.userID ?? 0,
+                            profileImg: habitRoomDetail?.myRecord.profileImg ?? "",
+                            nickname: habitRoomDetail?.myRecord.nickname ?? "",
+                            status: habitRoomDetail?.myRecord.status ?? "",
+                            receivedSpark: habitRoomDetail?.myRecord.recievedSpark ?? 0)
             
             return cell
         } else {
-            cell.initCellOthers(recordID: data.otherRecords[indexPath.item - 1].recordID,
-                                userID: data.otherRecords[indexPath.item - 1].userID,
-                                profileImg: data.otherRecords[indexPath.item - 1].profileImg ?? "",
-                                nickname: data.otherRecords[indexPath.item - 1].nickname,
-                                status: data.otherRecords[indexPath.item - 1].status,
+            cell.initCellOthers(recordID: habitRoomDetail?.otherRecords[indexPath.item - 1].recordID ?? 0,
+                                userID: habitRoomDetail?.otherRecords[indexPath.item - 1].userID ?? 0,
+                                profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1].profileImg ?? "",
+                                nickname: habitRoomDetail?.otherRecords[indexPath.item - 1].nickname ?? "",
+                                status: habitRoomDetail?.otherRecords[indexPath.item - 1].status ?? "",
                                 sparkDone: false)
             
             return cell
         }
-
     }
 }
 
@@ -219,13 +214,13 @@ extension HabitRoomVC {
                 
                 completion()
             case .requestErr(let message):
-                print("habitRoomDetailFetch - requestErr: \(message)")
+                print("fetchHabitRoomDetailWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("habitRoomDetailFetch - pathErr")
+                print("fetchHabitRoomDetailWithAPI - pathErr")
             case .serverErr:
-                print("habitRoomDetailFetch - serverErr")
+                print("fetchHabitRoomDetailWithAPI - serverErr")
             case .networkFail:
-                print("habitRoomDetailFetch - networkFail")
+                print("fetchHabitRoomDetailWithAPI - networkFail")
             }
         }
     }
