@@ -27,7 +27,13 @@ class MoreStorageCVC: UICollectionViewCell {
     func initCell(leftDay: Int,
                   mainImage: String,
                   sparkCount: Int) {
-        
+        if mainImage == "" {
+            certificationImage.image = UIImage(named: "stickerRestSmallHavitroom")
+            certificationImage.contentMode = .scaleAspectFit
+        } else {
+            certificationImage.updateImage(mainImage)
+            certificationImage.contentMode = .scaleAspectFill
+        }
         sparkCountLabel.text = String(sparkCount)
         
         if leftDay == 0 {
@@ -35,7 +41,5 @@ class MoreStorageCVC: UICollectionViewCell {
         } else {
             dDayLabel.text = "D-\(leftDay)"
         }
-        
-        certificationImage.updateImage(mainImage)
     }
 }
