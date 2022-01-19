@@ -90,14 +90,11 @@ class AuthTimerVC: UIViewController {
     }
     
     // MARK: - @objc
-    /// start 버튼을 눌렀을 때 isPlay의 상태에 따라 버튼, 라벨 상태 변경
     @objc
     func startPauseTimer(_ sender: AnyObject) {
         if isTimerOn == false {
             // 최초 시작
             isTimerOn = true
-            resetButton.isHidden = false
-            pauseButton.isHidden = false
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
@@ -108,14 +105,17 @@ class AuthTimerVC: UIViewController {
             startButton.isEnabled = true
         } else if isTimerOn && timer!.isValid {
             // 타이머 진행 중 일시정지
+            isTimerOn = false
             pauseButton.setImage(UIImage(named: "btnPlay"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
             timer?.invalidate()
         } else if isTimerOn && !(timer!.isValid) {
             // 일시정지상태에서 재개
+            isTimerOn = true
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
+            
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         }
     }
@@ -159,6 +159,7 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func touchNextButton() {
+        print("🔫 \(isTimerOn)")
         if timeLabel.text == "00:00:00" {
             // 재생X -> 스톱워치 시작
             startPauseTimer(startButton)
