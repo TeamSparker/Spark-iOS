@@ -9,14 +9,6 @@ import Foundation
 
 // MARK: - MyRoom
 struct MyRoom: Codable {
-    let status: Int
-    let success: Bool
-    let message: String
-    let data: MyRoomData
-}
-
-// MARK: - DataClass
-struct MyRoomData: Codable {
     let nickname: String
     let totalRoomNum, ongoingRoomNum, completeRoomNum, failRoomNum: Int
     let rooms: [Rooms]?

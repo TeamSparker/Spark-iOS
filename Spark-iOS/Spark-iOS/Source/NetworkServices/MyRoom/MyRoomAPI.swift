@@ -70,7 +70,7 @@ public class MyRoomAPI {
     private func judgeMyRoomCertiFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<MyRoomCertiData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<MyRoomCertification>.self, from: data)
         else {
             return .pathErr
         }
