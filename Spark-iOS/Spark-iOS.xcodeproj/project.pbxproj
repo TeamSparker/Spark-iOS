@@ -132,6 +132,7 @@
 		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
 		F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */; };
 		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
+		F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */; };
 		F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */; };
 		F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */; };
 		F8FAA9762790346000C4190F /* HomeWaitingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */; };
@@ -269,6 +270,7 @@
 		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
 		F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
+		F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomDetail.swift; sourceTree = "<group>"; };
 		F8FAA9702790344D00C4190F /* HomeHabitCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHabitCVC.swift; sourceTree = "<group>"; };
 		F8FAA9712790344D00C4190F /* HomeHabitCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHabitCVC.xib; sourceTree = "<group>"; };
 		F8FAA9742790346000C4190F /* HomeWaitingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWaitingCVC.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				EBE90FD32795D67500157075 /* AuthUpload.swift */,
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
+				F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
+				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,

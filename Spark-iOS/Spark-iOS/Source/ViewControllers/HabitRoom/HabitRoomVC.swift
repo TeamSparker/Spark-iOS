@@ -12,9 +12,7 @@ class HabitRoomVC: UIViewController {
     // MARK: - Properties
 
     var roomID: Int?
-    var leftDay: Int = 0
-    var life: Int = 2
-    var list: [String] = []
+    var habitRoomDetail: HabitRoomDetail?
     
     // MARK: - @IBOutlet Properties
     
@@ -31,6 +29,7 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var moreButton: UIButton!
     
     // MARK: - View Life Cycle
     
@@ -46,7 +45,16 @@ class HabitRoomVC: UIViewController {
         super.viewWillAppear(animated)
         
         // TODO: - 서버통신
-        setUIByData()
+        
+        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
+            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        }
+    }
+    
+    // MARK: - @IBOutlet Action
+    
+    @IBAction func popToHomeVC(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -54,6 +62,8 @@ class HabitRoomVC: UIViewController {
 
 extension HabitRoomVC {
     private func setUI() {
+        navigationController?.isNavigationBarHidden = true
+        
         habitTitleLabel.font = .h3Subtitle
         habitTitleLabel.textColor = .sparkWhite
         
@@ -77,14 +87,16 @@ extension HabitRoomVC {
         timeLabel.font = .p2Subtitle
         goalLabel.font = .p2Subtitle
         
-        
+        moreButton.isHidden = true
     }
     
     // TODO: - 서버통신 이후 세팅
     
-    private func setUIByData() {
-        habitTitleLabel.text = "예시"
+    private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
+        habitTitleLabel.text = habitRoomDetail.roomName
 
+        let leftDay = habitRoomDetail.leftDay
+        
         if leftDay == 0 {
             ddayTitleLabel.text = "D-day"
         } else {
@@ -95,16 +107,17 @@ extension HabitRoomVC {
         flakeImageView.image = sparkFlake.sparkFlakeHabitBackground()
         progessView.progressTintColor = sparkFlake.sparkFlakeColor()
         // 맞나..?
-        progessView.setProgress(Float(1), animated: false)
+        progessView.setProgress(Float((66 - leftDay )/66), animated: false)
         
-        startDateLabel.text = "2021.12.23"
-        endDateLabel.text = "2022.02.26"
+        startDateLabel.text = habitRoomDetail.startDate
+        endDateLabel.text = habitRoomDetail.endDate
         
-        timeLabel.text = "잠자기 전에"
-        goalLabel.text = "일단 책부터 펴고 보자!"
+        timeLabel.text = habitRoomDetail.moment
+        goalLabel.text = habitRoomDetail.purpose
         
         // 방 생명 이미지 구현
         let lifeImgaeList = [firstLifeImage, secondLifeImage, thirdLifeImage]
+        let life = habitRoomDetail.life
         
         if life >= 3 {
             lifeImgaeList.forEach { $0?.image = UIImage(named: "icRoomlifeFullWhite")}
@@ -139,14 +152,32 @@ extension HabitRoomVC: UICollectionViewDelegate {
 
 extension HabitRoomVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return habitRoomDetail?.otherRecords.count ?? 0 + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let data = habitRoomDetail else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC, for: indexPath) as? HabitRoomMemberCVC else { return UICollectionViewCell() }
-//        cell.initCell()
-        
-        return cell
+        if indexPath.item == 0 {
+            cell.initCellMe(recordID: data.myRecord.recordID,
+                            userID: data.myRecord.userID,
+                            profileImg: data.myRecord.profileImg ?? "",
+                            nickname: data.myRecord.nickname,
+                            status: data.myRecord.status,
+                            receivedSpark: data.myRecord.recievedSpark)
+            
+            return cell
+        } else {
+            cell.initCellOthers(recordID: data.otherRecords[indexPath.item - 1].recordID,
+                                userID: data.otherRecords[indexPath.item - 1].userID,
+                                profileImg: data.otherRecords[indexPath.item - 1].profileImg ?? "",
+                                nickname: data.otherRecords[indexPath.item - 1].nickname,
+                                status: data.otherRecords[indexPath.item - 1].status,
+                                sparkDone: false)
+            
+            return cell
+        }
+
     }
 }
 
@@ -170,5 +201,32 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
         let cellHeight = cellWidth * (128 / 375)
         
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+}
+
+// MARK: - Network
+
+extension HabitRoomVC {
+    private func fetchHabitRoomDetailWithAPI(roomID: Int, completion: @escaping () -> Void) {
+        RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
+            switch response {
+            case .success(let data):
+                if let habitRoomDetail = data as? HabitRoomDetail {
+                    self.setUIByData(habitRoomDetail)
+                    
+                    self.mainCollectionView.reloadData()
+                }
+                
+                completion()
+            case .requestErr(let message):
+                print("habitRoomDetailFetch - requestErr: \(message)")
+            case .pathErr:
+                print("habitRoomDetailFetch - pathErr")
+            case .serverErr:
+                print("habitRoomDetailFetch - serverErr")
+            case .networkFail:
+                print("habitRoomDetailFetch - networkFail")
+            }
+        }
     }
 }

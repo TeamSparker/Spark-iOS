@@ -18,6 +18,7 @@ enum RoomService {
     case createRoom(createRoom: CreateRoom)
     case sendSpark(roomID: Int, recordID: Int, content: String)
     case startRoom(roomID: Int)
+    case habitRoomDetailFetch(roomID: Int)
 }
 
 extension RoomService: TargetType {
@@ -43,6 +44,8 @@ extension RoomService: TargetType {
             return "/room/\(roomID)/spark"
         case .startRoom(let roomID):
             return "/room/\(roomID)/start"
+        case .habitRoomDetailFetch(let roomID):
+            return "/room/\(roomID)"
         }
     }
     
@@ -64,6 +67,8 @@ extension RoomService: TargetType {
             return .post
         case .startRoom:
             return .post
+        case .habitRoomDetailFetch:
+            return .get
         }
     }
     
@@ -94,6 +99,8 @@ extension RoomService: TargetType {
         case .startRoom(let roomID):
             return .requestParameters(parameters: ["roomId": roomID],
                                       encoding: URLEncoding.queryString)
+        case .habitRoomDetailFetch:
+            return .requestPlain
         }
     }
     
@@ -114,6 +121,8 @@ extension RoomService: TargetType {
         case .sendSpark:
             return Const.Header.authrizationHeader
         case .startRoom:
+            return Const.Header.authrizationHeader
+        case .habitRoomDetailFetch:
             return Const.Header.authrizationHeader
         }
     }

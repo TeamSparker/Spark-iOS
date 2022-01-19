@@ -75,7 +75,7 @@ extension HabitRoomMemberCVC {
         if status == "CONSIDER" {
             statusLabel.text = "지금은 고민중이에요."
             // TODO: - 이미지 에셋 받아서 수정
-            stickerImage.image = UIImage(named: "")
+            stickerImage.image = UIImage(named: "stickerThingking")
             stickerImage.isHidden = false
         } else if status == "DONE" {
             statusLabel.text = "인증을 완료했어요!"
@@ -101,7 +101,8 @@ extension HabitRoomMemberCVC {
                         userID: Int,
                         profileImg: String,
                         nickname: String,
-                        status: String) {
+                        status: String,
+                        sparkDone: Bool) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -117,7 +118,11 @@ extension HabitRoomMemberCVC {
         }
         
         tagMeImage.isHidden = true
-        sparkImage.image = UIImage(named: "icFireDefault")
+        if sparkDone {
+            sparkImage.image = UIImage(named: "icFireInactive")
+        } else {
+            sparkImage.image = UIImage(named: "icFireDefault")
+        }
         sparkCountLabel.isHidden = true
     }
 }
