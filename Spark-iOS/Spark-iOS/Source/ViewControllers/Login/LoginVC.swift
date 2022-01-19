@@ -21,7 +21,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var appleLoginButton: UIButton!
     @IBOutlet weak var logoImageView: UIImageView!
     
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -103,10 +102,10 @@ extension LoginVC {
                 print(error)
             } else {
                 if let userID = user?.id {
-                    self.signupWithAPI(userID: String(userID))
-                    
                     UserDefaults.standard.set(String(userID), forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
+                    
+                    self.loginWithAPI(userID: String(userID))
                 }
             }
         }
@@ -121,20 +120,6 @@ extension LoginVC {
     }
 }
 
-// MARK: - Network
-
-extension LoginVC {
-    
-    // TODO: - Network. 회원가입 서버통신
-    
-    private func signupWithAPI(userID: String) {
-        
-        // TODO: - 엑세스 토큰 userdefaults 등록하고 화면전환
-        
-        presentToMainTabBar()
-    }
-}
-
 // MARK: - AppleSignIn
 
 extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
@@ -146,11 +131,12 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            
             let userIdentifier = appleIDCredential.user
-            signupWithAPI(userID: userIdentifier)
             
+            UserDefaults.standard.set(userIdentifier, forKey: Const.UserDefaultsKey.userID)
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
+            
+            loginWithAPI(userID: userIdentifier)
         default:
             break
         }
@@ -159,5 +145,42 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
     // Apple ID 연동 실패 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
+    }
+}
+
+// MARK: - Network
+
+extension LoginVC {
+    private func loginWithAPI(userID: String) {
+        AuthAPI.shared.login(socialID: userID, fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
+            switch response {
+            case .success(let data):
+                if let message = data as? String {
+                    if message == "회원가입을 하지 않은 사용자입니다" {
+                        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.profileSetting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.profileSetting) as? ProfileSettingVC else { return }
+                        
+                        nextVC.modalPresentationStyle = .fullScreen
+                        
+                        self.present(nextVC, animated: true, completion: nil)
+                    } else {
+                        // 회원 정보를 불러왔습니다
+                        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+                        
+                        nextVC.modalPresentationStyle = .fullScreen
+                        nextVC.modalTransitionStyle = .crossDissolve
+                        
+                        self.present(nextVC, animated: true, completion: nil)
+                    }
+                }
+            case .requestErr(let message):
+                print("habitRoomFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("habitRoomFetchWithAPI - pathErr")
+            case .serverErr:
+                print("habitRoomFetchWithAPI - serverErr")
+            case .networkFail:
+                print("habitRoomFetchWithAPI - networkFail")
+            }
+        }
     }
 }

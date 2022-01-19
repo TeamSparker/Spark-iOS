@@ -55,8 +55,7 @@ class SplashVC: UIViewController {
          super.viewWillAppear(animated)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-//            if self.appDelegate?.isLogin == true {
-            if true {
+            if self.appDelegate?.isLogin == true {
                 self.presentToMain()
             } else {
 
