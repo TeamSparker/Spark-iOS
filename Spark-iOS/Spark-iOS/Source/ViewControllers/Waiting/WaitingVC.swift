@@ -61,7 +61,9 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        members.removeAll()
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
+//        getWaitingRoomWithAPI(roomID: 235)
     }
 
     // MARK: - Methods
@@ -96,6 +98,7 @@ class WaitingVC: UIViewController {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32
+        profileImageView.contentMode = .scaleAspectFill
         
         checkTitleLabel.text = "습관 인증 방식"
         photoLabel.text = "사진 인증"
@@ -220,6 +223,7 @@ extension WaitingVC {
                     
                     user = waitingRoom.reqUser
                     self.members.append(contentsOf: waitingRoom.members)
+//                    self.members = waitingRoom.members
                     
                     // 스파커 멤버 수
                     self.friendCountLabel.text = "\(self.members.count)"
@@ -402,7 +406,8 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(104)
+//            make.top.equalToSuperview().inset(104)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }
