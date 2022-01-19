@@ -62,7 +62,7 @@ extension AuthService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .signup:
-            return Const.Header.authrizationHeader
+            return Const.Header.basicHeader
         case .login:
             return Const.Header.basicHeader
         }

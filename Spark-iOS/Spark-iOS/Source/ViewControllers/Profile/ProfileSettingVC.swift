@@ -114,6 +114,14 @@ class ProfileSettingVC: UIViewController {
         }
     }
     
+    private func presentToMainTBC() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        
+        present(nextVC, animated: true, completion: nil)
+    }
+    
     // MARK: - @objc
     
     @objc
@@ -180,8 +188,9 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func touchCompleteButton() {
-        // TODO: - 화면 전환
-        // profileImageView.image, textField.text 전달
+        signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
+            self.presentToMainTBC()
+        }
     }
     
     @objc
@@ -288,6 +297,35 @@ extension ProfileSettingVC {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width*48/335)
+        }
+    }
+}
+
+// MARK: - Network
+
+extension ProfileSettingVC {
+    private func signupWithAPI(profileImg: UIImage, nickname: String, completion: @escaping () -> Void) {
+        AuthAPI.shared.signup(socailID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
+                              profileImg: profileImg,
+                              nickname: nickname,
+                              fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
+            switch response {
+            case .success(let data):
+                if let signup = data as? Signup {
+                    UserDefaults.standard.set(signup.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                }
+                
+                completion()
+            case .requestErr(let message):
+                print("signupWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("signupWithAPI - pathErr")
+            case .serverErr:
+                print("signupWithAPI - serverErr")
+            case .networkFail:
+                print("signupWithAPI - networkFail")
+            }
+            
         }
     }
 }

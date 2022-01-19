@@ -51,7 +51,7 @@ extension MyRoomService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .myRoomFetch, .myRoomCertiFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         }
     }
 }

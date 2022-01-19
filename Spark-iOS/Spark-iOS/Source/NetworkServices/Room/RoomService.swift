@@ -107,23 +107,23 @@ extension RoomService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .waitingFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .codeJoinCheckFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .enterRoom:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .waitingMemberFetch:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .authUpload:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .createRoom:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .sendSpark:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .startRoom:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         case .setConsiderRest:
-            return Const.Header.authrizationHeader
+            return Const.Header.authorizationHeader
         }
     }
 }

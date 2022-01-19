@@ -102,10 +102,10 @@ extension LoginVC {
                 print(error)
             } else {
                 if let userID = user?.id {
-                    UserDefaults.standard.set(String(userID), forKey: Const.UserDefaultsKey.userID)
+                    UserDefaults.standard.set(String("Kakao@\(userID)"), forKey: Const.UserDefaultsKey.userID)
                     UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
                     
-                    self.loginWithAPI(userID: String(userID))
+                    self.loginWithAPI(userID: String("Kakao@\(userID)"))
                 }
             }
         }
@@ -133,10 +133,10 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             let userIdentifier = appleIDCredential.user
             
-            UserDefaults.standard.set(userIdentifier, forKey: Const.UserDefaultsKey.userID)
+            UserDefaults.standard.set("Apple@\(userIdentifier)", forKey: Const.UserDefaultsKey.userID)
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
             
-            loginWithAPI(userID: userIdentifier)
+            loginWithAPI(userID: "Apple@\(userIdentifier)")
         default:
             break
         }
@@ -173,13 +173,13 @@ extension LoginVC {
                     }
                 }
             case .requestErr(let message):
-                print("habitRoomFetchWithAPI - requestErr: \(message)")
+                print("loginWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("habitRoomFetchWithAPI - pathErr")
+                print("loginWithAPI - pathErr")
             case .serverErr:
-                print("habitRoomFetchWithAPI - serverErr")
+                print("loginWithAPI - serverErr")
             case .networkFail:
-                print("habitRoomFetchWithAPI - networkFail")
+                print("loginWithAPI - networkFail")
             }
         }
     }
