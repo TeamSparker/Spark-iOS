@@ -21,6 +21,7 @@ class DialogueVC: UIViewController {
     // MARK: Properties
     
     var dialogueType: DialogueType?
+    var clousure: (() -> Void)?
     
     // MARK: IBoutlet Properties
     
@@ -103,9 +104,12 @@ extension DialogueVC {
         self.dismiss(animated: false, completion: nil)
     }
     
+    /// 나가기 또는 초기화 액션을 넣어주세요
     @objc
     private func resetOrExitAction() {
-        // 나가기 또는 초기화 액션을 넣어주세요
+        dismiss(animated: true) {
+            self.clousure?()
+        }
     }
     
     @objc
