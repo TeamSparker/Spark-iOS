@@ -223,7 +223,6 @@ extension WaitingVC {
                     
                     user = waitingRoom.reqUser
                     self.members.append(contentsOf: waitingRoom.members)
-//                    self.members = waitingRoom.members
                     
                     // 스파커 멤버 수
                     self.friendCountLabel.text = "\(self.members.count)"
@@ -406,7 +405,6 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-//            make.top.equalToSuperview().inset(104)
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalTo(87)
             make.height.equalTo(36)
