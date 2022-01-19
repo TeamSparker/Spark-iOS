@@ -10,17 +10,15 @@ import UIKit
 import SnapKit
 
 @frozen enum VCCase {
-//    case cameraTimer
     case photoTimer
     case photoOnly
-//    case albumOnly
 }
 
 class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .photoTimer
+    var vcType: VCCase = .photoOnly
     var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
@@ -103,23 +101,9 @@ extension AuthUploadVC {
         
         switch vcType {
         case .photoOnly:
-            print("📷사진인증만")
-            timerLabel.isHidden = true
             setFirstFlowUI()
             
-//        case .albumOnly:
-//            print("앨범")
-////            changePhotoButton.setTitle("다시 선택", for: .normal)
-//            timerLabel.isHidden = true
-//            setFirstFlowUI()
-//
-//        case .cameraTimer:
-//            print("카메라타이머")
-//            setSecondFlowUI()
-            
         case .photoTimer:
-            print("📷사진+🕚타이머")
-//            changePhotoButton.setTitle("다시 선택", for: .normal)
             setSecondFlowUI()
         }
     }
@@ -137,7 +121,7 @@ extension AuthUploadVC {
     // 사진 인증만 하는 플로우 UI
     func setFirstFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
-         photoLabel, betweenLine, photoAuthButton].forEach { $0.isHidden = true }
+         photoLabel, betweenLine, photoAuthButton, timerLabel].forEach { $0.isHidden = true }
         [uploadImageView, buttonStackView, fadeImageView].forEach { $0.isHidden = false }
         
         uploadImageView.image = uploadImage
@@ -165,8 +149,6 @@ extension AuthUploadVC {
         /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
-//        vcType = .photoTimer
-//        changePhotoButton.setTitle("다시 선택", for: .normal)
     }
     
     private func openCamera() {
@@ -175,10 +157,8 @@ extension AuthUploadVC {
             /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
-//            vcType = .photoOnly
-//            changePhotoButton.setTitle("다시 찍기", for: .normal)
         } else {
-            print("카메라 안됩니다.")
+            print("카메라 접근 안됨")
         }
     }
     
@@ -204,20 +184,16 @@ extension AuthUploadVC {
         present(alter, animated: true, completion: nil)
     }
     
+    // 두번째 플로우에서 사진 인증하기 버튼
     @objc
     func touchAuthButton() {
         showAlert()
     }
     
-    // 다시 선택 & 다시 찍기
+    // 모든 플로우에서 최초 사진 가져온 뒤, 사진 변경 버튼
     @objc
     func touchChangePhotoButton() {
         showAlert()
-//        if changePhotoButton.titleLabel?.text == "다시 선택" {
-//            self.openLibrary()
-//        } else {
-//            self.openCamera()
-//        }
     }
     
     // TODO: 업로드 시간이 길다. 로딩 넣기.
