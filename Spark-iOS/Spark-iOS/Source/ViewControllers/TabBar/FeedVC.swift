@@ -26,7 +26,7 @@ class FeedVC: UIViewController {
     
     private var feedList: [Record] = []
     private var feedLastID: Int = -1
-    private var feedCountSize: Int = 3
+    private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     
     // MARK: - View Life Cycles
