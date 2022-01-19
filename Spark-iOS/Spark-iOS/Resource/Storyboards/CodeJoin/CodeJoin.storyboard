@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lks-WJ-JjB">
-                                <rect key="frame" x="67.666666666666686" y="263" width="240" height="18"/>
+                                <rect key="frame" x="67.666666666666686" y="264" width="240" height="18"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="45L-JN-NI1"/>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVR-jV-Ewd">
-                                <rect key="frame" x="20" y="291" width="335" height="238"/>
+                                <rect key="frame" x="20" y="292" width="335" height="238"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구에게 받은 코드를 입력해주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iog-KD-yhY">
                                         <rect key="frame" x="32.666666666666657" y="28" width="270" height="26.333333333333329"/>
@@ -108,7 +108,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-Df-KPl">
-                                <rect key="frame" x="104.66666666666669" y="458" width="166" height="43"/>
+                                <rect key="frame" x="104.66666666666669" y="459" width="166" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -120,14 +120,13 @@
                         <constraints>
                             <constraint firstItem="YVR-jV-Ewd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="FkK-db-nh9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LXA-Od-SQr" secondAttribute="trailing" id="HSu-6U-inX"/>
-                            <constraint firstAttribute="bottom" secondItem="YVR-jV-Ewd" secondAttribute="bottom" constant="283" id="JTN-by-HHW"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="centerX" secondItem="c4K-kQ-8LO" secondAttribute="centerX" id="JgM-e7-Yvc"/>
                             <constraint firstItem="LXA-Od-SQr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="MOb-Em-f9s"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="centerY" secondItem="c4K-kQ-8LO" secondAttribute="centerY" id="XtN-2o-4Fg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LXA-Od-SQr" secondAttribute="bottom" id="YfU-Dj-qx1"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="height" secondItem="c4K-kQ-8LO" secondAttribute="height" id="dDI-gn-PIH"/>
                             <constraint firstItem="lks-WJ-JjB" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="fh9-sv-rJY"/>
-                            <constraint firstItem="YVR-jV-Ewd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="291" id="ppW-Pn-BWw"/>
+                            <constraint firstItem="YVR-jV-Ewd" firstAttribute="centerY" secondItem="LXA-Od-SQr" secondAttribute="centerY" id="t4G-vy-Sez"/>
                             <constraint firstAttribute="trailing" secondItem="YVR-jV-Ewd" secondAttribute="trailing" constant="20" id="vMD-DM-OvT"/>
                             <constraint firstItem="LWG-Df-KPl" firstAttribute="width" secondItem="c4K-kQ-8LO" secondAttribute="width" id="wpx-TF-ekk"/>
                             <constraint firstItem="LXA-Od-SQr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yBW-9j-uzk"/>
