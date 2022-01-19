@@ -11,6 +11,18 @@ import SnapKit
 class StorageVC: UIViewController {
     
     // MARK: - Properties
+    
+    private var onGoingRoomList: [MyRoomRooms]? = []
+    private var onGoingRoomLastID: Int = -1
+    private var completeRoomList: [MyRoomRooms]? = []
+    private var completeRoomLastID: Int = -1
+    private var failRoomList: [MyRoomRooms]? = []
+    private var failRoomLastID: Int = -1
+
+    // 사이즈 임의설정
+    private var myRoomCountSize: Int = 9
+    private var isInfiniteScroll: Bool = true
+    
     let doingButton = StatusButton()
     let doneButton = StatusButton()
     let failButton = StatusButton()
@@ -75,6 +87,15 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
+        
+        DispatchQueue.main.async { [self] in
+            self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+            }
+            self.getFailRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+            }
+            self.getCompleteRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -395,4 +416,95 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
     }
+}
+
+// MARK: Networks
+
+extension StorageVC {
+    
+    func getOnGoingRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.onGoingRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                    self.DoingCV.reloadData()
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getOnGoingWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getOnGoingWithAPI - pathErr")
+            case .serverErr:
+                print("getOnGoingWithAPI - serverErr")
+            case .networkFail:
+                print("getOnGoingWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getFailRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "FAIL", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.failRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                    self.DoingCV.reloadData()
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getFailRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getFailRoomWithAPI - pathErr")
+            case .serverErr:
+                print("getFailRoomWithAPI - serverErr")
+            case .networkFail:
+                print("getFailRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getCompleteRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI.shared.myRoomFetch(roomType: "COMPLETE", lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoom = data as? MyRoom {
+                    self.completeRoomList?.append(contentsOf: myRoom.rooms ?? [])
+                    self.DoingCV.reloadData()
+                }
+                 
+                completion()
+            case .requestErr(let message):
+                print("getCompleteRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getCompleteRoomWithAPI - pathErr")
+            case .serverErr:
+                print("getCompleteRoomWithAPI - serverErr")
+            case .networkFail:
+                print("getCompleteRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getMyRoomCertiWithAPI() {
+        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCertification {
+                    print(myRoomCerti)
+                }
+            case .requestErr(let message):
+                print("getMyRoomCertiWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getMyRoomCertiWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomCertiWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomCertiWithAPI - networkFail")
+            }
+        }
+    }
+    
 }

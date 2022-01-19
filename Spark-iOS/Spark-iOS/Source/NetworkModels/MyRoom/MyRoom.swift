@@ -11,11 +11,11 @@ import Foundation
 struct MyRoom: Codable {
     let nickname: String
     let totalRoomNum, ongoingRoomNum, completeRoomNum, failRoomNum: Int
-    let rooms: [Rooms]?
+    let rooms: [MyRoomRooms]?
 }
 
 // MARK: - Rooms
-struct Rooms: Codable {
+struct MyRoomRooms: Codable {
     let roomID: Int
     let roomName: String
     let leftDay: Int

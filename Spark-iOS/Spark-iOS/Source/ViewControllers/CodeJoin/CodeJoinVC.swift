@@ -42,7 +42,7 @@ class CodeJoinVC: UIViewController {
     // MARK: - @IBAction Properties
     
     @IBAction func touchOutsideButton(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
