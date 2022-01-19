@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
+		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
+		2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B57F38327971F7A002A677D /* ProfileSetting.storyboard */; };
 		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E6278E28B2000F927F /* FeedCVC.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
@@ -139,6 +141,8 @@
 /* Begin PBXFileReference section */
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
+		2B57F38027971D1D002A677D /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
+		2B57F38327971F7A002A677D /* ProfileSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetting.storyboard; sourceTree = "<group>"; };
 		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B69E7E6278E28B2000F927F /* FeedCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCVC.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
@@ -283,6 +287,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B57F37F27971C87002A677D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2B57F38027971D1D002A677D /* ProfileSettingVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2B57F38227971F5E002A677D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2B57F38327971F7A002A677D /* ProfileSetting.storyboard */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		2B9851FE27902F2B00CE40A7 /* Create */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +737,7 @@
 				EB9C50862792A65C00588155 /* HabitRoom */,
 				EB874AEC2797070B000DD20B /* Dialogue */,
 				2BE5D80327930743007A544D /* Auth */,
+				2B57F38227971F5E002A677D /* Profile */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -751,6 +772,7 @@
 				EB9C50822792A5C600588155 /* HabitRoom */,
 				EB874AE9279706DB000DD20B /* Dialogue */,
 				2BE5D80627930774007A544D /* Auth */,
+				2B57F37F27971C87002A677D /* Profile */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1016,6 +1038,7 @@
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
+				2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
@@ -1127,6 +1150,7 @@
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
+				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
