@@ -68,7 +68,6 @@ extension StorageMoreVC {
     
     private func setUI() {
         view.backgroundColor = .sparkBlack
-        tabBarController?.tabBar.isHidden = true
         navigationController?.isNavigationBarHidden = false
         navigationController?.initWithBackButtonTitle(title: titleText ?? "", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
     }

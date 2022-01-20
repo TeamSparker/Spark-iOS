@@ -29,7 +29,7 @@ class MoreStorageCVC: UICollectionViewCell {
                   sparkCount: Int) {
         if mainImage == "" {
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
-            certificationImage.contentMode = .scaleToFill
+            certificationImage.contentMode = .scaleAspectFit
         } else {
             certificationImage.updateImage(mainImage)
             certificationImage.contentMode = .scaleAspectFill

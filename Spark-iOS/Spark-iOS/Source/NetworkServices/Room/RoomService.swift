@@ -138,8 +138,8 @@ extension RoomService: TargetType {
         case .startRoom:
             return Const.Header.authorizationHeader
         case .setConsiderRest:
-            return Const.Header.authorizationHeader        
-		case .habitRoomDetailFetch:
+            return Const.Header.authorizationHeader
+        case .habitRoomDetailFetch:
             return Const.Header.authorizationHeader
         case .setPurpose:
             return Const.Header.authorizationHeader

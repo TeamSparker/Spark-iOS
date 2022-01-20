@@ -21,7 +21,9 @@ class StorageVC: UIViewController {
 
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
-    private var isInfiniteScroll: Bool = true
+    // FIXME: 무한스크롤 관련 수정하기, 셀이 반복되는 문제
+    private var isInfiniteScroll: Bool = false
+    private var tagCount: Int = 1
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -33,10 +35,6 @@ class StorageVC: UIViewController {
     
     let upperLabel = UILabel()
     let lowerLabel = UILabel()
-    
-    var doingBlockingView = UIView()
-    var doneBlockingView = UIView()
-    var failBlockingView = UIView()
     
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -96,7 +94,6 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
-        
         DispatchQueue.main.async { [self] in
             self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
                 self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
@@ -113,8 +110,7 @@ class StorageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = true
-        tabBarController?.tabBar.isHidden = false
+        navigationController?.isNavigationBarHidden = true
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
@@ -148,17 +144,13 @@ extension StorageVC {
     }
     
     private func setUI() {
-        upperLabel.text = "나는야쿵짝지혜 님의"
+        upperLabel.text = "     님의"
         upperLabel.font = .h2Title
         upperLabel.textColor = .sparkBlack
         
-        lowerLabel.text = "19가지 스파크"
+        lowerLabel.text = "0가지 스파크"
         lowerLabel.font = .h2Title
         lowerLabel.textColor = .sparkBlack
-        
-        doingBlockingView.backgroundColor = .sparkWhite
-        doneBlockingView.backgroundColor = .sparkWhite
-        failBlockingView.backgroundColor = .sparkWhite
         
         doingButton.status = 0
         doingButton.backgroundColor = .clear
@@ -170,7 +162,7 @@ extension StorageVC {
         doingButton.setTitleColor(.sparkDarkPinkred, for: .focused)
         doingButton.isSelected = true
         
-        doingLabel.text = "6"
+        doingLabel.text = " "
         doingLabel.font = .h3Subtitle
         doingLabel.textColor = .sparkDarkPinkred
         doingLabel.font = .enMediumFont(ofSize: 14)
@@ -183,7 +175,7 @@ extension StorageVC {
         doneButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         
-        doneLabel.text = "12"
+        doneLabel.text = " "
         doneLabel.font = .h3Subtitle
         doneLabel.textColor = .sparkDarkGray
         doneLabel.font = .enMediumFont(ofSize: 14)
@@ -196,20 +188,22 @@ extension StorageVC {
         failButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         failButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         
-        failLabel.text = "1"
+        failLabel.text = " "
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
-        makeFirstDraw()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.3) { [self] in
+            makeDrawAboveButton(button: doingButton)
+        }
+
     }
     
     private func setLayout() {
         view.addSubviews([doingButton, doneButton, failButton,
                                DoingCV, DoneCV, FailCV,
                                upperLabel, lowerLabel, doingLabel,
-                               doneLabel, failLabel, doingBlockingView,
-                          doneBlockingView, failBlockingView])
+                               doneLabel, failLabel])
         
         upperLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
@@ -219,24 +213,6 @@ extension StorageVC {
         lowerLabel.snp.makeConstraints { make in
             make.top.equalTo(upperLabel.snp.bottom).offset(4)
             make.leading.equalTo(doingButton)
-        }
-        
-        doingBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(doingButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(doingButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
-        }
-        
-        doneBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(doneButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(doneButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
-        }
-
-        failBlockingView.snp.makeConstraints { make in
-            make.centerX.equalTo(failButton.snp.centerX).offset(-14)
-            make.centerY.equalTo(failButton.snp.centerY).offset(-22)
-            make.height.width.equalTo(25)
         }
         
         doingButton.snp.makeConstraints { make in
@@ -269,38 +245,41 @@ extension StorageVC {
             make.leading.equalTo(failButton.snp.trailing).offset(2)
         }
         
-        DoingCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
-        }
-        
-        DoneCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
-        }
-        
-        FailCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+        [DoingCV, DoneCV, FailCV].forEach {
+            $0.snp.makeConstraints { make in
+                make.top.equalTo(failButton.snp.bottom).offset(14)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+            }
         }
     }
 }
 
 // 애니메이션 및 버튼액션
 extension StorageVC {
+
     private func makeDraw(rect: CGRect) {
         let animateView = LineAnimationView(frame: rect)
+        
+        animateView.tag = tagCount
+
+        let anyView = self.view.viewWithTag(tagCount-1)
+        let anysView = self.view.viewWithTag(tagCount-2)
+
+        if tagCount>=2 {
+            anyView?.removeFromSuperview()
+        }
+        if tagCount>=3 {
+            anysView?.removeFromSuperview()
+        }
+        tagCount += 1
+        
         view.addSubview(animateView)
     }
     
     // 레이아웃이 다 로딩된 후에 애니메이션 실행
-    private func makeFirstDraw() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [self] in
-            self.makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
-        }
+    private func makeDrawAboveButton(button: UIButton) {
+        self.makeDraw(rect: CGRect(x: button.frame.origin.x, y: button.frame.origin.y + 5, width: 30, height: 5))
     }
 
     // 버튼 타겟 설정
@@ -325,10 +304,7 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
-    
-            makeDraw(rect: CGRect(x: doneButton.frame.origin.x, y: doneButton.frame.origin.y + 5, width: 30, height: 5))
-            self.view.bringSubviewToFront(doingBlockingView)
-            self.view.bringSubviewToFront(failBlockingView)
+            makeDrawAboveButton(button: doneButton)
 
         case 2:
             DoingCV.isHidden = true
@@ -340,10 +316,7 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkPinkred
-
-            makeDraw(rect: CGRect(x: failButton.frame.origin.x, y: failButton.frame.origin.y + 5, width: 30, height: 5))
-            self.view.bringSubviewToFront(doingBlockingView)
-            self.view.bringSubviewToFront(doneBlockingView)
+            makeDrawAboveButton(button: failButton)
             
         default:
             DoingCV.isHidden = false
@@ -355,17 +328,15 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkPinkred
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkGray
+            makeDrawAboveButton(button: doingButton)
 
-            makeDraw(rect: CGRect(x: doingButton.frame.origin.x, y: doingButton.frame.origin.y + 5, width: 30, height: 5))
-            self.view.bringSubviewToFront(doneBlockingView)
-            self.view.bringSubviewToFront(failBlockingView)
         }
     }
 }
 
 // MARK: - extension Methods
 
-//Carousel 레이아웃 세팅
+// Carousel 레이아웃 세팅
 extension StorageVC {
     private func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
@@ -379,8 +350,9 @@ extension StorageVC {
         
         let centerItemWidthScale: CGFloat = 327/375
         let centerItemHeightScale: CGFloat = 0.95
+        let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
-        layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale)
+        layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
 
         layout.sideItemScale = 464/520
         layout.spacing = 12

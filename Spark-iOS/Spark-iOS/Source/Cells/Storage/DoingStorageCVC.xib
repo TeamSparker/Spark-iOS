@@ -39,8 +39,8 @@
                                 <rect key="frame" x="0.0" y="202" width="327" height="327"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdB-E5-Yh3">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="193"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VdB-E5-Yh3">
+                                <rect key="frame" x="0.0" y="0.0" width="327" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-ha-kvM">
                                         <rect key="frame" x="84.333333333333329" y="216" width="158.66666666666669" height="18"/>

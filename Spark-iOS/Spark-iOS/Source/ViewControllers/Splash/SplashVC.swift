@@ -102,9 +102,12 @@ extension SplashVC {
     }
     
     private func presentToMain() {
-        guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        
+        let mainVC = UINavigationController(rootViewController: rootVC)
         mainVC.modalPresentationStyle = .fullScreen
         mainVC.modalTransitionStyle = .crossDissolve
+        
         self.present(mainVC, animated: true, completion: nil)
     }
     

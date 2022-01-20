@@ -37,6 +37,8 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.isNavigationBarHidden = false
+        
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
         
         self.habitRoomLastID = -1
@@ -60,13 +62,6 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     private func setUI() {
-        // set navigationController
-        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
-                                                            tintColor: .sparkBlack,
-                                                            backgroundColor: .sparkWhite,
-                                                            firstButtonSelector: #selector(presentToProfileVC),
-                                                            secondButtonSelector: #selector(presentToAertVC))
-        
         // set collectionView
         print("🥕collectionView", mainCollectionView.frame.height)
         print("🥕collectionView.origin", mainCollectionView.frame.origin)
