@@ -39,14 +39,15 @@
                                         <rect key="frame" x="21" y="52" width="293" height="290"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-yb-TR2">
-                                        <rect key="frame" x="105" y="411.66666666666663" width="125.33333333333331" height="34.333333333333314"/>
+                                        <rect key="frame" x="106.66666666666669" y="411.66666666666663" width="122" height="34.333333333333314"/>
                                         <color key="tintColor" name="sparkDarkGray"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <attributedString key="attributedTitle">
-                                                <fragment content="아니요, 안 할래요">
+                                                <fragment content="피드로 보러 가기">
                                                     <attributes>
                                                         <font key="NSFont" size="14" name="NotoSansKR-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -81,7 +82,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-TD-Inj">
-                                        <rect key="frame" x="117.33333333333334" y="436.66666666666663" width="100.33333333333334" height="1"/>
+                                        <rect key="frame" x="118.66666666666666" y="436.66666666666663" width="97.666666666666657" height="1"/>
                                         <color key="backgroundColor" name="sparkDarkGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="UTo-GP-sq1"/>

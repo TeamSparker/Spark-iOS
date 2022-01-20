@@ -93,7 +93,6 @@ class CarouselLayout: UICollectionViewFlowLayout {
 
             guard let collectionView = self.collectionView else {
                 let latestOffset = super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
-                print(latestOffset)
                 return latestOffset
             }
         
