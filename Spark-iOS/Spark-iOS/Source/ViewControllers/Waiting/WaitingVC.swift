@@ -97,9 +97,7 @@ class WaitingVC: UIViewController {
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
-        toolTipImageView.backgroundColor = .sparkDarkGray
         
-        toolTipImageView.image = UIImage(named: "timerToolTip")
         toolTipImageView.layer.masksToBounds = true
         toolTipImageView.contentMode = .scaleAspectFill
         
@@ -259,8 +257,10 @@ extension WaitingVC {
                     // 인증 방식
                     if waitingRoom.fromStart {
                         [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = false }
+                        self.toolTipImageView.image = UIImage(named: "timerToolTip")
                     } else {
                         [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = true }
+                        self.toolTipImageView.image = UIImage(named: "photoToolTip")
                     }
                     
                     // 방 코드
@@ -450,8 +450,8 @@ extension WaitingVC {
         }
         
         toolTipImageView.snp.makeConstraints { make in
-            make.centerX.equalTo(toolTipButton.snp.centerX)
-            make.top.equalTo(toolTipButton.snp.bottom).offset(5)
+            make.centerX.equalTo(toolTipButton.snp.centerX).offset(-0.5)
+            make.top.equalTo(toolTipButton.snp.bottom).offset(3)
         }
         
         photoLabel.snp.makeConstraints { make in
