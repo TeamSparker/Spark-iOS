@@ -103,6 +103,11 @@ class StorageVC: UIViewController {
                     self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
                         DoneCV.reloadData()
                         FailCV.reloadData()
+                        if (doingLabel.text == "0") || (doingLabel.text == "0") {
+                            emptyView.isHidden = false
+                        } else {
+                                emptyView.isHidden = true
+                        }
                     }
                 }
             }
@@ -196,7 +201,7 @@ extension StorageVC {
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
-        if doingLabel.text == "0" {
+        if (doingLabel.text == "0") || (doingLabel.text == "0") {
             emptyView.isHidden = false
         } else {
                 emptyView.isHidden = true
