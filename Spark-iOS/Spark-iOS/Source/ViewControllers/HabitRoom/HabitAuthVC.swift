@@ -38,6 +38,7 @@ class HabitAuthVC: UIViewController {
         setUI()
         setAddTargets()
         setDelegate()
+        setLayout()
     }
     
     
@@ -82,6 +83,12 @@ extension HabitAuthVC {
 //        if restNumber == 0 {
 //            restButton.isEnabled = false
 //        }
+    }
+    
+    private func setLayout() {
+        okButton.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width*48/335)
+        }
     }
     
     private func setAddTargets() {

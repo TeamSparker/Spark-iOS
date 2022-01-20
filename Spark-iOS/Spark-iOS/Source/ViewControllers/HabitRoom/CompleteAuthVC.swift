@@ -10,7 +10,7 @@ import Lottie
 
 class CompleteAuthVC: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     lazy var confettiView: AnimationView = {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
         animationView.frame = animationFrameView.bounds
@@ -19,14 +19,14 @@ class CompleteAuthVC: UIViewController {
         return animationView
     }()
     
-    // MARK: IBoutlet properties
+    // MARK: - IBoutlet properties
     
     @IBOutlet weak var handImageVIew: UIImageView!
     @IBOutlet weak var animationFrameView: UIView!
-    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var goToFeedButton: UIButton!
     @IBOutlet weak var instaView: UIView!
     
-    // MARK: Life Cycles
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,10 @@ class CompleteAuthVC: UIViewController {
     }
 }
 
-// MARK: Methods
 extension CompleteAuthVC {
+    
+    // MARK: - Methods
+    
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
@@ -58,15 +60,16 @@ extension CompleteAuthVC {
         instaView.addGestureRecognizer(instaTapGesture)
     }
     
-    @objc
-    func tapped(_ gesture: UITapGestureRecognizer) {
-        // 인스타 공유 기능
-    }
-    
     private func setAnimation() {
         animationFrameView.addSubview(confettiView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [self] in
             confettiView.play()
         }
+    }
+    
+    // MARK: - @objc
+    @objc
+    func tapped(_ gesture: UITapGestureRecognizer) {
+        // 인스타 공유 기능
     }
 }
