@@ -23,6 +23,7 @@ class HabitAuthVC: UIViewController {
     var roomID: Int?
     var rest: Int?
     var roomName: String?
+    var presentAlertClosure: (() -> Void)?
     
     // MARK: - @IBOutlet Properties
     
@@ -95,9 +96,9 @@ extension HabitAuthVC {
         picker.delegate = self
     }
     
-    private func showAlert() {
-        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alter.view.tintColor = .sparkBlack
+    private func showAlert() -> UIViewController {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = .sparkBlack
         
         /// alter에 들어갈 액션 생성
         let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
@@ -109,33 +110,33 @@ extension HabitAuthVC {
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         /// alter에 액션을 넣어줌
-        alter.addAction(camera)
-        alter.addAction(library)
-        alter.addAction(cancel)
+        alert.addAction(camera)
+        alert.addAction(library)
+        alert.addAction(cancel)
         
-        let presentingVC = self.presentingViewController
         /// button tap했을 때 alter present
-        self.modalTransitionStyle = .coverVertical
+//        self.modalTransitionStyle = .coverVertical
         
-        dismiss(animated: true) {
-            presentingVC?.present(alter, animated: true, completion: nil)
-        }
+//        present(alert, animated: true) {
+//            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.authUpload, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else { return }
+//            self.present(nextVC, animated: true, completion: nil)
+//        }
+        
+//        return alert
+//        present(alert, animated: true, completion: nil)
+        return alert
     }
     
     @objc
     private func touchOkayButton() {
-        let presentingVC = self.presentingViewController
-        
         switch authType {
         case .photoOnly:
             self.dismiss(animated: true) {
-                print("alert 나와야되지")
-//                guard let timerVC = UIStoryboard(name: Const.Storyboard.Name.authTimer, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authTimer) as? AuthTimerVC else { return }
-//
-//                presentingVC?.present(timerVC, animated: true, completion: nil)
+            self.presentAlertClosure?()
             }
         case .photoTimer:
             self.dismiss(animated: true) {
+                let presentingVC = self.presentingViewController
                 guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.authTimer, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authTimer) as? AuthTimerVC else { return }
                 let nextVC = UINavigationController(rootViewController: rootVC)
                 nextVC.modalPresentationStyle = .fullScreen
@@ -190,20 +191,26 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
         dismiss(animated: true) {
 //            self.presentAuthUpload()
+            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.authUpload, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else { return }
+            
+            nextVC.roomName = self.roomName
+            nextVC.roomId = self.roomID
+            
+            self.present(nextVC, animated: true, completion: nil)
         }
     }
     
     // TODO: 케이스 나눠서 화면전환 하기
-    private func presentAuthUpload() {
-        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle: nil)
-        
-        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
-        
-        nextVC.uploadImage = self.imageContainer
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: false, completion: nil)
-    }
+//    private func presentAuthUpload() {
+//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle: nil)
+//
+//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
+//
+//        nextVC.uploadImage = self.imageContainer
+//
+//        nextVC.modalPresentationStyle = .fullScreen
+//        self.present(nextVC, animated: false, completion: nil)
+//    }
 }
 
 // MARK: Network
