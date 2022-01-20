@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tooltip_stopwatch+photo.png",
+      "filename" : "timerToolTip.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tooltip_stopwatch+photo@2x.png",
+      "filename" : "timerToolTip@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tooltip_stopwatch+photo@3x.png",
+      "filename" : "timerToolTip@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
