@@ -18,11 +18,10 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .photoTimer
-    var roomID: Int?
+    let closeButton = UIButton()
+    let titleLabel = UILabel()
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
-    var uploadImage = UIImage()
     var buttonStackView = UIStackView()
     var uploadButton = UIButton()
     var changePhotoButton = UIButton()
@@ -34,12 +33,15 @@ class AuthUploadVC: UIViewController {
     let betweenLine = UIView()
     let photoAuthButton = UIButton()
     let picker = UIImagePickerController()
-    var getTime: String = ""
+    var roomId: Int?
+    var roomName: String?
+    var vcType: VCCase?
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         setUI()
         setLayout()
         setDelegate()
@@ -50,21 +52,42 @@ class AuthUploadVC: UIViewController {
 // MARK: - Methods
 
 extension AuthUploadVC {
-
+    private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
+        
+        switch vcType {
+        case .photoOnly:
+            navigationController?.initWithLeftButtonTitle(title: "\(String(describing: roomName))",
+                                                          tintColor: .sparkBlack,
+                                                          backgroundColor: .sparkWhite,
+                                                          image: UIImage(named: "icQuit"),
+                                                          selector: #selector(presentToDialogue))
+        case .photoTimer:
+            navigationController?.initWithBackButtonTitle(title: "",
+                                                          tintColor: .sparkBlack,
+                                                          backgroundColor: .sparkWhite)
+            navigationItem.title = "\(roomName ?? "-")"
+        default:
+            break
+        }
+    }
     
     private func setUI() {
-        navigationController?.initWithLeftButtonTitle(title: "기본 앨범", tintColor: .sparkBlack, backgroundColor: .sparkWhite, image: UIImage(named: "icQuit"), selector: #selector(presentToDialogue))
+        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
+        titleLabel.text = "\(roomName ?? "-")"
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
         photoLabel.text = "사진"
         
+        titleLabel.textColor = .sparkBlack
         firstLabel.textColor = .sparkGray
         secondLabel.textColor = .sparkPinkred
         stopwatchLabel.textColor = .sparkGray
         photoLabel.textColor = .sparkPinkred
         
+        titleLabel.font = .h3Subtitle
         firstLabel.font = .enMediumFont(ofSize: 18)
         secondLabel.font = .enMediumFont(ofSize: 18)
         stopwatchLabel.font = .krMediumFont(ofSize: 18)
@@ -83,9 +106,9 @@ extension AuthUploadVC {
         
         setStackView()
         
-        timerLabel.text = "00:30:12"
         timerLabel.font = .enBoldFont(ofSize: 40)
         timerLabel.textColor = .sparkWhite
+        timerLabel.isHidden = true
         
         changePhotoButton.layer.cornerRadius = 2
         changePhotoButton.titleLabel?.font = .btn1Default
@@ -109,6 +132,8 @@ extension AuthUploadVC {
             
         case .photoTimer:
             setSecondFlowUI()
+        default:
+            break
         }
     }
     
@@ -117,6 +142,7 @@ extension AuthUploadVC {
     }
     
     private func setAddTarget() {
+        closeButton.addTarget(self, action: #selector(dismissToHabitRoom), for: .touchUpInside)
         photoAuthButton.addTarget(self, action: #selector(touchAuthButton), for: .touchUpInside)
         changePhotoButton.addTarget(self, action: #selector(touchChangePhotoButton), for: .touchUpInside)
         uploadButton.addTarget(self, action: #selector(touchUploadButton), for: .touchUpInside)
@@ -126,16 +152,14 @@ extension AuthUploadVC {
     func setFirstFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
          photoLabel, betweenLine, photoAuthButton, timerLabel].forEach { $0.isHidden = true }
-        [uploadImageView, buttonStackView, fadeImageView].forEach { $0.isHidden = false }
-        
-        uploadImageView.image = uploadImage
+        [uploadImageView, buttonStackView, fadeImageView, closeButton, titleLabel].forEach { $0.isHidden = false }
     }
     
     // 스톱워치 + 사진 인증하는 플로우 UI
     func setSecondFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
          photoLabel, betweenLine, photoAuthButton].forEach { $0.isHidden = false }
-        [buttonStackView, timerLabel, fadeImageView].forEach { $0.isHidden = true }
+        [buttonStackView, timerLabel, fadeImageView, closeButton, titleLabel].forEach { $0.isHidden = true }
         
         uploadImageView.image = UIImage(named: "uploadEmptyView")
     }
@@ -186,6 +210,13 @@ extension AuthUploadVC {
         
         /// button tap했을 때 alter present
         present(alter, animated: true, completion: nil)
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    func dismissToHabitRoom() {
+        dismiss(animated: true, completion: nil)
     }
     
     // 두번째 플로우에서 사진 인증하기 버튼
@@ -247,10 +278,22 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
 
 extension AuthUploadVC {
     private func setLayout() {
-        view.addSubviews([uploadImageView, fadeImageView, buttonStackView,
-                          timerLabel, firstLabel, secondLabel,
-                          stopwatchLabel, photoLabel, betweenLine, photoAuthButton])
+        view.addSubviews([titleLabel, closeButton, uploadImageView, fadeImageView,
+                          buttonStackView, timerLabel, firstLabel,
+                          secondLabel, stopwatchLabel, photoLabel,
+                          betweenLine, photoAuthButton])
 
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.leading.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(closeButton.snp.centerY)
+        }
+        
         betweenLine.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
             make.centerX.equalToSuperview()
@@ -320,7 +363,7 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: roomID ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
+        RoomAPI.shared.authUpload(roomID: roomId ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {

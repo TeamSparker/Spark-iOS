@@ -98,7 +98,7 @@ extension RoomService: TargetType {
             let timerData = timer.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(timerData), name: "timerRecord"))
             
-            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
+            let imageData = MultipartFormData(provider: .data(image.pngData() ?? Data()), name: "image", fileName: "image.png", mimeType: "image/png")
             multiPartData.append(imageData)
             
             return .uploadMultipart(multiPartData)
