@@ -65,7 +65,6 @@ class WaitingVC: UIViewController {
         super.viewWillAppear(animated)
 
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
-//        getWaitingRoomWithAPI(roomID: 235)
     }
 
     // MARK: - Methods

@@ -94,8 +94,8 @@ extension UINavigationController {
         let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: rightButtonSelector)
         navigationItem?.leftBarButtonItem = reftButton
         navigationItem?.rightBarButtonItem = rightButton
-        
-        self.navigationBar.topItem?.title = title
+
+        navigationItem?.title = title
     }
 }
 
