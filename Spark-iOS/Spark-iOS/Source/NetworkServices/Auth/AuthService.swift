@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum AuthService {
-    case signup(socialID: String, profileImg: UIImage, nickname: String, fcmToken: String)
+    case signup(socialID: String, profileImg: UIImage?, nickname: String, fcmToken: String)
     case login(socialID: String, fcmToken: String)
 }
 
@@ -47,9 +47,10 @@ extension AuthService: TargetType {
             multiPartData.append(MultipartFormData(provider: .data(nicknameData), name: "nickname"))
             let fcmTokenData = fcmToken.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(fcmTokenData), name: "fcmToken"))
-            
-            let profileImgData = MultipartFormData(provider: .data(profileImg.pngData() ?? Data()), name: "image", fileName: "image", mimeType: "image/png")
-            multiPartData.append(profileImgData)
+            if let profileImg = profileImg {
+                let profileImgData = MultipartFormData(provider: .data(profileImg.pngData() ?? Data()), name: "image", fileName: "image.png", mimeType: "image/png")
+                multiPartData.append(profileImgData)
+            }
             
             return .uploadMultipart(multiPartData)
         case .login(let socialID, let fcmToken):

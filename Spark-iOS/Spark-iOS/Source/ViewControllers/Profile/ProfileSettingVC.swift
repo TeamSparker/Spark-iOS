@@ -188,6 +188,11 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func touchCompleteButton() {
+        if profileImageView.image == UIImage(named: "profileEmpty") {
+            signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
+                self.presentToMainTBC()
+            }
+        }
         signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
             self.presentToMainTBC()
         }
@@ -304,7 +309,7 @@ extension ProfileSettingVC {
 // MARK: - Network
 
 extension ProfileSettingVC {
-    private func signupWithAPI(profileImg: UIImage, nickname: String, completion: @escaping () -> Void) {
+    private func signupWithAPI(profileImg: UIImage?, nickname: String, completion: @escaping () -> Void) {
         let socialID: String
         if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
             socialID = "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
