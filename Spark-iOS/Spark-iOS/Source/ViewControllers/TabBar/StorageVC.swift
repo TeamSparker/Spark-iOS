@@ -148,7 +148,7 @@ extension StorageVC {
         upperLabel.font = .h2Title
         upperLabel.textColor = .sparkBlack
         
-        lowerLabel.text = "0가지 스파크"
+        lowerLabel.text = " 가지 스파크"
         lowerLabel.font = .h2Title
         lowerLabel.textColor = .sparkBlack
         
