@@ -72,8 +72,6 @@
 		EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C508B2792A90400588155 /* CompleteAuth.storyboard */; };
 		EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C509727931E4600588155 /* AuthUploadVC.swift */; };
 		EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C509927931E5F00588155 /* AuthUpload.storyboard */; };
-		EBA2D6CB279984120022DFD6 /* WaitingToolTipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2D6CA279984110022DFD6 /* WaitingToolTipVC.swift */; };
-		EBA2D6CD279984320022DFD6 /* WaitingToolTip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA2D6CC279984320022DFD6 /* WaitingToolTip.storyboard */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		EBA93A7D27907EF9009AE771 /* CodeJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */; };
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
@@ -214,8 +212,6 @@
 		EB9C508B2792A90400588155 /* CompleteAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CompleteAuth.storyboard; sourceTree = "<group>"; };
 		EB9C509727931E4600588155 /* AuthUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUploadVC.swift; sourceTree = "<group>"; };
 		EB9C509927931E5F00588155 /* AuthUpload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthUpload.storyboard; sourceTree = "<group>"; };
-		EBA2D6CA279984110022DFD6 /* WaitingToolTipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingToolTipVC.swift; sourceTree = "<group>"; };
-		EBA2D6CC279984320022DFD6 /* WaitingToolTip.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WaitingToolTip.storyboard; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinVC.swift; sourceTree = "<group>"; };
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
@@ -385,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				2BC1726F278F54DB00BA3029 /* WaitingVC.swift */,
-				EBA2D6CA279984110022DFD6 /* WaitingToolTipVC.swift */,
 			);
 			path = Waiting;
 			sourceTree = "<group>";
@@ -404,7 +399,6 @@
 			isa = PBXGroup;
 			children = (
 				2BC17273278F56D100BA3029 /* Waiting.storyboard */,
-				EBA2D6CC279984320022DFD6 /* WaitingToolTip.storyboard */,
 			);
 			path = Waiting;
 			sourceTree = "<group>";
@@ -1050,7 +1044,6 @@
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
 				EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */,
 				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
-				EBA2D6CD279984320022DFD6 /* WaitingToolTip.storyboard in Resources */,
 				F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
@@ -1203,7 +1196,6 @@
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
 				2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */,
-				EBA2D6CB279984120022DFD6 /* WaitingToolTipVC.swift in Sources */,
 				2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,

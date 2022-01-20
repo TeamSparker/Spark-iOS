@@ -13,12 +13,14 @@ import SwiftUI
 class WaitingVC: UIViewController {
     var members: [Member] = []
     var isFromHome: Bool?
+    var fromStart: Bool?
     
     // MARK: - Properties
     
     let copyButton = UIButton()
     let checkTitleLabel = UILabel()
     let toolTipButton = UIButton()
+    let toolTipImageView = UIImageView()
     let stopwatchLabel = UILabel()
     let checkDivideView = UIView()
     let photoLabel = UILabel()
@@ -95,6 +97,11 @@ class WaitingVC: UIViewController {
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
+        toolTipImageView.backgroundColor = .sparkDarkGray
+        
+        toolTipImageView.image = UIImage(named: "timerToolTip")
+        toolTipImageView.layer.masksToBounds = true
+        toolTipImageView.contentMode = .scaleAspectFill
         
         copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
@@ -160,6 +167,7 @@ class WaitingVC: UIViewController {
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
+        toolTipButton.addTarget(self, action: #selector(touchPresentToolTip), for: .touchUpInside)
     }
     
     func setCollectionView() {
@@ -199,6 +207,12 @@ class WaitingVC: UIViewController {
         nextVC.purpose = userPurpose
         
         present(nextVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    func touchPresentToolTip() {
+        let xPosition = toolTipButton.frame.origin.x
+        let yPosition = toolTipButton.frame.origin.y
     }
     
     // MARK: - 화면 전환
@@ -415,7 +429,7 @@ extension WaitingVC {
                           firstDivideView, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
                           secondDivideView, friendTitleLabel, friendCountLabel,
-                          friendSubTitleLabel, refreshButton, collectionView, startButton])
+                          friendSubTitleLabel, refreshButton, collectionView, startButton, toolTipImageView])
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -433,6 +447,11 @@ extension WaitingVC {
             make.leading.equalTo(checkTitleLabel.snp.trailing).offset(4)
             make.centerY.equalTo(checkTitleLabel.snp.centerY)
             make.width.height.equalTo(24)
+        }
+        
+        toolTipImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(toolTipButton.snp.centerX)
+            make.top.equalTo(toolTipButton.snp.bottom).offset(5)
         }
         
         photoLabel.snp.makeConstraints { make in
