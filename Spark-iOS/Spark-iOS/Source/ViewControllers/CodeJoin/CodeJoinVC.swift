@@ -42,7 +42,9 @@ class CodeJoinVC: UIViewController {
     // MARK: - @IBAction Properties
     
     @IBAction func touchOutsideButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        }
     }
 }
 
