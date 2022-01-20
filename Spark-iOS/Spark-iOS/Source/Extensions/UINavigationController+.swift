@@ -68,6 +68,7 @@ extension UINavigationController {
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
         self.navigationBar.tintColor = tintColor
+        navigationItem?.title = ""
         
         let firstButton = UIBarButtonItem(image: UIImage(named: "icProfile"), style: .plain, target: self.topViewController, action: firstButtonSelector)
         let secondButton = UIBarButtonItem(image: UIImage(named: "icNotice"), style: .plain, target: self.topViewController, action: secondButtonSelector)

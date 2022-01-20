@@ -23,6 +23,18 @@ class MainTBC: UITabBarController {
         setAddTarget()
         setFloatingButton()
         setNotification()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
+                                                            tintColor: .sparkBlack,
+                                                            backgroundColor: .sparkWhite,
+                                                            firstButtonSelector: #selector(presentToProfileVC),
+                                                            secondButtonSelector: #selector(presentToAertVC))
     }
 }
 
@@ -40,10 +52,11 @@ extension MainTBC {
     
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
-        let homeNVC = UINavigationController(rootViewController: homeVC)
-        let storageNVC = UINavigationController(rootViewController: storageVC)
+        // FIXME: - 준호 보관함 테스트해보고 쓰지 않는다면 지우자
+//        let homeNVC = UINavigationController(rootViewController: homeVC)
+//        let storageNVC = UINavigationController(rootViewController: storageVC)
         
-        setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
+        setViewControllers([feedVC, homeVC, storageVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered
@@ -61,7 +74,7 @@ extension MainTBC {
 
         if #available(iOS 15.0, *) {
                 // set tabbar opacity
-                tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }
     }
     
@@ -147,5 +160,17 @@ extension MainTBC {
             floatingButton.buttonColor = .sparkDarkPinkred
             floatingButton.buttonImageColor = .sparkWhite
         }
+    }
+    
+    // TODO: - 화면전환
+    
+    @objc
+    private func presentToProfileVC() {
+        
+    }
+    
+    @objc
+    private func presentToAertVC() {
+        
     }
 }
