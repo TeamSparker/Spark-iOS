@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @frozen enum AuthType {
     case photoOnly
@@ -19,9 +20,9 @@ class HabitAuthVC: UIViewController {
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
     var authType: AuthType?
-    var fromStart: Bool?
     var roomID: Int?
     var rest: Int?
+    var roomName: String?
     
     // MARK: - @IBOutlet Properties
     
@@ -51,7 +52,7 @@ extension HabitAuthVC {
         case .photoOnly:
             authTypeImageView.image = UIImage(named: "stickerPhotoDefault")
         case .photoTimer:
-            authTypeImageView.image = UIImage(named: "stickerPhotoBoth")
+            authTypeImageView.image = UIImage(named: "stickersBoth")
         case .none:
             print("authType을 지정해주세요")
         }
@@ -89,8 +90,7 @@ extension HabitAuthVC {
         picker.delegate = self
     }
     
-    @objc
-    private func touchOkayButton() {
+    private func showAlert() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
@@ -111,8 +111,36 @@ extension HabitAuthVC {
         let presentingVC = self.presentingViewController
         /// button tap했을 때 alter present
         self.modalTransitionStyle = .coverVertical
+        
         dismiss(animated: true) {
             presentingVC?.present(alter, animated: true, completion: nil)
+        }
+    }
+    
+    @objc
+    private func touchOkayButton() {
+        let presentingVC = self.presentingViewController
+        
+        switch authType {
+        case .photoOnly:
+            self.dismiss(animated: true) {
+                print("alert 나와야되지")
+//                guard let timerVC = UIStoryboard(name: Const.Storyboard.Name.authTimer, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authTimer) as? AuthTimerVC else { return }
+//
+//                presentingVC?.present(timerVC, animated: true, completion: nil)
+            }
+        case .photoTimer:
+            self.dismiss(animated: true) {
+                guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.authTimer, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authTimer) as? AuthTimerVC else { return }
+                let nextVC = UINavigationController(rootViewController: rootVC)
+                nextVC.modalPresentationStyle = .fullScreen
+                rootVC.roomId = self.roomID
+                rootVC.roomName = self.roomName
+                
+                presentingVC?.present(nextVC, animated: true, completion: nil)
+            }
+        default:
+            print("아닙니다")
         }
     }
     
@@ -156,7 +184,7 @@ extension HabitAuthVC: UIImagePickerControllerDelegate, UINavigationControllerDe
             imageContainer = image
         }
         dismiss(animated: true) {
-            self.presentAuthUpload()
+//            self.presentAuthUpload()
         }
     }
     

@@ -305,7 +305,7 @@ extension ProfileSettingVC {
 
 extension ProfileSettingVC {
     private func signupWithAPI(profileImg: UIImage, nickname: String, completion: @escaping () -> Void) {
-        AuthAPI.shared.signup(socailID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
+        AuthAPI.shared.signup(socailID: "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") ",
                               profileImg: profileImg,
                               nickname: nickname,
                               fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in

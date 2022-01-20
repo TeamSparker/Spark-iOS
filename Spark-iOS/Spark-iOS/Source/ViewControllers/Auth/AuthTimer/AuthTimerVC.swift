@@ -13,6 +13,7 @@ class AuthTimerVC: UIViewController {
     
     // MARK: - Properties
     
+    let titleLabel = UILabel()
     let firstLabel = UILabel()
     let secondLabel = UILabel()
     let stopwatchLabel = UILabel()
@@ -20,13 +21,16 @@ class AuthTimerVC: UIViewController {
     let betweenLine = UIView()
     let divideLine = UIView()
     let timeLabel = UILabel()
-    let startButton = UIButton()
+    let bottomButton = UIButton()
     let pauseButton = UIButton()
     let resetButton = UIButton()
+    let closeButton = UIButton()
     
     var isTimerOn: Bool = false
     var currentTimeCount: Int = 0
     var timer: Timer?
+    var roomName: String?
+    var roomId: Int?
     
     // MARK: - View Life Cycles
 
@@ -35,21 +39,36 @@ class AuthTimerVC: UIViewController {
 
         setUI()
         setLayout()
-        setButton(startButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
         setNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: - Methods
     
     private func setUI() {
+        if let name = roomName {
+            navigationController?.initWithLeftButtonTitle(title: "\(name)",
+                                                          tintColor: .sparkBlack,
+                                                          backgroundColor: .sparkWhite,
+                                                          image: UIImage(named: "icQuit"),
+                                                          selector: #selector(dismissToHabitRoom))
+        }
         
+        titleLabel.text = "\(roomName ?? "-")"
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
         photoLabel.text = "사진"
         timeLabel.text = "00:00:00"
         
+        titleLabel.font = .h3Subtitle
         firstLabel.font = .enMediumFont(ofSize: 18)
         secondLabel.font = .enMediumFont(ofSize: 18)
         stopwatchLabel.font = .krMediumFont(ofSize: 18)
@@ -59,14 +78,16 @@ class AuthTimerVC: UIViewController {
         betweenLine.backgroundColor = .sparkPinkred
         divideLine.backgroundColor = .sparkLightGray
         
+        titleLabel.textColor = .sparkBlack
         firstLabel.textColor = .sparkPinkred
         secondLabel.textColor = .sparkGray
         stopwatchLabel.textColor = .sparkPinkred
         photoLabel.textColor = .sparkGray
         
-        startButton.layer.cornerRadius = 2
-        startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
+        bottomButton.layer.cornerRadius = 2
+        bottomButton.titleLabel?.font = .enBoldFont(ofSize: 18)
         
+        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         resetButton.setImage(UIImage(named: "btnReset"), for: .normal)
         
@@ -74,9 +95,10 @@ class AuthTimerVC: UIViewController {
     }
     
     private func setAddTarget() {
+        closeButton.addTarget(self, action: #selector(dismissToHabitRoom), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(startPauseTimer(_:)), for: .touchUpInside)
         resetButton.addTarget(self, action: #selector(showResetPopup), for: .touchUpInside)
-        startButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
+        bottomButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
     }
     
     private func setNotification() {
@@ -91,29 +113,34 @@ class AuthTimerVC: UIViewController {
     
     // MARK: - @objc
     @objc
+    func dismissToHabitRoom() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
     func startPauseTimer(_ sender: AnyObject) {
         if isTimerOn == false {
             // 최초 시작
             isTimerOn = true
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
-            setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
+            setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
             timeLabel.text = timeFormatter(currentTimeCount)
             
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
             // stop 버튼 활성화
-            startButton.isEnabled = true
+            bottomButton.isEnabled = true
         } else if isTimerOn && timer!.isValid {
             // 타이머 진행 중 일시정지
             isTimerOn = false
             pauseButton.setImage(UIImage(named: "btnPlay"), for: .normal)
-            setButton(startButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
+            setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
             timer?.invalidate()
         } else if isTimerOn && !(timer!.isValid) {
             // 일시정지상태에서 재개
             isTimerOn = true
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
-            setButton(startButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
+            setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
             
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
@@ -154,7 +181,7 @@ class AuthTimerVC: UIViewController {
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
         timeLabel.text = "00:00:00"
-        setButton(startButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setButton(bottomButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         [pauseButton, resetButton].forEach { $0.isHidden = true }
     }
@@ -163,14 +190,18 @@ class AuthTimerVC: UIViewController {
     func touchNextButton() {
         if timeLabel.text == "00:00:00" {
             // 재생X -> 스톱워치 시작
-            startPauseTimer(startButton)
+            startPauseTimer(bottomButton)
         } else {
-            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.authUpload, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else { return }
-            
-            // TODO: - timeLabel.text 넘겨주기
-            nextVC.timerLabel.text = timeLabel.text
-            
-            navigationController?.pushViewController(nextVC, animated: true)
+            if !isTimerOn {
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.authUpload, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else { return }
+                
+                nextVC.timerLabel.text = timeLabel.text
+                nextVC.vcType = .photoTimer
+                nextVC.roomName = roomName
+                nextVC.roomId = roomId
+                
+                navigationController?.pushViewController(nextVC, animated: true)
+            }
         }
     }
 }
@@ -178,12 +209,24 @@ class AuthTimerVC: UIViewController {
 // MARK: - Layout
 extension AuthTimerVC {
     private func setLayout() {
-        view.addSubviews([firstLabel, secondLabel, stopwatchLabel, photoLabel,
-                         betweenLine, divideLine, timeLabel, startButton,
+        view.addSubviews([titleLabel, closeButton, firstLabel, secondLabel,
+                          stopwatchLabel, photoLabel, betweenLine,
+                          divideLine, timeLabel, bottomButton,
                          pauseButton, resetButton])
         
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.leading.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(closeButton.snp.centerY)
+        }
+        
         betweenLine.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(32+44)
             make.centerX.equalToSuperview()
             make.width.equalTo(60)
             make.height.equalTo(2)
@@ -220,7 +263,7 @@ extension AuthTimerVC {
             make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 275 : 200)
         }
         
-        startButton.snp.makeConstraints { make in
+        bottomButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)

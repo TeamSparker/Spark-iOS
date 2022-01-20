@@ -11,6 +11,7 @@ class HabitRoomVC: UIViewController {
     
     // MARK: - Properties
 
+    var roomName: String?
     var roomID: Int?
     var habitRoomDetail: HabitRoomDetail?
     
@@ -69,8 +70,16 @@ class HabitRoomVC: UIViewController {
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.roomID = roomID
-        nextVC.fromStart = habitRoomDetail?.fromStart
+        nextVC.roomName = roomName
         nextVC.rest = habitRoomDetail?.myRecord.rest
+        
+        if let fromStart = habitRoomDetail?.fromStart {
+            if fromStart {
+                nextVC.authType = .photoTimer
+            } else {
+                nextVC.authType = .photoOnly
+            }
+        }
         
         present(nextVC, animated: true, completion: nil)
     }
@@ -119,6 +128,7 @@ extension HabitRoomVC {
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
+        roomName = habitRoomDetail.roomName
         habitTitleLabel.text = habitRoomDetail.roomName
 
         let leftDay = habitRoomDetail.leftDay
@@ -167,7 +177,80 @@ extension HabitRoomVC {
     private func registerXib() {
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.habitRoomMemeberCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC)
     }
+//
+//    func showAlert() {
+//        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        alter.view.tintColor = .sparkBlack
+//
+//        /// alter에 들어갈 액션 생성
+//        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
+//            self.openCamera()
+//        }
+//        let library = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
+//            self.openLibrary()
+//        }
+//        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+//
+//        /// alter에 액션을 넣어줌
+//        alter.addAction(camera)
+//        alter.addAction(library)
+//        alter.addAction(cancel)
+//
+//        let presentingVC = self.presentingViewController
+//        /// button tap했을 때 alter present
+//        self.modalTransitionStyle = .coverVertical
+//
+//        dismiss(animated: true) {
+//            presentingVC?.present(alter, animated: true, completion: nil)
+//        }
+//    }
+//
+//    private func openLibrary() {
+//        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+//        picker.sourceType = .photoLibrary
+//        present(picker, animated: false, completion: nil)
+//    }
+//
+//    private func openCamera() {
+//        /// 카메라 촬영 타입이 가능하다면
+//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+//            picker.sourceType = .camera
+//            present(picker, animated: false, completion: nil)
+//        } else {
+//            print("카메라 안됩니다.")
+//        }
+//    }
 }
+
+// MARK: - UIImagePickerDelegate
+//extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            imageContainer = image
+//        }
+//        dismiss(animated: true) {
+//            self.presentAuthUpload()
+//        }
+//    }
+//
+//    // TODO: 케이스 나눠서 화면전환 하기
+//    private func presentAuthUpload() {
+//        let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.authUpload, bundle: nil)
+//
+//        guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.authUpload) as? AuthUploadVC else {return}
+//
+//        nextVC.uploadImage = self.imageContainer
+//
+//        nextVC.modalPresentationStyle = .fullScreen
+//        self.present(nextVC, animated: false, completion: nil)
+//    }
+//}
 
 // MARK: - UICollectionViewDelegate
 

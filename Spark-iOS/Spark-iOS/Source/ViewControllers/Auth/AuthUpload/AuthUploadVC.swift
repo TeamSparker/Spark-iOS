@@ -18,8 +18,6 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    var vcType: VCCase = .photoTimer
-    var roomID: Int?
     var uploadImageView = UIImageView()
     let fadeImageView = UIImageView()
     var uploadImage = UIImage()
@@ -34,12 +32,15 @@ class AuthUploadVC: UIViewController {
     let betweenLine = UIView()
     let photoAuthButton = UIButton()
     let picker = UIImagePickerController()
-    var getTime: String = ""
+    var roomId: Int?
+    var roomName: String?
+    var vcType: VCCase?
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         setUI()
         setLayout()
         setDelegate()
@@ -50,11 +51,27 @@ class AuthUploadVC: UIViewController {
 // MARK: - Methods
 
 extension AuthUploadVC {
-
+    private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
+        
+        switch vcType {
+        case .photoOnly:
+            navigationController?.initWithLeftButtonTitle(title: "\(String(describing: roomName))",
+                                                          tintColor: .sparkBlack,
+                                                          backgroundColor: .sparkWhite,
+                                                          image: UIImage(named: "icQuit"),
+                                                          selector: #selector(presentToDialogue))
+        case .photoTimer:
+            navigationController?.initWithBackButtonTitle(title: "",
+                                                          tintColor: .sparkBlack,
+                                                          backgroundColor: .sparkWhite)
+            navigationItem.title = "\(roomName ?? "-")"
+        default:
+            break
+        }
+    }
     
     private func setUI() {
-        navigationController?.initWithLeftButtonTitle(title: "기본 앨범", tintColor: .sparkBlack, backgroundColor: .sparkWhite, image: UIImage(named: "icQuit"), selector: #selector(presentToDialogue))
-        
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
@@ -83,9 +100,9 @@ extension AuthUploadVC {
         
         setStackView()
         
-        timerLabel.text = "00:30:12"
         timerLabel.font = .enBoldFont(ofSize: 40)
         timerLabel.textColor = .sparkWhite
+        timerLabel.isHidden = true
         
         changePhotoButton.layer.cornerRadius = 2
         changePhotoButton.titleLabel?.font = .btn1Default
@@ -109,6 +126,8 @@ extension AuthUploadVC {
             
         case .photoTimer:
             setSecondFlowUI()
+        default:
+            break
         }
     }
     
@@ -320,7 +339,7 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: roomID ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
+        RoomAPI.shared.authUpload(roomID: roomId ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
