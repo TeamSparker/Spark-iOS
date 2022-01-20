@@ -40,7 +40,6 @@ class HabitAuthVC: UIViewController {
         setDelegate()
     }
     
-    
     @IBAction func touchOutsideDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

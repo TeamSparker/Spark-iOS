@@ -34,7 +34,7 @@ class FeedCVC: UICollectionViewCell {
     let likeCountLabel = UILabel()
     let lottieView = AnimationView(name: "icHeartActive")
     var likeState: Bool = false
-    var likeDelegate: FeedCellDelegate?
+    weak var likeDelegate: FeedCellDelegate?
     var cellId: Int = 0
     
     // MARK: - View Life Cycles
@@ -181,7 +181,6 @@ extension FeedCVC {
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
 }
-
 
 // MARK: - Layout
 extension FeedCVC {

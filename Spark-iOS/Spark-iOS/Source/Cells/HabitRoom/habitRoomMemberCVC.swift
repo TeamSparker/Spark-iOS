@@ -70,7 +70,6 @@ extension HabitRoomMemberCVC {
         
         if status == "CONSIDER" {
             statusLabel.text = "지금은 고민중이에요."
-            // TODO: - 이미지 에셋 받아서 수정
             stickerImage.image = UIImage(named: "stickerThingking")
             stickerImage.isHidden = false
         } else if status == "DONE" {

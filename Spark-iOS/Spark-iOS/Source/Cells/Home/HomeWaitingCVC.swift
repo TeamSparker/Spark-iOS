@@ -36,8 +36,6 @@ extension HomeWaitingCVC {
         habitTitleLabel.textColor = .sparkDeepGray
     }
     
-    // TODO: - initCell
-    
     func initCell(roomName: String) {
         habitTitleLabel.text = roomName
         
