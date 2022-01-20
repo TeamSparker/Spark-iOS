@@ -21,9 +21,9 @@ class StorageVC: UIViewController {
 
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
-    private var isInfiniteScroll: Bool = true
-    
-    var tagCount: Int = 1
+    // FIXME: 무한스크롤 관련 수정하기, 셀이 반복되는 문제
+    private var isInfiniteScroll: Bool = false
+    private var tagCount: Int = 1
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -246,22 +246,12 @@ extension StorageVC {
             make.leading.equalTo(failButton.snp.trailing).offset(2)
         }
         
-        DoingCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
-        }
-        
-        DoneCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
-        }
-        
-        FailCV.snp.makeConstraints { make in
-            make.top.equalTo(failButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+        [DoingCV, DoneCV, FailCV].forEach {
+            $0.snp.makeConstraints { make in
+                make.top.equalTo(failButton.snp.bottom).offset(14)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+            }
         }
     }
 }
@@ -347,7 +337,7 @@ extension StorageVC {
 
 // MARK: - extension Methods
 
-//Carousel 레이아웃 세팅
+// Carousel 레이아웃 세팅
 extension StorageVC {
     private func setCarousels() {
         setCarouselLayout(collectionView: DoingCV)
