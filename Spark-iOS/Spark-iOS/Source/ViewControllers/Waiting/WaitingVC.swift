@@ -13,7 +13,7 @@ import SwiftUI
 class WaitingVC: UIViewController {
     var members: [Member] = []
     var isFromHome: Bool?
-    var fromStart: Bool?
+    private let tapGestrueRecognizer = UITapGestureRecognizer()
     
     // MARK: - Properties
     
@@ -61,6 +61,7 @@ class WaitingVC: UIViewController {
         setAddTarget()
         setAuthLabel()
         setNavigation(title: roomName ?? "")
+        setGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +101,7 @@ class WaitingVC: UIViewController {
         
         toolTipImageView.layer.masksToBounds = true
         toolTipImageView.contentMode = .scaleAspectFill
+        toolTipImageView.alpha = 0
         
         copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
@@ -166,6 +168,7 @@ class WaitingVC: UIViewController {
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
         toolTipButton.addTarget(self, action: #selector(touchPresentToolTip), for: .touchUpInside)
+        tapGestrueRecognizer.addTarget(self, action: #selector(quickDismissToolTip))
     }
     
     func setCollectionView() {
@@ -188,6 +191,29 @@ class WaitingVC: UIViewController {
         }
     }
     
+    private func presentToolTip() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.alpha = 1
+            self.toolTipImageView.alpha = 1
+        }, completion: nil)
+    }
+    
+    private func dismissToolTip() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.alpha = 0
+            self.toolTipImageView.alpha = 0
+        }, completion: nil)
+    }
+    
+    private func setGestureRecognizer() {
+        tapGestrueRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestrueRecognizer)
+    }
+    
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = roomCode
@@ -208,9 +234,16 @@ class WaitingVC: UIViewController {
     }
     
     @objc
-    func touchPresentToolTip() {
-        let xPosition = toolTipButton.frame.origin.x
-        let yPosition = toolTipButton.frame.origin.y
+    private func quickDismissToolTip() {
+        toolTipImageView.alpha = 0
+    }
+    
+    @objc
+    private func touchPresentToolTip() {
+        presentToolTip()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) { [self] in
+            dismissToolTip()
+        }
     }
     
     // MARK: - 화면 전환

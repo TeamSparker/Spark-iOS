@@ -379,7 +379,7 @@ extension StorageVC {
         let layout = CarouselLayout()
         
         let centerItemWidthScale: CGFloat = 327/375
-        let centerItemHeightScale: CGFloat = 0.95
+        let centerItemHeightScale: CGFloat = 0.9
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
         layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
