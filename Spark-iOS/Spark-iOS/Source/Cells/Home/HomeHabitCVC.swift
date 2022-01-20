@@ -106,7 +106,7 @@ extension HomeHabitCVC {
         // 프로필 이미지 구현
         let profileImageList = [firstProfileImage, secondProfileImage, thirdProfileImage]
         
-        if profileImg.count > 3 {
+        if memberNum > 3 {
             for index in 0..<3 {
                 profileImageList[index]?.updateImage(profileImg[index] ?? "")
                 profileImageList[index]?.isHidden = false
@@ -114,24 +114,22 @@ extension HomeHabitCVC {
             
             fourthProfileImage.isHidden = false
             restLabel.isHidden = false
-            restLabel.text = "+\(profileImg.count - 3)"
+            restLabel.text = "+\(memberNum - 3)"
         } else {
-            if profileImg.count == 0 {
-                profileImageList.forEach { $0?.isHidden = true }
-            } else if profileImg.count == 3 {
+            if memberNum == 3 {
                 for index in 0..<3 {
                     profileImageList[index]?.updateImage(profileImg[index] ?? "")
                     profileImageList[index]?.isHidden = false
                 }
             } else {
-                for index in 0..<profileImg.count {
+                for index in 0..<memberNum {
                     profileImageList[index]?.updateImage(profileImg[index] ?? "")
                     profileImageList[index]?.isHidden = false
                     
                     fourthProfileImage.isHidden = true
                     restLabel.isHidden = true
                 }
-                for index in profileImg.count...2 {
+                for index in memberNum...2 {
                     profileImageList[index]?.isHidden = true
                 }
             }

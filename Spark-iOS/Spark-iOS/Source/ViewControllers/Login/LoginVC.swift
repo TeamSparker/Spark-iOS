@@ -85,6 +85,7 @@ extension LoginVC {
     }
     
     private func loginWithWeb() {
+        
         UserApi.shared.loginWithKakaoAccount { _, error in
             if let error = error {
                 print(error)
@@ -112,7 +113,9 @@ extension LoginVC {
     }
     
     private func presentToMainTabBar() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        
+        let nextVC = UINavigationController(rootViewController: rootVC)
         nextVC.modalPresentationStyle = .fullScreen
         nextVC.modalTransitionStyle = .crossDissolve
         
@@ -167,12 +170,7 @@ extension LoginVC {
                         // 회원 정보를 불러왔습니다.
                         UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
                         
-                        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
-                        
-                        nextVC.modalPresentationStyle = .fullScreen
-                        nextVC.modalTransitionStyle = .crossDissolve
-                        
-                        self.present(nextVC, animated: true, completion: nil)
+                        self.presentToMainTabBar()
                     }
                 }
             case .requestErr(let message):
