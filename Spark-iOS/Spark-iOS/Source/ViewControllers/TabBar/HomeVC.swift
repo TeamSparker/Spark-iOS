@@ -63,8 +63,6 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         // set collectionView
-        print("🥕collectionView", mainCollectionView.frame.height)
-        print("🥕collectionView.origin", mainCollectionView.frame.origin)
         mainCollectionView.backgroundColor = .clear
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = .zero
@@ -149,8 +147,6 @@ extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let habitRoomList = habitRoomList else { return UICollectionViewCell()}
         if habitRoomList.count != 0 {
-//            mainCollectionView.isScrollEnabled = true
-            print("⚡️collectionView", mainCollectionView.frame.height)
             if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
@@ -171,8 +167,6 @@ extension HomeVC: UICollectionViewDataSource {
                 return habitCVC
             }
         } else {
-            print("⚡️collectionView", mainCollectionView.frame.height)
-            print("⚡️collectionView.origin", mainCollectionView.frame.origin)
             // empty view.
             guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
 

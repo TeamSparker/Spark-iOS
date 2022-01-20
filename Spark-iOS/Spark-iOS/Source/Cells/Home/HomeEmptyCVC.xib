@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xd1-By-zyc">
-                        <rect key="frame" x="80.5" y="118" width="280.5" height="128.5"/>
+                        <rect key="frame" x="80.5" y="114.5" width="280.5" height="128.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticketEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="DU5-um-Leb">
                                 <rect key="frame" x="0.0" y="0.0" width="280.5" height="60"/>
@@ -34,7 +34,7 @@
                                 <string key="text">아직 습관방이 없어요.
 +버튼을 눌러 습관방을 시작해 보세요!</string>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
-                                <color key="textColor" name="sparkDarkGray"/>
+                                <color key="textColor" name="sparkGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -44,7 +44,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="xd1-By-zyc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="7to-tX-Icc"/>
-                <constraint firstItem="xd1-By-zyc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1:1.06" id="Etl-1C-EZX"/>
+                <constraint firstItem="xd1-By-zyc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1:1.08" id="Etl-1C-EZX"/>
             </constraints>
             <size key="customSize" width="441" height="386"/>
             <point key="canvasLocation" x="149" y="163"/>
@@ -52,8 +52,8 @@
     </objects>
     <resources>
         <image name="ticketEmpty" width="85" height="60"/>
-        <namedColor name="sparkDarkGray">
-            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="sparkGray">
+            <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
