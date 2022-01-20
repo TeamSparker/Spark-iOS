@@ -94,6 +94,7 @@ extension CodeJoinVC {
     }
     
     // MARK: - @objc Function
+    
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
@@ -194,6 +195,9 @@ extension CodeJoinVC {
 
                     nextVC.modalPresentationStyle = .fullScreen
                     nextVC.modalTransitionStyle = .crossDissolve
+                    
+                    NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+                    
                     self.present(nextVC, animated: false, completion: nil)
                 }
             case .requestErr(let message):
