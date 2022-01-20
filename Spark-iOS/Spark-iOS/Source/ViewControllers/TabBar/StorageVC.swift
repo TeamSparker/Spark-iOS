@@ -163,7 +163,7 @@ extension StorageVC {
         doingButton.setTitleColor(.sparkDarkPinkred, for: .focused)
         doingButton.isSelected = true
         
-        doingLabel.text = "0"
+        doingLabel.text = " "
         doingLabel.font = .h3Subtitle
         doingLabel.textColor = .sparkDarkPinkred
         doingLabel.font = .enMediumFont(ofSize: 14)
@@ -176,7 +176,7 @@ extension StorageVC {
         doneButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         doneButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         
-        doneLabel.text = "0"
+        doneLabel.text = " "
         doneLabel.font = .h3Subtitle
         doneLabel.textColor = .sparkDarkGray
         doneLabel.font = .enMediumFont(ofSize: 14)
@@ -189,7 +189,7 @@ extension StorageVC {
         failButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         failButton.setTitleColor(.sparkDarkPinkred, for: .highlighted)
         
-        failLabel.text = "0"
+        failLabel.text = " "
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
