@@ -44,6 +44,9 @@ class WaitingFriendCVC: UICollectionViewCell {
         
         nameLabel.font = .p1Title
         nameLabel.textColor = .sparkDeepGray
+        nameLabel.numberOfLines = 1
+        nameLabel.lineBreakMode = .byTruncatingTail
+        nameLabel.textAlignment = .center
     }
     
     func setLayout() {
@@ -57,6 +60,7 @@ class WaitingFriendCVC: UICollectionViewCell {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(4)
             make.centerX.equalTo(profileImageView.snp.centerX)
+            make.width.equalTo(profileImageView.snp.width)
         }
     }
     
