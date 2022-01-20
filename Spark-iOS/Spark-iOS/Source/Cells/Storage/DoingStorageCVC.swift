@@ -38,6 +38,7 @@ class DoingStorageCVC: UICollectionViewCell {
         let sparkFlake: SparkFlake = SparkFlake(leftDay: leftDay)
         
         flakeImage.image = sparkFlake.sparkFlakeGoingStorage()
+        cardBorderImageView.image = sparkFlake.sparkBorderStorage()
         sparkCountLabel.text = String(sparkCount)
         roomNameLabel.text = roomName
         
