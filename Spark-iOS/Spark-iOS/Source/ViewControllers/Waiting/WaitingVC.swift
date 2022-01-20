@@ -79,7 +79,7 @@ class WaitingVC: UIViewController {
                                                                 backgroundColor: .sparkWhite,
                                                                 reftButtonImage: UIImage(named: "icBackWhite"),
                                                                 rightButtonImage: UIImage(),
-                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                reftButtonSelector: #selector(popToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
         } else {
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
@@ -88,7 +88,7 @@ class WaitingVC: UIViewController {
                                                                 backgroundColor: .sparkWhite,
                                                                 reftButtonImage: UIImage(named: "icHome"),
                                                                 rightButtonImage: UIImage(),
-                                                                reftButtonSelector: #selector(goToHomeVC),
+                                                                reftButtonSelector: #selector(dismissToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
         }
     }
@@ -245,8 +245,13 @@ class WaitingVC: UIViewController {
     // MARK: - 화면 전환
     
     @objc
-    func goToHomeVC() {
+    func popToHomeVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func dismissToHomeVC() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
     @objc
@@ -262,8 +267,13 @@ class WaitingVC: UIViewController {
     
     @objc
     func touchToCreateButton() {
-        postStartRoomWithAPI(roomID: roomId ?? 0)
-        // TODO: - 상세뷰로 화면 전환
+        postStartRoomWithAPI(roomID: roomId ?? 0) {
+            if self.isFromHome ?? false {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+            }
+        }
     }
 }
 
@@ -380,10 +390,11 @@ extension WaitingVC {
         }
     }
     
-    func postStartRoomWithAPI(roomID: Int) {
+    func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
+                completion()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("postStartRoomWithAPI - requestErr: \(message)")
