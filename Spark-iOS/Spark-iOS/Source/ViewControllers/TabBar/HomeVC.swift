@@ -71,6 +71,7 @@ extension HomeVC {
         
         mainCollectionView.indicatorStyle = .black
         mainCollectionView.showsVerticalScrollIndicator = true
+        mainCollectionView.isScrollEnabled = false
     }
     
     private func setDelegate() {
@@ -115,20 +116,22 @@ extension HomeVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let habitRoomList = habitRoomList else { return }
-        if habitRoomList[indexPath.item].isStarted == true {
-            // 습관방
-            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-            nextVC.roomID = habitRoomList[indexPath.item].roomID
-            
-            navigationController?.pushViewController(nextVC, animated: true)
-        } else {
-            // 대기방
-            guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-            waitingVC.roomId = habitRoomList[indexPath.item].roomID
-            waitingVC.isFromHome = true
-            waitingVC.roomName = habitRoomList[indexPath.item].roomName
-            
-            navigationController?.pushViewController(waitingVC, animated: true)
+        if habitRoomList.count != 0 {
+            if habitRoomList[indexPath.item].isStarted == true {
+                // 습관방
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+                nextVC.roomID = habitRoomList[indexPath.item].roomID
+                
+                navigationController?.pushViewController(nextVC, animated: true)
+            } else {
+                // 대기방
+                guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+                waitingVC.roomId = habitRoomList[indexPath.item].roomID
+                waitingVC.isFromHome = true
+                waitingVC.roomName = habitRoomList[indexPath.item].roomName
+                
+                navigationController?.pushViewController(waitingVC, animated: true)
+            }
         }
     }
 }
@@ -144,6 +147,7 @@ extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let habitRoomList = habitRoomList else { return UICollectionViewCell()}
         if habitRoomList.count != 0 {
+            collectionView.isScrollEnabled = true
             if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
@@ -165,6 +169,7 @@ extension HomeVC: UICollectionViewDataSource {
             }
         } else {
             // empty view.
+            collectionView.isScrollEnabled = false
             guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
 
             return emptyCVC

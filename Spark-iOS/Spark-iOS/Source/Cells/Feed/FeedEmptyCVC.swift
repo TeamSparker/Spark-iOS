@@ -37,7 +37,7 @@ class FeedEmptyCVC: UICollectionViewCell {
         emptyLabel.text = "아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .krRegularFont(ofSize: 18)
-        emptyLabel.textColor = .sparkDarkGray
+        emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
         
         emptyImageView.image = UIImage(named: "tagEmpty")

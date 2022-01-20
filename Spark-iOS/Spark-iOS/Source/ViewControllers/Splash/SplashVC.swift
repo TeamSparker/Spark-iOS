@@ -80,7 +80,7 @@ extension SplashVC {
         lottieLogoView.isHidden = false
         lottieLogoView.play()
         
-        splashLabel.text = "습관에 불을 지펴봐!"
+        splashLabel.text = "작은 스파크에서 시작되는 습관"
         splashLabel.font = .krMediumFont(ofSize: 18)
         splashLabel.textColor = .sparkWhite
     }
