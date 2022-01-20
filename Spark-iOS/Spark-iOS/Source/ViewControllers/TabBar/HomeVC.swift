@@ -147,6 +147,7 @@ extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let habitRoomList = habitRoomList else { return UICollectionViewCell()}
         if habitRoomList.count != 0 {
+            collectionView.isScrollEnabled = true
             if habitRoomList[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
@@ -168,6 +169,7 @@ extension HomeVC: UICollectionViewDataSource {
             }
         } else {
             // empty view.
+            collectionView.isScrollEnabled = false
             guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
 
             return emptyCVC
