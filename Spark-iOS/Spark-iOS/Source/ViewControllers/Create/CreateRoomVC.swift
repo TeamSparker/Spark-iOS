@@ -41,11 +41,11 @@ class CreateRoomVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        navigationController?.initWithLeftButtonTitle(title: "",
-                                                      tintColor: .sparkBlack,
-                                                      backgroundColor: .white,
-                                                      image: UIImage(named: "icQuit"),
-                                                      selector: #selector(touchCloseButton))
+//        navigationController?.initWithLeftButtonTitle(title: "aa",
+//                                                      tintColor: .sparkBlack,
+//                                                      backgroundColor: .white,
+//                                                      image: UIImage(named: "icQuit"),
+//                                                      selector: #selector(touchCloseButton))
         
         closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
