@@ -83,7 +83,10 @@ class StorageVC: UIViewController {
         
         return name
     }()
-
+    
+    // MARK: - IBOutlet properties
+    @IBOutlet weak var emptyView: UIView!
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -192,6 +195,12 @@ extension StorageVC {
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
+        
+        if doingLabel.text == "0" {
+            emptyView.isHidden = false
+        } else {
+                emptyView.isHidden = true
+        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.3) { [self] in
             makeDrawAboveButton(button: doingButton)
@@ -305,6 +314,11 @@ extension StorageVC {
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doneButton)
+            if doneLabel.text == "0" {
+                emptyView.isHidden = false
+            } else {
+                    emptyView.isHidden = true
+            }
 
         case 2:
             DoingCV.isHidden = true
@@ -318,6 +332,12 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkPinkred
             makeDrawAboveButton(button: failButton)
             
+            if failLabel.text == "0" {
+                emptyView.isHidden = false
+            } else {
+                    emptyView.isHidden = true
+            }
+            
         default:
             DoingCV.isHidden = false
             DoneCV.isHidden = true
@@ -330,6 +350,11 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doingButton)
 
+            if doingLabel.text == "0" {
+                emptyView.isHidden = false
+            } else {
+                    emptyView.isHidden = true
+            }
         }
     }
 }

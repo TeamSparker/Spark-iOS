@@ -66,6 +66,9 @@
                             <constraint firstItem="JlI-kd-tu0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kzE-Cm-hKa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emptyView" destination="JlI-kd-tu0" id="PyM-uF-thr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
