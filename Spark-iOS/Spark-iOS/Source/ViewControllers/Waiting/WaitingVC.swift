@@ -65,7 +65,6 @@ class WaitingVC: UIViewController {
         super.viewWillAppear(animated)
 
         getWaitingRoomWithAPI(roomID: roomId ?? 0)
-//        getWaitingRoomWithAPI(roomID: 235)
     }
 
     // MARK: - Methods
@@ -117,9 +116,11 @@ class WaitingVC: UIViewController {
         photoLabel.text = "사진 인증"
         stopwatchLabel.text = "스톱워치"
         goalTitleLabel.text = "나의 목표"
-        nicknameLabel.text = "힛이"
+        nicknameLabel.text = "-"
         friendTitleLabel.text = "함께하는 스파커들"
         friendSubTitleLabel.text = "습관을 시작한 후에는 인원 추가가 불가능합니다."
+        timeLabel.text = "습관을 시작하기 전에"
+        goalLabel.text = "시간과 목표를 작성해 주세요!"
         
         nicknameLabel.font = .h3Subtitle
         friendCountLabel.font = .p2SubtitleEng
@@ -173,7 +174,7 @@ class WaitingVC: UIViewController {
         UIView.animate(withDuration: 0.4,
                        delay: 0.1,
                        options: .curveEaseInOut) {
-            let rotate = CGAffineTransform(rotationAngle: .pi)
+            let rotate = CGAffineTransform(rotationAngle: -3.14)
             self.refreshButton.transform = rotate
         } completion: { _ in
             self.refreshButton.transform = .identity
@@ -235,7 +236,7 @@ extension WaitingVC {
                     var user: ReqUser
                     
                     user = waitingRoom.reqUser
-                    self.members.append(contentsOf: waitingRoom.members)
+                    self.members = waitingRoom.members
                     
                     // 스파커 멤버 수
                     self.friendCountLabel.text = "\(self.members.count)"
@@ -424,7 +425,7 @@ extension WaitingVC {
         
         checkTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(copyButton.snp.bottom).offset(36)
+            make.top.equalTo(copyButton.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 20)
         }
         
         toolTipButton.snp.makeConstraints { make in
@@ -451,14 +452,14 @@ extension WaitingVC {
         }
         
         firstDivideView.snp.makeConstraints { make in
-            make.top.equalTo(checkTitleLabel.snp.bottom).offset(36)
+            make.top.equalTo(checkTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 24)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
         
         goalTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(firstDivideView.snp.bottom).offset(33)
+            make.top.equalTo(firstDivideView.snp.bottom).offset(UIScreen.main.hasNotch ? 33 : 24)
         }
         
         editButton.snp.makeConstraints { make in
@@ -469,7 +470,7 @@ extension WaitingVC {
         
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(goalTitleLabel.snp.bottom).offset(36)
+            make.top.equalTo(goalTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 20)
             make.width.height.equalTo(64)
         }
         
@@ -479,24 +480,26 @@ extension WaitingVC {
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.bottom).offset(15)
+            make.top.equalTo(nicknameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 15 : 10)
             make.leading.equalTo(nicknameLabel.snp.leading)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         goalLabel.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom).offset(4)
             make.leading.equalTo(nicknameLabel.snp.leading)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         secondDivideView.snp.makeConstraints { make in
-            make.top.equalTo(goalLabel.snp.bottom).offset(45)
+            make.top.equalTo(goalLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
         
         friendTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(secondDivideView.snp.bottom).offset(32)
+            make.top.equalTo(secondDivideView.snp.bottom).offset(UIScreen.main.hasNotch ? 33 : 24)
         }
         
         friendCountLabel.snp.makeConstraints { make in
@@ -517,7 +520,7 @@ extension WaitingVC {
         
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(24)
+            make.top.equalTo(friendSubTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 24 : 20)
             make.height.equalTo(85)
         }
         

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
+		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
+		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
 		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
@@ -67,7 +69,6 @@
 		EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C507C27922F2E00588155 /* LineAnimationView.swift */; };
 		EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50832792A61D00588155 /* HabitAuthVC.swift */; };
 		EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C50872792A67B00588155 /* HabitAuth.storyboard */; };
-		EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C508B2792A90400588155 /* CompleteAuth.storyboard */; };
 		EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C509727931E4600588155 /* AuthUploadVC.swift */; };
 		EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C509927931E5F00588155 /* AuthUpload.storyboard */; };
@@ -76,7 +77,6 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
-		EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
@@ -1156,6 +1156,7 @@
 				F8F6D70027982D6400725537 /* Login.swift in Sources */,
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
+				2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
@@ -1186,16 +1187,15 @@
 				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
-				EB9C508A2792A86D00588155 /* CompleteAuthVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
-				EBE90FCE2795C23A00157075 /* MyRoomCerti.swift in Sources */,
 				F8096F442784221900B71D38 /* Xib.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
+				2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */,
 				2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */,
 				2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */,
 				F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */,
