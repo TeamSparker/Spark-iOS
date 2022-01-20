@@ -130,7 +130,7 @@ extension RoomService: TargetType {
         case .waitingMemberFetch:
             return Const.Header.authorizationHeader
         case .authUpload:
-            return Const.Header.authorizationHeader
+            return Const.Header.multipartAuthorizationHeader
         case .createRoom:
             return Const.Header.authorizationHeader
         case .sendSpark:
