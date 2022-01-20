@@ -194,8 +194,6 @@ class WaitingVC: UIViewController {
     private func presentToolTip() {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             self.toolTipImageView.transform = CGAffineTransform.identity
-            self.toolTipImageView.transform = CGAffineTransform.identity
-            self.toolTipImageView.alpha = 1
             self.toolTipImageView.alpha = 1
         }, completion: nil)
     }
@@ -203,8 +201,6 @@ class WaitingVC: UIViewController {
     private func dismissToolTip() {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             self.toolTipImageView.transform = CGAffineTransform.identity
-            self.toolTipImageView.transform = CGAffineTransform.identity
-            self.toolTipImageView.alpha = 0
             self.toolTipImageView.alpha = 0
         }, completion: nil)
     }
