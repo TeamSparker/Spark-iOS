@@ -13,12 +13,14 @@ import SwiftUI
 class WaitingVC: UIViewController {
     var members: [Member] = []
     var isFromHome: Bool?
+    private let tapGestrueRecognizer = UITapGestureRecognizer()
     
     // MARK: - Properties
     
     let copyButton = UIButton()
     let checkTitleLabel = UILabel()
     let toolTipButton = UIButton()
+    let toolTipImageView = UIImageView()
     let stopwatchLabel = UILabel()
     let checkDivideView = UIView()
     let photoLabel = UILabel()
@@ -59,6 +61,7 @@ class WaitingVC: UIViewController {
         setAddTarget()
         setAuthLabel()
         setNavigation(title: roomName ?? "")
+        setGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +98,10 @@ class WaitingVC: UIViewController {
         firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
         checkDivideView.backgroundColor = .sparkDarkGray
+        
+        toolTipImageView.layer.masksToBounds = true
+        toolTipImageView.contentMode = .scaleAspectFill
+        toolTipImageView.alpha = 0
         
         copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
@@ -160,6 +167,8 @@ class WaitingVC: UIViewController {
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
+        toolTipButton.addTarget(self, action: #selector(touchPresentToolTip), for: .touchUpInside)
+        tapGestrueRecognizer.addTarget(self, action: #selector(quickDismissToolTip))
     }
     
     func setCollectionView() {
@@ -182,6 +191,25 @@ class WaitingVC: UIViewController {
         }
     }
     
+    private func presentToolTip() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.alpha = 1
+        }, completion: nil)
+    }
+    
+    private func dismissToolTip() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.toolTipImageView.transform = CGAffineTransform.identity
+            self.toolTipImageView.alpha = 0
+        }, completion: nil)
+    }
+    
+    private func setGestureRecognizer() {
+        tapGestrueRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestrueRecognizer)
+    }
+    
     @objc
     func copyToClipboard() {
         UIPasteboard.general.string = roomCode
@@ -199,6 +227,19 @@ class WaitingVC: UIViewController {
         nextVC.purpose = userPurpose
         
         present(nextVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    private func quickDismissToolTip() {
+        toolTipImageView.alpha = 0
+    }
+    
+    @objc
+    private func touchPresentToolTip() {
+        presentToolTip()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) { [self] in
+            dismissToolTip()
+        }
     }
     
     // MARK: - 화면 전환
@@ -245,8 +286,10 @@ extension WaitingVC {
                     // 인증 방식
                     if waitingRoom.fromStart {
                         [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = false }
+                        self.toolTipImageView.image = UIImage(named: "timerToolTip")
                     } else {
                         [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = true }
+                        self.toolTipImageView.image = UIImage(named: "photoToolTip")
                     }
                     
                     // 방 코드
@@ -415,7 +458,7 @@ extension WaitingVC {
                           firstDivideView, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
                           secondDivideView, friendTitleLabel, friendCountLabel,
-                          friendSubTitleLabel, refreshButton, collectionView, startButton])
+                          friendSubTitleLabel, refreshButton, collectionView, startButton, toolTipImageView])
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -433,6 +476,11 @@ extension WaitingVC {
             make.leading.equalTo(checkTitleLabel.snp.trailing).offset(4)
             make.centerY.equalTo(checkTitleLabel.snp.centerY)
             make.width.height.equalTo(24)
+        }
+        
+        toolTipImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(toolTipButton.snp.centerX).offset(-0.5)
+            make.top.equalTo(toolTipButton.snp.bottom).offset(3)
         }
         
         photoLabel.snp.makeConstraints { make in

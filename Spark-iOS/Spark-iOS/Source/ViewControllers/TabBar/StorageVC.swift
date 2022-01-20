@@ -103,6 +103,11 @@ class StorageVC: UIViewController {
                     self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
                         DoneCV.reloadData()
                         FailCV.reloadData()
+                        if (doingLabel.text == "0") || (doingLabel.text == "0") {
+                            emptyView.isHidden = false
+                        } else {
+                                emptyView.isHidden = true
+                        }
                     }
                 }
             }
@@ -196,7 +201,7 @@ extension StorageVC {
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
-        if doingLabel.text == "0" {
+        if (doingLabel.text == "0") || (doingLabel.text == "0") {
             emptyView.isHidden = false
         } else {
                 emptyView.isHidden = true
@@ -374,7 +379,7 @@ extension StorageVC {
         let layout = CarouselLayout()
         
         let centerItemWidthScale: CGFloat = 327/375
-        let centerItemHeightScale: CGFloat = 0.95
+        let centerItemHeightScale: CGFloat = 0.9
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
         layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
