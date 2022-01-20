@@ -120,20 +120,22 @@ extension HomeVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let habitRoomList = habitRoomList else { return }
-        if habitRoomList[indexPath.item].isStarted == true {
-            // 습관방
-            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-            nextVC.roomID = habitRoomList[indexPath.item].roomID
-            
-            navigationController?.pushViewController(nextVC, animated: true)
-        } else {
-            // 대기방
-            guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-            waitingVC.roomId = habitRoomList[indexPath.item].roomID
-            waitingVC.isFromHome = true
-            waitingVC.roomName = habitRoomList[indexPath.item].roomName
-            
-            navigationController?.pushViewController(waitingVC, animated: true)
+        if habitRoomList.count != 0 {
+            if habitRoomList[indexPath.item].isStarted == true {
+                // 습관방
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+                nextVC.roomID = habitRoomList[indexPath.item].roomID
+                
+                navigationController?.pushViewController(nextVC, animated: true)
+            } else {
+                // 대기방
+                guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+                waitingVC.roomId = habitRoomList[indexPath.item].roomID
+                waitingVC.isFromHome = true
+                waitingVC.roomName = habitRoomList[indexPath.item].roomName
+                
+                navigationController?.pushViewController(waitingVC, animated: true)
+            }
         }
     }
 }
@@ -195,6 +197,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
                 return CGSize(width: cellWidth, height: habitCellHeight)
             }
         } else {
+            mainCollectionView.isScrollEnabled = false
             return CGSize(width: cellWidth, height: collectionViewHeight)
         }
     }
