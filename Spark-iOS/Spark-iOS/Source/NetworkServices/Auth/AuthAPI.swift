@@ -16,8 +16,8 @@ public class AuthAPI {
     // 객체화할 수 없게 만들어서 싱글톤 패턴으로만 사용하도록 접근 제어자 설정.
     private init() { }
     
-    func signup(socailID: String, profileImg: UIImage, nickname: String, fcmToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.signup(socialID: socailID, profileImg: profileImg, nickname: nickname, fcmToken: fcmToken)) { result in
+    func signup(socialID: String, profileImg: UIImage, nickname: String, fcmToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.signup(socialID: socialID, profileImg: profileImg, nickname: nickname, fcmToken: fcmToken)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

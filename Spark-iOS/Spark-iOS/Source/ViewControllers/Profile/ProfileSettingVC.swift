@@ -231,7 +231,7 @@ extension ProfileSettingVC: UITextFieldDelegate {
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // UIImage 타입인 originalImage를 빼옴
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = image
@@ -305,7 +305,13 @@ extension ProfileSettingVC {
 
 extension ProfileSettingVC {
     private func signupWithAPI(profileImg: UIImage, nickname: String, completion: @escaping () -> Void) {
-        AuthAPI.shared.signup(socailID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "",
+        let socialID: String
+        if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+            socialID = "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
+        } else {
+            socialID = "Kakao@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
+        }
+        AuthAPI.shared.signup(socialID: socialID,
                               profileImg: profileImg,
                               nickname: nickname,
                               fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
