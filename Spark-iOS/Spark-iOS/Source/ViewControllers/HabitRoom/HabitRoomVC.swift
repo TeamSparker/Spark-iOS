@@ -237,7 +237,6 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
         
         dismiss(animated: true) {
-            print("야 나오냐?")
             self.presentAuthUpload()
         }
     }
