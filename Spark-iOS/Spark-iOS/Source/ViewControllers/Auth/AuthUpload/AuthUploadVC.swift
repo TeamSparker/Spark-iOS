@@ -324,8 +324,6 @@ extension AuthUploadVC {
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
-                    print(authUpload)
-                    
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
                     
                     popupVC.modalTransitionStyle = .crossDissolve

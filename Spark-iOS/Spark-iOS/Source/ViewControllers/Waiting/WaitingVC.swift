@@ -143,6 +143,7 @@ class WaitingVC: UIViewController {
         startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
         startButton.setTitle("습관방 만들기", for: .normal)
         startButton.backgroundColor = .sparkPinkred
+        startButton.isHidden = true
     }
     
     /// 선택한 인증 방식

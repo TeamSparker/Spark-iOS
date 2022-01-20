@@ -149,7 +149,6 @@ extension StorageMoreVC {
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    print(myRoomCerti)
                     self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
                     self.storageMoreCV.reloadData()
                 }
