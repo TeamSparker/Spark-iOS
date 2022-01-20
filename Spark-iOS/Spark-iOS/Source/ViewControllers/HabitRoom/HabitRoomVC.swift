@@ -300,7 +300,9 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 13, left: 0, bottom: 13, right: 0)
+        let authButtonHeight = authButton.frame.height
+        // safe area 와 버튼 
+        return UIEdgeInsets(top: 13, left: 0, bottom: 33 + authButtonHeight, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

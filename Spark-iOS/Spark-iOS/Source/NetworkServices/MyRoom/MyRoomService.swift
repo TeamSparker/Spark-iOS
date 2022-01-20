@@ -29,7 +29,9 @@ extension MyRoomService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .myRoomFetch, .myRoomCertiFetch:
+        case .myRoomFetch:
+            return .get
+        case .myRoomCertiFetch:
             return .get
         }
     }
@@ -50,7 +52,9 @@ extension MyRoomService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .myRoomFetch, .myRoomCertiFetch:
+        case .myRoomFetch:
+            return Const.Header.authorizationHeader
+        case .myRoomCertiFetch:
             return Const.Header.authorizationHeader
         }
     }

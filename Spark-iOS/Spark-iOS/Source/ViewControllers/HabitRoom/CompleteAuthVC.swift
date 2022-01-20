@@ -37,7 +37,10 @@ class CompleteAuthVC: UIViewController {
 
     // MARK: IBActions
     @IBAction func touchNoDismiss(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true) {
+//            let presentingVC = self.presentingViewController
+//            presentingVC?.navigationController?.popToRootViewController(animated: false)
+        }
     }
 }
 
@@ -66,46 +69,4 @@ extension CompleteAuthVC {
             confettiView.play()
         }
     }
-}
-
-extension CompleteAuthVC {
-    
-    func getMyRoomWithAPI() {
-        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: -1, size: 100) {  response in
-            switch response {
-            case .success(let data):
-                if let myRoom = data as? MyRoom {
-                    print(myRoom)
-                }
-            case .requestErr(let message):
-                print("getMyRoomWithAPI - requestErr")
-            case .pathErr:
-                print("getMyRoomWithAPI - pathErr")
-            case .serverErr:
-                print("getMyRoomWithAPI - serverErr")
-            case .networkFail:
-                print("getMyRoomWithAPI - networkFail")
-            }
-        }
-    }
-    
-    func getMyRoomCertiWithAPI() {
-        MyRoomAPI.shared.myRoomCertiFetch(roomID: 2, lastID: -1, size: 7) {  response in
-            switch response {
-            case .success(let data):
-                if let myRoomCerti = data as? MyRoomCertification {
-                    print(myRoomCerti)
-                }
-            case .requestErr(let message):
-                print("getMyRoomCertiWithAPI - requestErr")
-            case .pathErr:
-                print("getMyRoomCertiWithAPI - pathErr")
-            case .serverErr:
-                print("getMyRoomCertiWithAPI - serverErr")
-            case .networkFail:
-                print("getMyRoomCertiWithAPI - networkFail")
-            }
-        }
-    }
-    
 }
