@@ -89,7 +89,7 @@ class CreateAuthVC: UIViewController {
     
     @objc
     private func touchEnterButton() {
-        self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
+        postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
             guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
             rootVC.roomName = self.roomName
             rootVC.roomId = self.roomId
