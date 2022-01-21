@@ -42,6 +42,7 @@ class MoreStorageCVC: UICollectionViewCell {
             certificationImage.contentMode = .scaleAspectFill
         default:
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
+            certificationImage.contentMode = .center
         }
         
         sparkCountLabel.text = String(sparkCount)
