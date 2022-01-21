@@ -24,20 +24,33 @@ class MoreStorageCVC: UICollectionViewCell {
         dDayLabel.text = "D-day"
     }
     
+    override func prepareForReuse() {
+        certificationImage.image = UIImage()
+        dDayLabel.text = ""
+        sparkCountLabel.text = ""
+    }
+    
     func initCell(leftDay: Int,
                   mainImage: String,
-                  sparkCount: Int) {
-        if mainImage == "" {
-            certificationImage.image = UIImage(named: "stickerRestBigMybox")
-            certificationImage.contentMode = .scaleAspectFit
-        } else {
+                  sparkCount: Int,
+                  status: String) {
+        switch status {
+        case "NONE":
+            certificationImage.image = UIImage()
+        case "DONE":
             certificationImage.updateImage(mainImage)
             certificationImage.contentMode = .scaleAspectFill
+        default:
+            certificationImage.image = UIImage(named: "stickerRestBigMybox")
         }
+        
         sparkCountLabel.text = String(sparkCount)
         
         if leftDay == 0 {
             dDayLabel.text = "D-day"
+        } else if leftDay == 66 {
+            dDayLabel.text = "D-\(leftDay)"
+            certificationImage.image = UIImage()
         } else {
             dDayLabel.text = "D-\(leftDay)"
         }

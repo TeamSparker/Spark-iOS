@@ -49,7 +49,7 @@ extension FeedService: TargetType {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .feedFetch:
             return Const.Header.authorizationHeader

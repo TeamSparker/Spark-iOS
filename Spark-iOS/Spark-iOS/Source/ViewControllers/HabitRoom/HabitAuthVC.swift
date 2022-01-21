@@ -39,7 +39,6 @@ class HabitAuthVC: UIViewController {
         setAddTargets()
     }
     
-    
     @IBAction func touchOutsideDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -78,9 +77,15 @@ extension HabitAuthVC {
         restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
-//        if restNumber == 0 {
-//            restButton.isEnabled = false
-//        }
+        
+        restNumberLabel.text = String(rest ?? 0)
+        
+        if rest == 0 {
+            restButton.isEnabled = false
+            restButton.layer.borderColor = UIColor.sparkGray.cgColor
+            restButton.setTitleColor(.sparkGray, for: .normal)
+            restButton.tintColor = .sparkGray
+        }
     }
     
     private func setAddTargets() {
