@@ -94,9 +94,6 @@ extension StorageMoreVC {
 
 extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 컬렉션뷰 크기 정하기
-        // 컬렉션뷰 위드에 맞게 셀 위드 정하기
-        // 셀 위드에 대해서 간격과 높이 정하기
         let cellWidth: CGFloat = collectionView.frame.width
         let cellWidthRatio: CGFloat = 160/375
         let widthHeightRatio: CGFloat = 203/160
@@ -116,13 +113,20 @@ extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
 
 extension StorageMoreVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myRoomCertificationList?.count ?? 0
+        if myRoomCertificationList?.last?.leftDay == 66 {
+            return ((myRoomCertificationList?.count ?? 0) - 1)
+        } else {
+            return myRoomCertificationList?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
         
-        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0, mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0)
+        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
+                      mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
+                      sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
+                      status: myRoomCertificationList?[indexPath.row].status ?? "")
         
         return cell
     }

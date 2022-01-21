@@ -233,7 +233,7 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imageContainer = image
+            imageContainer = image.resize(newWidth: 250)
         }
         
         dismiss(animated: true) {
