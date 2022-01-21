@@ -16,6 +16,8 @@ class CompleteAuthVC: UIViewController {
     var roomName: String?
     var nickName: String?
     var profileImage: String?
+    var timerCount: String?
+    let viewForRender = ViewForRender()
     
     // MARK: - Properties
     lazy var confettiView: AnimationView = {
@@ -40,6 +42,7 @@ class CompleteAuthVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setLayout()
         setGesture()
         setAnimation()
     }
@@ -65,6 +68,22 @@ extension CompleteAuthVC {
         tabBarController?.tabBar.isHidden = true
         
         instaView.layer.cornerRadius = 2
+        
+        viewForRender.roomNameLabel.text = roomName
+        viewForRender.nickNameLabel.text = nickName
+        viewForRender.timerLabel.text = timerCount
+        viewForRender.authImageView.image = renderedImage
+        viewForRender.profileImageView.updateImage(profileImage ?? "")
+    }
+    
+    private func setLayout() {
+        self.view.addSubview(viewForRender)
+        
+        viewForRender.snp.makeConstraints { make in
+            make.width.equalTo(328)
+            make.height.equalTo(478)
+            make.trailing.equalToSuperview().inset(-1000)
+        }
     }
     
     private func setGesture() {
@@ -79,37 +98,6 @@ extension CompleteAuthVC {
         }
     }
     
-    // TODO: 인스타 공유 부분
-//    func backgroundImage(backgroundImage: UIImage) {
-//        if let storyShareURL = URL(string: "instagram-stories://share") {
-//            if UIApplication.shared.canOpenURL(storyShareURL) {
-//                guard let imageData = backgroundImage.pngData() else {return}
-//
-//                let renderer = UIGraphicsImageRenderer(size: handImageVIew.bounds.size)
-//
-//                let renderImage = renderer.image { _ in
-//                    handImageVIew.drawHierarchy(in: handImageVIew.bounds, afterScreenUpdates: true)
-//                }
-//
-//                let pasteboardItems : [String:Any] = [
-//                    "com.instagram.sharedSticker.stickerImage": imageData,
-//                    "com.instagram.sharedSticker.backgroundTopColor": "#636e72",
-//                    "com.instagram.sharedSticker.backgroundBottomColor": "#b2bec3"
-//                ]
-//
-//                let pasteboardOptions = [
-//                    UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
-//                ]
-//
-//                UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
-//
-//                UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
-//
-//            } else {
-//                print("인스타 앱이 깔려있지 않습니다.")
-//            }
-//        }
-//    }
     private func shareAuthWithInstagram() {
         let renderer = UIGraphicsImageRenderer(size: viewForRender.bounds.size)
         let renderImage = renderer.image { _ in
