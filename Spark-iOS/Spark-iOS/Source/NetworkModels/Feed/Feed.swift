@@ -20,8 +20,9 @@ struct Record: Codable {
     let profileImg: String?
     let roomName: String
     let certifyingImg: String?
-    let likeNum, sparkCount: Int
-    let isLiked: Bool
+    var likeNum: Int
+    let sparkCount: Int
+    var isLiked: Bool
     let timerRecord: String?
 
     enum CodingKeys: String, CodingKey {
