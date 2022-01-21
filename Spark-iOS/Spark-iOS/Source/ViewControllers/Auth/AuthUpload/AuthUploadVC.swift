@@ -375,6 +375,7 @@ extension AuthUploadVC {
                     popupVC.roomName = authUpload.roomName
                     popupVC.nickName = authUpload.nickname
                     popupVC.profileImage = authUpload.profileImg
+                    popupVC.timerCount = self.timerLabel.text
                     
                     popupVC.vcType = self.vcType
                     popupVC.modalTransitionStyle = .crossDissolve

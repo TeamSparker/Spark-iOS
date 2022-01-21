@@ -73,6 +73,7 @@
 		EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C509727931E4600588155 /* AuthUploadVC.swift */; };
 		EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C509927931E5F00588155 /* AuthUpload.storyboard */; };
 		EBA2D6CF2799EAFE0022DFD6 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2D6CE2799EAFD0022DFD6 /* UIImage+.swift */; };
+		EBA2D6D4279AB50D0022DFD6 /* ViewForRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2D6D3279AB50D0022DFD6 /* ViewForRender.swift */; };
 		EBA77239278A2E14002958A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA77238278A2E14002958A5 /* Colors.xcassets */; };
 		EBA93A7D27907EF9009AE771 /* CodeJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */; };
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
@@ -214,6 +215,7 @@
 		EB9C509727931E4600588155 /* AuthUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUploadVC.swift; sourceTree = "<group>"; };
 		EB9C509927931E5F00588155 /* AuthUpload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthUpload.storyboard; sourceTree = "<group>"; };
 		EBA2D6CE2799EAFD0022DFD6 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		EBA2D6D3279AB50D0022DFD6 /* ViewForRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForRender.swift; sourceTree = "<group>"; };
 		EBA77238278A2E14002958A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EBA93A7C27907EF9009AE771 /* CodeJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeJoinVC.swift; sourceTree = "<group>"; };
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
@@ -618,6 +620,14 @@
 			path = AuthUpload;
 			sourceTree = "<group>";
 		};
+		EBA2D6D0279AB4BB0022DFD6 /* CompleteAuth */ = {
+			isa = PBXGroup;
+			children = (
+				EBA2D6D3279AB50D0022DFD6 /* ViewForRender.swift */,
+			);
+			path = CompleteAuth;
+			sourceTree = "<group>";
+		};
 		EBA93A80279080FC009AE771 /* CodeJoin */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +789,7 @@
 		F8096F1D27841DB600B71D38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EBA2D6D0279AB4BB0022DFD6 /* CompleteAuth */,
 				2BBFEFBD279ABBD900C085E4 /* HabitRoom */,
 				2B98520C2790ADDC00CE40A7 /* CreateAuth */,
 			);
@@ -1182,6 +1193,7 @@
 				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F82F580C27929F74003E4174 /* Header.swift in Sources */,
+				EBA2D6D4279AB50D0022DFD6 /* ViewForRender.swift in Sources */,
 				F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */,
