@@ -23,6 +23,8 @@ class FailStorageCVC: UICollectionViewCell {
 
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
+        thumbnailImage.contentMode = .scaleToFill
+        thumbnailImage.layer.masksToBounds = true
     }
     
     func initCell(roomName: String,

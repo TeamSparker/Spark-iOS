@@ -22,6 +22,7 @@ class MoreStorageCVC: UICollectionViewCell {
         dDayLabel.font = .p2Subtitle2Eng
         dDayLabel.textColor = .sparkGray
         dDayLabel.text = "D-day"
+        certificationImage.layer.masksToBounds = true
     }
     
     override func prepareForReuse() {
@@ -36,12 +37,12 @@ class MoreStorageCVC: UICollectionViewCell {
                   status: String) {
         switch status {
         case "NONE":
-            certificationImage.image = UIImage(named: "tagEmpty")
+            certificationImage.image = UIImage(named: "tagEmptyBox")
         case "DONE":
             certificationImage.updateImage(mainImage)
             certificationImage.contentMode = .scaleAspectFill
         case "CONSIDER":
-            certificationImage.image = UIImage(named: "tagEmpty")
+            certificationImage.image = UIImage(named: "tagEmptyBox")
             certificationImage.contentMode = .scaleAspectFill
         default:
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
