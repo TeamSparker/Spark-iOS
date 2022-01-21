@@ -61,6 +61,10 @@ class FeedVC: UIViewController {
         seventhList.removeAll()
         
         DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
             self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
             }
@@ -173,6 +177,9 @@ extension FeedVC {
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
+                    self.loadingView.stop()
+                    self.loadingBgView.removeFromSuperview()
+                    
                     self.feedList.append(contentsOf: feed.records)
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
@@ -190,7 +197,7 @@ extension FeedVC {
         }
     }
     
-    func postFeedLikeWithAPI(recordID: Int) {
+    private func postFeedLikeWithAPI(recordID: Int) {
         FeedAPI.shared.feedLike(recordID: recordID) { response in
             switch response {
             case .success(let message):
