@@ -379,6 +379,13 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		2BBFEFBD279ABBD900C085E4 /* HabitRoom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HabitRoom;
+			sourceTree = "<group>";
+		};
 		2BC1726E278F54B300BA3029 /* Waiting */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +779,7 @@
 		F8096F1D27841DB600B71D38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BBFEFBD279ABBD900C085E4 /* HabitRoom */,
 				2B98520C2790ADDC00CE40A7 /* CreateAuth */,
 			);
 			path = Views;

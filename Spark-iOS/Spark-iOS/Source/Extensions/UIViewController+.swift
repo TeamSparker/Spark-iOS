@@ -28,4 +28,36 @@ extension UIViewController {
                        options: .curveEaseIn, animations: { toastLabel.alpha = 0.0 },
                        completion: {_ in toastLabel.removeFromSuperview() })
     }
+    
+    func showSparkToast(x: CGFloat, y: CGFloat, message: String, font: UIFont) {
+        var backgroundView = UIView(frame: CGRect(x: x,
+                                                  y: y,
+                                                  width: self.view.frame.size.width - 40,
+                                                 height: 100))
+        var toastLabel = UILabel()
+        var toastImageView = UIImageView()
+        
+        backgroundView.backgroundColor = .sparkWhite
+        backgroundView.layer.cornerRadius = 2
+        backgroundView.layer.shadowColor = UIColor.sparkBlack.cgColor
+        
+        toastLabel.text = message
+        toastLabel.textColor = .sparkBlack
+        toastLabel.font = .p2Subtitle
+        toastImageView.image = UIImage(named: "illustHandSendSpark")
+        
+        view.addSubviews([toastImageView, toastLabel])
+        
+        toastImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(7)
+            make.width.height.equalTo(56)
+        }
+        
+        toastLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(toastImageView.snp.bottom)
+            make.leading.equalToSuperview().inset(16)
+        }
+    }
 }
