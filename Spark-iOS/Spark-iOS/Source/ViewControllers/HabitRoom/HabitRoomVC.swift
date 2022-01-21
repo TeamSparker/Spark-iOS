@@ -101,6 +101,7 @@ class HabitRoomVC: UIViewController {
 extension HabitRoomVC {
     private func setUI() {
         navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     
         tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)

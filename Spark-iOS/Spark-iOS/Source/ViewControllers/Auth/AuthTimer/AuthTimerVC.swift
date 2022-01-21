@@ -48,6 +48,7 @@ class AuthTimerVC: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     // MARK: - Methods
