@@ -256,6 +256,7 @@ class WaitingVC: UIViewController {
     @objc
     func dismissToHomeVC() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
     @objc
