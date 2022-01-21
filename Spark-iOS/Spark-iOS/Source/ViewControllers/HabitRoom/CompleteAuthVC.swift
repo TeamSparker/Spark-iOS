@@ -12,7 +12,10 @@ import SwiftUI
 
 class CompleteAuthVC: UIViewController {
     
-    public var renderedImage: UIImage?
+    var renderedImage: UIImage?
+    var roomName: String?
+    var nickName: String?
+    var profileImage: String?
     
     // MARK: - Properties
     lazy var confettiView: AnimationView = {
@@ -76,41 +79,42 @@ extension CompleteAuthVC {
         }
     }
     
-    func backgroundImage(backgroundImage: UIImage) {
-        if let storyShareURL = URL(string: "instagram-stories://share") {
-            if UIApplication.shared.canOpenURL(storyShareURL) {
-                guard let imageData = backgroundImage.pngData() else {return}
-                
-                let renderer = UIGraphicsImageRenderer(size: handImageVIew.bounds.size)
-                
-                let renderImage = renderer.image { _ in
-                    handImageVIew.drawHierarchy(in: handImageVIew.bounds, afterScreenUpdates: true)
-                }
-                
-                let pasteboardItems : [String:Any] = [
-                    "com.instagram.sharedSticker.stickerImage": imageData,
-                    "com.instagram.sharedSticker.backgroundTopColor": "#636e72",
-                    "com.instagram.sharedSticker.backgroundBottomColor": "#b2bec3"
-                ]
-                
-                let pasteboardOptions = [
-                    UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
-                ]
-                
-                UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
-                
-                UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
-                
-            } else {
-                print("인스타 앱이 깔려있지 않습니다.")
-            }
-        }
-    }
+    // TODO: 인스타 공유 부분
+//    func backgroundImage(backgroundImage: UIImage) {
+//        if let storyShareURL = URL(string: "instagram-stories://share") {
+//            if UIApplication.shared.canOpenURL(storyShareURL) {
+//                guard let imageData = backgroundImage.pngData() else {return}
+//
+//                let renderer = UIGraphicsImageRenderer(size: handImageVIew.bounds.size)
+//
+//                let renderImage = renderer.image { _ in
+//                    handImageVIew.drawHierarchy(in: handImageVIew.bounds, afterScreenUpdates: true)
+//                }
+//
+//                let pasteboardItems : [String:Any] = [
+//                    "com.instagram.sharedSticker.stickerImage": imageData,
+//                    "com.instagram.sharedSticker.backgroundTopColor": "#636e72",
+//                    "com.instagram.sharedSticker.backgroundBottomColor": "#b2bec3"
+//                ]
+//
+//                let pasteboardOptions = [
+//                    UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
+//                ]
+//
+//                UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+//
+//                UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
+//
+//            } else {
+//                print("인스타 앱이 깔려있지 않습니다.")
+//            }
+//        }
+//    }
     
     // MARK: - @objc
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
         // 인스타 공유 기능
-        backgroundImage(backgroundImage: renderedImage ?? UIImage())
+//        backgroundImage(backgroundImage: renderedImage ?? UIImage())
     }
 }

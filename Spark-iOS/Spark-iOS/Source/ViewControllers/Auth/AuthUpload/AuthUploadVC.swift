@@ -372,6 +372,9 @@ extension AuthUploadVC {
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
                     
                     popupVC.renderedImage = self.uploadImageView.image
+                    popupVC.roomName = authUpload.roomName
+                    popupVC.nickName = authUpload.nickname
+                    popupVC.profileImage = authUpload.profileImg
                     
                     popupVC.vcType = self.vcType
                     popupVC.modalTransitionStyle = .crossDissolve
