@@ -111,7 +111,7 @@ extension HabitRoomVC {
         habitTitleLabel.font = .h3Subtitle
         habitTitleLabel.textColor = .sparkWhite
         
-        flakeImageView.contentMode = .scaleToFill
+        flakeImageView.contentMode = .scaleAspectFill
         
         ddayTitleLabel.font = .h1BigtitleEng
         ddayTitleLabel.textColor = .sparkWhite
@@ -194,6 +194,7 @@ extension HabitRoomVC {
                 authButton.isEnabled = false
                 authButton.backgroundColor = .sparkGray
                 authButton.layer.borderWidth = 0
+                authButton.layer.shadowColor = UIColor.sparkWhite.cgColor
             } else {
                 authButton.isEnabled = true
                 authButton.backgroundColor = .sparkDarkPinkred
