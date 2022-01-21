@@ -36,17 +36,15 @@ class MoreStorageCVC: UICollectionViewCell {
                   sparkCount: Int,
                   status: String) {
         switch status {
-        case "NONE":
-            certificationImage.image = UIImage(named: "tagEmptyBox")
         case "DONE":
             certificationImage.updateImage(mainImage)
             certificationImage.contentMode = .scaleAspectFill
-        case "CONSIDER":
-            certificationImage.image = UIImage(named: "tagEmptyBox")
-            certificationImage.contentMode = .scaleAspectFill
-        default:
+        case "REST":
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
             certificationImage.contentMode = .center
+        default:
+            certificationImage.image = UIImage(named: "tagEmptyBox")
+            certificationImage.contentMode = .scaleAspectFill
         }
         
         sparkCountLabel.text = String(sparkCount)
