@@ -97,6 +97,7 @@ class HabitRoomVC: UIViewController {
 extension HabitRoomVC {
     private func setUI() {
         navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     
         tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
@@ -252,6 +253,14 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         nextVC.roomId = self.roomID
         nextVC.roomName = self.roomName
         nextVC.uploadImageView.image = self.imageContainer.resize(newWidth: UIScreen.main.bounds.width*nextVC.resizeRatio)
+        if let fromStart = habitRoomDetail?.fromStart {
+            if fromStart {
+                nextVC.vcType = .photoTimer
+            } else {
+                nextVC.vcType = .photoOnly
+            }
+        }
+        nextVC.uploadImageView.image = self.imageContainer
         nextVC.modalPresentationStyle = .fullScreen
         
         self.present(nextVC, animated: true, completion: nil)

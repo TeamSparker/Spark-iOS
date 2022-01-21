@@ -25,28 +25,22 @@ class CreateRoomVC: UIViewController {
 
     // MARK: - View Life Cycles
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUI()
         setLayout()
         setNotification()
         setAddTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
-//        navigationController?.initWithLeftButtonTitle(title: "aa",
-//                                                      tintColor: .sparkBlack,
-//                                                      backgroundColor: .white,
-//                                                      image: UIImage(named: "icQuit"),
-//                                                      selector: #selector(touchCloseButton))
-        
         closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         
         titleLabel.text = "어떤 습관방을 만들건가요?"
@@ -213,5 +207,4 @@ extension CreateRoomVC: UITextFieldDelegate {
             disableButton()
         }
     }
-    
 }

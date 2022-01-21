@@ -53,7 +53,7 @@
                                             </attributedString>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="touchNoDismiss:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rgz-SM-G39"/>
+                                            <action selector="goToFeedVC:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kqi-67-HSe"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcm-Se-nlb">
@@ -145,9 +145,9 @@
                     </view>
                     <connections>
                         <outlet property="animationFrameView" destination="1bv-cF-dvo" id="Y3D-HB-tg1"/>
+                        <outlet property="goToFeedButton" destination="uYS-yb-TR2" id="Dc9-cr-hij"/>
                         <outlet property="handImageVIew" destination="cm5-OK-aky" id="eCv-vH-ImC"/>
                         <outlet property="instaView" destination="Jcm-Se-nlb" id="jHd-vh-64a"/>
-                        <outlet property="noButton" destination="uYS-yb-TR2" id="Dc9-cr-hij"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

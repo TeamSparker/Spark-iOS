@@ -38,6 +38,7 @@ class HabitAuthVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setAddTargets()
+        setLayout()
     }
     
     @IBAction func touchOutsideDismiss(_ sender: Any) {
@@ -97,6 +98,12 @@ extension HabitAuthVC {
             restButton.layer.borderColor = UIColor.sparkGray.cgColor
             restButton.setTitleColor(.sparkGray, for: .normal)
             restButton.tintColor = .sparkGray
+        }
+    }
+    
+    private func setLayout() {
+        okButton.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
     

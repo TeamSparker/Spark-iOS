@@ -58,6 +58,7 @@ class FeedCVC: UICollectionViewCell {
         likeCountLabel.text = ""
         timeLabel.text = ""
         feedImageView.image = UIImage()
+        fadeImageView.image = UIImage()
         profileImageView.image = UIImage()
     }
     
@@ -136,6 +137,7 @@ extension FeedCVC {
         profileImageView.layer.masksToBounds = true
         profileImageView.contentMode = .scaleAspectFill
         feedImageView.contentMode = .scaleAspectFill
+        feedImageView.layer.masksToBounds = true
         
         sparkLabel.text = "받은 스파크"
         
@@ -192,7 +194,7 @@ extension FeedCVC {
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(feedImageView.snp.width).multipliedBy(1.0 / 1.0)
+            make.height.equalTo(self.snp.width).multipliedBy(1.0 / 1.0)
         }
         
         fadeImageView.snp.makeConstraints { make in
