@@ -17,6 +17,7 @@ class SendSparkVC: UIViewController {
     var secondButton = StatusButton()
     var thirdButton = StatusButton()
     var fourthButton = StatusButton()
+    var userName: String?
     
     // MARK: IBoutlet properties
     
@@ -106,7 +107,8 @@ extension SendSparkVC {
     
     // MARK: - @objc Function
     
-    @objc func setSelectedButton(sender: StatusButton) {
+    @objc
+    func setSelectedButton(sender: StatusButton) {
         
         let status = sender.status
         
@@ -174,7 +176,10 @@ extension SendSparkVC {
         RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: selectedMessage) {  response in
             switch response {
             case .success(_):
-                self.dismiss(animated: true)
+                let presentVC = self.presentingViewController
+                self.dismiss(animated: true) {
+                    presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
+                }
             case .requestErr(let message):
                 print("sendSparkWithAPI - requestErr: \(message)")
             case .pathErr:

@@ -271,13 +271,14 @@ extension HabitRoomVC {
         }
     }
     
-    private func presentToSendSparkVC(recordID: Int) {
+    private func presentToSendSparkVC(recordID: Int, nickname: String) {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.sendSpark, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.sendSpark) as? SendSparkVC else { return }
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.roomID = habitRoomDetail?.roomID
         nextVC.recordID = recordID
-
+        nextVC.userName = nickname
+        
         self.present(nextVC, animated: true, completion: nil)
     }
     
@@ -358,7 +359,7 @@ extension HabitRoomVC: UICollectionViewDataSource {
                                 profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1]?.profileImg ?? "",
                                 nickname: habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "",
                                 status: habitRoomDetail?.otherRecords[indexPath.item - 1]?.status ?? "",
-                                leftDay: habitRoomDetail?.leftDay ?? 0) { self.presentToSendSparkVC(recordID: self.habitRoomDetail?.otherRecords[indexPath.item - 1]?.recordID ?? 0) }
+                                leftDay: habitRoomDetail?.leftDay ?? 0) { self.presentToSendSparkVC(recordID: self.habitRoomDetail?.otherRecords[indexPath.item - 1]?.recordID ?? 0, nickname: self.habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "") }
             
             return cell
         }
