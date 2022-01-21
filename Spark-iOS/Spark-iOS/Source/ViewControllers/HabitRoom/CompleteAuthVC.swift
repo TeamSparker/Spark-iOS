@@ -41,23 +41,10 @@ class CompleteAuthVC: UIViewController {
     
     // MARK: IBActions
     @IBAction func goToFeedVC(_ sender: Any) {
-        guard let presentingVC = self.presentingViewController?.presentingViewController as? UINavigationController else { return }
+        guard let presentingVC = self.presentingViewController?.presentingViewController as? UITabBarController else { return }
         
-        switch vcType {
-        case .photoOnly:
-            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {
-                presentingVC.popToRootViewController(animated: false)
-                guard let mainTBC = presentingVC.viewControllers.first as? UITabBarController else { return }
-                mainTBC.selectedIndex = 0
-                
-            })
-        case .photoTimer:
-            self.presentingViewController?.presentingViewController?.dismiss(animated: true) {
-                // FIXME: - 피드로 가야된다
-                presentingVC.popToRootViewController(animated: true)
-            }
-        default:
-            break
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false) {
+            presentingVC.selectedIndex = 0
         }
     }
 }
