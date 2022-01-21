@@ -20,6 +20,8 @@ class HabitRoomVC: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var goalTextField: UILabel!
+    @IBOutlet weak var timeTextLabel: UILabel!
     @IBOutlet weak var flakeImageView: UIImageView!
     @IBOutlet weak var habitTitleLabel: UILabel!
     @IBOutlet weak var ddayTitleLabel: UILabel!
@@ -163,8 +165,19 @@ extension HabitRoomVC {
         startDateLabel.text = habitRoomDetail.startDate
         endDateLabel.text = habitRoomDetail.endDate
         
-        timeLabel.text = habitRoomDetail.moment
-        goalLabel.text = habitRoomDetail.purpose
+        if habitRoomDetail.moment != nil {
+            timeLabel.text = habitRoomDetail.moment
+        } else {
+            timeTextLabel.text = ""
+            timeLabel.text = "습관을 시작하기 전에"
+        }
+        
+        if habitRoomDetail.purpose != nil {
+            goalLabel.text = habitRoomDetail.purpose
+        } else {
+            goalTextField.text = ""
+            goalLabel.text = "시간과 목표를 작성해 주세요!"
+        }
         
         // 방 생명 이미지 구현
         let lifeImgaeList = [firstLifeImage, secondLifeImage, thirdLifeImage]
