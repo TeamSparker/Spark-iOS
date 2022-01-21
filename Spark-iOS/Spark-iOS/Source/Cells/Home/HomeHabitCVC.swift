@@ -66,7 +66,7 @@ extension HomeHabitCVC {
         flakeImage.contentMode = .scaleAspectFill
         ticketImage.contentMode = .scaleAspectFit
         
-        ddayTitleLabel.font = .h1Bigtitle
+        ddayTitleLabel.font = .h1BigtitleEng
         ddaySubtitleLabel.font = .caption
         
         [firstProfileImage, secondProfileImage, thirdProfileImage, fourthProfileImage].forEach {

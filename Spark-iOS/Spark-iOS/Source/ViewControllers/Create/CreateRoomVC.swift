@@ -61,6 +61,7 @@ class CreateRoomVC: UIViewController {
         textField.borderStyle = .none
         textField.placeholder = "ex. 30분 독서"
         textField.delegate = self
+        textField.tintColor = .sparkPinkred
 
         lineView.backgroundColor = .sparkGray
 

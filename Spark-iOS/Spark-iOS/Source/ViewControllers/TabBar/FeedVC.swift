@@ -41,13 +41,6 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
-        
-        // FIXME: - getFeedListFetchWithAPI 위치 변경
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-//                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,12 +48,27 @@ class FeedVC: UIViewController {
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         tabBarController?.tabBar.isHidden = false
-        // FIXME: - getFeedListFetchWithAPI를 여기서 호출하는거로 변경
-//        DispatchQueue.main.async {
-//            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-//                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-//            }
-//        }
+        
+        feedLastID = -1
+        
+        feedList.removeAll()
+        firstList.removeAll()
+        secondList.removeAll()
+        thirdList.removeAll()
+        fourthList.removeAll()
+        fifthList.removeAll()
+        sixthList.removeAll()
+        seventhList.removeAll()
+        
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
+        }
     }
     
     // MARK: - Methods
@@ -169,6 +177,9 @@ extension FeedVC {
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
+                    self.loadingView.stop()
+                    self.loadingBgView.removeFromSuperview()
+                    
                     self.feedList.append(contentsOf: feed.records)
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
@@ -186,7 +197,7 @@ extension FeedVC {
         }
     }
     
-    func postFeedLikeWithAPI(recordID: Int) {
+    private func postFeedLikeWithAPI(recordID: Int) {
         FeedAPI.shared.feedLike(recordID: recordID) { response in
             switch response {
             case .success(let message):

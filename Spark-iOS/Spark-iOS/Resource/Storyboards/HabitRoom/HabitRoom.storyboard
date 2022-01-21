@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="suy-dQ-y1I">
-                                <rect key="frame" x="0.0" y="343" width="414" height="553"/>
+                                <rect key="frame" x="0.0" y="315" width="414" height="581"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGt-Lp-835">
                                     <size key="itemSize" width="128" height="128"/>
@@ -44,11 +44,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="INP-rS-JPk">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="348"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="INP-rS-JPk" secondAttribute="height" multiplier="375:315" id="m59-v9-3SR"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="property1BgHabitroom" translatesAutoresizingMaskIntoConstraints="NO" id="INP-rS-JPk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzm-65-lz0">
                                 <rect key="frame" x="20" y="64" width="24" height="24"/>
@@ -224,6 +221,7 @@
     <resources>
         <image name="icBackWhite" width="24" height="24"/>
         <image name="icMoreVerticalWhite" width="24" height="24"/>
+        <image name="property1BgHabitroom" width="375" height="320"/>
         <namedColor name="sparkBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

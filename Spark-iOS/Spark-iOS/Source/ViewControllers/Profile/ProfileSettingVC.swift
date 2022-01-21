@@ -61,6 +61,7 @@ class ProfileSettingVC: UIViewController {
         
         textField.borderStyle = .none
         textField.placeholder = "닉네임 입력"
+        textField.tintColor = .sparkPinkred
         
         lineView.backgroundColor = .sparkGray
         
