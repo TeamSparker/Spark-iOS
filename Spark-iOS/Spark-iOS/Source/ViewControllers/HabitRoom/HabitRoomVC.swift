@@ -74,7 +74,8 @@ class HabitRoomVC: UIViewController {
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.roomID = roomID
         nextVC.roomName = roomName
-        nextVC.rest = habitRoomDetail?.myRecord.rest
+        nextVC.restNumber = habitRoomDetail?.myRecord.rest
+        nextVC.restStatus = habitRoomDetail?.myRecord.status
         nextVC.presentAlertClosure = {
             self.showAlert()
         }
