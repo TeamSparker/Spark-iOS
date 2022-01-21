@@ -20,6 +20,7 @@ class StorageVC: UIViewController {
     private var completeRoomLastID: Int = -1
     private var failRoomList: [MyRoomRooms]? = []
     private var failRoomLastID: Int = -1
+    private var mainStatus: Int = -1
 
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
@@ -128,7 +129,10 @@ class StorageVC: UIViewController {
                         }
                         self.loadingView.stop()
                         self.loadingBgView.removeFromSuperview()
-                        self.makeDrawAboveButton(button: self.doingButton)
+                        
+                        if (self.mainStatus == -1) || (self.mainStatus == 0) {
+                            self.makeDrawAboveButton(button: self.doingButton)
+                        }
                     }
                 }
             }
@@ -335,6 +339,7 @@ extension StorageVC {
     
     @objc func changeCollectionView(sender: StatusButton) {
         let status: Int = (sender.status)
+        mainStatus = status
         switch status {
         case 1:
             DoingCV.isHidden = true

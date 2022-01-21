@@ -43,7 +43,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-UT-RR9">
-                                        <rect key="frame" x="84.5" y="216" width="158.5" height="18"/>
+                                        <rect key="frame" x="82" y="216" width="163" height="18.5"/>
                                         <fontDescription key="fontDescription" name="Futura" family="Futura" pointSize="14"/>
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
