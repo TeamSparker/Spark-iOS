@@ -37,7 +37,6 @@ class HabitAuthVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setAddTargets()
-        setDelegate()
         setLayout()
     }
     

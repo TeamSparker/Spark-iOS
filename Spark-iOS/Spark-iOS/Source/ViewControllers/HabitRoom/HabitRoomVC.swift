@@ -247,6 +247,13 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         nextVC.setFirstFlowUI()
         nextVC.roomId = self.roomID
         nextVC.roomName = self.roomName
+        if let fromStart = habitRoomDetail?.fromStart {
+            if fromStart {
+                nextVC.vcType = .photoTimer
+            } else {
+                nextVC.vcType = .photoOnly
+            }
+        }
         nextVC.uploadImageView.image = self.imageContainer
         nextVC.modalPresentationStyle = .fullScreen
         

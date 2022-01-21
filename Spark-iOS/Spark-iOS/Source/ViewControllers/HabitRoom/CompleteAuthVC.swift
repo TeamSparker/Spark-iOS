@@ -6,10 +6,12 @@
 //
 
 import UIKit
+
 import Lottie
+import SwiftUI
 
 class CompleteAuthVC: UIViewController {
-
+    
     // MARK: - Properties
     lazy var confettiView: AnimationView = {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
@@ -18,6 +20,8 @@ class CompleteAuthVC: UIViewController {
         animationView.loopMode = .loop
         return animationView
     }()
+    
+    var vcType: VCCase?
     
     // MARK: - IBoutlet properties
     
@@ -34,12 +38,26 @@ class CompleteAuthVC: UIViewController {
         setGesture()
         setAnimation()
     }
-
+    
     // MARK: IBActions
-    @IBAction func touchNoDismiss(_ sender: Any) {
-        self.dismiss(animated: true) {
-//            let presentingVC = self.presentingViewController
-//            presentingVC?.navigationController?.popToRootViewController(animated: false)
+    @IBAction func goToFeedVC(_ sender: Any) {
+        guard let presentingVC = self.presentingViewController?.presentingViewController as? UINavigationController else { return }
+        
+        switch vcType {
+        case .photoOnly:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {
+                presentingVC.popToRootViewController(animated: false)
+                guard let mainTBC = presentingVC.viewControllers.first as? UITabBarController else { return }
+                mainTBC.selectedIndex = 0
+                
+            })
+        case .photoTimer:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true) {
+                // FIXME: - 피드로 가야된다
+                presentingVC.popToRootViewController(animated: true)
+            }
+        default:
+            break
         }
     }
 }
