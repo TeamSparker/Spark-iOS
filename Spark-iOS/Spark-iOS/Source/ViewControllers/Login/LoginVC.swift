@@ -112,14 +112,15 @@ extension LoginVC {
         }
     }
     
-    private func presentToMainTabBar() {
-        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+    private func presentToMainTBC() {
+        // FIXME: - 현규-네비바
+        guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+//        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+//        let mainVC = UINavigationController(rootViewController: rootVC)
+        mainVC.modalPresentationStyle = .fullScreen
+        mainVC.modalTransitionStyle = .crossDissolve
         
-        let nextVC = UINavigationController(rootViewController: rootVC)
-        nextVC.modalPresentationStyle = .fullScreen
-        nextVC.modalTransitionStyle = .crossDissolve
-        
-        present(nextVC, animated: true, completion: nil)
+        present(mainVC, animated: true, completion: nil)
     }
 }
 
@@ -170,7 +171,7 @@ extension LoginVC {
                         // 회원 정보를 불러왔습니다.
                         UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
                         
-                        self.presentToMainTabBar()
+                        self.presentToMainTBC()
                     }
                 }
             case .requestErr(let message):

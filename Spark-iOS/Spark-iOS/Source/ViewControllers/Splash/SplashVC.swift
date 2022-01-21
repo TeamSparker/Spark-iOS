@@ -56,7 +56,7 @@ class SplashVC: UIViewController {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             if self.appDelegate?.isLogin == true {
-                self.presentToMain()
+                self.presentToMainTBC()
             } else {
 
                 // FIXME: - 온보딩 만들면 적용하기
@@ -101,10 +101,11 @@ extension SplashVC {
         }
     }
     
-    private func presentToMain() {
-        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
-        
-        let mainVC = UINavigationController(rootViewController: rootVC)
+    private func presentToMainTBC() {
+        // FIXME: - 현규-네비바
+        guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+//        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+//        let mainVC = UINavigationController(rootViewController: rootVC)
         mainVC.modalPresentationStyle = .fullScreen
         mainVC.modalTransitionStyle = .crossDissolve
         

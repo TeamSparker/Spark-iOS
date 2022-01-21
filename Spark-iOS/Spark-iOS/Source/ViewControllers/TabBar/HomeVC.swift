@@ -36,8 +36,15 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // FIXME: - 현규-네비바
+        tabBarController?.tabBar.isHidden = false
         
         navigationController?.isNavigationBarHidden = false
+        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
+                                                            tintColor: .sparkBlack,
+                                                            backgroundColor: .sparkWhite,
+                                                            firstButtonSelector: #selector(presentToProfileVC),
+                                                            secondButtonSelector: #selector(presentToAertVC))
         
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
         
