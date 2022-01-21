@@ -293,7 +293,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func touchToMore() {
-        // 더보기 버튼
+           // 더보기 버튼
     }
     
     @objc

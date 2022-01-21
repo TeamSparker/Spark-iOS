@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "property1BgHabitroomSparkflake2.png"
+      "filename" : "property1BgHabitroom.png",
+      "scale" : "1x"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "universal",
+      "filename" : "property1BgHabitroom@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "property1BgHabitroomSparkflake2@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "property1BgHabitroomSparkflake2@3x.png",
+      "filename" : "property1BgHabitroom@3x.png",
       "scale" : "3x"
     }
   ],
