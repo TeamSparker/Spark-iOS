@@ -29,12 +29,12 @@ class CodeJoinVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setAddTargets()
-        setNotification()
         setDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNotification()
         resetUI()
         resetLayout()
     }
