@@ -43,6 +43,7 @@ class HabitAuthVC: UIViewController {
     
     @IBAction func touchOutsideDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
     }
 }
 
@@ -165,8 +166,10 @@ extension HabitAuthVC {
     func setConsiderRestWithAPI(statusType: String) {
         RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
             switch response {
-            case .success(_):
+            case .success(let message):
                 self.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
+                print("setConsiderRestWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("setConsiderRestWithAPI - requestErr: \(message)")
             case .pathErr:

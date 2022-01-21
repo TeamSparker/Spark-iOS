@@ -23,7 +23,7 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var flakeImageView: UIImageView!
     @IBOutlet weak var habitTitleLabel: UILabel!
     @IBOutlet weak var ddayTitleLabel: UILabel!
-    @IBOutlet weak var progessView: UIProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
@@ -44,6 +44,7 @@ class HabitRoomVC: UIViewController {
         setUI()
         setDelegate()
         registerXib()
+        setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +53,11 @@ class HabitRoomVC: UIViewController {
         fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
             self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
+    }
+    
+    // set status bar style
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // FIXME: - update??
@@ -110,7 +116,7 @@ extension HabitRoomVC {
         ddayTitleLabel.font = .h1BigtitleEng
         ddayTitleLabel.textColor = .sparkWhite
         
-        progessView.trackTintColor = .sparkDeepGray
+        progressView.trackTintColor = .sparkDeepGray
         
         startDateLabel.font = .captionEng
         startDateLabel.textColor = .sparkWhite
@@ -130,12 +136,8 @@ extension HabitRoomVC {
         authButton.setTitle("오늘의 인증", for: .normal)
         authButton.setTitleColor(.sparkWhite, for: .normal)
         authButton.titleLabel?.font = .btn1Default
-        authButton.backgroundColor = .sparkDarkPinkred
-        authButton.layer.cornerRadius = 2
-        authButton.layer.shadowColor = UIColor.sparkDarkPinkred.cgColor
-        authButton.layer.shadowOffset = CGSize(width: 0, height: 2)
-        authButton.layer.shadowOpacity = Float(0.3)
-        authButton.layer.shadowRadius = 10
+        authButton.backgroundColor = .sparkGray
+        authButton.isEnabled = false
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
@@ -152,9 +154,11 @@ extension HabitRoomVC {
         
         let sparkFlake = SparkFlake(leftDay: leftDay)
         flakeImageView.image = sparkFlake.sparkFlakeHabitBackground()
-        progessView.progressTintColor = sparkFlake.sparkFlakeColor()
+        progressView.progressTintColor = sparkFlake.sparkFlakeColor()
         // 맞나..?
-        progessView.setProgress(Float((66 - leftDay )/66), animated: true)
+        
+//        progessView.setProgress(Float((66 - leftDay )/66), animated: true)
+        progressView.setProgress(Float((66 - leftDay )/66), animated: false)
         
         startDateLabel.text = habitRoomDetail.startDate
         endDateLabel.text = habitRoomDetail.endDate
@@ -178,6 +182,32 @@ extension HabitRoomVC {
                 lifeImgaeList[index]?.image = UIImage(named: "icRoomlifeEmpty")
             }
         }
+        
+        // 오늘의 인증 버튼 세팅
+        if leftDay == 66 {
+            authButton.isEnabled = false
+            authButton.backgroundColor = .sparkGray
+            authButton.layer.borderWidth = 0
+        } else {
+            if habitRoomDetail.myRecord.status == "DONE" ||
+               habitRoomDetail.myRecord.status == "REST" {
+                authButton.isEnabled = false
+                authButton.backgroundColor = .sparkGray
+                authButton.layer.borderWidth = 0
+            } else {
+                authButton.isEnabled = true
+                authButton.backgroundColor = .sparkDarkPinkred
+                authButton.layer.cornerRadius = 2
+                authButton.layer.shadowColor = UIColor.sparkDarkPinkred.cgColor
+                authButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+                authButton.layer.shadowOpacity = Float(0.3)
+                authButton.layer.shadowRadius = 10
+            }
+        }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHabitRoom), name: .updateHabitRoom, object: nil)
     }
     
     private func setDelegate() {
@@ -225,6 +255,25 @@ extension HabitRoomVC {
             present(picker, animated: true, completion: nil)
         } else {
             print("카메라 안됩니다.")
+        }
+    }
+    
+    private func presentToSendSparkVC(recordID: Int) {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.sendSpark, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.sendSpark) as? SendSparkVC else { return }
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.roomID = habitRoomDetail?.roomID
+        nextVC.recordID = recordID
+
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func updateHabitRoom() {
+        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
+            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
     }
 }
@@ -286,7 +335,8 @@ extension HabitRoomVC: UICollectionViewDataSource {
                             profileImg: habitRoomDetail?.myRecord.profileImg ?? "",
                             nickname: habitRoomDetail?.myRecord.nickname ?? "",
                             status: habitRoomDetail?.myRecord.status ?? "",
-                            receivedSpark: habitRoomDetail?.myRecord.receivedSpark ?? 0)
+                            receivedSpark: habitRoomDetail?.myRecord.receivedSpark ?? 0,
+                            leftDay: habitRoomDetail?.leftDay ?? 0)
             
             return cell
         } else {
@@ -295,7 +345,7 @@ extension HabitRoomVC: UICollectionViewDataSource {
                                 profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1]?.profileImg ?? "",
                                 nickname: habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "",
                                 status: habitRoomDetail?.otherRecords[indexPath.item - 1]?.status ?? "",
-                                sparkDone: false)
+                                leftDay: habitRoomDetail?.leftDay ?? 0) { self.presentToSendSparkVC(recordID: self.habitRoomDetail?.otherRecords[indexPath.item - 1]?.recordID ?? 0) }
             
             return cell
         }
