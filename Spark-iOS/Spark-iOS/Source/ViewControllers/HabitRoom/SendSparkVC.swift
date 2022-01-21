@@ -53,6 +53,7 @@ extension SendSparkVC {
             $0.layer.cornerRadius = 2
             $0.layer.borderWidth = 1
             $0.setTitleColor(.sparkLightPinkred, for: .normal)
+            $0.titleLabel?.font = .krMediumFont(ofSize: 14)
         }
         
         firstButton.setTitle("👊 아자아자 파이팅!", for: .normal)
@@ -73,28 +74,28 @@ extension SendSparkVC {
             make.centerX.equalToSuperview()
             make.top.equalTo(guideLabel.snp.bottom).offset(20)
             make.height.equalTo(36)
-            make.width.equalTo(170)
+            make.width.equalTo(143)
         }
         
         secondButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(firstButton.snp.bottom).offset(20)
             make.height.equalTo(36)
-            make.width.equalTo(186)
+            make.width.equalTo(157)
         }
         
         thirdButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(secondButton.snp.bottom).offset(20)
             make.height.equalTo(36)
-            make.width.equalTo(147)
+            make.width.equalTo(120)
         }
         
         fourthButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(thirdButton.snp.bottom).offset(20)
             make.height.equalTo(36)
-            make.width.equalTo(230)
+            make.width.equalTo(200)
         }
     }
     
