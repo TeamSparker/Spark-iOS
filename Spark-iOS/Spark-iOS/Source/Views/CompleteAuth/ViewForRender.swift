@@ -104,12 +104,12 @@ class ViewForRender: UIView {
         
         nickNameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(profileImageView.snp.bottom).offset(3)
+            make.top.equalTo(profileImageView.snp.bottom).offset(5)
         }
         
         roomNameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nickNameLabel.snp.bottom).offset(15)
+            make.top.equalTo(nickNameLabel.snp.bottom).offset(13)
         }
     }
 }

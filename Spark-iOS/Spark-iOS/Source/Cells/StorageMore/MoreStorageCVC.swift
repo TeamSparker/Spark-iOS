@@ -36,9 +36,12 @@ class MoreStorageCVC: UICollectionViewCell {
                   status: String) {
         switch status {
         case "NONE":
-            certificationImage.image = UIImage()
+            certificationImage.image = UIImage(named: "tagEmpty")
         case "DONE":
             certificationImage.updateImage(mainImage)
+            certificationImage.contentMode = .scaleAspectFill
+        case "CONSIDER":
+            certificationImage.image = UIImage(named: "tagEmpty")
             certificationImage.contentMode = .scaleAspectFill
         default:
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
