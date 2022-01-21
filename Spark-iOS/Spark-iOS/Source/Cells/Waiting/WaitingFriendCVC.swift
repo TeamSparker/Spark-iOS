@@ -64,8 +64,8 @@ class WaitingFriendCVC: UICollectionViewCell {
         }
     }
     
-    func initCell(name: String, image: Data) {
-        nameLabel.text = name
-        profileImageView.image = UIImage(data: image)
-    }
+    func initCell(name: String, imagePath: String) {
+            nameLabel.text = name
+            profileImageView.updateImage(imagePath)
+        }
 }

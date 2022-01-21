@@ -7,12 +7,17 @@
 
 import UIKit
 
+import Lottie
+
 class FeedVC: UIViewController {
     
     // MARK: - Properties
     
     let collectionViewFlowlayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
+    
+    lazy var loadingBgView = UIView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     private var dateList: [String] = []
     private var dayList: [String] = []
@@ -60,7 +65,27 @@ class FeedVC: UIViewController {
     
     // MARK: - Methods
     
-    func setCollectionView() {
+    private func setLoading() {
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingBgView.backgroundColor = .white
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
+    }
+    
+    private func setCollectionView() {
         collectionView.showsVerticalScrollIndicator = false
         
         collectionView.delegate = self
@@ -74,7 +99,7 @@ class FeedVC: UIViewController {
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
     }
     
-    func setData(datalist: [Record]) {
+    private func setData(datalist: [Record]) {
         var indexPath = 0
         var sectionCount = 0 // section을 돌기 위한 변수
         
@@ -126,7 +151,7 @@ class FeedVC: UIViewController {
         }
     }
     
-    func setLayout() {
+    private func setLayout() {
         view.addSubviews([collectionView])
         
         collectionView.snp.makeConstraints { make in

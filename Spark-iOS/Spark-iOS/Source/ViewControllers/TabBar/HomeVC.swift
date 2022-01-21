@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Lottie
 import SnapKit
 import JJFloatingActionButton
 
@@ -16,9 +17,11 @@ class HomeVC: UIViewController {
     
     private var habitRoomList: [Room]? = []
     private var habitRoomLastID: Int = -1
-    
     private var habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
+    
+    lazy var loadingBgView = UIImageView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - @IBOutlet Properties
     
@@ -53,9 +56,9 @@ class HomeVC: UIViewController {
         // 다른탭에서 돌아올때 엠티뷰가 habitRoomList 갯수만큼 여러개 등장하던 부분 해결.
         self.mainCollectionView.reloadData()
         
-//        DispatchQueue.main.async {
-            // TODO: - 로딩창붙이기 위한 dispatch queue
-//        }
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
         
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
@@ -90,6 +93,26 @@ extension HomeVC {
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeHabitCVC)
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeWaitingCVC)
         mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeEmptyCVC)
+    }
+    
+    private func setLoading() {
+        loadingBgView.image = UIImage(named: "bgLinegridForWhite")
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
     }
     
     // TODO: - 화면전환
@@ -226,6 +249,8 @@ extension HomeVC {
         HomeAPI.shared.habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
             switch response {
             case .success(let data):
+                self.loadingView.stop()
+                self.loadingBgView.removeFromSuperview()
                 if let habitRooms = data as? HabitRoom {
                     self.habitRoomList?.append(contentsOf: habitRooms.rooms)
                     self.mainCollectionView.reloadData()

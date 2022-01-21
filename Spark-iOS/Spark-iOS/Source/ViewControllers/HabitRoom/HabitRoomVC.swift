@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Lottie
+
 class HabitRoomVC: UIViewController {
     
     // MARK: - Properties
@@ -17,6 +19,9 @@ class HabitRoomVC: UIViewController {
     
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
+    
+    lazy var loadingBgView = UIView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - @IBOutlet Properties
     
@@ -52,8 +57,15 @@ class HabitRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
-            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        DispatchQueue.main.async {
+            // 로딩
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
+            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
         }
     }
     
@@ -219,6 +231,26 @@ extension HabitRoomVC {
                 authButton.layer.shadowRadius = 10
             }
         }
+    }
+    
+    private func setLoading() {
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingBgView.backgroundColor = .white.withAlphaComponent(0.8)
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
     }
     
     private func setNotification() {
@@ -400,6 +432,8 @@ extension HabitRoomVC {
         RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
             switch response {
             case .success(let data):
+                self.loadingView.stop()
+                self.loadingBgView.removeFromSuperview()
                 if let habitRoomDetail = data as? HabitRoomDetail {
                     self.setUIByData(habitRoomDetail)
                     self.habitRoomDetail = habitRoomDetail
