@@ -132,7 +132,9 @@ extension HabitRoomVC {
         bgView.layer.cornerRadius = 2
         
         timeLabel.font = .p2Subtitle
+        timeLabel.text = ""
         goalLabel.font = .p2Subtitle
+        goalLabel.text = ""
         
         moreButton.isHidden = true
         

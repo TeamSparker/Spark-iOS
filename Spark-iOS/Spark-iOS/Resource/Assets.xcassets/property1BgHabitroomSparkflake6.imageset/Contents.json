@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "filename" : "property1BgHabitroomSparkflake6.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x"
     },
     {
       "filename" : "property1BgHabitroomSparkflake6@2x.png",
@@ -11,9 +11,9 @@
       "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "property1BgHabitroomSparkflake6@3x.png"
+      "filename" : "property1BgHabitroomSparkflake6@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
