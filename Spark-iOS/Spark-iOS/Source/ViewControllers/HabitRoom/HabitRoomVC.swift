@@ -236,7 +236,7 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imageContainer = image.resize(newWidth: 250)
+            imageContainer = image
         }
         
         dismiss(animated: true) {
@@ -250,7 +250,7 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         nextVC.setFirstFlowUI()
         nextVC.roomId = self.roomID
         nextVC.roomName = self.roomName
-        nextVC.uploadImageView.image = self.imageContainer
+        nextVC.uploadImageView.image = self.imageContainer.resize(newWidth: UIScreen.main.bounds.width*nextVC.resizeRatio)
         nextVC.modalPresentationStyle = .fullScreen
         
         self.present(nextVC, animated: true, completion: nil)

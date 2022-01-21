@@ -16,6 +16,8 @@ import SnapKit
 
 class AuthUploadVC: UIViewController {
     
+    public var resizeRatio: CGFloat = 0.5
+    
     // MARK: - Properties
     
     let closeButton = UIButton()
@@ -260,7 +262,7 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            uploadImageView.image = image.resize(newWidth: 250)
+            uploadImageView.image = image.resize(newWidth: uploadImageView.frame.width*resizeRatio)
             fadeImageView.isHidden = false
             buttonStackView.isHidden = false
             photoAuthButton.isHidden = true
