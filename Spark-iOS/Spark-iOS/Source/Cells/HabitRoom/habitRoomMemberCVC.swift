@@ -108,7 +108,6 @@ extension HabitRoomMemberCVC {
                         profileImg: String,
                         nickname: String,
                         status: String,
-                        sparkDone: Bool,
                         leftDay: Int,
                         closure: (()->Void)?) {
         profileImage.updateImage(profileImg)
@@ -132,11 +131,12 @@ extension HabitRoomMemberCVC {
         }
         
         tagMeImage.isHidden = true
-        if sparkDone {
+        
+        if leftDay == 66 {
             sparkImage.image = UIImage(named: "icFireInactive")
             sparkImage.isUserInteractionEnabled = false
         } else {
-            if leftDay == 66 {
+            if status == "DONE" || status == "REST" {
                 sparkImage.image = UIImage(named: "icFireInactive")
                 sparkImage.isUserInteractionEnabled = false
             } else {
@@ -148,6 +148,7 @@ extension HabitRoomMemberCVC {
                 sparkImage.addGestureRecognizer(tap)
             }
         }
+
         sparkCountLabel.isHidden = true
     }
     
