@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Lottie
 
 class CreateAuthVC: UIViewController {
     
@@ -22,6 +23,9 @@ class CreateAuthVC: UIViewController {
     var photoOnly: Bool = true
     var roomName: String = ""
     var roomId: Int?
+    
+    lazy var loadingBackgroundView = UIView()
+    lazy var loadingView = AnimationView(name: "")
 
     // MARK: - View Life Cycles
     
@@ -86,18 +90,48 @@ class CreateAuthVC: UIViewController {
         enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
     }
     
+    private func setLoadingView() {
+        view.addSubviews([loadingBackgroundView, loadingView])
+        
+        loadingBackgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        loadingBackgroundView.backgroundColor = .white
+        
+        loadingView.backgroundColor = .clear
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.layer.masksToBounds = true
+        loadingView.isHidden = false
+    }
+    
     @objc
     private func touchEnterButton() {
-        postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
-            guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-            rootVC.roomName = self.roomName
-            rootVC.roomId = self.roomId
-            
-            let nextVC = UINavigationController(rootViewController: rootVC)
-            nextVC.modalTransitionStyle = .crossDissolve
-            nextVC.modalPresentationStyle = .fullScreen
-            
-            self.present(nextVC, animated: true)
+        DispatchQueue.main.async {
+            // 로딩
+            self.setLoadingView()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
+                guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+                rootVC.roomName = self.roomName
+                rootVC.roomId = self.roomId
+                
+                let nextVC = UINavigationController(rootViewController: rootVC)
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.modalPresentationStyle = .fullScreen
+                
+                self.present(nextVC, animated: true) {
+                    self.loadingView.stop()
+                    self.loadingView.removeFromSuperview()
+                }
+            }
         }
     }
     
