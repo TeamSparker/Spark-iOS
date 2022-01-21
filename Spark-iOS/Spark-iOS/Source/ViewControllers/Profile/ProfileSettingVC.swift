@@ -239,7 +239,7 @@ extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // UIImage 타입인 originalImage를 빼옴
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profileImageView.image = image.resize(newWidth: 150)
+            profileImageView.image = image.resize(newWidth: profileImageView.frame.width)
             profileImageView.contentMode = .scaleAspectFill
         }
         dismiss(animated: true, completion: nil)

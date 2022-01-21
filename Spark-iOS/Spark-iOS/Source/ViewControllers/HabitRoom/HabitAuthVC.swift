@@ -19,9 +19,10 @@ class HabitAuthVC: UIViewController {
     
     var authType: AuthType?
     var roomID: Int?
-    var rest: Int?
+    var restNumber: Int?
     var roomName: String?
     var presentAlertClosure: (() -> Void)?
+    var restStatus: String?
     
     // MARK: - @IBOutlet Properties
     
@@ -62,13 +63,24 @@ extension HabitAuthVC {
         
         popUpView.layer.cornerRadius = 2
         
-        okButton.isEnabled = true
         okButton.layer.cornerRadius = 2
+        okButton.layer.borderWidth = 1
         okButton.titleLabel?.text = "지금 습관 인증하기"
-        okButton.backgroundColor = .sparkDarkPinkred
         okButton.tintColor = .sparkGray
-        okButton.setTitleColor(.sparkGray, for: .highlighted)
         
+        if restStatus == "REST" {
+            okButton.isEnabled = false
+            okButton.layer.borderColor = UIColor.sparkGray.cgColor
+            okButton.backgroundColor = .sparkWhite
+            okButton.setTitleColor(.sparkGray, for: .normal)
+            okButton.setTitleColor(.sparkGray, for: .disabled)
+        } else {
+            okButton.isEnabled = true
+            okButton.setTitleColor(.sparkWhite, for: .normal)
+            okButton.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+            okButton.backgroundColor = .sparkDarkPinkred
+        }
+
         considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
         considerButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         considerButton.layer.borderWidth = 1
@@ -79,9 +91,9 @@ extension HabitAuthVC {
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
         
-        restNumberLabel.text = String(rest ?? 0)
+        restNumberLabel.text = String(restNumber ?? 0)
         
-        if rest == 0 {
+        if (restNumber == 0) || (restStatus == "REST") {
             restButton.isEnabled = false
             restButton.layer.borderColor = UIColor.sparkGray.cgColor
             restButton.setTitleColor(.sparkGray, for: .normal)
@@ -127,11 +139,23 @@ extension HabitAuthVC {
     @objc
     private func touchConsiderButton() {
         setConsiderRestWithAPI(statusType: "CONSIDER")
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
     private func touchRestButton() {
+        okButton.isEnabled = false
+        okButton.layer.borderColor = UIColor.sparkGray.cgColor
+        okButton.setTitleColor(.sparkGray, for: .normal)
+        okButton.tintColor = .sparkGray
+        okButton.backgroundColor = .sparkWhite
+        considerButton.isEnabled = false
+        considerButton.layer.borderColor = UIColor.sparkGray.cgColor
+        considerButton.setTitleColor(.sparkGray, for: .normal)
+        considerButton.tintColor = .sparkGray
+        considerButton.backgroundColor = .sparkWhite
         setConsiderRestWithAPI(statusType: "REST")
+        dismiss(animated: true, completion: nil)
     }
 }
 
