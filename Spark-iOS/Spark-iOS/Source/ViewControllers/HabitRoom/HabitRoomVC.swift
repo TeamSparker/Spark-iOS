@@ -252,7 +252,6 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         nextVC.setFirstFlowUI()
         nextVC.roomId = self.roomID
         nextVC.roomName = self.roomName
-        nextVC.uploadImageView.image = self.imageContainer.resize(newWidth: UIScreen.main.bounds.width*nextVC.resizeRatio)
         if let fromStart = habitRoomDetail?.fromStart {
             if fromStart {
                 nextVC.vcType = .photoTimer
@@ -260,7 +259,7 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
                 nextVC.vcType = .photoOnly
             }
         }
-        nextVC.uploadImageView.image = self.imageContainer
+        nextVC.uploadImageView.image = self.imageContainer.resize(newWidth: UIScreen.main.bounds.width*nextVC.resizeRatio)
         nextVC.modalPresentationStyle = .fullScreen
         
         self.present(nextVC, animated: true, completion: nil)

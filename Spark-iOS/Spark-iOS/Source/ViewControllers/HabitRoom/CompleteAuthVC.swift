@@ -74,9 +74,27 @@ extension CompleteAuthVC {
         }
     }
     
+    func backgroundImage(backgroundImage: UIImage) {
+        if let urlScheme = URL(string: "instagram-stories://share") {
+            if UIApplication.shared.canOpenURL(urlScheme) {
+                let pasteboardItems = [["com.instagram.sharedSticker.stickerImage": backgroundImage.pngData(),
+                                        "com.instagram.sharedSticker.backgroundImage": backgroundImage.pngData()]]
+                
+                let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60 * 5)]
+                
+                UIPasteboard.general.setItems(pasteboardItems, options: pasteboardOptions)
+                
+                UIApplication.shared.open(urlScheme as URL, options: [:], completionHandler: nil)
+            } else {
+                print("인스타 앱이 깔려있지 않습니다.")
+            }
+        }
+    }
+    
     // MARK: - @objc
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
         // 인스타 공유 기능
+        backgroundImage(backgroundImage: handImageVIew.image?.resize(newWidth: 120) ?? UIImage())
     }
 }
