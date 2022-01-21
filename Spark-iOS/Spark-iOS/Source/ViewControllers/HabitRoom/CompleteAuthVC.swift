@@ -42,7 +42,6 @@ class CompleteAuthVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setLayout()
         setGesture()
         setAnimation()
     }
@@ -110,8 +109,8 @@ extension CompleteAuthVC {
 
                 let pasteboardItems: [String: Any] = [
                     "com.instagram.sharedSticker.stickerImage": imageData,
-                    "com.instagram.sharedSticker.backgroundTopColor": "#636e72",
-                    "com.instagram.sharedSticker.backgroundBottomColor": "#b2bec3"]
+                    "com.instagram.sharedSticker.backgroundTopColor": "#8D8D88",
+                    "com.instagram.sharedSticker.backgroundBottomColor": "#8D8D88"]
 
                 let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)]
 
@@ -126,6 +125,7 @@ extension CompleteAuthVC {
     // MARK: - @objc
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
+        setLayout()
         shareAuthWithInstagram()
     }
 }
