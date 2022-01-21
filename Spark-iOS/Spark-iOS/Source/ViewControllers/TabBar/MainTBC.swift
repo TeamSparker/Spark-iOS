@@ -25,17 +25,6 @@ class MainTBC: UITabBarController {
         setNotification()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
-                                                            tintColor: .sparkBlack,
-                                                            backgroundColor: .sparkWhite,
-                                                            firstButtonSelector: #selector(presentToProfileVC),
-                                                            secondButtonSelector: #selector(presentToAertVC))
-    }
 }
 
 // MARK: - Methods
@@ -52,11 +41,10 @@ extension MainTBC {
     
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
-        // FIXME: - 준호 보관함 테스트해보고 쓰지 않는다면 지우자
-//        let homeNVC = UINavigationController(rootViewController: homeVC)
-//        let storageNVC = UINavigationController(rootViewController: storageVC)
+        let homeNVC = UINavigationController(rootViewController: homeVC)
+        let storageNVC = UINavigationController(rootViewController: storageVC)
         
-        setViewControllers([feedVC, homeVC, storageVC], animated: false)
+        setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered

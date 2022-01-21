@@ -96,6 +96,9 @@ class HabitRoomVC: UIViewController {
 extension HabitRoomVC {
     private func setUI() {
         navigationController?.isNavigationBarHidden = true
+    
+        tabBarController?.tabBar.isHidden = true
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         habitTitleLabel.font = .h3Subtitle
         habitTitleLabel.textColor = .sparkWhite

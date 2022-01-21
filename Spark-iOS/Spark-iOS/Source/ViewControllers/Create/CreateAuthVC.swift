@@ -18,7 +18,8 @@ class CreateAuthVC: UIViewController {
     let photoAuthView = PhotoAuthView()
     let timerAuthView = TimerAuthView()
     let enterButton = UIButton()
-    var photoOnly: Bool = true /// photoOnly가 true이면 fromStart가 false
+    /// photoOnly가 true이면 fromStart가 false
+    var photoOnly: Bool = true
     var roomName: String = ""
     var roomId: Int?
 
@@ -87,14 +88,15 @@ class CreateAuthVC: UIViewController {
     
     @objc
     private func touchEnterButton() {
-        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-        
-        let nextVC = UINavigationController(rootViewController: rootVC)
-        
-        nextVC.modalTransitionStyle = .crossDissolve
-        nextVC.modalPresentationStyle = .fullScreen
         postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
+            guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+            rootVC.roomName = self.roomName
             rootVC.roomId = self.roomId
+            
+            let nextVC = UINavigationController(rootViewController: rootVC)
+            nextVC.modalTransitionStyle = .crossDissolve
+            nextVC.modalPresentationStyle = .fullScreen
+            
             self.present(nextVC, animated: true)
         }
     }
