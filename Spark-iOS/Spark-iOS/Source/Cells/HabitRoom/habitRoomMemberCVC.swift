@@ -9,6 +9,10 @@ import UIKit
 
 class HabitRoomMemberCVC: UICollectionViewCell {
 
+    // MARK: - Properties
+    
+    var presentToSendSparkVCClosure: (()-> Void)?
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -35,6 +39,7 @@ class HabitRoomMemberCVC: UICollectionViewCell {
         sparkCountLabel.text = ""
         sparkCountLabel.isHidden = true
         sparkImage.image = UIImage()
+        sparkImage.isUserInteractionEnabled = false
         stickerImage.isHidden = true
         stickerImage.image = UIImage()
     }
@@ -104,7 +109,8 @@ extension HabitRoomMemberCVC {
                         nickname: String,
                         status: String,
                         sparkDone: Bool,
-                        leftDay: Int) {
+                        leftDay: Int,
+                        closure: (()->Void)?) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -128,13 +134,25 @@ extension HabitRoomMemberCVC {
         tagMeImage.isHidden = true
         if sparkDone {
             sparkImage.image = UIImage(named: "icFireInactive")
+            sparkImage.isUserInteractionEnabled = false
         } else {
             if leftDay == 66 {
                 sparkImage.image = UIImage(named: "icFireInactive")
+                sparkImage.isUserInteractionEnabled = false
             } else {
                 sparkImage.image = UIImage(named: "icFireDefault")
+                sparkImage.isUserInteractionEnabled = true
+                
+                presentToSendSparkVCClosure = closure
+                let tap = UITapGestureRecognizer(target: self, action: #selector(presentToSendSparkVC))
+                sparkImage.addGestureRecognizer(tap)
             }
         }
         sparkCountLabel.isHidden = true
+    }
+    
+    @objc
+    private func presentToSendSparkVC() {
+        presentToSendSparkVCClosure?()
     }
 }

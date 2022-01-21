@@ -231,6 +231,16 @@ extension HabitRoomVC {
             print("카메라 안됩니다.")
         }
     }
+    
+    private func presentToSendSparkVC(recordID: Int) {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.sendSpark, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.sendSpark) as? SendSparkVC else { return }
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.roomID = habitRoomDetail?.roomID
+        nextVC.recordID = recordID
+
+        self.present(nextVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UIImagePickerDelegate
@@ -301,7 +311,7 @@ extension HabitRoomVC: UICollectionViewDataSource {
                                 nickname: habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "",
                                 status: habitRoomDetail?.otherRecords[indexPath.item - 1]?.status ?? "",
                                 sparkDone: false,
-                                leftDay: habitRoomDetail?.leftDay ?? 0)
+                                leftDay: habitRoomDetail?.leftDay ?? 0) { self.presentToSendSparkVC(recordID: self.habitRoomDetail?.otherRecords[indexPath.item - 1]?.recordID ?? 0) }
             
             return cell
         }
