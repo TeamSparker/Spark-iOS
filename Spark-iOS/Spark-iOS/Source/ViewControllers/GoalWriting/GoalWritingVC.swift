@@ -85,6 +85,7 @@ class GoalWritingVC: UIViewController {
         whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
         whenTextField.delegate = self
+        whenTextField.tintColor = .sparkPinkred
         whenLineView.backgroundColor = .sparkGray
         whenCountLabel.text = "0/15"
         whenCountLabel.font = .p2SubtitleEng
@@ -93,6 +94,7 @@ class GoalWritingVC: UIViewController {
         goalTextField.text = "\(purpose ?? "")"
         goalTextField.borderStyle = .none
         goalTextField.delegate = self
+        goalTextField.tintColor = .sparkPinkred
         goalLineView.backgroundColor = .sparkGray
         goalCountLabel.text = "0/15"
         goalCountLabel.font = .p2SubtitleEng

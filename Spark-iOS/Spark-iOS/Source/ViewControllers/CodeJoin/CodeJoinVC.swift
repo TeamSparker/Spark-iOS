@@ -67,6 +67,8 @@ extension CodeJoinVC {
         okButton.isEnabled = false
         okButton.titleLabel?.text = ""
         okButton.setTitleColor(.clear, for: .disabled)
+        
+        textField.tintColor = .sparkPinkred
     }
     
     private func setAddTargets() {
