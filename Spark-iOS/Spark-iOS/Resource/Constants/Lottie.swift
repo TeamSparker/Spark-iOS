@@ -16,6 +16,7 @@ extension Const {
             static let ticketWelcome = "ticket_welcome"
             static let splashLogo = "splash_logo"
             static let splashBackground = "splash_bg_iOS"
+            static let loading = "loading3"
         }
     }
 }
