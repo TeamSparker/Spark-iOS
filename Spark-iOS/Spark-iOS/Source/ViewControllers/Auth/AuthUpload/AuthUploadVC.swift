@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Lottie
 
 @frozen enum VCCase {
     case photoTimer
@@ -38,6 +39,9 @@ class AuthUploadVC: UIViewController {
     var roomId: Int?
     var roomName: String?
     var vcType: VCCase?
+    
+    lazy var loadingBackgroundView = UIView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - Life Cycle
     
@@ -143,6 +147,26 @@ extension AuthUploadVC {
         picker.delegate = self
     }
     
+    private func setLoading() {
+        view.addSubview(loadingBackgroundView)
+        
+        loadingBackgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBackgroundView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingBackgroundView.backgroundColor = .white.withAlphaComponent(0.8)
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
+    }
+    
     private func setAddTarget() {
         closeButton.addTarget(self, action: #selector(dismissToHabitRoom), for: .touchUpInside)
         photoAuthButton.addTarget(self, action: #selector(touchAuthButton), for: .touchUpInside)
@@ -233,11 +257,16 @@ extension AuthUploadVC {
         showAlert()
     }
     
-    // TODO: 업로드 시간이 길다. 로딩 넣기.
     // 업로드
     @objc
     func touchUploadButton() {
-        authUploadWithAPI()
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.authUploadWithAPI()
+        }
     }
     
     // TODO: 케이스별 액션 구분하기
@@ -369,6 +398,9 @@ extension AuthUploadVC {
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
+                    self.loadingView.stop()
+                    self.loadingBackgroundView.removeFromSuperview()
+                    
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
                     
                     popupVC.renderedImage = self.uploadImageView.image
@@ -381,7 +413,7 @@ extension AuthUploadVC {
                     popupVC.modalTransitionStyle = .crossDissolve
                     popupVC.modalPresentationStyle = .overFullScreen
                     
-                    self.present(popupVC, animated: true, completion: nil)
+                    self.present(popupVC, animated: true)
                 }
             case .requestErr(let message):
                 print("authUploadWithAPI - requestErr \(message)")
