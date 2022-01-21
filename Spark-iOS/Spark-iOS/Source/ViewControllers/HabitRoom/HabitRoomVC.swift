@@ -125,6 +125,7 @@ extension HabitRoomVC {
         
         habitTitleLabel.font = .h3Subtitle
         habitTitleLabel.textColor = .sparkWhite
+        habitTitleLabel.text = ""
         
         flakeImageView.contentMode = .scaleAspectFill
         
@@ -133,12 +134,15 @@ extension HabitRoomVC {
         
         ddayTitleLabel.font = .h1BigtitleEng
         ddayTitleLabel.textColor = .sparkWhite
+        ddayTitleLabel.text = ""
         
         startDateLabel.font = .captionEng
         startDateLabel.textColor = .sparkWhite
+        startDateLabel.text = ""
         
         endDateLabel.font = .captionEng
         endDateLabel.textColor = .sparkWhite
+        endDateLabel.text = ""
         
         bgView.layer.borderColor = UIColor.sparkDarkGray.cgColor
         bgView.layer.borderWidth = 1
@@ -323,8 +327,14 @@ extension HabitRoomVC {
     
     @objc
     private func updateHabitRoom() {
-        fetchHabitRoomDetailWithAPI(roomID: roomID ?? 0) {
-            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        DispatchQueue.main.async {
+            // 로딩
+            self.setLoading()
+        }
+        DispatchQueue.main.async {
+            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
         }
     }
 }

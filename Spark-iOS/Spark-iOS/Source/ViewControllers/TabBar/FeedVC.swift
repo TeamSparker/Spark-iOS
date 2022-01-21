@@ -283,7 +283,7 @@ extension FeedVC: UICollectionViewDataSource {
                 alist = firstList[indexPath.item]
             }
             
-            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID)
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg ?? "", hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath)
             cell.likeDelegate = self
             return cell
         } else {
@@ -335,10 +335,69 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 }
-
+ 
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
-    func likeButtonTapped(recordID: Int) {
+    func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
+        if indexPath.section == 0 {
+            if likeState {
+                firstList[indexPath.item].isLiked = false
+                firstList[indexPath.item].likeNum -= 1
+            } else {
+                firstList[indexPath.item].isLiked = true
+                firstList[indexPath.item].likeNum += 1
+            }
+        } else if indexPath.section == 1 {
+            if likeState {
+                secondList[indexPath.item].isLiked = false
+                secondList[indexPath.item].likeNum -= 1
+            } else {
+                secondList[indexPath.item].isLiked = true
+                secondList[indexPath.item].likeNum += 1
+            }
+        } else if indexPath.section == 2 {
+            if likeState {
+                thirdList[indexPath.item].isLiked = false
+                thirdList[indexPath.item].likeNum -= 1
+            } else {
+                thirdList[indexPath.item].isLiked = true
+                thirdList[indexPath.item].likeNum += 1
+            }
+        } else if indexPath.section == 3 {
+            if likeState {
+                fourthList[indexPath.item].isLiked = false
+                fourthList[indexPath.item].likeNum -= 1
+            } else {
+                fourthList[indexPath.item].isLiked = true
+                fourthList[indexPath.item].likeNum += 1
+            }
+        } else if indexPath.section == 4 {
+            if likeState {
+                fifthList[indexPath.item].isLiked = false
+                fifthList[indexPath.item].likeNum -= 1
+            } else {
+                fifthList[indexPath.item].isLiked = true
+                fifthList[indexPath.item].likeNum += 1
+            }
+        } else if indexPath.section == 5 {
+            if likeState {
+                sixthList[indexPath.item].isLiked = false
+                sixthList[indexPath.item].likeNum -= 1
+            } else {
+                sixthList[indexPath.item].isLiked = true
+                sixthList[indexPath.item].likeNum -= 1
+            }
+        } else if indexPath.section == 6 {
+            if likeState {
+                seventhList[indexPath.item].isLiked = false
+                seventhList[indexPath.item].likeNum -= 1
+            } else {
+                seventhList[indexPath.item].isLiked = true
+                seventhList[indexPath.item].likeNum += 1
+            }
+        }
+         
+        collectionView.reloadData()
         postFeedLikeWithAPI(recordID: recordID)
     }
 }

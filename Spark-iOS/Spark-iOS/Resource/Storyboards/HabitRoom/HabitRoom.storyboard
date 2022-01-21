@@ -67,13 +67,13 @@
                                 <state key="normal" image="icMoreVerticalWhite"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFf-Os-dsz">
-                                <rect key="frame" x="20" y="117.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="20" y="112.5" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Wbn-p4-clp">
-                                <rect key="frame" x="322" y="119" width="72" height="18"/>
+                                <rect key="frame" x="322" y="114" width="72" height="18"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IXG-na-OT7">
                                         <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
@@ -91,22 +91,22 @@
                                 </constraints>
                             </stackView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pjm-qP-ARe">
-                                <rect key="frame" x="20" y="152" width="374" height="4"/>
+                                <rect key="frame" x="20" y="145" width="374" height="4"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy4-Vp-81Z">
-                                <rect key="frame" x="20" y="164" width="41.5" height="20.5"/>
+                                <rect key="frame" x="20" y="157" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omc-x7-fqu">
-                                <rect key="frame" x="352.5" y="164" width="41.5" height="20.5"/>
+                                <rect key="frame" x="352.5" y="157" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-mU-OUf">
-                                <rect key="frame" x="20" y="212.5" width="374" height="71.5"/>
+                                <rect key="frame" x="20" y="205.5" width="374" height="71.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cf-84-80o">
                                         <rect key="frame" x="8" y="10" width="26" height="20.5"/>
@@ -163,7 +163,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="sparkBlack"/>
                         <constraints>
                             <constraint firstItem="ABA-OJ-sFD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="7mz-Jr-qGt"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BjG-wg-ehW" secondAttribute="bottom" constant="20" id="9Q2-q5-zJs"/>
@@ -179,7 +179,7 @@
                             <constraint firstItem="wy4-Vp-81Z" firstAttribute="top" secondItem="pjm-qP-ARe" secondAttribute="bottom" constant="8" id="OoE-fd-ggm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="suy-dQ-y1I" secondAttribute="trailing" id="S7J-Xd-zS3"/>
                             <constraint firstItem="eB0-bS-UA9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="V39-eg-JlT"/>
-                            <constraint firstItem="pjm-qP-ARe" firstAttribute="top" secondItem="cFf-Os-dsz" secondAttribute="bottom" constant="14" id="VBp-Ht-0og"/>
+                            <constraint firstItem="pjm-qP-ARe" firstAttribute="top" secondItem="cFf-Os-dsz" secondAttribute="bottom" constant="12" id="VBp-Ht-0og"/>
                             <constraint firstItem="BjG-wg-ehW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112" id="X1K-BW-gsr"/>
                             <constraint firstItem="wy4-Vp-81Z" firstAttribute="leading" secondItem="pjm-qP-ARe" secondAttribute="leading" id="YJ1-Z7-OLP"/>
                             <constraint firstAttribute="bottom" secondItem="152-pg-Vdy" secondAttribute="bottom" id="YSh-mJ-MJt"/>
