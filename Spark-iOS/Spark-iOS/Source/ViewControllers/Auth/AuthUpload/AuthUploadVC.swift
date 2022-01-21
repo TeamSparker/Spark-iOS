@@ -40,7 +40,7 @@ class AuthUploadVC: UIViewController {
     var roomName: String?
     var vcType: VCCase?
     
-    lazy var loadingBackgroundView = UIView()
+    lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - Life Cycle
@@ -148,20 +148,20 @@ extension AuthUploadVC {
     }
     
     private func setLoading() {
-        view.addSubview(loadingBackgroundView)
+        view.addSubview(loadingBgView)
         
-        loadingBackgroundView.snp.makeConstraints { make in
+        loadingBgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        loadingBackgroundView.addSubview(loadingView)
+        loadingBgView.addSubview(loadingView)
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(100)
         }
         
-        loadingBackgroundView.backgroundColor = .white.withAlphaComponent(0.8)
+        loadingBgView.backgroundColor = .white.withAlphaComponent(0.8)
         loadingView.loopMode = .loop
         loadingView.contentMode = .scaleAspectFit
         loadingView.play()
@@ -399,7 +399,7 @@ extension AuthUploadVC {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {
                     self.loadingView.stop()
-                    self.loadingBackgroundView.removeFromSuperview()
+                    self.loadingBgView.removeFromSuperview()
                     
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
                     
