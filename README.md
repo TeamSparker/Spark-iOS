@@ -1,8 +1,4 @@
-# ⚡️SPARK⚡️
-
-<img src="https://user-images.githubusercontent.com/81167570/148654631-e83d35b6-6b08-4c2a-8f3a-c0fdca6edc27.png" width="20%" /> <br>
-습관이 만들어지는 시간 66일! <br>
-친구들과 더욱 도전적이고 즐겁게 습관을 만들어갈 수 있는 습관 형성 서비스
+<img src ="https://user-images.githubusercontent.com/69136340/150557491-0097a4f4-0c8d-4d8e-b84d-a4db5908d002.png" width ="1000">
 
 ### ⚡️Coding Convention
 [Spark Coding Convention Wiki](https://github.com/TeamSparker/Spark-iOS/wiki/Code-Convention)
@@ -59,3 +55,6 @@ Spark-iOS
 | 아침일어나면 책상정리 | 아이폰 적응기 | 인스타 공유위한 UIView 리사이징 |
  
 ### [5️⃣과제](https://jealous-supernova-274.notion.site/0a935c7bbde14eb7820417c5813a066c?v=6f79cc99089c44b8a89e02741d8628d8)
+
+<img src ="https://user-images.githubusercontent.com/69136340/150557506-ceb378c4-9fcc-4c27-ae98-6b22d61386d9.png" width ="1000">
+
