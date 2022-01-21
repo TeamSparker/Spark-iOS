@@ -42,8 +42,10 @@ class CompleteAuthVC: UIViewController {
     // MARK: IBActions
     @IBAction func goToFeedVC(_ sender: Any) {
         guard let presentingVC = self.presentingViewController?.presentingViewController as? UITabBarController else { return }
+        guard let naviVC = presentingVC.viewControllers?[1] as? UINavigationController else { return }
         
-        self.presentingViewController?.presentingViewController?.dismiss(animated: false) {
+        presentingVC.dismiss(animated: false) {
+            naviVC.popViewController(animated: false)
             presentingVC.selectedIndex = 0
         }
     }

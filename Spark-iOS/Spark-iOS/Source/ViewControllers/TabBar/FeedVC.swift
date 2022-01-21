@@ -51,7 +51,11 @@ class FeedVC: UIViewController {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         tabBarController?.tabBar.isHidden = false
         // FIXME: - getFeedListFetchWithAPI를 여기서 호출하는거로 변경
-//        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+//        DispatchQueue.main.async {
+//            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+//                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+//            }
+//        }
     }
     
     // MARK: - Methods
