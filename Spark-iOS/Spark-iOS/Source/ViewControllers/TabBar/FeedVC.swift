@@ -48,9 +48,6 @@ class FeedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // FIXME: - 현규-네비바
-//        navigationController?.isNavigationBarHidden = true
-        
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         // FIXME: - getFeedListFetchWithAPI를 여기서 호출하는거로 변경

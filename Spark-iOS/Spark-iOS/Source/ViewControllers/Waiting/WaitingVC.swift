@@ -94,9 +94,8 @@ class WaitingVC: UIViewController {
     }
     
     func setUI() {
-        // FIXME: - 현규-네비바
-        // 플로팅버튼 내리기
         tabBarController?.tabBar.isHidden = true
+        // 플로팅버튼 내리기
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         profileImageView.backgroundColor = .sparkLightGray

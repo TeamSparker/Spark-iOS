@@ -25,17 +25,6 @@ class MainTBC: UITabBarController {
         setNotification()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // FIXME: - 현규-네비바
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
-//                                                            tintColor: .sparkBlack,
-//                                                            backgroundColor: .sparkWhite,
-//                                                            firstButtonSelector: #selector(presentToProfileVC),
-//                                                            secondButtonSelector: #selector(presentToAertVC))
-    }
 }
 
 // MARK: - Methods
@@ -52,7 +41,6 @@ extension MainTBC {
     
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
-        // FIXME: - 현규-네비바
         let homeNVC = UINavigationController(rootViewController: homeVC)
         let storageNVC = UINavigationController(rootViewController: storageVC)
         

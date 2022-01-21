@@ -36,7 +36,7 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // FIXME: - 현규-네비바
+        
         tabBarController?.tabBar.isHidden = false
         
         navigationController?.isNavigationBarHidden = false
