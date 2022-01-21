@@ -115,13 +115,11 @@ class ProfileSettingVC: UIViewController {
     }
     
     private func presentToMainTBC() {
-        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        mainVC.modalPresentationStyle = .fullScreen
+        mainVC.modalTransitionStyle = .crossDissolve
         
-        let nextVC = UINavigationController(rootViewController: rootVC)
-        nextVC.modalPresentationStyle = .fullScreen
-        nextVC.modalTransitionStyle = .crossDissolve
-        
-        present(nextVC, animated: true, completion: nil)
+        present(mainVC, animated: true, completion: nil)
     }
     
     // MARK: - @objc
