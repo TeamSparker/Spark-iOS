@@ -443,24 +443,11 @@ extension WaitingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
-
-        // 이름
-        let name = members[indexPath.item].nickname
-        cell.nameLabel.text = name
         
-        // 이미지
-        if let url = URL(string: members[indexPath.item].profileImg ?? "") {
-            do {
-                let data = try Data(contentsOf: url)
-                // FIXME: - 서버에서 디폴트 이미지도 보내준다고 하셨는데 지금은 nil 값으로 넘어와서 나중에 수정해서 initCell 사용
-//                cell.initCell(name: name, image: data)
-                cell.profileImageView.image = UIImage(data: data)
-            } catch {
-                cell.profileImageView.backgroundColor = .sparkGray
-            }
-        } else {
-            cell.profileImageView.image = UIImage(named: "profileEmpty")
-        }
+        let name = members[indexPath.item].nickname
+        let imagePath = members[indexPath.item].profileImg ?? ""
+        
+        cell.initCell(name: name, imagePath: imagePath)
         
         return cell
     }
