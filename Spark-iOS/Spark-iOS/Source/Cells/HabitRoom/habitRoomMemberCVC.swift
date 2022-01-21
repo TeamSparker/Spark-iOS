@@ -63,7 +63,8 @@ extension HabitRoomMemberCVC {
                     profileImg: String,
                     nickname: String,
                     status: String,
-                    receivedSpark: Int) {
+                    receivedSpark: Int,
+                    leftDay: Int) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -81,8 +82,13 @@ extension HabitRoomMemberCVC {
             stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
             stickerImage.isHidden = false
         } else {
-            statusLabel.text = "인증은 내일부터 가능해요."
-            stickerImage.isHidden = true
+            if leftDay == 66 {
+                statusLabel.text = "인증은 내일부터 가능해요."
+                stickerImage.isHidden = true
+            } else {
+                statusLabel.text = "아직 인증하지 않았어요!"
+                stickerImage.isHidden = true
+            }
         }
         
         tagMeImage.isHidden = false
@@ -97,7 +103,8 @@ extension HabitRoomMemberCVC {
                         profileImg: String,
                         nickname: String,
                         status: String,
-                        sparkDone: Bool) {
+                        sparkDone: Bool,
+                        leftDay: Int) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -109,14 +116,24 @@ extension HabitRoomMemberCVC {
         } else if status == "REST" {
             statusLabel.text = "오늘은 쉬어요."
         } else {
-            statusLabel.text = "인증은 내일부터 가능해요."
+            if leftDay == 66 {
+                statusLabel.text = "인증은 내일부터 가능해요."
+                stickerImage.isHidden = true
+            } else {
+                statusLabel.text = "아직 인증하지 않았어요!"
+                stickerImage.isHidden = true
+            }
         }
         
         tagMeImage.isHidden = true
         if sparkDone {
             sparkImage.image = UIImage(named: "icFireInactive")
         } else {
-            sparkImage.image = UIImage(named: "icFireDefault")
+            if leftDay == 66 {
+                sparkImage.image = UIImage(named: "icFireInactive")
+            } else {
+                sparkImage.image = UIImage(named: "icFireDefault")
+            }
         }
         sparkCountLabel.isHidden = true
     }

@@ -54,6 +54,11 @@ class HabitRoomVC: UIViewController {
         }
     }
     
+    // set status bar style
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // FIXME: - update??
 //    override func viewDidLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
@@ -284,7 +289,8 @@ extension HabitRoomVC: UICollectionViewDataSource {
                             profileImg: habitRoomDetail?.myRecord.profileImg ?? "",
                             nickname: habitRoomDetail?.myRecord.nickname ?? "",
                             status: habitRoomDetail?.myRecord.status ?? "",
-                            receivedSpark: habitRoomDetail?.myRecord.receivedSpark ?? 0)
+                            receivedSpark: habitRoomDetail?.myRecord.receivedSpark ?? 0,
+                            leftDay: habitRoomDetail?.leftDay ?? 0)
             
             return cell
         } else {
@@ -293,7 +299,8 @@ extension HabitRoomVC: UICollectionViewDataSource {
                                 profileImg: habitRoomDetail?.otherRecords[indexPath.item - 1]?.profileImg ?? "",
                                 nickname: habitRoomDetail?.otherRecords[indexPath.item - 1]?.nickname ?? "",
                                 status: habitRoomDetail?.otherRecords[indexPath.item - 1]?.status ?? "",
-                                sparkDone: false)
+                                sparkDone: false,
+                                leftDay: habitRoomDetail?.leftDay ?? 0)
             
             return cell
         }
