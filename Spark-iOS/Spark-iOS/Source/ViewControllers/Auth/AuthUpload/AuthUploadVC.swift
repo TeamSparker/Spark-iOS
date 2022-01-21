@@ -69,9 +69,14 @@ extension AuthUploadVC {
                                                           image: UIImage(named: "icQuit"),
                                                           selector: #selector(presentToDialogue))
         case .photoTimer:
-            navigationController?.initWithBackButtonTitle(title: "",
-                                                          tintColor: .sparkBlack,
-                                                          backgroundColor: .sparkWhite)
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "icBackWhite",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -5.0, bottom: 0.0, right: 0.0)),
+                                                                rightButtonImage: UIImage(named: "icQuit") ?? UIImage(),
+                                                                reftButtonSelector: #selector(popToPresentingVC),
+                                                                rightButtonSelector: #selector(showDialog))
             navigationItem.title = "\(roomName ?? "-")"
         default:
             break
@@ -267,6 +272,23 @@ extension AuthUploadVC {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.authUploadWithAPI()
         }
+    }
+    
+    @objc
+    func popToPresentingVC() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func showDialog() {
+        guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        dialogVC.dialogueType = .exitAuth
+        dialogVC.clousure = {
+            self.dismiss(animated: true, completion: nil)
+        }
+        dialogVC.modalPresentationStyle = .overFullScreen
+        dialogVC.modalTransitionStyle = .crossDissolve
+        self.present(dialogVC, animated: true, completion: nil)
     }
     
     // TODO: 케이스별 액션 구분하기

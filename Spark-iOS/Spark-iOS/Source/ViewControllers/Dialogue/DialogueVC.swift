@@ -51,8 +51,6 @@ extension DialogueVC {
         
         dialogueView.layer.cornerRadius = 2
         
-        dialogueType = .exitTimer
-        
         guideLabel.font = .p1TitleLight
         cancelLabel.font = .btn3
         resetOrExitLabel.font = .btn3
