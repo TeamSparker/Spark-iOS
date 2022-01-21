@@ -73,7 +73,7 @@ extension HomeHabitCVC {
             $0?.layer.cornerRadius = 13
             $0?.layer.borderWidth = 2
             $0?.layer.borderColor = UIColor.sparkWhite.cgColor
-            $0?.contentMode = .scaleToFill
+            $0?.contentMode = .scaleAspectFill
         }
         
         restLabel.font = .enMediumFont(ofSize: 10)

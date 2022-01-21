@@ -20,6 +20,8 @@ class HabitRoomVC: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var goalTextField: UILabel!
+    @IBOutlet weak var timeTextLabel: UILabel!
     @IBOutlet weak var flakeImageView: UIImageView!
     @IBOutlet weak var habitTitleLabel: UILabel!
     @IBOutlet weak var ddayTitleLabel: UILabel!
@@ -111,12 +113,13 @@ extension HabitRoomVC {
         habitTitleLabel.font = .h3Subtitle
         habitTitleLabel.textColor = .sparkWhite
         
-        flakeImageView.contentMode = .scaleToFill
+        flakeImageView.contentMode = .scaleAspectFill
+        
+        progressView.setProgress(0, animated: false)
+        progressView.trackTintColor = .sparkDeepGray
         
         ddayTitleLabel.font = .h1BigtitleEng
         ddayTitleLabel.textColor = .sparkWhite
-        
-        progressView.trackTintColor = .sparkDeepGray
         
         startDateLabel.font = .captionEng
         startDateLabel.textColor = .sparkWhite
@@ -155,16 +158,25 @@ extension HabitRoomVC {
         let sparkFlake = SparkFlake(leftDay: leftDay)
         flakeImageView.image = sparkFlake.sparkFlakeHabitBackground()
         progressView.progressTintColor = sparkFlake.sparkFlakeColor()
-        // 맞나..?
         
-//        progessView.setProgress(Float((66 - leftDay )/66), animated: true)
-        progressView.setProgress(Float((66 - leftDay )/66), animated: false)
+        progressView.setProgress(Float(66 - leftDay) / Float(66), animated: true)
         
         startDateLabel.text = habitRoomDetail.startDate
         endDateLabel.text = habitRoomDetail.endDate
         
-        timeLabel.text = habitRoomDetail.moment
-        goalLabel.text = habitRoomDetail.purpose
+        if habitRoomDetail.moment != nil {
+            timeLabel.text = habitRoomDetail.moment
+        } else {
+            timeTextLabel.text = ""
+            timeLabel.text = "습관을 시작하기 전에"
+        }
+        
+        if habitRoomDetail.purpose != nil {
+            goalLabel.text = habitRoomDetail.purpose
+        } else {
+            goalTextField.text = ""
+            goalLabel.text = "시간과 목표를 작성해 주세요!"
+        }
         
         // 방 생명 이미지 구현
         let lifeImgaeList = [firstLifeImage, secondLifeImage, thirdLifeImage]
@@ -194,6 +206,7 @@ extension HabitRoomVC {
                 authButton.isEnabled = false
                 authButton.backgroundColor = .sparkGray
                 authButton.layer.borderWidth = 0
+                authButton.layer.shadowColor = UIColor.sparkWhite.cgColor
             } else {
                 authButton.isEnabled = true
                 authButton.backgroundColor = .sparkDarkPinkred

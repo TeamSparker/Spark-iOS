@@ -255,7 +255,7 @@ class WaitingVC: UIViewController {
     
     @objc
     func dismissToHomeVC() {
-        presentingViewController?.presentingViewController?.dismiss(animated: true)
+        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
     @objc
