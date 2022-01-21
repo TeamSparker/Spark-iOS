@@ -36,6 +36,7 @@ class FeedCVC: UICollectionViewCell {
     var likeState: Bool = false
     weak var likeDelegate: FeedCellDelegate?
     var cellId: Int = 0
+    var indexPath: IndexPath?
     
     // MARK: - View Life Cycles
     
@@ -63,7 +64,7 @@ class FeedCVC: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int, indexPath: IndexPath) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
@@ -92,6 +93,8 @@ class FeedCVC: UICollectionViewCell {
             likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
             likeCountLabel.textColor = .sparkGray
         }
+        
+        self.indexPath = indexPath
     }
     
     private func setAddTarget() {
@@ -119,7 +122,8 @@ class FeedCVC: UICollectionViewCell {
                 likeState = false
             }
         }
-        self.likeDelegate?.likeButtonTapped(recordID: cellId)
+        // !likeState 가 true 라면 좋아요를 취소한 것.
+        self.likeDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
     }
 }
 
