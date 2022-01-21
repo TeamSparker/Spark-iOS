@@ -115,10 +115,11 @@ extension HabitRoomVC {
         
         flakeImageView.contentMode = .scaleAspectFill
         
+        progressView.setProgress(0, animated: false)
+        progressView.trackTintColor = .sparkDeepGray
+        
         ddayTitleLabel.font = .h1BigtitleEng
         ddayTitleLabel.textColor = .sparkWhite
-        
-        progressView.trackTintColor = .sparkDeepGray
         
         startDateLabel.font = .captionEng
         startDateLabel.textColor = .sparkWhite
@@ -157,10 +158,8 @@ extension HabitRoomVC {
         let sparkFlake = SparkFlake(leftDay: leftDay)
         flakeImageView.image = sparkFlake.sparkFlakeHabitBackground()
         progressView.progressTintColor = sparkFlake.sparkFlakeColor()
-        // 맞나..?
         
-//        progessView.setProgress(Float((66 - leftDay )/66), animated: true)
-        progressView.setProgress(Float((66 - leftDay )/66), animated: false)
+        progressView.setProgress(Float(66 - leftDay) / Float(66), animated: true)
         
         startDateLabel.text = habitRoomDetail.startDate
         endDateLabel.text = habitRoomDetail.endDate
