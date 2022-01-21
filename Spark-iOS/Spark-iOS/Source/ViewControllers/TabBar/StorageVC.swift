@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+import Lottie
 import SnapKit
 
 class StorageVC: UIViewController {
@@ -24,6 +26,9 @@ class StorageVC: UIViewController {
     // FIXME: 무한스크롤 관련 수정하기, 셀이 반복되는 문제
     private var isInfiniteScroll: Bool = false
     private var tagCount: Int = 1
+    
+    lazy var loadingBgView = UIImageView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -97,22 +102,6 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
-        DispatchQueue.main.async { [self] in
-            self.getOnGoingRoomWithAPI(lastID: onGoingRoomLastID, size: myRoomCountSize) {
-                self.getFailRoomWithAPI(lastID: failRoomLastID, size: myRoomCountSize) {
-                    self.getCompleteRoomWithAPI(lastID: completeRoomLastID, size: myRoomCountSize) {
-                        DoneCV.reloadData()
-                        FailCV.reloadData()
-                        if (doingLabel.text == "0") || (doingLabel.text == "0") {
-                            emptyView.isHidden = false
-                        } else {
-                                emptyView.isHidden = true
-                        }
-                    }
-                }
-            }
-        }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +110,29 @@ class StorageVC: UIViewController {
         navigationController?.isNavigationBarHidden = true
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         tabBarController?.tabBar.isHidden = false
+        
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async { 
+            self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
+                self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
+                    self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
+                        self.DoneCV.reloadData()
+                        self.FailCV.reloadData()
+                        if (self.doingLabel.text == "0") || (self.doingLabel.text == "0") {
+                            self.emptyView.isHidden = false
+                        } else {
+                            self.emptyView.isHidden = true
+                        }
+                        self.loadingView.stop()
+                        self.loadingBgView.removeFromSuperview()
+                        self.makeDrawAboveButton(button: self.doingButton)
+                    }
+                }
+            }
+        }
     }
     
 }
@@ -150,6 +162,26 @@ extension StorageVC {
         
         let xibFailCVName = UINib(nibName: "FailStorageCVC", bundle: nil)
         FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
+    }
+    
+    private func setLoading() {
+        loadingBgView.image = UIImage(named: "bgLinegridForWhite")
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
     }
     
     private func setUI() {
@@ -207,11 +239,6 @@ extension StorageVC {
         } else {
                 emptyView.isHidden = true
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.3) { [self] in
-            makeDrawAboveButton(button: doingButton)
-        }
-
     }
     
     private func setLayout() {
@@ -359,7 +386,7 @@ extension StorageVC {
             if doingLabel.text == "0" {
                 emptyView.isHidden = false
             } else {
-                    emptyView.isHidden = true
+                emptyView.isHidden = true
             }
         }
     }

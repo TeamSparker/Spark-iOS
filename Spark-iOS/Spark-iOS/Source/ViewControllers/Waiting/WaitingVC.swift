@@ -9,11 +9,9 @@ import UIKit
 
 import SnapKit
 import SwiftUI
+import Lottie
 
 class WaitingVC: UIViewController {
-    var members: [Member] = []
-    var isFromHome: Bool?
-    private let tapGestrueRecognizer = UITapGestureRecognizer()
     
     // MARK: - Properties
     
@@ -40,9 +38,15 @@ class WaitingVC: UIViewController {
     let refreshButton = UIButton()
     let startButton = UIButton()
     
+    private let tapGestrueRecognizer = UITapGestureRecognizer()
+    
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
+    lazy var loadingBgView = UIView()
+    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    
+    var members: [Member] = []
     var memberList: [Any] = []
     var photoOnly: Bool? /// 사진 인증만
     var roomName: String?
@@ -50,6 +54,7 @@ class WaitingVC: UIViewController {
     var roomId: Int?
     var userMoment: String?
     var userPurpose: String?
+    var isFromHome: Bool?
     
     // MARK: - View Life Cycles
     
@@ -67,11 +72,18 @@ class WaitingVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        getWaitingRoomWithAPI(roomID: roomId ?? 0)
+        DispatchQueue.main.async {
+            // 로딩
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
+            self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
+        }
     }
 
     // MARK: - Methods
-    func setNavigation(title: String) {
+    private func setNavigation(title: String) {
         if isFromHome ?? false {
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                                 title: "\(title)",
@@ -93,7 +105,7 @@ class WaitingVC: UIViewController {
         }
     }
     
-    func setUI() {
+    private func setUI() {
         tabBarController?.tabBar.isHidden = true
         // 플로팅버튼 내리기
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
@@ -158,7 +170,7 @@ class WaitingVC: UIViewController {
     }
     
     /// 선택한 인증 방식
-    func setAuthLabel() {
+    private func setAuthLabel() {
         if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
         } else {
@@ -166,7 +178,27 @@ class WaitingVC: UIViewController {
         }
     }
     
-    func setAddTarget() {
+    private func setLoading() {
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingBgView.backgroundColor = .white.withAlphaComponent(0.8)
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
+    }
+    
+    private func setAddTarget() {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
@@ -175,7 +207,7 @@ class WaitingVC: UIViewController {
         tapGestrueRecognizer.addTarget(self, action: #selector(quickDismissToolTip))
     }
     
-    func setCollectionView() {
+    private func setCollectionView() {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -184,7 +216,7 @@ class WaitingVC: UIViewController {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
-    func refreshButtonAnimtation() {
+    private func refreshButtonAnimtation() {
         UIView.animate(withDuration: 0.4,
                        delay: 0.1,
                        options: .curveEaseInOut) {
@@ -256,6 +288,7 @@ class WaitingVC: UIViewController {
     @objc
     func dismissToHomeVC() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
     @objc
@@ -288,6 +321,8 @@ extension WaitingVC {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
+                self.loadingView.stop()
+                self.loadingBgView.removeFromSuperview()
                 if let waitingRoom = data as? Waiting {
                     var user: ReqUser
                     
@@ -339,20 +374,7 @@ extension WaitingVC {
                     }
                     
                     // 사용자 이미지 설정
-                    if user.profileImg != nil {
-                        if let url = URL(string: user.profileImg ?? "") {
-                            do {
-                                let data = try Data(contentsOf: url)
-                                self.profileImageView.image = UIImage(data: data)
-                            } catch {
-                                self.profileImageView.image = UIImage(named: "profileEmpty")
-                                self.profileImageView.backgroundColor = .sparkGray
-                            }
-                        }
-                    } else {
-                        self.profileImageView.image = UIImage(named: "profileEmpty")
-                        self.profileImageView.backgroundColor = .sparkGray
-                    }
+                    self.profileImageView.updateImage(user.profileImg ?? "")
                     self.collectionView.reloadData()
                 }
             case .requestErr(let message):
@@ -422,24 +444,11 @@ extension WaitingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
-
-        // 이름
-        let name = members[indexPath.item].nickname
-        cell.nameLabel.text = name
         
-        // 이미지
-        if let url = URL(string: members[indexPath.item].profileImg ?? "") {
-            do {
-                let data = try Data(contentsOf: url)
-                // FIXME: - 서버에서 디폴트 이미지도 보내준다고 하셨는데 지금은 nil 값으로 넘어와서 나중에 수정해서 initCell 사용
-//                cell.initCell(name: name, image: data)
-                cell.profileImageView.image = UIImage(data: data)
-            } catch {
-                cell.profileImageView.backgroundColor = .sparkGray
-            }
-        } else {
-            cell.profileImageView.image = UIImage(named: "profileEmpty")
-        }
+        let name = members[indexPath.item].nickname
+        let imagePath = members[indexPath.item].profileImg ?? ""
+        
+        cell.initCell(name: name, imagePath: imagePath)
         
         return cell
     }

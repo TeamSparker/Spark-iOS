@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Lottie
 
 class CreateAuthVC: UIViewController {
     
@@ -22,7 +23,7 @@ class CreateAuthVC: UIViewController {
     var photoOnly: Bool = true
     var roomName: String = ""
     var roomId: Int?
-
+    
     // MARK: - View Life Cycles
     
     override func viewWillAppear(_ animated: Bool) {
