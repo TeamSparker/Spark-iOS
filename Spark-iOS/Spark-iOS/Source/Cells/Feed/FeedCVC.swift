@@ -58,6 +58,7 @@ class FeedCVC: UICollectionViewCell {
         likeCountLabel.text = ""
         timeLabel.text = ""
         feedImageView.image = UIImage()
+        fadeImageView.image = UIImage()
         profileImageView.image = UIImage()
     }
     

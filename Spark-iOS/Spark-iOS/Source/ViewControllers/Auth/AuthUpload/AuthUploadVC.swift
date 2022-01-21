@@ -369,6 +369,7 @@ extension AuthUploadVC {
                 if let authUpload = data as? AuthUpload {
                     guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
                     
+                    popupVC.vcType = self.vcType
                     popupVC.modalTransitionStyle = .crossDissolve
                     popupVC.modalPresentationStyle = .overFullScreen
                     

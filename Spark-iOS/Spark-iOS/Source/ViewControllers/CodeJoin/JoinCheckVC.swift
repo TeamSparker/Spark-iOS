@@ -38,6 +38,7 @@ class JoinCheckVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setAnimation()
+        setLayout()
     }
     
     // MARK: - @IBAction Properties
@@ -78,6 +79,16 @@ extension JoinCheckVC {
         animationFrameView.addSubview(ticketView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [self] in
             ticketView.play()
+        }
+    }
+    
+    private func setLayout() {
+        reInputButton.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width*48/335)
+        }
+        
+        enterButton.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
