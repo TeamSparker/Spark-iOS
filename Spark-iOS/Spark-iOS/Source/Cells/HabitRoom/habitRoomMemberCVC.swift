@@ -9,6 +9,10 @@ import UIKit
 
 class HabitRoomMemberCVC: UICollectionViewCell {
 
+    // MARK: - Properties
+    
+    var presentToSendSparkVCClosure: (()-> Void)?
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -35,6 +39,7 @@ class HabitRoomMemberCVC: UICollectionViewCell {
         sparkCountLabel.text = ""
         sparkCountLabel.isHidden = true
         sparkImage.image = UIImage()
+        sparkImage.isUserInteractionEnabled = false
         stickerImage.isHidden = true
         stickerImage.image = UIImage()
     }
@@ -63,7 +68,8 @@ extension HabitRoomMemberCVC {
                     profileImg: String,
                     nickname: String,
                     status: String,
-                    receivedSpark: Int) {
+                    receivedSpark: Int,
+                    leftDay: Int) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -81,8 +87,13 @@ extension HabitRoomMemberCVC {
             stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
             stickerImage.isHidden = false
         } else {
-            statusLabel.text = "인증은 내일부터 가능해요."
-            stickerImage.isHidden = true
+            if leftDay == 66 {
+                statusLabel.text = "인증은 내일부터 가능해요."
+                stickerImage.isHidden = true
+            } else {
+                statusLabel.text = "아직 인증하지 않았어요!"
+                stickerImage.isHidden = true
+            }
         }
         
         tagMeImage.isHidden = false
@@ -97,7 +108,8 @@ extension HabitRoomMemberCVC {
                         profileImg: String,
                         nickname: String,
                         status: String,
-                        sparkDone: Bool) {
+                        leftDay: Int,
+                        closure: (()->Void)?) {
         profileImage.updateImage(profileImg)
         
         nicknameLabel.text = nickname
@@ -109,15 +121,39 @@ extension HabitRoomMemberCVC {
         } else if status == "REST" {
             statusLabel.text = "오늘은 쉬어요."
         } else {
-            statusLabel.text = "인증은 내일부터 가능해요."
+            if leftDay == 66 {
+                statusLabel.text = "인증은 내일부터 가능해요."
+                stickerImage.isHidden = true
+            } else {
+                statusLabel.text = "아직 인증하지 않았어요!"
+                stickerImage.isHidden = true
+            }
         }
         
         tagMeImage.isHidden = true
-        if sparkDone {
+        
+        if leftDay == 66 {
             sparkImage.image = UIImage(named: "icFireInactive")
+            sparkImage.isUserInteractionEnabled = false
         } else {
-            sparkImage.image = UIImage(named: "icFireDefault")
+            if status == "DONE" || status == "REST" {
+                sparkImage.image = UIImage(named: "icFireInactive")
+                sparkImage.isUserInteractionEnabled = false
+            } else {
+                sparkImage.image = UIImage(named: "icFireDefault")
+                sparkImage.isUserInteractionEnabled = true
+                
+                presentToSendSparkVCClosure = closure
+                let tap = UITapGestureRecognizer(target: self, action: #selector(presentToSendSparkVC))
+                sparkImage.addGestureRecognizer(tap)
+            }
         }
+
         sparkCountLabel.isHidden = true
+    }
+    
+    @objc
+    private func presentToSendSparkVC() {
+        presentToSendSparkVCClosure?()
     }
 }
