@@ -115,7 +115,18 @@ class AuthTimerVC: UIViewController {
     // MARK: - @objc
     @objc
     func dismissToHabitRoom() {
-        dismiss(animated: true, completion: nil)
+        if timeLabel.text != "00:00:00" {
+            guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            dialogVC.dialogueType = .exitTimer
+            dialogVC.clousure = {
+                self.dismiss(animated: true, completion: nil)
+            }
+            dialogVC.modalPresentationStyle = .overFullScreen
+            dialogVC.modalTransitionStyle = .crossDissolve
+            self.present(dialogVC, animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc
