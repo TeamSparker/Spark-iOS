@@ -42,6 +42,7 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var authButton: UIButton!
+    @IBOutlet weak var gradationView: UIView!
     
     // MARK: - View Life Cycle
     
@@ -159,6 +160,8 @@ extension HabitRoomVC {
         authButton.titleLabel?.font = .btn1Default
         authButton.backgroundColor = .sparkGray
         authButton.isEnabled = false
+        
+        gradationView.setHabitGradient()
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {

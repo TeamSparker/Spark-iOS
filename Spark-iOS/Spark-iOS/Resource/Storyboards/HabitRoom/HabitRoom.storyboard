@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -146,6 +146,10 @@
                                     <constraint firstItem="qSy-7n-MfT" firstAttribute="leading" secondItem="RnB-mU-OUf" secondAttribute="leading" constant="8" id="yre-15-oNO"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="152-pg-Vdy">
+                                <rect key="frame" x="0.0" y="781.5" width="414" height="114.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjG-wg-ehW">
                                 <rect key="frame" x="112" y="781.5" width="190" height="60.5"/>
                                 <constraints>
@@ -164,6 +168,7 @@
                             <constraint firstItem="ABA-OJ-sFD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="7mz-Jr-qGt"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BjG-wg-ehW" secondAttribute="bottom" constant="20" id="9Q2-q5-zJs"/>
                             <constraint firstItem="pjm-qP-ARe" firstAttribute="trailing" secondItem="Wbn-p4-clp" secondAttribute="trailing" id="Bf1-Cf-Uk0"/>
+                            <constraint firstItem="152-pg-Vdy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="C9c-Vg-jgr"/>
                             <constraint firstItem="RnB-mU-OUf" firstAttribute="trailing" secondItem="omc-x7-fqu" secondAttribute="trailing" id="D5c-rn-KEz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BjG-wg-ehW" secondAttribute="trailing" constant="112" id="E7L-pU-d91"/>
                             <constraint firstItem="RnB-mU-OUf" firstAttribute="leading" secondItem="wy4-Vp-81Z" secondAttribute="leading" id="ErA-kl-tG5"/>
@@ -177,13 +182,16 @@
                             <constraint firstItem="pjm-qP-ARe" firstAttribute="top" secondItem="cFf-Os-dsz" secondAttribute="bottom" constant="12" id="VBp-Ht-0og"/>
                             <constraint firstItem="BjG-wg-ehW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112" id="X1K-BW-gsr"/>
                             <constraint firstItem="wy4-Vp-81Z" firstAttribute="leading" secondItem="pjm-qP-ARe" secondAttribute="leading" id="YJ1-Z7-OLP"/>
-                            <constraint firstItem="cFf-Os-dsz" firstAttribute="top" secondItem="ABA-OJ-sFD" secondAttribute="bottom" constant="28" id="Zw4-tR-eXJ"/>
+                            <constraint firstAttribute="bottom" secondItem="152-pg-Vdy" secondAttribute="bottom" id="YSh-mJ-MJt"/>
+                            <constraint firstItem="cFf-Os-dsz" firstAttribute="top" secondItem="ABA-OJ-sFD" secondAttribute="bottom" constant="33" id="Zw4-tR-eXJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="152-pg-Vdy" secondAttribute="trailing" id="a31-nv-Glk"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="INP-rS-JPk" secondAttribute="trailing" id="aVf-An-Zde"/>
                             <constraint firstItem="Wbn-p4-clp" firstAttribute="centerY" secondItem="cFf-Os-dsz" secondAttribute="centerY" id="ce5-0b-zaN"/>
                             <constraint firstItem="omc-x7-fqu" firstAttribute="trailing" secondItem="pjm-qP-ARe" secondAttribute="trailing" id="cz5-qx-VGF"/>
                             <constraint firstItem="mzm-65-lz0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="ege-DP-5F4"/>
                             <constraint firstItem="RnB-mU-OUf" firstAttribute="top" secondItem="wy4-Vp-81Z" secondAttribute="bottom" constant="28" id="ejD-5F-tNd"/>
                             <constraint firstItem="suy-dQ-y1I" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fAd-LL-N8u"/>
+                            <constraint firstItem="152-pg-Vdy" firstAttribute="top" secondItem="BjG-wg-ehW" secondAttribute="top" id="ggf-kj-a6o"/>
                             <constraint firstItem="INP-rS-JPk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="j3E-mx-CK3"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eB0-bS-UA9" secondAttribute="trailing" constant="20" id="jRr-n8-D8J"/>
                             <constraint firstItem="suy-dQ-y1I" firstAttribute="top" secondItem="INP-rS-JPk" secondAttribute="bottom" constant="-5" id="kkl-Fs-lc9"/>
@@ -202,6 +210,7 @@
                         <outlet property="flakeImageView" destination="INP-rS-JPk" id="GAX-Lf-XVi"/>
                         <outlet property="goalLabel" destination="b13-Cp-oOC" id="Vjx-Zc-ndT"/>
                         <outlet property="goalTextField" destination="qSy-7n-MfT" id="gwY-1V-DPr"/>
+                        <outlet property="gradationView" destination="152-pg-Vdy" id="gPY-dU-sjc"/>
                         <outlet property="habitTitleLabel" destination="ABA-OJ-sFD" id="tNY-Gf-EIT"/>
                         <outlet property="mainCollectionView" destination="suy-dQ-y1I" id="24D-in-Qwv"/>
                         <outlet property="moreButton" destination="eB0-bS-UA9" id="IJL-qg-RtK"/>
