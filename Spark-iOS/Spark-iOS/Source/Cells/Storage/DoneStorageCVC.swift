@@ -22,7 +22,7 @@ class DoneStorageCVC: UICollectionViewCell {
     
     func setUI() {
         gradationUIView.setGradient(color1: UIColor.clear, color2: UIColor.black)
-        thumbnailImage.contentMode = .scaleToFill
+        thumbnailImage.contentMode = .scaleAspectFill
         thumbnailImage.layer.masksToBounds = true
         commentLabel.font = .p1TitleLight
     }
