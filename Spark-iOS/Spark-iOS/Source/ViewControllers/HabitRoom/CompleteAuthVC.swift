@@ -42,6 +42,7 @@ class CompleteAuthVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setLayout()
         setGesture()
         setAnimation()
     }
@@ -125,7 +126,7 @@ extension CompleteAuthVC {
     // MARK: - @objc
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
-        setLayout()
+
         shareAuthWithInstagram()
     }
 }
