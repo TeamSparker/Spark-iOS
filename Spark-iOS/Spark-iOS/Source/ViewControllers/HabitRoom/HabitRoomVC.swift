@@ -127,7 +127,7 @@ extension HabitRoomVC {
         habitTitleLabel.textColor = .sparkWhite
         habitTitleLabel.text = ""
         
-        flakeImageView.contentMode = .scaleAspectFill
+        flakeImageView.contentMode = .scaleAspectFit
         
         progressView.setProgress(0, animated: false)
         progressView.trackTintColor = .sparkDeepGray
