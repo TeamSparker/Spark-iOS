@@ -7,7 +7,7 @@
 | 🍕 | 🍕 | 🍕 |
 | `스플래시`, `홈 탭`, `습관방` | `피드 탭`, `대기방`, `방 생성`, `나의 목표작성`, `습관 인증(사진/스톱워치)`, `프로필 설정`| `보관함 탭`, `인증 사진 모아보기`, `커스텀 알림창`, `쉴래요, 고민중`, `코드로 참여 및 확인`, `스파크 보내기`, `인증하기 완료`|
 | 👾 | 👾 | 👾 |
-| `소셜 로그인`, `자동 로그인`, `무한스크롤`, `APNs(Apple Push Notification Service)`| `소셜 로그인(Apple)`, `커스텀 토스트 메세지`, `스톱워치`, `사진촬영, 앨범 연동`, `키보드 대응 애니메이션`, `infinite scroll`, `sticky header 구현`, `글자수 제한`, `로티`, `loading`, `좋아요`| `소셜 로그인(Kakao)`, `instagram 공유`, `tooltip`, `사진촬영, 앨범 연동`, `image resizing`, `UIView rendering`, `carousel`, `infinite scroll`, `글자수 제한`, `Lottie`, `loading`|
+| `소셜 로그인`, `자동 로그인`, `무한스크롤`, `APNs(Apple Push Notification Service)`| `소셜 로그인(Apple)`, `커스텀 토스트 메세지`, `스톱워치`, `사진촬영, 앨범 연동`, `키보드 대응 애니메이션`, `infinite scroll`, `sticky header 구현`, `글자수 제한`, `로티`, `loading`, `좋아요`| `소셜 로그인(Kakao)`, `instagram 공유`, `tooltip`, `사진촬영, 앨범 연동`, `image resizing`, `UIView rendering`, `carousel`, `infinite scroll`, `글자수 제한`, `Lottie`, `loading`, `BezierPath animation`|
 | 🥔 | 🥔 | 🥔 |
 | `나베만들기`, `집청소`, `빨래` | `중간`, `또 너야 양수빈`, `리드라이팅 피해자` | `잔반처리반`, `안드로이드첩자`, `아이폰적응기` |
 
