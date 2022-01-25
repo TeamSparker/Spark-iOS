@@ -17,6 +17,9 @@ see [Spark Coding Convention Wiki](https://github.com/TeamSparker/Spark-iOS/wiki
 ### ⚡️Git branch
 see [Spark Git branch 전략 Wiki](https://github.com/TeamSparker/Spark-iOS/wiki/Git-branch-%EC%A0%84%EB%9E%B5) page.
 
+### ⚡️Commit Convention
+see [Spark Commit Convention Wiki](https://github.com/TeamSparker/Spark-iOS/wiki/Commit-Convention) page.
+
 ### ⚡️Foldering
 ```
 Spark-iOS
