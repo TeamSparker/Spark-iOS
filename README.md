@@ -1,4 +1,6 @@
 <img src ="https://user-images.githubusercontent.com/69136340/150557491-0097a4f4-0c8d-4d8e-b84d-a4db5908d002.png" width ="1000">
+<img src = "https://user-images.githubusercontent.com/81167570/151120562-3da18d9a-1da0-43ea-92d4-b0576c8472a3.png" width="1000" />
+
 
 ### ⚡️iOS Developer
 |<img src="https://user-images.githubusercontent.com/81167570/148653975-7110713f-6a42-4f43-8b15-0b8e0e3c4b1b.png" width="200" height="200"/> | <img src="https://user-images.githubusercontent.com/81167570/148654257-865974c3-595a-4287-b0f7-48197281adf7.png" width="200" height="200"/> | <img src="https://user-images.githubusercontent.com/81167570/148669789-73beb606-a1c3-478f-97e8-869522032793.png" width="200" height="200"/> |
