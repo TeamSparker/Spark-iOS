@@ -170,7 +170,7 @@ extension FeedCVC {
     
     private func setStackView() {
         titleStackView.axis = .horizontal
-        titleStackView.alignment = .fill
+        titleStackView.alignment = .bottom
         titleStackView.distribution = .equalSpacing
         titleStackView.spacing = 8
         titleStackView.addArrangedSubview(titleLabel)
@@ -239,6 +239,7 @@ extension FeedCVC {
         titleStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.height.equalTo(26)
         }
         
         sparkStackView.snp.makeConstraints { make in
