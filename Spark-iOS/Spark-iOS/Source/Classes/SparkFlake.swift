@@ -29,7 +29,7 @@ public class SparkFlake {
         } else if 65 >= leftDay && leftDay > 62 {
             self.state = .day65
         } else if 62 >= leftDay && leftDay > 58 {
-            self.state = .day65
+            self.state = .day62
         } else if 58 >= leftDay && leftDay > 32 {
             self.state = .day58
         } else if 32 >= leftDay && leftDay > 6 {
