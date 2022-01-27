@@ -304,11 +304,17 @@ class WaitingVC: UIViewController {
     
     @objc
     func touchToCreateButton() {
-        postStartRoomWithAPI(roomID: roomId ?? 0) {
-            if self.isFromHome ?? false {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
+            self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
+                if self.isFromHome ?? false {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+                }
             }
         }
     }
@@ -421,6 +427,8 @@ extension WaitingVC {
             switch response {
             case .success(let message):
                 completion()
+                self.loadingView.stop()
+                self.loadingBgView.removeFromSuperview()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("postStartRoomWithAPI - requestErr: \(message)")
@@ -498,7 +506,7 @@ extension WaitingVC {
         
         toolTipButton.snp.makeConstraints { make in
             make.leading.equalTo(checkTitleLabel.snp.trailing).offset(4)
-            make.centerY.equalTo(checkTitleLabel.snp.centerY)
+            make.centerY.equalTo(checkTitleLabel.snp.centerY).offset(2)
             make.width.height.equalTo(24)
         }
         
