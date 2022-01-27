@@ -339,10 +339,11 @@ class WaitingVC: UIViewController {
             self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
                 switch self.fromWhereStatus {
                 case .fromHome:
-                    self.navigationController?.popViewController(animated: true)
+                    self.popToHomeVC()
                 case .makeRoom:
-                    self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+                    self.dismissToHomeVC()
                 case .joinCode:
+                    // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
                     return
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
