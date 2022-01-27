@@ -10,6 +10,18 @@ import UIKit
 import SnapKit
 import Lottie
 
+/// 대기방을 접근하는 플로우를 알려주는 상태.
+/// - fromHome : 홈에서 대기방 올 때.
+/// - joinCode : 코드로 참여할 때.
+/// - makeRoom : 방만들기로 대기방 올 때.
+
+@frozen
+enum FromWhereStatus {
+    case fromHome
+    case joinCode
+    case makeRoom
+}
+
 class WaitingVC: UIViewController {
     
     // MARK: - Properties
@@ -53,7 +65,7 @@ class WaitingVC: UIViewController {
     var roomId: Int?
     var userMoment: String?
     var userPurpose: String?
-    var isFromHome: Bool?
+    var fromWhereStatus: FromWhereStatus?
     
     // MARK: - View Life Cycles
     
@@ -70,7 +82,7 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         DispatchQueue.main.async {
             // 로딩
             self.setLoading()
@@ -80,10 +92,11 @@ class WaitingVC: UIViewController {
             self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         }
     }
-
+    
     // MARK: - Methods
     private func setNavigation(title: String) {
-        if isFromHome ?? false {
+        switch fromWhereStatus {
+        case .fromHome:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                                 title: "\(title)",
                                                                 tintColor: .sparkBlack,
@@ -92,7 +105,16 @@ class WaitingVC: UIViewController {
                                                                 rightButtonImage: UIImage(),
                                                                 reftButtonSelector: #selector(popToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
-        } else {
+        case .joinCode:
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icHome"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(dismissJoinCodeToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        case .makeRoom:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                                 title: "\(title)",
                                                                 tintColor: .sparkBlack,
@@ -101,6 +123,8 @@ class WaitingVC: UIViewController {
                                                                 rightButtonImage: UIImage(),
                                                                 reftButtonSelector: #selector(dismissToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
+        case .none:
+            print("fromeWhereStatus 를 지정해주세요.")
         }
     }
     
@@ -291,6 +315,16 @@ class WaitingVC: UIViewController {
     }
     
     @objc
+    func dismissJoinCodeToHomeVC() {
+        print("presentingVC: ", presentingViewController)
+        print("presentingVC.presentingVC: ", presentingViewController?.presentingViewController)
+        print("presentingVC.presentingVC.presentingVC: ", presentingViewController?.presentingViewController?.presentingViewController)
+        
+        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+    
+    @objc
     func touchToMore() {
            // 더보기 버튼
     }
@@ -309,10 +343,15 @@ class WaitingVC: UIViewController {
         
         DispatchQueue.main.async {
             self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
-                if self.isFromHome ?? false {
+                switch self.fromWhereStatus {
+                case .fromHome:
                     self.navigationController?.popViewController(animated: true)
-                } else {
+                case .makeRoom:
                     self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+                case .joinCode:
+                    return
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
                 }
             }
         }

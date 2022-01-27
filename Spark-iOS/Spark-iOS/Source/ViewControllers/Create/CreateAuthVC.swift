@@ -93,6 +93,7 @@ class CreateAuthVC: UIViewController {
             guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
             rootVC.roomName = self.roomName
             rootVC.roomId = self.roomId
+            rootVC.fromWhereStatus = .makeRoom
             
             let nextVC = UINavigationController(rootViewController: rootVC)
             nextVC.modalTransitionStyle = .crossDissolve
