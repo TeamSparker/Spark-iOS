@@ -316,10 +316,6 @@ class WaitingVC: UIViewController {
     
     @objc
     func dismissJoinCodeToHomeVC() {
-        print("presentingVC: ", presentingViewController)
-        print("presentingVC.presentingVC: ", presentingViewController?.presentingViewController)
-        print("presentingVC.presentingVC.presentingVC: ", presentingViewController?.presentingViewController?.presentingViewController)
-        
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
