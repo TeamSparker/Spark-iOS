@@ -8,47 +8,46 @@
 import UIKit
 
 import SnapKit
-import SwiftUI
 import Lottie
 
 class WaitingVC: UIViewController {
     
     // MARK: - Properties
     
-    let copyButton = UIButton()
-    let checkTitleLabel = UILabel()
-    let toolTipButton = UIButton()
-    let toolTipImageView = UIImageView()
-    let stopwatchLabel = UILabel()
-    let checkDivideView = UIView()
-    let photoLabel = UILabel()
-    let firstDivideView = UIView()
+    private let copyButton = UIButton()
+    private let checkTitleLabel = UILabel()
+    private let toolTipButton = UIButton()
+    private let toolTipImageView = UIImageView()
+    private let stopwatchLabel = UILabel()
+    private let checkDivideView = UIView()
+    private let photoLabel = UILabel()
+    private let firstDivideView = UIView()
     
-    let goalTitleLabel = UILabel()
-    let profileImageView = UIImageView()
-    let nicknameLabel = UILabel()
-    let timeLabel = UILabel()
-    let goalLabel = UILabel()
-    let editButton = UIButton()
-    let secondDivideView = UIView()
+    private let goalTitleLabel = UILabel()
+    private let profileImageView = UIImageView()
+    private let nicknameLabel = UILabel()
+    private let timeLabel = UILabel()
+    private let goalLabel = UILabel()
+    private let editButton = UIButton()
+    private let secondDivideView = UIView()
     
-    let friendTitleLabel = UILabel()
-    let friendCountLabel = UILabel()
-    let friendSubTitleLabel = UILabel()
-    let refreshButton = UIButton()
-    let startButton = UIButton()
+    private let friendTitleLabel = UILabel()
+    private let friendCountLabel = UILabel()
+    private let friendSubTitleLabel = UILabel()
+    private let refreshButton = UIButton()
+    private let startButton = UIButton()
     
     private let tapGestrueRecognizer = UITapGestureRecognizer()
+    private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-    
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
-    var members: [Member] = []
-    var memberList: [Any] = []
-    var photoOnly: Bool? /// 사진 인증만
+    private var members: [Member] = []
+    private var memberList: [Any] = []
+    
+    var photoOnly: Bool? // 사진 인증만
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
