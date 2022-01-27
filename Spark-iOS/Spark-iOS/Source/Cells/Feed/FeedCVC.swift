@@ -33,8 +33,9 @@ class FeedCVC: UICollectionViewCell {
     let likeButton = UIButton()
     let likeCountLabel = UILabel()
     let lottieView = AnimationView(name: "icHeartActive")
-    var likeState: Bool = false
+    
     weak var likeDelegate: FeedCellDelegate?
+    var likeState: Bool = false
     var cellId: Int = 0
     var indexPath: IndexPath?
     
@@ -61,6 +62,7 @@ class FeedCVC: UICollectionViewCell {
         feedImageView.image = UIImage()
         fadeImageView.image = UIImage()
         profileImageView.image = UIImage()
+        likeState = false
     }
     
     // MARK: - Methods
@@ -101,20 +103,23 @@ class FeedCVC: UICollectionViewCell {
         likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
     }
     
+    // FIXME: - 고쳐
     @objc
     func tapLikeButton() {
         let originLike = Int(likeCountLabel.text ?? "") ?? 0
         if !likeState {
-            lottieView.isHidden = false
-            lottieView.play {_ in
-                self.lottieView.isHidden = true
+            // like 눌리지 않음 -> 눌림
+            setLikeLottie {
+                self.lottieView.stop()
+                self.lottieView.removeFromSuperview()
             }
-
-            self.likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
-            self.likeCountLabel.textColor = .sparkDarkPinkred
-            self.likeCountLabel.text = "\(originLike + 1)"
+            
+            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            likeCountLabel.textColor = .sparkDarkPinkred
+            likeCountLabel.text = "\(originLike + 1)"
             likeState = true
         } else {
+            // like 눌림 -> 눌리지 않음
             if originLike > 0 {
                 likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
                 likeCountLabel.textColor = .sparkGray
@@ -122,7 +127,7 @@ class FeedCVC: UICollectionViewCell {
                 likeState = false
             }
         }
-        // !likeState 가 true 라면 좋아요를 취소한 것.
+        // likeState 가 false 라면 좋아요를 취소한 것.
         self.likeDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
     }
 }
@@ -161,13 +166,6 @@ extension FeedCVC {
         doneImageView.image = UIImage(named: "tagDone")
         sparkIconImageView.image = UIImage(named: "icFire")
         likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
-        
-        lottieView.backgroundColor = .clear
-        lottieView.center = likeButton.center
-        lottieView.loopMode = .playOnce
-        lottieView.contentMode = .scaleAspectFit
-        lottieView.layer.masksToBounds = true
-        lottieView.isHidden = true
     }
     
     private func setStackView() {
@@ -186,6 +184,25 @@ extension FeedCVC {
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
+    
+    private func setLikeLottie(completion: @escaping () -> Void) {
+        self.addSubview(lottieView)
+
+        lottieView.snp.makeConstraints { make in
+            make.center.equalTo(likeButton.snp.center)
+            make.width.height.equalTo(40)
+        }
+
+        lottieView.backgroundColor = .clear
+        lottieView.center = likeButton.center
+        lottieView.loopMode = .playOnce
+        lottieView.contentMode = .scaleAspectFit
+        lottieView.layer.masksToBounds = true
+        lottieView.play {_ in
+            print("play 했는데 왜 안돼? ⚡️")
+            completion()
+        }
+    }
 }
 
 // MARK: - Layout
@@ -193,8 +210,7 @@ extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, likeButton, likeCountLabel,
-                          lottieView])
+                          sparkStackView, likeButton, likeCountLabel])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -237,11 +253,6 @@ extension FeedCVC {
         likeButton.snp.makeConstraints { make in
             make.top.equalTo(feedImageView.snp.bottom).offset(20)
             make.trailing.equalToSuperview().inset(50)
-        }
-        
-        lottieView.snp.makeConstraints { make in
-            make.center.equalTo(likeButton.snp.center)
-            make.width.height.equalTo(40)
         }
         
         likeCountLabel.snp.makeConstraints { make in
