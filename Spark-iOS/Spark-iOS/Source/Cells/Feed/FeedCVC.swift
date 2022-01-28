@@ -53,7 +53,9 @@ class FeedCVC: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // FIXME: - 두개의 셀이 보일 때, 아래의 셀에서 하트를 누르면 위 셀의 하트 로티가 작동.. 로티는 어떻게 초기화 시켜주지...
     override func prepareForReuse() {
+        super.prepareForReuse()
         titleLabel.text = ""
         nameLabel.text = ""
         sparkCountLabel.text = ""
@@ -62,7 +64,7 @@ class FeedCVC: UICollectionViewCell {
         feedImageView.image = UIImage()
         fadeImageView.image = UIImage()
         profileImageView.image = UIImage()
-        likeState = false
+        likeState = true
     }
     
     // MARK: - Methods
@@ -109,10 +111,7 @@ class FeedCVC: UICollectionViewCell {
         let originLike = Int(likeCountLabel.text ?? "") ?? 0
         if !likeState {
             // like 눌리지 않음 -> 눌림
-            setLikeLottie {
-                self.lottieView.stop()
-                self.lottieView.removeFromSuperview()
-            }
+            setLikeLottie()
             
             likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
             likeCountLabel.textColor = .sparkDarkPinkred
@@ -185,7 +184,7 @@ extension FeedCVC {
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
     
-    private func setLikeLottie(completion: @escaping () -> Void) {
+    private func setLikeLottie() {
         self.addSubview(lottieView)
 
         lottieView.snp.makeConstraints { make in
@@ -193,14 +192,14 @@ extension FeedCVC {
             make.width.height.equalTo(40)
         }
 
-        lottieView.backgroundColor = .clear
         lottieView.center = likeButton.center
         lottieView.loopMode = .playOnce
         lottieView.contentMode = .scaleAspectFit
         lottieView.layer.masksToBounds = true
         lottieView.play {_ in
-            print("play 했는데 왜 안돼? ⚡️")
-            completion()
+            print("되는거여?🤬")
+            self.lottieView.stop()
+            self.lottieView.removeFromSuperview()
         }
     }
 }
