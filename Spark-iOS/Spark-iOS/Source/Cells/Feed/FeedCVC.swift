@@ -15,29 +15,29 @@ class FeedCVC: UICollectionViewCell {
     
     // MARK: - Properties
     
-    let feedImageView = UIImageView()
-    let fadeImageView = UIImageView()
-    let timeLabel = UILabel()
-    let profileImageView = UIImageView()
-    let nameLabel = UILabel()
+    private let feedImageView = UIImageView()
+    private let fadeImageView = UIImageView()
+    private let timeLabel = UILabel()
+    private let profileImageView = UIImageView()
+    private let nameLabel = UILabel()
     
-    let titleStackView = UIStackView()
-    let titleLabel = UILabel()
-    let doneImageView = UIImageView()
+    private let titleStackView = UIStackView()
+    private let titleLabel = UILabel()
+    private let doneImageView = UIImageView()
     
-    let sparkStackView = UIStackView()
-    let sparkLabel = UILabel()
-    let sparkIconImageView = UIImageView()
-    let sparkCountLabel = UILabel()
+    private let sparkStackView = UIStackView()
+    private let sparkLabel = UILabel()
+    private let sparkIconImageView = UIImageView()
+    private let sparkCountLabel = UILabel()
     
-    let likeButton = UIButton()
-    let likeCountLabel = UILabel()
-    let lottieView = AnimationView(name: "icHeartActive")
+    private let likeButton = UIButton()
+    private let likeCountLabel = UILabel()
+    private let lottieView = AnimationView(name: "icHeartActive")
     
     weak var likeDelegate: FeedCellDelegate?
-    var likeState: Bool = false
-    var cellId: Int = 0
-    var indexPath: IndexPath?
+    private var likeState: Bool = false
+    private var cellId: Int = 0
+    private var indexPath: IndexPath?
     
     // MARK: - View Life Cycles
     
