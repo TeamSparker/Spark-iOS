@@ -92,9 +92,11 @@ class WaitingVC: UIViewController {
             self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         }
     }
-    
+
     // MARK: - Methods
     private func setNavigation(title: String) {
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
         switch fromWhereStatus {
         case .fromHome:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
