@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLinegridForBlack" translatesAutoresizingMaskIntoConstraints="NO" id="CnB-Ou-x6s">
-                                <rect key="frame" x="0.0" y="64" width="414" height="832"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="sparkBlack"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CnB-Ou-x6s" secondAttribute="trailing" id="Xh8-h2-Yat"/>
-                            <constraint firstItem="CnB-Ou-x6s" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="eFJ-nc-629"/>
+                            <constraint firstItem="CnB-Ou-x6s" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="eFJ-nc-629"/>
                             <constraint firstItem="CnB-Ou-x6s" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="jul-Iy-BnV"/>
                             <constraint firstAttribute="bottom" secondItem="CnB-Ou-x6s" secondAttribute="bottom" id="xio-tr-ibZ"/>
                         </constraints>
