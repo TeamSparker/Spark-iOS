@@ -104,7 +104,7 @@ extension JoinCheckVC {
                 
                 guard let rootViewController = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.waiting) as? WaitingVC else {return}
                 rootViewController.roomId = roomID
-                rootViewController.isFromHome = false
+                rootViewController.fromWhereStatus = .joinCode
                 rootViewController.roomName = self.roomName
                 
                 let nextVC = UINavigationController(rootViewController: rootViewController)

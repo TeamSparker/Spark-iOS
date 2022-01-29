@@ -8,53 +8,64 @@
 import UIKit
 
 import SnapKit
-import SwiftUI
 import Lottie
+
+/// 대기방을 접근하는 플로우를 알려주는 상태.
+/// - fromHome : 홈에서 대기방 올 때.
+/// - joinCode : 코드로 참여할 때.
+/// - makeRoom : 방만들기로 대기방 올 때.
+
+@frozen
+enum FromWhereStatus {
+    case fromHome
+    case joinCode
+    case makeRoom
+}
 
 class WaitingVC: UIViewController {
     
     // MARK: - Properties
     
-    let copyButton = UIButton()
-    let checkTitleLabel = UILabel()
-    let toolTipButton = UIButton()
-    let toolTipImageView = UIImageView()
-    let stopwatchLabel = UILabel()
-    let checkDivideView = UIView()
-    let photoLabel = UILabel()
-    let firstDivideView = UIView()
+    private let copyButton = UIButton()
+    private let checkTitleLabel = UILabel()
+    private let toolTipButton = UIButton()
+    private let toolTipImageView = UIImageView()
+    private let stopwatchLabel = UILabel()
+    private let checkDivideView = UIView()
+    private let photoLabel = UILabel()
+    private let firstDivideView = UIView()
     
-    let goalTitleLabel = UILabel()
-    let profileImageView = UIImageView()
-    let nicknameLabel = UILabel()
-    let timeLabel = UILabel()
-    let goalLabel = UILabel()
-    let editButton = UIButton()
-    let secondDivideView = UIView()
+    private let goalTitleLabel = UILabel()
+    private let profileImageView = UIImageView()
+    private let nicknameLabel = UILabel()
+    private let timeLabel = UILabel()
+    private let goalLabel = UILabel()
+    private let editButton = UIButton()
+    private let secondDivideView = UIView()
     
-    let friendTitleLabel = UILabel()
-    let friendCountLabel = UILabel()
-    let friendSubTitleLabel = UILabel()
-    let refreshButton = UIButton()
-    let startButton = UIButton()
+    private let friendTitleLabel = UILabel()
+    private let friendCountLabel = UILabel()
+    private let friendSubTitleLabel = UILabel()
+    private let refreshButton = UIButton()
+    private let startButton = UIButton()
     
     private let tapGestrueRecognizer = UITapGestureRecognizer()
+    private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-    
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
-    var members: [Member] = []
-    var memberList: [Any] = []
-    var photoOnly: Bool? /// 사진 인증만
+    private var members: [Member] = []
+    private var memberList: [Any] = []
+    
+    var photoOnly: Bool? // 사진 인증만
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
     var userMoment: String?
     var userPurpose: String?
-    var isFromHome: Bool?
+    var fromWhereStatus: FromWhereStatus?
     
     // MARK: - View Life Cycles
     
@@ -71,7 +82,7 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         DispatchQueue.main.async {
             // 로딩
             self.setLoading()
@@ -81,10 +92,11 @@ class WaitingVC: UIViewController {
             self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         }
     }
-
+    
     // MARK: - Methods
     private func setNavigation(title: String) {
-        if isFromHome ?? false {
+        switch fromWhereStatus {
+        case .fromHome:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                                 title: "\(title)",
                                                                 tintColor: .sparkBlack,
@@ -93,7 +105,16 @@ class WaitingVC: UIViewController {
                                                                 rightButtonImage: UIImage(),
                                                                 reftButtonSelector: #selector(popToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
-        } else {
+        case .joinCode:
+            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
+                                                                title: "\(title)",
+                                                                tintColor: .sparkBlack,
+                                                                backgroundColor: .sparkWhite,
+                                                                reftButtonImage: UIImage(named: "icHome"),
+                                                                rightButtonImage: UIImage(),
+                                                                reftButtonSelector: #selector(dismissJoinCodeToHomeVC),
+                                                                rightButtonSelector: #selector(touchToMore))
+        case .makeRoom:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
                                                                 title: "\(title)",
                                                                 tintColor: .sparkBlack,
@@ -102,6 +123,8 @@ class WaitingVC: UIViewController {
                                                                 rightButtonImage: UIImage(),
                                                                 reftButtonSelector: #selector(dismissToHomeVC),
                                                                 rightButtonSelector: #selector(touchToMore))
+        case .none:
+            print("fromeWhereStatus 를 지정해주세요.")
         }
     }
     
@@ -288,7 +311,11 @@ class WaitingVC: UIViewController {
     @objc
     func dismissToHomeVC() {
         presentingViewController?.presentingViewController?.dismiss(animated: true)
-        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+    
+    @objc
+    func dismissJoinCodeToHomeVC() {
+        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
     @objc
@@ -310,10 +337,16 @@ class WaitingVC: UIViewController {
         
         DispatchQueue.main.async {
             self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
-                if self.isFromHome ?? false {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+                switch self.fromWhereStatus {
+                case .fromHome:
+                    self.popToHomeVC()
+                case .makeRoom:
+                    self.dismissToHomeVC()
+                case .joinCode:
+                    // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
+                    return
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
                 }
             }
         }
