@@ -91,6 +91,7 @@ class StorageVC: UIViewController {
     }()
     
     // MARK: - IBOutlet properties
+    
     @IBOutlet weak var emptyView: UIView!
     
     // MARK: - View Life Cycle
@@ -112,11 +113,14 @@ class StorageVC: UIViewController {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         tabBarController?.tabBar.isHidden = false
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
+            onGoingRoomList?.removeAll()
+            completeRoomList?.removeAll()
+            failRoomList?.removeAll()
             self.setLoading()
         }
         
-        DispatchQueue.main.async { 
+        DispatchQueue.main.async {
             self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
                 self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
                     self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
