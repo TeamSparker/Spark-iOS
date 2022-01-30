@@ -41,7 +41,7 @@ extension WaitingFriendCVC {
     private func setUI() {
         profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
+        profileImageView.layer.borderColor = UIColor.sparkLightGray.cgColor
         profileImageView.layer.cornerRadius = 30
         profileImageView.layer.masksToBounds = true
         profileImageView.contentMode = .scaleAspectFill
