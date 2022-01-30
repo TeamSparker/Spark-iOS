@@ -128,7 +128,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
         
         cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
                       mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",

@@ -90,9 +90,9 @@ extension HomeVC {
     }
     
     private func registerXib() {
-        mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeHabitCVC)
-        mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeWaitingCVC)
-        mainCollectionView.register(UINib(nibName: Const.Xib.NibName.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.homeEmptyCVC)
+        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeHabitCVC)
+        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC)
+        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC)
     }
     
     private func setLoading() {
@@ -179,13 +179,13 @@ extension HomeVC: UICollectionViewDataSource {
         if habitRoomList.count != 0 {
             collectionView.isScrollEnabled = true
             if habitRoomList[indexPath.item].isStarted == false {
-                guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
+                guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
                 waitingCVC.initCell(roomName: habitRoomList[indexPath.item].roomName)
                 
                 return waitingCVC
             } else {
-                guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
+                guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
                 
                 habitCVC.initCell(roomName: habitRoomList[indexPath.item].roomName,
                                   leftDay: habitRoomList[indexPath.item].leftDay ?? 0,
@@ -200,7 +200,7 @@ extension HomeVC: UICollectionViewDataSource {
         } else {
             // empty view.
             collectionView.isScrollEnabled = false
-            guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
+            guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
 
             return emptyCVC
         }

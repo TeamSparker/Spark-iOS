@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 class WaitingFriendCVC: UICollectionViewCell {
-    static let identifier = "WaitingFriendCVC"
     
     // MARK: - Properties
+    
     let profileImageView = UIImageView()
     let nameLabel = UILabel()
     
@@ -20,6 +20,7 @@ class WaitingFriendCVC: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setUI()
         setLayout()
     }
@@ -32,9 +33,12 @@ class WaitingFriendCVC: UICollectionViewCell {
         nameLabel.text = ""
         profileImageView.image = UIImage()
     }
-    
-    // MARK: - Methods
-    func setUI() {
+}
+
+// MARK: - Methods
+
+extension WaitingFriendCVC {
+    private func setUI() {
         profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
@@ -49,7 +53,7 @@ class WaitingFriendCVC: UICollectionViewCell {
         nameLabel.textAlignment = .center
     }
     
-    func setLayout() {
+    private func setLayout() {
         addSubviews([profileImageView, nameLabel])
         
         profileImageView.snp.makeConstraints { make in
@@ -64,8 +68,9 @@ class WaitingFriendCVC: UICollectionViewCell {
         }
     }
     
+    /// 셀 초기화.
     func initCell(name: String, imagePath: String) {
-            nameLabel.text = name
-            profileImageView.updateImage(imagePath)
-        }
+        nameLabel.text = name
+        profileImageView.updateImage(imagePath)
+    }
 }
