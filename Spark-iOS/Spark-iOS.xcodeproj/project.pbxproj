@@ -103,7 +103,7 @@
 		F8096F3227841FE100B71D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3127841FE100B71D38 /* ViewController.swift */; };
 		F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3B2784211D00B71D38 /* UIColor+.swift */; };
 		F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F3D2784213700B71D38 /* UIFont+.swift */; };
-		F8096F442784221900B71D38 /* Xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Xib.swift */; };
+		F8096F442784221900B71D38 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F432784221900B71D38 /* Cell.swift */; };
 		F8096F462784247100B71D38 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8096F452784247100B71D38 /* Notification.swift */; };
 		F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80A3E4C278C182100728E07 /* MainTabBar.storyboard */; };
 		F80A3E4F278C18BA00728E07 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E4E278C18BA00728E07 /* MainTBC.swift */; };
@@ -249,7 +249,7 @@
 		F8096F3127841FE100B71D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F8096F3B2784211D00B71D38 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F8096F3D2784213700B71D38 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		F8096F432784221900B71D38 /* Xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Xib.swift; sourceTree = "<group>"; };
+		F8096F432784221900B71D38 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		F8096F452784247100B71D38 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		F80A3E4C278C182100728E07 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		F80A3E4E278C18BA00728E07 /* MainTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
@@ -739,7 +739,7 @@
 				F8096F2A27841F4100B71D38 /* Storyboard.swift */,
 				EBEA383827953BC700B5736A /* Lottie.swift */,
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
-				F8096F432784221900B71D38 /* Xib.swift */,
+				F8096F432784221900B71D38 /* Cell.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
 				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 				F82F57FE27928588003E4174 /* URL.swift */,
@@ -1216,7 +1216,7 @@
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
-				F8096F442784221900B71D38 /* Xib.swift in Sources */,
+				F8096F442784221900B71D38 /* Cell.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,

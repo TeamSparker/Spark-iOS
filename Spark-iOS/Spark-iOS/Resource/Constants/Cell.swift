@@ -9,8 +9,8 @@ import Foundation
 
 extension Const {
     /// 셀 혹은 커스텀 뷰 Xib 의 nibName 을 상수로 관리합니다.
-    struct Xib {
-        struct NibName {
+    struct Cell {
+        struct Identifier {
             static let doingStorageCVC = "DoingStorageCVC"
             static let doneStorageCVC = "DoneStorageCVC"
             static let failStorageCVC = "FailStorageCVC"
@@ -19,6 +19,7 @@ extension Const {
             static let homeWaitingCVC = "HomeWaitingCVC"
             static let homeEmptyCVC = "HomeEmptyCVC"
             static let habitRoomMemeberCVC = "HabitRoomMemberCVC"
+            static let waitingFriendCVC = "WaitingFriendCVC"
         }
     }
 }
