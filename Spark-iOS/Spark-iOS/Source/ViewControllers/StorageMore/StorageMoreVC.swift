@@ -96,20 +96,25 @@ extension StorageMoreVC {
 
 extension StorageMoreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth: CGFloat = collectionView.frame.width
-        let cellWidthRatio: CGFloat = 160/375
-        let widthHeightRatio: CGFloat = 203/160
-        let cell = CGSize(width: cellWidth*cellWidthRatio, height: cellWidth*cellWidthRatio*widthHeightRatio)
+        // 양쪽 inset 40 + inter item spacing 15
+        let cellWidth: CGFloat = (collectionView.frame.width - 55) / 2
+        let cellHeight: CGFloat = (cellWidth * (187/160))
+        
+        let cell = CGSize(width: cellWidth, height: cellHeight)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let insets = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
+        let insets = UIEdgeInsets(top: 30, left: 20, bottom: 0, right: 20)
         return insets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 15
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }
 
