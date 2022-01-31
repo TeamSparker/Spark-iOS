@@ -91,6 +91,7 @@ class StorageVC: UIViewController {
     }()
     
     // MARK: - IBOutlet properties
+    
     @IBOutlet weak var emptyView: UIView!
     
     // MARK: - View Life Cycle
@@ -112,11 +113,14 @@ class StorageVC: UIViewController {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         tabBarController?.tabBar.isHidden = false
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
+            onGoingRoomList?.removeAll()
+            completeRoomList?.removeAll()
+            failRoomList?.removeAll()
             self.setLoading()
         }
         
-        DispatchQueue.main.async { 
+        DispatchQueue.main.async {
             self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
                 self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
                     self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
@@ -452,7 +456,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case DoingCV:
             guard let onGoingRoomList = onGoingRoomList else { return UICollectionViewCell()}
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
             
             cell.initCell(roomName: onGoingRoomList[indexPath.row].roomName,
                           leftDay: onGoingRoomList[indexPath.row].leftDay,
@@ -467,7 +471,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case DoneCV:
             guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
             
             cell.initCell(roomName: completeRoomList[indexPath.row].roomName,
                           thumbnail: completeRoomList[indexPath.row].thumbnail,
@@ -481,7 +485,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         default:
             guard let failRoomList = failRoomList else { return UICollectionViewCell()}
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
             
             cell.initCell(roomName: failRoomList[indexPath.row].roomName,
                           leftDay: failRoomList[indexPath.row].failDay ?? 0,

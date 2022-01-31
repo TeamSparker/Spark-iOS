@@ -271,7 +271,7 @@ extension HabitRoomVC {
     }
     
     private func registerXib() {
-        mainCollectionView.register(UINib(nibName: Const.Xib.NibName.habitRoomMemeberCVC, bundle: nil), forCellWithReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC)
+        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.habitRoomMemeberCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.habitRoomMemeberCVC)
     }
 
     func showAlert() {
@@ -389,7 +389,7 @@ extension HabitRoomVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Xib.NibName.habitRoomMemeberCVC, for: indexPath) as? HabitRoomMemberCVC else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.habitRoomMemeberCVC, for: indexPath) as? HabitRoomMemberCVC else { return UICollectionViewCell() }
         if indexPath.item == 0 {
             cell.initCellMe(recordID: habitRoomDetail?.myRecord.recordID ?? 0,
                             userID: habitRoomDetail?.myRecord.userID ?? 0,

@@ -23,6 +23,7 @@ class MoreStorageCVC: UICollectionViewCell {
         dDayLabel.textColor = .sparkGray
         dDayLabel.text = "D-day"
         certificationImage.layer.masksToBounds = true
+        certificationImage.contentMode = .scaleAspectFill
     }
     
     override func prepareForReuse() {
@@ -38,13 +39,10 @@ class MoreStorageCVC: UICollectionViewCell {
         switch status {
         case "DONE":
             certificationImage.updateImage(mainImage)
-            certificationImage.contentMode = .scaleAspectFill
         case "REST":
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
-            certificationImage.contentMode = .center
         default:
             certificationImage.image = UIImage(named: "tagEmptyBox")
-            certificationImage.contentMode = .scaleAspectFill
         }
         
         sparkCountLabel.text = String(sparkCount)

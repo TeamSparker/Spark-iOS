@@ -71,6 +71,7 @@ class WaitingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUI()
         setLayout()
         setCollectionView()
@@ -92,9 +93,14 @@ class WaitingVC: UIViewController {
             self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         }
     }
-    
-    // MARK: - Methods
+}
+
+// MARK: - Methods
+
+extension WaitingVC {
     private func setNavigation(title: String) {
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
         switch fromWhereStatus {
         case .fromHome:
             navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
@@ -234,7 +240,7 @@ class WaitingVC: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: WaitingFriendCVC.identifier)
+        collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC)
         
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
@@ -242,26 +248,36 @@ class WaitingVC: UIViewController {
     private func refreshButtonAnimtation() {
         UIView.animate(withDuration: 0.4,
                        delay: 0.1,
-                       options: .curveEaseInOut) {
+                       options: .curveEaseInOut,
+                       animations: {
             let rotate = CGAffineTransform(rotationAngle: -3.14)
             self.refreshButton.transform = rotate
-        } completion: { _ in
+        },
+                       completion: { _ in
             self.refreshButton.transform = .identity
-        }
+        })
     }
     
     private func presentToolTip() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
             self.toolTipImageView.transform = CGAffineTransform.identity
             self.toolTipImageView.alpha = 1
-        }, completion: nil)
+        },
+                       completion: nil)
     }
     
     private func dismissToolTip() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
             self.toolTipImageView.transform = CGAffineTransform.identity
             self.toolTipImageView.alpha = 0
-        }, completion: nil)
+        },
+                       completion: nil)
     }
     
     private func setGestureRecognizer() {
@@ -270,13 +286,13 @@ class WaitingVC: UIViewController {
     }
     
     @objc
-    func copyToClipboard() {
+    private func copyToClipboard() {
         UIPasteboard.general.string = roomCode
         showToast(x: 20, y: startButton.frame.minY - 60, message: "코드를 복사했어요", font: .p1TitleLight)
     }
     
     @objc
-    func touchEditButton() {
+    private func touchEditButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
         
         nextVC.modalPresentationStyle = .fullScreen
@@ -304,33 +320,36 @@ class WaitingVC: UIViewController {
     // MARK: - 화면 전환
     
     @objc
-    func popToHomeVC() {
+    private func popToHomeVC() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc
-    func dismissToHomeVC() {
+    private func dismissToHomeVC() {
         presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
     @objc
-    func dismissJoinCodeToHomeVC() {
+    private func dismissJoinCodeToHomeVC() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
     @objc
-    func touchToMore() {
-           // 더보기 버튼
+    private func touchToMore() {
+        
+        // TODO: - 더보기 버튼
+        
     }
     
     @objc
-    func touchToRefreshButton() {
+    private func touchToRefreshButton() {
         refreshButtonAnimtation()
         getWaitingMembersWithAPI(roomID: roomId ?? 0)
     }
     
     @objc
-    func touchToCreateButton() {
+    private func touchToCreateButton() {
         DispatchQueue.main.async {
             self.setLoading()
         }
@@ -356,12 +375,13 @@ class WaitingVC: UIViewController {
 // MARK: - Network
 
 extension WaitingVC {
-    func getWaitingRoomWithAPI(roomID: Int) {
+    private func getWaitingRoomWithAPI(roomID: Int) {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
                 self.loadingView.stop()
                 self.loadingBgView.removeFromSuperview()
+                
                 if let waitingRoom = data as? Waiting {
                     var user: ReqUser
                     
@@ -428,17 +448,14 @@ extension WaitingVC {
         }
     }
     
-    func getWaitingMembersWithAPI(roomID: Int) {
+    private func getWaitingMembersWithAPI(roomID: Int) {
         RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
                     
-                    // 기존 스파커 삭제 & 다시 데이터 추가
-                    self.members.removeAll()
-                    self.members.append(contentsOf: waitingMembers.members)
-                    
-                    // 스파커 멤버 수
+                    // 대기방 멤버 갱신.
+                    self.members = waitingMembers.members
                     self.friendCountLabel.text = "\(self.members.count)"
                     
                     self.collectionView.reloadData()
@@ -455,13 +472,14 @@ extension WaitingVC {
         }
     }
     
-    func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
+    private func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
-                completion()
                 self.loadingView.stop()
                 self.loadingBgView.removeFromSuperview()
+                
+                completion()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("postStartRoomWithAPI - requestErr: \(message)")
@@ -484,7 +502,7 @@ extension WaitingVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaitingFriendCVC.identifier, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
         
         let name = members[indexPath.item].nickname
         let imagePath = members[indexPath.item].profileImg ?? ""
@@ -516,6 +534,7 @@ extension WaitingVC: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Layout
+
 extension WaitingVC {
     func setLayout() {
         view.addSubviews([copyButton, checkTitleLabel, toolTipButton,
@@ -642,7 +661,7 @@ extension WaitingVC {
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
+            make.height.equalTo(self.view.frame.width * 48 / 335)
         }
     }
 }
