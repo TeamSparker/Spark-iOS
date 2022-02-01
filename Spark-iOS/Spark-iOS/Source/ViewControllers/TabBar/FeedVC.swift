@@ -398,7 +398,7 @@ extension FeedVC: FeedCellDelegate {
             }
         }
          
-        collectionView.reloadData()
+//        collectionView.reloadData()
         postFeedLikeWithAPI(recordID: recordID)
     }
 }
