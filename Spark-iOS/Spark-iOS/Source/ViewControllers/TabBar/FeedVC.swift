@@ -100,7 +100,7 @@ class FeedVC: UIViewController {
         collectionView.dataSource = self
         
         collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FeedHeaderView.identifier)
-        collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: FeedCVC.identifier)
+        collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedCVC)
         collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: FeedEmptyCVC.identifier)
         
         collectionViewFlowlayout.scrollDirection = .vertical
@@ -259,7 +259,7 @@ extension FeedVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if dateList.count != 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCVC.identifier, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedCVC, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
             
             var alist: Record
             

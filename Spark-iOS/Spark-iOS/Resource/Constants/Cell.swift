@@ -20,6 +20,7 @@ extension Const {
             static let homeEmptyCVC = "HomeEmptyCVC"
             static let habitRoomMemeberCVC = "HabitRoomMemberCVC"
             static let waitingFriendCVC = "WaitingFriendCVC"
+            static let feedCVC = "FeedCVC"
         }
     }
 }

@@ -11,7 +11,6 @@ import SnapKit
 import Lottie
 
 class FeedCVC: UICollectionViewCell {
-    static let identifier = "FeedCVC"
     
     // MARK: - Properties
     
