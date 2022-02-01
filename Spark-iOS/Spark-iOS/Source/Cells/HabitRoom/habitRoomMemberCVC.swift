@@ -116,10 +116,16 @@ extension HabitRoomMemberCVC {
         
         if status == "CONSIDER" {
             statusLabel.text = "지금은 고민중이에요."
+            stickerImage.image = UIImage(named: "stickerThingking")
+            stickerImage.isHidden = false
         } else if status == "DONE" {
             statusLabel.text = "인증을 완료했어요!"
+            stickerImage.image = UIImage(named: "stickerCompleteDefault")
+            stickerImage.isHidden = false
         } else if status == "REST" {
             statusLabel.text = "오늘은 쉬어요."
+            stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
+            stickerImage.isHidden = false
         } else {
             if leftDay == 66 {
                 statusLabel.text = "인증은 내일부터 가능해요."
@@ -151,6 +157,8 @@ extension HabitRoomMemberCVC {
 
         sparkCountLabel.isHidden = true
     }
+    
+    // 화면전환
     
     @objc
     private func presentToSendSparkVC() {
