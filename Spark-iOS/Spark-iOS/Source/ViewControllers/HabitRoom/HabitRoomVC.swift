@@ -58,16 +58,7 @@ class HabitRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        DispatchQueue.main.async {
-            // 로딩
-            self.setLoading()
-        }
-        
-        DispatchQueue.main.async {
-            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-            }
-        }
+        updateHabitRoom()
     }
     
     // set status bar style
@@ -274,7 +265,7 @@ extension HabitRoomVC {
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.habitRoomMemeberCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.habitRoomMemeberCVC)
     }
 
-    func showAlert() {
+    private func showAlert() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
 
