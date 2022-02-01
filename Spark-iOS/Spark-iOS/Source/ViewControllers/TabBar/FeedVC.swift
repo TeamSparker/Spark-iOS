@@ -339,7 +339,6 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
     func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
-        // FIXME: - 고쳐
         if indexPath.section == 0 {
             if likeState {
                 firstList[indexPath.item].isLiked = false
@@ -398,7 +397,6 @@ extension FeedVC: FeedCellDelegate {
             }
         }
          
-//        collectionView.reloadData()
         postFeedLikeWithAPI(recordID: recordID)
     }
 }

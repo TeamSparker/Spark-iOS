@@ -45,7 +45,6 @@ class FeedCVC: UICollectionViewCell {
         setUI()
         setStackView()
         setLayout()
-//        setLikeLottie()
         setAddTarget()
     }
     
@@ -53,7 +52,6 @@ class FeedCVC: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // FIXME: - 두개의 셀이 보일 때, 아래의 셀에서 하트를 누르면 위 셀의 하트 로티가 작동.. 로티는 어떻게 초기화 시켜주지...
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = ""
@@ -105,7 +103,6 @@ class FeedCVC: UICollectionViewCell {
         likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
     }
     
-    // FIXME: - 고쳐
     @objc
     func tapLikeButton() {
         let originLike = Int(likeCountLabel.text ?? "") ?? 0
@@ -189,22 +186,6 @@ extension FeedCVC {
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
-    
-//    private func setLikeLottie() {
-//        self.addSubview(lottieView)
-//
-//        lottieView.snp.makeConstraints { make in
-//            make.center.equalTo(likeButton.snp.center)
-//            make.width.height.equalTo(40)
-//        }
-//
-//        lottieView.center = likeButton.center
-//        lottieView.loopMode = .playOnce
-//        lottieView.contentMode = .scaleAspectFit
-//        lottieView.layer.masksToBounds = true
-//        lottieView.isHidden = true
-//        self.bringSubviewToFront(likeButton)
-//    }
     
     private func playLikeLottie() {
         lottieView.isHidden = false
