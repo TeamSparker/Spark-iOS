@@ -158,6 +158,8 @@ extension HabitRoomMemberCVC {
         sparkCountLabel.isHidden = true
     }
     
+    // 화면전환
+    
     @objc
     private func presentToSendSparkVC() {
         presentToSendSparkVCClosure?()
