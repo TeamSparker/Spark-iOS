@@ -101,7 +101,7 @@ class FeedVC: UIViewController {
         
         collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FeedHeaderView.identifier)
         collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedCVC)
-        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: FeedEmptyCVC.identifier)
+        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC)
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
@@ -287,7 +287,7 @@ extension FeedVC: UICollectionViewDataSource {
             cell.likeDelegate = self
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
             return cell
         }
     }

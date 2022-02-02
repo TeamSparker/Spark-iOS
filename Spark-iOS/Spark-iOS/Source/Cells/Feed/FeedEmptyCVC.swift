@@ -8,7 +8,6 @@
 import UIKit
 
 class FeedEmptyCVC: UICollectionViewCell {
-    static let identifier = "FeedEmptyCVC"
     
     // MARK: - Properties
     

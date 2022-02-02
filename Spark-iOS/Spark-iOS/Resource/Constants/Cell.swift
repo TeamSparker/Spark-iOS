@@ -21,6 +21,7 @@ extension Const {
             static let habitRoomMemeberCVC = "HabitRoomMemberCVC"
             static let waitingFriendCVC = "WaitingFriendCVC"
             static let feedCVC = "FeedCVC"
+            static let feedEmptyCVC = "FeedEmptyCVC"
         }
     }
 }
