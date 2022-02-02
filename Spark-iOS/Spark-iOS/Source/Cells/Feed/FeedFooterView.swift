@@ -31,7 +31,7 @@ class FeedFooterView: UICollectionReusableView {
         self.backgroundColor = .sparkWhite
         footerLabel.text = "최근 일주일 간의 인증만 보여집니다⚡️"
         footerLabel.textColor = .sparkGray
-        footerLabel.font = .krMediumFont(ofSize: 16)
+        footerLabel.font = .krRegularFont(ofSize: 16)
     }
     
     private func setLayout() {

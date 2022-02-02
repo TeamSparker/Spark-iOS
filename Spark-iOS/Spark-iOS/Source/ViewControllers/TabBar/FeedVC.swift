@@ -99,7 +99,8 @@ class FeedVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FeedHeaderView.identifier)
+        collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.feedHeaderView)
+        collectionView.register(FeedFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView)
         collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedCVC)
         collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC)
         
@@ -294,13 +295,22 @@ extension FeedVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if dateList.count != 0 {
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
-            
-            let date = dateList[indexPath.section].split(separator: "-")
-            header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
-            header.dayLabel.text = "\(dayList[indexPath.section])"
-            
-            return header
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.feedHeaderView, for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
+                
+                let date = dateList[indexPath.section].split(separator: "-")
+                header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+                header.dayLabel.text = "\(dayList[indexPath.section])"
+                
+                return header
+                
+            case UICollectionView.elementKindSectionFooter:
+                guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
+                return footer
+            default:
+                return UICollectionReusableView()
+            }
         } else {
             return UICollectionReusableView()
         }
@@ -310,7 +320,16 @@ extension FeedVC: UICollectionViewDataSource {
         if dateList.count != 0 {
             let width = UIScreen.main.bounds.width
             let height = width*85/375
-            
+            return CGSize(width: width, height: height)
+        } else {
+            return .zero
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if dateList.count != 0 {
+            let width = UIScreen.main.bounds.width
+            let height = width*120/375
             return CGSize(width: width, height: height)
         } else {
             return .zero
