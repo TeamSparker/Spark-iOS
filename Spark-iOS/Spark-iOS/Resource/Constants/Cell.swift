@@ -22,6 +22,8 @@ extension Const {
             static let waitingFriendCVC = "WaitingFriendCVC"
             static let feedCVC = "FeedCVC"
             static let feedEmptyCVC = "FeedEmptyCVC"
+            static let feedHeaderView = "FeedHeaderView"
+            static let feedFooterView = "FeedFooterView"
         }
     }
 }

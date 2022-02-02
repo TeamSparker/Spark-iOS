@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */; };
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
@@ -149,6 +150,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFooterView.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */,
 				2B69E7E6278E28B2000F927F /* FeedCVC.swift */,
 				2BBED1362795CDFE0052CA5C /* FeedEmptyCVC.swift */,
+				2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
+				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
