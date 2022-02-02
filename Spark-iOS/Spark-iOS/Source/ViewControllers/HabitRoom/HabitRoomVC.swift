@@ -462,6 +462,6 @@ extension HabitRoomVC {
 // FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
 extension HabitRoomVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
