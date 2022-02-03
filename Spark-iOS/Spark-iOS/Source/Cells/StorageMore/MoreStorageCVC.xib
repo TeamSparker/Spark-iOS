@@ -27,14 +27,14 @@
                                     <constraint firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="height" id="UsK-Vq-hro"/>
                                 </constraints>
                             </imageView>
-                            <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnS-GV-OTG">
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnS-GV-OTG">
                                 <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
                                 <color key="backgroundColor" name="sparkBlack"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-Uk-AyE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-Uk-AyE">
                                 <rect key="frame" x="37" y="48" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="sparkWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClD-wt-IXN">
@@ -94,6 +94,8 @@
                 <outlet property="certificationImage" destination="ywz-cO-r8W" id="Dh5-68-KEp"/>
                 <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Bgm-uB-6Hz"/>
                 <outlet property="sparkCountLabel" destination="5no-YH-587" id="KTy-fw-Ske"/>
+                <outlet property="timerAlphaView" destination="pnS-GV-OTG" id="i6b-cQ-C2z"/>
+                <outlet property="timerLabel" destination="AjC-Uk-AyE" id="GGu-Ta-ssY"/>
             </connections>
             <point key="canvasLocation" x="105.79710144927537" y="142.96875"/>
         </collectionViewCell>
@@ -105,6 +107,9 @@
         </namedColor>
         <namedColor name="sparkGray">
             <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
