@@ -89,9 +89,9 @@ extension SendSparkVC {
     
     @objc
     func setSelectedButton(_ sender: SendSparkButton) {
+        setFeedbackGenerator()
+        
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            setFeedbackGenerator()
-            
             if $0.identifier != sender.identifier {
                 $0.setTitleColor(.sparkLightPinkred, for: .normal)
                 $0.backgroundColor = .sparkWhite

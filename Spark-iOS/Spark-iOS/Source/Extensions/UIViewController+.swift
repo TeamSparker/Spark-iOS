@@ -68,7 +68,7 @@ extension UIViewController {
         
         self.view.addSubview(backgroundView)
         backgroundView.alpha = 0.0
-        UIView.animate(withDuration: 0.2, delay: 0.2,
+        UIView.animate(withDuration: 0.2, delay: 0,
                        options: .curveEaseInOut) {
             backgroundView.alpha = 1.0
         } completion: { _ in
