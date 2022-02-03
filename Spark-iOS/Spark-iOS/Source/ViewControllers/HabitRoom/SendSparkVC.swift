@@ -54,7 +54,6 @@ extension SendSparkVC {
         tabBarController?.tabBar.isHidden = true
         
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            $0.tintColor = .sparkLightPinkred
             $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
             $0.layer.cornerRadius = 2
             $0.layer.borderWidth = 1
@@ -85,11 +84,10 @@ extension SendSparkVC {
     func setSelectedButton(_ sender: SendSparkButton) {
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
             if $0.identifier != sender.identifier {
-                $0.tintColor = .sparkLightPinkred
-                $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
                 $0.setTitleColor(.sparkLightPinkred, for: .normal)
                 $0.backgroundColor = .sparkWhite
                 $0.titleLabel?.backgroundColor = .sparkWhite
+                $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
             } else {
                 $0.setTitleColor(.sparkDarkPinkred, for: .normal)
                 $0.backgroundColor = .sparkMostLightPinkred
