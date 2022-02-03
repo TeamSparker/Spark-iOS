@@ -176,7 +176,7 @@ extension SendSparkVC {
     func sendSparkWithAPI() {
         RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: selectedMessage) {  response in
             switch response {
-            case .success(_):
+            case .success:
                 let presentVC = self.presentingViewController
                 self.dismiss(animated: true) {
                     presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
