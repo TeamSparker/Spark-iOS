@@ -10,14 +10,15 @@ import UIKit
 class SendSparkVC: UIViewController {
 
     // MARK: Properties
-    var selectedMessage: String = ""
+
     var roomID: Int?
     var recordID: Int?
-    var firstButton = StatusButton()
-    var secondButton = StatusButton()
-    var thirdButton = StatusButton()
-    var fourthButton = StatusButton()
     var userName: String?
+    
+    var firstButton = SendSparkButton()
+    var secondButton = SendSparkButton()
+    var thirdButton = SendSparkButton()
+    var fourthButton = SendSparkButton()
     
     // MARK: IBoutlet properties
     
@@ -61,10 +62,10 @@ extension SendSparkVC {
         thirdButton.setTitle("👉 너만 하면 돼!", for: .normal)
         fourthButton.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
         
-        firstButton.status = 1
-        secondButton.status = 2
-        thirdButton.status = 3
-        fourthButton.status = 4
+        firstButton.identifier = 1
+        secondButton.identifier = 2
+        thirdButton.identifier = 3
+        fourthButton.identifier = 4
     }
     
     private func setLayout() {
@@ -102,79 +103,38 @@ extension SendSparkVC {
     // 버튼 타겟 설정
     private func setAddTargets(_ buttons: UIButton...) {
         for button in buttons {
-            button.addTarget(self, action: #selector(setSelectedButton), for: .touchUpInside)
+            button.addTarget(self, action: #selector(setSelectedButton(_:)), for: .touchUpInside)
         }
     }
     
     // MARK: - @objc Function
     
     @objc
-    func setSelectedButton(sender: StatusButton) {
-        
-        let status = sender.status
-        
-        sender.setTitleColor(.sparkDarkPinkred, for: .normal)
-        sender.backgroundColor = .sparkMostLightPinkred
-        sender.titleLabel?.backgroundColor = .sparkMostLightPinkred
-        sender.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
-        
-        selectedMessage = sender.titleLabel?.text ?? ""
-        
-        switch status {
-        case 1:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 1 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        case 2:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 2 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        case 3:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 3 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        default:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 4 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
+    func setSelectedButton(_ sender: SendSparkButton) {
+        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+            if $0.identifier != sender.identifier {
+                $0.tintColor = .sparkLightPinkred
+                $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+                $0.setTitleColor(.sparkLightPinkred, for: .normal)
+                $0.backgroundColor = .sparkWhite
+                $0.titleLabel?.backgroundColor = .sparkWhite
+            } else {
+                $0.setTitleColor(.sparkDarkPinkred, for: .normal)
+                $0.backgroundColor = .sparkMostLightPinkred
+                $0.titleLabel?.backgroundColor = .sparkMostLightPinkred
+                $0.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
             }
         }
-        
-        sendSparkWithAPI()
+        let selectedMessage = sender.titleLabel?.text ?? ""
+        sendSparkWithAPI(content: selectedMessage)
     }
 }
 
 // MARK: Network
 
 extension SendSparkVC {
-    func sendSparkWithAPI() {
-        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: selectedMessage) {  response in
+    func sendSparkWithAPI(content: String) {
+        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: content) {  response in
             switch response {
             case .success:
                 let presentVC = self.presentingViewController
