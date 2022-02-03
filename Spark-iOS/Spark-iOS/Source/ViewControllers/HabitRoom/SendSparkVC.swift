@@ -20,6 +20,11 @@ class SendSparkVC: UIViewController {
     private var thirdButton = SendSparkButton()
     private var fourthButton = SendSparkButton()
     
+    private let firstButtonText: String = "👊 아자아자 파이팅!"
+    private let secondButtonText: String = "🔥오늘 안 해? 같이 해!"
+    private let thirdButtonText: String = "👉 너만 하면 돼!"
+    private let fourthButtonText: String = "👍 얼마 안 남았어, 어서 하자!"
+    
     // MARK: IBoutlet properties
     
     @IBOutlet weak var popUpView: UIView!
@@ -57,10 +62,10 @@ extension SendSparkVC {
             $0.titleLabel?.font = .krMediumFont(ofSize: 14)
         }
         
-        firstButton.setTitle("👊 아자아자 파이팅!", for: .normal)
-        secondButton.setTitle("🔥오늘 안 해? 같이 해!", for: .normal)
-        thirdButton.setTitle("👉 너만 하면 돼!", for: .normal)
-        fourthButton.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
+        firstButton.setTitle(firstButtonText, for: .normal)
+        secondButton.setTitle(secondButtonText, for: .normal)
+        thirdButton.setTitle(thirdButtonText, for: .normal)
+        fourthButton.setTitle(fourthButtonText, for: .normal)
         
         firstButton.identifier = 1
         secondButton.identifier = 2
