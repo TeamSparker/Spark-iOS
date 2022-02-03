@@ -11,32 +11,32 @@ import SnapKit
 import Lottie
 
 class FeedCVC: UICollectionViewCell {
-    static let identifier = "FeedCVC"
     
     // MARK: - Properties
     
-    let feedImageView = UIImageView()
-    let fadeImageView = UIImageView()
-    let timeLabel = UILabel()
-    let profileImageView = UIImageView()
-    let nameLabel = UILabel()
+    private let feedImageView = UIImageView()
+    private let fadeImageView = UIImageView()
+    private let timeLabel = UILabel()
+    private let profileImageView = UIImageView()
+    private let nameLabel = UILabel()
     
-    let titleStackView = UIStackView()
-    let titleLabel = UILabel()
-    let doneImageView = UIImageView()
+    private let titleStackView = UIStackView()
+    private let titleLabel = UILabel()
+    private let doneImageView = UIImageView()
     
-    let sparkStackView = UIStackView()
-    let sparkLabel = UILabel()
-    let sparkIconImageView = UIImageView()
-    let sparkCountLabel = UILabel()
+    private let sparkStackView = UIStackView()
+    private let sparkLabel = UILabel()
+    private let sparkIconImageView = UIImageView()
+    private let sparkCountLabel = UILabel()
     
-    let likeButton = UIButton()
-    let likeCountLabel = UILabel()
-    let lottieView = AnimationView(name: "icHeartActive")
-    var likeState: Bool = false
+    private let likeButton = UIButton()
+    private let likeCountLabel = UILabel()
+    private let lottieView = AnimationView(name: "icHeartActive")
+    
     weak var likeDelegate: FeedCellDelegate?
-    var cellId: Int = 0
-    var indexPath: IndexPath?
+    private var likeState: Bool = false
+    private var cellId: Int = 0
+    private var indexPath: IndexPath?
     
     // MARK: - View Life Cycles
     
@@ -53,6 +53,7 @@ class FeedCVC: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         titleLabel.text = ""
         nameLabel.text = ""
         sparkCountLabel.text = ""
@@ -61,6 +62,7 @@ class FeedCVC: UICollectionViewCell {
         feedImageView.image = UIImage()
         fadeImageView.image = UIImage()
         profileImageView.image = UIImage()
+        likeState = false
     }
     
     // MARK: - Methods
@@ -105,16 +107,15 @@ class FeedCVC: UICollectionViewCell {
     func tapLikeButton() {
         let originLike = Int(likeCountLabel.text ?? "") ?? 0
         if !likeState {
-            lottieView.isHidden = false
-            lottieView.play {_ in
-                self.lottieView.isHidden = true
-            }
-
-            self.likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
-            self.likeCountLabel.textColor = .sparkDarkPinkred
-            self.likeCountLabel.text = "\(originLike + 1)"
+            // like 눌리지 않음 -> 눌림
+            playLikeLottie()
+            
+            likeButton.setImage(UIImage(named: "icHeartActive"), for: .normal)
+            likeCountLabel.textColor = .sparkDarkPinkred
+            likeCountLabel.text = "\(originLike + 1)"
             likeState = true
         } else {
+            // like 눌림 -> 눌리지 않음
             if originLike > 0 {
                 likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
                 likeCountLabel.textColor = .sparkGray
@@ -122,7 +123,7 @@ class FeedCVC: UICollectionViewCell {
                 likeState = false
             }
         }
-        // !likeState 가 true 라면 좋아요를 취소한 것.
+        // likeState 가 false 라면 좋아요를 취소한 것.
         self.likeDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
     }
 }
@@ -162,7 +163,6 @@ extension FeedCVC {
         sparkIconImageView.image = UIImage(named: "icFire")
         likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
         
-        lottieView.backgroundColor = .clear
         lottieView.center = likeButton.center
         lottieView.loopMode = .playOnce
         lottieView.contentMode = .scaleAspectFit
@@ -172,7 +172,7 @@ extension FeedCVC {
     
     private func setStackView() {
         titleStackView.axis = .horizontal
-        titleStackView.alignment = .fill
+        titleStackView.alignment = .bottom
         titleStackView.distribution = .equalSpacing
         titleStackView.spacing = 8
         titleStackView.addArrangedSubview(titleLabel)
@@ -186,6 +186,15 @@ extension FeedCVC {
         sparkStackView.addArrangedSubview(sparkIconImageView)
         sparkStackView.addArrangedSubview(sparkCountLabel)
     }
+    
+    private func playLikeLottie() {
+        lottieView.isHidden = false
+        
+        lottieView.play { _ in
+            self.lottieView.stop()
+            self.lottieView.isHidden = true
+        }
+    }
 }
 
 // MARK: - Layout
@@ -193,8 +202,7 @@ extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, likeButton, likeCountLabel,
-                          lottieView])
+                          sparkStackView, lottieView, likeButton, likeCountLabel])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -223,6 +231,7 @@ extension FeedCVC {
         titleStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.height.equalTo(26)
         }
         
         sparkStackView.snp.makeConstraints { make in

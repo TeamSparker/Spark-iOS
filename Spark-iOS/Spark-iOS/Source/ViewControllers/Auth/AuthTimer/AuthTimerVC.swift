@@ -48,7 +48,7 @@ class AuthTimerVC: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.isNavigationBarHidden = true
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     // MARK: - Methods
@@ -293,5 +293,13 @@ extension AuthTimerVC {
             make.leading.equalTo(view.snp.centerX).offset(11)
             make.width.height.equalTo(60)
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+// FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
+extension AuthTimerVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

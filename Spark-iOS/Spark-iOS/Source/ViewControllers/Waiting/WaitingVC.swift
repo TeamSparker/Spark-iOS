@@ -99,7 +99,7 @@ class WaitingVC: UIViewController {
 
 extension WaitingVC {
     private func setNavigation(title: String) {
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         switch fromWhereStatus {
         case .fromHome:
@@ -663,5 +663,13 @@ extension WaitingVC {
             make.width.equalToSuperview().inset(20)
             make.height.equalTo(self.view.frame.width * 48 / 335)
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+// FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
+extension WaitingVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
