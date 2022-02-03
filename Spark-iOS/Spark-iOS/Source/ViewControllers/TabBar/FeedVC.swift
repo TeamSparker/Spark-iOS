@@ -34,8 +34,6 @@ class FeedVC: UIViewController {
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     private var isLastScroll = false
-    private var footerIndex = 0
-    private lazy var totalList = [firstList, secondList, thirdList, fourthList, fifthList, sixthList, seventhList]
     
     // MARK: - View Life Cycles
     
@@ -185,6 +183,7 @@ extension FeedVC {
                     self.loadingView.stop()
                     self.loadingBgView.removeFromSuperview()
                     
+                    // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
                     if feed.records.isEmpty {
                         self.isLastScroll = true
                     } else {
@@ -234,6 +233,7 @@ extension FeedVC: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
+            // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
                 isInfiniteScroll = false
                 isLastScroll = true
@@ -241,15 +241,6 @@ extension FeedVC: UICollectionViewDelegate {
                 feedLastID = feedList.last?.recordID ?? 0
                 getFeedListFetchWithAPI(lastID: feedLastID) {
                     self.isInfiniteScroll = true
-                    while self.footerIndex < 7 {
-                        if self.totalList[self.footerIndex].count == 0 {
-                            self.footerIndex += 1
-                            break
-                        } else {
-                            self.footerIndex += 1
-                        }
-                    }
-                    print("⚡️ footerIndex: \(self.footerIndex)")
                 }
             }
         }
@@ -326,7 +317,8 @@ extension FeedVC: UICollectionViewDataSource {
                 
             case UICollectionView.elementKindSectionFooter:
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
-                // TODO: - 리스트 끝에서 footer가 보임
+                
+                // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
                 if isLastScroll {
                     footer.stopLoading()
                 } else {
@@ -351,27 +343,10 @@ extension FeedVC: UICollectionViewDataSource {
         }
     }
     
-    // TODO: - loading 중이면 로티, 아니면 라벨 보이기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if dateList.count != 0 {
-            // 맨 마지막 리스트를 찾아서 걔에만 CGSize 리턴
-//            print("🥕index: \(index), section: \(section)")
-//            if section == index-1 {
-//                let width = UIScreen.main.bounds.width
-//                let height = width*120/375
-//                return CGSize(width: width, height: height)
-//            } else {
-//                return .zero
-//            }
-//            switch section {
-//            case 6:
-//                let width = UIScreen.main.bounds.width
-//                let height = width*120/375
-//                return CGSize(width: width, height: height)
-//            default:
-//                return .zero
-//            }
-            print("1️⃣ isInfiniteScroll:\(isInfiniteScroll), isLastScroll: \(isLastScroll), section: \(section), collectionView.numberOfSections: \(collectionView.numberOfSections)")
+            // isInfiniteScroll이며 마지막 section일 경우에만 footer가 보이도록 한다.
+            // scroll될 때는 loading이 있는 footer를 보이며, 마지막 section만 멘트가 표시된 footer가 남아있다.
             if isInfiniteScroll && section == collectionView.numberOfSections-1 {
                 let width = UIScreen.main.bounds.width
                 let height = width*120/375
@@ -379,19 +354,6 @@ extension FeedVC: UICollectionViewDataSource {
             } else {
                 return .zero
             }
-            
-            // firstList, secondList 등등에 데이터가 있으면 하고 없으면 zero
-//            if totalList[section].count == 0 {
-//                let width = UIScreen.main.bounds.width
-//                let height = width*120/375
-//                print("🏅 list: \(totalList[section])")
-//                return CGSize(width: width, height: height)
-//            } else {
-//                return .zero
-//            }
-//            let width = UIScreen.main.bounds.width
-//            let height = width*120/375
-//            return CGSize(width: width, height: height)
         } else {
             return .zero
         }
