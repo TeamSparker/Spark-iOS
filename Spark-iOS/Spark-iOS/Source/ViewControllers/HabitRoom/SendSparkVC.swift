@@ -25,6 +25,8 @@ class SendSparkVC: UIViewController {
     private let thirdButtonText: String = "👉 너만 하면 돼!"
     private let fourthButtonText: String = "👍 얼마 안 남았어, 어서 하자!"
     
+    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
+    
     // MARK: IBoutlet properties
     
     @IBOutlet weak var popUpView: UIView!
@@ -78,11 +80,18 @@ extension SendSparkVC {
         }
     }
     
+    private func setFeedbackGenerator() {
+        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+        selectionFeedbackGenerator?.selectionChanged()
+    }
+    
     // MARK: - @objc Function
     
     @objc
     func setSelectedButton(_ sender: SendSparkButton) {
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
+            setFeedbackGenerator()
+            
             if $0.identifier != sender.identifier {
                 $0.setTitleColor(.sparkLightPinkred, for: .normal)
                 $0.backgroundColor = .sparkWhite
