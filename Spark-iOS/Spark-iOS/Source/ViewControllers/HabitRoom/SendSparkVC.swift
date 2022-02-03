@@ -15,10 +15,10 @@ class SendSparkVC: UIViewController {
     var recordID: Int?
     var userName: String?
     
-    var firstButton = SendSparkButton()
-    var secondButton = SendSparkButton()
-    var thirdButton = SendSparkButton()
-    var fourthButton = SendSparkButton()
+    private var firstButton = SendSparkButton()
+    private var secondButton = SendSparkButton()
+    private var thirdButton = SendSparkButton()
+    private var fourthButton = SendSparkButton()
     
     // MARK: IBoutlet properties
     
@@ -68,39 +68,6 @@ extension SendSparkVC {
         fourthButton.identifier = 4
     }
     
-    private func setLayout() {
-        view.addSubviews([firstButton, secondButton, thirdButton, fourthButton])
-        
-        firstButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(guideLabel.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(143)
-        }
-        
-        secondButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(firstButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(157)
-        }
-        
-        thirdButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(secondButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(120)
-        }
-        
-        fourthButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(thirdButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(200)
-        }
-    }
-    
-    // 버튼 타겟 설정
     private func setAddTargets(_ buttons: UIButton...) {
         for button in buttons {
             button.addTarget(self, action: #selector(setSelectedButton(_:)), for: .touchUpInside)
@@ -150,6 +117,42 @@ extension SendSparkVC {
             case .networkFail:
                 print("sendSparkWithAPI - networkFail")
             }
+        }
+    }
+}
+
+// MARK: - Layout
+
+extension SendSparkVC {
+    private func setLayout() {
+        view.addSubviews([firstButton, secondButton, thirdButton, fourthButton])
+        
+        firstButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(guideLabel.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(143)
+        }
+        
+        secondButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(firstButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(157)
+        }
+        
+        thirdButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(secondButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(120)
+        }
+        
+        fourthButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(thirdButton.snp.bottom).offset(20)
+            make.height.equalTo(36)
+            make.width.equalTo(200)
         }
     }
 }
