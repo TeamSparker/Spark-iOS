@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,6 +27,16 @@
                                     <constraint firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="height" id="UsK-Vq-hro"/>
                                 </constraints>
                             </imageView>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnS-GV-OTG">
+                                <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
+                                <color key="backgroundColor" name="sparkBlack"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-Uk-AyE">
+                                <rect key="frame" x="37" y="48" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="sparkWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClD-wt-IXN">
                                 <rect key="frame" x="0.0" y="120" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -55,12 +65,19 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ycO-Hf-3fL" firstAttribute="centerY" secondItem="ClD-wt-IXN" secondAttribute="centerY" id="1PM-FG-jx8"/>
+                            <constraint firstItem="pnS-GV-OTG" firstAttribute="height" secondItem="ywz-cO-r8W" secondAttribute="height" id="3Rl-SF-FXJ"/>
                             <constraint firstAttribute="trailing" secondItem="ycO-Hf-3fL" secondAttribute="trailing" constant="3" id="3lC-Cz-1Kg"/>
                             <constraint firstItem="ClD-wt-IXN" firstAttribute="leading" secondItem="bjP-XQ-8o4" secondAttribute="leading" id="GYK-vC-2sp"/>
                             <constraint firstItem="ywz-cO-r8W" firstAttribute="top" secondItem="bjP-XQ-8o4" secondAttribute="top" id="Icm-8u-ddO"/>
+                            <constraint firstItem="pnS-GV-OTG" firstAttribute="leading" secondItem="ywz-cO-r8W" secondAttribute="leading" id="PMB-P9-0yA"/>
                             <constraint firstAttribute="trailing" secondItem="ywz-cO-r8W" secondAttribute="trailing" id="X4R-sL-qW3"/>
                             <constraint firstItem="ClD-wt-IXN" firstAttribute="top" secondItem="ywz-cO-r8W" secondAttribute="bottom" constant="4" id="Yxc-PA-b7b"/>
+                            <constraint firstItem="AjC-Uk-AyE" firstAttribute="centerY" secondItem="ywz-cO-r8W" secondAttribute="centerY" id="gmp-BB-fzq"/>
+                            <constraint firstItem="pnS-GV-OTG" firstAttribute="top" secondItem="ywz-cO-r8W" secondAttribute="top" id="pyC-Qa-21g"/>
                             <constraint firstItem="ywz-cO-r8W" firstAttribute="leading" secondItem="bjP-XQ-8o4" secondAttribute="leading" id="u7H-Cq-VLb"/>
+                            <constraint firstItem="AjC-Uk-AyE" firstAttribute="centerX" secondItem="ywz-cO-r8W" secondAttribute="centerX" id="vxH-ao-fIL"/>
+                            <constraint firstItem="pnS-GV-OTG" firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="width" id="xfn-Nk-SDy"/>
+                            <constraint firstItem="AjC-Uk-AyE" firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="width" multiplier="0.362069" id="yeK-bB-r8p"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -77,14 +94,22 @@
                 <outlet property="certificationImage" destination="ywz-cO-r8W" id="Dh5-68-KEp"/>
                 <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Bgm-uB-6Hz"/>
                 <outlet property="sparkCountLabel" destination="5no-YH-587" id="KTy-fw-Ske"/>
+                <outlet property="timerAlphaView" destination="pnS-GV-OTG" id="i6b-cQ-C2z"/>
+                <outlet property="timerLabel" destination="AjC-Uk-AyE" id="GGu-Ta-ssY"/>
             </connections>
             <point key="canvasLocation" x="105.79710144927537" y="142.96875"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="icFire" width="12" height="12"/>
+        <namedColor name="sparkBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="sparkGray">
             <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
