@@ -7,8 +7,7 @@
 
 import UIKit
 
-final
-class SendSparkButton: UIButton {
+final class SendSparkButton: UIButton {
     
     // MARK: - Properties
     
