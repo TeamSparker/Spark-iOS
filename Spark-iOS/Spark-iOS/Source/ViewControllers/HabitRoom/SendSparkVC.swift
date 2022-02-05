@@ -93,6 +93,7 @@ extension SendSparkVC {
         
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
             if $0.identifier != sender.identifier {
+                // 통신실패 시 필요할듯.
                 $0.setTitleColor(.sparkLightPinkred, for: .normal)
                 $0.backgroundColor = .sparkWhite
                 $0.titleLabel?.backgroundColor = .sparkWhite
