@@ -15,15 +15,10 @@ class SendSparkVC: UIViewController {
     var recordID: Int?
     var userName: String?
     
-    private var firstButton = SendSparkButton()
-    private var secondButton = SendSparkButton()
-    private var thirdButton = SendSparkButton()
-    private var fourthButton = SendSparkButton()
-    
-    private let firstButtonText: String = "👊 아자아자 파이팅!"
-    private let secondButtonText: String = "🔥오늘 안 해? 같이 해!"
-    private let thirdButtonText: String = "👉 너만 하면 돼!"
-    private let fourthButtonText: String = "👍 얼마 안 남았어, 어서 하자!"
+    private var firstButton = SendSparkButton(type: .first)
+    private var secondButton = SendSparkButton(type: .second)
+    private var thirdButton = SendSparkButton(type: .third)
+    private var fourthButton = SendSparkButton(type: .fourth)
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     
@@ -54,29 +49,11 @@ extension SendSparkVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
-        
-        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-            $0.layer.cornerRadius = 2
-            $0.layer.borderWidth = 1
-            $0.setTitleColor(.sparkLightPinkred, for: .normal)
-            $0.titleLabel?.font = .krMediumFont(ofSize: 14)
-        }
-        
-        firstButton.setTitle(firstButtonText, for: .normal)
-        secondButton.setTitle(secondButtonText, for: .normal)
-        thirdButton.setTitle(thirdButtonText, for: .normal)
-        fourthButton.setTitle(fourthButtonText, for: .normal)
-        
-        firstButton.identifier = 1
-        secondButton.identifier = 2
-        thirdButton.identifier = 3
-        fourthButton.identifier = 4
     }
     
     private func setAddTargets(_ buttons: UIButton...) {
         for button in buttons {
-            button.addTarget(self, action: #selector(setSelectedButton(_:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
         }
     }
     
@@ -88,21 +65,15 @@ extension SendSparkVC {
     // MARK: - @objc Function
     
     @objc
-    func setSelectedButton(_ sender: SendSparkButton) {
+    func touchSendSparkButton(_ sender: SendSparkButton) {
         setFeedbackGenerator()
         
         [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            if $0.identifier != sender.identifier {
-                // 통신실패 시 필요할듯.
-                $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                $0.backgroundColor = .sparkWhite
-                $0.titleLabel?.backgroundColor = .sparkWhite
-                $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+            if $0.tag == sender.tag {
+                $0.isSelected(true)
             } else {
-                $0.setTitleColor(.sparkDarkPinkred, for: .normal)
-                $0.backgroundColor = .sparkMostLightPinkred
-                $0.titleLabel?.backgroundColor = .sparkMostLightPinkred
-                $0.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+                // 통신실패 시에도 다시금 deselected 되야하니 필요함.
+                $0.isSelected(false)
             }
         }
         let selectedMessage = sender.titleLabel?.text ?? ""
