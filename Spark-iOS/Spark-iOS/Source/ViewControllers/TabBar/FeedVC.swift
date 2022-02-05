@@ -8,6 +8,7 @@
 import UIKit
 
 import Lottie
+import SnapKit
 
 class FeedVC: UIViewController {
     
@@ -68,7 +69,6 @@ class FeedVC: UIViewController {
         DispatchQueue.main.async {
             self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-                self.isLastScroll = false
             }
         }
     }
@@ -180,9 +180,10 @@ extension FeedVC {
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
-                    self.loadingView.stop()
-                    self.loadingBgView.removeFromSuperview()
-                    
+                    if self.loadingView.isAnimationPlaying {
+                        self.loadingView.stop()
+                        self.loadingBgView.removeFromSuperview()
+                    }
                     // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
                     if feed.records.isEmpty {
                         self.isLastScroll = true
