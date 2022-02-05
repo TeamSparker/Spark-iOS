@@ -12,6 +12,8 @@ class MoreStorageCVC: UICollectionViewCell {
     @IBOutlet weak var sparkCountLabel: UILabel!
     @IBOutlet weak var certificationImage: UIImageView!
     @IBOutlet weak var dDayLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timerAlphaView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,18 +26,22 @@ class MoreStorageCVC: UICollectionViewCell {
         dDayLabel.text = "D-day"
         certificationImage.layer.masksToBounds = true
         certificationImage.contentMode = .scaleAspectFill
+        timerLabel.font = .p1Title
+        timerAlphaView.isHidden = true
     }
     
     override func prepareForReuse() {
         certificationImage.image = UIImage()
         dDayLabel.text = ""
         sparkCountLabel.text = ""
+        timerLabel.text = ""
     }
     
     func initCell(leftDay: Int,
                   mainImage: String,
                   sparkCount: Int,
-                  status: String) {
+                  status: String,
+                  timerCount: String?) {
         switch status {
         case "DONE":
             certificationImage.updateImage(mainImage)
@@ -54,6 +60,11 @@ class MoreStorageCVC: UICollectionViewCell {
             certificationImage.image = UIImage()
         } else {
             dDayLabel.text = "D-\(leftDay)"
+        }
+        
+        if let timer = timerCount {
+            timerAlphaView.isHidden = false
+            timerLabel.text = timer
         }
     }
 }
