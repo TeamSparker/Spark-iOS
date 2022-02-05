@@ -8,6 +8,7 @@
 import UIKit
 
 import Lottie
+import SnapKit
 
 class FeedVC: UIViewController {
     
@@ -33,6 +34,7 @@ class FeedVC: UIViewController {
     private var feedLastID: Int = -1
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
+    private var isLastScroll = false
     
     // MARK: - View Life Cycles
     
@@ -99,9 +101,10 @@ class FeedVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FeedHeaderView.identifier)
+        collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.feedHeaderView)
+        collectionView.register(FeedFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView)
         collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedCVC)
-        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: FeedEmptyCVC.identifier)
+        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC)
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
@@ -177,9 +180,16 @@ extension FeedVC {
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
-                    self.loadingView.stop()
-                    self.loadingBgView.removeFromSuperview()
-                    
+                    if self.loadingView.isAnimationPlaying {
+                        self.loadingView.stop()
+                        self.loadingBgView.removeFromSuperview()
+                    }
+                    // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
+                    if feed.records.isEmpty {
+                        self.isLastScroll = true
+                    } else {
+                        self.isLastScroll = false
+                    }
                     self.feedList.append(contentsOf: feed.records)
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
@@ -224,8 +234,10 @@ extension FeedVC: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
-            if isInfiniteScroll {
+            // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
+            if isInfiniteScroll && !isLastScroll {
                 isInfiniteScroll = false
+                isLastScroll = true
                 
                 feedLastID = feedList.last?.recordID ?? 0
                 getFeedListFetchWithAPI(lastID: feedLastID) {
@@ -287,20 +299,36 @@ extension FeedVC: UICollectionViewDataSource {
             cell.likeDelegate = self
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedEmptyCVC.identifier, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if dateList.count != 0 {
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "FeedHeaderView", for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
-            
-            let date = dateList[indexPath.section].split(separator: "-")
-            header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
-            header.dayLabel.text = "\(dayList[indexPath.section])"
-            
-            return header
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.feedHeaderView, for: indexPath) as? FeedHeaderView else { return UICollectionReusableView() }
+                
+                let date = dateList[indexPath.section].split(separator: "-")
+                header.dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+                header.dayLabel.text = "\(dayList[indexPath.section])"
+                
+                return header
+                
+            case UICollectionView.elementKindSectionFooter:
+                guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
+                
+                // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
+                if isLastScroll {
+                    footer.stopLoading()
+                } else {
+                    footer.playLoading()
+                }
+                return footer
+            default:
+                return UICollectionReusableView()
+            }
         } else {
             return UICollectionReusableView()
         }
@@ -310,8 +338,23 @@ extension FeedVC: UICollectionViewDataSource {
         if dateList.count != 0 {
             let width = UIScreen.main.bounds.width
             let height = width*85/375
-            
             return CGSize(width: width, height: height)
+        } else {
+            return .zero
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if dateList.count != 0 {
+            // isInfiniteScroll이며 마지막 section일 경우에만 footer가 보이도록 한다.
+            // scroll될 때는 loading이 있는 footer를 보이며, 마지막 section만 멘트가 표시된 footer가 남아있다.
+            if isInfiniteScroll && section == collectionView.numberOfSections-1 {
+                let width = UIScreen.main.bounds.width
+                let height = width*120/375
+                return CGSize(width: width, height: height)
+            } else {
+                return .zero
+            }
         } else {
             return .zero
         }

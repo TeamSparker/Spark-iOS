@@ -11,7 +11,6 @@ import SwiftUI
 import SnapKit
 
 class FeedHeaderView: UICollectionReusableView {
-    static let identifier = "FeedHeaderView"
     
     // MARK: - Properties
     
