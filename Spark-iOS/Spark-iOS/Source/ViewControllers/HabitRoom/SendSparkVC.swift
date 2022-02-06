@@ -10,14 +10,17 @@ import UIKit
 class SendSparkVC: UIViewController {
 
     // MARK: Properties
-    var selectedMessage: String = ""
+
     var roomID: Int?
     var recordID: Int?
-    var firstButton = StatusButton()
-    var secondButton = StatusButton()
-    var thirdButton = StatusButton()
-    var fourthButton = StatusButton()
     var userName: String?
+    
+    private var firstButton = SendSparkButton(type: .first)
+    private var secondButton = SendSparkButton(type: .second)
+    private var thirdButton = SendSparkButton(type: .third)
+    private var fourthButton = SendSparkButton(type: .fourth)
+    
+    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     
     // MARK: IBoutlet properties
     
@@ -30,7 +33,7 @@ class SendSparkVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        setAddTargets(firstButton, secondButton, thirdButton, fourthButton)
+        setAddTargets()
     }
     
     // MARK: IBAction Properties
@@ -46,27 +49,65 @@ extension SendSparkVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
-        
-        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            $0.tintColor = .sparkLightPinkred
-            $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-            $0.layer.cornerRadius = 2
-            $0.layer.borderWidth = 1
-            $0.setTitleColor(.sparkLightPinkred, for: .normal)
-            $0.titleLabel?.font = .krMediumFont(ofSize: 14)
-        }
-        
-        firstButton.setTitle("👊 아자아자 파이팅!", for: .normal)
-        secondButton.setTitle("🔥오늘 안 해? 같이 해!", for: .normal)
-        thirdButton.setTitle("👉 너만 하면 돼!", for: .normal)
-        fourthButton.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
-        
-        firstButton.status = 1
-        secondButton.status = 2
-        thirdButton.status = 3
-        fourthButton.status = 4
     }
     
+    private func setAddTargets() {
+        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+            $0.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
+        }
+    }
+    
+    private func setFeedbackGenerator() {
+        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+        selectionFeedbackGenerator?.selectionChanged()
+    }
+    
+    // MARK: - @objc Function
+    
+    @objc
+    func touchSendSparkButton(_ sender: SendSparkButton) {
+        setFeedbackGenerator()
+        
+        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+            if $0.tag == sender.tag {
+                $0.isSelected(true)
+            } else {
+                // 통신실패 시에도 다시금 deselected 되야하니 필요함.
+                $0.isSelected(false)
+            }
+        }
+        let selectedMessage = sender.titleLabel?.text ?? ""
+        sendSparkWithAPI(content: selectedMessage)
+    }
+}
+
+// MARK: Network
+
+extension SendSparkVC {
+    func sendSparkWithAPI(content: String) {
+        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: content) {  response in
+            switch response {
+            case .success:
+                let presentVC = self.presentingViewController
+                self.dismiss(animated: true) {
+                    presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
+                }
+            case .requestErr(let message):
+                print("sendSparkWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("sendSparkWithAPI - pathErr")
+            case .serverErr:
+                print("sendSparkWithAPI - serverErr")
+            case .networkFail:
+                print("sendSparkWithAPI - networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - Layout
+
+extension SendSparkVC {
     private func setLayout() {
         view.addSubviews([firstButton, secondButton, thirdButton, fourthButton])
         
@@ -96,100 +137,6 @@ extension SendSparkVC {
             make.top.equalTo(thirdButton.snp.bottom).offset(20)
             make.height.equalTo(36)
             make.width.equalTo(200)
-        }
-    }
-    
-    // 버튼 타겟 설정
-    private func setAddTargets(_ buttons: UIButton...) {
-        for button in buttons {
-            button.addTarget(self, action: #selector(setSelectedButton), for: .touchUpInside)
-        }
-    }
-    
-    // MARK: - @objc Function
-    
-    @objc
-    func setSelectedButton(sender: StatusButton) {
-        
-        let status = sender.status
-        
-        sender.setTitleColor(.sparkDarkPinkred, for: .normal)
-        sender.backgroundColor = .sparkMostLightPinkred
-        sender.titleLabel?.backgroundColor = .sparkMostLightPinkred
-        sender.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
-        
-        selectedMessage = sender.titleLabel?.text ?? ""
-        
-        switch status {
-        case 1:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 1 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        case 2:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 2 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        case 3:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 3 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-
-        default:
-            [firstButton, secondButton, thirdButton, fourthButton].forEach {
-                if $0.status != 4 {
-                    $0.tintColor = .sparkLightPinkred
-                    $0.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-                    $0.setTitleColor(.sparkLightPinkred, for: .normal)
-                    $0.backgroundColor = .sparkWhite
-                    $0.titleLabel?.backgroundColor = .sparkWhite
-                }
-            }
-        }
-        
-        sendSparkWithAPI()
-    }
-}
-
-// MARK: Network
-
-extension SendSparkVC {
-    func sendSparkWithAPI() {
-        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: selectedMessage) {  response in
-            switch response {
-            case .success(_):
-                let presentVC = self.presentingViewController
-                self.dismiss(animated: true) {
-                    presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
-                }
-            case .requestErr(let message):
-                print("sendSparkWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("sendSparkWithAPI - pathErr")
-            case .serverErr:
-                print("sendSparkWithAPI - serverErr")
-            case .networkFail:
-                print("sendSparkWithAPI - networkFail")
-            }
         }
     }
 }
