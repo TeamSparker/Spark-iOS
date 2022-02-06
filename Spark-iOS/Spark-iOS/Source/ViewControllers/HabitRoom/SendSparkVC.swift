@@ -33,7 +33,7 @@ class SendSparkVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        setAddTargets(firstButton, secondButton, thirdButton, fourthButton)
+        setAddTargets()
     }
     
     // MARK: IBAction Properties
@@ -51,9 +51,9 @@ extension SendSparkVC {
         tabBarController?.tabBar.isHidden = true
     }
     
-    private func setAddTargets(_ buttons: UIButton...) {
-        for button in buttons {
-            button.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
+    private func setAddTargets() {
+        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+            $0.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
         }
     }
     
