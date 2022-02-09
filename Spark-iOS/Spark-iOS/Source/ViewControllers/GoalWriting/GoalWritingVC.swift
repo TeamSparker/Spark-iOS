@@ -186,6 +186,10 @@ class GoalWritingVC: UIViewController {
                         whenLineView.backgroundColor = .sparkPinkred
                     }
                     
+                    else if text.count == 0 {
+                        whenCountLabel.textColor = .sparkDarkGray
+                    }
+                    
                     /// 그 외 0인 경우
                     else {
                         whenCountLabel.textColor = .sparkDarkGray
@@ -213,6 +217,10 @@ class GoalWritingVC: UIViewController {
                         goalCountLabel.textColor = .sparkDarkGray
                         goalCountLabel.attributedText = attributedString
                         goalLineView.backgroundColor = .sparkPinkred
+                    }
+                    
+                    else if text.count == 0 {
+                        whenCountLabel.textColor = .sparkDarkGray
                     }
                     
                     /// 그 외 0인 경우
@@ -278,6 +286,14 @@ extension GoalWritingVC: UITextFieldDelegate {
     
     /// 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField {
+        case whenTextField:
+            whenLineView.backgroundColor = .sparkPinkred
+        case goalTextField:
+            goalLineView.backgroundColor = .sparkPinkred
+        default:
+            goalLineView.backgroundColor = .sparkPinkred
+        }
         upAnimation()
         return true
     }
@@ -287,6 +303,12 @@ extension GoalWritingVC: UITextFieldDelegate {
         if whenTextField.hasText && goalTextField.hasText {
             ableButton()
         } else {
+            if !whenTextField.hasText {
+                whenLineView.backgroundColor = .sparkGray
+            }
+            if !goalTextField.hasText {
+                goalLineView.backgroundColor = .sparkGray
+            }
             disableButton()
         }
     }
