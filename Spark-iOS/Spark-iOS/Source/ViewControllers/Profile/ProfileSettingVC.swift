@@ -13,19 +13,18 @@ class ProfileSettingVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
-    let profileImageView = UIImageView()
-    let fadeView = UIView()
-    let photoIconImageView = UIImageView()
-    let textField = UITextField()
-    let lineView = UIView()
-    let countLabel = UILabel()
-    let completeButton = UIButton()
-    let picker = UIImagePickerController()
-    let tap = UITapGestureRecognizer()
-    
-    var maxLength: Int = 10
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let profileImageView = UIImageView()
+    private let fadeView = UIView()
+    private let photoIconImageView = UIImageView()
+    private let textField = UITextField()
+    private let lineView = UIView()
+    private let countLabel = UILabel()
+    private let completeButton = UIButton()
+    private let picker = UIImagePickerController()
+    private let tap = UITapGestureRecognizer()
+    private let maxLength: Int = 10
     
     // MARK: - View Life Cycle
     

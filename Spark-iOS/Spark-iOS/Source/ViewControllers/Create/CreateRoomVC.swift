@@ -13,15 +13,14 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
-    let textField = UITextField()
-    let lineView = UIView()
-    let countLabel = UILabel()
-    let nextButton = UIButton()
-    
-    var maxLength: Int = 15
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let subTitleLabel = UILabel()
+    private let textField = UITextField()
+    private let lineView = UIView()
+    private let countLabel = UILabel()
+    private let nextButton = UIButton()
+    private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
     

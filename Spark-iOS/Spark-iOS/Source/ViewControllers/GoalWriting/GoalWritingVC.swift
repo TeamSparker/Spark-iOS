@@ -13,22 +13,22 @@ class GoalWritingVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
-    let whenLabel = UILabel()
-    let whenExLabel = UILabel()
-    let goalLabel = UILabel()
-    let goalExLabel = UILabel()
-    let whenTextField = UITextField()
-    let whenLineView = UIView()
-    let whenCountLabel = UILabel()
-    let goalTextField = UITextField()
-    let goalLineView = UIView()
-    let goalCountLabel = UILabel()
-    let completeButton = UIButton()
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let subTitleLabel = UILabel()
+    private let whenLabel = UILabel()
+    private let whenExLabel = UILabel()
+    private let goalLabel = UILabel()
+    private let goalExLabel = UILabel()
+    private let whenTextField = UITextField()
+    private let whenLineView = UIView()
+    private let whenCountLabel = UILabel()
+    private let goalTextField = UITextField()
+    private let goalLineView = UIView()
+    private let goalCountLabel = UILabel()
+    private let completeButton = UIButton()
+    private let maxLength: Int = 15
     
-    var maxLength: Int = 15
     var titleText: String?
     var roomId: Int?
     var moment: String?
