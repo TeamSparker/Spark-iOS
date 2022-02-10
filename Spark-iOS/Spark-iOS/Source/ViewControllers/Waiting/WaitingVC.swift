@@ -246,11 +246,20 @@ extension WaitingVC {
     }
     
     private func refreshButtonAnimtation() {
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.1,
+        UIView.animate(withDuration: 0.6,
+                       delay: 0.0,
                        options: .curveEaseInOut,
                        animations: {
             let rotate = CGAffineTransform(rotationAngle: -3.14)
+            self.refreshButton.transform = rotate
+        },
+                       completion: nil)
+        
+        UIView.animate(withDuration: 0.6,
+                       delay: 0.1,
+                       options: .curveEaseInOut,
+                       animations: {
+            let rotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
             self.refreshButton.transform = rotate
         },
                        completion: { _ in
