@@ -140,8 +140,8 @@ extension WaitingVC {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         profileImageView.backgroundColor = .sparkLightGray
-        firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
-        secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
+        firstDivideView.backgroundColor = .sparkLightGray
+        secondDivideView.backgroundColor = .sparkLightGray
         checkDivideView.backgroundColor = .sparkDarkGray
         
         toolTipImageView.layer.masksToBounds = true
@@ -587,7 +587,7 @@ extension WaitingVC {
         firstDivideView.snp.makeConstraints { make in
             make.top.equalTo(checkTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 24)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
         
         goalTitleLabel.snp.makeConstraints { make in
@@ -627,7 +627,7 @@ extension WaitingVC {
         secondDivideView.snp.makeConstraints { make in
             make.top.equalTo(goalLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
         
         friendTitleLabel.snp.makeConstraints { make in
