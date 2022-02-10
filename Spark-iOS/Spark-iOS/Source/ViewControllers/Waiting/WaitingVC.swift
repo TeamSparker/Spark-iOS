@@ -59,7 +59,7 @@ class WaitingVC: UIViewController {
     private var members: [Member] = []
     private var memberList: [Any] = []
     
-    var photoOnly: Bool? // 사진 인증만
+    var photoOnly: Bool?
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
@@ -85,7 +85,6 @@ class WaitingVC: UIViewController {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.async {
-            // 로딩
             self.setLoading()
         }
         
@@ -198,7 +197,7 @@ extension WaitingVC {
         startButton.isHidden = true
     }
     
-    /// 선택한 인증 방식
+    // 선택한 인증 방식에 따라 라벨을 보이는 함수
     private func setAuthLabel() {
         if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
