@@ -289,7 +289,7 @@ extension GoalWritingVC {
         
         whenTextField.snp.makeConstraints { make in
             make.top.equalTo(whenExLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(28)
             make.width.equalTo(290)
             make.height.equalTo(46)
         }
@@ -317,7 +317,7 @@ extension GoalWritingVC {
         
         goalTextField.snp.makeConstraints { make in
             make.top.equalTo(goalExLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(28)
             make.width.equalTo(290)
             make.height.equalTo(46)
         }
