@@ -376,7 +376,11 @@ extension HabitRoomVC: UICollectionViewDelegate {
 
 extension HabitRoomVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1 + (habitRoomDetail?.otherRecords.count ?? 0)
+        if let habitRoomDetail = habitRoomDetail {
+            return 1 + (habitRoomDetail.otherRecords.count)
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
