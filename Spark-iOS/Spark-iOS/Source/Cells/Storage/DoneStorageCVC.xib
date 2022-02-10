@@ -105,7 +105,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myboxTicketCompleteLine" translatesAutoresizingMaskIntoConstraints="NO" id="TPJ-hK-IAz">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
+                                <rect key="frame" x="-0.5" y="-0.5" width="327.5" height="520.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVD-9B-e8E">
                                 <rect key="frame" x="20" y="254" width="287" height="0.0"/>
@@ -116,9 +116,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="5E0-a8-uow"/>
+                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" constant="-0.5" id="5E0-a8-uow"/>
                             <constraint firstAttribute="trailing" secondItem="TPJ-hK-IAz" secondAttribute="trailing" id="9Hl-ZY-L03"/>
-                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" id="K0B-ci-YfN"/>
+                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" constant="-0.5" id="K0B-ci-YfN"/>
                             <constraint firstAttribute="bottom" secondItem="AOj-nn-gQh" secondAttribute="bottom" id="L6k-8q-3oO"/>
                             <constraint firstItem="eVD-9B-e8E" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" constant="20" id="TVh-bF-QEw"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="bBb-vm-QF8"/>
