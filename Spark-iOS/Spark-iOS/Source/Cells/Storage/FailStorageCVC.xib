@@ -73,7 +73,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="d6A-u6-xtI">
                                         <rect key="frame" x="148" y="127" width="31.5" height="26"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFire" translatesAutoresizingMaskIntoConstraints="NO" id="yVW-F7-yaL">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFireDefaultGray" translatesAutoresizingMaskIntoConstraints="NO" id="yVW-F7-yaL">
                                                 <rect key="frame" x="0.0" y="4" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="Owe-wJ-TDn"/>
@@ -151,7 +151,7 @@
     </objects>
     <resources>
         <image name="bgSplash" width="375" height="812"/>
-        <image name="icFire" width="12" height="12"/>
+        <image name="icFireDefaultGray" width="12" height="12"/>
         <image name="myboxTicketFailedLine" width="330" height="523"/>
         <image name="property1MyboxCardFailedSparkflake3" width="144" height="84"/>
         <namedColor name="sparkBlack">
