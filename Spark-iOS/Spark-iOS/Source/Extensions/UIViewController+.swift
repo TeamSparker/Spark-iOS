@@ -101,7 +101,6 @@ extension UIViewController {
                 attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(text.count)"))
                 countLabel.textColor = .sparkDarkGray
                 countLabel.attributedText = attributedString
-                lineView.backgroundColor = .sparkPinkred
             } else {
                 countLabel.textColor = .sparkDarkGray
             }

@@ -164,9 +164,9 @@ class GoalWritingVC: UIViewController {
         if let textField = notification.object as? UITextField {
             switch textField {
             case whenTextField:
-                changeCountLabel(textField: whenTextField, maxLength: 15, countLabel: whenCountLabel, lineView: whenLineView)
+                self.changeCountLabel(textField: whenTextField, maxLength: 15, countLabel: whenCountLabel, lineView: whenLineView)
             case goalTextField:
-                changeCountLabel(textField: goalTextField, maxLength: 15, countLabel: goalCountLabel, lineView: goalLineView)
+                self.changeCountLabel(textField: goalTextField, maxLength: 15, countLabel: goalCountLabel, lineView: goalLineView)
             default:
                 return
             }
@@ -209,20 +209,20 @@ extension GoalWritingVC {
 
 // MARK: - UITextFieldDelegate
 extension GoalWritingVC: UITextFieldDelegate {
-    /// 여백 클릭 시
+    // 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         downAnimation()
         self.view.endEditing(true)
     }
 
-    /// 리턴 눌렀을 때
+    // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         downAnimation()
         self.view.endEditing(true)
         return true
     }
     
-    /// 입력 시작
+    // 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         switch textField {
         case whenTextField:
@@ -236,7 +236,7 @@ extension GoalWritingVC: UITextFieldDelegate {
         return true
     }
     
-    /// 입력 끝
+    // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if whenTextField.hasText && goalTextField.hasText {
             ableButton()

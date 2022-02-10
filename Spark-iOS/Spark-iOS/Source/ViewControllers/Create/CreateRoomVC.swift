@@ -139,7 +139,7 @@ class CreateRoomVC: UIViewController {
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
-            changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel, lineView: lineView)
+            self.changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel, lineView: lineView)
         }
     }
     
@@ -157,24 +157,24 @@ class CreateRoomVC: UIViewController {
 }
 
 extension CreateRoomVC: UITextFieldDelegate {
-    /// 여백 클릭 시
+    // 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
-    /// 리턴 눌렀을 때
+    // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
-    /// 입력 시작
+    // 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         lineView.backgroundColor = .sparkPinkred
         return true
     }
     
-    /// 입력 끝
+    // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
             ableButton()
