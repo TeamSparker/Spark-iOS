@@ -546,14 +546,14 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(6)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }
         
         checkTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(copyButton.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 20)
+            make.top.equalTo(copyButton.snp.bottom).offset(UIScreen.main.hasNotch ? 40 : 24)
         }
         
         toolTipButton.snp.makeConstraints { make in
