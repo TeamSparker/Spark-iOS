@@ -126,11 +126,7 @@ class StorageVC: UIViewController {
                     self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
                         self.DoneCV.reloadData()
                         self.FailCV.reloadData()
-                        if (self.doingLabel.text == "0") || (self.doingLabel.text == "0") {
-                            self.emptyView.isHidden = false
-                        } else {
-                            self.emptyView.isHidden = true
-                        }
+                        
                         self.loadingView.stop()
                         self.loadingBgView.removeFromSuperview()
                         
@@ -242,7 +238,7 @@ extension StorageVC {
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
-        if (doingLabel.text == "0") || (doingLabel.text == "0") {
+        if doingLabel.text == "0" {
             emptyView.isHidden = false
         } else {
                 emptyView.isHidden = true
@@ -356,6 +352,7 @@ extension StorageVC {
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doneButton)
+            
             if doneLabel.text == "0" {
                 emptyView.isHidden = false
             } else {
