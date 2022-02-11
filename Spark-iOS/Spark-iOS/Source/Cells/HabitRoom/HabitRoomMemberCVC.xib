@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9J-Jp-kaz">
                         <rect key="frame" x="20" y="152" width="431" height="1"/>
-                        <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="sparkLightGray"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="kbG-DU-UYR"/>
                         </constraints>
@@ -101,5 +102,8 @@
     </objects>
     <resources>
         <image name="tagMe" width="43" height="24"/>
+        <namedColor name="sparkLightGray">
+            <color red="0.92900002002716064" green="0.92900002002716064" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

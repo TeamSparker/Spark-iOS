@@ -13,22 +13,22 @@ class GoalWritingVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
-    let whenLabel = UILabel()
-    let whenExLabel = UILabel()
-    let goalLabel = UILabel()
-    let goalExLabel = UILabel()
-    let whenTextField = UITextField()
-    let whenLineView = UIView()
-    let whenCountLabel = UILabel()
-    let goalTextField = UITextField()
-    let goalLineView = UIView()
-    let goalCountLabel = UILabel()
-    let completeButton = UIButton()
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let subTitleLabel = UILabel()
+    private let whenLabel = UILabel()
+    private let whenExLabel = UILabel()
+    private let goalLabel = UILabel()
+    private let goalExLabel = UILabel()
+    private let whenTextField = UITextField()
+    private let whenLineView = UIView()
+    private let whenCountLabel = UILabel()
+    private let goalTextField = UITextField()
+    private let goalLineView = UIView()
+    private let goalCountLabel = UILabel()
+    private let completeButton = UIButton()
+    private let maxLength: Int = 15
     
-    var maxLength: Int = 15
     var titleText: String?
     var roomId: Int?
     var moment: String?
@@ -55,7 +55,7 @@ class GoalWritingVC: UIViewController {
         titleLabel.font = .h3Subtitle
         titleLabel.textColor = .sparkBlack
         
-        subTitleLabel.text = "\(titleText ?? "기본") 습관방에서의 \n시간과 목표를 적어 보세요!"
+        subTitleLabel.text = "'\(titleText ?? "기본")' 습관방에서의 \n시간과 목표를 적어 보세요!"
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
@@ -164,63 +164,9 @@ class GoalWritingVC: UIViewController {
         if let textField = notification.object as? UITextField {
             switch textField {
             case whenTextField:
-                if let text = textField.text {
-                    /// 글자가 바뀔 때마다 countLabel 업데이트
-                    whenCountLabel.text = "\(text.count)/15"
-                    
-                    /// 글자수 count 초과한 경우
-                    if text.count >= maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        textField.text = newString
-                        whenCountLabel.text = "15/15"
-                        whenCountLabel.textColor = .sparkPinkred
-                    }
-                    
-                    /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
-                    else if text.count > 0 {
-                        let attributedString = NSMutableAttributedString(string: whenCountLabel.text ?? "")
-                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((whenCountLabel.text ?? "") as NSString).range(of: "\(text.count)"))
-                        whenCountLabel.textColor = .sparkDarkGray
-                        whenCountLabel.attributedText = attributedString
-                        whenLineView.backgroundColor = .sparkPinkred
-                    }
-                    
-                    /// 그 외 0인 경우
-                    else {
-                        whenCountLabel.textColor = .sparkDarkGray
-                        whenLineView.backgroundColor = .sparkDarkGray
-                    }
-                }
+                self.changeCountLabel(textField: whenTextField, maxLength: 15, countLabel: whenCountLabel, lineView: whenLineView)
             case goalTextField:
-                if let text = textField.text {
-                    /// 글자가 바뀔 때마다 countLabel 업데이트
-                    goalCountLabel.text = "\(text.count)/15"
-                    
-                    /// 글자수 count 초과한 경우
-                    if text.count >= maxLength {
-                        let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = String(text[text.startIndex..<maxIndex])
-                        textField.text = newString
-                        goalCountLabel.text = "15/15"
-                        goalCountLabel.textColor = .sparkPinkred
-                    }
-                    
-                    /// 글자 있는 경우 색 활성화, 없는 경우 비활성화
-                    else if text.count > 0 {
-                        let attributedString = NSMutableAttributedString(string: goalCountLabel.text ?? "")
-                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((goalCountLabel.text ?? "") as NSString).range(of: "\(text.count)"))
-                        goalCountLabel.textColor = .sparkDarkGray
-                        goalCountLabel.attributedText = attributedString
-                        goalLineView.backgroundColor = .sparkPinkred
-                    }
-                    
-                    /// 그 외 0인 경우
-                    else {
-                        goalCountLabel.textColor = .sparkDarkGray
-                        goalLineView.backgroundColor = .sparkDarkGray
-                    }
-                }
+                self.changeCountLabel(textField: goalTextField, maxLength: 15, countLabel: goalCountLabel, lineView: goalLineView)
             default:
                 return
             }
@@ -263,30 +209,44 @@ extension GoalWritingVC {
 
 // MARK: - UITextFieldDelegate
 extension GoalWritingVC: UITextFieldDelegate {
-    /// 여백 클릭 시
+    // 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         downAnimation()
         self.view.endEditing(true)
     }
 
-    /// 리턴 눌렀을 때
+    // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         downAnimation()
         self.view.endEditing(true)
         return true
     }
     
-    /// 입력 시작
+    // 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField {
+        case whenTextField:
+            whenLineView.backgroundColor = .sparkPinkred
+        case goalTextField:
+            goalLineView.backgroundColor = .sparkPinkred
+        default:
+            goalLineView.backgroundColor = .sparkPinkred
+        }
         upAnimation()
         return true
     }
     
-    /// 입력 끝
+    // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if whenTextField.hasText && goalTextField.hasText {
             ableButton()
         } else {
+            if !whenTextField.hasText {
+                whenLineView.backgroundColor = .sparkGray
+            }
+            if !goalTextField.hasText {
+                goalLineView.backgroundColor = .sparkGray
+            }
             disableButton()
         }
     }
@@ -329,7 +289,7 @@ extension GoalWritingVC {
         
         whenTextField.snp.makeConstraints { make in
             make.top.equalTo(whenExLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(28)
             make.width.equalTo(290)
             make.height.equalTo(46)
         }
@@ -357,7 +317,7 @@ extension GoalWritingVC {
         
         goalTextField.snp.makeConstraints { make in
             make.top.equalTo(goalExLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(28)
             make.width.equalTo(290)
             make.height.equalTo(46)
         }

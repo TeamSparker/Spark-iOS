@@ -59,7 +59,7 @@ class WaitingVC: UIViewController {
     private var members: [Member] = []
     private var memberList: [Any] = []
     
-    var photoOnly: Bool? // 사진 인증만
+    var photoOnly: Bool?
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
@@ -85,7 +85,6 @@ class WaitingVC: UIViewController {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.async {
-            // 로딩
             self.setLoading()
         }
         
@@ -140,8 +139,8 @@ extension WaitingVC {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         profileImageView.backgroundColor = .sparkLightGray
-        firstDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
-        secondDivideView.backgroundColor = .sparkDarkGray.withAlphaComponent(0.5)
+        firstDivideView.backgroundColor = .sparkLightGray
+        secondDivideView.backgroundColor = .sparkLightGray
         checkDivideView.backgroundColor = .sparkDarkGray
         
         toolTipImageView.layer.masksToBounds = true
@@ -198,7 +197,7 @@ extension WaitingVC {
         startButton.isHidden = true
     }
     
-    /// 선택한 인증 방식
+    /// 선택한 인증 방식에 따라 라벨을 보이는 함수
     private func setAuthLabel() {
         if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
@@ -246,15 +245,22 @@ extension WaitingVC {
     }
     
     private func refreshButtonAnimtation() {
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.1,
-                       options: .curveEaseInOut,
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseIn,
                        animations: {
-            let rotate = CGAffineTransform(rotationAngle: -3.14)
-            self.refreshButton.transform = rotate
-        },
-                       completion: { _ in
-            self.refreshButton.transform = .identity
+            let firstRotate = CGAffineTransform(rotationAngle: -3.14)
+            self.refreshButton.transform = firstRotate
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.0,
+                           options: .curveEaseOut,
+                           animations: {
+                let secondRotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
+                self.refreshButton.transform = secondRotate
+            }, completion: { _ in
+                self.refreshButton.transform = .identity
+            })
         })
     }
     
@@ -546,14 +552,14 @@ extension WaitingVC {
         
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(6)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }
         
         checkTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(copyButton.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 20)
+            make.top.equalTo(copyButton.snp.bottom).offset(UIScreen.main.hasNotch ? 40 : 24)
         }
         
         toolTipButton.snp.makeConstraints { make in
@@ -587,7 +593,7 @@ extension WaitingVC {
         firstDivideView.snp.makeConstraints { make in
             make.top.equalTo(checkTitleLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 36 : 24)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
         
         goalTitleLabel.snp.makeConstraints { make in
@@ -627,7 +633,7 @@ extension WaitingVC {
         secondDivideView.snp.makeConstraints { make in
             make.top.equalTo(goalLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.5)
+            make.height.equalTo(1)
         }
         
         friendTitleLabel.snp.makeConstraints { make in
