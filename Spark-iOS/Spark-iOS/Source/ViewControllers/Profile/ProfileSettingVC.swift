@@ -256,7 +256,7 @@ extension ProfileSettingVC {
         
         textField.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(55)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(36)
             make.width.equalTo(290)
             make.height.equalTo(46)
         }
@@ -267,7 +267,7 @@ extension ProfileSettingVC {
         }
         
         lineView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(28)
             make.top.equalTo(textField.snp.bottom)
             make.height.equalTo(2)
         }

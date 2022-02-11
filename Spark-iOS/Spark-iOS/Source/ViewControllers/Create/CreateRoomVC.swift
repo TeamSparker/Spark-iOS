@@ -69,52 +69,6 @@ class CreateRoomVC: UIViewController {
         countLabel.textColor = .sparkDarkGray
     }
     
-    private func setLayout() {
-        view.addSubviews([titleLabel, subTitleLabel, textField,
-                          lineView, countLabel, nextButton, closeButton])
-        
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(14)
-            make.leading.equalToSuperview().inset(20)
-            make.width.height.equalTo(24)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(24)
-            make.leading.equalToSuperview().inset(20)
-        }
-        
-        subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.leading.equalToSuperview().inset(20)
-        }
-        
-        textField.snp.makeConstraints { make in
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(96)
-            make.leading.equalToSuperview().inset(20)
-            make.width.equalTo(290)
-            make.height.equalTo(46)
-        }
-        
-        countLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(textField.snp.centerY)
-            make.trailing.equalToSuperview().inset(28)
-        }
-        
-        lineView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalTo(textField.snp.bottom)
-            make.height.equalTo(2)
-        }
-        
-        nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
-        }
-    }
-    
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
@@ -180,6 +134,55 @@ extension CreateRoomVC: UITextFieldDelegate {
             ableButton()
         } else {
             disableButton()
+        }
+    }
+}
+
+// MARK: - Layout
+extension CreateRoomVC {
+    private func setLayout() {
+        view.addSubviews([titleLabel, subTitleLabel, textField,
+                          lineView, countLabel, nextButton, closeButton])
+        
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(14)
+            make.leading.equalToSuperview().inset(20)
+            make.width.height.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(closeButton.snp.bottom).offset(24)
+            make.leading.equalToSuperview().inset(20)
+        }
+        
+        subTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(12)
+            make.leading.equalToSuperview().inset(20)
+        }
+        
+        textField.snp.makeConstraints { make in
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(96)
+            make.leading.equalToSuperview().inset(28)
+            make.width.equalTo(290)
+            make.height.equalTo(46)
+        }
+        
+        countLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(textField.snp.centerY)
+            make.trailing.equalToSuperview().inset(28)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(textField.snp.bottom)
+            make.height.equalTo(2)
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.width.equalToSuperview().inset(20)
+            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
