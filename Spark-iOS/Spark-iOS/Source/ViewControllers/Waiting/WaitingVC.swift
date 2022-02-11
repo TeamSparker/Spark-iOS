@@ -197,7 +197,7 @@ extension WaitingVC {
         startButton.isHidden = true
     }
     
-    // 선택한 인증 방식에 따라 라벨을 보이는 함수
+    /// 선택한 인증 방식에 따라 라벨을 보이는 함수
     private func setAuthLabel() {
         if photoOnly ?? true {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
@@ -245,24 +245,22 @@ extension WaitingVC {
     }
     
     private func refreshButtonAnimtation() {
-        UIView.animate(withDuration: 0.6,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseIn,
                        animations: {
-            let rotate = CGAffineTransform(rotationAngle: -3.14)
-            self.refreshButton.transform = rotate
-        },
-                       completion: nil)
-        
-        UIView.animate(withDuration: 0.6,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-            let rotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
-            self.refreshButton.transform = rotate
-        },
-                       completion: { _ in
-            self.refreshButton.transform = .identity
+            let firstRotate = CGAffineTransform(rotationAngle: -3.14)
+            self.refreshButton.transform = firstRotate
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.0,
+                           options: .curveEaseOut,
+                           animations: {
+                let secondRotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
+                self.refreshButton.transform = secondRotate
+            }, completion: { _ in
+                self.refreshButton.transform = .identity
+            })
         })
     }
     
