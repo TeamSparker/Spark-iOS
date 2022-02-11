@@ -81,4 +81,29 @@ extension UIViewController {
             }
         }
     }
+    
+    /// textField의 글자수에 따라 countLabel과 lineView의 컬러 및 글자 변경해주는 함수
+    /// - 최대 글자수 초과인 경우
+    /// - 최대 글자수 이하 0 이상인 경우
+    /// - 그 외의 경우 (글자수 0)
+    func changeCountLabel(textField: UITextField, maxLength: Int, countLabel: UILabel, lineView: UIView) {
+        if let text = textField.text {
+            countLabel.text = "\(text.count)/\(maxLength)"
+            
+            if text.count >= maxLength {
+                let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                let newString = String(text[text.startIndex..<maxIndex])
+                textField.text = newString
+                countLabel.text = "\(maxLength)/\(maxLength)"
+                countLabel.textColor = .sparkPinkred
+            } else if text.count > 0 {
+                let attributedString = NSMutableAttributedString(string: countLabel.text ?? "")
+                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.sparkPinkred, range: ((countLabel.text ?? "") as NSString).range(of: "\(text.count)"))
+                countLabel.textColor = .sparkDarkGray
+                countLabel.attributedText = attributedString
+            } else {
+                countLabel.textColor = .sparkDarkGray
+            }
+        }
+    }
 }
