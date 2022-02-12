@@ -234,6 +234,15 @@ extension WaitingVC {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
+    private func setData() {
+        
+    }
+    
+    private func stopLoadingAnimation() {
+        loadingView.stop()
+        loadingBgView.removeFromSuperview()
+    }
+    
     private func refreshButtonAnimtation() {
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -377,10 +386,10 @@ extension WaitingVC {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
-                self.loadingView.stop()
-                self.loadingBgView.removeFromSuperview()
+                self.stopLoadingAnimation()
                 
                 if let waitingRoom = data as? Waiting {
+                    // TODO: - 함수화
                     var user: ReqUser
                     
                     user = waitingRoom.reqUser
@@ -474,9 +483,7 @@ extension WaitingVC {
         RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
-                self.loadingView.stop()
-                self.loadingBgView.removeFromSuperview()
-                
+                self.stopLoadingAnimation()
                 completion()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
