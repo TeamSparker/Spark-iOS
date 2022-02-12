@@ -10,7 +10,7 @@ target 'Spark-iOS' do
   pod 'Kingfisher', '~> 7.0'
   pod 'SwiftLint'
   pod 'Moya', '~> 15.0'
-  pod 'JJFloatingActionButton'
+  pod 'JJFloatingActionButton', :git => 'https://github.com/TeamSparker/JJFloatingActionButton.git', :branch => 'spark'
   pod 'KakaoSDKCommon'
   pod 'KakaoSDKUser'
   pod 'KakaoSDKAuth'
