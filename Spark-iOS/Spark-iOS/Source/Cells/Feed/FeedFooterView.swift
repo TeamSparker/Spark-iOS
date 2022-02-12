@@ -21,7 +21,6 @@ class FeedFooterView: UICollectionReusableView {
         super.init(frame: frame)
         setUI()
         setLayout()
-        playLoading()
     }
     
     required init?(coder: NSCoder) {
