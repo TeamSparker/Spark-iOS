@@ -87,6 +87,7 @@ extension HomeHabitCVC {
         tagDoneImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
+        memberLabel.font = .h3Subtitle
     }
     
     /// 셀 초기화
@@ -176,6 +177,7 @@ extension HomeHabitCVC {
         
         let attributedString = NSMutableAttributedString(string: "\(doneMemberNum)/\(memberNum)명")
         attributedString.addAttribute(.foregroundColor, value: sparkFlake.sparkFlakeColor(), range: NSRange(location: 0, length: "\(doneMemberNum)".count))
+        attributedString.addAttribute(.font, value: UIFont.h3SubtitleEng, range: NSRange(location: 0, length: "\(doneMemberNum)".count))
         memberLabel.attributedText = attributedString
     }
 }
