@@ -138,9 +138,7 @@ extension WaitingVC {
         // 플로팅버튼 내리기
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
-        profileImageView.backgroundColor = .sparkLightGray
-        firstDivideView.backgroundColor = .sparkLightGray
-        secondDivideView.backgroundColor = .sparkLightGray
+        [firstDivideView, secondDivideView].forEach {$0.backgroundColor = .sparkLightGray}
         checkDivideView.backgroundColor = .sparkDarkGray
         
         toolTipImageView.layer.masksToBounds = true
@@ -151,11 +149,6 @@ extension WaitingVC {
         toolTipButton.setImage(UIImage(named: "icInformation"), for: .normal)
         editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
         refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
-        
-        copyButton.isHighlighted = false
-        toolTipButton.isHighlighted = false
-        editButton.isHighlighted = false
-        refreshButton.isHighlighted = false
         
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
@@ -183,11 +176,9 @@ extension WaitingVC {
          nicknameLabel, friendCountLabel, timeLabel, goalLabel].forEach {
             $0.textColor = .sparkDeepGray
         }
-        
         [photoLabel, stopwatchLabel].forEach {
             $0.textColor = .sparkDarkGray
         }
-        
         friendSubTitleLabel.textColor = .gray
         
         startButton.layer.cornerRadius = 2
@@ -208,12 +199,11 @@ extension WaitingVC {
     
     private func setLoading() {
         view.addSubview(loadingBgView)
+        loadingBgView.addSubview(loadingView)
         
         loadingBgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        loadingBgView.addSubview(loadingView)
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -251,14 +241,16 @@ extension WaitingVC {
                        animations: {
             let firstRotate = CGAffineTransform(rotationAngle: -3.14)
             self.refreshButton.transform = firstRotate
-        }, completion: { _ in
+        },
+                       completion: { _ in
             UIView.animate(withDuration: 0.3,
                            delay: 0.0,
                            options: .curveEaseOut,
                            animations: {
                 let secondRotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
                 self.refreshButton.transform = secondRotate
-            }, completion: { _ in
+            },
+                           completion: { _ in
                 self.refreshButton.transform = .identity
             })
         })
@@ -291,6 +283,8 @@ extension WaitingVC {
         view.addGestureRecognizer(tapGestrueRecognizer)
     }
     
+    // MARK: - @objc
+    
     @objc
     private func copyToClipboard() {
         UIPasteboard.general.string = roomCode
@@ -322,8 +316,6 @@ extension WaitingVC {
             dismissToolTip()
         }
     }
-    
-    // MARK: - 화면 전환
     
     @objc
     private func popToHomeVC() {
