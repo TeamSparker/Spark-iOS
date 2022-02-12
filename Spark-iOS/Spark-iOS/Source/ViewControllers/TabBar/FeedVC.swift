@@ -320,7 +320,7 @@ extension FeedVC: UICollectionViewDataSource {
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
                 
                 // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
-                if isLastScroll {
+                if isLastScroll && isInfiniteScroll {
                     footer.stopLoading()
                 } else {
                     footer.playLoading()
