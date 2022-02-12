@@ -162,6 +162,16 @@ class FeedVC: UIViewController {
         }
     }
     
+    private func stopLoadingAnimation() {
+        if loadingView.isAnimationPlaying {
+            loadingView.stop()
+            loadingBgView.removeFromSuperview()
+        }
+    }
+}
+
+// MARK: - Layout
+extension FeedVC {
     private func setLayout() {
         view.addSubviews([collectionView])
         
@@ -180,10 +190,7 @@ extension FeedVC {
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
-                    if self.loadingView.isAnimationPlaying {
-                        self.loadingView.stop()
-                        self.loadingBgView.removeFromSuperview()
-                    }
+                    self.stopLoadingAnimation()
                     // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
                     if feed.records.isEmpty {
                         self.isLastScroll = true
@@ -320,7 +327,7 @@ extension FeedVC: UICollectionViewDataSource {
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
                 
                 // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
-                if isLastScroll {
+                if isLastScroll && isInfiniteScroll {
                     footer.stopLoading()
                 } else {
                     footer.playLoading()
