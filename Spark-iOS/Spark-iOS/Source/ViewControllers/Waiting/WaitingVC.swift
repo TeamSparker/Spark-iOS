@@ -152,7 +152,7 @@ extension WaitingVC {
         
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
+        profileImageView.layer.borderColor = UIColor.sparkLightGray.cgColor
         profileImageView.layer.cornerRadius = 32
         profileImageView.contentMode = .scaleAspectFill
         
@@ -279,6 +279,12 @@ extension WaitingVC {
 
         // 사용자 이미지 설정
         profileImageView.updateImage(user.profileImg)
+        collectionView.reloadData()
+    }
+    
+    /// 대기방 멤버 갱신하는 함수
+    private func setMemberData() {
+        friendCountLabel.text = "\(self.members.count)"
         collectionView.reloadData()
     }
     
@@ -453,12 +459,8 @@ extension WaitingVC {
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
-                    
-                    // 대기방 멤버 갱신.
                     self.members = waitingMembers.members
-                    self.friendCountLabel.text = "\(self.members.count)"
-                    
-                    self.collectionView.reloadData()
+                    self.setMemberData()
                 }
             case .requestErr(let message):
                 print("getWaitingMembersWithAPI - requestErr", message)
