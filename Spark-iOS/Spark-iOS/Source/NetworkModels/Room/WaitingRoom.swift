@@ -42,7 +42,7 @@ struct Member: Codable {
 struct ReqUser: Codable {
     let userID: Int
     let nickname: String
-    let profileImg: String?
+    let profileImg: String
     let isPurposeSet: Bool
     let moment, purpose: String?
     let isHost: Bool

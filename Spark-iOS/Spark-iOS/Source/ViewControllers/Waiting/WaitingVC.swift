@@ -234,8 +234,52 @@ extension WaitingVC {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
-    private func setData() {
+    /// 초기 대기방 정보 세팅하는 함수
+    private func setInitData(fromstart: Bool, roomcode: String, roomname: String, user: ReqUser) {
+        // 스파커 멤버 수
+        friendCountLabel.text = "\(self.members.count)"
         
+        // 인증 방식
+        if fromstart {
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
+            toolTipImageView.image = UIImage(named: "timerToolTip")
+        } else {
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
+            toolTipImageView.image = UIImage(named: "photoToolTip")
+        }
+
+        // 방 코드, 이름
+        roomCode = roomcode
+        roomName = roomname
+
+        // 사용자 본인 이름
+        nicknameLabel.text = user.nickname
+
+        // 사용자 목표, 시간
+        userPurpose = user.purpose
+        userMoment = user.moment
+
+        // 본인 방장 여부
+        if user.isHost {
+            startButton.isHidden = false
+        } else {
+            startButton.isHidden = true
+        }
+
+        // 목표가 있을 경우, 목표와 시간 세팅
+        if user.isPurposeSet {
+            timeLabel.text = "시간  \(String(describing: user.moment!))"
+            goalLabel.text = "목표  \(String(describing: user.purpose!))"
+            timeLabel.partFontChange(targetString: "시간", font: .p1Title)
+            goalLabel.partFontChange(targetString: "목표", font: .p1Title)
+        } else {
+            timeLabel.text = "습관을 시작하기 전에"
+            goalLabel.text = "시간과 목표를 작성해 주세요!"
+        }
+
+        // 사용자 이미지 설정
+        profileImageView.updateImage(user.profileImg)
+        collectionView.reloadData()
     }
     
     private func stopLoadingAnimation() {
@@ -387,61 +431,10 @@ extension WaitingVC {
             switch response {
             case .success(let data):
                 self.stopLoadingAnimation()
-                
                 if let waitingRoom = data as? Waiting {
-                    // TODO: - 함수화
-                    var user: ReqUser
-                    
-                    user = waitingRoom.reqUser
+                    let user: ReqUser = waitingRoom.reqUser
                     self.members = waitingRoom.members
-                    
-                    // 스파커 멤버 수
-                    self.friendCountLabel.text = "\(self.members.count)"
-                    
-                    // 인증 방식
-                    if waitingRoom.fromStart {
-                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = false }
-                        self.toolTipImageView.image = UIImage(named: "timerToolTip")
-                    } else {
-                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = true }
-                        self.toolTipImageView.image = UIImage(named: "photoToolTip")
-                    }
-                    
-                    // 방 코드
-                    self.roomCode = waitingRoom.roomCode
-                    
-                    // 방 이름
-                    self.roomName = waitingRoom.roomName
-                    
-                    // 사용자 본인 이름
-                    self.nicknameLabel.text = user.nickname
-                    
-                    // 사용자 목표, 시간
-                    self.userPurpose = user.purpose
-                    self.userMoment = user.moment
-                    
-                    // 본인 방장 여부
-                    if user.isHost {
-                        self.startButton.isHidden = false
-                    } else {
-                        self.startButton.isHidden = true
-                    }
-                    
-                    // 목표가 있을 경우, 목표와 시간 세팅
-                    if user.isPurposeSet {
-                        self.timeLabel.text = "시간  \(String(describing: user.moment!))"
-                        self.goalLabel.text = "목표  \(String(describing: user.purpose!))"
-                        self.timeLabel.partFontChange(targetString: "시간", font: .p1Title)
-                        self.goalLabel.partFontChange(targetString: "목표", font: .p1Title)
-                    } else {
-                        // 엠티라벨
-                        self.timeLabel.text = "습관을 시작하기 전에"
-                        self.goalLabel.text = "시간과 목표를 작성해 주세요!"
-                    }
-                    
-                    // 사용자 이미지 설정
-                    self.profileImageView.updateImage(user.profileImg ?? "")
-                    self.collectionView.reloadData()
+                    self.setInitData(fromstart: waitingRoom.fromStart, roomcode: waitingRoom.roomCode, roomname: waitingRoom.roomName, user: user)
                 }
             case .requestErr(let message):
                 print("getWaitingRoomWithAPI - requestErr: \(message)")
