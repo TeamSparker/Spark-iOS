@@ -50,6 +50,8 @@ class HabitRoomMemberCVC: UICollectionViewCell {
 extension HabitRoomMemberCVC {
     private func setUI() {
         profileImage.layer.cornerRadius = 32
+        profileImage.layer.borderColor = UIColor.sparkLightGray.cgColor
+        profileImage.layer.borderWidth = 2
         profileImage.contentMode = .scaleAspectFill
         
         nicknameLabel.font = .h3Subtitle
