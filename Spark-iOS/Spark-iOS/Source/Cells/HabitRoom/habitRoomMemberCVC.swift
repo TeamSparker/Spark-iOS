@@ -86,7 +86,7 @@ extension HabitRoomMemberCVC {
             stickerImage.isHidden = false
         } else if status == "REST" {
             statusLabel.text = "오늘은 쉬어요."
-            stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
+            stickerImage.image = UIImage(named: "stickerHabitroomStickerRest")
             stickerImage.isHidden = false
         } else {
             if leftDay == 66 {
@@ -126,7 +126,7 @@ extension HabitRoomMemberCVC {
             stickerImage.isHidden = false
         } else if status == "REST" {
             statusLabel.text = "오늘은 쉬어요."
-            stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
+            stickerImage.image = UIImage(named: "stickerHabitroomStickerRest")
             stickerImage.isHidden = false
         } else {
             if leftDay == 66 {
