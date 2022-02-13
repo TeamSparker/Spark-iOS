@@ -43,7 +43,6 @@ class HabitAuthVC: UIViewController {
     
     @IBAction func touchOutsideDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
     }
 }
 
