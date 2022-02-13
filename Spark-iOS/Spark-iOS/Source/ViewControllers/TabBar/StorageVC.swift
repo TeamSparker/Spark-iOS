@@ -39,8 +39,7 @@ class StorageVC: UIViewController {
     let doneLabel = UILabel()
     let failLabel = UILabel()
     
-    let upperLabel = UILabel()
-    let lowerLabel = UILabel()
+    let usernameSparkLabel = UILabel()
     
     var DoingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -133,6 +132,7 @@ class StorageVC: UIViewController {
                         if (self.mainStatus == -1) || (self.mainStatus == 0) {
                             self.makeDrawAboveButton(button: self.doingButton)
                         }
+                        print(self.doingButton.frame.origin)
                     }
                 }
             }
@@ -189,13 +189,13 @@ extension StorageVC {
     }
     
     private func setUI() {
-        upperLabel.text = "     님의"
-        upperLabel.font = .h2Title
-        upperLabel.textColor = .sparkBlack
-        
-        lowerLabel.text = " 가지 스파크"
-        lowerLabel.font = .h2Title
-        lowerLabel.textColor = .sparkBlack
+        usernameSparkLabel.text = """
+              님의
+          가지 스파크
+        """
+        usernameSparkLabel.font = .h2Title
+        usernameSparkLabel.textColor = .sparkBlack
+        usernameSparkLabel.numberOfLines = 2
         
         doingButton.status = 0
         doingButton.backgroundColor = .clear
@@ -248,21 +248,16 @@ extension StorageVC {
     private func setLayout() {
         view.addSubviews([doingButton, doneButton, failButton,
                                DoingCV, DoneCV, FailCV,
-                               upperLabel, lowerLabel, doingLabel,
-                               doneLabel, failLabel])
+                               usernameSparkLabel, doingLabel, doneLabel,
+                          failLabel])
         
-        upperLabel.snp.makeConstraints { make in
+        usernameSparkLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
             make.leading.equalTo(doingButton)
         }
         
-        lowerLabel.snp.makeConstraints { make in
-            make.top.equalTo(upperLabel.snp.bottom).offset(4)
-            make.leading.equalTo(doingButton)
-        }
-        
         doingButton.snp.makeConstraints { make in
-            make.top.equalTo(lowerLabel.snp.bottom).offset(23)
+            make.top.equalTo(usernameSparkLabel.snp.bottom).offset(23)
             make.leading.equalTo(DoingCV).offset(23)
         }
         
@@ -566,8 +561,10 @@ extension StorageVC {
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
-                    self.upperLabel.text = "\(myRoom.nickname) 님의"
-                    self.lowerLabel.text = "\(myRoom.totalRoomNum)가지 스파크"
+                    self.usernameSparkLabel.text = """
+                    \(myRoom.nickname) 님의
+                    \(myRoom.totalRoomNum)가지 스파크
+                    """
                     self.doingLabel.text = String(myRoom.ongoingRoomNum)
                     self.doneLabel.text = String(myRoom.completeRoomNum)
                     self.failLabel.text = String(myRoom.failRoomNum)
