@@ -48,13 +48,11 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let CV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        CV.backgroundColor = .clear
+        CV.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return CV
     }()
     
     var DoneCV: UICollectionView = {
@@ -64,13 +62,11 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let CV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        CV.backgroundColor = .clear
+        CV.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return CV
     }()
     
     var FailCV: UICollectionView = {
@@ -80,13 +76,11 @@ class StorageVC: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let CV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        CV.backgroundColor = .clear
+        CV.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return CV
     }()
     
     // MARK: - IBOutlet properties
@@ -258,7 +252,7 @@ extension StorageVC {
         
         doingButton.snp.makeConstraints { make in
             make.top.equalTo(usernameSparkLabel.snp.bottom).offset(23)
-            make.leading.equalTo(DoingCV).offset(23)
+            make.leading.equalTo(DoingCV).offset(24)
         }
         
         doingLabel.snp.makeConstraints { make in
@@ -407,11 +401,11 @@ extension StorageVC {
     private func setCarouselLayout(collectionView: UICollectionView) {
         let layout = CarouselLayout()
         
-        let centerItemWidthScale: CGFloat = 327/375
-        let centerItemHeightScale: CGFloat = 0.9
+        let centerItemWidthScale: CGFloat = (UIScreen.main.bounds.width-48)/UIScreen.main.bounds.width
+        let centerItemHeightScale: CGFloat = 1
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
-        layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
 
         layout.sideItemScale = 464/520
         layout.spacing = 12
