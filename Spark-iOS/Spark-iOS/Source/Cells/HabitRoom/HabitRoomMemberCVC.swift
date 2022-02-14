@@ -11,6 +11,14 @@ class HabitRoomMemberCVC: UICollectionViewCell {
 
     // MARK: - Properties
     
+    @frozen
+    private enum Status: String {
+        case none = "NONE"
+        case consider = "CONSIDER"
+        case rest = "REST"
+        case done = "DONE"
+    }
+    
     var presentToSendSparkVCClosure: (()-> Void)?
     
     // MARK: - @IBOutlet Properties
@@ -50,6 +58,8 @@ class HabitRoomMemberCVC: UICollectionViewCell {
 extension HabitRoomMemberCVC {
     private func setUI() {
         profileImage.layer.cornerRadius = 32
+        profileImage.layer.borderColor = UIColor.sparkLightGray.cgColor
+        profileImage.layer.borderWidth = 2
         profileImage.contentMode = .scaleAspectFill
         
         nicknameLabel.font = .h3Subtitle
@@ -74,27 +84,31 @@ extension HabitRoomMemberCVC {
         
         nicknameLabel.text = nickname
         
-        if status == "CONSIDER" {
-            statusLabel.text = "지금은 고민중이에요."
-            stickerImage.image = UIImage(named: "stickerThingking")
-            stickerImage.isHidden = false
-        } else if status == "DONE" {
-            statusLabel.text = "인증을 완료했어요!"
-            stickerImage.image = UIImage(named: "stickerCompleteDefault")
-            stickerImage.isHidden = false
-        } else if status == "REST" {
-            statusLabel.text = "오늘은 쉬어요."
-            stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
-            stickerImage.isHidden = false
-        } else {
-            if leftDay == 66 {
-                statusLabel.text = "인증은 내일부터 가능해요."
-                stickerImage.isHidden = true
-            } else {
-                statusLabel.text = "아직 인증하지 않았어요!"
-                stickerImage.isHidden = true
+        if let myStatus = Status(rawValue: status) {
+            switch myStatus {
+            case .none:
+                if leftDay == 66 {
+                    statusLabel.text = "인증은 내일부터 가능해요."
+                    stickerImage.isHidden = true
+                } else {
+                    statusLabel.text = "아직 인증하지 않았어요!"
+                    stickerImage.isHidden = true
+                }
+            case .consider:
+                statusLabel.text = "지금은 고민중이에요."
+                stickerImage.image = UIImage(named: "stickerThingking")
+                stickerImage.isHidden = false
+            case .rest:
+                statusLabel.text = "오늘은 쉬어요."
+                stickerImage.image = UIImage(named: "stickerHabitroomStickerRest")
+                stickerImage.isHidden = false
+            case .done:
+                statusLabel.text = "인증을 완료했어요!"
+                stickerImage.image = UIImage(named: "stickerCompleteDefault")
+                stickerImage.isHidden = false
             }
         }
+        
         
         tagMeImage.isHidden = false
         sparkImage.image = UIImage(named: "icFireDarkgray")
@@ -114,19 +128,10 @@ extension HabitRoomMemberCVC {
         
         nicknameLabel.text = nickname
         
-        if status == "CONSIDER" {
-            statusLabel.text = "지금은 고민중이에요."
-            stickerImage.image = UIImage(named: "stickerThingking")
-            stickerImage.isHidden = false
-        } else if status == "DONE" {
-            statusLabel.text = "인증을 완료했어요!"
-            stickerImage.image = UIImage(named: "stickerCompleteDefault")
-            stickerImage.isHidden = false
-        } else if status == "REST" {
-            statusLabel.text = "오늘은 쉬어요."
-            stickerImage.image = UIImage(named: "stickerRestSmallHavitroom")
-            stickerImage.isHidden = false
-        } else {
+        guard let othersStatus = Status(rawValue: status) else { return }
+        
+        switch othersStatus {
+        case .none:
             if leftDay == 66 {
                 statusLabel.text = "인증은 내일부터 가능해요."
                 stickerImage.isHidden = true
@@ -134,7 +139,20 @@ extension HabitRoomMemberCVC {
                 statusLabel.text = "아직 인증하지 않았어요!"
                 stickerImage.isHidden = true
             }
+        case .consider:
+            statusLabel.text = "지금은 고민중이에요."
+            stickerImage.image = UIImage(named: "stickerThingking")
+            stickerImage.isHidden = false
+        case .rest:
+            statusLabel.text = "오늘은 쉬어요."
+            stickerImage.image = UIImage(named: "stickerHabitroomStickerRest")
+            stickerImage.isHidden = false
+        case .done:
+            statusLabel.text = "인증을 완료했어요!"
+            stickerImage.image = UIImage(named: "stickerCompleteDefault")
+            stickerImage.isHidden = false
         }
+        
         
         tagMeImage.isHidden = true
         
@@ -142,7 +160,7 @@ extension HabitRoomMemberCVC {
             sparkImage.image = UIImage(named: "icFireInactive")
             sparkImage.isUserInteractionEnabled = false
         } else {
-            if status == "DONE" || status == "REST" {
+            if othersStatus == .done || othersStatus == .rest {
                 sparkImage.image = UIImage(named: "icFireInactive")
                 sparkImage.isUserInteractionEnabled = false
             } else {
@@ -154,7 +172,7 @@ extension HabitRoomMemberCVC {
                 sparkImage.addGestureRecognizer(tap)
             }
         }
-
+        
         sparkCountLabel.isHidden = true
     }
     

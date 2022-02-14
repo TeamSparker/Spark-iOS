@@ -78,8 +78,8 @@
                                             <constraint firstAttribute="width" constant="1" id="VSL-zX-aUn"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep Going!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4c-OM-hTl">
-                                        <rect key="frame" x="131.33333333333334" y="204.99999999999994" width="112.66666666666666" height="24.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep going!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4c-OM-hTl">
+                                        <rect key="frame" x="133.66666666666666" y="204.99999999999994" width="107.66666666666666" height="24.333333333333343"/>
                                         <fontDescription key="fontDescription" name="FuturaBT-MediumItalic" family="Futura" pointSize="20"/>
                                         <color key="textColor" name="sparkDeepGray"/>
                                         <nil key="highlightedColor"/>

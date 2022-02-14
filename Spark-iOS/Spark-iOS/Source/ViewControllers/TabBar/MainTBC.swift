@@ -98,6 +98,7 @@ extension MainTBC {
         // 아이템 버튼 컬러 변경. defualt 는 white 임.
         floatingButton.configureDefaultItem { item in
             item.buttonColor = .sparkDarkPinkred
+            item.layer.shadowColor = .none
         }
     }
     

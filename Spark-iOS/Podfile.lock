@@ -124,7 +124,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Messaging
-  - JJFloatingActionButton
+  - JJFloatingActionButton (from `https://github.com/TeamSparker/JJFloatingActionButton.git`, branch `spark`)
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
@@ -146,7 +146,6 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
-    - JJFloatingActionButton
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -157,6 +156,16 @@ SPEC REPOS:
     - PromisesObjC
     - SnapKit
     - SwiftLint
+
+EXTERNAL SOURCES:
+  JJFloatingActionButton:
+    :branch: spark
+    :git: https://github.com/TeamSparker/JJFloatingActionButton.git
+
+CHECKOUT OPTIONS:
+  JJFloatingActionButton:
+    :commit: fe37182f3c13c2800a530e8a965654536f6a1632
+    :git: https://github.com/TeamSparker/JJFloatingActionButton.git
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -181,6 +190,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
 
-PODFILE CHECKSUM: f04cc734671a9cb5a7f7c0cc78e3a646005c1e64
+PODFILE CHECKSUM: cb90bf3724e3427764b629df69e79cb75d9ce25c
 
 COCOAPODS: 1.11.2
