@@ -48,6 +48,7 @@
 		2BE5D81227932EF3007A544D /* ResetPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5D81127932EF3007A544D /* ResetPopup.storyboard */; };
 		2BE5D81627932F31007A544D /* ResetPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D81527932F31007A544D /* ResetPopupVC.swift */; };
 		2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D817279330A6007A544D /* TimerAuthView.swift */; };
+		2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */; };
 		2BF3AB472794765F001A9042 /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB462794765F001A9042 /* RoomService.swift */; };
 		2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB48279479B8001A9042 /* RoomAPI.swift */; };
 		2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */; };
@@ -140,7 +141,6 @@
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
 		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
 		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
-		F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */; };
 		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
 		F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */; };
 		F8F6D70027982D6400725537 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6FF27982D6400725537 /* Login.swift */; };
@@ -191,6 +191,7 @@
 		2BE5D81127932EF3007A544D /* ResetPopup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPopup.storyboard; sourceTree = "<group>"; };
 		2BE5D81527932F31007A544D /* ResetPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPopupVC.swift; sourceTree = "<group>"; };
 		2BE5D817279330A6007A544D /* TimerAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAuthView.swift; sourceTree = "<group>"; };
+		2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		2BF3AB462794765F001A9042 /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoom.swift; sourceTree = "<group>"; };
@@ -289,7 +290,6 @@
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
 		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
-		F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
 		F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomDetail.swift; sourceTree = "<group>"; };
 		F8F6D6FF27982D6400725537 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -988,7 +988,7 @@
 		F8F6D6F82797525700725537 /* HabitRoom */ = {
 			isa = PBXGroup;
 			children = (
-				F8F6D6F92797527A00725537 /* HabitRoomMemberCVC.swift */,
+				2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */,
 				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
 			);
 			path = HabitRoom;
@@ -1246,7 +1246,6 @@
 				EB9C507D27922F2E00588155 /* LineAnimationView.swift in Sources */,
 				EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */,
 				F816F125278E1C920008ED00 /* LoginVC.swift in Sources */,
-				F8F6D6FB2797527A00725537 /* HabitRoomMemberCVC.swift in Sources */,
 				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
 				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
@@ -1254,6 +1253,7 @@
 				EB874AE82796FBD5000DD20B /* FeedCellDelegate.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,
 				F82F57FB27928437003E4174 /* NetworkResult.swift in Sources */,
+				2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */,
 				F82F5802279287FD003E4174 /* HabitRoom.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */,
