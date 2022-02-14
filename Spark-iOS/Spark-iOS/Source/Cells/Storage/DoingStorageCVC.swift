@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class DoingStorageCVC: UICollectionViewCell {
     
     @IBOutlet weak var gradationUIView: UIView!

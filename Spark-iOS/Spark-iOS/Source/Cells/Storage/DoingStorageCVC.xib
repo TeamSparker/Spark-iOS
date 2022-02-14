@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -39,8 +39,11 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
-                                        <rect key="frame" x="0.0" y="193" width="327" height="327"/>
+                                        <rect key="frame" x="0.0" y="193" width="500" height="327"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="500" id="4Fd-wa-Ckk"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-ha-kvM">
                                         <rect key="frame" x="84.333333333333329" y="216" width="158.66666666666669" height="18"/>
@@ -91,9 +94,8 @@
                                 </subviews>
                                 <color key="backgroundColor" name="sparkBlack"/>
                                 <constraints>
-                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="leading" secondItem="NC1-RV-FLH" secondAttribute="leading" id="4Dz-zJ-DKQ"/>
+                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="leading" secondItem="VdB-E5-Yh3" secondAttribute="leading" id="4Dz-zJ-DKQ"/>
                                     <constraint firstItem="UHD-ha-kvM" firstAttribute="centerX" secondItem="R1V-eF-ogN" secondAttribute="centerX" id="53f-XO-OwP"/>
-                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="trailing" secondItem="NC1-RV-FLH" secondAttribute="trailing" id="BxM-zg-iIb"/>
                                     <constraint firstItem="GHk-jj-mc1" firstAttribute="centerX" secondItem="MHT-q9-d5W" secondAttribute="centerX" id="GIY-bQ-jsf"/>
                                     <constraint firstItem="CnH-6S-xaz" firstAttribute="bottom" secondItem="NC1-RV-FLH" secondAttribute="bottom" id="KNJ-L7-zQO"/>
                                     <constraint firstItem="CnH-6S-xaz" firstAttribute="top" secondItem="NC1-RV-FLH" secondAttribute="top" id="LXp-cU-zAZ"/>
