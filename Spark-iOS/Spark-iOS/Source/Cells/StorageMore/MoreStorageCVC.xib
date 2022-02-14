@@ -46,7 +46,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ycO-Hf-3fL">
                                 <rect key="frame" x="89" y="121" width="24" height="18.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFire" translatesAutoresizingMaskIntoConstraints="NO" id="58U-MR-Az4">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFireDefaultGray" translatesAutoresizingMaskIntoConstraints="NO" id="58U-MR-Az4">
                                         <rect key="frame" x="0.0" y="3.5" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="GTd-VL-p6I"/>
@@ -101,7 +101,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icFire" width="12" height="12"/>
+        <image name="icFireDefaultGray" width="12" height="12"/>
         <namedColor name="sparkBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

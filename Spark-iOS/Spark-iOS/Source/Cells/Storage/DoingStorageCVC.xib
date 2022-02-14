@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -39,8 +39,11 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnH-6S-xaz">
-                                        <rect key="frame" x="0.0" y="193" width="327" height="327"/>
+                                        <rect key="frame" x="0.0" y="193" width="500" height="327"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="500" id="4Fd-wa-Ckk"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-ha-kvM">
                                         <rect key="frame" x="84.333333333333329" y="216" width="158.66666666666669" height="18"/>
@@ -73,7 +76,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="AMa-1Y-wCz">
                                         <rect key="frame" x="147.66666666666666" y="127" width="31.666666666666657" height="26"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFire" translatesAutoresizingMaskIntoConstraints="NO" id="zwe-J4-49N">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFireDefaultGray" translatesAutoresizingMaskIntoConstraints="NO" id="zwe-J4-49N">
                                                 <rect key="frame" x="0.0" y="4" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="29X-k5-0jz"/>
@@ -91,9 +94,8 @@
                                 </subviews>
                                 <color key="backgroundColor" name="sparkBlack"/>
                                 <constraints>
-                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="leading" secondItem="NC1-RV-FLH" secondAttribute="leading" id="4Dz-zJ-DKQ"/>
+                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="leading" secondItem="VdB-E5-Yh3" secondAttribute="leading" id="4Dz-zJ-DKQ"/>
                                     <constraint firstItem="UHD-ha-kvM" firstAttribute="centerX" secondItem="R1V-eF-ogN" secondAttribute="centerX" id="53f-XO-OwP"/>
-                                    <constraint firstItem="CnH-6S-xaz" firstAttribute="trailing" secondItem="NC1-RV-FLH" secondAttribute="trailing" id="BxM-zg-iIb"/>
                                     <constraint firstItem="GHk-jj-mc1" firstAttribute="centerX" secondItem="MHT-q9-d5W" secondAttribute="centerX" id="GIY-bQ-jsf"/>
                                     <constraint firstItem="CnH-6S-xaz" firstAttribute="bottom" secondItem="NC1-RV-FLH" secondAttribute="bottom" id="KNJ-L7-zQO"/>
                                     <constraint firstItem="CnH-6S-xaz" firstAttribute="top" secondItem="NC1-RV-FLH" secondAttribute="top" id="LXp-cU-zAZ"/>
@@ -111,7 +113,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="property1MyboxTicketOngoingLine3" translatesAutoresizingMaskIntoConstraints="NO" id="m5x-6b-Xxs">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
+                                <rect key="frame" x="-0.66666666666665719" y="-0.66666666666668561" width="327.66666666666663" height="520.66666666666674"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,8 +124,8 @@
                             <constraint firstAttribute="trailing" secondItem="VdB-E5-Yh3" secondAttribute="trailing" id="RM2-hs-CYM"/>
                             <constraint firstAttribute="trailing" secondItem="m5x-6b-Xxs" secondAttribute="trailing" id="SR4-i6-kRA"/>
                             <constraint firstAttribute="bottom" secondItem="m5x-6b-Xxs" secondAttribute="bottom" id="Shg-pM-r6V"/>
-                            <constraint firstItem="m5x-6b-Xxs" firstAttribute="leading" secondItem="do0-Bb-P3U" secondAttribute="leading" id="WbK-Kh-dQZ"/>
-                            <constraint firstItem="m5x-6b-Xxs" firstAttribute="top" secondItem="do0-Bb-P3U" secondAttribute="top" id="Ydt-7S-JSA"/>
+                            <constraint firstItem="m5x-6b-Xxs" firstAttribute="leading" secondItem="do0-Bb-P3U" secondAttribute="leading" constant="-0.5" id="WbK-Kh-dQZ"/>
+                            <constraint firstItem="m5x-6b-Xxs" firstAttribute="top" secondItem="do0-Bb-P3U" secondAttribute="top" constant="-0.5" id="Ydt-7S-JSA"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -150,7 +152,7 @@
     </objects>
     <resources>
         <image name="bgSplash" width="375" height="812"/>
-        <image name="icFire" width="12" height="12.333333015441895"/>
+        <image name="icFireDefaultGray" width="12" height="12"/>
         <image name="property1MyboxCardOngoingSparkflake3" width="144" height="84"/>
         <image name="property1MyboxTicketOngoingLine3" width="330.33334350585938" height="523.33331298828125"/>
         <namedColor name="sparkBlack">

@@ -39,8 +39,11 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjs-TB-eup">
-                                        <rect key="frame" x="0.0" y="193" width="327" height="327"/>
+                                        <rect key="frame" x="0.0" y="193" width="500" height="327"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="500" id="RMj-Av-NBk"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.12.26 - 2022.02.26" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aj5-A6-BNH">
                                         <rect key="frame" x="84.5" y="216" width="158.5" height="18"/>
@@ -67,7 +70,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="D6E-D0-wbc">
                                         <rect key="frame" x="148" y="131" width="31.5" height="26"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFire" translatesAutoresizingMaskIntoConstraints="NO" id="unp-QM-1n4">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFireDefaultGray" translatesAutoresizingMaskIntoConstraints="NO" id="unp-QM-1n4">
                                                 <rect key="frame" x="0.0" y="4" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="TnG-Rk-oTl"/>
@@ -86,12 +89,10 @@
                                 <color key="backgroundColor" name="sparkBlack"/>
                                 <constraints>
                                     <constraint firstItem="zjs-TB-eup" firstAttribute="top" secondItem="SMW-pe-rPY" secondAttribute="top" id="2nX-sr-bRX"/>
-                                    <constraint firstItem="zjs-TB-eup" firstAttribute="trailing" secondItem="SMW-pe-rPY" secondAttribute="trailing" id="3Fz-P1-qfb"/>
                                     <constraint firstItem="D6E-D0-wbc" firstAttribute="top" secondItem="Pjc-AZ-j6b" secondAttribute="bottom" constant="21" id="77N-Ic-Yof"/>
                                     <constraint firstItem="Pjc-AZ-j6b" firstAttribute="centerX" secondItem="AOj-nn-gQh" secondAttribute="centerX" id="DE4-hb-gZs"/>
                                     <constraint firstItem="D6E-D0-wbc" firstAttribute="centerX" secondItem="AOj-nn-gQh" secondAttribute="centerX" id="EOU-zx-wbT"/>
                                     <constraint firstAttribute="trailing" secondItem="SMW-pe-rPY" secondAttribute="trailing" id="JLw-Wh-9pG"/>
-                                    <constraint firstItem="zjs-TB-eup" firstAttribute="width" secondItem="SMW-pe-rPY" secondAttribute="width" id="Jd1-dH-0uv"/>
                                     <constraint firstItem="zjs-TB-eup" firstAttribute="bottom" secondItem="SMW-pe-rPY" secondAttribute="bottom" id="Ou8-YL-Ua6"/>
                                     <constraint firstItem="zjs-TB-eup" firstAttribute="leading" secondItem="SMW-pe-rPY" secondAttribute="leading" id="Peq-Va-OVJ"/>
                                     <constraint firstItem="Pjc-AZ-j6b" firstAttribute="top" secondItem="AOj-nn-gQh" secondAttribute="top" constant="53" id="S2C-vV-JAN"/>
@@ -105,7 +106,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myboxTicketCompleteLine" translatesAutoresizingMaskIntoConstraints="NO" id="TPJ-hK-IAz">
-                                <rect key="frame" x="0.0" y="0.0" width="327" height="520"/>
+                                <rect key="frame" x="-0.5" y="-0.5" width="327.5" height="520.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVD-9B-e8E">
                                 <rect key="frame" x="20" y="254" width="287" height="0.0"/>
@@ -116,9 +117,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="5E0-a8-uow"/>
+                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" constant="-0.5" id="5E0-a8-uow"/>
                             <constraint firstAttribute="trailing" secondItem="TPJ-hK-IAz" secondAttribute="trailing" id="9Hl-ZY-L03"/>
-                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" id="K0B-ci-YfN"/>
+                            <constraint firstItem="TPJ-hK-IAz" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" constant="-0.5" id="K0B-ci-YfN"/>
                             <constraint firstAttribute="bottom" secondItem="AOj-nn-gQh" secondAttribute="bottom" id="L6k-8q-3oO"/>
                             <constraint firstItem="eVD-9B-e8E" firstAttribute="leading" secondItem="pDq-F4-Umy" secondAttribute="leading" constant="20" id="TVh-bF-QEw"/>
                             <constraint firstItem="AOj-nn-gQh" firstAttribute="top" secondItem="pDq-F4-Umy" secondAttribute="top" id="bBb-vm-QF8"/>
@@ -151,7 +152,7 @@
     </objects>
     <resources>
         <image name="bgSplash" width="375" height="812"/>
-        <image name="icFire" width="12" height="12"/>
+        <image name="icFireDefaultGray" width="12" height="12"/>
         <image name="myboxCardCompleteSparkflake" width="144" height="84"/>
         <image name="myboxTicketCompleteLine" width="330" height="523"/>
         <namedColor name="sparkBlack">
