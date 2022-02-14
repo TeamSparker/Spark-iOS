@@ -160,7 +160,7 @@ extension HabitRoomMemberCVC {
             sparkImage.image = UIImage(named: "icFireInactive")
             sparkImage.isUserInteractionEnabled = false
         } else {
-            if othersStatus == .done || othersStatus == .rest
+            if othersStatus == .done || othersStatus == .rest {
                 sparkImage.image = UIImage(named: "icFireInactive")
                 sparkImage.isUserInteractionEnabled = false
             } else {

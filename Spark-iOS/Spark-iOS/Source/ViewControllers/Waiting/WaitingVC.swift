@@ -138,9 +138,7 @@ extension WaitingVC {
         // 플로팅버튼 내리기
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
-        profileImageView.backgroundColor = .sparkLightGray
-        firstDivideView.backgroundColor = .sparkLightGray
-        secondDivideView.backgroundColor = .sparkLightGray
+        [firstDivideView, secondDivideView].forEach {$0.backgroundColor = .sparkLightGray}
         checkDivideView.backgroundColor = .sparkDarkGray
         
         toolTipImageView.layer.masksToBounds = true
@@ -152,14 +150,9 @@ extension WaitingVC {
         editButton.setImage(UIImage(named: "btnEdit"), for: .normal)
         refreshButton.setImage(UIImage(named: "btnRefresh"), for: .normal)
         
-        copyButton.isHighlighted = false
-        toolTipButton.isHighlighted = false
-        editButton.isHighlighted = false
-        refreshButton.isHighlighted = false
-        
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 2
-        profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
+        profileImageView.layer.borderColor = UIColor.sparkLightGray.cgColor
         profileImageView.layer.cornerRadius = 32
         profileImageView.contentMode = .scaleAspectFill
         
@@ -183,11 +176,9 @@ extension WaitingVC {
          nicknameLabel, friendCountLabel, timeLabel, goalLabel].forEach {
             $0.textColor = .sparkDeepGray
         }
-        
         [photoLabel, stopwatchLabel].forEach {
             $0.textColor = .sparkDarkGray
         }
-        
         friendSubTitleLabel.textColor = .gray
         
         startButton.layer.cornerRadius = 2
@@ -208,12 +199,11 @@ extension WaitingVC {
     
     private func setLoading() {
         view.addSubview(loadingBgView)
+        loadingBgView.addSubview(loadingView)
         
         loadingBgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        loadingBgView.addSubview(loadingView)
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -244,6 +234,65 @@ extension WaitingVC {
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
+    /// 초기 대기방 정보 세팅하는 함수
+    private func setInitData(fromstart: Bool, roomcode: String, roomname: String, user: ReqUser) {
+        // 스파커 멤버 수
+        friendCountLabel.text = "\(self.members.count)"
+        
+        // 인증 방식
+        if fromstart {
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
+            toolTipImageView.image = UIImage(named: "timerToolTip")
+        } else {
+            [stopwatchLabel, checkDivideView].forEach { $0.isHidden = true }
+            toolTipImageView.image = UIImage(named: "photoToolTip")
+        }
+
+        // 방 코드, 이름
+        roomCode = roomcode
+        roomName = roomname
+
+        // 사용자 본인 이름
+        nicknameLabel.text = user.nickname
+
+        // 사용자 목표, 시간
+        userPurpose = user.purpose
+        userMoment = user.moment
+
+        // 본인 방장 여부
+        if user.isHost {
+            startButton.isHidden = false
+        } else {
+            startButton.isHidden = true
+        }
+
+        // 목표가 있을 경우, 목표와 시간 세팅
+        if user.isPurposeSet {
+            timeLabel.text = "시간  \(String(describing: user.moment!))"
+            goalLabel.text = "목표  \(String(describing: user.purpose!))"
+            timeLabel.partFontChange(targetString: "시간", font: .p1Title)
+            goalLabel.partFontChange(targetString: "목표", font: .p1Title)
+        } else {
+            timeLabel.text = "습관을 시작하기 전에"
+            goalLabel.text = "시간과 목표를 작성해 주세요!"
+        }
+
+        // 사용자 이미지 설정
+        profileImageView.updateImage(user.profileImg)
+        collectionView.reloadData()
+    }
+    
+    /// 대기방 멤버 갱신하는 함수
+    private func setMemberData() {
+        friendCountLabel.text = "\(self.members.count)"
+        collectionView.reloadData()
+    }
+    
+    private func stopLoadingAnimation() {
+        loadingView.stop()
+        loadingBgView.removeFromSuperview()
+    }
+    
     private func refreshButtonAnimtation() {
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -251,14 +300,16 @@ extension WaitingVC {
                        animations: {
             let firstRotate = CGAffineTransform(rotationAngle: -3.14)
             self.refreshButton.transform = firstRotate
-        }, completion: { _ in
+        },
+                       completion: { _ in
             UIView.animate(withDuration: 0.3,
                            delay: 0.0,
                            options: .curveEaseOut,
                            animations: {
                 let secondRotate = CGAffineTransform(rotationAngle: -(3.14*2.0))
                 self.refreshButton.transform = secondRotate
-            }, completion: { _ in
+            },
+                           completion: { _ in
                 self.refreshButton.transform = .identity
             })
         })
@@ -291,6 +342,8 @@ extension WaitingVC {
         view.addGestureRecognizer(tapGestrueRecognizer)
     }
     
+    // MARK: - @objc
+    
     @objc
     private func copyToClipboard() {
         UIPasteboard.general.string = roomCode
@@ -322,8 +375,6 @@ extension WaitingVC {
             dismissToolTip()
         }
     }
-    
-    // MARK: - 화면 전환
     
     @objc
     private func popToHomeVC() {
@@ -385,62 +436,11 @@ extension WaitingVC {
         RoomAPI.shared.waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
-                self.loadingView.stop()
-                self.loadingBgView.removeFromSuperview()
-                
+                self.stopLoadingAnimation()
                 if let waitingRoom = data as? Waiting {
-                    var user: ReqUser
-                    
-                    user = waitingRoom.reqUser
+                    let user: ReqUser = waitingRoom.reqUser
                     self.members = waitingRoom.members
-                    
-                    // 스파커 멤버 수
-                    self.friendCountLabel.text = "\(self.members.count)"
-                    
-                    // 인증 방식
-                    if waitingRoom.fromStart {
-                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = false }
-                        self.toolTipImageView.image = UIImage(named: "timerToolTip")
-                    } else {
-                        [self.stopwatchLabel, self.checkDivideView].forEach { $0.isHidden = true }
-                        self.toolTipImageView.image = UIImage(named: "photoToolTip")
-                    }
-                    
-                    // 방 코드
-                    self.roomCode = waitingRoom.roomCode
-                    
-                    // 방 이름
-                    self.roomName = waitingRoom.roomName
-                    
-                    // 사용자 본인 이름
-                    self.nicknameLabel.text = user.nickname
-                    
-                    // 사용자 목표, 시간
-                    self.userPurpose = user.purpose
-                    self.userMoment = user.moment
-                    
-                    // 본인 방장 여부
-                    if user.isHost {
-                        self.startButton.isHidden = false
-                    } else {
-                        self.startButton.isHidden = true
-                    }
-                    
-                    // 목표가 있을 경우, 목표와 시간 세팅
-                    if user.isPurposeSet {
-                        self.timeLabel.text = "시간  \(String(describing: user.moment!))"
-                        self.goalLabel.text = "목표  \(String(describing: user.purpose!))"
-                        self.timeLabel.partFontChange(targetString: "시간", font: .p1Title)
-                        self.goalLabel.partFontChange(targetString: "목표", font: .p1Title)
-                    } else {
-                        // 엠티라벨
-                        self.timeLabel.text = "습관을 시작하기 전에"
-                        self.goalLabel.text = "시간과 목표를 작성해 주세요!"
-                    }
-                    
-                    // 사용자 이미지 설정
-                    self.profileImageView.updateImage(user.profileImg ?? "")
-                    self.collectionView.reloadData()
+                    self.setInitData(fromstart: waitingRoom.fromStart, roomcode: waitingRoom.roomCode, roomname: waitingRoom.roomName, user: user)
                 }
             case .requestErr(let message):
                 print("getWaitingRoomWithAPI - requestErr: \(message)")
@@ -459,12 +459,8 @@ extension WaitingVC {
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
-                    
-                    // 대기방 멤버 갱신.
                     self.members = waitingMembers.members
-                    self.friendCountLabel.text = "\(self.members.count)"
-                    
-                    self.collectionView.reloadData()
+                    self.setMemberData()
                 }
             case .requestErr(let message):
                 print("getWaitingMembersWithAPI - requestErr", message)
@@ -482,9 +478,7 @@ extension WaitingVC {
         RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
-                self.loadingView.stop()
-                self.loadingBgView.removeFromSuperview()
-                
+                self.stopLoadingAnimation()
                 completion()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
