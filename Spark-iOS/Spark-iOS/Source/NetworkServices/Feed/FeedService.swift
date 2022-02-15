@@ -40,7 +40,7 @@ extension FeedService: TargetType {
     var task: Task {
         switch self {
         case .feedFetch(let lastID, let size):
-            return .requestParameters(parameters: ["lastid": lastID,
+            return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
         case .feedLike(let recordID):

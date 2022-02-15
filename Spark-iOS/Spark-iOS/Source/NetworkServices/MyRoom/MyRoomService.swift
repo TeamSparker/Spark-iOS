@@ -40,11 +40,11 @@ extension MyRoomService: TargetType {
         switch self {
         case .myRoomFetch(let roomType, let lastID, let size):
             return .requestParameters(parameters: ["type": roomType,
-                                                   "lastid": lastID,
+                                                   "lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
         case .myRoomCertiFetch(_, let lastID, let size):
-            return .requestParameters(parameters: ["lastid": lastID,
+            return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
         }
