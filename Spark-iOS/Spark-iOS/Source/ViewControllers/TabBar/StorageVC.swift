@@ -21,7 +21,7 @@ class StorageVC: UIViewController {
     private var failRoomList: [MyRoomRooms]? = []
     private var failRoomLastID: Int = -1
     private var mainStatus: Int = -1
-
+    
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
     // FIXME: 무한스크롤 관련 수정하기, 셀이 반복되는 문제
@@ -39,55 +39,48 @@ class StorageVC: UIViewController {
     let doneLabel = UILabel()
     let failLabel = UILabel()
     
-    let upperLabel = UILabel()
-    let lowerLabel = UILabel()
+    let usernameSparkLabel = UILabel()
     
-    var DoingCV: UICollectionView = {
+    var doingCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return cv
     }()
     
-    var DoneCV: UICollectionView = {
+    var doneCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return cv
     }()
     
-    var FailCV: UICollectionView = {
+    var failCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        let name = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        name.backgroundColor = .clear
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         
-        name.indicatorStyle = .white
-        name.showsVerticalScrollIndicator = true
-        
-        return name
+        return cv
     }()
     
     // MARK: - IBOutlet properties
@@ -124,13 +117,9 @@ class StorageVC: UIViewController {
             self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
                 self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
                     self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
-                        self.DoneCV.reloadData()
-                        self.FailCV.reloadData()
-                        if (self.doingLabel.text == "0") || (self.doingLabel.text == "0") {
-                            self.emptyView.isHidden = false
-                        } else {
-                            self.emptyView.isHidden = true
-                        }
+                        self.doneCV.reloadData()
+                        self.failCV.reloadData()
+                        
                         self.loadingView.stop()
                         self.loadingBgView.removeFromSuperview()
                         
@@ -151,25 +140,25 @@ class StorageVC: UIViewController {
 extension StorageVC {
     
     private func setDelegate() {
-        DoingCV.delegate = self
-        DoingCV.dataSource = self
-        DoneCV.delegate = self
-        DoneCV.dataSource = self
-        FailCV.delegate = self
-        FailCV.dataSource = self
-        DoneCV.isHidden = true
-        FailCV.isHidden = true
+        doingCV.delegate = self
+        doingCV.dataSource = self
+        doneCV.delegate = self
+        doneCV.dataSource = self
+        failCV.delegate = self
+        failCV.dataSource = self
+        doneCV.isHidden = true
+        failCV.isHidden = true
     }
     
     private func registerXib() {
         let xibDoingCVName = UINib(nibName: "DoingStorageCVC", bundle: nil)
-        DoingCV.register(xibDoingCVName, forCellWithReuseIdentifier: "DoingStorageCVC")
+        doingCV.register(xibDoingCVName, forCellWithReuseIdentifier: "DoingStorageCVC")
         
         let xibDoneCVName = UINib(nibName: "DoneStorageCVC", bundle: nil)
-        DoneCV.register(xibDoneCVName, forCellWithReuseIdentifier: "DoneStorageCVC")
+        doneCV.register(xibDoneCVName, forCellWithReuseIdentifier: "DoneStorageCVC")
         
         let xibFailCVName = UINib(nibName: "FailStorageCVC", bundle: nil)
-        FailCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
+        failCV.register(xibFailCVName, forCellWithReuseIdentifier: "FailStorageCVC")
     }
     
     private func setLoading() {
@@ -193,13 +182,13 @@ extension StorageVC {
     }
     
     private func setUI() {
-        upperLabel.text = "     님의"
-        upperLabel.font = .h2Title
-        upperLabel.textColor = .sparkBlack
-        
-        lowerLabel.text = " 가지 스파크"
-        lowerLabel.font = .h2Title
-        lowerLabel.textColor = .sparkBlack
+        usernameSparkLabel.text = """
+            님의
+        0가지 스파크
+        """
+        usernameSparkLabel.font = .h2Title
+        usernameSparkLabel.textColor = .sparkBlack
+        usernameSparkLabel.numberOfLines = 2
         
         doingButton.status = 0
         doingButton.backgroundColor = .clear
@@ -242,7 +231,7 @@ extension StorageVC {
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
         
-        if (doingLabel.text == "0") || (doingLabel.text == "0") {
+        if doingLabel.text == "0" {
             emptyView.isHidden = false
         } else {
                 emptyView.isHidden = true
@@ -251,23 +240,18 @@ extension StorageVC {
     
     private func setLayout() {
         view.addSubviews([doingButton, doneButton, failButton,
-                               DoingCV, DoneCV, FailCV,
-                               upperLabel, lowerLabel, doingLabel,
-                               doneLabel, failLabel])
+                               doingCV, doneCV, failCV,
+                               usernameSparkLabel, doingLabel, doneLabel,
+                          failLabel])
         
-        upperLabel.snp.makeConstraints { make in
+        usernameSparkLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(21)
             make.leading.equalTo(doingButton)
         }
         
-        lowerLabel.snp.makeConstraints { make in
-            make.top.equalTo(upperLabel.snp.bottom).offset(4)
-            make.leading.equalTo(doingButton)
-        }
-        
         doingButton.snp.makeConstraints { make in
-            make.top.equalTo(lowerLabel.snp.bottom).offset(23)
-            make.leading.equalTo(DoingCV).offset(23)
+            make.top.equalTo(usernameSparkLabel.snp.bottom).offset(23)
+            make.leading.equalTo(doingCV).offset(24)
         }
         
         doingLabel.snp.makeConstraints { make in
@@ -295,7 +279,7 @@ extension StorageVC {
             make.leading.equalTo(failButton.snp.trailing).offset(2)
         }
         
-        [DoingCV, DoneCV, FailCV].forEach {
+        [doingCV, doneCV, failCV].forEach {
             $0.snp.makeConstraints { make in
                 make.top.equalTo(failButton.snp.bottom).offset(14)
                 make.leading.trailing.equalToSuperview()
@@ -346,9 +330,9 @@ extension StorageVC {
         mainStatus = status
         switch status {
         case 1:
-            DoingCV.isHidden = true
-            DoneCV.isHidden = false
-            FailCV.isHidden = true
+            doingCV.isHidden = true
+            doneCV.isHidden = false
+            failCV.isHidden = true
             doingButton.isSelected = false
             doneButton.isSelected = true
             failButton.isSelected = false
@@ -356,6 +340,7 @@ extension StorageVC {
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doneButton)
+            
             if doneLabel.text == "0" {
                 emptyView.isHidden = false
             } else {
@@ -363,9 +348,9 @@ extension StorageVC {
             }
 
         case 2:
-            DoingCV.isHidden = true
-            DoneCV.isHidden = true
-            FailCV.isHidden = false
+            doingCV.isHidden = true
+            doneCV.isHidden = true
+            failCV.isHidden = false
             doingButton.isSelected = false
             doneButton.isSelected = false
             failButton.isSelected = true
@@ -381,9 +366,9 @@ extension StorageVC {
             }
             
         default:
-            DoingCV.isHidden = false
-            DoneCV.isHidden = true
-            FailCV.isHidden = true
+            doingCV.isHidden = false
+            doneCV.isHidden = true
+            failCV.isHidden = true
             doingButton.isSelected = true
             doneButton.isSelected = false
             failButton.isSelected = false
@@ -406,20 +391,20 @@ extension StorageVC {
 // Carousel 레이아웃 세팅
 extension StorageVC {
     private func setCarousels() {
-        setCarouselLayout(collectionView: DoingCV)
-        setCarouselLayout(collectionView: DoneCV)
-        setCarouselLayout(collectionView: FailCV)
+        setCarouselLayout(collectionView: doingCV)
+        setCarouselLayout(collectionView: doneCV)
+        setCarouselLayout(collectionView: failCV)
     }
     
     // 컬렉션뷰의 레이아웃을 캐러셀 형식으로 변환시키는 함수
     private func setCarouselLayout(collectionView: UICollectionView) {
         let layout = CarouselLayout()
         
-        let centerItemWidthScale: CGFloat = 327/375
-        let centerItemHeightScale: CGFloat = 0.9
+        let centerItemWidthScale: CGFloat = (UIScreen.main.bounds.width-48)/UIScreen.main.bounds.width
+        let centerItemHeightScale: CGFloat = 1
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
-        layout.itemSize = CGSize(width: collectionView.frame.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
 
         layout.sideItemScale = 464/520
         layout.spacing = 12
@@ -439,11 +424,11 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case DoingCV:
+        case doingCV:
             return onGoingRoomList?.count ?? 0
-        case DoneCV:
+        case doneCV:
             return completeRoomList?.count ?? 0
-        case FailCV:
+        case failCV:
             return failRoomList?.count ?? 0
         default:
             return 0
@@ -453,7 +438,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
-        case DoingCV:
+        case doingCV:
             guard let onGoingRoomList = onGoingRoomList else { return UICollectionViewCell()}
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.doingStorageCVC, for: indexPath) as? DoingStorageCVC else { return UICollectionViewCell() }
@@ -468,7 +453,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             
             return cell
             
-        case DoneCV:
+        case doneCV:
             guard let completeRoomList = completeRoomList else { return UICollectionViewCell()}
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.doneStorageCVC, for: indexPath) as? DoneStorageCVC else { return UICollectionViewCell()}
@@ -505,13 +490,13 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
         
         switch collectionView {
-        case DoingCV:
+        case doingCV:
             nextVC.roomID = onGoingRoomList?[indexPath.row].roomID
             nextVC.titleText = onGoingRoomList?[indexPath.row].roomName
-        case DoneCV:
+        case doneCV:
             nextVC.roomID = completeRoomList?[indexPath.row].roomID
             nextVC.titleText = completeRoomList?[indexPath.row].roomName
-        case FailCV:
+        case failCV:
             nextVC.roomID = failRoomList?[indexPath.row].roomID
             nextVC.titleText = failRoomList?[indexPath.row].roomName
         default:
@@ -523,7 +508,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == DoingCV {
+        if scrollView == doingCV {
             if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
                 if isInfiniteScroll {
                     isInfiniteScroll = false
@@ -534,7 +519,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                     }
                 }
             }
-        } else if scrollView == DoneCV {
+        } else if scrollView == doneCV {
             if scrollView.contentOffset.x > scrollView.contentSize.width - scrollView.bounds.width {
                 if isInfiniteScroll {
                     isInfiniteScroll = false
@@ -569,13 +554,15 @@ extension StorageVC {
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
-                    self.upperLabel.text = "\(myRoom.nickname) 님의"
-                    self.lowerLabel.text = "\(myRoom.totalRoomNum)가지 스파크"
+                    self.usernameSparkLabel.text = """
+                    \(myRoom.nickname)님의
+                    \(myRoom.totalRoomNum)가지 스파크
+                    """
                     self.doingLabel.text = String(myRoom.ongoingRoomNum)
                     self.doneLabel.text = String(myRoom.completeRoomNum)
                     self.failLabel.text = String(myRoom.failRoomNum)
                     self.onGoingRoomList?.append(contentsOf: myRoom.rooms ?? [])
-                    self.DoingCV.reloadData()
+                    self.doingCV.reloadData()
                 }
                  
                 completion()
