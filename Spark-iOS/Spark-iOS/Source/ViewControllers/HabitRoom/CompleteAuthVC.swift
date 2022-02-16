@@ -12,23 +12,23 @@ import SwiftUI
 
 class CompleteAuthVC: UIViewController {
     
-    var renderedImage: UIImage?
-    var roomName: String?
-    var nickName: String?
-    var profileImage: String?
-    var timerCount: String?
-    let viewForRender = ViewForRender()
-    
     // MARK: - Properties
-    lazy var confettiView: AnimationView = {
+    var vcType: VCCase?
+    
+    private var renderedImage: UIImage?
+    private var roomName: String?
+    private var nickName: String?
+    private var profileImage: String?
+    private var timerCount: String?
+    private let viewForRender = ViewForRender()
+    
+    private lazy var confettiView: AnimationView = {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
         animationView.frame = animationFrameView.bounds
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         return animationView
     }()
-    
-    var vcType: VCCase?
     
     // MARK: - IBoutlet properties
     
