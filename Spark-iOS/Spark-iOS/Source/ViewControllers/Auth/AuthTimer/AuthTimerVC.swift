@@ -282,13 +282,13 @@ extension AuthTimerVC {
             make.height.equalTo(self.view.frame.width*48/335)
         }
         
-        pauseButton.snp.makeConstraints { make in
+        resetButton.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom).offset(20)
             make.trailing.equalTo(view.snp.centerX).offset(-11)
             make.width.height.equalTo(60)
         }
         
-        resetButton.snp.makeConstraints { make in
+        pauseButton.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.snp.centerX).offset(11)
             make.width.height.equalTo(60)
