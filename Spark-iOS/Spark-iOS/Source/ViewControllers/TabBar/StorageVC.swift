@@ -97,19 +97,8 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.isNavigationBarHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        tabBarController?.tabBar.isHidden = false
         
         DispatchQueue.main.async { [self] in
-            onGoingRoomList?.removeAll()
-            completeRoomList?.removeAll()
-            failRoomList?.removeAll()
             self.setLoading()
         }
         
@@ -120,15 +109,29 @@ class StorageVC: UIViewController {
                         self.doneCV.reloadData()
                         self.failCV.reloadData()
                         
+                        if self.onGoingRoomList?.count == 0 {
+                            self.emptyView.isHidden = false
+                        } else {
+                            self.emptyView.isHidden = true
+                        }
+                        
                         self.loadingView.stop()
                         self.loadingBgView.removeFromSuperview()
-                        
-                        if (self.mainStatus == -1) || (self.mainStatus == 0) {
-                            self.makeDrawAboveButton(button: self.doingButton)
-                        }
                     }
                 }
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        tabBarController?.tabBar.isHidden = false
+        
+        if (self.mainStatus == -1) || (self.mainStatus == 0) {
+            self.makeDrawAboveButton(button: self.doingButton)
         }
     }
     
