@@ -30,6 +30,7 @@ class StorageVC: UIViewController {
     
     lazy var loadingBgView = UIImageView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var loadingTopView = UIView()
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
@@ -163,13 +164,18 @@ extension StorageVC {
     
     private func setLoading() {
         loadingBgView.image = UIImage(named: "bgLinegridForWhite")
+        loadingTopView.backgroundColor = .sparkWhite
         view.addSubview(loadingBgView)
         
         loadingBgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        loadingBgView.addSubview(loadingView)
+        loadingBgView.addSubviews([loadingView, loadingTopView])
+        loadingTopView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(104)
+        }
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
