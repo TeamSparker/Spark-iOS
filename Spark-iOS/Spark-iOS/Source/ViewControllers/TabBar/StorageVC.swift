@@ -98,19 +98,8 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.isNavigationBarHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        tabBarController?.tabBar.isHidden = false
         
         DispatchQueue.main.async { [self] in
-            onGoingRoomList?.removeAll()
-            completeRoomList?.removeAll()
-            failRoomList?.removeAll()
             self.setLoading()
         }
         
@@ -121,15 +110,29 @@ class StorageVC: UIViewController {
                         self.doneCV.reloadData()
                         self.failCV.reloadData()
                         
+                        if self.onGoingRoomList?.count == 0 {
+                            self.emptyView.isHidden = false
+                        } else {
+                            self.emptyView.isHidden = true
+                        }
+                        
                         self.loadingView.stop()
                         self.loadingBgView.removeFromSuperview()
-                        
-                        if (self.mainStatus == -1) || (self.mainStatus == 0) {
-                            self.makeDrawAboveButton(button: self.doingButton)
-                        }
                     }
                 }
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        tabBarController?.tabBar.isHidden = false
+        
+        if (self.mainStatus == -1) || (self.mainStatus == 0) {
+            self.makeDrawAboveButton(button: self.doingButton)
         }
     }
     
@@ -236,12 +239,6 @@ extension StorageVC {
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
-        
-        if doingLabel.text == "0" {
-            emptyView.isHidden = false
-        } else {
-                emptyView.isHidden = true
-        }
     }
     
     private func setLayout() {
@@ -347,12 +344,12 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doneButton)
             
-            if doneLabel.text == "0" {
+            if completeRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
-                    emptyView.isHidden = true
+                emptyView.isHidden = true
             }
-
+            
         case 2:
             doingCV.isHidden = true
             doneCV.isHidden = true
@@ -365,10 +362,10 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkPinkred
             makeDrawAboveButton(button: failButton)
             
-            if failLabel.text == "0" {
+            if failRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
-                    emptyView.isHidden = true
+                emptyView.isHidden = true
             }
             
         default:
@@ -383,7 +380,7 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doingButton)
 
-            if doingLabel.text == "0" {
+            if onGoingRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
                 emptyView.isHidden = true

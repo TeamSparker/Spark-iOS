@@ -12,6 +12,9 @@ import SwiftUI
 
 class CompleteAuthVC: UIViewController {
     
+    // MARK: - Properties
+    var vcType: VCCase?
+    
     var renderedImage: UIImage?
     var roomName: String?
     var nickName: String?
@@ -19,8 +22,7 @@ class CompleteAuthVC: UIViewController {
     var timerCount: String?
     let viewForRender = ViewForRender()
     
-    // MARK: - Properties
-    lazy var confettiView: AnimationView = {
+    private lazy var confettiView: AnimationView = {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
         animationView.frame = animationFrameView.bounds
         animationView.contentMode = .scaleAspectFit
@@ -28,11 +30,9 @@ class CompleteAuthVC: UIViewController {
         return animationView
     }()
     
-    var vcType: VCCase?
-    
     // MARK: - IBoutlet properties
     
-    @IBOutlet weak var handImageVIew: UIImageView!
+    @IBOutlet weak var popUpMainView: UIView!
     @IBOutlet weak var animationFrameView: UIView!
     @IBOutlet weak var goToFeedButton: UIButton!
     @IBOutlet weak var instaView: UIView!
@@ -66,6 +66,8 @@ extension CompleteAuthVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
+        
+        popUpMainView.layer.cornerRadius = 2
         
         instaView.layer.cornerRadius = 2
         
