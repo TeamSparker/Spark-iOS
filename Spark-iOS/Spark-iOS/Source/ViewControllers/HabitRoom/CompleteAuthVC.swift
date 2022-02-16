@@ -15,12 +15,12 @@ class CompleteAuthVC: UIViewController {
     // MARK: - Properties
     var vcType: VCCase?
     
-    private var renderedImage: UIImage?
-    private var roomName: String?
-    private var nickName: String?
-    private var profileImage: String?
-    private var timerCount: String?
-    private let viewForRender = ViewForRender()
+    var renderedImage: UIImage?
+    var roomName: String?
+    var nickName: String?
+    var profileImage: String?
+    var timerCount: String?
+    let viewForRender = ViewForRender()
     
     private lazy var confettiView: AnimationView = {
         let animationView = AnimationView(name: Const.Lottie.Name.confetti)
@@ -32,6 +32,7 @@ class CompleteAuthVC: UIViewController {
     
     // MARK: - IBoutlet properties
     
+    @IBOutlet weak var popUpMainView: UIView!
     @IBOutlet weak var handImageVIew: UIImageView!
     @IBOutlet weak var animationFrameView: UIView!
     @IBOutlet weak var goToFeedButton: UIButton!
@@ -66,6 +67,8 @@ extension CompleteAuthVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
+        
+        popUpMainView.layer.cornerRadius = 2
         
         instaView.layer.cornerRadius = 2
         
