@@ -34,7 +34,7 @@ extension HomeService: TargetType {
     var task: Task {
         switch self {
         case .habitRoomFetch(let lastID, let size):
-            return .requestParameters(parameters: ["lastid": lastID,
+            return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
         }
