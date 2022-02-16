@@ -230,12 +230,6 @@ extension StorageVC {
         failLabel.font = .h3Subtitle
         failLabel.textColor = .sparkDarkGray
         failLabel.font = .enMediumFont(ofSize: 14)
-        
-        if doingLabel.text == "0" {
-            emptyView.isHidden = false
-        } else {
-                emptyView.isHidden = true
-        }
     }
     
     private func setLayout() {
@@ -341,12 +335,12 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doneButton)
             
-            if doneLabel.text == "0" {
+            if completeRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
-                    emptyView.isHidden = true
+                emptyView.isHidden = true
             }
-
+            
         case 2:
             doingCV.isHidden = true
             doneCV.isHidden = true
@@ -359,10 +353,10 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkPinkred
             makeDrawAboveButton(button: failButton)
             
-            if failLabel.text == "0" {
+            if failRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
-                    emptyView.isHidden = true
+                emptyView.isHidden = true
             }
             
         default:
@@ -377,7 +371,7 @@ extension StorageVC {
             failLabel.textColor = .sparkDarkGray
             makeDrawAboveButton(button: doingButton)
 
-            if doingLabel.text == "0" {
+            if onGoingRoomList?.count == 0 {
                 emptyView.isHidden = false
             } else {
                 emptyView.isHidden = true

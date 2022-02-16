@@ -150,7 +150,6 @@
                     <connections>
                         <outlet property="animationFrameView" destination="1bv-cF-dvo" id="Y3D-HB-tg1"/>
                         <outlet property="goToFeedButton" destination="uYS-yb-TR2" id="Dc9-cr-hij"/>
-                        <outlet property="handImageVIew" destination="cm5-OK-aky" id="eCv-vH-ImC"/>
                         <outlet property="instaView" destination="Jcm-Se-nlb" id="jHd-vh-64a"/>
                         <outlet property="popUpMainView" destination="Tna-Uq-rNe" id="R7r-IM-RUJ"/>
                     </connections>

@@ -33,7 +33,6 @@ class CompleteAuthVC: UIViewController {
     // MARK: - IBoutlet properties
     
     @IBOutlet weak var popUpMainView: UIView!
-    @IBOutlet weak var handImageVIew: UIImageView!
     @IBOutlet weak var animationFrameView: UIView!
     @IBOutlet weak var goToFeedButton: UIButton!
     @IBOutlet weak var instaView: UIView!
