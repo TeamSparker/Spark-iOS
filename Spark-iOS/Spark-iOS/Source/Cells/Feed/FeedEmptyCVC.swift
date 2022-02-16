@@ -46,7 +46,8 @@ class FeedEmptyCVC: UICollectionViewCell {
         self.addSubviews([emptyView])
         
         emptyView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(20)
         }
         
         emptyView.addSubviews([emptyLabel, emptyImageView])
@@ -55,11 +56,12 @@ class FeedEmptyCVC: UICollectionViewCell {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(10)
             make.width.equalTo(90)
+            make.height.equalTo(66)
         }
         
         emptyLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(emptyImageView.snp.bottom).offset(8)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(20)
             make.bottom.equalToSuperview().inset(10)
         }
     }
