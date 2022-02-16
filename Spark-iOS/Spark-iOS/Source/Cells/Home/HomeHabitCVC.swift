@@ -13,7 +13,7 @@ class HomeHabitCVC: UICollectionViewCell {
     // MARK: - Properties
     
     @frozen
-    private enum State: String {
+    private enum Status: String {
         case none = "NONE"
         case rest = "REST"
         case done = "DONE"
@@ -105,7 +105,7 @@ extension HomeHabitCVC {
                   leftDay: Int,
                   profileImg: [String?],
                   life: Int,
-                  state: String,
+                  status: String,
                   memberNum: Int,
                   doneMemberNum: Int) {
         if leftDay == 0 {
@@ -148,8 +148,8 @@ extension HomeHabitCVC {
             fourthProfileImage.isHidden = true
             restLabel.isHidden = true
             
-            guard let state = State(rawValue: state) else { return }
-            switch state {
+            guard let status = Status(rawValue: status) else { return }
+            switch status {
             case .none:
                 tagImage.isHidden = true
                 ticketImage.image = UIImage(named: "property1TicketRight4")

@@ -19,12 +19,13 @@ struct Room: Codable {
     let leftDay: Int?
     let profileImg: [String?]
     let life: Int?
-    // isStarted: 습관방 시작했는지 여부. isDone: 인증 완료 여부.
-    let isStarted, isDone: Bool
+    // isStarted: 습관방 시작했는지 여부.
+    let isStarted: Bool
+    let myStauts: String
     let memberNum, doneMemberNum: Int?
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, leftDay, profileImg, life, isStarted, isDone, memberNum, doneMemberNum
+        case roomName, leftDay, profileImg, life, isStarted, myStauts, memberNum, doneMemberNum
     }
 }

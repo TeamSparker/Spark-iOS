@@ -191,7 +191,7 @@ extension HomeVC: UICollectionViewDataSource {
                                   leftDay: habitRoomList[indexPath.item].leftDay ?? 0,
                                   profileImg: habitRoomList[indexPath.item].profileImg,
                                   life: habitRoomList[indexPath.item].life ?? 0,
-                                  isDone: habitRoomList[indexPath.item].isDone,
+                                  status: habitRoomList[indexPath.item].myStauts,
                                   memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
                                   doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0)
                 
