@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="103.5" width="414" height="758.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlI-kd-tu0">
-                                <rect key="frame" x="20" y="397" width="374" height="145.5"/>
+                                <rect key="frame" x="20" y="371.5" width="374" height="145.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 습관 카드가 없어요. 인증과 함께 카드를 모아보세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-OR-VCJ">
                                         <rect key="frame" x="70.5" y="93" width="233.5" height="52.5"/>
@@ -56,7 +56,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JlI-kd-tu0" firstAttribute="centerY" secondItem="7CY-t7-rAc" secondAttribute="centerY" constant="-13" id="4Bz-SF-bcP"/>
+                            <constraint firstItem="JlI-kd-tu0" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-4" id="4Bz-SF-bcP"/>
                             <constraint firstItem="JlI-kd-tu0" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="5tO-N6-mqD"/>
                             <constraint firstAttribute="bottom" secondItem="7CY-t7-rAc" secondAttribute="bottom" constant="34" id="Bt2-UD-u3c"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JlI-kd-tu0" secondAttribute="trailing" constant="20" id="NMO-fx-bCI"/>
