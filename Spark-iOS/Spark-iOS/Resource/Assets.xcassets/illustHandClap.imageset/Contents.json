@@ -2,8 +2,8 @@
   "images" : [
     {
       "filename" : "illustHandClap.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "idiom" : "universal"
     },
     {
       "filename" : "illustHandClap@2x.png",
@@ -11,9 +11,9 @@
       "scale" : "2x"
     },
     {
-      "filename" : "illustHandClap@3x.png",
       "scale" : "3x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "illustHandClap@3x.png"
     }
   ],
   "info" : {
