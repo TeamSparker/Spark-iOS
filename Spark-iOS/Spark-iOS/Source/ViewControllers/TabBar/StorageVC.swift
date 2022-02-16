@@ -167,18 +167,13 @@ extension StorageVC {
     
     private func setLoading() {
         loadingBgView.image = UIImage(named: "bgLinegridForWhite")
-        loadingTopView.backgroundColor = .sparkWhite
         view.addSubview(loadingBgView)
         
         loadingBgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        loadingBgView.addSubviews([loadingView, loadingTopView])
-        loadingTopView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(104)
-        }
+        loadingBgView.addSubview(loadingView)
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
