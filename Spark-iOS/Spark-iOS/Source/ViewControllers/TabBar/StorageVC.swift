@@ -30,6 +30,7 @@ class StorageVC: UIViewController {
     
     lazy var loadingBgView = UIImageView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var loadingTopView = UIView()
     
     let doingButton = StatusButton()
     let doneButton = StatusButton()
