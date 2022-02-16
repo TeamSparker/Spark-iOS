@@ -31,8 +31,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
                                 <color key="backgroundColor" name="sparkBlack"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-Uk-AyE">
-                                <rect key="frame" x="37" y="48" width="42" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-Uk-AyE">
+                                <rect key="frame" x="11.5" y="48" width="93" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="sparkWhite"/>
                                 <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="ywz-cO-r8W" firstAttribute="leading" secondItem="bjP-XQ-8o4" secondAttribute="leading" id="u7H-Cq-VLb"/>
                             <constraint firstItem="AjC-Uk-AyE" firstAttribute="centerX" secondItem="ywz-cO-r8W" secondAttribute="centerX" id="vxH-ao-fIL"/>
                             <constraint firstItem="pnS-GV-OTG" firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="width" id="xfn-Nk-SDy"/>
-                            <constraint firstItem="AjC-Uk-AyE" firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="width" multiplier="0.362069" id="yeK-bB-r8p"/>
+                            <constraint firstItem="AjC-Uk-AyE" firstAttribute="width" secondItem="ywz-cO-r8W" secondAttribute="width" multiplier="0.8" id="yeK-bB-r8p"/>
                         </constraints>
                     </view>
                 </subviews>
