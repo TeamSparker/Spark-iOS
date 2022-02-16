@@ -170,7 +170,7 @@
                 <outlet property="restLabel" destination="orD-dh-U1F" id="hKE-ZB-nFc"/>
                 <outlet property="secondLifeImage" destination="RwV-ct-zq4" id="z0W-hR-M8g"/>
                 <outlet property="secondProfileImage" destination="YFa-UX-ELK" id="xp6-hc-M52"/>
-                <outlet property="tagDoneImage" destination="DTR-9m-lul" id="0Vy-a9-Qzs"/>
+                <outlet property="tagImage" destination="DTR-9m-lul" id="R2U-rt-FUc"/>
                 <outlet property="thirdLifeImage" destination="mie-9u-Mgn" id="nGy-Ct-t7M"/>
                 <outlet property="thirdProfileImage" destination="yXX-Nd-yQ1" id="QYh-bW-v4J"/>
                 <outlet property="ticketImage" destination="Kx6-AG-z5B" id="Zdy-rB-hoQ"/>

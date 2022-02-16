@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeHabitCVC: UICollectionViewCell {
+    
+    // MARK: - Properties
+    
+    @frozen
+    private enum State: String {
+        case none = "NONE"
+        case rest = "REST"
+        case done = "DONE"
+    }
     
     // MARK: - @IBOutlet Properties
     
@@ -16,7 +26,7 @@ class HomeHabitCVC: UICollectionViewCell {
     @IBOutlet weak var ddayTitleLabel: UILabel!
     @IBOutlet weak var ddaySubtitleLabel: UILabel!
     @IBOutlet weak var habitTitleLabel: UILabel!
-    @IBOutlet weak var tagDoneImage: UIImageView!
+    @IBOutlet weak var tagImage: UIImageView!
     @IBOutlet weak var restLabel: UILabel!
     @IBOutlet weak var firstProfileImage: UIImageView!
     @IBOutlet weak var secondProfileImage: UIImageView!
@@ -45,7 +55,7 @@ class HomeHabitCVC: UICollectionViewCell {
         fourthProfileImage.isHidden = true
         
         habitTitleLabel.text = ""
-        tagDoneImage.isHidden = true
+        tagImage.isHidden = true
         memberLabel.text = ""
         
         [firstLifeImage, secondLifeImage, thirdLifeImage].forEach {
@@ -84,7 +94,7 @@ extension HomeHabitCVC {
         habitTitleLabel.numberOfLines = 2
         habitTitleLabel.lineBreakMode = .byTruncatingTail
         
-        tagDoneImage.isHidden = true
+        tagImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
         memberLabel.font = .h3Subtitle
@@ -95,7 +105,7 @@ extension HomeHabitCVC {
                   leftDay: Int,
                   profileImg: [String?],
                   life: Int,
-                  isDone: Bool,
+                  state: String,
                   memberNum: Int,
                   doneMemberNum: Int) {
         if leftDay == 0 {
@@ -137,6 +147,21 @@ extension HomeHabitCVC {
             
             fourthProfileImage.isHidden = true
             restLabel.isHidden = true
+            
+            guard let state = State(rawValue: state) else { return }
+            switch state {
+            case .none:
+                tagImage.isHidden = true
+                ticketImage.image = UIImage(named: "property1TicketRight4")
+            case .rest:
+                tagImage.isHidden = false
+                tagImage.image = UIImage(named: "tagRest")
+                ticketImage.image = UIImage(named: "property1TicketRightFold4")
+            case .done:
+                tagImage.isHidden = false
+                tagImage.image = UIImage(named: "tagDone")
+                ticketImage.image = UIImage(named: "property1TicketRightFold4")
+            }
         }
         
         habitTitleLabel.text = roomName
@@ -155,15 +180,6 @@ extension HomeHabitCVC {
             for index in life...2 {
                 lifeImgaeList[index]?.image = UIImage(named: "icRoomlifeEmpty")
             }
-        }
-        
-        if isDone {
-            ticketImage.image = UIImage(named: "property1TicketRightFold4")
-            tagDoneImage.isHidden = false
-            
-        } else {
-            ticketImage.image = UIImage(named: "property1TicketRight4")
-            tagDoneImage.isHidden = true
         }
         
         // spark flake
