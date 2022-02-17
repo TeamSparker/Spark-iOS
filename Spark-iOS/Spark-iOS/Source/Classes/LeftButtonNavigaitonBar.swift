@@ -1,5 +1,5 @@
 //
-//  LeftButtonTitleNavigaitonBar.swift
+//  LeftButtonNavigaitonBar.swift
 //  Spark-iOS
 //
 //  Created by kimhyungyu on 2022/02/17.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LeftButtonTitleNavigaitonBar: SparkNavigationBar {
+class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     // MARK: - Properties
     
