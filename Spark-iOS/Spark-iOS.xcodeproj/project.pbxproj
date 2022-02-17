@@ -139,6 +139,7 @@
 		F8D4496C27BDE2D60091F297 /* SparkNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4496B27BDE2D60091F297 /* SparkNavigationBar.swift */; };
 		F8D4496E27BE25610091F297 /* LeftButtonNavigaitonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4496D27BE25610091F297 /* LeftButtonNavigaitonBar.swift */; };
 		F8D4497027BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4496F27BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift */; };
+		F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4497127BE46670091F297 /* LeftRightButtonsNavigationBar.swift */; };
 		F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496727969B61001B67E7 /* AuthAPI.swift */; };
 		F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496927969B67001B67E7 /* AuthService.swift */; };
 		F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E3496C2796B7F6001B67E7 /* Signup.swift */; };
@@ -291,6 +292,7 @@
 		F8D4496B27BDE2D60091F297 /* SparkNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkNavigationBar.swift; sourceTree = "<group>"; };
 		F8D4496D27BE25610091F297 /* LeftButtonNavigaitonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftButtonNavigaitonBar.swift; sourceTree = "<group>"; };
 		F8D4496F27BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTwoButtonNavigationBar.swift; sourceTree = "<group>"; };
+		F8D4497127BE46670091F297 /* LeftRightButtonsNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRightButtonsNavigationBar.swift; sourceTree = "<group>"; };
 		F8E3496727969B61001B67E7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		F8E3496927969B67001B67E7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8E3496C2796B7F6001B67E7 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				F8D4496B27BDE2D60091F297 /* SparkNavigationBar.swift */,
 				F8D4496D27BE25610091F297 /* LeftButtonNavigaitonBar.swift */,
 				F8D4496F27BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift */,
+				F8D4497127BE46670091F297 /* LeftRightButtonsNavigationBar.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
+				F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
