@@ -26,7 +26,7 @@ class MoreStorageCVC: UICollectionViewCell {
         dDayLabel.text = "D-day"
         certificationImage.layer.masksToBounds = true
         certificationImage.contentMode = .scaleAspectFill
-        timerLabel.font = .p1Title
+        timerLabel.font = .enBoldFont(ofSize: 24)
         timerAlphaView.isHidden = true
     }
     
