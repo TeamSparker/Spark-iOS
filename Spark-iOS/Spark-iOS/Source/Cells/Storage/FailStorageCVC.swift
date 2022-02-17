@@ -28,11 +28,12 @@ class FailStorageCVC: UICollectionViewCell {
     }
     
     func initCell(roomName: String,
-                  leftDay: Int,
+                  failDay: Int,
                   thumbnail: String,
                   sparkCount: Int,
                   startDate: String,
                   endDate: String) {
+        let leftDay: Int = 66 - failDay
         let sparkFlake: SparkFlake = SparkFlake(leftDay: leftDay)
         
         flakeImage.image = sparkFlake.sparkFlakeFailStorage()
@@ -43,7 +44,7 @@ class FailStorageCVC: UICollectionViewCell {
         let endDate = endDate.split(separator: "-")
         dateLabel.text = "\(startDate[0]).\(startDate[1]).\(startDate[2]) - \(endDate[0]).\(endDate[1]).\(endDate[2])"
         
-        dDayLabel.text = "\(leftDay) DAYS"
+        dDayLabel.text = "\(failDay) DAYS"
         
         thumbnailImage.updateImage(thumbnail)
     }

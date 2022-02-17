@@ -471,7 +471,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.failStorageCVC, for: indexPath) as? FailStorageCVC else { return UICollectionViewCell() }
             
             cell.initCell(roomName: failRoomList[indexPath.row].roomName,
-                          leftDay: failRoomList[indexPath.row].failDay ?? 0,
+                          failDay: failRoomList[indexPath.row].failDay ?? 0,
                           thumbnail: failRoomList[indexPath.row].thumbnail,
                           sparkCount: failRoomList[indexPath.row].totalReceivedSpark,
                           startDate: failRoomList[indexPath.row].startDate,
