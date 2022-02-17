@@ -59,7 +59,7 @@ class SparkNavigationBar: UIView {
     /// set text of title label.
     /// - default label text is empty.
     @discardableResult
-    func setTitle(_ title: String) -> Self {
+    func title(_ title: String) -> Self {
         titleLabel.text = title
         
         return self
@@ -68,7 +68,7 @@ class SparkNavigationBar: UIView {
     /// set color of title label.
     /// - default color is sparkBlack.
     @discardableResult
-    func setTitleColor(_ color: UIColor) -> Self {
+    func titleColor(_ color: UIColor) -> Self {
         self.titleLabel.textColor = color
         
         return self
@@ -77,7 +77,7 @@ class SparkNavigationBar: UIView {
     /// set font of title lable.
     /// - default font is h3_subtitle.
     @discardableResult
-    func setFont(_ font: UIFont) -> Self {
+    func font(_ font: UIFont) -> Self {
         self.titleLabel.font = font
         
         return self
@@ -86,7 +86,7 @@ class SparkNavigationBar: UIView {
     /// set background color of custom navigation bar.
     /// - default background color is sparkWhite.
     @discardableResult
-    func setBackgroundColor(_ color: UIColor) -> Self {
+    func backgroundColor(_ color: UIColor) -> Self {
         self.backgroundColor = color
         
         return self

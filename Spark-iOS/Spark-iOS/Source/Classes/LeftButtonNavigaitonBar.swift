@@ -49,7 +49,7 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     /// set image of left button.
     /// - default image is UIImage().
     @discardableResult
-    func setLeftButtonImage(_ image: UIImage?) -> Self {
+    func leftButtonImage(_ image: UIImage?) -> Self {
         if let image = image {
             self.leftButton.setImage(image, for: .normal)
         }
@@ -60,8 +60,8 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     /// set tint color of left button
     /// - default color is sparkBlack.
     @discardableResult
-    func setTintColor(_ color: UIColor) -> Self {
-        self.setTitleColor(color)
+    func tintColor(_ color: UIColor) -> Self {
+        self.titleColor(color)
             .leftButton.tintColor = color
         
         return self
