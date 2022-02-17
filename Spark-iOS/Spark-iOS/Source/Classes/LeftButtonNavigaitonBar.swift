@@ -66,4 +66,12 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
         
         return self
     }
+    
+    /// add action to reft button.
+    @discardableResult
+    func action(_ selector: Selector) -> Self {
+        self.leftButton.addTarget(self, action: selector, for: .touchUpInside)
+        
+        return self
+    }
 }

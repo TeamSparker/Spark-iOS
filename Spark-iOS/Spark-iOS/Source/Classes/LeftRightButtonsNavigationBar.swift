@@ -69,4 +69,14 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
         
         return self
     }
+    
+    /// add action to reft, right button.
+    @discardableResult
+    func actions(_ reftButtonSelector: Selector, _ rightButtonSelector: Selector) -> Self {
+        super.action(reftButtonSelector)
+        
+        self.rightButton.addTarget(self, action: rightButtonSelector, for: .touchUpInside)
+        
+        return self
+    }
 }
