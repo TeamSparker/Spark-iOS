@@ -20,9 +20,10 @@ struct CertiRecord: Codable {
     let certifyingImg: String?
     let sparkNum: Int
     let status: String
+    let timerRecord: String?
 
     enum CodingKeys: String, CodingKey {
         case recordID = "recordId"
-        case leftDay, certifyingImg, sparkNum, status
+        case leftDay, certifyingImg, sparkNum, status, timerRecord
     }
 }

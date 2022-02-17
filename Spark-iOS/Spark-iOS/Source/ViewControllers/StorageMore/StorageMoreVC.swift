@@ -133,7 +133,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
         cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
                       mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
                       sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
-                      status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: nil)
+                      status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
         
         return cell
     }
