@@ -21,27 +21,27 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let fadeImageView = UIImageView()
+    private let firstLabel = UILabel()
+    private let secondLabel = UILabel()
+    private let stopwatchLabel = UILabel()
+    private let photoLabel = UILabel()
+    private let betweenLine = UIView()
+    private let photoAuthButton = BottomButton(title: "사진 인증하기")
+    private let picker = UIImagePickerController()
+    private var buttonStackView = UIStackView()
+    private var uploadButton = UIButton()
+    private var changePhotoButton = UIButton()
     var uploadImageView = UIImageView()
-    let fadeImageView = UIImageView()
-    var buttonStackView = UIStackView()
-    var uploadButton = UIButton()
-    var changePhotoButton = UIButton()
     var timerLabel = UILabel()
-    let firstLabel = UILabel()
-    let secondLabel = UILabel()
-    let stopwatchLabel = UILabel()
-    let photoLabel = UILabel()
-    let betweenLine = UIView()
-    let photoAuthButton = UIButton()
-    let picker = UIImagePickerController()
     var roomId: Int?
     var roomName: String?
     var vcType: VCCase?
     
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - Life Cycle
     
@@ -106,11 +106,6 @@ extension AuthUploadVC {
         
         betweenLine.backgroundColor = .sparkPinkred
         
-        photoAuthButton.layer.cornerRadius = 2
-        photoAuthButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        photoAuthButton.setTitle("사진 인증하기", for: .normal)
-        photoAuthButton.backgroundColor = .sparkDarkPinkred
-        
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.layer.masksToBounds = true
@@ -134,7 +129,7 @@ extension AuthUploadVC {
         uploadButton.layer.cornerRadius = 2
         uploadButton.titleLabel?.font = .btn1Default
         uploadButton.setTitle("업로드하기", for: .normal)
-        uploadButton.backgroundColor = .sparkDarkPinkred
+        uploadButton.backgroundColor = .sparkPinkred
         uploadButton.isEnabled = true
         
         switch vcType {
@@ -377,7 +372,6 @@ extension AuthUploadVC {
         photoAuthButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
         
         uploadImageView.snp.makeConstraints { make in
