@@ -26,7 +26,7 @@ class GoalWritingVC: UIViewController {
     private let goalTextField = UITextField()
     private let goalLineView = UIView()
     private let goalCountLabel = UILabel()
-    private let completeButton = UIButton()
+    private let completeButton = BottomButton(title: "작성 완료")
     private let maxLength: Int = 15
     
     var titleText: String?
@@ -76,9 +76,6 @@ class GoalWritingVC: UIViewController {
         goalExLabel.font = .p2Subtitle
         goalExLabel.textColor = .sparkDarkGray
         
-        completeButton.layer.cornerRadius = 2
-        completeButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        completeButton.setTitle("작성 완료", for: .normal)
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
         
@@ -336,8 +333,6 @@ extension GoalWritingVC {
         completeButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
