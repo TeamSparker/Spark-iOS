@@ -26,7 +26,7 @@ class BottomButton: UIButton {
         setLayout()
     }
     
-    // MARK: - Custom Method
+    // MARK: - Method
     
     private func setUI(title: String) {
         backgroundColor = .sparkPinkred
