@@ -238,15 +238,28 @@ extension GoalWritingVC: UITextFieldDelegate {
     
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
+        // 텍스트필드에 따라 lineView 색상 각각 처리
+        switch textField {
+        case whenTextField:
+            if whenTextField.hasText {
+                whenLineView.backgroundColor = .sparkPinkred
+            } else {
+                whenLineView.backgroundColor = .sparkGray
+            }
+        case goalTextField:
+            if goalTextField.hasText {
+                goalLineView.backgroundColor = .sparkPinkred
+            } else {
+                goalLineView.backgroundColor = .sparkGray
+            }
+        default:
+            return
+        }
+        
+        // 하단 버튼 색상 처리
         if whenTextField.hasText && goalTextField.hasText {
             ableButton()
         } else {
-            if !whenTextField.hasText {
-                whenLineView.backgroundColor = .sparkGray
-            }
-            if !goalTextField.hasText {
-                goalLineView.backgroundColor = .sparkGray
-            }
             disableButton()
         }
     }
