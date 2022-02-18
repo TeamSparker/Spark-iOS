@@ -147,21 +147,21 @@ extension HomeHabitCVC {
             
             fourthProfileImage.isHidden = true
             restLabel.isHidden = true
-            
-            guard let status = Status(rawValue: status) else { return }
-            switch status {
-            case .none:
-                tagImage.isHidden = true
-                ticketImage.image = UIImage(named: "property1TicketRight4")
-            case .rest:
-                tagImage.isHidden = false
-                tagImage.image = UIImage(named: "tagRest")
-                ticketImage.image = UIImage(named: "property1TicketRightFold4")
-            case .done:
-                tagImage.isHidden = false
-                tagImage.image = UIImage(named: "tagDone")
-                ticketImage.image = UIImage(named: "property1TicketRightFold4")
-            }
+        }
+        
+        guard let status = Status(rawValue: status) else { return }
+        switch status {
+        case .none:
+            tagImage.isHidden = true
+            ticketImage.image = UIImage(named: "property1TicketRight4")
+        case .rest:
+            tagImage.isHidden = false
+            tagImage.image = UIImage(named: "tagRest")
+            ticketImage.image = UIImage(named: "property1TicketRightFold4")
+        case .done:
+            tagImage.isHidden = false
+            tagImage.image = UIImage(named: "tagDone")
+            ticketImage.image = UIImage(named: "property1TicketRightFold4")
         }
         
         habitTitleLabel.text = roomName
