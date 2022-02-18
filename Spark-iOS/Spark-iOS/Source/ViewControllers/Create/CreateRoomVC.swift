@@ -19,7 +19,7 @@ class CreateRoomVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = UIButton()
+    private let nextButton = BottomButton(title: "다음으로")
     private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
@@ -51,9 +51,6 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.layer.cornerRadius = 2
-        nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        nextButton.setTitle("다음으로", for: .normal)
         nextButton.backgroundColor = .sparkGray
         nextButton.isEnabled = false
         
@@ -181,8 +178,6 @@ extension CreateRoomVC {
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
