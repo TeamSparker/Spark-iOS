@@ -13,23 +13,17 @@ class BottomButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(title: String) {
-        super.init(frame: .zero)
-        
-        setUI(title: title)
-        setLayout()
-    }
-    
     // MARK: - Method
     
-    private func setUI(title: String) {
-        backgroundColor = .sparkPinkred
+    func setUI(title: String) {
+        backgroundColor = .sparkDarkPinkred
         setTitle(title, for: .normal)
         titleLabel?.font = .enBoldFont(ofSize: 18)
         layer.cornerRadius = 2

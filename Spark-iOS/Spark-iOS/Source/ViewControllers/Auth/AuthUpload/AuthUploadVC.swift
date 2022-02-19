@@ -29,7 +29,7 @@ class AuthUploadVC: UIViewController {
     private let stopwatchLabel = UILabel()
     private let photoLabel = UILabel()
     private let betweenLine = UIView()
-    private let photoAuthButton = BottomButton(title: "사진 인증하기")
+    private let photoAuthButton = BottomButton()
     private let picker = UIImagePickerController()
     private var buttonStackView = UIStackView()
     private var uploadButton = UIButton()
@@ -129,8 +129,10 @@ extension AuthUploadVC {
         uploadButton.layer.cornerRadius = 2
         uploadButton.titleLabel?.font = .btn1Default
         uploadButton.setTitle("업로드하기", for: .normal)
-        uploadButton.backgroundColor = .sparkPinkred
+        uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
+        
+        photoAuthButton.setUI(title: "사진 인증하기")
         
         switch vcType {
         case .photoOnly:
@@ -200,15 +202,15 @@ extension AuthUploadVC {
     }
     
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
     
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
         } else {
@@ -220,7 +222,7 @@ extension AuthUploadVC {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
-        /// alter에 들어갈 액션 생성
+        // alter에 들어갈 액션 생성
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
@@ -229,12 +231,12 @@ extension AuthUploadVC {
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
-        /// alter에 액션을 넣어줌
+        // alter에 액션을 넣어줌
         alter.addAction(library)
         alter.addAction(camera)
         alter.addAction(cancel)
         
-        /// button tap했을 때 alter present
+        // button tap했을 때 alter present
         present(alter, animated: true, completion: nil)
     }
     

@@ -21,7 +21,7 @@ class AuthTimerVC: UIViewController {
     private let betweenLine = UIView()
     private let divideLine = UIView()
     private let timeLabel = UILabel()
-    private let bottomButton = BottomButton(title: "시간 측정 시작")
+    private let bottomButton = BottomButton()
     private let pauseButton = UIButton()
     private let resetButton = UIButton()
     private let closeButton = UIButton()
@@ -107,6 +107,8 @@ class AuthTimerVC: UIViewController {
         button.setTitle(title, for: UIControl.State())
         button.isEnabled = isEnable
         button.backgroundColor = backgroundColor
+        button.titleLabel?.font = .enBoldFont(ofSize: 18)
+        button.layer.cornerRadius = 2
     }
     
     // MARK: - @objc
@@ -190,7 +192,7 @@ class AuthTimerVC: UIViewController {
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
         timeLabel.text = "00:00:00"
-        setButton(bottomButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         [pauseButton, resetButton].forEach { $0.isHidden = true }
     }

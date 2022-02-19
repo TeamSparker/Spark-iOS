@@ -21,7 +21,7 @@ class ProfileSettingVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let completeButton = BottomButton(title: "가입완료")
+    private let completeButton = BottomButton()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
     private let maxLength: Int = 10
@@ -68,6 +68,7 @@ class ProfileSettingVC: UIViewController {
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
         
+        completeButton.setUI(title: "가입완료")
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
     }

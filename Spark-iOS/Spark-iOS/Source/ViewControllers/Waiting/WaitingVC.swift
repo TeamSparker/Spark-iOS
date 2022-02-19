@@ -47,7 +47,7 @@ class WaitingVC: UIViewController {
     private let friendCountLabel = UILabel()
     private let friendSubTitleLabel = UILabel()
     private let refreshButton = UIButton()
-    private let startButton = BottomButton(title: "습관방 만들기")
+    private let startButton = BottomButton()
     
     private let tapGestrueRecognizer = UITapGestureRecognizer()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -181,6 +181,7 @@ extension WaitingVC {
         }
         friendSubTitleLabel.textColor = .gray
         
+        startButton.setUI(title: "습관방 만들기")
         startButton.isHidden = true
     }
     

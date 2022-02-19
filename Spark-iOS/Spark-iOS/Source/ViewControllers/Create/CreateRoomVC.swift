@@ -19,7 +19,7 @@ class CreateRoomVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = BottomButton(title: "다음으로")
+    private let nextButton = BottomButton()
     private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
@@ -51,6 +51,7 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
+        nextButton.setUI(title: "다음으로")
         nextButton.backgroundColor = .sparkGray
         nextButton.isEnabled = false
         
