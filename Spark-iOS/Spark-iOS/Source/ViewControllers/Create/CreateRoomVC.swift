@@ -51,7 +51,7 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.setUI(title: "다음으로")
+        nextButton.setBottomButtonTitle(title: "다음으로")
         nextButton.backgroundColor = .sparkGray
         nextButton.isEnabled = false
         
@@ -78,7 +78,7 @@ class CreateRoomVC: UIViewController {
     
     private func ableButton() {
         lineView.backgroundColor = .sparkPinkred
-        nextButton.backgroundColor = .sparkPinkred
+        nextButton.backgroundColor = .sparkDarkPinkred
         nextButton.isEnabled = true
     }
     

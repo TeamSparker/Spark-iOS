@@ -57,7 +57,7 @@ class CreateAuthVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        enterButton.setUI(title: "대기방 입장하기")
+        enterButton.setBottomButtonTitle(title: "대기방 입장하기")
         
         photoAuthView.setSelectedUI()
         timerAuthView.setDeselectedUI()

@@ -13,18 +13,25 @@ class BottomButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUI()
         setLayout()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+//        fatalError("init(coder:) has not been implemented")
+        setUI()
+        setLayout()
     }
     
     // MARK: - Method
     
-    func setUI(title: String) {
-        backgroundColor = .sparkDarkPinkred
+    func setBottomButtonTitle(title: String) {
         setTitle(title, for: .normal)
+    }
+    
+    private func setUI() {
+        backgroundColor = .sparkDarkPinkred
         titleLabel?.font = .enBoldFont(ofSize: 18)
         layer.cornerRadius = 2
     }
@@ -33,9 +40,5 @@ class BottomButton: UIButton {
         self.snp.makeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.width * 48 / 335)
         }
-    }
-    
-    func changeButtonTitle(title: String) {
-        setTitle(title, for: .normal)
     }
 }

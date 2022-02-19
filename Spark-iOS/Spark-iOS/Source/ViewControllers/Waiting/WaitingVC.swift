@@ -181,7 +181,7 @@ extension WaitingVC {
         }
         friendSubTitleLabel.textColor = .gray
         
-        startButton.setUI(title: "습관방 만들기")
+        startButton.setBottomButtonTitle(title: "습관방 만들기")
         startButton.isHidden = true
     }
     

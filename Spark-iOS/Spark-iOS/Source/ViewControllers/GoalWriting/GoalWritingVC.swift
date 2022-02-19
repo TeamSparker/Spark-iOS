@@ -76,7 +76,7 @@ class GoalWritingVC: UIViewController {
         goalExLabel.font = .p2Subtitle
         goalExLabel.textColor = .sparkDarkGray
         
-        completeButton.setUI(title: "작성 완료")
+        completeButton.setBottomButtonTitle(title: "작성 완료")
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
         

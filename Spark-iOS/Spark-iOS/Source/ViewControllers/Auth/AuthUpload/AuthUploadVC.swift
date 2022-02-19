@@ -132,7 +132,7 @@ extension AuthUploadVC {
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
         
-        photoAuthButton.setUI(title: "사진 인증하기")
+        photoAuthButton.setBottomButtonTitle(title: "사진 인증하기")
         
         switch vcType {
         case .photoOnly:

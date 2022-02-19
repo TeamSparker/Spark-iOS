@@ -68,7 +68,7 @@ class ProfileSettingVC: UIViewController {
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
         
-        completeButton.setUI(title: "가입완료")
+        completeButton.setBottomButtonTitle(title: "가입완료")
         completeButton.backgroundColor = .sparkGray
         completeButton.isEnabled = false
     }
