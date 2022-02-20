@@ -56,6 +56,8 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     func rightButtonImage(_ image: UIImage?) -> Self {
         if let image = image {
             self.rightButton.setImage(image, for: .normal)
+        } else {
+            print("image is nil.")
         }
         
         return self
