@@ -106,7 +106,7 @@ extension HabitRoomVC {
             }
             .rightButtonImage("icMoreVerticalWhite")
             .rightButtonAction {
-                self.showMoreAlert()
+                self.presentToMoreAlert()
             }
     
         tabBarController?.tabBar.isHidden = true
@@ -308,7 +308,7 @@ extension HabitRoomVC {
     
     // TODO: - 더보기 버튼 클릭시 액션시트 등장
     
-    private func showMoreAlert() {
+    private func presentToMoreAlert() {
         print("showMoreAlert")
     }
     

@@ -259,8 +259,24 @@ extension AuthUploadVC {
     
     // MARK: - Screen Change
     
-    func popToPresentingVC() {
+    private func popToPresentingVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func presentToCompleteAuthVC(_ authUpload: AuthUpload) {
+        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
+        
+        popupVC.renderedImage = self.uploadImageView.image
+        popupVC.roomName = authUpload.roomName
+        popupVC.nickName = authUpload.nickname
+        popupVC.profileImage = authUpload.profileImg
+        popupVC.timerCount = self.timerLabel.text
+        
+        popupVC.vcType = self.vcType
+        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.modalPresentationStyle = .overFullScreen
+        
+        self.present(popupVC, animated: true)
     }
     
     @objc
@@ -391,19 +407,7 @@ extension AuthUploadVC {
                     self.loadingView.stop()
                     self.loadingBgView.removeFromSuperview()
                     
-                    guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
-                    
-                    popupVC.renderedImage = self.uploadImageView.image
-                    popupVC.roomName = authUpload.roomName
-                    popupVC.nickName = authUpload.nickname
-                    popupVC.profileImage = authUpload.profileImg
-                    popupVC.timerCount = self.timerLabel.text
-                    
-                    popupVC.vcType = self.vcType
-                    popupVC.modalTransitionStyle = .crossDissolve
-                    popupVC.modalPresentationStyle = .overFullScreen
-                    
-                    self.present(popupVC, animated: true)
+                    self.presentToCompleteAuthVC(authUpload)
                 }
             case .requestErr(let message):
                 print("authUploadWithAPI - requestErr \(message)")

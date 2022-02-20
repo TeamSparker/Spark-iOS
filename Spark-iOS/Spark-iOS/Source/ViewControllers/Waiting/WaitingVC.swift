@@ -112,7 +112,7 @@ extension WaitingVC {
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
-                    self.touchToMore()
+                    self.presentToMoreAlert()
                 }
         case .joinCode:
             customNavigationBar.title(title)
@@ -122,7 +122,7 @@ extension WaitingVC {
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
-                    self.touchToMore()
+                    self.presentToMoreAlert()
                 }
         case .makeRoom:
             customNavigationBar.title(title)
@@ -132,7 +132,7 @@ extension WaitingVC {
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
-                    self.touchToMore()
+                    self.presentToMoreAlert()
                 }
         case .none:
             print("fromeWhereStatus 를 지정해주세요.")
@@ -344,7 +344,7 @@ extension WaitingVC {
         view.addGestureRecognizer(tapGestrueRecognizer)
     }
     
-    private func touchToMore() {
+    private func presentToMoreAlert() {
         
         // TODO: - 더보기 버튼
         
