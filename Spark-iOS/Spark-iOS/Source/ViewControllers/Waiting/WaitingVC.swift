@@ -47,7 +47,7 @@ class WaitingVC: UIViewController {
     private let friendCountLabel = UILabel()
     private let friendSubTitleLabel = UILabel()
     private let refreshButton = UIButton()
-    private let startButton = BottomButton().setTitle("습관방 만들기")
+    private let startButton = BottomButton().setTitle("습관 시작하기")
     
     private let tapGestrueRecognizer = UITapGestureRecognizer()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -343,7 +343,7 @@ extension WaitingVC {
     @objc
     private func copyToClipboard() {
         UIPasteboard.general.string = roomCode
-        showToast(x: 20, y: startButton.frame.minY - 60, message: "코드를 복사했어요", font: .p1TitleLight)
+        showToast(x: 20, y: view.safeAreaInsets.top, message: "코드를 복사했어요!", font: .p1TitleLight)
     }
     
     @objc
