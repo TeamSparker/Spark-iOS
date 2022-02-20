@@ -15,7 +15,7 @@ class SparkNavigationBar: UIView {
     
     // MARK: - Properties
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.sizeToFit()
         label.text = ""
