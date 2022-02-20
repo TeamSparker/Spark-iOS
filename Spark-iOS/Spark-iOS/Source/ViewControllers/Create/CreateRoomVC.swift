@@ -52,15 +52,13 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.textColor = .sparkDarkGray
         
         nextButton.setBottomButtonTitle(title: "다음으로")
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
+        nextButton.setDisableBottomButton()
+        lineView.backgroundColor = .sparkGray
         
         textField.borderStyle = .none
         textField.placeholder = "ex. 30분 독서"
         textField.delegate = self
         textField.tintColor = .sparkPinkred
-
-        lineView.backgroundColor = .sparkGray
 
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
@@ -76,17 +74,7 @@ class CreateRoomVC: UIViewController {
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
     }
     
-    private func ableButton() {
-        lineView.backgroundColor = .sparkPinkred
-        nextButton.backgroundColor = .sparkDarkPinkred
-        nextButton.isEnabled = true
-    }
-    
-    private func disableButton() {
-        lineView.backgroundColor = .sparkGray
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
-    }
+    // MARK: - @objc
     
     @objc
     private func textFieldDidChange(_ notification: Notification) {
@@ -129,9 +117,11 @@ extension CreateRoomVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            ableButton()
+            nextButton.setAbleBottomButton()
+            lineView.backgroundColor = .sparkPinkred
         } else {
-            disableButton()
+            nextButton.setDisableBottomButton()
+            lineView.backgroundColor = .sparkGray
         }
     }
 }
@@ -177,7 +167,7 @@ extension CreateRoomVC {
         }
         
         nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }

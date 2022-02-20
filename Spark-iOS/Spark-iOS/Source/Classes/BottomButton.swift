@@ -26,10 +26,6 @@ class BottomButton: UIButton {
     
     // MARK: - Method
     
-    func setBottomButtonTitle(title: String) {
-        setTitle(title, for: .normal)
-    }
-    
     private func setUI() {
         backgroundColor = .sparkDarkPinkred
         titleLabel?.font = .enBoldFont(ofSize: 18)
@@ -38,7 +34,22 @@ class BottomButton: UIButton {
     
     private func setLayout() {
         self.snp.makeConstraints { make in
-            make.height.equalTo(UIScreen.main.bounds.width * 48 / 335)
+            make.width.equalTo(UIScreen.main.bounds.width - 40)
+            make.height.equalTo((UIScreen.main.bounds.width - 40) * 48 / 335)
         }
+    }
+    
+    func setBottomButtonTitle(title: String) {
+        setTitle(title, for: .normal)
+    }
+    
+    func setAbleBottomButton() {
+        self.backgroundColor = .sparkDarkPinkred
+        self.isEnabled = true
+    }
+    
+    func setDisableBottomButton() {
+        self.backgroundColor = .sparkGray
+        self.isEnabled = false
     }
 }
