@@ -16,7 +16,9 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     
     // MARK: - Properties
     
-    lazy var rightButton: UIButton = {
+    private var rightButtonClosure: (() -> Void)?
+    
+    private lazy var rightButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(), for: .normal)
         button.setTitle("", for: .normal)
@@ -75,9 +77,17 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     
     /// add action to right button.
     @discardableResult
-    func rightButtonAction(_ rightButtonSelector: Selector) -> Self {
-        self.rightButton.addTarget(self, action: rightButtonSelector, for: .touchUpInside)
+    func rightButtonAction(_ closure: (() -> Void)?) -> Self {
+        self.rightButtonClosure = closure
+        self.rightButton.addTarget(self, action: #selector(rightButtonSelector), for: .touchUpInside)
         
         return self
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func rightButtonSelector() {
+        self.rightButtonClosure?()
     }
 }

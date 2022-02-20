@@ -16,7 +16,10 @@ class RightTwoButtonNavigationBar: SparkNavigationBar {
     
     // MARK: - Properties
     
-    lazy var firstRightButton: UIButton = {
+    private var firstButtonClosure: (() -> Void)?
+    private var secondButtonClosure: (() -> Void)?
+    
+    private lazy var firstRightButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(), for: .normal)
         button.setTitle("", for: .normal)
@@ -25,7 +28,7 @@ class RightTwoButtonNavigationBar: SparkNavigationBar {
         return button
     }()
     
-    lazy var secondRightButton: UIButton = {
+    private lazy var secondRightButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(), for: .normal)
         button.setTitle("", for: .normal)
@@ -81,10 +84,24 @@ class RightTwoButtonNavigationBar: SparkNavigationBar {
     
     /// add action to first, second button.
     @discardableResult
-    func actions(_ firstSelector: Selector, _ secondSelector: Selector) -> Self {
-        self.firstRightButton.addTarget(self, action: firstSelector, for: .touchUpInside)
-        self.secondRightButton.addTarget(self, action: secondSelector, for: .touchUpInside)
+    func actions(_ firstButtonClosure: (() -> Void)? = nil, _ secondButtonClosure: (() -> Void)? = nil) -> Self {
+        self.firstButtonClosure = firstButtonClosure
+        self.secondButtonClosure = secondButtonClosure
+        self.firstRightButton.addTarget(self, action: #selector(firstButtonSelector), for: .touchUpInside)
+        self.secondRightButton.addTarget(self, action: #selector(secondButtonSelector), for: .touchUpInside)
         
         return self
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func firstButtonSelector() {
+        self.firstButtonClosure?()
+    }
+    
+    @objc
+    private func secondButtonSelector() {
+        self.secondButtonClosure?()
     }
 }

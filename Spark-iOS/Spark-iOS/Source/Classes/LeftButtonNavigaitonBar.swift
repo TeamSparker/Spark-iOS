@@ -16,7 +16,9 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     // MARK: - Properties
     
-    lazy var leftButton: UIButton = {
+    private var leftButtonClosure: (() -> Void)?
+    
+    private lazy var leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(), for: .normal)
         button.setTitle("", for: .normal)
@@ -75,9 +77,17 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     /// add action to reft button.
     @discardableResult
-    func leftButonAction(_ selector: Selector) -> Self {
-        self.leftButton.addTarget(self, action: selector, for: .touchUpInside)
+    func leftButonAction(_ clousure: (() -> Void)? = nil) -> Self {
+        self.leftButtonClosure = clousure
+        self.leftButton.addTarget(self, action: #selector(leftButtonSelector), for: .touchUpInside)
         
         return self
+    }
+    
+    // MARK: - @objc Mehotds
+    
+    @objc
+    private func leftButtonSelector() {
+        self.leftButtonClosure?()
     }
 }
