@@ -100,14 +100,15 @@ class WaitingVC: UIViewController {
 
 extension WaitingVC {
     private func setNavigationBar(title: String) {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.isNavigationBarHidden = true
         
         switch fromWhereStatus {
         case .fromHome:
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
             customNavigationBar.title(title)
                 .leftButtonImage("icBackWhite")
                 .leftButonAction {
-                    self.navigationController?.popViewController(animated: true)
+                    self.popToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
@@ -115,9 +116,9 @@ extension WaitingVC {
                 }
         case .joinCode:
             customNavigationBar.title(title)
-                .leftButtonImage("icBackWhite")
+                .leftButtonImage("icHome")
                 .leftButonAction {
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismissJoinCodeToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
@@ -125,9 +126,9 @@ extension WaitingVC {
                 }
         case .makeRoom:
             customNavigationBar.title(title)
-                .leftButtonImage("icBackWhite")
+                .leftButtonImage("icHome")
                 .leftButonAction {
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismissToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
@@ -350,6 +351,22 @@ extension WaitingVC {
         print("touchToMore")
     }
     
+    // MARK: - Screen Change
+    
+    private func popToHomeVC() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func dismissToHomeVC() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true)
+    }
+    
+    private func dismissJoinCodeToHomeVC() {
+        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+    
+    
     // MARK: - @objc
     
     @objc
@@ -382,22 +399,6 @@ extension WaitingVC {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) { [self] in
             dismissToolTip()
         }
-    }
-    
-    @objc
-    private func popToHomeVC() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc
-    private func dismissToHomeVC() {
-        presentingViewController?.presentingViewController?.dismiss(animated: true)
-    }
-    
-    @objc
-    private func dismissJoinCodeToHomeVC() {
-        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
-        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
     @objc
