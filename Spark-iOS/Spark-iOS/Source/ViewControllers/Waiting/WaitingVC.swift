@@ -47,7 +47,7 @@ class WaitingVC: UIViewController {
     private let friendCountLabel = UILabel()
     private let friendSubTitleLabel = UILabel()
     private let refreshButton = UIButton()
-    private let startButton = UIButton()
+    private let startButton = BottomButton().setTitle("습관방 만들기")
     
     private var customNavigationBar = LeftRightButtonsNavigationBar()
     
@@ -186,10 +186,6 @@ extension WaitingVC {
         }
         friendSubTitleLabel.textColor = .gray
         
-        startButton.layer.cornerRadius = 2
-        startButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        startButton.setTitle("습관방 만들기", for: .normal)
-        startButton.backgroundColor = .sparkPinkred
         startButton.isHidden = true
     }
     
@@ -669,10 +665,8 @@ extension WaitingVC {
         }
         
         startButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width * 48 / 335)
         }
     }
 }

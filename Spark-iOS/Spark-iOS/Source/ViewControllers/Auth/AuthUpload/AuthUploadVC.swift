@@ -21,27 +21,27 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
+    private let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let fadeImageView = UIImageView()
+    private let firstLabel = UILabel()
+    private let secondLabel = UILabel()
+    private let stopwatchLabel = UILabel()
+    private let photoLabel = UILabel()
+    private let betweenLine = UIView()
+    private let photoAuthButton = BottomButton().setTitle("사진 인증하기")
+    private let picker = UIImagePickerController()
+    private var buttonStackView = UIStackView()
+    private var uploadButton = UIButton()
+    private var changePhotoButton = UIButton()
     var uploadImageView = UIImageView()
-    let fadeImageView = UIImageView()
-    var buttonStackView = UIStackView()
-    var uploadButton = UIButton()
-    var changePhotoButton = UIButton()
     var timerLabel = UILabel()
-    let firstLabel = UILabel()
-    let secondLabel = UILabel()
-    let stopwatchLabel = UILabel()
-    let photoLabel = UILabel()
-    let betweenLine = UIView()
-    let photoAuthButton = UIButton()
-    let picker = UIImagePickerController()
     var roomId: Int?
     var roomName: String?
     var vcType: VCCase?
     
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - Life Cycle
     
@@ -105,11 +105,6 @@ extension AuthUploadVC {
         photoLabel.font = .krRegularFont(ofSize: 18)
         
         betweenLine.backgroundColor = .sparkPinkred
-        
-        photoAuthButton.layer.cornerRadius = 2
-        photoAuthButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        photoAuthButton.setTitle("사진 인증하기", for: .normal)
-        photoAuthButton.backgroundColor = .sparkDarkPinkred
         
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         uploadImageView.contentMode = .scaleAspectFill
@@ -205,15 +200,15 @@ extension AuthUploadVC {
     }
     
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
     
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
         } else {
@@ -225,7 +220,7 @@ extension AuthUploadVC {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
-        /// alter에 들어갈 액션 생성
+        // alter에 들어갈 액션 생성
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
@@ -234,12 +229,12 @@ extension AuthUploadVC {
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
-        /// alter에 액션을 넣어줌
+        // alter에 액션을 넣어줌
         alter.addAction(library)
         alter.addAction(camera)
         alter.addAction(cancel)
         
-        /// button tap했을 때 alter present
+        // button tap했을 때 alter present
         present(alter, animated: true, completion: nil)
     }
     
@@ -377,7 +372,6 @@ extension AuthUploadVC {
         photoAuthButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
         
         uploadImageView.snp.makeConstraints { make in
