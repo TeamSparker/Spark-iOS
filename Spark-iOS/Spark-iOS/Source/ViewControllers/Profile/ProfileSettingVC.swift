@@ -21,7 +21,7 @@ class ProfileSettingVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let completeButton = UIButton()
+    private var completeButton = BottomButton().setTitle("가입완료").setDisable()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
     private let maxLength: Int = 10
@@ -67,12 +67,6 @@ class ProfileSettingVC: UIViewController {
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
-        
-        completeButton.layer.cornerRadius = 2
-        completeButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        completeButton.setTitle("가입완료", for: .normal)
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
     }
     
     private func setDelegate() {
@@ -88,18 +82,6 @@ class ProfileSettingVC: UIViewController {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
         tap.addTarget(self, action: #selector(showAlter))
-    }
-    
-    private func ableButton() {
-        lineView.backgroundColor = .sparkPinkred
-        completeButton.backgroundColor = .sparkPinkred
-        completeButton.isEnabled = true
-    }
-    
-    private func disableButton() {
-        lineView.backgroundColor = .sparkGray
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
     }
     
     private func openLibrary() {
@@ -202,9 +184,11 @@ extension ProfileSettingVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            ableButton()
+            completeButton.setAble()
+            lineView.backgroundColor = .sparkPinkred
         } else {
-            disableButton()
+            completeButton.setDisable()
+            lineView.backgroundColor = .sparkGray
         }
     }
 }
@@ -273,10 +257,8 @@ extension ProfileSettingVC {
         }
         
         completeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
