@@ -20,15 +20,15 @@ class HabitRoomVC: UIViewController {
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
     
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var customNavigationBar: LeftRightButtonsNavigationBar!
     @IBOutlet weak var goalTextField: UILabel!
     @IBOutlet weak var timeTextLabel: UILabel!
     @IBOutlet weak var flakeImageView: UIImageView!
-    @IBOutlet weak var habitTitleLabel: UILabel!
     @IBOutlet weak var ddayTitleLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var startDateLabel: UILabel!
@@ -40,7 +40,6 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var gradationView: UIView!
     
@@ -66,19 +65,7 @@ class HabitRoomVC: UIViewController {
         return .lightContent
     }
     
-    // FIXME: - update??
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//
-//        guard let habitRoomDetail = habitRoomDetail else { return }
-//        setUIByData(habitRoomDetail)
-//    }
-    
     // MARK: - @IBOutlet Action
-    
-    @IBAction func popToHomeVC(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
     
     @IBAction func presentToHabitAuthVC(_ sender: Any) {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitAuth) as? HabitAuthVC else { return }
@@ -89,7 +76,7 @@ class HabitRoomVC: UIViewController {
         nextVC.restNumber = habitRoomDetail?.myRecord.rest
         nextVC.restStatus = habitRoomDetail?.myRecord.status
         nextVC.presentAlertClosure = {
-            self.showAlert()
+            self.showAuthAlert()
         }
         
         if let fromStart = habitRoomDetail?.fromStart {
@@ -108,15 +95,22 @@ class HabitRoomVC: UIViewController {
 
 extension HabitRoomVC {
     private func setUI() {
-        navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        customNavigationBar
+            .tintColor(.sparkWhite)
+            .backgroundColor(.clear)
+            .leftButtonImage("icBackWhite")
+            .leftButonAction {
+                self.popToHomeVC()
+            }
+            .rightButtonImage("icMoreVerticalWhite")
+            .rightButtonAction {
+                self.showMoreAlert()
+            }
     
         tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        
-        habitTitleLabel.font = .h3Subtitle
-        habitTitleLabel.textColor = .sparkWhite
-        habitTitleLabel.text = ""
         
         flakeImageView.contentMode = .scaleAspectFit
         
@@ -144,8 +138,6 @@ extension HabitRoomVC {
         goalLabel.font = .p2Subtitle
         goalLabel.text = ""
         
-        moreButton.isHidden = true
-        
         authButton.setTitle("오늘의 인증", for: .normal)
         authButton.setTitleColor(.sparkWhite, for: .normal)
         authButton.titleLabel?.font = .btn1Default
@@ -156,8 +148,8 @@ extension HabitRoomVC {
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
+        customNavigationBar.title(habitRoomDetail.roomName)
         roomName = habitRoomDetail.roomName
-        habitTitleLabel.text = habitRoomDetail.roomName
 
         let leftDay = habitRoomDetail.leftDay
         
@@ -265,7 +257,7 @@ extension HabitRoomVC {
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.habitRoomMemeberCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.habitRoomMemeberCVC)
     }
 
-    private func showAlert() {
+    private func showAuthAlert() {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
 
@@ -312,6 +304,18 @@ extension HabitRoomVC {
         nextVC.userName = nickname
         
         self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    // TODO: - 더보기 버튼 클릭시 액션시트 등장
+    
+    private func showMoreAlert() {
+        print("showMoreAlert")
+    }
+    
+    // MARK: - Screen Change
+    
+    private func popToHomeVC() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - @objc Methods
