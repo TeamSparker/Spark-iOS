@@ -18,7 +18,7 @@ class CreateAuthVC: UIViewController {
     private let subTitleLabel = UILabel()
     private let photoAuthView = PhotoAuthView()
     private let timerAuthView = TimerAuthView()
-    private let enterButton = BottomButton()
+    private let enterButton = BottomButton().setTitle("대기방 입장하기")
     
     /// photoOnly가 true이면 fromStart가 false
     var photoOnly: Bool = true
@@ -56,8 +56,6 @@ class CreateAuthVC: UIViewController {
         subTitleLabel.numberOfLines = 2
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
-        
-        enterButton.setBottomButtonTitle(title: "대기방 입장하기")
         
         photoAuthView.setSelectedUI()
         timerAuthView.setDeselectedUI()
@@ -169,7 +167,7 @@ extension CreateAuthVC {
         }
         
         enterButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }

@@ -21,7 +21,7 @@ class ProfileSettingVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let completeButton = BottomButton()
+    private var completeButton = BottomButton().setTitle("가입완료").setDisable()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
     private let maxLength: Int = 10
@@ -67,10 +67,6 @@ class ProfileSettingVC: UIViewController {
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
-        
-        completeButton.setBottomButtonTitle(title: "가입완료")
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
     }
     
     private func setDelegate() {
@@ -188,10 +184,10 @@ extension ProfileSettingVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            completeButton.setAbleBottomButton()
+            completeButton.setAble()
             lineView.backgroundColor = .sparkPinkred
         } else {
-            completeButton.setDisableBottomButton()
+            completeButton.setDisable()
             lineView.backgroundColor = .sparkGray
         }
     }

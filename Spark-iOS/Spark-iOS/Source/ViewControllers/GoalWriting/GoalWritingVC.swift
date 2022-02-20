@@ -26,7 +26,7 @@ class GoalWritingVC: UIViewController {
     private let goalTextField = UITextField()
     private let goalLineView = UIView()
     private let goalCountLabel = UILabel()
-    private let completeButton = BottomButton()
+    private let completeButton = BottomButton().setTitle("작성 완료").setDisable()
     private let maxLength: Int = 15
     
     var titleText: String?
@@ -75,9 +75,6 @@ class GoalWritingVC: UIViewController {
         goalExLabel.text = "ex. 포기하지 말자 / 하루에 1페이지씩"
         goalExLabel.font = .p2Subtitle
         goalExLabel.textColor = .sparkDarkGray
-        
-        completeButton.setBottomButtonTitle(title: "작성 완료")
-        completeButton.setDisableBottomButton()
         
         whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
@@ -142,7 +139,7 @@ class GoalWritingVC: UIViewController {
             countLabel.attributedText = attributedString
             lineView.backgroundColor = .sparkPinkred
             
-            completeButton.setAbleBottomButton()
+            completeButton.setAble()
         }
     }
     
@@ -245,9 +242,9 @@ extension GoalWritingVC: UITextFieldDelegate {
         
         // 하단 버튼 색상 처리
         if whenTextField.hasText && goalTextField.hasText {
-            completeButton.setAbleBottomButton()
+            completeButton.setAble()
         } else {
-            completeButton.setDisableBottomButton()
+            completeButton.setDisable()
         }
     }
 }

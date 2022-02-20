@@ -19,7 +19,7 @@ class CreateRoomVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = BottomButton()
+    private let nextButton = BottomButton().setTitle("다음으로").setDisable()
     private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
@@ -51,8 +51,6 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.setBottomButtonTitle(title: "다음으로")
-        nextButton.setDisableBottomButton()
         lineView.backgroundColor = .sparkGray
         
         textField.borderStyle = .none
@@ -117,10 +115,10 @@ extension CreateRoomVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            nextButton.setAbleBottomButton()
+            nextButton.setAble()
             lineView.backgroundColor = .sparkPinkred
         } else {
-            nextButton.setDisableBottomButton()
+            nextButton.setDisable()
             lineView.backgroundColor = .sparkGray
         }
     }

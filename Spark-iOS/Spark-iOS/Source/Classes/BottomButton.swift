@@ -19,7 +19,6 @@ class BottomButton: UIButton {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        fatalError("init(coder:) has not been implemented")
         setUI()
         setLayout()
     }
@@ -39,17 +38,23 @@ class BottomButton: UIButton {
         }
     }
     
-    func setBottomButtonTitle(title: String) {
-        setTitle(title, for: .normal)
+    @discardableResult
+    func setTitle(_ title: String) -> Self {
+        self.setTitle(title, for: .normal)
+        return self
     }
     
-    func setAbleBottomButton() {
+    @discardableResult
+    func setAble() -> Self {
         self.backgroundColor = .sparkDarkPinkred
         self.isEnabled = true
+        return self
     }
     
-    func setDisableBottomButton() {
+    @discardableResult
+    func setDisable() -> Self {
         self.backgroundColor = .sparkGray
         self.isEnabled = false
+        return self
     }
 }

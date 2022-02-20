@@ -29,7 +29,7 @@ class AuthUploadVC: UIViewController {
     private let stopwatchLabel = UILabel()
     private let photoLabel = UILabel()
     private let betweenLine = UIView()
-    private let photoAuthButton = BottomButton()
+    private let photoAuthButton = BottomButton().setTitle("사진 인증하기")
     private let picker = UIImagePickerController()
     private var buttonStackView = UIStackView()
     private var uploadButton = UIButton()
@@ -131,8 +131,6 @@ extension AuthUploadVC {
         uploadButton.setTitle("업로드하기", for: .normal)
         uploadButton.backgroundColor = .sparkDarkPinkred
         uploadButton.isEnabled = true
-        
-        photoAuthButton.setBottomButtonTitle(title: "사진 인증하기")
         
         switch vcType {
         case .photoOnly:
