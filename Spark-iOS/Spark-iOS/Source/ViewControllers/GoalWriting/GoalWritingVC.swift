@@ -77,8 +77,7 @@ class GoalWritingVC: UIViewController {
         goalExLabel.textColor = .sparkDarkGray
         
         completeButton.setBottomButtonTitle(title: "작성 완료")
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
+        completeButton.setDisableBottomButton()
         
         whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
@@ -106,16 +105,6 @@ class GoalWritingVC: UIViewController {
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
-    }
-    
-    private func ableButton() {
-        completeButton.backgroundColor = .sparkPinkred
-        completeButton.isEnabled = true
-    }
-
-    private func disableButton() {
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
     }
     
     private func upAnimation() {
@@ -153,7 +142,7 @@ class GoalWritingVC: UIViewController {
             countLabel.attributedText = attributedString
             lineView.backgroundColor = .sparkPinkred
             
-            ableButton()
+            completeButton.setAbleBottomButton()
         }
     }
     
@@ -256,9 +245,9 @@ extension GoalWritingVC: UITextFieldDelegate {
         
         // 하단 버튼 색상 처리
         if whenTextField.hasText && goalTextField.hasText {
-            ableButton()
+            completeButton.setAbleBottomButton()
         } else {
-            disableButton()
+            completeButton.setDisableBottomButton()
         }
     }
 }
@@ -345,7 +334,7 @@ extension GoalWritingVC {
         }
         
         completeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
