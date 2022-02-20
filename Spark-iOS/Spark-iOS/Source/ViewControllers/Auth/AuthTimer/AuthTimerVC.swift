@@ -13,18 +13,18 @@ class AuthTimerVC: UIViewController {
     
     // MARK: - Properties
     
-    let titleLabel = UILabel()
-    let firstLabel = UILabel()
-    let secondLabel = UILabel()
-    let stopwatchLabel = UILabel()
-    let photoLabel = UILabel()
-    let betweenLine = UIView()
-    let divideLine = UIView()
-    let timeLabel = UILabel()
-    let bottomButton = UIButton()
-    let pauseButton = UIButton()
-    let resetButton = UIButton()
-    let closeButton = UIButton()
+    private let titleLabel = UILabel()
+    private let firstLabel = UILabel()
+    private let secondLabel = UILabel()
+    private let stopwatchLabel = UILabel()
+    private let photoLabel = UILabel()
+    private let betweenLine = UIView()
+    private let divideLine = UIView()
+    private let timeLabel = UILabel()
+    private let bottomButton = BottomButton()
+    private let pauseButton = UIButton()
+    private let resetButton = UIButton()
+    private let closeButton = UIButton()
     
     var isTimerOn: Bool = false
     var currentTimeCount: Int = 0
@@ -85,9 +85,6 @@ class AuthTimerVC: UIViewController {
         stopwatchLabel.textColor = .sparkPinkred
         photoLabel.textColor = .sparkGray
         
-        bottomButton.layer.cornerRadius = 2
-        bottomButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        
         closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         resetButton.setImage(UIImage(named: "btnReset"), for: .normal)
@@ -110,6 +107,8 @@ class AuthTimerVC: UIViewController {
         button.setTitle(title, for: UIControl.State())
         button.isEnabled = isEnable
         button.backgroundColor = backgroundColor
+        button.titleLabel?.font = .enBoldFont(ofSize: 18)
+        button.layer.cornerRadius = 2
     }
     
     // MARK: - @objc
@@ -193,7 +192,7 @@ class AuthTimerVC: UIViewController {
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
         timeLabel.text = "00:00:00"
-        setButton(bottomButton, title: "시간 측정 시작", backgroundColor: .sparkDarkPinkred, isEnable: true)
+        setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         [pauseButton, resetButton].forEach { $0.isHidden = true }
     }
@@ -278,8 +277,6 @@ extension AuthTimerVC {
         bottomButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
         
         resetButton.snp.makeConstraints { make in

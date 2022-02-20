@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */; };
+		2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */; };
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
@@ -152,6 +153,7 @@
 
 /* Begin PBXFileReference section */
 		2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFooterView.swift; sourceTree = "<group>"; };
+		2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				EBE90FDD2796C45900157075 /* StatusButton.swift */,
 				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 				F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */,
+				2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1214,6 +1217,7 @@
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
+				2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */,
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,

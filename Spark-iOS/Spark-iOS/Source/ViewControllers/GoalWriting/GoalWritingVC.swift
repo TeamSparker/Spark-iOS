@@ -26,7 +26,7 @@ class GoalWritingVC: UIViewController {
     private let goalTextField = UITextField()
     private let goalLineView = UIView()
     private let goalCountLabel = UILabel()
-    private let completeButton = UIButton()
+    private let completeButton = BottomButton().setTitle("작성 완료").setDisable()
     private let maxLength: Int = 15
     
     var titleText: String?
@@ -76,12 +76,6 @@ class GoalWritingVC: UIViewController {
         goalExLabel.font = .p2Subtitle
         goalExLabel.textColor = .sparkDarkGray
         
-        completeButton.layer.cornerRadius = 2
-        completeButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        completeButton.setTitle("작성 완료", for: .normal)
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
-        
         whenTextField.text = "\(moment ?? "")"
         whenTextField.borderStyle = .none
         whenTextField.delegate = self
@@ -108,16 +102,6 @@ class GoalWritingVC: UIViewController {
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
-    }
-    
-    private func ableButton() {
-        completeButton.backgroundColor = .sparkPinkred
-        completeButton.isEnabled = true
-    }
-
-    private func disableButton() {
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
     }
     
     private func upAnimation() {
@@ -155,7 +139,7 @@ class GoalWritingVC: UIViewController {
             countLabel.attributedText = attributedString
             lineView.backgroundColor = .sparkPinkred
             
-            ableButton()
+            completeButton.setAble()
         }
     }
     
@@ -258,9 +242,9 @@ extension GoalWritingVC: UITextFieldDelegate {
         
         // 하단 버튼 색상 처리
         if whenTextField.hasText && goalTextField.hasText {
-            ableButton()
+            completeButton.setAble()
         } else {
-            disableButton()
+            completeButton.setDisable()
         }
     }
 }
@@ -347,10 +331,8 @@ extension GoalWritingVC {
         }
         
         completeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }

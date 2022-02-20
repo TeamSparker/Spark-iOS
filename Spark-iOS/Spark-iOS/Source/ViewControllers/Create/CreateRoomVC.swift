@@ -19,7 +19,7 @@ class CreateRoomVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = UIButton()
+    private let nextButton = BottomButton().setTitle("다음으로").setDisable()
     private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
@@ -51,18 +51,12 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.layer.cornerRadius = 2
-        nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        nextButton.setTitle("다음으로", for: .normal)
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
+        lineView.backgroundColor = .sparkGray
         
         textField.borderStyle = .none
         textField.placeholder = "ex. 30분 독서"
         textField.delegate = self
         textField.tintColor = .sparkPinkred
-
-        lineView.backgroundColor = .sparkGray
 
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
@@ -78,17 +72,7 @@ class CreateRoomVC: UIViewController {
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
     }
     
-    private func ableButton() {
-        lineView.backgroundColor = .sparkPinkred
-        nextButton.backgroundColor = .sparkPinkred
-        nextButton.isEnabled = true
-    }
-    
-    private func disableButton() {
-        lineView.backgroundColor = .sparkGray
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
-    }
+    // MARK: - @objc
     
     @objc
     private func textFieldDidChange(_ notification: Notification) {
@@ -131,9 +115,11 @@ extension CreateRoomVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            ableButton()
+            nextButton.setAble()
+            lineView.backgroundColor = .sparkPinkred
         } else {
-            disableButton()
+            nextButton.setDisable()
+            lineView.backgroundColor = .sparkGray
         }
     }
 }
@@ -179,10 +165,8 @@ extension CreateRoomVC {
         }
         
         nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }
