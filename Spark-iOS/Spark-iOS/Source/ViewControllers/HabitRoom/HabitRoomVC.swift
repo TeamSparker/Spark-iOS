@@ -315,7 +315,7 @@ extension HabitRoomVC {
     // MARK: - Screen Change
     
     private func popToHomeVC() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - @objc Methods
