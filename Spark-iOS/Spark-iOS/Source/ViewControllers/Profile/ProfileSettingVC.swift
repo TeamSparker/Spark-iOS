@@ -88,18 +88,6 @@ class ProfileSettingVC: UIViewController {
         tap.addTarget(self, action: #selector(showAlter))
     }
     
-    private func ableButton() {
-        lineView.backgroundColor = .sparkPinkred
-        completeButton.backgroundColor = .sparkPinkred
-        completeButton.isEnabled = true
-    }
-    
-    private func disableButton() {
-        lineView.backgroundColor = .sparkGray
-        completeButton.backgroundColor = .sparkGray
-        completeButton.isEnabled = false
-    }
-    
     private func openLibrary() {
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
@@ -200,9 +188,11 @@ extension ProfileSettingVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            ableButton()
+            completeButton.setAbleBottomButton()
+            lineView.backgroundColor = .sparkPinkred
         } else {
-            disableButton()
+            completeButton.setDisableBottomButton()
+            lineView.backgroundColor = .sparkGray
         }
     }
 }
@@ -271,7 +261,7 @@ extension ProfileSettingVC {
         }
         
         completeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
