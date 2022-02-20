@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+import SnapKit
+
+/// 좌측 1개의 버튼을 가진 네비게이션 바.
+/// - SparkNavigationBar 를 상속 받아서 배경과 title 설정가능하다.
 class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     // MARK: - Properties

@@ -10,6 +10,7 @@ import UIKit
 
 import SnapKit
 
+/// 뷰와 타이틀을 가진 네비게이션 바.
 class SparkNavigationBar: UIView {
     
     // MARK: - Properties
