@@ -71,6 +71,8 @@ class RightTwoButtonNavigationBar: SparkNavigationBar {
         if let firstButtonImage = firstButtonImage, let secondButtonImage = secondButtonImage {
             self.firstRightButton.setImage(firstButtonImage, for: .normal)
             self.secondRightButton.setImage(secondButtonImage, for: .normal)
+        } else {
+            print("image is nil.")
         }
         
         return self

@@ -61,7 +61,7 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
         return self
     }
     
-    /// set tint color of left button
+    /// set tint color of left button.
     /// - default color is sparkBlack.
     @discardableResult
     func tintColor(_ color: UIColor) -> Self {
@@ -73,7 +73,7 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     /// add action to reft button.
     @discardableResult
-    func action(_ selector: Selector) -> Self {
+    func leftButonaction(_ selector: Selector) -> Self {
         self.leftButton.addTarget(self, action: selector, for: .touchUpInside)
         
         return self

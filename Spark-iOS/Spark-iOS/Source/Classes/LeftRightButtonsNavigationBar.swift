@@ -61,22 +61,19 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
         return self
     }
     
-    /// set tint color of left button
+    /// set tint color of left button.
     /// - default color is sparkBlack.
     @discardableResult
     override func tintColor(_ color: UIColor) -> Self {
         super.tintColor(color)
-        
-        self.rightButton.tintColor = color
+            .rightButton.tintColor = color
         
         return self
     }
     
-    /// add action to reft, right button.
+    /// add action to right button.
     @discardableResult
-    func actions(_ reftButtonSelector: Selector, _ rightButtonSelector: Selector) -> Self {
-        super.action(reftButtonSelector)
-        
+    func actions(_ rightButtonSelector: Selector) -> Self {
         self.rightButton.addTarget(self, action: rightButtonSelector, for: .touchUpInside)
         
         return self
