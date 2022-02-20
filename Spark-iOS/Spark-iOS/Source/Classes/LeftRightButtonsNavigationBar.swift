@@ -42,7 +42,7 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     // MARK: - Methods
     
     private func setLayout() {
-        self.addSubview(leftButton)
+        self.addSubview(rightButton)
         
         self.rightButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(20)
