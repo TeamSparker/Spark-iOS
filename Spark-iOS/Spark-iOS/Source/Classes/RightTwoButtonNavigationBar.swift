@@ -12,7 +12,7 @@ import SnapKit
 
 /// 우측 2개의 버튼을 가진 네비게이션 바.
 /// - SparkNavigationBar 를 상속 받아서 배경과 title 설정가능하다.
-class RightTwoButtonNavigationBar: SparkNavigationBar {
+final class RightTwoButtonNavigationBar: SparkNavigationBar {
     
     // MARK: - Properties
     
