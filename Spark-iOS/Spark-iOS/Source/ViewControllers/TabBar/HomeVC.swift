@@ -44,14 +44,6 @@ class HomeVC: UIViewController {
         
         tabBarController?.tabBar.isHidden = false
         
-        // FIXME: - 네비바 성공하면 지우기
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
-//                                                            tintColor: .sparkBlack,
-//                                                            backgroundColor: .sparkWhite,
-//                                                            firstButtonSelector: #selector(presentToProfileVC),
-//                                                            secondButtonSelector: #selector(presentToAertVC))
-        
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
         
         self.habitRoomLastID = -1
@@ -79,8 +71,12 @@ extension HomeVC {
         
         // set navigation bar.
         customNavigationBar
-            .buttonsImage(UIImage(named: "icProfile"), UIImage(named: "icNotice"))
-            .actions(#selector(presentToProfileVC), #selector(presentToAlertVC))
+            .buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToProfileVC()
+            }, {
+                self.presentToAlertVC()
+            })
         
         // set collectionView
         mainCollectionView.backgroundColor = .clear
@@ -115,8 +111,14 @@ extension HomeVC {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage(UIImage(named: "icProfile"), (UIImage(named: "icNotice")))
-            .actions(#selector(presentToProfileVC), #selector(presentToAlertVC))
+        
+        let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToProfileVC()
+            }, {
+                self.presentToAlertVC()
+            })
+        
         loadingBgView.addSubviews([loadingView, customNavigationBar])
         
         customNavigationBar.snp.makeConstraints {
@@ -134,14 +136,12 @@ extension HomeVC {
         loadingView.play()
     }
     
-    // TODO: - 화면전환
+    // MARK: - Screen Change
     
-    @objc
     private func presentToProfileVC() {
         print("presentToProfileVC")
     }
-    
-    @objc
+
     private func presentToAlertVC() {
         print("presentToAlertVC")
     }
