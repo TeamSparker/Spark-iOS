@@ -53,8 +53,8 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     /// set image of left button.
     /// - default image is UIImage().
     @discardableResult
-    func leftButtonImage(_ image: UIImage?) -> Self {
-        if let image = image {
+    func leftButtonImage(_ image: String) -> Self {
+        if let image = UIImage(named: image)?.withRenderingMode(.alwaysTemplate) {
             self.leftButton.setImage(image, for: .normal)
         } else {
             print("image is nil.")

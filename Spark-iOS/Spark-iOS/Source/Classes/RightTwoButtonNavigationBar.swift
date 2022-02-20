@@ -67,8 +67,9 @@ class RightTwoButtonNavigationBar: SparkNavigationBar {
     /// set image of first, second button.
     /// - default image is UIImage()
     @discardableResult
-    func buttonsImage(_ firstButtonImage: UIImage?, _ secondButtonImage: UIImage?) -> Self {
-        if let firstButtonImage = firstButtonImage, let secondButtonImage = secondButtonImage {
+    func buttonsImage(_ firstButtonImage: String, _ secondButtonImage: String) -> Self {
+        if let firstButtonImage = UIImage(named: firstButtonImage)?.withRenderingMode(.alwaysTemplate),
+           let secondButtonImage = UIImage(named: secondButtonImage)?.withRenderingMode(.alwaysTemplate) {
             self.firstRightButton.setImage(firstButtonImage, for: .normal)
             self.secondRightButton.setImage(secondButtonImage, for: .normal)
         } else {

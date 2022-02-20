@@ -53,8 +53,8 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     /// set image of left button.
     /// - default image is UIImage().
     @discardableResult
-    func rightButtonImage(_ image: UIImage?) -> Self {
-        if let image = image {
+    func rightButtonImage(_ image: String) -> Self {
+        if let image = UIImage(named: image)?.withRenderingMode(.alwaysTemplate) {
             self.rightButton.setImage(image, for: .normal)
         } else {
             print("image is nil.")
