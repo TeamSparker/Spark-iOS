@@ -105,25 +105,11 @@ extension HomeVC {
         loadingBgView.image = UIImage(named: "bgLinegridForWhite")
         loadingBgView.contentMode = .scaleAspectFill
         loadingBgView.clipsToBounds = true
-        view.addSubview(loadingBgView)
+        view.addSubviews([loadingBgView, loadingView, customNavigationBar])
         
         loadingBgView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage("icProfile", "icNotice")
-            .actions({
-                self.presentToProfileVC()
-            }, {
-                self.presentToAlertVC()
-            })
-        
-        loadingBgView.addSubviews([loadingView, customNavigationBar])
-        
-        customNavigationBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
         }
         
         loadingView.snp.makeConstraints {
@@ -134,6 +120,20 @@ extension HomeVC {
         loadingView.loopMode = .loop
         loadingView.contentMode = .scaleAspectFit
         loadingView.play()
+        
+        let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToProfileVC()
+            }, {
+                self.presentToAlertVC()
+            })
+        
+        loadingBgView.addSubview(customNavigationBar)
+        
+        customNavigationBar.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
     }
     
     // MARK: - Screen Change
@@ -269,6 +269,7 @@ extension HomeVC {
             switch response {
             case .success(let data):
                 self.loadingView.stop()
+                self.loadingView.removeFromSuperview()
                 self.loadingBgView.removeFromSuperview()
                 if let habitRooms = data as? HabitRoom {
                     self.habitRoomList?.append(contentsOf: habitRooms.rooms)

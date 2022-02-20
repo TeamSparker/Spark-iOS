@@ -24,7 +24,6 @@ class StorageVC: UIViewController {
     
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
-    // FIXME: 무한스크롤 관련 수정하기, 셀이 반복되는 문제
     private var isInfiniteScroll: Bool = false
     private var tagCount: Int = 1
     
@@ -117,6 +116,7 @@ class StorageVC: UIViewController {
                         }
                         
                         self.loadingView.stop()
+                        self.loadingView.removeFromSuperview()
                         self.loadingBgView.removeFromSuperview()
                     }
                 }
@@ -167,13 +167,14 @@ extension StorageVC {
     
     private func setLoading() {
         loadingBgView.image = UIImage(named: "bgLinegridForWhite")
-        view.addSubview(loadingBgView)
+        loadingBgView.contentMode = .scaleAspectFill
+        loadingBgView.clipsToBounds = true
+        view.addSubviews([loadingBgView, loadingView])
         
-        loadingBgView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        loadingBgView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
-        
-        loadingBgView.addSubview(loadingView)
         
         loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -183,6 +184,15 @@ extension StorageVC {
         loadingView.loopMode = .loop
         loadingView.contentMode = .scaleAspectFit
         loadingView.play()
+        
+        loadingTopView.backgroundColor = .sparkWhite
+        
+        loadingBgView.addSubview(loadingTopView)
+        
+        loadingTopView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
     }
     
     private func setUI() {
@@ -289,7 +299,6 @@ extension StorageVC {
 
 // 애니메이션 및 버튼액션
 extension StorageVC {
-
     private func makeDraw(rect: CGRect) {
         let animateView = LineAnimationView(frame: rect)
         
