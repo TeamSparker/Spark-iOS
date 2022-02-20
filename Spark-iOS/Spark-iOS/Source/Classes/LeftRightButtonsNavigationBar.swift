@@ -65,7 +65,7 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
         return self
     }
     
-    /// set tint color of left button.
+    /// set tint color of left, right button.
     /// - default color is sparkBlack.
     @discardableResult
     override func tintColor(_ color: UIColor) -> Self {
