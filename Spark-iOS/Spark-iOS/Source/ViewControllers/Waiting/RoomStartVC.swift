@@ -40,8 +40,8 @@ class RoomStartVC: UIViewController {
         titleLabel.textColor = .sparkMoreDeepGray
         titleLabel.font = .p1Title
         
-        userImageView.backgroundColor = .sparkMoreDeepGray
-        phoneImageView.backgroundColor = .sparkMoreDeepGray
+        userImageView.image = UIImage(named: "icBanuser")
+        phoneImageView.image = UIImage(named: "icPhone")
         
         firstLabel.text = "첫째, 습관 시작 후에는 인원 추가가\n불가능해요."
         firstLabel.textColor = .sparkDarkGray
