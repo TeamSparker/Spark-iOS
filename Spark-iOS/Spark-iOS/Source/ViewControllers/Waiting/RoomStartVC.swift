@@ -7,9 +7,12 @@
 
 import UIKit
 
+import SnapKit
+
 class RoomStartVC: UIViewController {
     
     // MARK: - Properties
+    
     private let popupView = UIView()
     private let titleLabel = UILabel()
     private let userImageView = UIImageView()
@@ -27,9 +30,11 @@ class RoomStartVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setAddTarget()
     }
     
     // MARK: - Custom Method
+    
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         
@@ -65,13 +70,34 @@ class RoomStartVC: UIViewController {
         startButton.titleLabel?.font = .krMediumFont(ofSize: 16)
     }
     
+    private func setAddTarget() {
+        cancelButton.addTarget(self, action: #selector(dismissRoomStart), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchStartButton), for: .touchUpInside)
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    func touchStartButton() {
+        // TODO: - 서버연결
+    }
+    
+    @objc
+    func dismissRoomStart() {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Layout
+
+extension RoomStartVC {
     private func setLayout() {
         view.addSubview(popupView)
         
         popupView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(250)
+            make.height.equalTo((UIScreen.main.bounds.width - 40) * 250 / 335)
         }
         
         popupView.addSubviews([titleLabel, userImageView, phoneImageView,

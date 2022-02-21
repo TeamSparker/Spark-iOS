@@ -216,7 +216,7 @@ extension WaitingVC {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
-        startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchToStartButton), for: .touchUpInside)
         toolTipButton.addTarget(self, action: #selector(touchPresentToolTip), for: .touchUpInside)
         tapGestrueRecognizer.addTarget(self, action: #selector(quickDismissToolTip))
     }
@@ -402,26 +402,33 @@ extension WaitingVC {
     }
     
     @objc
-    private func touchToCreateButton() {
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
+    private func touchToStartButton() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
-        DispatchQueue.main.async {
-            self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
-                switch self.fromWhereStatus {
-                case .fromHome:
-                    self.popToHomeVC()
-                case .makeRoom:
-                    self.dismissToHomeVC()
-                case .joinCode:
-                    // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
-                    return
-                case .none:
-                    print("fromeWhereStatus 를 지정해주세요.")
-                }
-            }
-        }
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(nextVC, animated: true, completion: nil)
+        
+//        DispatchQueue.main.async {
+//            self.setLoading()
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
+//                switch self.fromWhereStatus {
+//                case .fromHome:
+//                    self.popToHomeVC()
+//                case .makeRoom:
+//                    self.dismissToHomeVC()
+//                case .joinCode:
+//                    // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
+//                    return
+//                case .none:
+//                    print("fromeWhereStatus 를 지정해주세요.")
+//                }
+//            }
+//        }
     }
 }
 
