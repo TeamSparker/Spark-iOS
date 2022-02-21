@@ -50,12 +50,32 @@ extension UIFont {
         return UIFont(name: AppFontName.enBold, size: 31.0)!
     }
     
+    @nonobjc class var h1BigtitleEng2: UIFont {
+        return UIFont(name: AppFontName.enBold, size: 24.0)!
+    }
+    
     @nonobjc class var h1Bigtitle: UIFont {
         return UIFont(name: AppFontName.krBold, size: 24.0)!
     }
     
+    @nonobjc class var h1BigtitleLight: UIFont {
+        return UIFont(name: AppFontName.krMeduim, size: 24.0)!
+    }
+    
+    @nonobjc class var h1TitleLight: UIFont {
+        return UIFont(name: AppFontName.krRegular, size: 20.0)!
+    }
+    
+    @nonobjc class var h2TitleLight: UIFont {
+        return UIFont(name: AppFontName.krRegular, size: 20.0)!
+    }
+    
     @nonobjc class var h2TitleEng: UIFont {
         return UIFont(name: AppFontName.enBold, size: 20.0)!
+    }
+    
+    @nonobjc class var h2TitleEngLight: UIFont {
+        return UIFont(name: AppFontName.enMedium, size: 20.0)!
     }
     
     @nonobjc class var h2Title: UIFont {
@@ -76,6 +96,10 @@ extension UIFont {
     
     @nonobjc class var h3Subtitle: UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 18.0)!
+    }
+    
+    @nonobjc class var h3SubtitleLight: UIFont {
+        return UIFont(name: AppFontName.krRegular, size: 18.0)!
     }
     
     @nonobjc class var btn2: UIFont {
@@ -100,6 +124,10 @@ extension UIFont {
     
     @nonobjc class var p2SubtitleEng: UIFont {
         return UIFont(name: AppFontName.enMedium, size: 14.0)!
+    }
+    
+    @nonobjc class var btn4Small: UIFont {
+        return UIFont(name: AppFontName.krMeduim, size: 14.0)!
     }
     
     @nonobjc class var p2Subtitle: UIFont {
