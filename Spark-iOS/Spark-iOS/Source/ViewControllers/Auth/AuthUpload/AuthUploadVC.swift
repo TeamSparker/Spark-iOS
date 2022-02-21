@@ -17,7 +17,7 @@ import Lottie
 
 class AuthUploadVC: UIViewController {
     
-    public var resizeRatio: CGFloat = 0.5
+    public var resizeRatio: CGFloat = 0.8
     
     // MARK: - Properties
     

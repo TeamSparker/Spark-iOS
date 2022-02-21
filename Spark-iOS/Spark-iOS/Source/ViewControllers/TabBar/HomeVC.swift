@@ -119,7 +119,12 @@ extension HomeVC {
     
     @objc
     private func presentToProfileVC() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(nextVC, animated: true, completion: nil)
     }
     
     @objc
