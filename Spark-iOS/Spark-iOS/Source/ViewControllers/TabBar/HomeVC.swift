@@ -25,6 +25,8 @@ class HomeVC: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var customNavigationBar: RightTwoButtonNavigationBar!
+    @IBOutlet weak var bgView: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
     // MARK: - View Life Cycle
@@ -42,18 +44,11 @@ class HomeVC: UIViewController {
         
         tabBarController?.tabBar.isHidden = false
         
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithRightTwoCustomButtons(navigationItem: self.navigationItem,
-                                                            tintColor: .sparkBlack,
-                                                            backgroundColor: .sparkWhite,
-                                                            firstButtonSelector: #selector(presentToProfileVC),
-                                                            secondButtonSelector: #selector(presentToAertVC))
-        
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
         
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
-        // 다른탭에서 돌아올때 엠티뷰가 habitRoomList 갯수만큼 여러개 등장하던 부분 해결.
+        
         self.mainCollectionView.reloadData()
         
         DispatchQueue.main.async {
@@ -72,6 +67,17 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     private func setUI() {
+        bgView.contentMode = .scaleAspectFill
+        
+        // set navigation bar.
+        customNavigationBar
+            .buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToProfileVC()
+            }, {
+                self.presentToAlertVC()
+            })
+        
         // set collectionView
         mainCollectionView.backgroundColor = .clear
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -97,34 +103,47 @@ extension HomeVC {
     
     private func setLoading() {
         loadingBgView.image = UIImage(named: "bgLinegridForWhite")
-        view.addSubview(loadingBgView)
+        loadingBgView.contentMode = .scaleAspectFill
+        loadingBgView.clipsToBounds = true
+        view.addSubviews([loadingBgView, loadingView, customNavigationBar])
         
-        loadingBgView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        loadingBgView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        loadingBgView.addSubview(loadingView)
-        
-        loadingView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(100)
+        loadingView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(100)
         }
         
         loadingView.loopMode = .loop
         loadingView.contentMode = .scaleAspectFit
         loadingView.play()
+        
+        let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToProfileVC()
+            }, {
+                self.presentToAlertVC()
+            })
+        
+        loadingBgView.addSubview(customNavigationBar)
+        
+        customNavigationBar.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
     }
     
-    // TODO: - 화면전환
+    // MARK: - Screen Change
     
-    @objc
     private func presentToProfileVC() {
-        
+        print("presentToProfileVC")
     }
-    
-    @objc
-    private func presentToAertVC() {
-        
+
+    private func presentToAlertVC() {
+        print("presentToAlertVC")
     }
 }
 
@@ -250,6 +269,7 @@ extension HomeVC {
             switch response {
             case .success(let data):
                 self.loadingView.stop()
+                self.loadingView.removeFromSuperview()
                 self.loadingBgView.removeFromSuperview()
                 if let habitRooms = data as? HabitRoom {
                     self.habitRoomList?.append(contentsOf: habitRooms.rooms)

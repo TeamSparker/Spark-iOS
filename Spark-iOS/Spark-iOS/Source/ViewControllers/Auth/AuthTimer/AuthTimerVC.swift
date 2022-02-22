@@ -13,7 +13,6 @@ class AuthTimerVC: UIViewController {
     
     // MARK: - Properties
     
-    private let titleLabel = UILabel()
     private let firstLabel = UILabel()
     private let secondLabel = UILabel()
     private let stopwatchLabel = UILabel()
@@ -24,7 +23,7 @@ class AuthTimerVC: UIViewController {
     private let bottomButton = BottomButton()
     private let pauseButton = UIButton()
     private let resetButton = UIButton()
-    private let closeButton = UIButton()
+    private let customNavigationBar = LeftButtonNavigaitonBar()
     
     var isTimerOn: Bool = false
     var currentTimeCount: Int = 0
@@ -54,22 +53,18 @@ class AuthTimerVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        if let name = roomName {
-            navigationController?.initWithLeftButtonTitle(title: "\(name)",
-                                                          tintColor: .sparkBlack,
-                                                          backgroundColor: .sparkWhite,
-                                                          image: UIImage(named: "icQuit"),
-                                                          selector: #selector(dismissToHabitRoom))
-        }
+        customNavigationBar.title(roomName ?? "")
+            .leftButtonImage("icQuit")
+            .leftButonAction {
+                self.dismissToHabitRoom()
+            }
         
-        titleLabel.text = "\(roomName ?? "-")"
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
         photoLabel.text = "사진"
         timeLabel.text = "00:00:00"
         
-        titleLabel.font = .h3Subtitle
         firstLabel.font = .enMediumFont(ofSize: 18)
         secondLabel.font = .enMediumFont(ofSize: 18)
         stopwatchLabel.font = .krMediumFont(ofSize: 18)
@@ -79,13 +74,11 @@ class AuthTimerVC: UIViewController {
         betweenLine.backgroundColor = .sparkPinkred
         divideLine.backgroundColor = .sparkLightGray
         
-        titleLabel.textColor = .sparkBlack
         firstLabel.textColor = .sparkPinkred
         secondLabel.textColor = .sparkGray
         stopwatchLabel.textColor = .sparkPinkred
         photoLabel.textColor = .sparkGray
         
-        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
         resetButton.setImage(UIImage(named: "btnReset"), for: .normal)
         
@@ -93,7 +86,6 @@ class AuthTimerVC: UIViewController {
     }
     
     private func setAddTarget() {
-        closeButton.addTarget(self, action: #selector(dismissToHabitRoom), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(startPauseTimer(_:)), for: .touchUpInside)
         resetButton.addTarget(self, action: #selector(showResetPopup), for: .touchUpInside)
         bottomButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
@@ -111,8 +103,6 @@ class AuthTimerVC: UIViewController {
         button.layer.cornerRadius = 2
     }
     
-    // MARK: - @objc
-    @objc
     func dismissToHabitRoom() {
         if timeLabel.text != "00:00:00" {
             guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
@@ -127,6 +117,8 @@ class AuthTimerVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    // MARK: - @objc
     
     @objc
     func startPauseTimer(_ sender: AnyObject) {
@@ -220,24 +212,19 @@ class AuthTimerVC: UIViewController {
 // MARK: - Layout
 extension AuthTimerVC {
     private func setLayout() {
-        view.addSubviews([titleLabel, closeButton, firstLabel, secondLabel,
+        view.addSubviews([customNavigationBar, firstLabel, secondLabel,
                           stopwatchLabel, photoLabel, betweenLine,
                           divideLine, timeLabel, bottomButton,
                          pauseButton, resetButton])
         
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.leading.equalToSuperview().inset(20)
-            make.width.height.equalTo(24)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalTo(closeButton.snp.centerY)
+        customNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
         }
         
         betweenLine.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(32+44)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(32)
             make.centerX.equalToSuperview()
             make.width.equalTo(60)
             make.height.equalTo(2)

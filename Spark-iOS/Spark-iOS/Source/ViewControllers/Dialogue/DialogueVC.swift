@@ -9,7 +9,8 @@ import UIKit
 
 import SnapKit
 
-@frozen enum DialogueType {
+@frozen
+enum DialogueType {
     case exitSignUp
     case exitAuth
     case resetTimer
@@ -82,7 +83,6 @@ extension DialogueVC {
             
         case .none:
             print("dialogueType을 지정해주세요")
-            
         }
     }
     
