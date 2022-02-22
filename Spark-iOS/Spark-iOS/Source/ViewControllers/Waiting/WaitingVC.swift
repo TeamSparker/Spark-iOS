@@ -49,6 +49,8 @@ class WaitingVC: UIViewController {
     private let refreshButton = UIButton()
     private let startButton = BottomButton().setTitle("습관 시작하기")
     
+    private var customNavigationBar = LeftRightButtonsNavigationBar()
+    
     private let tapGestrueRecognizer = UITapGestureRecognizer()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
@@ -77,7 +79,7 @@ class WaitingVC: UIViewController {
         setCollectionView()
         setAddTarget()
         setAuthLabel()
-        setNavigation(title: roomName ?? "")
+        setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
     }
     
@@ -97,37 +99,41 @@ class WaitingVC: UIViewController {
 // MARK: - Methods
 
 extension WaitingVC {
-    private func setNavigation(title: String) {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    private func setNavigationBar(title: String) {
+        self.navigationController?.isNavigationBarHidden = true
         
         switch fromWhereStatus {
         case .fromHome:
-            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                                title: "\(title)",
-                                                                tintColor: .sparkBlack,
-                                                                backgroundColor: .sparkWhite,
-                                                                reftButtonImage: UIImage(named: "icBackWhite"),
-                                                                rightButtonImage: UIImage(),
-                                                                reftButtonSelector: #selector(popToHomeVC),
-                                                                rightButtonSelector: #selector(touchToMore))
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
+            customNavigationBar.title(title)
+                .leftButtonImage("icBackWhite")
+                .leftButonAction {
+                    self.popToHomeVC()
+                }
+                .rightButtonImage("icMoreVerticalBlack")
+                .rightButtonAction {
+                    self.presentToMoreAlert()
+                }
         case .joinCode:
-            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                                title: "\(title)",
-                                                                tintColor: .sparkBlack,
-                                                                backgroundColor: .sparkWhite,
-                                                                reftButtonImage: UIImage(named: "icHome"),
-                                                                rightButtonImage: UIImage(),
-                                                                reftButtonSelector: #selector(dismissJoinCodeToHomeVC),
-                                                                rightButtonSelector: #selector(touchToMore))
+            customNavigationBar.title(title)
+                .leftButtonImage("icHome")
+                .leftButonAction {
+                    self.dismissJoinCodeToHomeVC()
+                }
+                .rightButtonImage("icMoreVerticalBlack")
+                .rightButtonAction {
+                    self.presentToMoreAlert()
+                }
         case .makeRoom:
-            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                                title: "\(title)",
-                                                                tintColor: .sparkBlack,
-                                                                backgroundColor: .sparkWhite,
-                                                                reftButtonImage: UIImage(named: "icHome"),
-                                                                rightButtonImage: UIImage(),
-                                                                reftButtonSelector: #selector(dismissToHomeVC),
-                                                                rightButtonSelector: #selector(touchToMore))
+            customNavigationBar.title(title)
+                .leftButtonImage("icHome")
+                .leftButonAction {
+                    self.dismissToHomeVC()
+                }
+                .rightButtonImage("icMoreVerticalBlack")
+                .rightButtonAction {
+                    self.presentToMoreAlert()
+                }
         case .none:
             print("fromeWhereStatus 를 지정해주세요.")
         }
@@ -338,6 +344,29 @@ extension WaitingVC {
         view.addGestureRecognizer(tapGestrueRecognizer)
     }
     
+    private func presentToMoreAlert() {
+        
+        // TODO: - 더보기 버튼
+        
+        print("touchToMore")
+    }
+    
+    // MARK: - Screen Change
+    
+    private func popToHomeVC() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func dismissToHomeVC() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true)
+    }
+    
+    private func dismissJoinCodeToHomeVC() {
+        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+    
+    
     // MARK: - @objc
     
     @objc
@@ -370,29 +399,6 @@ extension WaitingVC {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) { [self] in
             dismissToolTip()
         }
-    }
-    
-    @objc
-    private func popToHomeVC() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc
-    private func dismissToHomeVC() {
-        presentingViewController?.presentingViewController?.dismiss(animated: true)
-    }
-    
-    @objc
-    private func dismissJoinCodeToHomeVC() {
-        presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
-        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
-    }
-    
-    @objc
-    private func touchToMore() {
-        
-        // TODO: - 더보기 버튼
-        
     }
     
     @objc
@@ -533,16 +539,22 @@ extension WaitingVC: UICollectionViewDelegateFlowLayout {
 
 extension WaitingVC {
     func setLayout() {
-        view.addSubviews([copyButton, checkTitleLabel, toolTipButton,
+        view.addSubviews([customNavigationBar, copyButton, checkTitleLabel, toolTipButton,
                           stopwatchLabel, checkDivideView, photoLabel,
                           firstDivideView, goalTitleLabel, profileImageView,
                           nicknameLabel, timeLabel, goalLabel, editButton,
                           secondDivideView, friendTitleLabel, friendCountLabel,
                           friendSubTitleLabel, refreshButton, collectionView, startButton, toolTipImageView])
         
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
         copyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(6)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(6)
             make.width.equalTo(87)
             make.height.equalTo(36)
         }

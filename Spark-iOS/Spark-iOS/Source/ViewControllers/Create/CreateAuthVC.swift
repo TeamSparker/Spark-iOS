@@ -19,6 +19,7 @@ class CreateAuthVC: UIViewController {
     private let photoAuthView = PhotoAuthView()
     private let timerAuthView = TimerAuthView()
     private let enterButton = BottomButton().setTitle("대기방 입장하기")
+    private let customNavigationBar = LeftButtonNavigaitonBar()
     
     /// photoOnly가 true이면 fromStart가 false
     var photoOnly: Bool = true
@@ -27,13 +28,9 @@ class CreateAuthVC: UIViewController {
     
     // MARK: - View Life Cycles
     
-    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.isNavigationBarHidden = false
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
+
         setUI()
         setLayout()
         setAddTarget()
@@ -44,9 +41,11 @@ class CreateAuthVC: UIViewController {
     // MARK: - Methods
     
     private func setUI() {
-        navigationController?.initWithBackButtonTitle(title: "",
-                                                      tintColor: .sparkBlack,
-                                                      backgroundColor: .sparkWhite)
+        customNavigationBar.title("")
+            .leftButtonImage("icBackWhite")
+            .leftButonAction {
+                self.popToCreatRoomVC()
+            }
         
         titleLabel.text = "어떻게 습관을 인증할까요?"
         titleLabel.font = .h2Title
@@ -109,6 +108,12 @@ class CreateAuthVC: UIViewController {
         setAuthViewState()
     }
     
+    // MARK: - Screen Change
+    
+    private func popToCreatRoomVC() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc
     private func popToCreateRoomVC() {
         navigationController?.popViewController(animated: true)
@@ -142,10 +147,16 @@ extension CreateAuthVC {
 // MARK: - Layout
 extension CreateAuthVC {
     private func setLayout() {
-        view.addSubviews([titleLabel, subTitleLabel, photoAuthView, timerAuthView, enterButton])
+        view.addSubviews([customNavigationBar, titleLabel, subTitleLabel, photoAuthView, timerAuthView, enterButton])
+        
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(12)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(20)
         }
         

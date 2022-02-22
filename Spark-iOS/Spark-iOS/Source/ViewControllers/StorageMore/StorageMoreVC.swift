@@ -19,6 +19,8 @@ class StorageMoreVC: UIViewController {
     private var myRoomCertificationList: [CertiRecord]? = []
     private var myRoomCertificationLastID: Int = -1
     
+    private let customNavigationBar = LeftButtonNavigaitonBar()
+    
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -67,26 +69,38 @@ extension StorageMoreVC {
     }
     
     private func setUI() {
-        view.backgroundColor = .sparkBlack
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.initWithBackButtonTitle(title: titleText ?? "", tintColor: .sparkWhite, backgroundColor: .sparkBlack)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        customNavigationBar.title(titleText ?? "")
+            .tintColor(.sparkWhite)
+            .backgroundColor(.sparkBlack)
+            .leftButtonImage("icBackWhite")
+            .leftButonAction {
+                self.popToStorageVC()
+            }
 
         tabBarController?.tabBar.isHidden = true
     }
     
     private func setLayout() {
-        view.addSubview(storageMoreCV)
+        view.addSubviews([customNavigationBar, storageMoreCV])
+        
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
         storageMoreCV.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(customNavigationBar.snp.bottom)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }
     
-    // MARK: - @objc
+    // Screen Change
     
-    @objc
     private func popToStorageVC() {
         navigationController?.popViewController(animated: true)
     }
@@ -175,5 +189,13 @@ extension StorageMoreVC {
                 print("getMyRoomCertiWithAPI - networkFail")
             }
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+// FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
+extension StorageMoreVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
