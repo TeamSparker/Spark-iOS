@@ -42,7 +42,10 @@ extension MainTBC {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
         
         let homeNVC = UINavigationController(rootViewController: homeVC)
+        homeNVC.isNavigationBarHidden = true
+        
         let storageNVC = UINavigationController(rootViewController: storageVC)
+        storageNVC.isNavigationBarHidden = true
         
         setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
         

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,13 +24,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLinegridForWhite" translatesAutoresizingMaskIntoConstraints="NO" id="7CY-t7-rAc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlI-kd-tu0">
-                                <rect key="frame" x="20" y="376.5" width="374" height="135"/>
+                                <rect key="frame" x="20" y="371.5" width="374" height="145.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 습관 카드가 없어요. 인증과 함께 카드를 모아보세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-OR-VCJ">
-                                        <rect key="frame" x="76" y="93" width="222.5" height="42"/>
+                                        <rect key="frame" x="70.5" y="93" width="233.5" height="52.5"/>
                                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
@@ -53,24 +53,26 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzV-np-QNI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MT4-Vb-RcE"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JlI-kd-tu0" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-4" id="4Bz-SF-bcP"/>
-                            <constraint firstItem="JzV-np-QNI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="5lL-B0-nUl"/>
                             <constraint firstItem="JlI-kd-tu0" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="5tO-N6-mqD"/>
+                            <constraint firstItem="JzV-np-QNI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="64C-c4-hpq"/>
                             <constraint firstAttribute="bottom" secondItem="7CY-t7-rAc" secondAttribute="bottom" id="Bt2-UD-u3c"/>
                             <constraint firstAttribute="trailing" secondItem="JzV-np-QNI" secondAttribute="trailing" id="M6p-pZ-Z7M"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JlI-kd-tu0" secondAttribute="trailing" constant="20" id="NMO-fx-bCI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7CY-t7-rAc" secondAttribute="trailing" id="aV0-0x-IaE"/>
-                            <constraint firstItem="7CY-t7-rAc" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="beD-gh-7p6"/>
+                            <constraint firstItem="7CY-t7-rAc" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="eK4-my-CJN"/>
                             <constraint firstItem="7CY-t7-rAc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ixb-mD-Dvh"/>
                             <constraint firstItem="JlI-kd-tu0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kzE-Cm-hKa"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="JzV-np-QNI" secondAttribute="bottom" constant="-60" id="wcy-bX-wlY"/>
                             <constraint firstItem="JzV-np-QNI" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="zLV-jh-Oh7"/>
                         </constraints>
                     </view>

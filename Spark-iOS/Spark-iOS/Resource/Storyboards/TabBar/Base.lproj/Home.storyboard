@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLinegridForWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-Wy-fj3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-om-6bn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NRt-6s-e02">
                                     <size key="itemSize" width="128" height="128"/>
@@ -41,27 +41,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LT-Mm-fKh" customClass="RightTwoButtonNavigationBar" customModule="Spark_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="cSI-Ej-VVH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4LT-Mm-fKh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="89B-3J-dWl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RxS-om-6bn" secondAttribute="trailing" id="ARS-hs-rm7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sqg-Wy-fj3" secondAttribute="trailing" id="BFz-qZ-ZNe"/>
-                            <constraint firstItem="RxS-om-6bn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BOC-kQ-qjc"/>
-                            <constraint firstItem="Sqg-Wy-fj3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IeI-L5-32z"/>
+                            <constraint firstItem="Sqg-Wy-fj3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IeI-L5-32z"/>
                             <constraint firstAttribute="bottom" secondItem="Sqg-Wy-fj3" secondAttribute="bottom" id="ZIW-DD-9lc"/>
                             <constraint firstItem="Sqg-Wy-fj3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZMj-YB-gq1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4LT-Mm-fKh" secondAttribute="trailing" id="e2g-Jw-pzo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RxS-om-6bn" secondAttribute="bottom" id="jbq-Db-2Qd"/>
+                            <constraint firstItem="RxS-om-6bn" firstAttribute="top" secondItem="4LT-Mm-fKh" secondAttribute="bottom" id="lEH-ws-bEb"/>
                             <constraint firstItem="RxS-om-6bn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wMc-qe-enf"/>
+                            <constraint firstItem="4LT-Mm-fKh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xKm-LC-i9O"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bgView" destination="Sqg-Wy-fj3" id="i0x-f5-YGF"/>
+                        <outlet property="customNavigationBar" destination="4LT-Mm-fKh" id="HWB-ew-wEt"/>
                         <outlet property="mainCollectionView" destination="RxS-om-6bn" id="13K-TD-lFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="98"/>
+            <point key="canvasLocation" x="-26.086956521739133" y="97.767857142857139"/>
         </scene>
     </scenes>
     <resources>

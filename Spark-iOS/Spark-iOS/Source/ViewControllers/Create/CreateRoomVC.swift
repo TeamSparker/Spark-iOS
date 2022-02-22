@@ -13,34 +13,37 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Properties
     
-    private let closeButton = UIButton()
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = UIButton()
+    private let nextButton = BottomButton().setTitle("다음으로").setDisable()
+    private let customNavigationBar = LeftButtonNavigaitonBar()
     private let maxLength: Int = 15
 
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUI()
         setLayout()
         setNotification()
         setAddTarget()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
-    
     // MARK: - Methods
     
     private func setUI() {
-        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        customNavigationBar.title("")
+            .leftButtonImage("icQuit")
+            .leftButonAction {
+                self.dismissToHomeVC()
+            }
         
         titleLabel.text = "어떤 습관방을 만들건가요?"
         titleLabel.font = .h2Title
@@ -51,18 +54,12 @@ class CreateRoomVC: UIViewController {
         subTitleLabel.font = .krRegularFont(ofSize: 18)
         subTitleLabel.textColor = .sparkDarkGray
         
-        nextButton.layer.cornerRadius = 2
-        nextButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        nextButton.setTitle("다음으로", for: .normal)
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
+        lineView.backgroundColor = .sparkGray
         
         textField.borderStyle = .none
         textField.placeholder = "ex. 30분 독서"
         textField.delegate = self
         textField.tintColor = .sparkPinkred
-
-        lineView.backgroundColor = .sparkGray
 
         countLabel.text = "0/15"
         countLabel.font = .p2SubtitleEng
@@ -75,20 +72,15 @@ class CreateRoomVC: UIViewController {
     
     private func setAddTarget() {
         nextButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
-        closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
     }
     
-    private func ableButton() {
-        lineView.backgroundColor = .sparkPinkred
-        nextButton.backgroundColor = .sparkPinkred
-        nextButton.isEnabled = true
+    // MARK: - Screen Change
+
+    private func dismissToHomeVC() {
+        dismiss(animated: true, completion: nil)
     }
     
-    private func disableButton() {
-        lineView.backgroundColor = .sparkGray
-        nextButton.backgroundColor = .sparkGray
-        nextButton.isEnabled = false
-    }
+    // MARK: - @objc
     
     @objc
     private func textFieldDidChange(_ notification: Notification) {
@@ -102,11 +94,6 @@ class CreateRoomVC: UIViewController {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
         navigationController?.pushViewController(nextVC, animated: true)
-    }
-    
-    @objc
-    func touchCloseButton() {
-        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -131,9 +118,11 @@ extension CreateRoomVC: UITextFieldDelegate {
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.hasText {
-            ableButton()
+            nextButton.setAble()
+            lineView.backgroundColor = .sparkPinkred
         } else {
-            disableButton()
+            nextButton.setDisable()
+            lineView.backgroundColor = .sparkGray
         }
     }
 }
@@ -141,17 +130,17 @@ extension CreateRoomVC: UITextFieldDelegate {
 // MARK: - Layout
 extension CreateRoomVC {
     private func setLayout() {
-        view.addSubviews([titleLabel, subTitleLabel, textField,
-                          lineView, countLabel, nextButton, closeButton])
+        view.addSubviews([customNavigationBar, titleLabel, subTitleLabel, textField,
+                          lineView, countLabel, nextButton])
         
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(14)
-            make.leading.equalToSuperview().inset(20)
-            make.width.height.equalTo(24)
+        customNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(24)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(20)
         }
         
@@ -179,10 +168,8 @@ extension CreateRoomVC {
         }
         
         nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalToSuperview().inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
     }
 }

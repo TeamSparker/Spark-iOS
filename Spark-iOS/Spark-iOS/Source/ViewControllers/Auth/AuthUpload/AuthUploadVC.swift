@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 import Lottie
 
-@frozen enum VCCase {
+@frozen
+enum VCCase {
     case photoTimer
     case photoOnly
 }
@@ -21,27 +22,27 @@ class AuthUploadVC: UIViewController {
     
     // MARK: - Properties
     
-    let closeButton = UIButton()
-    let titleLabel = UILabel()
+    private let fadeImageView = UIImageView()
+    private let firstLabel = UILabel()
+    private let secondLabel = UILabel()
+    private let stopwatchLabel = UILabel()
+    private let photoLabel = UILabel()
+    private let betweenLine = UIView()
+    private let photoAuthButton = BottomButton().setTitle("사진 인증하기")
+    private let picker = UIImagePickerController()
+    private var buttonStackView = UIStackView()
+    private var uploadButton = UIButton()
+    private var changePhotoButton = UIButton()
     var uploadImageView = UIImageView()
-    let fadeImageView = UIImageView()
-    var buttonStackView = UIStackView()
-    var uploadButton = UIButton()
-    var changePhotoButton = UIButton()
     var timerLabel = UILabel()
-    let firstLabel = UILabel()
-    let secondLabel = UILabel()
-    let stopwatchLabel = UILabel()
-    let photoLabel = UILabel()
-    let betweenLine = UIView()
-    let photoAuthButton = UIButton()
-    let picker = UIImagePickerController()
+    private var customNavigationBar = LeftRightButtonsNavigationBar()
+    
     var roomId: Int?
     var roomName: String?
     var vcType: VCCase?
     
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     // MARK: - Life Cycle
     
@@ -59,57 +60,46 @@ class AuthUploadVC: UIViewController {
 
 extension AuthUploadVC {
     private func setNavigationBar() {
-        navigationController?.isNavigationBarHidden = false
-        
         switch vcType {
         case .photoOnly:
-            navigationController?.initWithLeftButtonTitle(title: "\(String(describing: roomName))",
-                                                          tintColor: .sparkBlack,
-                                                          backgroundColor: .sparkWhite,
-                                                          image: UIImage(named: "icQuit"),
-                                                          selector: #selector(presentToDialogue))
+            customNavigationBar.title(roomName ?? "")
+                .leftButtonImage("icQuit")
+                .leftButonAction {
+                    self.presentToDialogue()
+                }
+            
         case .photoTimer:
-            navigationController?.initWithTwoCustomButtonsTitle(navigationItem: self.navigationItem,
-                                                                title: "icBackWhite",
-                                                                tintColor: .sparkBlack,
-                                                                backgroundColor: .sparkWhite,
-                                                                reftButtonImage: UIImage(named: "icBackWhite")?.withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -5.0, bottom: 0.0, right: 0.0)),
-                                                                rightButtonImage: UIImage(named: "icQuit") ?? UIImage(),
-                                                                reftButtonSelector: #selector(popToPresentingVC),
-                                                                rightButtonSelector: #selector(showDialog))
-            navigationItem.title = "\(roomName ?? "-")"
-        default:
-            break
+            customNavigationBar.title(roomName ?? "")
+                .leftButtonImage("icBackWhite")
+                .leftButonAction {
+                    self.popToPresentingVC()
+                }
+                .rightButtonImage("icQuit")
+                .rightButtonAction {
+                    self.presentToDialogue()
+                }
+        case .none:
+            print("vcType 를 정해주세요.")
         }
     }
     
     private func setUI() {
-        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
-        
-        titleLabel.text = "\(roomName ?? "-")"
         firstLabel.text = "1"
         secondLabel.text = "2"
         stopwatchLabel.text = "스톱워치"
         photoLabel.text = "사진"
         
-        titleLabel.textColor = .sparkBlack
         firstLabel.textColor = .sparkGray
         secondLabel.textColor = .sparkPinkred
         stopwatchLabel.textColor = .sparkGray
         photoLabel.textColor = .sparkPinkred
         
-        titleLabel.font = .h3Subtitle
         firstLabel.font = .enMediumFont(ofSize: 18)
         secondLabel.font = .enMediumFont(ofSize: 18)
         stopwatchLabel.font = .krMediumFont(ofSize: 18)
         photoLabel.font = .krRegularFont(ofSize: 18)
         
         betweenLine.backgroundColor = .sparkPinkred
-        
-        photoAuthButton.layer.cornerRadius = 2
-        photoAuthButton.titleLabel?.font = .enBoldFont(ofSize: 18)
-        photoAuthButton.setTitle("사진 인증하기", for: .normal)
-        photoAuthButton.backgroundColor = .sparkDarkPinkred
         
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         uploadImageView.contentMode = .scaleAspectFill
@@ -140,11 +130,10 @@ extension AuthUploadVC {
         switch vcType {
         case .photoOnly:
             setFirstFlowUI()
-            
         case .photoTimer:
             setSecondFlowUI()
-        default:
-            break
+        case .none:
+            print("vcType 를 정해주세요.")
         }
     }
     
@@ -173,7 +162,6 @@ extension AuthUploadVC {
     }
     
     private func setAddTarget() {
-        closeButton.addTarget(self, action: #selector(dismissToHabitRoom), for: .touchUpInside)
         photoAuthButton.addTarget(self, action: #selector(touchAuthButton), for: .touchUpInside)
         changePhotoButton.addTarget(self, action: #selector(touchChangePhotoButton), for: .touchUpInside)
         uploadButton.addTarget(self, action: #selector(touchUploadButton), for: .touchUpInside)
@@ -183,14 +171,14 @@ extension AuthUploadVC {
     func setFirstFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
          photoLabel, betweenLine, photoAuthButton, timerLabel].forEach { $0.isHidden = true }
-        [uploadImageView, buttonStackView, fadeImageView, closeButton, titleLabel].forEach { $0.isHidden = false }
+        [uploadImageView, buttonStackView, fadeImageView].forEach { $0.isHidden = false }
     }
     
     // 스톱워치 + 사진 인증하는 플로우 UI
     func setSecondFlowUI() {
         [firstLabel, secondLabel, stopwatchLabel,
          photoLabel, betweenLine, photoAuthButton].forEach { $0.isHidden = false }
-        [buttonStackView, timerLabel, fadeImageView, closeButton, titleLabel].forEach { $0.isHidden = true }
+        [buttonStackView, timerLabel, fadeImageView].forEach { $0.isHidden = true }
         
         uploadImageView.image = UIImage(named: "uploadEmptyView")
     }
@@ -205,15 +193,15 @@ extension AuthUploadVC {
     }
     
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
     
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
         } else {
@@ -225,7 +213,7 @@ extension AuthUploadVC {
         let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alter.view.tintColor = .sparkBlack
         
-        /// alter에 들어갈 액션 생성
+        // alter에 들어갈 액션 생성
         let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
             self.openCamera()
         }
@@ -234,21 +222,16 @@ extension AuthUploadVC {
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
-        /// alter에 액션을 넣어줌
+        // alter에 액션을 넣어줌
         alter.addAction(library)
         alter.addAction(camera)
         alter.addAction(cancel)
         
-        /// button tap했을 때 alter present
+        // button tap했을 때 alter present
         present(alter, animated: true, completion: nil)
     }
     
     // MARK: - @objc
-    
-    @objc
-    func dismissToHabitRoom() {
-        dismiss(animated: true, completion: nil)
-    }
     
     // 두번째 플로우에서 사진 인증하기 버튼
     @objc
@@ -269,37 +252,44 @@ extension AuthUploadVC {
             self.setLoading()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.async {
             self.authUploadWithAPI()
         }
     }
     
-    @objc
-    func popToPresentingVC() {
+    // MARK: - Screen Change
+    
+    private func popToPresentingVC() {
         navigationController?.popViewController(animated: true)
     }
     
+    private func presentToCompleteAuthVC(_ authUpload: AuthUpload) {
+        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
+        
+        popupVC.renderedImage = self.uploadImageView.image
+        popupVC.roomName = authUpload.roomName
+        popupVC.nickName = authUpload.nickname
+        popupVC.profileImage = authUpload.profileImg
+        popupVC.timerCount = self.timerLabel.text
+        
+        popupVC.vcType = self.vcType
+        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.modalPresentationStyle = .overFullScreen
+        
+        self.present(popupVC, animated: true)
+    }
+    
     @objc
-    func showDialog() {
+    private func presentToDialogue() {
         guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        
         dialogVC.dialogueType = .exitAuth
         dialogVC.clousure = {
             self.dismiss(animated: true, completion: nil)
         }
         dialogVC.modalPresentationStyle = .overFullScreen
         dialogVC.modalTransitionStyle = .crossDissolve
-        self.present(dialogVC, animated: true, completion: nil)
-    }
-    
-    // TODO: 케이스별 액션 구분하기
-    @objc
-    private func presentToDialogue() {
-        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-        
-        nextVC.clousure = {
-            self.dismiss(animated: true)
-        }
-        present(nextVC, animated: true, completion: nil)
+        present(dialogVC, animated: true, completion: nil)
     }
 }
 
@@ -331,24 +321,19 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
 
 extension AuthUploadVC {
     private func setLayout() {
-        view.addSubviews([titleLabel, closeButton, uploadImageView, fadeImageView,
+        view.addSubviews([customNavigationBar, uploadImageView, fadeImageView,
                           buttonStackView, timerLabel, firstLabel,
                           secondLabel, stopwatchLabel, photoLabel,
                           betweenLine, photoAuthButton])
 
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.leading.equalToSuperview().inset(20)
-            make.width.height.equalTo(24)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalTo(closeButton.snp.centerY)
+        customNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
         }
         
         betweenLine.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(32)
             make.centerX.equalToSuperview()
             make.width.equalTo(60)
             make.height.equalTo(2)
@@ -377,7 +362,6 @@ extension AuthUploadVC {
         photoAuthButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
         }
         
         uploadImageView.snp.makeConstraints { make in
@@ -393,7 +377,7 @@ extension AuthUploadVC {
         buttonStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(self.view.frame.width*48/335)
+            make.height.equalTo((UIScreen.main.bounds.width - 40 ) * 48 / 335)
         }
         
         changePhotoButton.snp.makeConstraints { make in
@@ -423,19 +407,7 @@ extension AuthUploadVC {
                     self.loadingView.stop()
                     self.loadingBgView.removeFromSuperview()
                     
-                    guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.completeAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeAuth) as? CompleteAuthVC else {return}
-                    
-                    popupVC.renderedImage = self.uploadImageView.image
-                    popupVC.roomName = authUpload.roomName
-                    popupVC.nickName = authUpload.nickname
-                    popupVC.profileImage = authUpload.profileImg
-                    popupVC.timerCount = self.timerLabel.text
-                    
-                    popupVC.vcType = self.vcType
-                    popupVC.modalTransitionStyle = .crossDissolve
-                    popupVC.modalPresentationStyle = .overFullScreen
-                    
-                    self.present(popupVC, animated: true)
+                    self.presentToCompleteAuthVC(authUpload)
                 }
             case .requestErr(let message):
                 print("authUploadWithAPI - requestErr \(message)")
