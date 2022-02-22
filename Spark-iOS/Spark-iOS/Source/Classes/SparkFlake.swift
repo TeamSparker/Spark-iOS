@@ -14,19 +14,18 @@ public class SparkFlake {
     
     @frozen
     private enum SparkFlakeState {
-        case day66
         case day65
         case day62
         case day58
         case day32
         case day6
         case dDay
+        /// 66 이상 -1 이하일 경우. 즉, 에러.
+        case error
     }
 
     public init(leftDay: Int) {
-        if 66 == leftDay {
-            self.state = .day66
-        } else if 65 >= leftDay && leftDay > 62 {
+        if 65 >= leftDay && leftDay > 62 {
             self.state = .day65
         } else if 62 >= leftDay && leftDay > 58 {
             self.state = .day62
@@ -36,16 +35,16 @@ public class SparkFlake {
             self.state = .day32
         } else if 6 >= leftDay && leftDay > 0 {
             self.state = .day6
-        } else {
+        } else if 0 == leftDay {
             self.state = .dDay
+        } else {
+            self.state = .error
         }
     }
     
-    /// 티켓 배경 flake
+    /// 티켓 배경 flake.
     public func sparkFlakeTicketImage() -> UIImage? {
         switch state {
-        case .day66:
-            return UIImage(named: "property1TicketLeftSparkflake14")
         case .day65:
             return UIImage(named: "property1TicketLeftSparkflake14")
         case .day62:
@@ -58,14 +57,14 @@ public class SparkFlake {
             return UIImage(named: "property1TicketLeftSparkflake54")
         case .dDay:
             return UIImage(named: "property1TicketLeftSparkflake64")
+        case .error:
+            return UIImage()
         }
     }
     
-    /// 티켓 멘트
+    /// 티켓 멘트.
     public func sparkFlakeMent() -> String {
         switch state {
-        case .day66:
-            return "내일부터 시작!"
         case .day65:
             return "작심삼일 뽀개자!"
         case .day62:
@@ -78,14 +77,14 @@ public class SparkFlake {
             return "조금만 더 힘내"
         case .dDay:
             return "오늘이면 끝!"
+        case .error:
+            return ""
         }
     }
 
-    /// 습관방 배경 flake
+    /// 습관방 배경 flake.
     public func sparkFlakeHabitBackground() -> UIImage? {
         switch state {
-        case .day66:
-            return UIImage(named: "property1BgHabitroomSparkflake1")
         case .day65:
             return UIImage(named: "property1BgHabitroomSparkflake1")
         case .day62:
@@ -98,14 +97,14 @@ public class SparkFlake {
             return UIImage(named: "property1BgHabitroomSparkflake5")
         case .dDay:
             return UIImage(named: "property1BgHabitroomSparkflake6")
+        case .error:
+            return UIImage()
         }
     }
     
-    /// 진행중 보관함 테두리
+    /// 진행중 보관함 테두리.
     public func sparkBorderStorage() -> UIImage? {
         switch state {
-        case .day66:
-            return UIImage(named: "property1MyboxTicketOngoingLine1")
         case .day65:
             return UIImage(named: "property1MyboxTicketOngoingLine1")
         case .day62:
@@ -118,14 +117,14 @@ public class SparkFlake {
             return UIImage(named: "property1MyboxTicketOngoingLine5")
         case .dDay:
             return UIImage()
+        case .error:
+            return UIImage()
         }
     }
     
-    /// 진행중 보관함 flake
+    /// 진행중 보관함 flake.
     public func sparkFlakeGoingStorage() -> UIImage? {
         switch state {
-        case .day66:
-            return UIImage(named: "property1MyboxCardOngoingSparkflake1")
         case .day65:
             return UIImage(named: "property1MyboxCardOngoingSparkflake1")
         case .day62:
@@ -138,14 +137,14 @@ public class SparkFlake {
             return UIImage(named: "property1MyboxCardOngoingSparkflake5")
         case .dDay:
             return UIImage(named: "property1MyboxCardOngoingSparkflake6")
+        case .error:
+            return UIImage()
         }
     }
     
-    /// 미완료 보관함 flake
+    /// 미완료 보관함 flake.
     public func sparkFlakeFailStorage() -> UIImage? {
         switch state {
-        case .day66:
-            return UIImage(named: "property1MyboxCardFailedSparkflake1")
         case .day65:
             return UIImage(named: "property1MyboxCardFailedSparkflake1")
         case .day62:
@@ -158,10 +157,12 @@ public class SparkFlake {
             return UIImage(named: "property1MyboxCardFailedSparkflake5")
         case .dDay:
             return UIImage(named: "property1MyboxCardFailedSparkflake6")
+        case .error:
+            return UIImage()
         }
     }
     
-    /// 완료 보관함 flake
+    /// 완료 보관함 flake.
     public func sparkFlakeCompleteStorage() -> UIImage? {
         switch state {
         default:
@@ -169,11 +170,9 @@ public class SparkFlake {
         }
     }
     
-    /// flaek color
+    /// flake color.
     public func sparkFlakeColor() -> UIColor {
         switch state {
-        case .day66:
-            return .sparkMostLightPinkred
         case .day65:
             return .sparkMostLightPinkred
         case .day62:
@@ -186,6 +185,8 @@ public class SparkFlake {
             return .sparkPinkred
         case .dDay:
             return .sparkDarkPinkred
+        case .error:
+            return .clear
         }
     }
 }
