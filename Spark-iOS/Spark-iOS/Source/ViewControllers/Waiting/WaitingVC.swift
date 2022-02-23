@@ -432,26 +432,6 @@ extension WaitingVC {
         }
         
         self.present(nextVC, animated: true, completion: nil)
-        
-//        DispatchQueue.main.async {
-//            self.setLoading()
-//        }
-//
-//        DispatchQueue.main.async {
-//            self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
-//                switch self.fromWhereStatus {
-//                case .fromHome:
-//                    self.popToHomeVC()
-//                case .makeRoom:
-//                    self.dismissToHomeVC()
-//                case .joinCode:
-//                    // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
-//                    return
-//                case .none:
-//                    print("fromeWhereStatus 를 지정해주세요.")
-//                }
-//            }
-//        }
     }
 }
 
@@ -499,25 +479,6 @@ extension WaitingVC {
             }
         }
     }
-    
-//    private func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
-//        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
-//            switch response {
-//            case .success(let message):
-//                self.stopLoadingAnimation()
-//                completion()
-//                print("postStartRoomWithAPI - success: \(message)")
-//            case .requestErr(let message):
-//                print("postStartRoomWithAPI - requestErr: \(message)")
-//            case .pathErr:
-//                print("postStartRoomWithAPI - pathErr")
-//            case .serverErr:
-//                print("postStartRoomWithAPI - serverErr")
-//            case .networkFail:
-//                print("postStartRoomWithAPI - networkFail")
-//            }
-//        }
-//    }
 }
 
 // MARK: - UICollectionViewDataSource
