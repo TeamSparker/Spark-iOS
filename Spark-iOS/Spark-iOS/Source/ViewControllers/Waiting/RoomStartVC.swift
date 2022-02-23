@@ -24,6 +24,10 @@ class RoomStartVC: UIViewController {
     private let cancelButton = UIButton()
     private let startButton = UIButton()
     
+    var roomID: Int?
+    var startSuccess: Bool = false
+    var completionHandler: ((Bool) -> ())?
+    
     // MARK: - Life Cycles
 
     override func viewDidLoad() {
@@ -79,8 +83,11 @@ class RoomStartVC: UIViewController {
     
     @objc
     func touchStartButton() {
-        // TODO: - 서버연결
-        // startButton을 누르면 창이 닫히고 로딩이 보인 뒤, dismiss
+        postStartRoomWithAPI(roomID: self.roomID ?? 0) {
+            self.dismiss(animated: true) {
+                self.completionHandler?(self.startSuccess)
+            }
+        }
     }
     
     @objc
@@ -96,7 +103,7 @@ extension RoomStartVC {
         RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
-//                self.stopLoadingAnimation()
+                self.startSuccess = true
                 completion()
                 print("postStartRoomWithAPI - success: \(message)")
             case .requestErr(let message):
