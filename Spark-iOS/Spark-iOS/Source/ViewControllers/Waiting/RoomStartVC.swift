@@ -80,11 +80,35 @@ class RoomStartVC: UIViewController {
     @objc
     func touchStartButton() {
         // TODO: - 서버연결
+        // startButton을 누르면 창이 닫히고 로딩이 보인 뒤, dismiss
     }
     
     @objc
     func dismissRoomStart() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Network
+
+extension RoomStartVC {
+    private func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
+        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
+            switch response {
+            case .success(let message):
+//                self.stopLoadingAnimation()
+                completion()
+                print("postStartRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("postStartRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postStartRoomWithAPI - pathErr")
+            case .serverErr:
+                print("postStartRoomWithAPI - serverErr")
+            case .networkFail:
+                print("postStartRoomWithAPI - networkFail")
+            }
+        }
     }
 }
 
