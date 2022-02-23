@@ -26,7 +26,7 @@ class RoomStartVC: UIViewController {
     
     var roomID: Int?
     var startSuccess: Bool = false
-    var completionHandler: ((Bool) -> ())?
+    var completionHandler: ((Bool) -> Void)?
     
     // MARK: - Life Cycles
 
