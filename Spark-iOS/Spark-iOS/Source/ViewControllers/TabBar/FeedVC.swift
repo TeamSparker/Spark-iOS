@@ -44,7 +44,7 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
-        initRefreshControll()
+        initRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -171,7 +171,7 @@ class FeedVC: UIViewController {
         }
     }
     
-    private func initRefreshControll() {
+    private func initRefreshControl() {
         refreshControl.tintColor = .sparkPinkred
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         collectionView.refreshControl = refreshControl

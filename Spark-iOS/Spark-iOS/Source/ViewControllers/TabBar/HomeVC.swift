@@ -38,7 +38,7 @@ class HomeVC: UIViewController {
         setUI()
         setDelegate()
         registerXib()
-        initRefreshControll()
+        initRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,7 +136,7 @@ extension HomeVC {
         }
     }
     
-    private func initRefreshControll() {
+    private func initRefreshControl() {
         refreshControl.tintColor = .sparkPinkred
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         mainCollectionView.refreshControl = refreshControl
