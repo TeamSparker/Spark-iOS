@@ -19,6 +19,7 @@ class FeedVC: UIViewController {
     
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var refreshControl = UIRefreshControl()
     
     private var dateList: [String] = []
     private var dayList: [String] = []
@@ -43,6 +44,7 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
+        initRefreshControll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -166,6 +168,33 @@ class FeedVC: UIViewController {
         if loadingView.isAnimationPlaying {
             loadingView.stop()
             loadingBgView.removeFromSuperview()
+        }
+    }
+    
+    private func initRefreshControll() {
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func refreshCollectionView() {
+        feedLastID = -1
+        
+        feedList.removeAll()
+        firstList.removeAll()
+        secondList.removeAll()
+        thirdList.removeAll()
+        fourthList.removeAll()
+        fifthList.removeAll()
+        sixthList.removeAll()
+        seventhList.removeAll()
+        
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 }
