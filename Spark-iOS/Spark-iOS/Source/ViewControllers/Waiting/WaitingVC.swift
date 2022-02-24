@@ -68,7 +68,6 @@ class WaitingVC: UIViewController {
     var userMoment: String?
     var userPurpose: String?
     var fromWhereStatus: FromWhereStatus?
-    var didStart: Bool = false
     
     // MARK: - View Life Cycles
     
@@ -414,9 +413,8 @@ extension WaitingVC {
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.roomID = self.roomId
-        nextVC.completionHandler = { _ in
-            self.didStart = nextVC.startSuccess
-            if self.didStart {
+        nextVC.completionHandler = { startSuccess in
+            if startSuccess {
                 switch self.fromWhereStatus {
                 case .fromHome:
                     self.popToHomeVC()
