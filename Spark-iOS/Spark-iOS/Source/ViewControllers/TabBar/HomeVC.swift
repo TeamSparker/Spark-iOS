@@ -22,6 +22,7 @@ class HomeVC: UIViewController {
     
     lazy var loadingBgView = UIImageView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var refreshControl = UIRefreshControl()
     
     // MARK: - @IBOutlet Properties
     
@@ -37,6 +38,7 @@ class HomeVC: UIViewController {
         setUI()
         setDelegate()
         registerXib()
+        initRefreshControll()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +50,6 @@ class HomeVC: UIViewController {
         
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
-        
-        self.mainCollectionView.reloadData()
         
         DispatchQueue.main.async {
             self.setLoading()
@@ -136,6 +136,11 @@ extension HomeVC {
         }
     }
     
+    private func initRefreshControll() {
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        mainCollectionView.refreshControl = refreshControl
+    }
+    
     // MARK: - Screen Change
     
     private func presentToProfileVC() {
@@ -144,6 +149,20 @@ extension HomeVC {
 
     private func presentToAlertVC() {
         print("presentToAlertVC")
+    }
+    
+    // MARK: - Objc Methods
+    
+    @objc
+    private func refreshCollectionView() {
+        habitRoomLastID = -1
+        habitRoomList?.removeAll()
+        
+        DispatchQueue.main.async {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
 }
 
