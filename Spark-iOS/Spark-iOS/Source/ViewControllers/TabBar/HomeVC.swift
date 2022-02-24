@@ -137,6 +137,7 @@ extension HomeVC {
     }
     
     private func initRefreshControll() {
+        refreshControl.tintColor = .sparkPinkred
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         mainCollectionView.refreshControl = refreshControl
     }

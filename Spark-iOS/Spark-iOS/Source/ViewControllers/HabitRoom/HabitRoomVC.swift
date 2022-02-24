@@ -309,6 +309,7 @@ extension HabitRoomVC {
     }
     
     private func initRefreshControl() {
+        refreshControl.tintColor = .sparkPinkred
         refreshControl.addTarget(self, action: #selector(updateMemeber), for: .valueChanged)
         mainCollectionView.refreshControl = refreshControl
     }

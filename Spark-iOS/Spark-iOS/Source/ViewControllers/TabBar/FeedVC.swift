@@ -172,6 +172,7 @@ class FeedVC: UIViewController {
     }
     
     private func initRefreshControll() {
+        refreshControl.tintColor = .sparkPinkred
         refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
         collectionView.refreshControl = refreshControl
     }
