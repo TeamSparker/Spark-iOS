@@ -348,17 +348,35 @@ extension WaitingVC {
     }
     
     private func presentToMoreAlert() {
-        
-        // TODO: - 더보기 버튼
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.view.tintColor = .sparkDeepGray
         
         let delete = UIAlertAction(title: "방 삭제", style: .default) { _ in
-            // 삭제 api 실행 후 dismiss
+            guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            
+            dialogVC.dialogueType = .deleteWaitingRoom
+            dialogVC.clousure = {
+//                self.dismiss(animated: true, completion: nil)
+                // TODO: - 방삭제 api 후 dismiss
+                print("방 삭제 해야징~⚡️")
+            }
+            dialogVC.modalPresentationStyle = .overFullScreen
+            dialogVC.modalTransitionStyle = .crossDissolve
+            self.present(dialogVC, animated: true, completion: nil)
         }
         
         let leave = UIAlertAction(title: "방 나가기", style: .default) { _ in
-            // 방 나가기 api 실행 후 dismiss
+            guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            
+            dialogVC.dialogueType = .leaveWaitingRoom
+            dialogVC.clousure = {
+//                self.dismiss(animated: true, completion: nil)
+                // TODO: - 방 나가기 api 후 dismiss
+                print("방 나가야즹~")
+            }
+            dialogVC.modalPresentationStyle = .overFullScreen
+            dialogVC.modalTransitionStyle = .crossDissolve
+            self.present(dialogVC, animated: true, completion: nil)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
