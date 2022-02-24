@@ -33,6 +33,7 @@ extension Const {
             static let profileSetting = "ProfileSettingVC"
             static let dialogue = "DialogueVC"
             static let habitRoom = "HabitRoomVC"
+            static let roomStart = "RoomStartVC"
         }
     }
 }

@@ -27,6 +27,9 @@ extension UIColor {
     @nonobjc class var sparkGray: UIColor {
         return UIColor(red: 177.0 / 255.0, green: 178.0 / 255.0, blue: 180.0 / 255.0, alpha: 1.0)
     }
+    @nonobjc class var sparkMoreDeepGray: UIColor {
+        return UIColor(red: 18.0 / 255.0, green: 18.0 / 255.0, blue: 18.0 / 255.0, alpha: 1.0)
+    }
     @nonobjc class var sparkMostLightPinkred: UIColor {
         return UIColor(red: 1.0, green: 213.0 / 255.0, blue: 223.0 / 255.0, alpha: 1.0)
     }
