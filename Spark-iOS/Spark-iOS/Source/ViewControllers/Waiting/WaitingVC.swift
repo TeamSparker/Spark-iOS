@@ -67,6 +67,7 @@ class WaitingVC: UIViewController {
     var roomId: Int?
     var userMoment: String?
     var userPurpose: String?
+    var isHost: Bool?
     var fromWhereStatus: FromWhereStatus?
     
     // MARK: - View Life Cycles
@@ -267,6 +268,8 @@ extension WaitingVC {
         } else {
             startButton.isHidden = true
         }
+        
+        self.isHost = user.isHost
 
         // 목표가 있을 경우, 목표와 시간 세팅
         if user.isPurposeSet {
@@ -347,8 +350,28 @@ extension WaitingVC {
     private func presentToMoreAlert() {
         
         // TODO: - 더보기 버튼
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = .sparkDeepGray
         
-        print("touchToMore")
+        let delete = UIAlertAction(title: "방 삭제", style: .default) { _ in
+            // 삭제 api 실행 후 dismiss
+        }
+        
+        let leave = UIAlertAction(title: "방 나가기", style: .default) { _ in
+            // 방 나가기 api 실행 후 dismiss
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        // 본인 방장 여부
+        if self.isHost ?? true {
+            alert.addAction(delete)
+        } else {
+            alert.addAction(leave)
+        }
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Screen Change
