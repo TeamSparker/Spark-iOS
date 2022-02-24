@@ -8,7 +8,8 @@
 import UIKit
 import AVFoundation
 
-@frozen enum AuthType {
+@frozen
+enum AuthType {
     case photoOnly
     case photoTimer
 }
@@ -23,6 +24,14 @@ class HabitAuthVC: UIViewController {
     var roomName: String?
     var presentAlertClosure: (() -> Void)?
     var restStatus: String?
+    
+    @frozen
+    private enum Status: String {
+        case none = "NONE"
+        case consider = "CONSIDER"
+        case done = "DONE"
+        case rest = "REST"
+    }
     
     // MARK: - @IBOutlet Properties
     
@@ -68,36 +77,48 @@ extension HabitAuthVC {
         okButton.titleLabel?.text = "지금 습관 인증하기"
         okButton.tintColor = .sparkGray
         
-        if restStatus == "REST" {
-            okButton.isEnabled = false
-            okButton.layer.borderColor = UIColor.sparkGray.cgColor
-            okButton.backgroundColor = .sparkWhite
-            okButton.setTitleColor(.sparkGray, for: .normal)
-            okButton.setTitleColor(.sparkGray, for: .disabled)
-        } else {
+        guard let restStatus = restStatus, let status = Status(rawValue: restStatus) else { return }
+        switch status {
+        case .none:
             okButton.isEnabled = true
             okButton.setTitleColor(.sparkWhite, for: .normal)
             okButton.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
             okButton.backgroundColor = .sparkDarkPinkred
+            
+            considerButton.isEnabled = true
+            considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
+            considerButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+        case .consider:
+            okButton.isEnabled = true
+            okButton.setTitleColor(.sparkWhite, for: .normal)
+            okButton.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+            okButton.backgroundColor = .sparkDarkPinkred
+            
+            considerButton.isEnabled = false
+            considerButton.layer.borderColor = UIColor.sparkGray.cgColor
+            considerButton.setTitleColor(.sparkGray, for: .disabled)
+        case .rest:
+            return
+        case .done:
+            return
         }
-
-        considerButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        considerButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
+        
         considerButton.layer.borderWidth = 1
         considerButton.layer.cornerRadius = 2
         
-        restButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
-        restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         restButton.layer.borderWidth = 1
         restButton.layer.cornerRadius = 2
         
         restNumberLabel.text = String(restNumber ?? 0)
         
-        if (restNumber == 0) || (restStatus == "REST") {
+        if restNumber == 0 {
             restButton.isEnabled = false
             restButton.layer.borderColor = UIColor.sparkGray.cgColor
-            restButton.setTitleColor(.sparkGray, for: .normal)
-            restButton.tintColor = .sparkGray
+            restButton.setTitleColor(.sparkGray, for: .disabled)
+        } else {
+            restButton.isEnabled = true
+            restButton.setTitleColor(.sparkLightPinkred, for: .highlighted)
+            restButton.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         }
     }
     
