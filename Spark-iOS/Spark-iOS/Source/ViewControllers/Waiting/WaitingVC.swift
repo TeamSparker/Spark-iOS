@@ -222,7 +222,7 @@ extension WaitingVC {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(touchEditButton), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(touchToRefreshButton), for: .touchUpInside)
-        startButton.addTarget(self, action: #selector(touchToCreateButton), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(touchToStartButton), for: .touchUpInside)
         toolTipButton.addTarget(self, action: #selector(touchPresentToolTip), for: .touchUpInside)
         tapGestrueRecognizer.addTarget(self, action: #selector(quickDismissToolTip))
     }
@@ -366,7 +366,6 @@ extension WaitingVC {
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
-    
     // MARK: - @objc
     
     @objc
@@ -408,13 +407,14 @@ extension WaitingVC {
     }
     
     @objc
-    private func touchToCreateButton() {
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
+    private func touchToStartButton() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
-        DispatchQueue.main.async {
-            self.postStartRoomWithAPI(roomID: self.roomId ?? 0) {
+        nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.roomID = self.roomId
+        nextVC.completionHandler = { startSuccess in
+            if startSuccess {
                 switch self.fromWhereStatus {
                 case .fromHome:
                     self.popToHomeVC()
@@ -428,6 +428,8 @@ extension WaitingVC {
                 }
             }
         }
+        
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
 
@@ -472,25 +474,6 @@ extension WaitingVC {
                 print("getWaitingMembersWithAPI - serverErr")
             case .networkFail:
                 print("getWaitingMembersWithAPI - networkFail")
-            }
-        }
-    }
-    
-    private func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
-        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
-            switch response {
-            case .success(let message):
-                self.stopLoadingAnimation()
-                completion()
-                print("postStartRoomWithAPI - success: \(message)")
-            case .requestErr(let message):
-                print("postStartRoomWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("postStartRoomWithAPI - pathErr")
-            case .serverErr:
-                print("postStartRoomWithAPI - serverErr")
-            case .networkFail:
-                print("postStartRoomWithAPI - networkFail")
             }
         }
     }
