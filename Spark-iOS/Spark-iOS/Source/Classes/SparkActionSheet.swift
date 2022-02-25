@@ -16,14 +16,82 @@ public class SparkSection {
     public var actions = [SparkAction]()
     
     public init() {}
+    
+    public func makeStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 0
+        stack.layer.borderWidth = 1
+        stack.layer.cornerRadius = 2
+        stack.layer.borderColor = UIColor.systemGray.cgColor
+        return stack
+    }
+    
+    public func makeSectionSpacer() -> UIView {
+        let spacer = UIView()
+        spacer.backgroundColor = .clear
+        spacer.snp.makeConstraints { make in
+            make.height.equalTo(13)
+        }
+        return spacer
+    }
 }
 
 // MARK: SparkAction Class
 
 public class SparkAction {
+    
+    public enum sparkActionTitleType {
+        case normalTitle
+        case pinkTitle
+    }
+    
     public var data: String
     public var buttonType: sparkActionTitleType
     public var handler: (() -> Void)?
+    
+    public init(_ data: String, titleType: sparkActionTitleType = .normalTitle, handler: (() -> Void)?) {
+        self.data = data
+        self.buttonType = titleType
+        self.handler = handler
+    }
+    
+    fileprivate func makeButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle("\(data)", for: .normal)
+        switch buttonType {
+        case .normalTitle:
+            button.setTitleColor(.black, for: .normal)
+        case .pinkTitle:
+            button.setTitleColor(.systemPink, for: .normal)
+        }
+        button.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        button.layer.cornerRadius = 2
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.isEnabled = true
+        
+        button.snp.makeConstraints { make in
+            make.height.equalTo(48)
+        }
+        
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        return button
+    }
+    
+    fileprivate func makeActionSpacer() -> UIView {
+        let spacer = UIView()
+        spacer.backgroundColor = .black
+        spacer.snp.makeConstraints { make in
+            make.height.equalTo(0.5)
+        }
+        return spacer
+    }
+    
+    @objc
+    private func buttonAction() {
+        self.handler?()
+    }
 }
 
 class SparkActionMainStackView: UIStackView {
