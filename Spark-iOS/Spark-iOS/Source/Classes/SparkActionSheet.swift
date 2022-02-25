@@ -69,6 +69,18 @@ class SparkActionSheet: UIViewController {
         super.init(coder: aDecoder)
         setUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setLayout()
+        makeActionSheet()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        sparkActionMainStackView.reset()
+        _sections = [SparkSection]()
+    }
+    
     // addAction으로 액션을 추가해준다.
     public func addAction(_ action: SparkAction) {
         if let section = _sections.last {
@@ -102,5 +114,14 @@ extension SparkActionSheet {
         backgroundView.frame = view.bounds
         backgroundView.isUserInteractionEnabled = true
         backgroundView.addGestureRecognizer(tapRecognizer)
+    }
+    
+    private func setLayout() {
+        view.addSubview(backgroundView)
+        view.addSubview(sparkActionMainStackView)
+        sparkActionMainStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(54)
+        }
     }
 }
