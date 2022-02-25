@@ -22,7 +22,7 @@ public class SparkSection {
         stack.spacing = 0
         stack.layer.borderWidth = 1
         stack.layer.cornerRadius = 2
-        stack.layer.borderColor = UIColor.systemGray.cgColor
+        stack.layer.borderColor = UIColor.sparkWhite.cgColor
         return stack
     }
     
@@ -62,9 +62,9 @@ public class SparkAction {
         button.setTitle("\(data)", for: .normal)
         switch buttonType {
         case .normalTitle:
-            button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(.sparkDeepGray, for: .normal)
         case .pinkTitle:
-            button.setTitleColor(.systemPink, for: .normal)
+            button.setTitleColor(.sparkPinkred, for: .normal)
         }
         button.backgroundColor = .sparkWhite
         button.layer.cornerRadius = 2

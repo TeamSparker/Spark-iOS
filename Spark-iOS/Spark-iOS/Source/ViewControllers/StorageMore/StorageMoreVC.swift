@@ -148,6 +148,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
                       mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
                       sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
                       status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
+        cell.layer.cornerRadius = 2
         
         return cell
     }
