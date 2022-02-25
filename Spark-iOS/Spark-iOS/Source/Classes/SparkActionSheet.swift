@@ -35,6 +35,41 @@ class SparkActionMainStackView: UIStackView {
     }
     
 }
+
+class SparkActionSheet: UIViewController {
+    
+    private var _sections = [SparkSection]()
+    
+    private lazy var backgroundView: UIView = {
+        let backgroundView = UIView()
+        backgroundView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        return backgroundView
+    }()
+    private lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureDidRecognize(_:)))
+    
+    override init(nibName nibNameOrNil: String?,
+                  bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setUI()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setUI()
+    }
 }
 
+// MARK: - SparkActionSheet UI & Layout
+
+extension SparkActionSheet {
+    
+    private func setUI() {
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalTransitionStyle = .crossDissolve
+        
+        backgroundView.frame = view.bounds
+        backgroundView.isUserInteractionEnabled = true
+        backgroundView.addGestureRecognizer(tapRecognizer)
+    }
 }
