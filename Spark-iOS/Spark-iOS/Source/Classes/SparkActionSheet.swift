@@ -34,6 +34,14 @@ class SparkActionMainStackView: UIStackView {
         self.spacing = 0
     }
     
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func reset() {
+        self.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+    }
+    
 }
 
 class SparkActionSheet: UIViewController {
@@ -46,6 +54,9 @@ class SparkActionSheet: UIViewController {
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         return backgroundView
     }()
+    
+    private lazy var sparkActionMainStackView = SparkActionMainStackView()
+    
     private lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureDidRecognize(_:)))
     
     override init(nibName nibNameOrNil: String?,
@@ -57,6 +68,26 @@ class SparkActionSheet: UIViewController {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUI()
+    }
+    // addAction으로 액션을 추가해준다.
+    public func addAction(_ action: SparkAction) {
+        if let section = _sections.last {
+            section.actions.append(action)
+        } else {
+            let section = SparkSection()
+            addSection(section)
+            section.actions.append(action)
+        }
+    }
+    
+    // section은 action 사이에 공간을 만들어 준다.
+    public func addSection(_ section: SparkSection = SparkSection()){
+        _sections.append(section)
+    }
+    
+    @objc
+    private func tapGestureDidRecognize(_ gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true)
     }
 }
 
