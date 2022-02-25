@@ -19,7 +19,7 @@ class StorageMoreVC: UIViewController {
     private var myRoomCertificationList: [CertiRecord]? = []
     private var myRoomCertificationLastID: Int = -1
     
-    private let customNavigationBar = LeftButtonNavigaitonBar()
+    private let customNavigationBar = LeftRightButtonsNavigationBar()
     
     var storageMoreCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -78,6 +78,10 @@ extension StorageMoreVC {
             .leftButonAction {
                 self.popToStorageVC()
             }
+            .rightButtonImage("icMoreVerticalWhite")
+            .rightButtonAction {
+                self.presentToMoreAlert()
+            }
 
         tabBarController?.tabBar.isHidden = true
     }
@@ -103,6 +107,21 @@ extension StorageMoreVC {
     
     private func popToStorageVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func presentToMoreAlert() {
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("대표 이미지 변경", titleType: .normalTitle, handler: {
+            print("대표이미지 변경 뷰로 전환")
+        }))
+        
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .normalTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
 }
 
