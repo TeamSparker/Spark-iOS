@@ -4,7 +4,6 @@
 //
 //  Created by Junho Lee on 2022/02/25.
 //
-
 import Foundation
 import UIKit
 
@@ -190,6 +189,32 @@ extension SparkActionSheet {
         sparkActionMainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(54)
+        }
+    }
+    
+    private func makeActionSheet() {
+        let sections = _sections
+        let sectionIndex = (sections.count == 0 ? 0 : sections.count-1)
+        
+        for i in 0...sectionIndex {
+            let stack = sections[i].makeStackView()
+            sparkActionMainStackView.addArrangedSubview(stack)
+            
+            let actionIndex = (sections[i].actions.count == 0 ? 0 : sections[i].actions.count-1)
+            for j in 0...actionIndex {
+                let button = sections[i].actions[j].makeButton()
+                stack.addArrangedSubview(button)
+                
+                if j != actionIndex {
+                    let actionSpacer = sections[i].actions[j].makeActionSpacer()
+                    stack.addArrangedSubview(actionSpacer)
+                }
+            }
+            
+            if i != sectionIndex {
+                let spacer = sections[i].makeSectionSpacer()
+                sparkActionMainStackView.addArrangedSubview(spacer)
+            }
         }
     }
 }
