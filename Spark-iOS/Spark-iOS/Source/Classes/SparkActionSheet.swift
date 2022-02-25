@@ -40,18 +40,20 @@ public class SparkSection {
 
 public class SparkAction {
     
-    public enum sparkActionTitleType {
+    public enum SparkActionTitleType {
         case normalTitle
         case pinkTitle
     }
     
     public var data: String
-    public var buttonType: sparkActionTitleType
+    public var buttonType: SparkActionTitleType
     public var handler: (() -> Void)?
+    public var buttonFont: UIFont?
     
-    public init(_ data: String, titleType: sparkActionTitleType = .normalTitle, handler: (() -> Void)?) {
+    public init(_ data: String, titleType: SparkActionTitleType = .normalTitle, buttonFont: UIFont? = nil, handler: (() -> Void)?) {
         self.data = data
         self.buttonType = titleType
+        self.buttonFont = buttonFont
         self.handler = handler
     }
     
@@ -64,9 +66,9 @@ public class SparkAction {
         case .pinkTitle:
             button.setTitleColor(.systemPink, for: .normal)
         }
-        button.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        button.backgroundColor = .sparkWhite
         button.layer.cornerRadius = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = buttonFont ?? .krMediumFont(ofSize: 16)
         button.isEnabled = true
         
         button.snp.makeConstraints { make in
@@ -80,7 +82,7 @@ public class SparkAction {
     
     fileprivate func makeActionSpacer() -> UIView {
         let spacer = UIView()
-        spacer.backgroundColor = .black
+        spacer.backgroundColor = .sparkLightGray
         spacer.snp.makeConstraints { make in
             make.height.equalTo(0.5)
         }
@@ -118,7 +120,7 @@ class SparkActionSheet: UIViewController {
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
         backgroundView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         return backgroundView
     }()
     
@@ -160,7 +162,7 @@ class SparkActionSheet: UIViewController {
     }
     
     // section은 action 사이에 공간을 만들어 준다.
-    public func addSection(_ section: SparkSection = SparkSection()){
+    public func addSection(_ section: SparkSection = SparkSection()) {
         _sections.append(section)
     }
     
