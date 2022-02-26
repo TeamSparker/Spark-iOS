@@ -357,7 +357,6 @@ extension WaitingVC {
             dialogVC.dialogueType = .deleteWaitingRoom
             dialogVC.clousure = {
                 self.deleteWaitingRoomWithAPI(roomID: self.roomId ?? 0)
-                // TODO: - 방삭제 api 후 dismiss
             }
             dialogVC.modalPresentationStyle = .overFullScreen
             dialogVC.modalTransitionStyle = .crossDissolve
@@ -369,8 +368,8 @@ extension WaitingVC {
             
             dialogVC.dialogueType = .leaveWaitingRoom
             dialogVC.clousure = {
-//                self.dismiss(animated: true, completion: nil)
-                // TODO: - 방 나가기 api 후 dismiss
+                // TODO: - 방 나가기 api에서 dismiss
+                self.outWaitingRoomWithAPI(roomID: self.roomId ?? 0)
                 print("방 나가야즹~")
             }
             dialogVC.modalPresentationStyle = .overFullScreen
