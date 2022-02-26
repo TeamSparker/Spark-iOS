@@ -369,7 +369,7 @@ extension WaitingVC {
             dialogVC.dialogueType = .leaveWaitingRoom
             dialogVC.clousure = {
                 // TODO: - 방 나가기 api에서 dismiss
-                self.outWaitingRoomWithAPI(roomID: self.roomId ?? 0)
+                self.leaveWaitingRoomWithAPI(roomID: self.roomId ?? 0)
                 print("방 나가야즹~")
             }
             dialogVC.modalPresentationStyle = .overFullScreen
@@ -517,7 +517,7 @@ extension WaitingVC {
         }
     }
     
-    /// 방삭제 API (방장)
+    /// 대기방 삭제 API (방장)
     private func deleteWaitingRoomWithAPI(roomID: Int) {
         RoomAPI.shared.deleteWaitingRoom(roomId: roomID) { response in
             switch response {
@@ -546,9 +546,32 @@ extension WaitingVC {
         }
     }
     
-    // TODO: - 방나가기 API (참여자)
-    private func outWaitingRoomWithAPI(roomID: Int) {
-        
+    /// 대기방 나가기 API (참여자)
+    private func leaveWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                switch self.fromWhereStatus {
+                case .fromHome:
+                    self.popToHomeVC()
+                case .makeRoom:
+                    self.dismissToHomeVC()
+                case .joinCode:
+                    self.dismissJoinCodeToHomeVC()
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
+                }
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
+            }
+        }
     }
 }
 
