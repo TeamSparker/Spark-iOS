@@ -21,6 +21,7 @@ enum RoomService {
     case setConsiderRest(roomID: Int, statusType: String)
     case habitRoomDetailFetch(roomID: Int)
     case setPurpose(roomID: Int, moment: String, purpose: String)
+    case deleteWaitingRoom(roomID: Int)
 }
 
 extension RoomService: TargetType {
@@ -52,6 +53,8 @@ extension RoomService: TargetType {
             return "/room/\(roomID)"
         case .setPurpose(let roomID, _, _):
             return "/room/\(roomID)/purpose"
+        case .deleteWaitingRoom(let roomID):
+            return "/room/\(roomID)/"
         }
     }
     
@@ -79,6 +82,8 @@ extension RoomService: TargetType {
             return .get
         case .setPurpose:
             return .patch
+        case .deleteWaitingRoom:
+            return .delete
         }
     }
     
@@ -116,6 +121,8 @@ extension RoomService: TargetType {
         case .setPurpose(_, let moment, let purpose):
             return .requestParameters(parameters: ["moment": moment, "purpose": purpose],
                                       encoding: JSONEncoding.default)
+        case .deleteWaitingRoom(let roomID):
+            return .requestParameters(parameters: ["roomId": roomID], encoding: JSONEncoding.default)
         }
     }
     
@@ -142,6 +149,8 @@ extension RoomService: TargetType {
         case .habitRoomDetailFetch:
             return Const.Header.authorizationHeader
         case .setPurpose:
+            return Const.Header.authorizationHeader
+        case .deleteWaitingRoom:
             return Const.Header.authorizationHeader
         }
     }
