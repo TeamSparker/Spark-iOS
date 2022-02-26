@@ -356,9 +356,8 @@ extension WaitingVC {
             
             dialogVC.dialogueType = .deleteWaitingRoom
             dialogVC.clousure = {
-//                self.dismiss(animated: true, completion: nil)
+                self.deleteWaitingRoomWithAPI(roomID: self.roomId ?? 0)
                 // TODO: - 방삭제 api 후 dismiss
-                print("방 삭제 해야징~⚡️")
             }
             dialogVC.modalPresentationStyle = .overFullScreen
             dialogVC.modalTransitionStyle = .crossDissolve
@@ -517,6 +516,40 @@ extension WaitingVC {
                 print("getWaitingMembersWithAPI - networkFail")
             }
         }
+    }
+    
+    /// 방삭제 API (방장)
+    private func deleteWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.deleteWaitingRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                switch self.fromWhereStatus {
+                case .fromHome:
+                    self.popToHomeVC()
+                case .makeRoom:
+                    self.dismissToHomeVC()
+                case .joinCode:
+                    // 방장만 방 삭제 API를 사용하기 때문에 발생하지 않음.
+                    return
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
+                }
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    // TODO: - 방나가기 API (참여자)
+    private func outWaitingRoomWithAPI(roomID: Int) {
+        
     }
 }
 
