@@ -22,7 +22,7 @@ enum RoomService {
     case habitRoomDetailFetch(roomID: Int)
     case setPurpose(roomID: Int, moment: String, purpose: String)
     case deleteWaitingRoom(roomID: Int)
-    case outWaitingRoom(roomID: Int)
+    case leaveRoom(roomID: Int)
 }
 
 extension RoomService: TargetType {
@@ -56,7 +56,7 @@ extension RoomService: TargetType {
             return "/room/\(roomID)/purpose"
         case .deleteWaitingRoom(let roomID):
             return "/room/\(roomID)/"
-        case .outWaitingRoom(let roomID):
+        case .leaveRoom(let roomID):
             return "/room/\(roomID)/out"
         }
     }
@@ -87,7 +87,7 @@ extension RoomService: TargetType {
             return .patch
         case .deleteWaitingRoom:
             return .delete
-        case .outWaitingRoom:
+        case .leaveRoom:
             return .delete
         }
     }
@@ -128,7 +128,7 @@ extension RoomService: TargetType {
                                       encoding: JSONEncoding.default)
         case .deleteWaitingRoom(let roomID):
             return .requestParameters(parameters: ["roomId": roomID], encoding: JSONEncoding.default)
-        case .outWaitingRoom(let roomID):
+        case .leaveRoom(let roomID):
             return .requestParameters(parameters: ["roomId": roomID], encoding: JSONEncoding.default)
         }
     }
@@ -159,7 +159,7 @@ extension RoomService: TargetType {
             return Const.Header.authorizationHeader
         case .deleteWaitingRoom:
             return Const.Header.authorizationHeader
-        case .outWaitingRoom:
+        case .leaveRoom:
             return Const.Header.authorizationHeader
         }
     }
