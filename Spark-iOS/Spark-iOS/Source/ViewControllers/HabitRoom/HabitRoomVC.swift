@@ -260,11 +260,15 @@ extension HabitRoomVC {
     private func showAuthAlert() {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("카메라 촬영", titleType: .normalTitle, handler: {
-            self.openCamera()
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
         }))
         
         alert.addAction(SparkAction("앨범에서 선택하기", titleType: .normalTitle, handler: {
-            self.openLibrary()
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
         }))
         
         alert.addSection()

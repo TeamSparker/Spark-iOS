@@ -118,11 +118,15 @@ class ProfileSettingVC: UIViewController {
         let alert = SparkActionSheet()
         
         alert.addAction(SparkAction("카메라 촬영", titleType: .normalTitle, handler: {
-            self.openCamera()
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
         }))
         
         alert.addAction(SparkAction("앨범에서 선택", titleType: .normalTitle, handler: {
-            self.openLibrary()
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
         }))
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
