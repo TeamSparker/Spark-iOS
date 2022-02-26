@@ -8,7 +8,6 @@
 import Foundation
 
 import Moya
-import UIKit
 
 public class RoomAPI {
     
@@ -301,6 +300,20 @@ public class RoomAPI {
             return .serverErr
         default:
             return .networkFail
+        }
+    }
+    
+    func deleteWaitingRoom(roomId: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
+        roomProvider.request(.deleteWaitingRoom(roomID: roomId)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
         }
     }
 }
