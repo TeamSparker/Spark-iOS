@@ -180,7 +180,7 @@ class SparkActionSheet: UIViewController {
         setUI()
     }
     
-    // 코드베이스 사용
+    // 스토리보드 사용
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUI()
