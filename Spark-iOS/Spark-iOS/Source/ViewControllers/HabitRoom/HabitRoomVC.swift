@@ -317,9 +317,14 @@ extension HabitRoomVC {
         
         let leave = UIAlertAction(title: "방 나가기", style: .destructive) { _ in
             guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
+            
             checkVC.modalPresentationStyle = .overFullScreen
             checkVC.modalTransitionStyle = .crossDissolve
             checkVC.roomName = self.roomName ?? ""
+            checkVC.closuer = {
+                self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
+            }
+            
             self.present(checkVC, animated: true, completion: nil)
         }
         
@@ -486,10 +491,11 @@ extension HabitRoomVC {
     }
     
     /// 습관방 나가기
-    private func leaveHabitRoom(roomID: Int) {
+    private func leaveHabitRoomWithAPI(roomID: Int) {
         RoomAPI.shared.leaveRoom(roomId: roomID) { response in
             switch response {
             case .success(let message):
+                self.navigationController?.popViewController(animated: true)
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")

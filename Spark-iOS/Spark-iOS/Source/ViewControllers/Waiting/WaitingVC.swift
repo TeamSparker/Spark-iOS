@@ -368,7 +368,6 @@ extension WaitingVC {
             
             dialogVC.dialogueType = .leaveWaitingRoom
             dialogVC.clousure = {
-                // TODO: - 방 나가기 api에서 dismiss
                 self.leaveWaitingRoomWithAPI(roomID: self.roomId ?? 0)
                 print("방 나가야즹~")
             }

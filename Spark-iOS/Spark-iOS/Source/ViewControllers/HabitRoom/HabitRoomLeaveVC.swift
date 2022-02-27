@@ -21,6 +21,7 @@ class HabitRoomLeaveVC: UIViewController {
     private let leaveButton = UIButton()
     
     var roomName: String = ""
+    var closuer: (() -> Void)?
     
     // MARK: - Life Cycles
     
@@ -28,6 +29,7 @@ class HabitRoomLeaveVC: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setAddTarget()
     }
     
     // MARK: - Custom Method
@@ -63,6 +65,11 @@ class HabitRoomLeaveVC: UIViewController {
         leaveButton.isEnabled = false
     }
     
+    private func setAddTarget() {
+        cancelButton.addTarget(self, action: #selector(dismissHabitRoom), for: .touchUpInside)
+        leaveButton.addTarget(self, action: #selector(touchLeaveButton), for: .touchUpInside)
+    }
+    
     private func ableButton() {
         leaveButton.isEnabled = true
         leaveButton.setTitleColor(.sparkDarkPinkred, for: .normal)
@@ -72,12 +79,19 @@ class HabitRoomLeaveVC: UIViewController {
         leaveButton.isEnabled = false
         leaveButton.setTitleColor(.sparkDarkGray, for: .disabled)
     }
-}
-
-// MARK: - Network
-
-extension HabitRoomLeaveVC {
     
+    // MARK: - @objc
+    @objc
+    func dismissHabitRoom() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func touchLeaveButton() {
+        self.dismiss(animated: true) {
+            self.closuer?()
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -93,6 +107,7 @@ extension HabitRoomLeaveVC: UITextFieldDelegate {
         return true
     }
     
+    // textField 값이 변경될 때마다 감지
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField.text == roomName {
             ableButton()
