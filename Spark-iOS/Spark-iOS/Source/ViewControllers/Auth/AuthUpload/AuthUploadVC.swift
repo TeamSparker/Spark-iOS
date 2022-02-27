@@ -212,13 +212,13 @@ extension AuthUploadVC {
     private func showAlert() {
         
         let alert = SparkActionSheet()
-        alert.addAction(SparkAction("카메라 촬영", titleType: .normalTitle, handler: {
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 self.openCamera()
             }
         }))
         
-        alert.addAction(SparkAction("앨범에서 선택", titleType: .normalTitle, handler: {
+        alert.addAction(SparkAction("앨범에서 선택", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 self.openLibrary()
             }
@@ -226,7 +226,7 @@ extension AuthUploadVC {
         
         alert.addSection()
         
-        alert.addAction(SparkAction("취소", titleType: .normalTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
             self.dismiss(animated: true, completion: nil)
         }))
         

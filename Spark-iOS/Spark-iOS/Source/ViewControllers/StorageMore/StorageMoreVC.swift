@@ -111,13 +111,13 @@ extension StorageMoreVC {
     
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
-        alert.addAction(SparkAction("대표 이미지 변경", titleType: .normalTitle, handler: {
+        alert.addAction(SparkAction("대표 이미지 변경", titleType: .blackMediumTitle, handler: {
             print("대표이미지 변경 뷰로 전환")
         }))
         
         alert.addSection()
         
-        alert.addAction(SparkAction("취소", titleType: .normalTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
             self.dismiss(animated: true, completion: nil)
         }))
         

@@ -31,7 +31,7 @@ public class SparkSection {
         stack.spacing = 0
         stack.layer.borderWidth = 1
         stack.layer.cornerRadius = 2
-        stack.layer.borderColor = UIColor.sparkWhite.cgColor
+        stack.layer.borderColor = UIColor.sparkLightGray.cgColor
         return stack
     }
     
@@ -54,8 +54,9 @@ public class SparkAction {
     // MARK: - Properties
     
     public enum SparkActionTitleType {
-        case normalTitle
-        case pinkTitle
+        case blackMediumTitle
+        case pinkMediumTitle
+        case blackBoldTitle
     }
     
     public var data: String
@@ -65,7 +66,7 @@ public class SparkAction {
     
     // MARK: - Initializer
     
-    public init(_ data: String, titleType: SparkActionTitleType = .normalTitle, buttonFont: UIFont? = nil, handler: (() -> Void)?) {
+    public init(_ data: String, titleType: SparkActionTitleType = .blackMediumTitle, buttonFont: UIFont? = nil, handler: (() -> Void)?) {
         self.data = data
         self.buttonType = titleType
         self.buttonFont = buttonFont
@@ -77,16 +78,23 @@ public class SparkAction {
     /// Action Data에 맞는 버튼 반환
     fileprivate func makeButton() -> UIButton {
         let button = UIButton(type: .system)
+        
         button.setTitle("\(data)", for: .normal)
+        button.titleLabel?.font = .krMediumFont(ofSize: 16)
+
         switch buttonType {
-        case .normalTitle:
+        case .blackMediumTitle:
             button.setTitleColor(.sparkDeepGray, for: .normal)
-        case .pinkTitle:
+        case .pinkMediumTitle:
             button.setTitleColor(.sparkPinkred, for: .normal)
+        case . blackBoldTitle:
+            button.setTitleColor(.sparkDeepGray, for: .normal)
+            button.titleLabel?.font = .krBoldFont(ofSize: 16)
         }
+        
         button.backgroundColor = .sparkWhite
         button.layer.cornerRadius = 2
-        button.titleLabel?.font = buttonFont ?? .krMediumFont(ofSize: 16)
+
         button.isEnabled = true
         
         button.snp.makeConstraints { make in
@@ -151,11 +159,10 @@ class SparkActionSheet: UIViewController {
     
     // MARK: - Properties
     
-    private var _sections = [SparkSection]()
+    private var sections = [SparkSection]()
     
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
-        backgroundView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         return backgroundView
     }()
@@ -166,12 +173,14 @@ class SparkActionSheet: UIViewController {
     
     // MARK: - Initializer
     
+    // xib파일 사용
     override init(nibName nibNameOrNil: String?,
                   bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setUI()
     }
     
+    // 코드베이스 사용
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUI()
@@ -187,7 +196,7 @@ class SparkActionSheet: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         sparkActionMainStackView.reset()
-        _sections = [SparkSection]()
+        sections = [SparkSection]()
     }
     
     // MARK: - Methods
@@ -195,7 +204,7 @@ class SparkActionSheet: UIViewController {
     /// addAction으로 액션을 추가해준다.
     /// _section이 비었을 경우 먼저 section을 추가한 다음 action을 추가한다.
     public func addAction(_ action: SparkAction) {
-        if let section = _sections.last {
+        if let section = sections.last {
             section.actions.append(action)
         } else {
             let section = SparkSection()
@@ -206,7 +215,7 @@ class SparkActionSheet: UIViewController {
     
     /// addSection으로 섹션을 추가해준다.
     public func addSection(_ section: SparkSection = SparkSection()) {
-        _sections.append(section)
+        sections.append(section)
     }
     
     // MARK: - Objc Methods
@@ -225,14 +234,17 @@ extension SparkActionSheet {
         self.modalPresentationStyle = .overCurrentContext
         self.modalTransitionStyle = .crossDissolve
         
-        backgroundView.frame = view.bounds
         backgroundView.isUserInteractionEnabled = true
         backgroundView.addGestureRecognizer(tapRecognizer)
     }
     
     private func setLayout() {
-        view.addSubview(backgroundView)
-        view.addSubview(sparkActionMainStackView)
+        view.addSubviews([backgroundView, sparkActionMainStackView])
+        
+        backgroundView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
         sparkActionMainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(54)
@@ -241,7 +253,6 @@ extension SparkActionSheet {
     
     /// _sections에 존재하는 Section과 action을 기준으로 sparkActionMainStackView를 구성한다.
     private func makeActionSheet() {
-        let sections = _sections
         let sectionIndex = (sections.count == 0 ? 0 : sections.count-1)
         
         // 섹션의 수만큼 stackView를 추가한다.

@@ -117,27 +117,27 @@ class ProfileSettingVC: UIViewController {
     func showAlter() {
         let alert = SparkActionSheet()
         
-        alert.addAction(SparkAction("카메라 촬영", titleType: .normalTitle, handler: {
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 self.openCamera()
             }
         }))
         
-        alert.addAction(SparkAction("앨범에서 선택", titleType: .normalTitle, handler: {
+        alert.addAction(SparkAction("앨범에서 선택", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 self.openLibrary()
             }
         }))
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
-            alert.addAction(SparkAction("사진 삭제", titleType: .normalTitle, handler: {
+            alert.addAction(SparkAction("사진 삭제", titleType: .blackMediumTitle, handler: {
                 self.profileImageView.image = UIImage(named: "profileEmpty")
             }))
         }
         
         alert.addSection()
         
-        alert.addAction(SparkAction("취소", titleType: .normalTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
             self.dismiss(animated: true, completion: nil)
         }))
         
