@@ -159,7 +159,9 @@ extension HabitAuthVC {
     
     @objc
     private func touchConsiderButton() {
-        setConsiderRestWithAPI(statusType: "CONSIDER")
+        self.dismiss(animated: true) {
+            self.setConsiderRestWithAPI(statusType: "CONSIDER")
+        }
     }
     
     @objc
@@ -187,9 +189,7 @@ extension HabitAuthVC {
         RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
             switch response {
             case .success(let message):
-                self.dismiss(animated: true) {
-                    NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
-                }
+                NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
                 print("setConsiderRestWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("setConsiderRestWithAPI - requestErr: \(message)")
