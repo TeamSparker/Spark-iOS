@@ -22,6 +22,7 @@ class HabitRoomVC: UIViewController {
     
     private lazy var loadingBgView = UIView()
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var refreshControl = UIRefreshControl()
     
     // MARK: - @IBOutlet Properties
     
@@ -52,6 +53,7 @@ class HabitRoomVC: UIViewController {
         setDelegate()
         registerXib()
         setNotification()
+        initRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -306,6 +308,12 @@ extension HabitRoomVC {
         self.present(nextVC, animated: true, completion: nil)
     }
     
+    private func initRefreshControl() {
+        refreshControl.tintColor = .sparkPinkred
+        refreshControl.addTarget(self, action: #selector(updateMemeber), for: .valueChanged)
+        mainCollectionView.refreshControl = refreshControl
+    }
+    
     // TODO: - 더보기 버튼 클릭시 액션시트 등장
     
     private func presentToMoreAlert() {
@@ -329,6 +337,15 @@ extension HabitRoomVC {
         DispatchQueue.main.async {
             self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
                 self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
+        }
+    }
+    
+    @objc
+    private func updateMemeber() {
+        DispatchQueue.main.async {
+            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+                self.refreshControl.endRefreshing()
             }
         }
     }

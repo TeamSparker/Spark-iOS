@@ -19,6 +19,7 @@ class FeedVC: UIViewController {
     
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var refreshControl = UIRefreshControl()
     
     private var dateList: [String] = []
     private var dayList: [String] = []
@@ -43,6 +44,7 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
+        initRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +55,10 @@ class FeedVC: UIViewController {
         
         feedLastID = -1
         
+        dateList.removeAll()
+        dayList.removeAll()
         feedList.removeAll()
+        
         firstList.removeAll()
         secondList.removeAll()
         thirdList.removeAll()
@@ -166,6 +171,37 @@ class FeedVC: UIViewController {
         if loadingView.isAnimationPlaying {
             loadingView.stop()
             loadingBgView.removeFromSuperview()
+        }
+    }
+    
+    private func initRefreshControl() {
+        refreshControl.tintColor = .sparkPinkred
+        refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func refreshCollectionView() {
+        feedLastID = -1
+        
+        dateList.removeAll()
+        dayList.removeAll()
+        feedList.removeAll()
+        
+        firstList.removeAll()
+        secondList.removeAll()
+        thirdList.removeAll()
+        fourthList.removeAll()
+        fifthList.removeAll()
+        sixthList.removeAll()
+        seventhList.removeAll()
+        
+        DispatchQueue.main.async {
+            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 }
