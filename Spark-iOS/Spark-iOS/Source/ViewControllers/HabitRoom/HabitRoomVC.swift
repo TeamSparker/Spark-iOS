@@ -316,7 +316,11 @@ extension HabitRoomVC {
         }
         
         let leave = UIAlertAction(title: "방 나가기", style: .destructive) { _ in
-            // TODO: - 방 나가기 다이얼로그 띄우기
+            guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
+            checkVC.modalPresentationStyle = .overFullScreen
+            checkVC.modalTransitionStyle = .crossDissolve
+            checkVC.roomName = self.roomName ?? ""
+            self.present(checkVC, animated: true, completion: nil)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
