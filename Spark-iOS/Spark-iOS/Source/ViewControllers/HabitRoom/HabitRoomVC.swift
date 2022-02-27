@@ -260,24 +260,26 @@ extension HabitRoomVC {
     }
 
     private func showAuthAlert() {
-        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alter.view.tintColor = .sparkBlack
-
-        /// alter에 들어갈 액션 생성
-        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
-            self.openCamera()
-        }
-        let library = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
-            self.openLibrary()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-
-        /// alter에 액션을 넣어줌
-        alter.addAction(camera)
-        alter.addAction(library)
-        alter.addAction(cancel)
-
-        present(alter, animated: true, completion: nil)
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
+        }))
+        
+        alert.addAction(SparkAction("앨범에서 선택하기", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
+        }))
+        
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
 
     private func openLibrary() {
@@ -317,7 +319,22 @@ extension HabitRoomVC {
     // TODO: - 더보기 버튼 클릭시 액션시트 등장
     
     private func presentToMoreAlert() {
-        print("showMoreAlert")
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
+            print("나의 목표 수정 뷰로 전환")
+        }))
+        
+        alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
+            print("방 나가기 뷰로 전환")
+        }))
+        
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
     
     // MARK: - Screen Change
