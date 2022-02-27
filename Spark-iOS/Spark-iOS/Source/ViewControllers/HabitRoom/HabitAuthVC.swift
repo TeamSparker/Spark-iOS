@@ -160,23 +160,23 @@ extension HabitAuthVC {
     @objc
     private func touchConsiderButton() {
         setConsiderRestWithAPI(statusType: "CONSIDER")
-        dismiss(animated: true, completion: nil)
     }
     
     @objc
     private func touchRestButton() {
-        okButton.isEnabled = false
-        okButton.layer.borderColor = UIColor.sparkGray.cgColor
-        okButton.setTitleColor(.sparkGray, for: .normal)
-        okButton.tintColor = .sparkGray
-        okButton.backgroundColor = .sparkWhite
-        considerButton.isEnabled = false
-        considerButton.layer.borderColor = UIColor.sparkGray.cgColor
-        considerButton.setTitleColor(.sparkGray, for: .normal)
-        considerButton.tintColor = .sparkGray
-        considerButton.backgroundColor = .sparkWhite
-        setConsiderRestWithAPI(statusType: "REST")
-        dismiss(animated: true, completion: nil)
+        let presentingVC = presentingViewController
+        dismiss(animated: true) {
+            guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            
+            dialogueVC.dialogueType = .rest
+            dialogueVC.clousure = {
+                self.setConsiderRestWithAPI(statusType: "REST")
+            }
+            dialogueVC.modalTransitionStyle = .crossDissolve
+            dialogueVC.modalPresentationStyle = .overFullScreen
+            
+            presentingVC?.present(dialogueVC, animated: true, completion: nil)
+        }
     }
 }
 
@@ -187,8 +187,9 @@ extension HabitAuthVC {
         RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
             switch response {
             case .success(let message):
-                self.dismiss(animated: true, completion: nil)
-                NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
+                self.dismiss(animated: true) {
+                    NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
+                }
                 print("setConsiderRestWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("setConsiderRestWithAPI - requestErr: \(message)")
