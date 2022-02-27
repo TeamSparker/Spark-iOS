@@ -15,6 +15,7 @@ enum DialogueType {
     case exitAuth
     case resetTimer
     case exitTimer
+    case createRoom
 }
 
 class DialogueVC: UIViewController {
@@ -80,6 +81,14 @@ extension DialogueVC {
             이미 측정한 시간 기록이 사라집니다.
             그래도 나가시겠습니까?
             """
+            
+        case .createRoom:
+            guideLabel.text = """
+            방 생성을 완료하시겠습니까?
+            방 이름과 인증 방식은 추후 수정이 어렵습니다.
+            """
+            resetOrExitLabel.text = "완료"
+            resetOrExitLabel.textColor = .sparkDarkPinkred
             
         case .none:
             print("dialogueType을 지정해주세요")
