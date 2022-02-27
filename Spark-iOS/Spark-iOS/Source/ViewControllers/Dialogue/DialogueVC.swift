@@ -107,7 +107,7 @@ extension DialogueVC {
     
     @objc
     private func cancelAction() {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     /// 나가기 또는 초기화 액션을 넣어주세요
