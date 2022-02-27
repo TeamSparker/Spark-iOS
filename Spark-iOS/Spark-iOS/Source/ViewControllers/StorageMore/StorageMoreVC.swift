@@ -73,17 +73,31 @@ extension StorageMoreVC {
     private func setUI() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        customNavigationBar.title(titleText ?? "")
-            .tintColor(.sparkWhite)
-            .backgroundColor(.sparkBlack)
-            .leftButtonImage("icBackWhite")
-            .leftButonAction {
-                self.popToStorageVC()
-            }
-            .rightButtonImage("icMoreVerticalWhite")
-            .rightButtonAction {
-                self.presentToMoreAlert()
-            }
+        if !isChangingImageView {
+            customNavigationBar.title(titleText ?? "")
+                .tintColor(.sparkWhite)
+                .backgroundColor(.sparkBlack)
+                .leftButtonImage("icBackWhite")
+                .leftButonAction {
+                    self.popToStorageVC()
+                }
+                .rightButtonImage("icMoreVerticalWhite")
+                .rightButtonAction {
+                    self.presentToMoreAlert()
+                }
+        } else {
+            customNavigationBar.title(titleText ?? "")
+                .tintColor(.sparkWhite)
+                .backgroundColor(.sparkBlack)
+                .leftButtonTitle("취소")
+                .leftButonAction {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                .rightButtonPinkTitle("완료")
+                .rightButtonAction {
+                    self.dismiss(animated: true)
+                }
+        }
 
         tabBarController?.tabBar.isHidden = true
     }
