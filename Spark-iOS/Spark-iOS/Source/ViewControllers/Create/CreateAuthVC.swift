@@ -18,7 +18,7 @@ class CreateAuthVC: UIViewController {
     private let subTitleLabel = UILabel()
     private let photoAuthView = PhotoAuthView()
     private let timerAuthView = TimerAuthView()
-    private let createButton = BottomButton().setTitle("습관방 만들기")
+    private let createButton = BottomButton().setUI(.pink).setTitle("습관방 만들기")
     private let customNavigationBar = LeftButtonNavigaitonBar()
     
     /// photoOnly가 true이면 fromStart가 false

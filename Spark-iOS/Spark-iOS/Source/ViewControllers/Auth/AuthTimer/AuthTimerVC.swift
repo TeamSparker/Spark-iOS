@@ -20,7 +20,7 @@ class AuthTimerVC: UIViewController {
     private let betweenLine = UIView()
     private let divideLine = UIView()
     private let timeLabel = UILabel()
-    private let bottomButton = BottomButton()
+    private let bottomButton = BottomButton().setUI(.pink)
     private let pauseButton = UIButton()
     private let resetButton = UIButton()
     private let customNavigationBar = LeftButtonNavigaitonBar()

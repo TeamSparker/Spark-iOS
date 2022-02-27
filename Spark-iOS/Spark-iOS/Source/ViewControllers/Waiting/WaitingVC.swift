@@ -47,7 +47,7 @@ class WaitingVC: UIViewController {
     private let friendCountLabel = UILabel()
     private let friendSubTitleLabel = UILabel()
     private let refreshButton = UIButton()
-    private let startButton = BottomButton().setTitle("습관 시작하기")
+    private let startButton = BottomButton().setUI(.pink).setTitle("습관 시작하기")
     
     private var customNavigationBar = LeftRightButtonsNavigationBar()
     
