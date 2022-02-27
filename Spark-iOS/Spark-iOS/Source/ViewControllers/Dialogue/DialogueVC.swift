@@ -15,6 +15,7 @@ enum DialogueType {
     case exitAuth
     case resetTimer
     case exitTimer
+    case rest
 }
 
 class DialogueVC: UIViewController {
@@ -80,6 +81,13 @@ extension DialogueVC {
             이미 측정한 시간 기록이 사라집니다.
             그래도 나가시겠습니까?
             """
+            
+        case .rest:
+            guideLabel.text = """
+            ‘쉴래요’를 사용하면 오늘의 인증은
+            건너뛰게 되고, 방 생명은 유지됩니다.
+            """
+            resetOrExitLabel.text = "사용하기"
             
         case .none:
             print("dialogueType을 지정해주세요")
