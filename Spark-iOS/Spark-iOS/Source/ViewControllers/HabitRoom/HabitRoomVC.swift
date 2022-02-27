@@ -306,10 +306,25 @@ extension HabitRoomVC {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // TODO: - 더보기 버튼 클릭시 액션시트 등장
-    
     private func presentToMoreAlert() {
         print("showMoreAlert")
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = .sparkDeepGray
+        
+        let edit = UIAlertAction(title: "나의 목표 수정", style: .default) { _ in
+            // TODO: - 나의 목표 수정 연결
+        }
+        
+        let leave = UIAlertAction(title: "방 나가기", style: .destructive) { _ in
+            // TODO: - 방 나가기 다이얼로그 띄우기
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(edit)
+        alert.addAction(leave)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Screen Change
@@ -440,6 +455,7 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 
 extension HabitRoomVC {
+    /// 습관방 데이터 불러오기
     private func fetchHabitRoomDetailWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
             switch response {
@@ -461,6 +477,24 @@ extension HabitRoomVC {
                 print("fetchHabitRoomDetailWithAPI - serverErr")
             case .networkFail:
                 print("fetchHabitRoomDetailWithAPI - networkFail")
+            }
+        }
+    }
+    
+    /// 습관방 나가기
+    private func leaveHabitRoom(roomID: Int) {
+        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
             }
         }
     }
