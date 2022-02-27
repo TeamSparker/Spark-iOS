@@ -55,7 +55,10 @@ class FeedVC: UIViewController {
         
         feedLastID = -1
         
+        dateList.removeAll()
+        dayList.removeAll()
         feedList.removeAll()
+        
         firstList.removeAll()
         secondList.removeAll()
         thirdList.removeAll()
@@ -183,7 +186,10 @@ class FeedVC: UIViewController {
     private func refreshCollectionView() {
         feedLastID = -1
         
+        dateList.removeAll()
+        dayList.removeAll()
         feedList.removeAll()
+        
         firstList.removeAll()
         secondList.removeAll()
         thirdList.removeAll()
