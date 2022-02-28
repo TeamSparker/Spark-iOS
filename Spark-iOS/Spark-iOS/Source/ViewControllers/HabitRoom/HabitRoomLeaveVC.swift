@@ -21,7 +21,7 @@ class HabitRoomLeaveVC: UIViewController {
     private let leaveButton = UIButton()
     
     var roomName: String = ""
-    var closuer: (() -> Void)?
+    var closure: (() -> Void)?
     
     // MARK: - Life Cycles
     
@@ -66,7 +66,7 @@ class HabitRoomLeaveVC: UIViewController {
     }
     
     private func setAddTarget() {
-        cancelButton.addTarget(self, action: #selector(dismissHabitRoom), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(dismissHabitRoomLeaveVC), for: .touchUpInside)
         leaveButton.addTarget(self, action: #selector(touchLeaveButton), for: .touchUpInside)
     }
     
@@ -82,14 +82,14 @@ class HabitRoomLeaveVC: UIViewController {
     
     // MARK: - @objc
     @objc
-    func dismissHabitRoom() {
+    func dismissHabitRoomLeaveVC() {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc
     func touchLeaveButton() {
         self.dismiss(animated: true) {
-            self.closuer?()
+            self.closure?()
         }
     }
 }

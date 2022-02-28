@@ -321,7 +321,7 @@ extension HabitRoomVC {
             checkVC.modalPresentationStyle = .overFullScreen
             checkVC.modalTransitionStyle = .crossDissolve
             checkVC.roomName = self.roomName ?? ""
-            checkVC.closuer = {
+            checkVC.closure = {
                 self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
             }
             
