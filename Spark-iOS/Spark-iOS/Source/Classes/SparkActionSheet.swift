@@ -192,7 +192,7 @@ class SparkActionSheet: UIViewController {
         super.viewWillAppear(animated)
         setLayout()
         makeActionSheet()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+        DispatchQueue.main.async {
             self.upAnimation()
         }
     }
@@ -200,7 +200,6 @@ class SparkActionSheet: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         sparkActionMainStackView.reset()
         sections = [SparkSection]()
-        downAnimation()
     }
     
     // MARK: - Methods
@@ -226,7 +225,7 @@ class SparkActionSheet: UIViewController {
     
     @objc
     private func tapGestureDidRecognize(_ gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true)
+        animatedDismiss()
     }
 }
 
@@ -251,7 +250,7 @@ extension SparkActionSheet {
         
         sparkActionMainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().offset(sparkActionMainStackView.frame.height)
+            make.bottom.equalToSuperview().offset(sparkActionMainStackView.frame.height+150)
         }
     }
     
@@ -285,13 +284,19 @@ extension SparkActionSheet {
             }
         }
     }
+    
+    /// System Alert에서 dismiss 애니메이션과 같은 효과
+    func animatedDismiss(completion: (() -> Void)? = nil) {
+        downAnimation()
+        completion?()
+    }
 }
 
 // MARK: - Animation
 
 extension SparkActionSheet {
     private func upAnimation() {
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 0.2,
                        delay: 0,
                        options: .curveEaseInOut) {
             
@@ -301,12 +306,11 @@ extension SparkActionSheet {
     }
     
     private func downAnimation() {
-        UIView.animate(withDuration: 0.4,
-                       delay: 0,
-                       options: .curveEaseInOut) {
-
-            let frame = CGAffineTransform(translationX: 0, y: self.sparkActionMainStackView.frame.height)
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) {
+            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height - self.sparkActionMainStackView.bounds.height - 54 - self.sparkActionMainStackView.frame.origin.y)
             self.sparkActionMainStackView.transform = frame
+        } completion: { _ in
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
