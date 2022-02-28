@@ -348,40 +348,9 @@ extension WaitingVC {
     }
     
     private func presentToMoreAlert() {
-//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        alert.view.tintColor = .sparkDeepGray
-//
-//        let delete = UIAlertAction(title: "방 삭제", style: .default) { _ in
-//            guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-//
-//            dialogVC.dialogueType = .deleteWaitingRoom
-//            dialogVC.clousure = {
-//                self.deleteWaitingRoomWithAPI(roomID: self.roomId ?? 0)
-//            }
-//            dialogVC.modalPresentationStyle = .overFullScreen
-//            dialogVC.modalTransitionStyle = .crossDissolve
-//            self.present(dialogVC, animated: true, completion: nil)
-//        }
-//
-//        let leave = UIAlertAction(title: "방 나가기", style: .default) { _ in
-//            guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-//
-//            dialogVC.dialogueType = .leaveWaitingRoom
-//            dialogVC.clousure = {
-//                self.leaveWaitingRoomWithAPI(roomID: self.roomId ?? 0)
-//            }
-//            dialogVC.modalPresentationStyle = .overFullScreen
-//            dialogVC.modalTransitionStyle = .crossDissolve
-//            self.present(dialogVC, animated: true, completion: nil)
-//        }
-//
-//        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
         let alert = SparkActionSheet()
-        
         // 본인 방장 여부
         if self.isHost ?? true {
-//            alert.addAction(delete)
             alert.addAction(SparkAction("방 삭제", titleType: .blackMediumTitle, handler: {
                 alert.dismiss(animated: true) {
                     guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
@@ -396,7 +365,6 @@ extension WaitingVC {
                 }
             }))
         } else {
-//            alert.addAction(leave)
             alert.addAction(SparkAction("방 나가기", titleType: .blackMediumTitle, handler: {
                 self.dismiss(animated: true) {
                     guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
@@ -419,10 +387,6 @@ extension WaitingVC {
         }))
         
         present(alert, animated: true)
-                            
-//        alert.addAction(cancel)
-//
-//        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Screen Change
