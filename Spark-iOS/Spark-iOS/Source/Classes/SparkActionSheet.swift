@@ -296,18 +296,33 @@ extension SparkActionSheet {
 
 extension SparkActionSheet {
     private func upAnimation() {
-        UIView.animate(withDuration: 0.2,
-                       delay: 0,
-                       options: .curveEaseInOut) {
-            
-            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height - self.sparkActionMainStackView.bounds.height - 54 - self.sparkActionMainStackView.frame.origin.y)
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        let actionSheetHeight: CGFloat = self.sparkActionMainStackView.frame.height
+        let actionSheetBottomMargin: CGFloat = 54
+        let actionSheetStartOriginY: CGFloat = self.sparkActionMainStackView.frame.origin.y
+        
+        UIView.animate(withDuration: 0.1,
+                       delay: 0.02,
+                       options: .curveEaseIn) {
+            let frame = CGAffineTransform(translationX: 0,
+                                          y: screenHeight - actionSheetHeight - actionSheetBottomMargin
+                                          - actionSheetStartOriginY)
             self.sparkActionMainStackView.transform = frame
         }
     }
     
     private func downAnimation() {
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) {
-            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height - self.sparkActionMainStackView.bounds.height - 54 - self.sparkActionMainStackView.frame.origin.y)
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        let actionSheetHeight: CGFloat = self.sparkActionMainStackView.frame.height
+        let actionSheetBottomMargin: CGFloat = 54
+        let actionSheetStartOriginY: CGFloat = self.sparkActionMainStackView.frame.origin.y
+        
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            let frame = CGAffineTransform(translationX: 0,
+                                          y: screenHeight - actionSheetHeight - actionSheetBottomMargin
+                                          - actionSheetStartOriginY)
             self.sparkActionMainStackView.transform = frame
         } completion: { _ in
             self.dismiss(animated: true, completion: nil)

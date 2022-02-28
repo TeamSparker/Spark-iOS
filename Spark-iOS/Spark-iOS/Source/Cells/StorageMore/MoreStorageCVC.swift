@@ -43,7 +43,7 @@ class MoreStorageCVC: UICollectionViewCell {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timerAlphaView: UIView!
     
-    // MARK: - Initializer
+    // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
