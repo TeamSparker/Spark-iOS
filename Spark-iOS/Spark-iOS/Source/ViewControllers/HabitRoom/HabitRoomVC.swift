@@ -22,6 +22,7 @@ class HabitRoomVC: UIViewController {
     
     private lazy var loadingBgView = UIView()
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    lazy var refreshControl = UIRefreshControl()
     
     // MARK: - @IBOutlet Properties
     
@@ -52,6 +53,7 @@ class HabitRoomVC: UIViewController {
         setDelegate()
         registerXib()
         setNotification()
+        initRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -258,36 +260,38 @@ extension HabitRoomVC {
     }
 
     private func showAuthAlert() {
-        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alter.view.tintColor = .sparkBlack
-
-        /// alter에 들어갈 액션 생성
-        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
-            self.openCamera()
-        }
-        let library = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
-            self.openLibrary()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-
-        /// alter에 액션을 넣어줌
-        alter.addAction(camera)
-        alter.addAction(library)
-        alter.addAction(cancel)
-
-        present(alter, animated: true, completion: nil)
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
+        }))
+        
+        alert.addAction(SparkAction("앨범에서 선택하기", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
+        }))
+        
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
 
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
     }
 
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: true, completion: nil)
         } else {
@@ -306,10 +310,41 @@ extension HabitRoomVC {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // TODO: - 더보기 버튼 클릭시 액션시트 등장
+    private func initRefreshControl() {
+        refreshControl.tintColor = .sparkPinkred
+        refreshControl.addTarget(self, action: #selector(updateMemeber), for: .valueChanged)
+        mainCollectionView.refreshControl = refreshControl
+    }
     
     private func presentToMoreAlert() {
-        print("showMoreAlert")
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
+            // TODO: - 나의 목표 수정 뷰 연결
+            print("나의 목표 수정 뷰로 전환")
+        }))
+
+        alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
+                
+                checkVC.modalPresentationStyle = .overFullScreen
+                checkVC.modalTransitionStyle = .crossDissolve
+                checkVC.roomName = self.roomName ?? ""
+                checkVC.closure = {
+                    self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
+                }
+                
+                self.present(checkVC, animated: true, completion: nil)
+            }
+        }))
+
+        alert.addSection()
+
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+
+        present(alert, animated: true)
     }
     
     // MARK: - Screen Change
@@ -329,6 +364,15 @@ extension HabitRoomVC {
         DispatchQueue.main.async {
             self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
                 self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
+        }
+    }
+    
+    @objc
+    private func updateMemeber() {
+        DispatchQueue.main.async {
+            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -440,6 +484,7 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 
 extension HabitRoomVC {
+    /// 습관방 데이터 불러오기
     private func fetchHabitRoomDetailWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
             switch response {
@@ -461,6 +506,25 @@ extension HabitRoomVC {
                 print("fetchHabitRoomDetailWithAPI - serverErr")
             case .networkFail:
                 print("fetchHabitRoomDetailWithAPI - networkFail")
+            }
+        }
+    }
+    
+    /// 습관방 나가기
+    private func leaveHabitRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                self.navigationController?.popViewController(animated: true)
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
             }
         }
     }

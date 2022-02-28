@@ -16,6 +16,8 @@ enum DialogueType {
     case resetTimer
     case exitTimer
     case rest
+    case deleteWaitingRoom
+    case leaveWaitingRoom
 }
 
 class DialogueVC: UIViewController {
@@ -81,6 +83,16 @@ extension DialogueVC {
             이미 측정한 시간 기록이 사라집니다.
             그래도 나가시겠습니까?
             """
+        
+        case .deleteWaitingRoom:
+            guideLabel.text = """
+            대기방을 삭제하시겠습니까?
+            삭제 후에는 기록이 남지 않습니다.
+            """
+            resetOrExitLabel.text = "삭제"
+            
+        case .leaveWaitingRoom:
+            guideLabel.text = "정말 대기방을 나가시겠습니까?"
             
         case .rest:
             guideLabel.text = """
