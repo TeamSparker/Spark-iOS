@@ -283,15 +283,15 @@ extension HabitRoomVC {
     }
 
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
     }
 
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: true, completion: nil)
         } else {
@@ -316,24 +316,34 @@ extension HabitRoomVC {
         mainCollectionView.refreshControl = refreshControl
     }
     
-    // TODO: - 더보기 버튼 클릭시 액션시트 등장
-    
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
+            // TODO: - 나의 목표 수정 뷰 연결
             print("나의 목표 수정 뷰로 전환")
         }))
-        
+
         alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
-            print("방 나가기 뷰로 전환")
+            self.dismiss(animated: true) {
+                guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
+                
+                checkVC.modalPresentationStyle = .overFullScreen
+                checkVC.modalTransitionStyle = .crossDissolve
+                checkVC.roomName = self.roomName ?? ""
+                checkVC.closure = {
+                    self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
+                }
+                
+                self.present(checkVC, animated: true, completion: nil)
+            }
         }))
-        
+
         alert.addSection()
-        
+
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
             self.dismiss(animated: true, completion: nil)
         }))
-        
+
         present(alert, animated: true)
     }
     
@@ -474,6 +484,7 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 
 extension HabitRoomVC {
+    /// 습관방 데이터 불러오기
     private func fetchHabitRoomDetailWithAPI(roomID: Int, completion: @escaping () -> Void) {
         RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
             switch response {
@@ -495,6 +506,25 @@ extension HabitRoomVC {
                 print("fetchHabitRoomDetailWithAPI - serverErr")
             case .networkFail:
                 print("fetchHabitRoomDetailWithAPI - networkFail")
+            }
+        }
+    }
+    
+    /// 습관방 나가기
+    private func leaveHabitRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                self.navigationController?.popViewController(animated: true)
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
             }
         }
     }
