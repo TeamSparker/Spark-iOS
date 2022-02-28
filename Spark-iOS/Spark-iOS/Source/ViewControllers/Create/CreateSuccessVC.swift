@@ -31,6 +31,7 @@ class CreateSuccessVC: UIViewController {
         setUI()
         setLayout()
         setAddTarget()
+        getRoomCodeWithAPI(roomId: self.roomId ?? 0)
     }
     
     // MARK: - Custom Methods
@@ -63,8 +64,10 @@ class CreateSuccessVC: UIViewController {
     
     @objc
     private func copyToClipboard() {
-        UIPasteboard.general.string = roomCode
-        showToast(x: 20, y: view.safeAreaInsets.top, message: "코드를 복사했어요!", font: .p1TitleLight)
+        if let roomCode = roomCode {
+            UIPasteboard.general.string = roomCode
+            showToast(x: 20, y: view.safeAreaInsets.top, message: "코드를 복사했어요!", font: .p1TitleLight)
+        }
     }
     
     @objc
@@ -89,7 +92,25 @@ class CreateSuccessVC: UIViewController {
 
 // MARK: - Network
 extension CreateSuccessVC {
-    // TODO: - 코드복사할 roomCode를 가져오기 위해 서버 통신
+    /// 방 코드 복사를 위해 대기방 API 통신
+    private func getRoomCodeWithAPI(roomId: Int) {
+        RoomAPI.shared.waitingFetch(roomID: roomId) { response in
+            switch response {
+            case .success(let data):
+                if let createSuccess = data as? Waiting {
+                    self.roomCode = createSuccess.roomCode
+                }
+            case .requestErr(let message):
+                print("getRoomCodeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getRoomCodeWithAPI - pathErr")
+            case .serverErr:
+                print("getRoomCodeWithAPI - serverErr")
+            case .networkFail:
+                print("getRoomCodeWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - Layout
@@ -131,5 +152,4 @@ extension CreateSuccessVC {
             make.bottom.equalTo(enterButton.snp.top).offset(-16)
         }
     }
-    
 }
