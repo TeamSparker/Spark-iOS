@@ -61,7 +61,7 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="코드 다시 입력하기">
-                                    <color key="titleColor" name="sparkPinkRed"/>
+                                    <color key="titleColor" name="sparkDarkPinkRed"/>
                                 </state>
                                 <connections>
                                     <action selector="touchReinputCode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="y2M-Ef-5u1"/>
@@ -155,9 +155,6 @@
         </namedColor>
         <namedColor name="sparkGray">
             <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="sparkPinkRed">
-            <color red="1" green="0.13300000131130219" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sparkWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
