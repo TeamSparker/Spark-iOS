@@ -11,12 +11,7 @@ import SnapKit
 
 class MoreStorageCVC: UICollectionViewCell {
     
-    @IBOutlet weak var sparkCountLabel: UILabel!
-    @IBOutlet weak var certificationImage: UIImageView!
-    @IBOutlet weak var dDayOrPointLabel: UILabel!
-    @IBOutlet weak var sparkStackView: UIStackView!
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var timerAlphaView: UIView!
+    // MARK: - Properties
     
     var isChangingImageView: Bool = false {
         didSet {
@@ -39,6 +34,17 @@ class MoreStorageCVC: UICollectionViewCell {
         }
     }
     
+    // MARK: - IBOutlet Properties
+    
+    @IBOutlet weak var sparkCountLabel: UILabel!
+    @IBOutlet weak var certificationImage: UIImageView!
+    @IBOutlet weak var dDayOrPointLabel: UILabel!
+    @IBOutlet weak var sparkStackView: UIStackView!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timerAlphaView: UIView!
+    
+    // MARK: - Initializer
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
@@ -51,41 +57,7 @@ class MoreStorageCVC: UICollectionViewCell {
         timerLabel.text = ""
     }
     
-    private func setUI() {
-        dDayOrPointLabel.font = .p2Subtitle2Eng
-        dDayOrPointLabel.textColor = .sparkGray
-        
-        certificationImage.layer.masksToBounds = true
-        certificationImage.contentMode = .scaleAspectFill
-        certificationImage.layer.cornerRadius = 2
-        
-        timerLabel.font = .enBoldFont(ofSize: 24)
-        timerAlphaView.isHidden = true
-        
-        if isChangingImageView {
-            [sparkStackView, timerLabel, timerAlphaView, dDayOrPointLabel].forEach {
-                $0?.isHidden = true
-            }
-            
-            certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
-            certificationImage.layer.borderWidth = 1
-            
-            dDayOrPointLabel.text = "대표"
-            dDayOrPointLabel.font = .btn4Small
-            dDayOrPointLabel.textColor = .sparkWhite
-            dDayOrPointLabel.backgroundColor = .sparkPinkred
-            dDayOrPointLabel.layer.cornerRadius = 2
-            dDayOrPointLabel.clipsToBounds = true
-            dDayOrPointLabel.textAlignment = .center
-        }
-    }
-    
-    private func setLayout() {
-        dDayOrPointLabel.snp.makeConstraints { make in
-            make.width.equalTo(42)
-            make.height.equalTo(24)
-        }
-    }
+    // MARK: - Methods
     
     func initCell(leftDay: Int,
                   mainImage: String,
@@ -130,6 +102,47 @@ class MoreStorageCVC: UICollectionViewCell {
         default:
             certificationImage.image = UIImage(named: "tagEmptyBox")
             self.isUserInteractionEnabled = false
+        }
+    }
+}
+
+// MARK: - UI & Layout
+
+extension MoreStorageCVC {
+    
+    private func setUI() {
+        dDayOrPointLabel.font = .p2Subtitle2Eng
+        dDayOrPointLabel.textColor = .sparkGray
+        
+        certificationImage.layer.masksToBounds = true
+        certificationImage.contentMode = .scaleAspectFill
+        certificationImage.layer.cornerRadius = 2
+        
+        timerLabel.font = .enBoldFont(ofSize: 24)
+        timerAlphaView.isHidden = true
+        
+        if isChangingImageView {
+            [sparkStackView, timerLabel, timerAlphaView, dDayOrPointLabel].forEach {
+                $0?.isHidden = true
+            }
+            
+            certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
+            certificationImage.layer.borderWidth = 1
+            
+            dDayOrPointLabel.text = "대표"
+            dDayOrPointLabel.font = .btn4Small
+            dDayOrPointLabel.textColor = .sparkWhite
+            dDayOrPointLabel.backgroundColor = .sparkPinkred
+            dDayOrPointLabel.layer.cornerRadius = 2
+            dDayOrPointLabel.clipsToBounds = true
+            dDayOrPointLabel.textAlignment = .center
+        }
+    }
+    
+    private func setLayout() {
+        dDayOrPointLabel.snp.makeConstraints { make in
+            make.width.equalTo(42)
+            make.height.equalTo(24)
         }
     }
 }
