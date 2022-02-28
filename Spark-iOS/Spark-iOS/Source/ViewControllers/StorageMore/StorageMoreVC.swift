@@ -192,12 +192,14 @@ extension StorageMoreVC: UICollectionViewDataSource {
         
         cell.isChangingImageView = self.isChangingImageView
         
-        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
-                      mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
-                      sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
-                      status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
-        
-        if isChangingImageView { cell.setUI() }
+        if !isChangingImageView {
+            cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
+                          mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
+                          sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
+                          status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
+        } else {
+            cell.updateImage(mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", status: myRoomCertificationList?[indexPath.row].status ?? "")
+        }
         
         return cell
     }
