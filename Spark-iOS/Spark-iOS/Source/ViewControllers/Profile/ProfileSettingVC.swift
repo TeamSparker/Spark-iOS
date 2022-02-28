@@ -115,32 +115,33 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func showAlter() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = .sparkBlack
+        let alert = SparkActionSheet()
         
-        let library = UIAlertAction(title: "앨범에서 선택", style: .default) { _ in
-            self.openLibrary()
-        }
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
+        }))
         
-        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
-            self.openCamera()
-        }
-        
-        let delete = UIAlertAction(title: "사진 삭제", style: .default) { _ in
-            self.profileImageView.image = UIImage(named: "profileEmpty")
-        }
-        
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        alert.addAction(library)
-        alert.addAction(camera)
-        alert.addAction(cancel)
+        alert.addAction(SparkAction("앨범에서 선택", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
+        }))
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
-            alert.addAction(delete)
+            alert.addAction(SparkAction("사진 삭제", titleType: .blackMediumTitle, handler: {
+                self.profileImageView.image = UIImage(named: "profileEmpty")
+            }))
         }
         
-        present(alert, animated: true, completion: nil)
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
     
     @objc
