@@ -210,25 +210,27 @@ extension AuthUploadVC {
     }
     
     private func showAlert() {
-        let alter = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alter.view.tintColor = .sparkBlack
         
-        // alter에 들어갈 액션 생성
-        let library = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
-            self.openCamera()
-        }
-        let camera = UIAlertAction(title: "앨범에서 선택", style: .default) { _ in
-            self.openLibrary()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openCamera()
+            }
+        }))
         
-        // alter에 액션을 넣어줌
-        alter.addAction(library)
-        alter.addAction(camera)
-        alter.addAction(cancel)
+        alert.addAction(SparkAction("앨범에서 선택", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                self.openLibrary()
+            }
+        }))
         
-        // button tap했을 때 alter present
-        present(alter, animated: true, completion: nil)
+        alert.addSection()
+        
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, buttonFont: .krBoldFont(ofSize: 16), handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
     
     // MARK: - @objc

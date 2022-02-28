@@ -35,6 +35,7 @@ extension Const {
             static let dialogue = "Dialogue"
             static let habitRoom = "HabitRoom"
             static let roomStart = "RoomStart"
+            static let habitRoomLeave = "HabitRoomLeave"
         }
     }
 }
