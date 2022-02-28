@@ -283,15 +283,15 @@ extension HabitRoomVC {
     }
 
     private func openLibrary() {
-        /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
+        // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 앨범에서 픽해오겠다
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
     }
 
     private func openCamera() {
-        /// 카메라 촬영 타입이 가능하다면
+        // 카메라 촬영 타입이 가능하다면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            /// UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
+            // UIImagePickerController에서 어떤 식으로 image를 pick해올지 -> 카메라 촬영헤서 픽해오겠다
             picker.sourceType = .camera
             present(picker, animated: true, completion: nil)
         } else {
@@ -316,53 +316,35 @@ extension HabitRoomVC {
         mainCollectionView.refreshControl = refreshControl
     }
     
-    // TODO: - 더보기 버튼 클릭시 액션시트 등장
-    
     private func presentToMoreAlert() {
-        print("showMoreAlert")
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.view.tintColor = .sparkDeepGray
-        
-        let edit = UIAlertAction(title: "나의 목표 수정", style: .default) { _ in
-            // TODO: - 나의 목표 수정 연결
-        }
-        
-        let leave = UIAlertAction(title: "방 나가기", style: .destructive) { _ in
-            guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
-            
-            checkVC.modalPresentationStyle = .overFullScreen
-            checkVC.modalTransitionStyle = .crossDissolve
-            checkVC.roomName = self.roomName ?? ""
-            checkVC.closure = {
-                self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
+            // TODO: - 나의 목표 수정 뷰 연결
+            print("나의 목표 수정 뷰로 전환")
+        }))
+
+        alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let checkVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomLeave, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomLeave) as? HabitRoomLeaveVC else { return }
+                
+                checkVC.modalPresentationStyle = .overFullScreen
+                checkVC.modalTransitionStyle = .crossDissolve
+                checkVC.roomName = self.roomName ?? ""
+                checkVC.closure = {
+                    self.leaveHabitRoomWithAPI(roomID: self.roomID ?? 0)
+                }
+                
+                self.present(checkVC, animated: true, completion: nil)
             }
-            
-            self.present(checkVC, animated: true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        alert.addAction(edit)
-        alert.addAction(leave)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-        
-//        let alert = SparkActionSheet()
-//        alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
-//            print("나의 목표 수정 뷰로 전환")
-//        }))
-//
-//        alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
-//            print("방 나가기 뷰로 전환")
-//        }))
-//
-//        alert.addSection()
-//
-//        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
-//            self.dismiss(animated: true, completion: nil)
-//        }))
-//
-//        present(alert, animated: true)
+        }))
+
+        alert.addSection()
+
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+
+        present(alert, animated: true)
     }
     
     // MARK: - Screen Change
