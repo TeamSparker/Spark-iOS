@@ -192,11 +192,15 @@ class SparkActionSheet: UIViewController {
         super.viewWillAppear(animated)
         setLayout()
         makeActionSheet()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+            self.upAnimation()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         sparkActionMainStackView.reset()
         sections = [SparkSection]()
+        downAnimation()
     }
     
     // MARK: - Methods
@@ -247,7 +251,7 @@ extension SparkActionSheet {
         
         sparkActionMainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(54)
+            make.bottom.equalToSuperview().offset(sparkActionMainStackView.frame.height)
         }
     }
     
@@ -279,6 +283,30 @@ extension SparkActionSheet {
                 let spacer = sections[i].makeSectionSpacer()
                 sparkActionMainStackView.addArrangedSubview(spacer)
             }
+        }
+    }
+}
+
+// MARK: - Animation
+
+extension SparkActionSheet {
+    private func upAnimation() {
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            
+            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height - self.sparkActionMainStackView.bounds.height - 54 - self.sparkActionMainStackView.frame.origin.y)
+            self.sparkActionMainStackView.transform = frame
+        }
+    }
+    
+    private func downAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+
+            let frame = CGAffineTransform(translationX: 0, y: self.sparkActionMainStackView.frame.height)
+            self.sparkActionMainStackView.transform = frame
         }
     }
 }
