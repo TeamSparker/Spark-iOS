@@ -30,7 +30,6 @@ class CreateAuthVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUI()
         setLayout()
         setAddTarget()
@@ -88,28 +87,18 @@ class CreateAuthVC: UIViewController {
         
         dialogVC.dialogueType = .createRoom
         dialogVC.clousure = {
-            self.dismiss(animated: true, completion: nil)
-            // TODO: - dismiss 하고 서버 통신한 뒤 성공이면 새로운 뷰 띄워주기 -> 새로운 뷰에서 dismiss하고 rootVC 만들어서 움직이기
             self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
-                print("새로운 팝업 띄울거임 ㅋ")
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createSuccess, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createSuccess) as? CreateSuccessVC else { return }
+                
+                nextVC.roomName = self.roomName
+                nextVC.roomId = self.roomId
+
+                self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }
         dialogVC.modalPresentationStyle = .overFullScreen
         dialogVC.modalTransitionStyle = .crossDissolve
         present(dialogVC, animated: true, completion: nil)
-        
-//        postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
-//            guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-//            rootVC.roomName = self.roomName
-//            rootVC.roomId = self.roomId
-//            rootVC.fromWhereStatus = .makeRoom
-//
-//            let nextVC = UINavigationController(rootViewController: rootVC)
-//            nextVC.modalTransitionStyle = .crossDissolve
-//            nextVC.modalPresentationStyle = .fullScreen
-//
-//            self.present(nextVC, animated: true)
-//        }
     }
     
     @objc

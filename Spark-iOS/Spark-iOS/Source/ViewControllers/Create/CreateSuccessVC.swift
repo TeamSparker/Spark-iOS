@@ -20,7 +20,6 @@ class CreateSuccessVC: UIViewController {
     private let homeButton = BottomButton().setUI(.white).setTitle("홈으로 가기")
     private let enterButton = BottomButton().setUI(.pink).setTitle("대기방 입장하기")
     
-    var photoOnly: Bool?
     var roomName: String?
     var roomCode: String?
     var roomId: Int?
@@ -37,7 +36,7 @@ class CreateSuccessVC: UIViewController {
     // MARK: - Custom Methods
     
     private func setUI() {
-        titleLabel.text = "30분 독서\n방을 만들었어요!"
+        titleLabel.text = "\(roomName ?? "")\n방을 만들었어요!"
         titleLabel.font = .h2Title
         titleLabel.textAlignment = .center
         titleLabel.textColor = .sparkPinkred
@@ -56,18 +55,42 @@ class CreateSuccessVC: UIViewController {
     
     private func setAddTarget() {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(touchHomeButton), for: .touchUpInside)
+        enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
     }
     
     // MARK: - @objc
+    
     @objc
     private func copyToClipboard() {
         UIPasteboard.general.string = roomCode
         showToast(x: 20, y: view.safeAreaInsets.top, message: "코드를 복사했어요!", font: .p1TitleLight)
     }
+    
+    @objc
+    private func touchHomeButton() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    private func touchEnterButton() {
+        guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
+        rootVC.roomName = self.roomName
+        rootVC.roomId = self.roomId
+        rootVC.fromWhereStatus = .makeRoom
+        
+        let nextVC = UINavigationController(rootViewController: rootVC)
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        
+        self.present(nextVC, animated: true)
+    }
 }
 
 // MARK: - Network
-
+extension CreateSuccessVC {
+    // TODO: - 코드복사할 roomCode를 가져오기 위해 서버 통신
+}
 
 // MARK: - Layout
 extension CreateSuccessVC {
