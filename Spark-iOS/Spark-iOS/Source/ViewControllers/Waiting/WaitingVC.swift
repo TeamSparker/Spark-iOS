@@ -22,6 +22,11 @@ enum FromWhereStatus {
     case makeRoom
 }
 
+// DiffableDataSource에서 사용할 section enum 선언
+enum Section: CaseIterable {
+    case main
+}
+
 class WaitingVC: UIViewController {
     
     // MARK: - Properties
@@ -60,6 +65,7 @@ class WaitingVC: UIViewController {
     
     private var members: [Member] = []
     private var memberList: [Any] = []
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Member>!
     
     var photoOnly: Bool?
     var roomName: String?
@@ -229,19 +235,26 @@ extension WaitingVC {
     }
     
     private func setCollectionView() {
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC)
+        // diffableDatasource에서 collectionView, cell 채택
+        self.diffableDataSource = UICollectionViewDiffableDataSource<Section, Member>(collectionView: self.collectionView) {(_ UICollectionView, IndexPath, _ Member) -> UICollectionViewCell? in
+            guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: IndexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
+            
+            let name = self.members[IndexPath.item].nickname
+            let imagePath = self.members[IndexPath.item].profileImg ?? ""
+            cell.initCell(name: name, imagePath: imagePath)
+            
+            return cell
+        }
         
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = diffableDataSource
+        collectionView.delegate = self
+        collectionView.register(WaitingFriendCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC)
         collectionViewFlowLayout.scrollDirection = .horizontal
     }
     
     /// 초기 대기방 정보 세팅하는 함수
     private func setInitData(fromstart: Bool, roomcode: String, roomname: String, user: ReqUser) {
-        // 스파커 멤버 수
-        friendCountLabel.text = "\(self.members.count)"
-        
         // 인증 방식
         if fromstart {
             [stopwatchLabel, checkDivideView].forEach { $0.isHidden = false }
@@ -284,13 +297,30 @@ extension WaitingVC {
 
         // 사용자 이미지 설정
         profileImageView.updateImage(user.profileImg)
-        collectionView.reloadData()
+        
+//        // 스파커 멤버 수
+//        friendCountLabel.text = "\(self.members.count)"
+        
+//        collectionView.reloadData()
+        setMemberData()
     }
     
     /// 대기방 멤버 갱신하는 함수
     private func setMemberData() {
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, UIColor>()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(arr)
+//        self.diffableDatasource.apply(snapshot, animatingDifferences: true)
+        
+        // 새로운 상태의 snapshot
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Member>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(members)
+        
+        // 변경된 데이터 적용
         friendCountLabel.text = "\(self.members.count)"
-        collectionView.reloadData()
+        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+//        collectionView.reloadData()
     }
     
     private func stopLoadingAnimation() {
@@ -576,22 +606,22 @@ extension WaitingVC {
 
 // MARK: - UICollectionViewDataSource
 
-extension WaitingVC: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return members.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
-        
-        let name = members[indexPath.item].nickname
-        let imagePath = members[indexPath.item].profileImg ?? ""
-        
-        cell.initCell(name: name, imagePath: imagePath)
-        
-        return cell
-    }
-}
+//extension WaitingVC: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return members.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
+//
+//        let name = members[indexPath.item].nickname
+//        let imagePath = members[indexPath.item].profileImg ?? ""
+//
+//        cell.initCell(name: name, imagePath: imagePath)
+//
+//        return cell
+//    }
+//}
 
 // MARK: - UICollectionViewDelegate
 
