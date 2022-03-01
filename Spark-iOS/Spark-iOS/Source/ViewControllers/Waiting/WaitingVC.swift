@@ -298,20 +298,12 @@ extension WaitingVC {
         // 사용자 이미지 설정
         profileImageView.updateImage(user.profileImg)
         
-//        // 스파커 멤버 수
-//        friendCountLabel.text = "\(self.members.count)"
-        
-//        collectionView.reloadData()
+        // 스파크 멤버
         setMemberData()
     }
     
     /// 대기방 멤버 갱신하는 함수
     private func setMemberData() {
-//        var snapshot = NSDiffableDataSourceSnapshot<Section, UIColor>()
-//        snapshot.appendSections([.main])
-//        snapshot.appendItems(arr)
-//        self.diffableDatasource.apply(snapshot, animatingDifferences: true)
-        
         // 새로운 상태의 snapshot
         var snapshot = NSDiffableDataSourceSnapshot<Section, Member>()
         snapshot.appendSections([.main])
@@ -320,7 +312,6 @@ extension WaitingVC {
         // 변경된 데이터 적용
         friendCountLabel.text = "\(self.members.count)"
         self.diffableDataSource.apply(snapshot, animatingDifferences: true)
-//        collectionView.reloadData()
     }
     
     private func stopLoadingAnimation() {
@@ -603,25 +594,6 @@ extension WaitingVC {
         }
     }
 }
-
-// MARK: - UICollectionViewDataSource
-
-//extension WaitingVC: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return members.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: indexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
-//
-//        let name = members[indexPath.item].nickname
-//        let imagePath = members[indexPath.item].profileImg ?? ""
-//
-//        cell.initCell(name: name, imagePath: imagePath)
-//
-//        return cell
-//    }
-//}
 
 // MARK: - UICollectionViewDelegate
 
