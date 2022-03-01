@@ -26,7 +26,7 @@ class GoalWritingVC: UIViewController {
     private let goalTextField = UITextField()
     private let goalLineView = UIView()
     private let goalCountLabel = UILabel()
-    private let completeButton = BottomButton().setTitle("작성 완료").setDisable()
+    private let completeButton = BottomButton().setUI(.pink).setTitle("작성 완료").setDisable()
     private let maxLength: Int = 15
     
     var titleText: String?

@@ -7,35 +7,54 @@
 
 import UIKit
 
+import SnapKit
+
+@frozen
+enum BottomButtonType {
+    case pink
+    case white
+}
+
 class BottomButton: UIButton {
 
     // MARK: - Initialize
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
         setLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setUI()
         setLayout()
     }
     
     // MARK: - Method
-    
-    private func setUI() {
-        backgroundColor = .sparkDarkPinkred
-        titleLabel?.font = .enBoldFont(ofSize: 18)
-        layer.cornerRadius = 2
-    }
     
     private func setLayout() {
         self.snp.makeConstraints { make in
             make.width.equalTo(UIScreen.main.bounds.width - 40)
             make.height.equalTo((UIScreen.main.bounds.width - 40) * 48 / 335)
         }
+    }
+    
+    @discardableResult
+    func setUI(_ type: BottomButtonType) -> Self {
+        
+        titleLabel?.font = .enBoldFont(ofSize: 18)
+        layer.cornerRadius = 2
+        
+        switch type {
+        case .pink:
+            backgroundColor = .sparkDarkPinkred
+        case .white:
+            backgroundColor = .sparkWhite
+            setTitleColor(.sparkDarkPinkred, for: .normal)
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+        }
+        
+        return self
     }
     
     @discardableResult

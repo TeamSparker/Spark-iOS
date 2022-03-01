@@ -18,7 +18,7 @@ class CreateAuthVC: UIViewController {
     private let subTitleLabel = UILabel()
     private let photoAuthView = PhotoAuthView()
     private let timerAuthView = TimerAuthView()
-    private let enterButton = BottomButton().setTitle("대기방 입장하기")
+    private let createButton = BottomButton().setUI(.pink).setTitle("습관방 만들기")
     private let customNavigationBar = LeftButtonNavigaitonBar()
     
     /// photoOnly가 true이면 fromStart가 false
@@ -30,7 +30,6 @@ class CreateAuthVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUI()
         setLayout()
         setAddTarget()
@@ -79,23 +78,27 @@ class CreateAuthVC: UIViewController {
     }
     
     private func setAddTarget() {
-        enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(touchCreateButton), for: .touchUpInside)
     }
     
     @objc
-    private func touchEnterButton() {
-        postCreateRoomWithAPI(roomName: roomName, fromStart: !photoOnly) {
-            guard let rootVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-            rootVC.roomName = self.roomName
-            rootVC.roomId = self.roomId
-            rootVC.fromWhereStatus = .makeRoom
-            
-            let nextVC = UINavigationController(rootViewController: rootVC)
-            nextVC.modalTransitionStyle = .crossDissolve
-            nextVC.modalPresentationStyle = .fullScreen
-            
-            self.present(nextVC, animated: true)
+    private func touchCreateButton() {
+        guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        
+        dialogVC.dialogueType = .createRoom
+        dialogVC.clousure = {
+            self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createSuccess, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createSuccess) as? CreateSuccessVC else { return }
+                
+                nextVC.roomName = self.roomName
+                nextVC.roomId = self.roomId
+
+                self.navigationController?.pushViewController(nextVC, animated: true)
+            }
         }
+        dialogVC.modalPresentationStyle = .overFullScreen
+        dialogVC.modalTransitionStyle = .crossDissolve
+        present(dialogVC, animated: true, completion: nil)
     }
     
     @objc
@@ -147,7 +150,7 @@ extension CreateAuthVC {
 // MARK: - Layout
 extension CreateAuthVC {
     private func setLayout() {
-        view.addSubviews([customNavigationBar, titleLabel, subTitleLabel, photoAuthView, timerAuthView, enterButton])
+        view.addSubviews([customNavigationBar, titleLabel, subTitleLabel, photoAuthView, timerAuthView, createButton])
         
         customNavigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -177,7 +180,7 @@ extension CreateAuthVC {
             make.height.equalTo(UIScreen.main.hasNotch ? 206 : 180)
         }
         
-        enterButton.snp.makeConstraints { make in
+        createButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
