@@ -13,6 +13,8 @@ class StorageMoreVC: UIViewController {
     
     var roomID: Int?
     var titleText: String?
+    private var selectedIndex: Int?
+    private var isChangingImageView: Bool = false
     private var myRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
     
@@ -71,17 +73,31 @@ extension StorageMoreVC {
     private func setUI() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        customNavigationBar.title(titleText ?? "")
-            .tintColor(.sparkWhite)
-            .backgroundColor(.sparkBlack)
-            .leftButtonImage("icBackWhite")
-            .leftButonAction {
-                self.popToStorageVC()
-            }
-            .rightButtonImage("icMoreVerticalWhite")
-            .rightButtonAction {
-                self.presentToMoreAlert()
-            }
+        if !isChangingImageView {
+            customNavigationBar.title(titleText ?? "")
+                .tintColor(.sparkWhite)
+                .backgroundColor(.sparkBlack)
+                .leftButtonImage("icBackWhite")
+                .leftButonAction {
+                    self.popToStorageVC()
+                }
+                .rightButtonImage("icMoreVerticalWhite")
+                .rightButtonAction {
+                    self.presentToMoreAlert()
+                }
+        } else {
+            customNavigationBar.title(titleText ?? "")
+                .tintColor(.sparkWhite)
+                .backgroundColor(.sparkBlack)
+                .leftButtonTitle("취소")
+                .leftButonAction {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                .rightButtonPinkTitle("완료")
+                .rightButtonAction {
+                    self.dismiss(animated: true)
+                }
+        }
 
         tabBarController?.tabBar.isHidden = true
     }
@@ -112,7 +128,18 @@ extension StorageMoreVC {
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("대표 이미지 변경", titleType: .blackMediumTitle, handler: {
-            print("대표이미지 변경 뷰로 전환")
+            alert.dismiss(animated: true) {
+                let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.storageMore, bundle: nil)
+
+                guard let nextVC = nextSB.instantiateViewController(identifier: Const.ViewController.Identifier.storageMore) as? StorageMoreVC else {return}
+                
+                nextVC.roomID = self.roomID
+                nextVC.titleText = "대표 이미지 변경"
+                nextVC.isChangingImageView = true
+
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true)
+            }
         }))
         
         alert.addSection()
@@ -163,13 +190,22 @@ extension StorageMoreVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.moreStorageCVC, for: indexPath) as? MoreStorageCVC else {return UICollectionViewCell()}
         
-        cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
-                      mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
-                      sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
-                      status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
-        cell.layer.cornerRadius = 2
+        cell.isChangingImageView = self.isChangingImageView
+        
+        if !isChangingImageView {
+            cell.initCell(leftDay: myRoomCertificationList?[indexPath.row].leftDay ?? 0,
+                          mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "",
+                          sparkCount: myRoomCertificationList?[indexPath.row].sparkNum ?? 0,
+                          status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
+        } else {
+            cell.updateImage(mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", status: myRoomCertificationList?[indexPath.row].status ?? "")
+        }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.row
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -197,7 +233,6 @@ extension StorageMoreVC {
                     self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
                     self.storageMoreCV.reloadData()
                 }
-                
                 completion()
             case .requestErr(let message):
                 print("getMyRoomCertiWithAPI - requestErr: \(message)")

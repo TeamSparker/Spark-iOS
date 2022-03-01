@@ -65,6 +65,16 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
         return self
     }
     
+    /// set title of right button with pink color
+    @discardableResult
+    func rightButtonPinkTitle(_ title: String) -> Self {
+        self.rightButton.setTitle(title, for: .normal)
+        self.rightButton.titleLabel?.font = .btn1Default
+        self.rightButton.setTitleColor(.sparkPinkred, for: .normal)
+        
+        return self
+    }
+    
     /// set tint color of left, right button.
     /// - default color is sparkBlack.
     @discardableResult

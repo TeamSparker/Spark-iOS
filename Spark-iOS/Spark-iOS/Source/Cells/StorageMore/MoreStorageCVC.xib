@@ -92,8 +92,9 @@
             <size key="customSize" width="116" height="203"/>
             <connections>
                 <outlet property="certificationImage" destination="ywz-cO-r8W" id="Dh5-68-KEp"/>
-                <outlet property="dDayLabel" destination="ClD-wt-IXN" id="Bgm-uB-6Hz"/>
+                <outlet property="dDayOrPointLabel" destination="ClD-wt-IXN" id="PPj-Yv-HaG"/>
                 <outlet property="sparkCountLabel" destination="5no-YH-587" id="KTy-fw-Ske"/>
+                <outlet property="sparkStackView" destination="ycO-Hf-3fL" id="FBa-LZ-syb"/>
                 <outlet property="timerAlphaView" destination="pnS-GV-OTG" id="i6b-cQ-C2z"/>
                 <outlet property="timerLabel" destination="AjC-Uk-AyE" id="GGu-Ta-ssY"/>
             </connections>
