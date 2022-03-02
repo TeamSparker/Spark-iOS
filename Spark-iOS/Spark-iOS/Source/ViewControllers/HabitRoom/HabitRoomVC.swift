@@ -171,6 +171,7 @@ extension HabitRoomVC {
         endDateLabel.text = habitRoomDetail.endDate
         
         if habitRoomDetail.moment != nil {
+            timeTextLabel.text = "시간"
             timeLabel.text = habitRoomDetail.moment
         } else {
             timeTextLabel.text = ""
@@ -178,6 +179,7 @@ extension HabitRoomVC {
         }
         
         if habitRoomDetail.purpose != nil {
+            goalTextField.text = "목표"
             goalLabel.text = habitRoomDetail.purpose
         } else {
             goalTextField.text = ""
@@ -319,8 +321,17 @@ extension HabitRoomVC {
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
-            // TODO: - 나의 목표 수정 뷰 연결
-            print("나의 목표 수정 뷰로 전환")
+            self.dismiss(animated: true) {
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
+                
+                nextVC.modalPresentationStyle = .fullScreen
+                nextVC.titleText = self.roomName
+                nextVC.roomId = self.roomID
+                nextVC.moment = self.habitRoomDetail?.moment
+                nextVC.purpose = self.habitRoomDetail?.purpose
+                
+                self.present(nextVC, animated: true, completion: nil)
+            }
         }))
 
         alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
