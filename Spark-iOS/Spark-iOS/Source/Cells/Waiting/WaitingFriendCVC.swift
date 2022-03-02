@@ -71,6 +71,6 @@ extension WaitingFriendCVC {
     /// 셀 초기화.
     func initCell(name: String, imagePath: String) {
         nameLabel.text = name
-        profileImageView.updateImage(imagePath, type: .medium)
+        profileImageView.updateImage(imagePath, type: .small)
     }
 }

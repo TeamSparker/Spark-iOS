@@ -73,7 +73,7 @@ class FeedCVC: UICollectionViewCell {
         likeCountLabel.text = "\(likeCount)"
         feedImageView.updateImage(certifyingImg, type: .large)
         cellId = recordId
-        profileImageView.updateImage(profileImg, type: .medium)
+        profileImageView.updateImage(profileImg, type: .small)
         
         if let time = timeRecord {
             timeLabel.text = "\(time)"

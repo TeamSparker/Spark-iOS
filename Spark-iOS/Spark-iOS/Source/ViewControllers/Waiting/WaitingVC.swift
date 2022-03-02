@@ -296,7 +296,7 @@ extension WaitingVC {
         }
 
         // 사용자 이미지 설정
-        profileImageView.updateImage(user.profileImg, type: .medium)
+        profileImageView.updateImage(user.profileImg, type: .small)
         
         // 스파크 멤버
         setMemberData()
