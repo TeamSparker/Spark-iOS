@@ -33,6 +33,38 @@ class SendSparkVC: UIViewController {
         return label
     }()
     
+    private lazy var textField: UITextField = {
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.textColor = .sparkWhite
+        tf.keyboardAppearance = .default
+        tf.tintColor = .sparkPinkred
+        tf.backgroundColor = .clear
+        tf.attributedPlaceholder = NSAttributedString(string: "15자 이내의 응원 메시지를 보내보세요!",
+                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.sparkDarkGray.cgColor])
+        tf.isHidden = true
+        return tf
+    }()
+    
+    private lazy var sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("보내기", for: .normal)
+        button.tintColor = .sparkPinkred
+        button.titleLabel?.font = .p1Title
+        button.setTitleColor(.sparkGray, for: .disabled)
+        button.isHidden = true
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(sendSparkWithMessage), for: .touchUpInside)
+        return button
+    }()
+    
+    private let lineView: UIView = {
+        let view = UIView()
+        view.isHidden = true
+        view.backgroundColor = .sparkGray
+        return view
+    }()
+    
     private var buttonCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
