@@ -18,6 +18,8 @@ public enum SendSparkStatus: Int {
 final class SendSparkButton: UIButton {
     
     // MARK: - Properties
+    var type: SendSparkStatus?
+    var content: String?
     
     // MARK: - Initialize
     
@@ -48,6 +50,7 @@ extension SendSparkButton {
         self.titleLabel?.font = .btn3
         self.titleLabel?.lineBreakMode = .byCharWrapping
         self.titleLabel?.textAlignment = .center
+        self.type = type
         
         switch type {
         case .message:
@@ -65,7 +68,7 @@ extension SendSparkButton {
                           파이팅!
                           """,
                           for: .normal)
-            self.tag = 1
+            self.content = "👊아자아자 파이팅!"
         case .second:
             self.setTitle("""
                           🔥
@@ -73,7 +76,7 @@ extension SendSparkButton {
                           같이 해!
                           """,
                           for: .normal)
-            self.tag = 2
+            self.content = "🔥오늘 안 해? 같이 해!"
         case .third:
             self.setTitle("""
                           👉
@@ -81,7 +84,7 @@ extension SendSparkButton {
                           하면 돼!
                           """,
                           for: .normal)
-            self.tag = 3
+            self.content = "👉너만 하면 돼!"
         case .fourth:
             self.setTitle("""
                           👍
@@ -89,7 +92,7 @@ extension SendSparkButton {
                           어서 하자!
                           """,
                           for: .normal)
-            self.tag = 4
+            self.content = "👍얼마 안 남았어, 어서 하자!"
         }
     }
     

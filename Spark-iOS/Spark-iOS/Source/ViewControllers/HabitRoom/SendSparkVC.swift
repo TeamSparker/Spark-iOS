@@ -106,21 +106,15 @@ extension SendSparkVC {
     }
     
     // MARK: - @objc Function
-    
-    @objc
-    func touchSendSparkButton(_ sender: SendSparkButton) {
-//        setFeedbackGenerator()
-//
-//        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-//            if $0.tag == sender.tag {
-//                $0.isSelected(true)
-//            } else {
-//                // 통신실패 시에도 다시금 deselected 되야하니 필요함.
-//                $0.isSelected(false)
-//            }
-//        }
-//        let selectedMessage = sender.titleLabel?.text ?? ""
-//        sendSparkWithAPI(content: selectedMessage)
+
+}
+
+extension SendSparkVC: SendSparkCellDelegate {
+    func sendSpark(_ content: String) {
+        sendSparkWithAPI(content: content)
+    }
+    func showTextField() {
+        
     }
 }
 
@@ -135,6 +129,7 @@ extension SendSparkVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.sendSparkCVC, for: indexPath) as? SendSparkCVC else { return UICollectionViewCell() }
         
         cell.setSparkButton(type: SendSparkStatus.init(rawValue: indexPath.row) ?? .message)
+        cell.sendSparkCellDelegate = self
         
 //        let name = members[indexPath.item].nickname
 //        let imagePath = members[indexPath.item].profileImg ?? ""

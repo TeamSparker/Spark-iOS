@@ -13,13 +13,17 @@ class SendSparkCVC: UICollectionViewCell {
     
     // MARK: - Properties
     
-    lazy var sparkButton = SendSparkButton(type: .message)
-    {
+    weak var sendSparkCellDelegate: SendSparkCellDelegate?
+    
+    lazy var sparkButton = SendSparkButton(type: .message) {
         didSet {
             setUI()
             setLayout()
+            setAddTarget()
         }
     }
+    
+    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
     // MARK: - View Life Cycles
     
@@ -56,9 +60,30 @@ extension SendSparkCVC {
         }
     }
     
-    /// 셀 초기화.
-    func initCell(name: String, imagePath: String) {
-//        nameLabel.text = name
-//        profileImageView.updateImage(imagePath)
+    private func setAddTarget() {
+            sparkButton.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
     }
+    
+    private func setFeedbackGenerator() {
+        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+        selectionFeedbackGenerator?.selectionChanged()
+    }
+    
+    // MARK: - @objc Function
+    
+    @objc
+    func touchSendSparkButton(_ sender: SendSparkButton) {
+        print(sender.tag)
+        if sender.type == .message {
+            sendSparkCellDelegate?.showTextField()
+        } else {
+            setFeedbackGenerator()
+            sendSparkCellDelegate?.sendSpark(sender.content ?? "")
+        }
+    }
+}
+
+protocol SendSparkCellDelegate: AnyObject {
+    func sendSpark(_ content: String)
+    func showTextField()
 }
