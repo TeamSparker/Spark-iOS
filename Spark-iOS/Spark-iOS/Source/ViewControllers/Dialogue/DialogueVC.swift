@@ -87,13 +87,16 @@ extension DialogueVC {
         
         case .deleteWaitingRoom:
             guideLabel.text = """
-            대기방을 삭제하시겠습니까?
-            삭제 후에는 기록이 남지 않습니다.
+            정말 대기방을 삭제할 건가요?
+            다른 스파커들에게도 습관방이 삭제돼요.
             """
             resetOrExitLabel.text = "삭제"
             
         case .leaveWaitingRoom:
-            guideLabel.text = "정말 대기방을 나가시겠습니까?"
+            guideLabel.text = """
+            정말 대기방을 나갈 건가요?
+            습관이 시작되면 재접속이 불가능해요.
+            """
             
         case .rest:
             guideLabel.text = """

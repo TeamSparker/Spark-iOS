@@ -175,7 +175,7 @@ extension WaitingVC {
         goalTitleLabel.text = "나의 목표"
         nicknameLabel.text = "-"
         friendTitleLabel.text = "함께하는 스파커들"
-        friendSubTitleLabel.text = "습관을 시작한 후에는 인원 추가가 불가능합니다."
+        friendSubTitleLabel.text = "습관방은 최대 10명까지 입장할 수 있습니다."
         timeLabel.text = "습관을 시작하기 전에"
         goalLabel.text = "시간과 목표를 작성해 주세요!"
         
