@@ -39,6 +39,7 @@ class HomeVC: UIViewController {
         setDelegate()
         registerXib()
         initRefreshControl()
+        setNoti()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,6 +143,10 @@ extension HomeVC {
         mainCollectionView.refreshControl = refreshControl
     }
     
+    private func setNoti() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: NSNotification.Name("leaveRoom"), object: nil)
+    }
+    
     // MARK: - Screen Change
     
     private func presentToProfileVC() {
@@ -162,6 +167,24 @@ extension HomeVC {
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    @objc
+    private func setToastMessage(_ notification: NSNotification) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
+            let roomName = notification.userInfo!["roomName"] ?? ""
+            let message: String
+            
+            if let waiting = notification.userInfo!["waitingRoom"] as? Bool {
+                if waiting {
+                    message = "'\(roomName)' 대기방을 나갔어요."
+                } else {
+                    message = "'\(roomName)' 방을 나갔어요."
+                }
+                
+                self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
             }
         }
     }
