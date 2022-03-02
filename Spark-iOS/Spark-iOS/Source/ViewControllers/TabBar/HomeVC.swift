@@ -174,8 +174,13 @@ extension HomeVC {
     @objc
     private func setToastMessage(_ notification: NSNotification) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
-            let roomName = notification.userInfo!["roomName"] ?? ""
+            var roomName: String = notification.userInfo!["roomName"] as? String ?? ""
             let message: String
+        
+            if roomName.count > 8 {
+                let index = roomName.index(roomName.startIndex, offsetBy: 8)
+                roomName = roomName[..<index] + "..."
+            }
             
             if let waiting = notification.userInfo!["waitingRoom"] as? Bool {
                 if waiting {
