@@ -15,6 +15,9 @@ class SendSparkVC: UIViewController {
     var recordID: Int?
     var userName: String?
     var profileImage: String?
+    private var maxLength: Int = 15
+    
+    private let customNavigationBar = LeftButtonNavigaitonBar()
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -98,6 +101,7 @@ class SendSparkVC: UIViewController {
         setUI()
         setCollectionView()
         setLayout()
+        setDelegate()
         setAddTargets()
     }
     
@@ -115,6 +119,15 @@ extension SendSparkVC {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
         
+        customNavigationBar.title("스파크 보내기")
+            .titleColor(.sparkWhite)
+            .backgroundColor(.clear)
+            .tintColor(.sparkWhite)
+            .leftButtonImage("icQuit")
+            .leftButonAction {
+                self.dismiss(animated: true, completion: nil)
+            }
+        
         profileImageView.updateImage(profileImage ?? "")
         
         userNameLabel.text = "\(userName ?? "")에게"
@@ -126,10 +139,8 @@ extension SendSparkVC {
         buttonCV.register(SendSparkCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.sendSparkCVC)
     }
     
-    private func setAddTargets() {
-//        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-//            $0.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
-//        }
+    private func setDelegate() {
+        textField.delegate = self
     }
     
     private func setFeedbackGenerator() {
@@ -137,19 +148,73 @@ extension SendSparkVC {
         selectionFeedbackGenerator?.selectionChanged()
     }
     
+    private func setAddTargets() {
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
     // MARK: - @objc Function
 
+    @objc private func sendSparkWithMessage() {
+        sendSparkWithAPI(content: textField.text ?? "")
+    }
+    
+    @objc
+    private func textFieldDidChange(_ sender: UITextField) {
+        if let text = sender.text {
+            if text.count >= maxLength {
+                let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                let newString = String(text[text.startIndex..<maxIndex])
+                textField.text = newString
+            } else if (0 < text.count)&&(text.count < maxLength) {
+                lineView.backgroundColor = .sparkPinkred
+                sendButton.titleLabel?.textColor = .sparkPinkred
+                sendButton.isEnabled = true
+            } else {
+                lineView.backgroundColor = .sparkGray
+                sendButton.titleLabel?.textColor = .sparkGray
+                sendButton.isEnabled = false
+            }
+        }
+    }
 }
+
+// MARK: - SendSparkCellDelegate
 
 extension SendSparkVC: SendSparkCellDelegate {
     func sendSpark(_ content: String) {
         sendSparkWithAPI(content: content)
     }
     func showTextField() {
-        
+        textField.isHidden = false
+        lineView.isHidden = false
+        sendButton.isHidden = false
+        textField.becomeFirstResponder()
     }
 }
 
+// MARK: - UITextFieldDelegate
+
+extension SendSparkVC: UITextFieldDelegate {
+    // 여백 클릭 시
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // 리턴 눌렀을 때
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    // 입력 끝
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if !textField.hasText {
+            sendButton.isEnabled = false
+            sendButton.titleLabel?.textColor = .sparkGray
+            lineView.backgroundColor = .sparkGray
+        }
+    }
+}
 // MARK: - UICollectionViewDataSource
 
 extension SendSparkVC: UICollectionViewDataSource {
@@ -162,11 +227,6 @@ extension SendSparkVC: UICollectionViewDataSource {
         
         cell.setSparkButton(type: SendSparkStatus.init(rawValue: indexPath.row) ?? .message)
         cell.sendSparkCellDelegate = self
-        
-//        let name = members[indexPath.item].nickname
-//        let imagePath = members[indexPath.item].profileImg ?? ""
-//
-//        cell.initCell(name: name, imagePath: imagePath)
         
         return cell
     }
@@ -206,7 +266,15 @@ extension SendSparkVC {
 
 extension SendSparkVC {
     private func setLayout() {
-        view.addSubviews([profileImageView, userNameLabel, buttonCV, guideLabel])
+        view.addSubviews([customNavigationBar, profileImageView, userNameLabel,
+                          textField, sendButton, lineView,
+                          buttonCV, guideLabel])
+        
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
         
         profileImageView.snp.makeConstraints { make in
             make.bottom.equalTo(userNameLabel.snp.top).offset(-12)
@@ -217,6 +285,22 @@ extension SendSparkVC {
         userNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(buttonCV.snp.top).offset(-200)
             make.centerX.equalToSuperview()
+        }
+        
+        textField.snp.makeConstraints { make in
+            make.leading.equalTo(lineView.snp.leading).offset(8)
+            make.bottom.equalTo(lineView.snp.top).offset(-10)
+        }
+        
+        sendButton.snp.makeConstraints { make in
+            make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
+            make.bottom.equalTo(lineView.snp.top).offset(-4)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(311)
         }
         
         buttonCV.snp.makeConstraints { make in
