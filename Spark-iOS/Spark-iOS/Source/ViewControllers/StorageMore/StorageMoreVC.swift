@@ -145,7 +145,7 @@ extension StorageMoreVC {
         alert.addSection()
         
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
-            self.dismiss(animated: true, completion: nil)
+            alert.animatedDismiss(completion: nil)
         }))
         
         present(alert, animated: true)

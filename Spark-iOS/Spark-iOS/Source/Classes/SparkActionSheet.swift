@@ -192,6 +192,9 @@ class SparkActionSheet: UIViewController {
         super.viewWillAppear(animated)
         setLayout()
         makeActionSheet()
+        DispatchQueue.main.async {
+            self.upAnimation()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -222,7 +225,7 @@ class SparkActionSheet: UIViewController {
     
     @objc
     private func tapGestureDidRecognize(_ gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true)
+        animatedDismiss()
     }
 }
 
@@ -247,7 +250,7 @@ extension SparkActionSheet {
         
         sparkActionMainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(54)
+            make.bottom.equalToSuperview().offset(sparkActionMainStackView.frame.height+150)
         }
     }
     
@@ -279,6 +282,50 @@ extension SparkActionSheet {
                 let spacer = sections[i].makeSectionSpacer()
                 sparkActionMainStackView.addArrangedSubview(spacer)
             }
+        }
+    }
+    
+    /// System Alert에서 dismiss 애니메이션과 같은 효과
+    func animatedDismiss(completion: (() -> Void)? = nil) {
+        downAnimation()
+        completion?()
+    }
+}
+
+// MARK: - Animation
+
+extension SparkActionSheet {
+    private func upAnimation() {
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        let actionSheetHeight: CGFloat = self.sparkActionMainStackView.frame.height
+        let actionSheetBottomMargin: CGFloat = 54
+        let actionSheetStartOriginY: CGFloat = self.sparkActionMainStackView.frame.origin.y
+        
+        UIView.animate(withDuration: 0.1,
+                       delay: 0.02,
+                       options: .curveEaseIn) {
+            let frame = CGAffineTransform(translationX: 0,
+                                          y: screenHeight - actionSheetHeight - actionSheetBottomMargin
+                                          - actionSheetStartOriginY)
+            self.sparkActionMainStackView.transform = frame
+        }
+    }
+    
+    private func downAnimation() {
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        let actionSheetHeight: CGFloat = self.sparkActionMainStackView.frame.height
+        let actionSheetBottomMargin: CGFloat = 54
+        let actionSheetStartOriginY: CGFloat = self.sparkActionMainStackView.frame.origin.y
+        
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            let frame = CGAffineTransform(translationX: 0,
+                                          y: screenHeight - actionSheetHeight - actionSheetBottomMargin
+                                          - actionSheetStartOriginY)
+            self.sparkActionMainStackView.transform = frame
+        } completion: { _ in
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
