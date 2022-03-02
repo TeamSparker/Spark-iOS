@@ -65,6 +65,15 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
         return self
     }
     
+    /// set title of left button
+    @discardableResult
+    func leftButtonTitle(_ title: String) -> Self {
+        self.leftButton.setTitle(title, for: .normal)
+        self.leftButton.titleLabel?.font = .btn1Default
+        
+        return self
+    }
+    
     /// set tint color of left button.
     /// - default color is sparkBlack.
     @discardableResult
