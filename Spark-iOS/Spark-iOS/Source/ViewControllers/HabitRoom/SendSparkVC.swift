@@ -14,6 +14,24 @@ class SendSparkVC: UIViewController {
     var roomID: Int?
     var recordID: Int?
     var userName: String?
+    var profileImage: String?
+    
+    private let profileImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 64/2
+        iv.layer.borderWidth = 2
+        iv.layer.borderColor = UIColor.sparkLightGray.cgColor
+        return iv
+    }()
+    
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .h3Subtitle
+        label.textColor = .sparkLightGray
+        return label
+    }()
     
     private var buttonCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -64,6 +82,10 @@ extension SendSparkVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
+        
+        profileImageView.updateImage(profileImage ?? "")
+        
+        userNameLabel.text = "\(userName ?? "")에게"
     }
     
     private func setCollectionView() {
@@ -114,7 +136,6 @@ extension SendSparkVC: UICollectionViewDataSource {
         
         cell.setSparkButton(type: SendSparkStatus.init(rawValue: indexPath.row) ?? .message)
         
-        // TODO: - 이 부분에서 버튼 스타일 정해주자
 //        let name = members[indexPath.item].nickname
 //        let imagePath = members[indexPath.item].profileImg ?? ""
 //
@@ -158,7 +179,18 @@ extension SendSparkVC {
 
 extension SendSparkVC {
     private func setLayout() {
-        view.addSubviews([buttonCV, guideLabel])
+        view.addSubviews([profileImageView, userNameLabel, buttonCV, guideLabel])
+        
+        profileImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(userNameLabel.snp.top).offset(-12)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(64)
+        }
+        
+        userNameLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(buttonCV.snp.top).offset(-200)
+            make.centerX.equalToSuperview()
+        }
         
         buttonCV.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
