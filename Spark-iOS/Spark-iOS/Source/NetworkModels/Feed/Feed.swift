@@ -17,9 +17,9 @@ struct Record: Codable {
     let date, day: String
     let userID, recordID: Int
     let nickname: String
-    let profileImg: String?
+    let profileImg: String
     let roomName: String
-    let certifyingImg: String?
+    let certifyingImg: String
     var likeNum: Int
     let sparkCount: Int
     var isLiked: Bool

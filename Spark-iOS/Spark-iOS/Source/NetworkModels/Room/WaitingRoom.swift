@@ -27,14 +27,26 @@ struct Waiting: Codable {
 }
 
 // MARK: - Member
-struct Member: Codable {
+struct Member: Codable, Hashable {
     let userID: Int
     let nickname: String
-    let profileImg: String?
+    let profileImg: String
 
     enum CodingKeys: String, CodingKey {
         case userID = "userId"
         case nickname, profileImg
+    }
+    
+    /// struct를 hashable로 변환.
+    /// hashValue가 고유값인지 식별해주는 함수 (Equatable protocol)
+    static func == (lhs: Member, rhs: Member) -> Bool {
+        lhs.userID == rhs.userID
+    }
+    
+    /// combine 메소드를 통해 식별할 수 있는 identifier 값 전달
+    /// hasher이 hashValue를 생성해줌.
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(userID)
     }
 }
 
