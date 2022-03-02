@@ -314,7 +314,7 @@ extension HabitRoomVC {
     
     private func initRefreshControl() {
         refreshControl.tintColor = .sparkPinkred
-        refreshControl.addTarget(self, action: #selector(updateMemeber), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(updateWithRefreshControl), for: .valueChanged)
         mainCollectionView.refreshControl = refreshControl
     }
     
@@ -380,7 +380,7 @@ extension HabitRoomVC {
     }
     
     @objc
-    private func updateMemeber() {
+    private func updateWithRefreshControl() {
         DispatchQueue.main.async {
             self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
                 self.refreshControl.endRefreshing()
