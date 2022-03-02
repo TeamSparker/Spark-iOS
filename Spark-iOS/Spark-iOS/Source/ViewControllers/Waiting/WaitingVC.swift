@@ -47,7 +47,7 @@ class WaitingVC: UIViewController {
     private let friendCountLabel = UILabel()
     private let friendSubTitleLabel = UILabel()
     private let refreshButton = UIButton()
-    private let startButton = BottomButton().setTitle("습관 시작하기")
+    private let startButton = BottomButton().setUI(.pink).setTitle("습관 시작하기")
     
     private var customNavigationBar = LeftRightButtonsNavigationBar()
     
@@ -67,6 +67,7 @@ class WaitingVC: UIViewController {
     var roomId: Int?
     var userMoment: String?
     var userPurpose: String?
+    var isHost: Bool?
     var fromWhereStatus: FromWhereStatus?
     
     // MARK: - View Life Cycles
@@ -267,6 +268,8 @@ extension WaitingVC {
         } else {
             startButton.isHidden = true
         }
+        
+        self.isHost = user.isHost
 
         // 목표가 있을 경우, 목표와 시간 세팅
         if user.isPurposeSet {
@@ -345,10 +348,45 @@ extension WaitingVC {
     }
     
     private func presentToMoreAlert() {
+        let alert = SparkActionSheet()
+        // 본인 방장 여부
+        if self.isHost ?? true {
+            alert.addAction(SparkAction("방 삭제", titleType: .blackMediumTitle, handler: {
+                alert.dismiss(animated: true) {
+                    guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+                    
+                    dialogVC.dialogueType = .deleteWaitingRoom
+                    dialogVC.clousure = {
+                        self.deleteWaitingRoomWithAPI(roomID: self.roomId ?? 0)
+                    }
+                    dialogVC.modalPresentationStyle = .overFullScreen
+                    dialogVC.modalTransitionStyle = .crossDissolve
+                    self.present(dialogVC, animated: true, completion: nil)
+                }
+            }))
+        } else {
+            alert.addAction(SparkAction("방 나가기", titleType: .blackMediumTitle, handler: {
+                self.dismiss(animated: true) {
+                    guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+                    
+                    dialogVC.dialogueType = .leaveWaitingRoom
+                    dialogVC.clousure = {
+                        self.leaveWaitingRoomWithAPI(roomID: self.roomId ?? 0)
+                    }
+                    dialogVC.modalPresentationStyle = .overFullScreen
+                    dialogVC.modalTransitionStyle = .crossDissolve
+                    self.present(dialogVC, animated: true, completion: nil)
+                }
+            }))
+        }
         
-        // TODO: - 더보기 버튼
+        alert.addSection()
         
-        print("touchToMore")
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
     }
     
     // MARK: - Screen Change
@@ -474,6 +512,63 @@ extension WaitingVC {
                 print("getWaitingMembersWithAPI - serverErr")
             case .networkFail:
                 print("getWaitingMembersWithAPI - networkFail")
+            }
+        }
+    }
+    
+    /// 대기방 삭제 API (방장)
+    private func deleteWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.deleteWaitingRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                switch self.fromWhereStatus {
+                case .fromHome:
+                    self.popToHomeVC()
+                case .makeRoom:
+                    self.dismissToHomeVC()
+                case .joinCode:
+                    // 방장만 방 삭제 API를 사용하기 때문에 발생하지 않음.
+                    return
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
+                }
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
+            }
+        }
+    }
+    
+    /// 대기방 나가기 API (참여자)
+    private func leaveWaitingRoomWithAPI(roomID: Int) {
+        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+            switch response {
+            case .success(let message):
+                switch self.fromWhereStatus {
+                case .fromHome:
+                    self.popToHomeVC()
+                case .makeRoom:
+                    self.dismissToHomeVC()
+                case .joinCode:
+                    self.dismissJoinCodeToHomeVC()
+                case .none:
+                    print("fromeWhereStatus 를 지정해주세요.")
+                }
+                print("deleteWaitingRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("deleteWaitingRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("deleteWaitingRoomWithAPI - pathErr")
+            case .serverErr:
+                print("deleteWaitingRoomWithAPI - serverErr")
+            case .networkFail:
+                print("deleteWaitingRoomWithAPI - networkFail")
             }
         }
     }

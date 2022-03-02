@@ -18,7 +18,7 @@ class CreateRoomVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private let nextButton = BottomButton().setTitle("다음으로").setDisable()
+    private let nextButton = BottomButton().setUI(.pink).setTitle("다음으로").setDisable()
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let maxLength: Int = 15
 

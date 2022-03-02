@@ -23,6 +23,7 @@ extension Const {
             static let joinCheck = "JoinCheck"
             static let createRoom = "CreateRoom"
             static let createAuth = "CreateAuth"
+            static let createSuccess = "CreateSuccess"
             static let goalWriting = "GoalWriting"
             static let habitAuth = "HabitAuth"
             static let completeAuth = "CompleteAuth"
@@ -34,6 +35,7 @@ extension Const {
             static let dialogue = "Dialogue"
             static let habitRoom = "HabitRoom"
             static let roomStart = "RoomStart"
+            static let habitRoomLeave = "HabitRoomLeave"
         }
     }
 }

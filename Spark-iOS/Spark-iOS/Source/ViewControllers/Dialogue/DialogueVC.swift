@@ -15,6 +15,10 @@ enum DialogueType {
     case exitAuth
     case resetTimer
     case exitTimer
+    case rest
+    case deleteWaitingRoom
+    case leaveWaitingRoom
+    case createRoom
 }
 
 class DialogueVC: UIViewController {
@@ -80,6 +84,31 @@ extension DialogueVC {
             이미 측정한 시간 기록이 사라집니다.
             그래도 나가시겠습니까?
             """
+        
+        case .deleteWaitingRoom:
+            guideLabel.text = """
+            대기방을 삭제하시겠습니까?
+            삭제 후에는 기록이 남지 않습니다.
+            """
+            resetOrExitLabel.text = "삭제"
+            
+        case .leaveWaitingRoom:
+            guideLabel.text = "정말 대기방을 나가시겠습니까?"
+            
+        case .rest:
+            guideLabel.text = """
+            ‘쉴래요’를 사용하면 오늘의 인증은
+            건너뛰게 되고, 방 생명은 유지됩니다.
+            """
+            resetOrExitLabel.text = "사용하기"
+            
+        case .createRoom:
+            guideLabel.text = """
+            방 생성을 완료하시겠습니까?
+            방 이름과 인증 방식은 추후 수정이 어렵습니다.
+            """
+            resetOrExitLabel.text = "완료"
+            resetOrExitLabel.textColor = .sparkDarkPinkred
             
         case .none:
             print("dialogueType을 지정해주세요")
@@ -99,7 +128,7 @@ extension DialogueVC {
     
     @objc
     private func cancelAction() {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     /// 나가기 또는 초기화 액션을 넣어주세요

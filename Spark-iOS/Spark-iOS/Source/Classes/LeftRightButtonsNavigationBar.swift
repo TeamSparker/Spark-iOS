@@ -87,7 +87,7 @@ final class LeftRightButtonsNavigationBar: LeftButtonNavigaitonBar {
     
     /// add action to right button.
     @discardableResult
-    func rightButtonAction(_ closure: (() -> Void)?) -> Self {
+    func rightButtonAction(_ closure: (() -> Void)? = nil) -> Self {
         self.rightButtonClosure = closure
         self.rightButton.addTarget(self, action: #selector(rightButtonSelector), for: .touchUpInside)
         

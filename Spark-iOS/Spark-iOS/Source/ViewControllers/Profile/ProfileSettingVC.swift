@@ -21,7 +21,7 @@ class ProfileSettingVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private var completeButton = BottomButton().setTitle("가입완료").setDisable()
+    private var completeButton = BottomButton().setUI(.pink).setTitle("가입완료").setDisable()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
     private let maxLength: Int = 10

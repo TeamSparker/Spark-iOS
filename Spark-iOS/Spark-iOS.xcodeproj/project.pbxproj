@@ -33,6 +33,10 @@
 		2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */; };
 		2B9C6BCB279277D600CD914F /* GoalWriting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */; };
 		2B9C6BCE2792781F00CD914F /* GoalWritingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */; };
+		2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98FB127CB44E800C53820 /* HabitRoomLeaveVC.swift */; };
+		2BA98FB427CB451000C53820 /* HabitRoomLeave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA98FB327CB451000C53820 /* HabitRoomLeave.storyboard */; };
+		2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98FB527CB620E00C53820 /* CreateSuccessVC.swift */; };
+		2BA98FB827CB621B00C53820 /* CreateSuccess.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA98FB727CB621B00C53820 /* CreateSuccess.storyboard */; };
 		2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12C279539B90052CA5C /* WaitingMember.swift */; };
 		2BBED13027956C9F0052CA5C /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED12F27956C9F0052CA5C /* Feed.swift */; };
 		2BBED13327956D170052CA5C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBED13227956D170052CA5C /* FeedService.swift */; };
@@ -183,6 +187,10 @@
 		2B98520D2790AE0000CE40A7 /* PhotoAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAuthView.swift; sourceTree = "<group>"; };
 		2B9C6BCA279277D600CD914F /* GoalWriting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GoalWriting.storyboard; sourceTree = "<group>"; };
 		2B9C6BCD2792781F00CD914F /* GoalWritingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWritingVC.swift; sourceTree = "<group>"; };
+		2BA98FB127CB44E800C53820 /* HabitRoomLeaveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomLeaveVC.swift; sourceTree = "<group>"; };
+		2BA98FB327CB451000C53820 /* HabitRoomLeave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoomLeave.storyboard; sourceTree = "<group>"; };
+		2BA98FB527CB620E00C53820 /* CreateSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSuccessVC.swift; sourceTree = "<group>"; };
+		2BA98FB727CB621B00C53820 /* CreateSuccess.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateSuccess.storyboard; sourceTree = "<group>"; };
 		2BBED12C279539B90052CA5C /* WaitingMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingMember.swift; sourceTree = "<group>"; };
 		2BBED12F27956C9F0052CA5C /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		2BBED13227956D170052CA5C /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
@@ -348,6 +356,7 @@
 			children = (
 				2B985204279031D000CE40A7 /* CreateRoomVC.swift */,
 				2B98520A2790AD0000CE40A7 /* CreateAuthVC.swift */,
+				2BA98FB527CB620E00C53820 /* CreateSuccessVC.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 			children = (
 				2B9852022790310800CE40A7 /* CreateRoom.storyboard */,
 				2B9852082790ACF000CE40A7 /* CreateAuth.storyboard */,
+				2BA98FB727CB621B00C53820 /* CreateSuccess.storyboard */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -629,6 +639,7 @@
 				EB9C50892792A86D00588155 /* CompleteAuthVC.swift */,
 				EBE90FD92796128800157075 /* SendSparkVC.swift */,
 				F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */,
+				2BA98FB127CB44E800C53820 /* HabitRoomLeaveVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -640,6 +651,7 @@
 				EB9C508B2792A90400588155 /* CompleteAuth.storyboard */,
 				EBE90FDB279612CA00157075 /* SendSpark.storyboard */,
 				F8F6D6F42797359600725537 /* HabitRoom.storyboard */,
+				2BA98FB327CB451000C53820 /* HabitRoomLeave.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -1105,6 +1117,7 @@
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
 				EBEA382327945F5A00B5736A /* icHeartActive.json in Resources */,
+				2BA98FB427CB451000C53820 /* HabitRoomLeave.storyboard in Resources */,
 				EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */,
 				EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */,
 				EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */,
@@ -1139,6 +1152,7 @@
 				EB625E99278F8EF200C43DE9 /* StorageMore.storyboard in Resources */,
 				EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */,
 				F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */,
+				2BA98FB827CB621B00C53820 /* CreateSuccess.storyboard in Resources */,
 				F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1240,6 +1254,7 @@
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
+				2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */,
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
 				2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */,
@@ -1294,6 +1309,7 @@
 				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
+				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
