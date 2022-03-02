@@ -119,7 +119,7 @@ extension HomeHabitCVC {
         
         if memberNum > 3 {
             for index in 0..<3 {
-                profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                profileImageList[index]?.updateImage(profileImg[index] ?? "", type: .small)
                 profileImageList[index]?.isHidden = false
             }
             
@@ -129,12 +129,12 @@ extension HomeHabitCVC {
         } else {
             if memberNum == 3 {
                 for index in 0..<3 {
-                    profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                    profileImageList[index]?.updateImage(profileImg[index] ?? "", type: .small)
                     profileImageList[index]?.isHidden = false
                 }
             } else {
                 for index in 0..<memberNum {
-                    profileImageList[index]?.updateImage(profileImg[index] ?? "")
+                    profileImageList[index]?.updateImage(profileImg[index] ?? "", type: .small)
                     profileImageList[index]?.isHidden = false
                     
                     fourthProfileImage.isHidden = true
