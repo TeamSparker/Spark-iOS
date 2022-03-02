@@ -4,19 +4,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="NotoSansKR-Medium.otf">
-            <string>NotoSansKR-Medium</string>
-        </array>
-        <array key="NotoSansKR-Regular.otf">
-            <string>NotoSansKR-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Send SparkVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -36,48 +27,16 @@
                                     <action selector="touchOutsideButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kTc-Xk-kCj"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELg-0t-yft">
-                                <rect key="frame" x="0.0" y="485.5" width="414" height="410.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구에게 스파크 보내기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mx8-nr-Syp">
-                                        <rect key="frame" x="119" y="32" width="176" height="26.5"/>
-                                        <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메시지를 선택해 바로 보낼 수 있어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qix-as-tzS">
-                                        <rect key="frame" x="98.5" y="66.5" width="217.5" height="21"/>
-                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="14"/>
-                                        <color key="textColor" name="sparkDarkGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="mx8-nr-Syp" firstAttribute="top" secondItem="ELg-0t-yft" secondAttribute="top" constant="32" id="EMb-5y-4tF"/>
-                                    <constraint firstItem="Qix-as-tzS" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="F0o-BF-BuN"/>
-                                    <constraint firstItem="mx8-nr-Syp" firstAttribute="centerX" secondItem="ELg-0t-yft" secondAttribute="centerX" id="fgL-l5-akU"/>
-                                    <constraint firstItem="Qix-as-tzS" firstAttribute="top" secondItem="mx8-nr-Syp" secondAttribute="bottom" constant="8" id="ov0-ev-f6s"/>
-                                    <constraint firstAttribute="width" secondItem="ELg-0t-yft" secondAttribute="height" multiplier="375:372" id="pUx-3e-Fnw"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ymo-7N-td8" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="6Hh-ME-TDX"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ELg-0t-yft" secondAttribute="trailing" id="Ne1-Cs-Xfc"/>
                             <constraint firstItem="ymo-7N-td8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="QWx-sc-zj9"/>
                             <constraint firstAttribute="bottom" secondItem="ymo-7N-td8" secondAttribute="bottom" id="h6P-W1-o5T"/>
-                            <constraint firstItem="ELg-0t-yft" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="o3p-Yi-XMw"/>
-                            <constraint firstAttribute="bottom" secondItem="ELg-0t-yft" secondAttribute="bottom" id="vzi-05-wVY"/>
                             <constraint firstAttribute="trailing" secondItem="ymo-7N-td8" secondAttribute="trailing" id="wEe-nr-x5j"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="guideLabel" destination="Qix-as-tzS" id="jx6-iS-3sa"/>
-                        <outlet property="popUpView" destination="ELg-0t-yft" id="AYr-Pm-aTG"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,9 +44,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="sparkDarkGray">
-            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

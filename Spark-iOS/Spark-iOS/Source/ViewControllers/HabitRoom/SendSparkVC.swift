@@ -15,23 +15,38 @@ class SendSparkVC: UIViewController {
     var recordID: Int?
     var userName: String?
     
-    private var firstButton = SendSparkButton(type: .first)
-    private var secondButton = SendSparkButton(type: .second)
-    private var thirdButton = SendSparkButton(type: .third)
-    private var fourthButton = SendSparkButton(type: .fourth)
+    private var buttonCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.itemSize = CGSize(width: 124, height: 124)
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        
+        return cv
+    }()
+    
+    private let guideLabel: UILabel = {
+        let label = UILabel()
+        label.font = .p1TitleLight
+        label.textColor = .sparkGray
+        label.text = "메시지 선택 시 바로 보낼 수 있어요!"
+        return label
+    }()
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     
     // MARK: IBoutlet properties
-    
-    @IBOutlet weak var popUpView: UIView!
-    @IBOutlet weak var guideLabel: UILabel!
     
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setCollectionView()
         setLayout()
         setAddTargets()
     }
@@ -51,10 +66,16 @@ extension SendSparkVC {
         tabBarController?.tabBar.isHidden = true
     }
     
+    private func setCollectionView() {
+        buttonCV.delegate = self
+        buttonCV.dataSource = self
+        buttonCV.register(SendSparkCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.sendSparkCVC)
+    }
+    
     private func setAddTargets() {
-        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            $0.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
-        }
+//        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+//            $0.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
+//        }
     }
     
     private func setFeedbackGenerator() {
@@ -66,19 +87,47 @@ extension SendSparkVC {
     
     @objc
     func touchSendSparkButton(_ sender: SendSparkButton) {
-        setFeedbackGenerator()
-        
-        [firstButton, secondButton, thirdButton, fourthButton].forEach {
-            if $0.tag == sender.tag {
-                $0.isSelected(true)
-            } else {
-                // 통신실패 시에도 다시금 deselected 되야하니 필요함.
-                $0.isSelected(false)
-            }
-        }
-        let selectedMessage = sender.titleLabel?.text ?? ""
-        sendSparkWithAPI(content: selectedMessage)
+//        setFeedbackGenerator()
+//
+//        [firstButton, secondButton, thirdButton, fourthButton].forEach {
+//            if $0.tag == sender.tag {
+//                $0.isSelected(true)
+//            } else {
+//                // 통신실패 시에도 다시금 deselected 되야하니 필요함.
+//                $0.isSelected(false)
+//            }
+//        }
+//        let selectedMessage = sender.titleLabel?.text ?? ""
+//        sendSparkWithAPI(content: selectedMessage)
     }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension SendSparkVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.sendSparkCVC, for: indexPath) as? SendSparkCVC else { return UICollectionViewCell() }
+        
+        cell.setSparkButton(type: SendSparkStatus.init(rawValue: indexPath.row) ?? .message)
+        
+        // TODO: - 이 부분에서 버튼 스타일 정해주자
+//        let name = members[indexPath.item].nickname
+//        let imagePath = members[indexPath.item].profileImg ?? ""
+//
+//        cell.initCell(name: name, imagePath: imagePath)
+        
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension SendSparkVC: UICollectionViewDelegate {
+
 }
 
 // MARK: Network
@@ -109,34 +158,17 @@ extension SendSparkVC {
 
 extension SendSparkVC {
     private func setLayout() {
-        view.addSubviews([firstButton, secondButton, thirdButton, fourthButton])
+        view.addSubviews([buttonCV, guideLabel])
         
-        firstButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(guideLabel.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(143)
+        buttonCV.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(87)
+            make.height.equalTo(124)
         }
         
-        secondButton.snp.makeConstraints { make in
+        guideLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(44)
             make.centerX.equalToSuperview()
-            make.top.equalTo(firstButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(157)
-        }
-        
-        thirdButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(secondButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(120)
-        }
-        
-        fourthButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(thirdButton.snp.bottom).offset(20)
-            make.height.equalTo(36)
-            make.width.equalTo(200)
         }
     }
 }
