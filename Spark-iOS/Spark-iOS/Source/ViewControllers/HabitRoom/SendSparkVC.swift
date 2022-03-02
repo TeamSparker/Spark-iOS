@@ -17,7 +17,13 @@ class SendSparkVC: UIViewController {
     var profileImage: String?
     private var maxLength: Int = 15
     
+    private lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureDidRecognize(_:)))
+    
+    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
+
     private let customNavigationBar = LeftButtonNavigaitonBar()
+
+    private var backgroundView = UIView()
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -90,10 +96,6 @@ class SendSparkVC: UIViewController {
         return label
     }()
     
-    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
-    
-    // MARK: IBoutlet properties
-    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -104,20 +106,17 @@ class SendSparkVC: UIViewController {
         setDelegate()
         setAddTargets()
     }
-    
-    // MARK: IBAction Properties
-    
-    @IBAction func touchOutsideButton(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-    }
 }
 
 // MARK: Methods
 
 extension SendSparkVC {
     private func setUI() {
-        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         tabBarController?.tabBar.isHidden = true
+        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
+        
+        backgroundView.isUserInteractionEnabled = true
+        backgroundView.addGestureRecognizer(tapRecognizer)
         
         customNavigationBar.title("스파크 보내기")
             .titleColor(.sparkWhite)
@@ -153,8 +152,15 @@ extension SendSparkVC {
     }
     
     // MARK: - @objc Function
+    @objc
+    private func tapGestureDidRecognize(_ gesture: UITapGestureRecognizer) {
+        if textField.isHidden {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
-    @objc private func sendSparkWithMessage() {
+    @objc
+    private func sendSparkWithMessage() {
         sendSparkWithAPI(content: textField.text ?? "")
     }
     
@@ -178,6 +184,34 @@ extension SendSparkVC {
     }
 }
 
+// MARK: - Animation Methods
+
+extension SendSparkVC {
+    private func showAnimation() {
+        [textField, lineView, sendButton].forEach {
+            $0.isHidden = false
+            $0.alpha = 0.01
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.textField.alpha = 1
+            self.lineView.alpha = 1
+            self.sendButton.alpha = 1
+        }
+    }
+    
+    private func hideAnimation() {
+        UIView.animate(withDuration: 0.25) {
+            self.textField.alpha = 0
+            self.lineView.alpha = 0
+            self.sendButton.alpha = 0
+        } completion: { _ in
+            [self.textField, self.lineView, self.sendButton].forEach {
+                $0.isHidden = true
+            }
+        }
+    }
+}
+
 // MARK: - SendSparkCellDelegate
 
 extension SendSparkVC: SendSparkCellDelegate {
@@ -185,9 +219,7 @@ extension SendSparkVC: SendSparkCellDelegate {
         sendSparkWithAPI(content: content)
     }
     func showTextField() {
-        textField.isHidden = false
-        lineView.isHidden = false
-        sendButton.isHidden = false
+        showAnimation()
         textField.becomeFirstResponder()
     }
 }
@@ -197,11 +229,13 @@ extension SendSparkVC: SendSparkCellDelegate {
 extension SendSparkVC: UITextFieldDelegate {
     // 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        hideAnimation()
         self.view.endEditing(true)
     }
     
     // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideAnimation()
         self.view.endEditing(true)
         return true
     }
@@ -266,9 +300,13 @@ extension SendSparkVC {
 
 extension SendSparkVC {
     private func setLayout() {
-        view.addSubviews([customNavigationBar, profileImageView, userNameLabel,
+        view.addSubviews([backgroundView, customNavigationBar, profileImageView, userNameLabel,
                           textField, sendButton, lineView,
                           buttonCV, guideLabel])
+        
+        backgroundView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
         
         customNavigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
