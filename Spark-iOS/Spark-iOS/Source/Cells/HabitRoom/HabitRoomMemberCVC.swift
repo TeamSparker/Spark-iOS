@@ -80,7 +80,7 @@ extension HabitRoomMemberCVC {
                     status: String,
                     receivedSpark: Int,
                     leftDay: Int) {
-        profileImage.updateImage(profileImg)
+        profileImage.updateImage(profileImg, type: .small)
         
         nicknameLabel.text = nickname
         
@@ -123,8 +123,8 @@ extension HabitRoomMemberCVC {
                         nickname: String,
                         status: String,
                         leftDay: Int,
-                        closure: (()->Void)?) {
-        profileImage.updateImage(profileImg)
+                        closure: (() -> Void)?) {
+        profileImage.updateImage(profileImg, type: .small)
         
         nicknameLabel.text = nickname
         
