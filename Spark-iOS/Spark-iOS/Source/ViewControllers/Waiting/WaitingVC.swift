@@ -240,7 +240,7 @@ extension WaitingVC {
             guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.waitingFriendCVC, for: IndexPath) as? WaitingFriendCVC else { return UICollectionViewCell() }
             
             let name = self.members[IndexPath.item].nickname
-            let imagePath = self.members[IndexPath.item].profileImg ?? ""
+            let imagePath = self.members[IndexPath.item].profileImg
             cell.initCell(name: name, imagePath: imagePath)
             
             return cell
@@ -296,7 +296,7 @@ extension WaitingVC {
         }
 
         // 사용자 이미지 설정
-        profileImageView.updateImage(user.profileImg)
+        profileImageView.updateImage(user.profileImg, type: .small)
         
         // 스파크 멤버
         setMemberData()

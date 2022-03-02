@@ -66,19 +66,14 @@ class FeedCVC: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String?, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int, indexPath: IndexPath) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int, indexPath: IndexPath) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
         likeCountLabel.text = "\(likeCount)"
-        feedImageView.updateImage(certifyingImg)
+        feedImageView.updateImage(certifyingImg, type: .large)
         cellId = recordId
-        
-        if let profile = profileImg {
-            profileImageView.updateImage(profile)
-        } else {
-            profileImageView.image = UIImage(named: "profileEmpty")
-        }
+        profileImageView.updateImage(profileImg, type: .small)
         
         if let time = timeRecord {
             timeLabel.text = "\(time)"
@@ -135,7 +130,6 @@ extension FeedCVC {
         
         fadeImageView.backgroundColor = .sparkBlack.withAlphaComponent(0.15)
         
-        profileImageView.backgroundColor = .sparkGray
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         profileImageView.layer.cornerRadius = 32

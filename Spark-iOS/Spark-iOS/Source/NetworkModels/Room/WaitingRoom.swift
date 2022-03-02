@@ -30,7 +30,7 @@ struct Waiting: Codable {
 struct Member: Codable, Hashable {
     let userID: Int
     let nickname: String
-    let profileImg: String?
+    let profileImg: String
 
     enum CodingKeys: String, CodingKey {
         case userID = "userId"
