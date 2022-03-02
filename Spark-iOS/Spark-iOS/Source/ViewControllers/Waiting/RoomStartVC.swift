@@ -69,7 +69,7 @@ class RoomStartVC: UIViewController {
         cancelButton.setTitleColor(.sparkDarkGray, for: .normal)
         cancelButton.titleLabel?.font = .krMediumFont(ofSize: 16)
         
-        startButton.setTitle("시작하기", for: .normal)
+        startButton.setTitle("시작할게요", for: .normal)
         startButton.setTitleColor(.sparkDarkPinkred, for: .normal)
         startButton.titleLabel?.font = .krMediumFont(ofSize: 16)
     }
