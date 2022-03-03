@@ -39,7 +39,7 @@ class HomeVC: UIViewController {
         setDelegate()
         registerXib()
         initRefreshControl()
-        setNoti()
+        setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +143,7 @@ extension HomeVC {
         mainCollectionView.refreshControl = refreshControl
     }
     
-    private func setNoti() {
+    private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: NSNotification.Name("leaveRoom"), object: nil)
     }
     
@@ -174,7 +174,8 @@ extension HomeVC {
     @objc
     private func setToastMessage(_ notification: NSNotification) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
-            var roomName: String = notification.userInfo!["roomName"] as? String ?? ""
+            guard var roomName: String = notification.userInfo?["roomName"] as? String else { return }
+            guard let waiting: Bool = notification.userInfo?["waitingRoom"] as? Bool else { return }
             let message: String
         
             if roomName.count > 8 {
@@ -182,15 +183,12 @@ extension HomeVC {
                 roomName = roomName[..<index] + "..."
             }
             
-            if let waiting = notification.userInfo!["waitingRoom"] as? Bool {
-                if waiting {
-                    message = "'\(roomName)' 대기방을 나갔어요."
-                } else {
-                    message = "'\(roomName)' 방을 나갔어요."
-                }
-                
-                self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
+            if waiting {
+                message = "'\(roomName)' 대기방을 나갔어요."
+            } else {
+                message = "'\(roomName)' 방을 나갔어요."
             }
+            self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
         }
     }
 }
