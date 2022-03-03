@@ -154,6 +154,7 @@
 		F8E4DFD027D0858500128B1F /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFCF27D0858500128B1F /* MypageVC.swift */; };
 		F8E4DFD327D0877000128B1F /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4DFD227D0877000128B1F /* Mypage.storyboard */; };
 		F8E4DFD627D0918C00128B1F /* MypageProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */; };
+		F8E4DFD827D09F7A00128B1F /* MypageDefaultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */; };
 		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
 		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
 		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
@@ -318,6 +319,7 @@
 		F8E4DFCF27D0858500128B1F /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
 		F8E4DFD227D0877000128B1F /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageProfileTVC.swift; sourceTree = "<group>"; };
+		F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageDefaultTVC.swift; sourceTree = "<group>"; };
 		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
 		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
 		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
@@ -1050,6 +1052,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */,
+				F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
+				F8E4DFD827D09F7A00128B1F /* MypageDefaultTVC.swift in Sources */,
 				EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,

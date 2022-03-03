@@ -10,8 +10,9 @@ import UIKit
 import SnapKit
 
 @frozen
-public enum MypageRow: Int, CaseIterable {
+public enum MypageRow: Int {
     case profile // 프로필
+    case notification // 알림
     case contact // 문의하기
     case sparkGuide // 스파크 사용 가이드
     case tos // Terms of service terms of use. 약관 및 정책
@@ -26,6 +27,14 @@ class MypageVC: UIViewController {
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
+    
+    @frozen
+    private enum Section: Int, CaseIterable {
+        case profile
+        case setting
+        case center
+        case service
+    }
     
     // MARK: - View Life Cycle
     
@@ -46,15 +55,17 @@ extension MypageVC {
             .font(.h3SubtitleEng)
             .leftButtonImage("icBackWhite")
             .leftButonAction {
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     private func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // TODO: - cell register.
         tableView.register(MypageProfileTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.mypageProfileTVC)
+        tableView.register(MypageDefaultTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.mypageDefaultTVC)
         
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -79,14 +90,14 @@ extension MypageVC: UITableViewDelegate {
         let defaultCellHeight = cellWidth * (40 / 375)
         let withdrawalCellHeight = cellWidth * (81 / 375)
         
-        guard let row = MypageRow(rawValue: indexPath.row) else { return 0 }
-        switch row {
-        case .profile:
+        if indexPath.section == 0 {
             return profileCellHeight
-        case .contact, .sparkGuide, .tos, .version, .logout:
-            return defaultCellHeight
-        case .withdrawal:
-            return withdrawalCellHeight
+        } else {
+            if indexPath.row == 4 {
+                return withdrawalCellHeight
+            } else {
+                return defaultCellHeight
+            }
         }
     }
 }
@@ -94,22 +105,65 @@ extension MypageVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension MypageVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MypageRow.allCases.count
+        var rowOfSection: [MypageRow]
+        if section == 0 {
+            rowOfSection = [.profile]
+            
+            return rowOfSection.count
+        } else if section == 1 {
+            rowOfSection = [.notification]
+            
+            return rowOfSection.count
+        } else if section == 2 {
+            rowOfSection = [.contact]
+            
+            return rowOfSection.count
+        } else if section == 3 {
+            rowOfSection = [.sparkGuide, .tos, .version, .logout, .withdrawal]
+            
+            return rowOfSection.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let row = MypageRow(rawValue: indexPath.row) else { return UITableViewCell() }
-        // TODO: - set cell.
-        switch row {
-        case .profile:
+        if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
             cell.initCell(profile: "", nickname: "하양")
+
             return cell
-        case .contact, .sparkGuide, .tos, .version, .logout:
-            return UITableViewCell()
-        case .withdrawal:
-            return UITableViewCell()
+        } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
+            cell.initCell(type: .notification)
+
+            return cell
+        } else if indexPath.section == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
+            cell.initCell(type: .contact)
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
+            
+            // MypageRow(rawValue: 3) = .sparkGuide
+            // MypageRow(rawValue: 4) = .tos
+            // MypageRow(rawValue: 6) = .logout
+            // MypageRow(rawValue: 7) = .withdrawal
+            guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
+                    cell.initCell(type: row)
+            
+            // MypageRow(rawValue: 5) = .version
+            if indexPath.row == 2 {
+                cell.isUserInteractionEnabled = false
+            }
+            
+            return cell
         }
     }
 }
@@ -136,5 +190,13 @@ extension MypageVC {
             $0.top.equalTo(customNavigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+// FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
+extension MypageVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
