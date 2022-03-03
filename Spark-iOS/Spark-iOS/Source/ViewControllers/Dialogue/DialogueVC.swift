@@ -107,10 +107,10 @@ extension DialogueVC {
             
         case .createRoom:
             guideLabel.text = """
-            방 생성을 완료하시겠습니까?
-            방 이름과 인증 방식은 추후 수정이 어렵습니다.
+            우왓👍! 이대로 습관방을 만들까요?
+            방이름과 인증 방식은 더이상 수정이 안돼요.
             """
-            resetOrExitLabel.text = "완료"
+            resetOrExitLabel.text = "만들래요"
             resetOrExitLabel.textColor = .sparkDarkPinkred
             
         case .none:
