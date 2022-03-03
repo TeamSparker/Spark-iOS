@@ -69,29 +69,48 @@ extension MypageVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension MypageVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cellWidth = tableView.frame.width
+        let profileCellHeight = cellWidth * (125 / 375)
+        let defaultCellHeight = cellWidth * (40 / 375)
+        let withdrawalCellHeight = cellWidth * (81 / 375)
+        
+        guard let row = MypageRow(rawValue: indexPath.row) else { return 0 }
+        switch row {
+        case .profile:
+            return profileCellHeight
+        case .contact, .sparkGuide, .tos, .version, .logout:
+            return defaultCellHeight
+        case .withdrawal:
+            return withdrawalCellHeight
+        }
+    }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MypageRow.allCases.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let row = MypageRow(rawValue: indexPath.row) else { return UITableViewCell() }
-        switch row {
-            // TODO: - set cell.
-        case .profile:
-            <#code#>
-        case .contact:
-            <#code#>
-        case .sparkGuide:
-            <#code#>
-        case .tos:
-            <#code#>
-        case .version:
-            <#code#>
-        case .logout:
-            <#code#>
-        case .withdrawal:
-            <#code#>
-        }
-    }
+        // TODO: - set cell.
+//        switch row {
+//        case .profile:
+//            <#code#>
+//        case .contact:
+//            <#code#>
+//        case .sparkGuide:
+//            <#code#>
+//        case .tos:
+//            <#code#>
+//        case .version:
+//            <#code#>
+//        case .logout:
+//            <#code#>
+//        case .withdrawal:
+//            <#code#>
+//        }
+//    }
 }
 
 // MARK: - Layout
