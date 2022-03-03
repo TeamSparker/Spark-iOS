@@ -69,6 +69,7 @@ extension MypageVC {
         
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
+        tableView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
 }
 
@@ -87,7 +88,7 @@ extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellWidth = tableView.frame.width
         let profileCellHeight = cellWidth * (125 / 375)
-        let defaultCellHeight = cellWidth * (40 / 375)
+        let defaultCellHeight = cellWidth * (48 / 375)
         let withdrawalCellHeight = cellWidth * (81 / 375)
         
         if indexPath.section == 0 {
@@ -136,16 +137,19 @@ extension MypageVC: UITableViewDataSource {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
             cell.initCell(profile: "", nickname: "하양")
-
+            cell.selectionStyle = .none
+            
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .notification)
-
+            cell.selectionStyle = .none
+            
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .contact)
+            cell.selectionStyle = .none
             
             return cell
         } else {
@@ -154,7 +158,6 @@ extension MypageVC: UITableViewDataSource {
             // MypageRow(rawValue: 3) = .sparkGuide
             // MypageRow(rawValue: 4) = .tos
             // MypageRow(rawValue: 6) = .logout
-            // MypageRow(rawValue: 7) = .withdrawal
             guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
                     cell.initCell(type: row)
             
@@ -162,6 +165,8 @@ extension MypageVC: UITableViewDataSource {
             if indexPath.row == 2 {
                 cell.isUserInteractionEnabled = false
             }
+            
+            cell.selectionStyle = .none
             
             return cell
         }

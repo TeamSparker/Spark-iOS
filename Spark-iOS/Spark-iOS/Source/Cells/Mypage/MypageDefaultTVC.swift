@@ -132,7 +132,7 @@ extension MypageDefaultTVC {
         
         versionLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(28)
-            $0.centerY.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(8)
         }
         
         withdrawalButton.snp.makeConstraints {
