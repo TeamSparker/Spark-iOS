@@ -16,6 +16,8 @@ class SendSparkVC: UIViewController {
     var userName: String?
     var profileImage: String?
     private var maxLength: Int = 15
+    private let screenHeight: CGFloat = UIScreen.main.bounds.height
+    private var originalLineViewY: CGFloat?
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
@@ -102,6 +104,7 @@ class SendSparkVC: UIViewController {
         setLayout()
         setDelegate()
         setAddTargets()
+        setNotification()
     }
 }
 
@@ -119,6 +122,7 @@ extension SendSparkVC {
             .leftButtonImage("icQuit")
             .leftButonAction {
                 self.dismiss(animated: true, completion: nil)
+                self.removeObservers()
             }
         
         profileImageView.updateImage(profileImage ?? "")
@@ -145,6 +149,15 @@ extension SendSparkVC {
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     // MARK: - @objc Function
     @objc
     private func sendSparkWithMessage() {
@@ -166,6 +179,24 @@ extension SendSparkVC {
                 lineView.backgroundColor = .sparkGray
                 sendButton.titleLabel?.textColor = .sparkGray
                 sendButton.isEnabled = false
+            }
+        }
+    }
+    
+    @objc func keyBoardWillShow(_ notification: NSNotification) {
+        if originalLineViewY == nil {
+            originalLineViewY = lineView.frame.origin.y
+        }
+        
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            let targetY = screenHeight - keyboardHeight - 20
+            
+            if (originalLineViewY ?? 0) > (targetY) {
+                lineView.frame.origin.y = targetY
+                sendButton.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 11
+                textField.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 3
             }
         }
     }
