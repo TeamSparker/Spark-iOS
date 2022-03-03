@@ -17,13 +17,9 @@ class SendSparkVC: UIViewController {
     var profileImage: String?
     private var maxLength: Int = 15
     
-    private lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureDidRecognize(_:)))
-    
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
     private let customNavigationBar = LeftButtonNavigaitonBar()
-
-    private var backgroundView = UIView()
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -51,6 +47,7 @@ class SendSparkVC: UIViewController {
         tf.backgroundColor = .clear
         tf.attributedPlaceholder = NSAttributedString(string: "15자 이내의 응원 메시지를 보내보세요!",
                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.sparkDarkGray.cgColor])
+        tf.returnKeyType = .send
         tf.isHidden = true
         return tf
     }()
@@ -113,10 +110,7 @@ class SendSparkVC: UIViewController {
 extension SendSparkVC {
     private func setUI() {
         tabBarController?.tabBar.isHidden = true
-        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
-        
-        backgroundView.isUserInteractionEnabled = true
-        backgroundView.addGestureRecognizer(tapRecognizer)
+        view.backgroundColor = .sparkBlack.withAlphaComponent(0.9)
         
         customNavigationBar.title("스파크 보내기")
             .titleColor(.sparkWhite)
@@ -153,13 +147,6 @@ extension SendSparkVC {
     
     // MARK: - @objc Function
     @objc
-    private func tapGestureDidRecognize(_ gesture: UITapGestureRecognizer) {
-        if textField.isHidden {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-
-    @objc
     private func sendSparkWithMessage() {
         sendSparkWithAPI(content: textField.text ?? "")
     }
@@ -190,7 +177,7 @@ extension SendSparkVC {
     private func showAnimation() {
         [textField, lineView, sendButton].forEach {
             $0.isHidden = false
-            $0.alpha = 0.01
+            $0.alpha = 0
         }
         UIView.animate(withDuration: 0.3) {
             self.textField.alpha = 1
@@ -239,6 +226,12 @@ extension SendSparkVC: UITextFieldDelegate {
         self.view.endEditing(true)
         return true
     }
+    
+    // 입력 시작
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            lineView.backgroundColor = .sparkPinkred
+            return true
+        }
     
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -300,13 +293,9 @@ extension SendSparkVC {
 
 extension SendSparkVC {
     private func setLayout() {
-        view.addSubviews([backgroundView, customNavigationBar, profileImageView, userNameLabel,
+        view.addSubviews([customNavigationBar, profileImageView, userNameLabel,
                           textField, sendButton, lineView,
                           buttonCV, guideLabel])
-        
-        backgroundView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
-        }
         
         customNavigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
