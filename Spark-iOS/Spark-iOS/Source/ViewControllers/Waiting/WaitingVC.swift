@@ -490,6 +490,10 @@ extension WaitingVC {
         
         self.present(nextVC, animated: true, completion: nil)
     }
+    
+    private func postNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("leaveRoom"), object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": true])
+    }
 }
 
 // MARK: - Network
@@ -553,6 +557,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
+                self.postNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
@@ -581,6 +586,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
+                self.postNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
