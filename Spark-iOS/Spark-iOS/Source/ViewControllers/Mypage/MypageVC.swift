@@ -77,7 +77,11 @@ extension MypageVC {
 
 extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 32
+        if section == 1{
+            return 32
+        } else {
+            return 28
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

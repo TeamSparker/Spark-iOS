@@ -89,7 +89,7 @@ extension MypageProfileTVC {
         
         lineView.snp.makeConstraints {
             $0.trailing.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(0.5)
         }
     }
