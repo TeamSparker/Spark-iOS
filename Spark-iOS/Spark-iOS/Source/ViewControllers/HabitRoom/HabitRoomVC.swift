@@ -319,6 +319,10 @@ extension HabitRoomVC {
         mainCollectionView.refreshControl = refreshControl
     }
     
+    private func postNoti() {
+        NotificationCenter.default.post(name: NSNotification.Name("leaveRoom"), object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": false])
+    }
+    
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
@@ -528,6 +532,7 @@ extension HabitRoomVC {
             switch response {
             case .success(let message):
                 self.navigationController?.popViewController(animated: true)
+                self.postNoti()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
