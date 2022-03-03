@@ -73,7 +73,7 @@ extension HomeVC {
         customNavigationBar
             .buttonsImage("icProfile", "icNotice")
             .actions({
-                self.presentToProfileVC()
+                self.presentToMypageVC()
             }, {
                 self.presentToAlertVC()
             })
@@ -123,7 +123,7 @@ extension HomeVC {
         
         let customNavigationBar = RightTwoButtonNavigationBar().buttonsImage("icProfile", "icNotice")
             .actions({
-                self.presentToProfileVC()
+                self.presentToMypageVC()
             }, {
                 self.presentToAlertVC()
             })
@@ -144,8 +144,10 @@ extension HomeVC {
     
     // MARK: - Screen Change
     
-    private func presentToProfileVC() {
-        print("presentToProfileVC")
+    private func presentToMypageVC() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.mypage, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mypage) as? MypageVC else { return }
+        
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 
     private func presentToAlertVC() {
