@@ -36,6 +36,7 @@ extension Const {
             static let habitRoom = "HabitRoom"
             static let roomStart = "RoomStart"
             static let habitRoomLeave = "HabitRoomLeave"
+            static let mypage = "Mypage"
         }
     }
 }
