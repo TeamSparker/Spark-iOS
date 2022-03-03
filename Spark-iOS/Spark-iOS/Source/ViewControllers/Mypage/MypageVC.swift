@@ -54,21 +54,25 @@ extension MypageVC {
         tableView.dataSource = self
         
         // TODO: - cell register.
-//        tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: )
+        tableView.register(MypageProfileTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.mypageProfileTVC)
         
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
     }
 }
 
 // MARK: - UITableViewDelegate
 
 extension MypageVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 32
+    }
     
-}
-
-// MARK: - UITableViewDataSource
-
-extension MypageVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 선택시 회색으로 변했다가 돌아옴.
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellWidth = tableView.frame.width
         let profileCellHeight = cellWidth * (125 / 375)
@@ -85,8 +89,11 @@ extension MypageVC: UITableViewDataSource {
             return withdrawalCellHeight
         }
     }
+}
 
-    
+// MARK: - UITableViewDataSource
+
+extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MypageRow.allCases.count
     }
@@ -94,23 +101,23 @@ extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let row = MypageRow(rawValue: indexPath.row) else { return UITableViewCell() }
         // TODO: - set cell.
-//        switch row {
-//        case .profile:
-//            <#code#>
-//        case .contact:
-//            <#code#>
-//        case .sparkGuide:
-//            <#code#>
-//        case .tos:
-//            <#code#>
-//        case .version:
-//            <#code#>
-//        case .logout:
-//            <#code#>
-//        case .withdrawal:
-//            <#code#>
-//        }
-//    }
+        switch row {
+        case .profile:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
+            cell.initCell(profile: "", nickname: "하양")
+            return cell
+        case .contact, .sparkGuide, .tos, .version, .logout:
+            return UITableViewCell()
+        case .withdrawal:
+            return UITableViewCell()
+        }
+    }
+}
+
+// MARK: - Network
+
+extension MypageVC {
+    // TODO: - 서버통신.
 }
 
 // MARK: - Layout
