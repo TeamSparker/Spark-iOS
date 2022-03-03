@@ -56,9 +56,14 @@ extension MypageVC {
             .leftButtonImage("icBackWhite")
             .leftButonAction {
                 self.navigationController?.popViewController(animated: true)
+                NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
             }
         
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        tabBarController?.tabBar.isHidden = true
+        
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     private func setTableView() {
         tableView.delegate = self
