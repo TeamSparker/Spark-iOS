@@ -64,7 +64,7 @@ class ProfileSettingVC: UIViewController {
         
         lineView.backgroundColor = .sparkGray
         
-        countLabel.text = "0/15"
+        countLabel.text = "0/10"
         countLabel.font = .p2SubtitleEng
         countLabel.textColor = .sparkDarkGray
     }
@@ -150,9 +150,10 @@ class ProfileSettingVC: UIViewController {
             signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
                 self.presentToMainTBC()
             }
-        }
-        signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
-            self.presentToMainTBC()
+        } else {
+            signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
+                self.presentToMainTBC()
+            }
         }
     }
     
