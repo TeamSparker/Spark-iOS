@@ -74,7 +74,11 @@ extension MypageVC {
         
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
-        tableView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        
+        // iOS 15.0 이상에서 section header 상단에 간격이 생겨서 삭제.
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
 }
 
@@ -87,9 +91,9 @@ extension MypageVC: UITableViewDelegate {
         case .profile:
             return 0
         case .setting:
-            return 32
+            return 53
         case .center, .service:
-            return 28
+            return 49
         }
     }
     
