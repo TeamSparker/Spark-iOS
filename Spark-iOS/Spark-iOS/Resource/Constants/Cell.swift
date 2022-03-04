@@ -25,6 +25,8 @@ extension Const {
             static let feedHeaderView = "FeedHeaderView"
             static let feedFooterView = "FeedFooterView"
             static let sendSparkCVC = "SendSparkCVC"
+            static let mypageProfileTVC = "MypageProfileTVC"
+            static let mypageDefaultTVC = "MypageDefaultTVC"
         }
     }
 }

@@ -39,7 +39,7 @@ class HabitRoomLeaveVC: UIViewController {
         popupView.backgroundColor = .sparkWhite
         popupView.layer.cornerRadius = 2
         
-        guideLabel.text = "방에서 나가면 미완료 처리됩니다.\n확인을 위해 ‘방 이름’을 입력해 주세요."
+        guideLabel.text = "아직 습관이 완료되지 않았어요.\n그래도 나가려면 ‘방 이름’을 입력해 주세요."
         guideLabel.textAlignment = .center
         guideLabel.textColor = .sparkBlack
         guideLabel.font = .p1TitleLight
