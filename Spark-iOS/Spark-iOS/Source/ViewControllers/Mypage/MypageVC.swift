@@ -168,36 +168,38 @@ extension MypageVC: UITableViewDataSource {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
             cell.initCell(profile: "", nickname: "하양")
-//            cell.selectionStyle = .none
+            cell.selectionStyle = .none
             
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .notification)
-//            cell.selectionStyle = .none
+            cell.selectionStyle = .none
             
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .contact)
-//            cell.selectionStyle = .none
+            cell.selectionStyle = .none
             
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
-            // MypageRow(rawValue: 3) = .sparkGuide
-            // MypageRow(rawValue: 4) = .tos
-            // MypageRow(rawValue: 6) = .logout
+            /*
+            MypageRow(rawValue: 3) 는 .sparkGuide 이다.
+            MypageRow(rawValue: 4) 는 .tos 이다.
+            MypageRow(rawValue: 6) 는 .logout 이다.
+             */
             guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
                     cell.initCell(type: row)
             
-            // MypageRow(rawValue: 5) = .version
+            // MypageRow(rawValue: 5) 는 .version 이다.
             if indexPath.row == 2 {
                 cell.isUserInteractionEnabled = false
             }
             
-//            cell.selectionStyle = .none
+            cell.selectionStyle = .none
             
             return cell
         }
