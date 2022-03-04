@@ -100,7 +100,7 @@ extension DialogueVC {
             
         case .rest:
             guideLabel.text = """
-            엇! 정말 쉴건가요?
+            엇! 정말 쉴 건가요?
             푹 쉴 수 있도록 인증은 막아둘게요😊
             """
             resetOrExitLabel.text = "쉴래요"
@@ -108,7 +108,7 @@ extension DialogueVC {
         case .createRoom:
             guideLabel.text = """
             우왓👍! 이대로 습관방을 만들까요?
-            방이름과 인증 방식은 더이상 수정이 안돼요.
+            방 이름과 인증 방식은 더이상 수정이 안 돼요.
             """
             resetOrExitLabel.text = "만들래요"
             resetOrExitLabel.textColor = .sparkDarkPinkred
