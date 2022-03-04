@@ -17,7 +17,6 @@ class SendSparkVC: UIViewController {
     var profileImage: String?
     private var maxLength: Int = 15
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
-    private var originalLineViewY: CGFloat?
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
@@ -183,19 +182,25 @@ extension SendSparkVC {
     }
     
     @objc func keyBoardWillShow(_ notification: NSNotification) {
-        if originalLineViewY == nil {
-            originalLineViewY = lineView.frame.origin.y
-        }
-        
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             let targetY = screenHeight - keyboardHeight - 20
             
-            if (originalLineViewY ?? 0) > (targetY) {
-                lineView.frame.origin.y = targetY
-                sendButton.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 11
-                textField.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 3
+            sendButton.snp.makeConstraints { make in
+                make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
+                make.bottom.equalTo(lineView.snp.top).offset(-4)
+            }
+            
+            lineView.snp.makeConstraints { make in
+                make.height.equalTo(2)
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.top.equalToSuperview().inset(targetY)
+            }
+            
+            textField.snp.makeConstraints { make in
+                make.leading.equalTo(lineView.snp.leading).offset(8)
+                make.bottom.equalTo(lineView.snp.top).offset(-10)
             }
         }
     }
@@ -338,22 +343,6 @@ extension SendSparkVC {
         userNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(buttonCV.snp.top).offset(-200)
             make.centerX.equalToSuperview()
-        }
-        
-        textField.snp.makeConstraints { make in
-            make.leading.equalTo(lineView.snp.leading).offset(8)
-            make.bottom.equalTo(lineView.snp.top).offset(-10)
-        }
-        
-        sendButton.snp.makeConstraints { make in
-            make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
-            make.bottom.equalTo(lineView.snp.top).offset(-4)
-        }
-        
-        lineView.snp.makeConstraints { make in
-            make.height.equalTo(2)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(311)
         }
         
         buttonCV.snp.makeConstraints { make in
