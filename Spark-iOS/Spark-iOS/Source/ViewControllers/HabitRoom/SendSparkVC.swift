@@ -171,6 +171,8 @@ extension SendSparkVC {
                 let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
                 let newString = String(text[text.startIndex..<maxIndex])
                 textField.text = newString
+                sendButton.titleLabel?.textColor = .sparkPinkred
+                sendButton.isEnabled = true
             } else if (0 < text.count)&&(text.count < maxLength) {
                 lineView.backgroundColor = .sparkPinkred
                 sendButton.titleLabel?.textColor = .sparkPinkred
@@ -253,6 +255,9 @@ extension SendSparkVC: UITextFieldDelegate {
     
     // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.hasText {
+            sendSparkWithAPI(content: textField.text ?? "")
+        }
         hideAnimation()
         self.view.endEditing(true)
         return true

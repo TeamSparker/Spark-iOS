@@ -17,7 +17,6 @@ class SendSparkCVC: UICollectionViewCell {
     
     lazy var sparkButton = SendSparkButton(type: .message) {
         didSet {
-            setUI()
             setLayout()
             setAddTarget()
         }
@@ -46,10 +45,6 @@ class SendSparkCVC: UICollectionViewCell {
 extension SendSparkCVC {
     func setSparkButton(type: SendSparkStatus) {
         self.sparkButton = SendSparkButton(type: type)
-    }
-    
-    private func setUI() {
-
     }
     
     private func setLayout() {
