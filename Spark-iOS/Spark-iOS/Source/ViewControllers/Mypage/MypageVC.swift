@@ -21,20 +21,20 @@ public enum MypageRow: Int {
     case withdrawal // 회원 탈퇴
 }
 
+@frozen
+public enum MypageTableViewSection: Int, CaseIterable {
+    case profile
+    case setting
+    case center
+    case service
+}
+
 class MypageVC: UIViewController {
 
     // MARK: - Properties
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
-    
-    @frozen
-    private enum Section: Int, CaseIterable {
-        case profile
-        case setting
-        case center
-        case service
-    }
     
     // MARK: - View Life Cycle
     
@@ -82,10 +82,28 @@ extension MypageVC {
 
 extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1{
+        guard let section = MypageTableViewSection(rawValue: section) else { return 0 }
+        switch section {
+        case .profile:
+            return 0
+        case .setting:
             return 32
-        } else {
+        case .center, .service:
             return 28
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let section = MypageTableViewSection(rawValue: section) else { return UIView() }
+        switch section {
+        case .profile:
+            return MypageTableHeaderView(type: .profile)
+        case .setting:
+            return MypageTableHeaderView(type: .setting)
+        case .center:
+            return MypageTableHeaderView(type: .center)
+        case .service:
+            return MypageTableHeaderView(type: .service)
         }
     }
     
@@ -116,29 +134,29 @@ extension MypageVC: UITableViewDelegate {
 
 extension MypageVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return MypageTableViewSection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowOfSection: [MypageRow]
-        if section == 0 {
+        guard let section = MypageTableViewSection(rawValue: section) else { return 0 }
+        switch section {
+        case .profile:
             rowOfSection = [.profile]
             
             return rowOfSection.count
-        } else if section == 1 {
+        case .setting:
             rowOfSection = [.notification]
             
             return rowOfSection.count
-        } else if section == 2 {
+        case .center:
             rowOfSection = [.contact]
             
             return rowOfSection.count
-        } else if section == 3 {
+        case .service:
             rowOfSection = [.sparkGuide, .tos, .version, .logout, .withdrawal]
             
             return rowOfSection.count
-        } else {
-            return 0
         }
     }
     
@@ -146,19 +164,19 @@ extension MypageVC: UITableViewDataSource {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
             cell.initCell(profile: "", nickname: "하양")
-            cell.selectionStyle = .none
+//            cell.selectionStyle = .none
             
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .notification)
-            cell.selectionStyle = .none
+//            cell.selectionStyle = .none
             
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .contact)
-            cell.selectionStyle = .none
+//            cell.selectionStyle = .none
             
             return cell
         } else {
@@ -175,7 +193,7 @@ extension MypageVC: UITableViewDataSource {
                 cell.isUserInteractionEnabled = false
             }
             
-            cell.selectionStyle = .none
+//            cell.selectionStyle = .none
             
             return cell
         }
