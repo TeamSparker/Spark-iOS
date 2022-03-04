@@ -21,7 +21,9 @@ class EditProfileVC: UIViewController {
     private var completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setDisable()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
+    
     private let maxLength: Int = 10
+    private var didEdit: Bool = false
     
     var profileImage: UIImage?
     var nickname: String?
@@ -45,7 +47,19 @@ extension EditProfileVC {
         customNavigationBar.title("프로필 수정")
             .leftButtonImage("icQuit")
             .leftButonAction {
-                self.dismiss(animated: true, completion: nil)
+                if self.didEdit {
+                    guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+                    
+                    dialougeVC.dialogueType = .exitEditProfile
+                    dialougeVC.clousure = {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    dialougeVC.modalTransitionStyle = .crossDissolve
+                    dialougeVC.modalPresentationStyle = .overFullScreen
+                    self.present(dialougeVC, animated: true, completion: nil)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         
         profileImageView.backgroundColor = .blue
@@ -107,6 +121,8 @@ extension EditProfileVC {
     
     @objc
     func showAlter() {
+        didEdit = true
+        
         let alert = SparkActionSheet()
         
         alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
@@ -167,6 +183,7 @@ extension EditProfileVC: UITextFieldDelegate {
     // 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         lineView.backgroundColor = .sparkPinkred
+        didEdit = true
         return true
     }
     
