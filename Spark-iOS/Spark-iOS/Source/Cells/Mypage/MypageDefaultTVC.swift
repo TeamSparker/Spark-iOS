@@ -53,7 +53,9 @@ extension MypageDefaultTVC {
         
         arrowImageView.image = UIImage(named: "icArrow")
         
-        withdrawalButton.setTitle("회원 탈퇴", for: .normal)
+        let attributeString = NSMutableAttributedString(string: "회원 탈퇴")
+        attributeString.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: attributeString.length))
+        withdrawalButton.setAttributedTitle(attributeString, for: .normal)
         withdrawalButton.titleLabel?.font = .caption
         withdrawalButton.setTitleColor(.sparkGray, for: .normal)
         
