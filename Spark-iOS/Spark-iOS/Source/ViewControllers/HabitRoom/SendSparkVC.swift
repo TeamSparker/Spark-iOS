@@ -69,7 +69,7 @@ class SendSparkVC: UIViewController {
     private let lineView: UIView = {
         let view = UIView()
         view.isHidden = true
-        view.backgroundColor = .sparkGray
+        view.backgroundColor = .sparkPinkred
         return view
     }()
     
@@ -155,7 +155,6 @@ extension SendSparkVC {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - @objc Function
@@ -174,11 +173,9 @@ extension SendSparkVC {
                 sendButton.titleLabel?.textColor = .sparkPinkred
                 sendButton.isEnabled = true
             } else if (0 < text.count)&&(text.count < maxLength) {
-                lineView.backgroundColor = .sparkPinkred
                 sendButton.titleLabel?.textColor = .sparkPinkred
                 sendButton.isEnabled = true
             } else {
-                lineView.backgroundColor = .sparkGray
                 sendButton.titleLabel?.textColor = .sparkGray
                 sendButton.isEnabled = false
             }
@@ -255,26 +252,19 @@ extension SendSparkVC: UITextFieldDelegate {
     
     // 리턴 눌렀을 때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.hasText {
-            sendSparkWithAPI(content: textField.text ?? "")
+        if let text = textField.text {
+            sendSparkWithAPI(content: text)
         }
         hideAnimation()
         self.view.endEditing(true)
         return true
     }
     
-    // 입력 시작
-        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-            lineView.backgroundColor = .sparkPinkred
-            return true
-        }
-    
     // 입력 끝
     func textFieldDidEndEditing(_ textField: UITextField) {
         if !textField.hasText {
             sendButton.isEnabled = false
             sendButton.titleLabel?.textColor = .sparkGray
-            lineView.backgroundColor = .sparkGray
         }
     }
 }
