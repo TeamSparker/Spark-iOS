@@ -195,32 +195,11 @@ extension SendSparkVC {
             let keyboardHeight = keyboardRectangle.height
             let targetY = screenHeight - keyboardHeight - 20
             
-            // FIXME: - 준호야~~
-            view.addSubviews([sendButton, lineView, textField])
-            
-            sendButton.snp.makeConstraints { make in
-                make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
-                make.bottom.equalTo(lineView.snp.top).offset(-4)
+            if (originalLineViewY ?? 0) > (targetY) {
+                lineView.frame.origin.y = targetY
+                sendButton.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 11
+                textField.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 3
             }
-            
-            lineView.snp.makeConstraints { make in
-                make.height.equalTo(2)
-                make.leading.trailing.equalToSuperview().inset(20)
-                //top 으로 수정
-                make.top.equalToSuperview().inset(targetY)
-            }
-            
-            textField.snp.makeConstraints { make in
-                make.leading.equalTo(lineView.snp.leading).offset(8)
-                make.bottom.equalTo(lineView.snp.top).offset(-10)
-            }
-            // FIXME: - 준호야~~
-            
-//            if (originalLineViewY ?? 0) > (targetY) {
-//                lineView.frame.origin.y = targetY
-//                sendButton.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 11
-//                textField.frame.origin.y = screenHeight - keyboardHeight - (originalLineViewY ?? 0) + lineView.frame.origin.y - 3
-//            }
         }
     }
 }
@@ -370,29 +349,29 @@ extension SendSparkVC {
             make.bottom.equalTo(buttonCV.snp.top).offset(-200)
             make.centerX.equalToSuperview()
         }
-        // FIXME: - 준호야~~
-//        textField.snp.makeConstraints { make in
-//            make.leading.equalTo(lineView.snp.leading).offset(8)
-//            make.bottom.equalTo(lineView.snp.top).offset(-10)
-//        }
         
-//        sendButton.snp.makeConstraints { make in
-//            make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
-//            make.bottom.equalTo(lineView.snp.top).offset(-4)
-//        }
-//
-//        lineView.snp.makeConstraints { make in
-//            make.height.equalTo(2)
-//            make.leading.trailing.equalToSuperview().inset(20)
-//            make.bottom.equalToSuperview().inset(311)
-//        }
-//
+        textField.snp.makeConstraints { make in
+            make.leading.equalTo(lineView.snp.leading).offset(8)
+            make.bottom.equalTo(lineView.snp.top).offset(-10)
+        }
+        
+        sendButton.snp.makeConstraints { make in
+            make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
+            make.bottom.equalTo(lineView.snp.top).offset(-4)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(311)
+        }
+        
         buttonCV.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(87)
             make.height.equalTo(124)
         }
-
+        
         guideLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(44)
             make.centerX.equalToSuperview()
