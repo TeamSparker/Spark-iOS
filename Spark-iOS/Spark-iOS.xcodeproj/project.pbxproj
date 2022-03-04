@@ -155,6 +155,7 @@
 		F8E4DFD327D0877000128B1F /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E4DFD227D0877000128B1F /* Mypage.storyboard */; };
 		F8E4DFD627D0918C00128B1F /* MypageProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */; };
 		F8E4DFD827D09F7A00128B1F /* MypageDefaultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */; };
+		F8E4DFDA27D0DE3700128B1F /* MypageTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4DFD927D0DE3700128B1F /* MypageTableHeaderView.swift */; };
 		F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6F42797359600725537 /* HabitRoom.storyboard */; };
 		F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */; };
 		F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */; };
@@ -320,6 +321,7 @@
 		F8E4DFD227D0877000128B1F /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageProfileTVC.swift; sourceTree = "<group>"; };
 		F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageDefaultTVC.swift; sourceTree = "<group>"; };
+		F8E4DFD927D0DE3700128B1F /* MypageTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableHeaderView.swift; sourceTree = "<group>"; };
 		F8F6D6F42797359600725537 /* HabitRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoom.storyboard; sourceTree = "<group>"; };
 		F8F6D6F6279735BF00725537 /* HabitRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomVC.swift; sourceTree = "<group>"; };
 		F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitRoomMemberCVC.xib; sourceTree = "<group>"; };
@@ -1053,6 +1055,7 @@
 			children = (
 				F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */,
 				F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */,
+				F8E4DFD927D0DE3700128B1F /* MypageTableHeaderView.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1343,6 +1346,7 @@
 				2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */,
 				F82F5802279287FD003E4174 /* HabitRoom.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
+				F8E4DFDA27D0DE3700128B1F /* MypageTableHeaderView.swift in Sources */,
 				F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */,
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
