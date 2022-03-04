@@ -41,6 +41,6 @@ class DoneStorageCVC: UICollectionViewCell {
         let endDate = endDate.split(separator: "-")
         dateLabel.text = "\(startDate[0]).\(startDate[1]).\(startDate[2]) - \(endDate[0]).\(endDate[1]).\(endDate[2])"
         
-        thumbnailImage.updateImage(thumbnail)
+        thumbnailImage.updateImage(thumbnail, type: .large)
     }
 }

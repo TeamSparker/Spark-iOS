@@ -75,7 +75,7 @@ extension CompleteAuthVC {
         viewForRender.nickNameLabel.text = nickName
         viewForRender.timerLabel.text = timerCount
         viewForRender.authImageView.image = renderedImage
-        viewForRender.profileImageView.updateImage(profileImage ?? "")
+        viewForRender.profileImageView.updateImage(profileImage ?? "", type: .small)
     }
     
     private func setLayout() {
