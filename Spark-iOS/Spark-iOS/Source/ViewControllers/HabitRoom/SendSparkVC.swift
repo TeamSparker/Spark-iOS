@@ -185,7 +185,8 @@ extension SendSparkVC {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            let targetY = screenHeight - keyboardHeight - 20
+            let lineViewHeight: CGFloat = 2
+            let targetY: CGFloat = screenHeight - keyboardHeight - 20 - lineViewHeight
             
             sendButton.snp.makeConstraints { make in
                 make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
