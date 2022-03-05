@@ -429,7 +429,8 @@ extension FeedVC: FeedCellDelegate {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
-                print("화면 전환 2️⃣")
+                // TODO: - 피드 신고 화면 전환
+                
             }
         }))
         
