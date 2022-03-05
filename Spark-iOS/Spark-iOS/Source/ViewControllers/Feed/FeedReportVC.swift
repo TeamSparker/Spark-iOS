@@ -18,6 +18,7 @@ class FeedReportVC: UIViewController {
     private let describeLabel = UILabel()
     private let subDescribeLabel = UILabel()
     private let reportButton = BottomButton().setUI(.pink).setTitle("신고하기").setDisable()
+    private let placeHolder: String = "해당 게시글을 신고하는 이유에 대해\n구체적으로 작성해주세요. (최대 150자)"
     
     private var customNavigationBar = LeftButtonNavigaitonBar()
     
@@ -26,11 +27,11 @@ class FeedReportVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Zsssgljaljl")
         setNavigationBar()
         setUI()
         setLayout()
         setPlaceHolder()
+        setDelegate()
     }
     
     // MARK: - Method
@@ -56,18 +57,20 @@ class FeedReportVC: UIViewController {
         
         reportTextView.layer.cornerRadius = 2
         reportTextView.layer.borderWidth = 1
-        reportTextView.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
         
         reportTextView.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
     }
     
     private func setPlaceHolder() {
-        reportTextView.text = """
-        해당 게시글을 신고하는 이유에 대해
-        구체적으로 작성해주세요. (최대 150자)
-        """
+        reportTextView.text = placeHolder
+//        "해당 게시글을 신고하는 이유에 대해\n구체적으로 작성해주세요. (최대 150자)"
         reportTextView.textColor = .sparkGray
         reportTextView.font = .p1TitleLight
+        reportTextView.layer.borderColor = UIColor.sparkGray.cgColor
+    }
+    
+    private func setDelegate() {
+        reportTextView.delegate = self
     }
     
     private func setNavigationBar() {
@@ -85,7 +88,44 @@ class FeedReportVC: UIViewController {
     }
     
     // MARK: - @objc
+    
+    @objc
+    func touchReportButton() {
+        // TODO: - 신고 서버 통신 후 dismiss + 토스트메세지 노트 보내기
+    }
+}
 
+extension FeedReportVC: UITextViewDelegate {
+    // 여백 클릭 시
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // 입력 시작
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if textView.text == placeHolder {
+            reportTextView.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+            reportTextView.text = ""
+            reportTextView.textColor = .sparkBlack
+        } else {
+            
+        }
+        return true
+    }
+    
+    // 입력 끝
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.hasText {
+            if textView.text == placeHolder {
+                reportButton.setDisable()
+            } else {
+                reportButton.setAble()
+            }
+        } else {
+            reportButton.setDisable()
+            setPlaceHolder()
+        }
+    }
 }
 
 // MARK: - Network
