@@ -29,6 +29,7 @@ class FeedCVC: UICollectionViewCell {
     private let sparkIconImageView = UIImageView()
     private let sparkCountLabel = UILabel()
     
+    private let moreButton = UIButton()
     private let likeButton = UIButton()
     private let likeCountLabel = UILabel()
     private let lottieView = AnimationView(name: "icHeartActive")
@@ -156,6 +157,7 @@ extension FeedCVC {
         doneImageView.image = UIImage(named: "tagDone")
         sparkIconImageView.image = UIImage(named: "icFire")
         likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
+        moreButton.setImage(UIImage(named: "icMoreFeedVerticalBlack"), for: .normal)
         
         lottieView.center = likeButton.center
         lottieView.loopMode = .playOnce
@@ -196,7 +198,7 @@ extension FeedCVC {
     private func setLayout() {
         self.addSubviews([feedImageView, fadeImageView, profileImageView,
                           nameLabel, titleStackView, timeLabel,
-                          sparkStackView, lottieView, likeButton, likeCountLabel])
+                          sparkStackView, lottieView, likeButton, likeCountLabel, moreButton])
         
         feedImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -249,6 +251,11 @@ extension FeedCVC {
         
         likeCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(likeButton.snp.trailing).offset(5)
+            make.centerY.equalTo(likeButton.snp.centerY)
+        }
+        
+        moreButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
             make.centerY.equalTo(likeButton.snp.centerY)
         }
     }
