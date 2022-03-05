@@ -110,8 +110,6 @@ extension MainTBC {
         NotificationCenter.default.addObserver(self, selector: #selector(setDisappearFloatingButton), name: .disappearFloatingButton, object: nil)
     }
     
-    // TODO: - 화면전환
-    
     private func presentToCodeJoinVC() {
         let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.codeJoin, bundle: nil)
 

@@ -55,7 +55,6 @@ class ResetPopupVC: UIViewController {
         resetButton.addTarget(self, action: #selector(touchResetButton), for: .touchUpInside)
     }
     
-    // TODO: - 화면전환
     @objc
     func touchCancelButton() {
         dismiss(animated: true, completion: nil)

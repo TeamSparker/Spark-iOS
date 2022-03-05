@@ -19,7 +19,7 @@ class HabitRoomMemberCVC: UICollectionViewCell {
         case done = "DONE"
     }
     
-    var presentToSendSparkVCClosure: (()-> Void)?
+    var presentToSendSparkVCClosure: (() -> Void)?
     
     // MARK: - @IBOutlet Properties
     
@@ -109,7 +109,6 @@ extension HabitRoomMemberCVC {
             }
         }
         
-        
         tagMeImage.isHidden = false
         sparkImage.image = UIImage(named: "icFireDarkgray")
         sparkCountLabel.text = "\(receivedSpark)"
@@ -152,7 +151,6 @@ extension HabitRoomMemberCVC {
             stickerImage.image = UIImage(named: "stickerCompleteDefault")
             stickerImage.isHidden = false
         }
-        
         
         tagMeImage.isHidden = true
         
