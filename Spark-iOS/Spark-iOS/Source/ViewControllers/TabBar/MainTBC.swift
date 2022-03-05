@@ -50,7 +50,8 @@ extension MainTBC {
         let feedNVC = UINavigationController(rootViewController: feedVC)
         feedNVC.isNavigationBarHidden = true
         
-        setViewControllers([feedNVC, homeNVC, storageNVC], animated: false)
+        // TODO: - feedNVC 연결하기
+        setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered

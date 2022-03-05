@@ -240,6 +240,7 @@ extension FeedVC {
                 }
                 completion()
             case .requestErr(let message):
+                print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("feedListFetchWithAPI - pathErr")
@@ -277,6 +278,7 @@ extension FeedVC: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // FIXME: - MainTBC에서 FeedVC를 네비게이션 컨트롤러로 만든 뒤부터 처음 뷰를 로드했을 때  scrollViewDidScroll 이 실행됨
         if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
@@ -431,7 +433,9 @@ extension FeedVC: FeedCellDelegate {
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.feedReport, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.feedReport) as? FeedReportVC else { return }
-                self.navigationController?.pushViewController(nextVC, animated: true)
+//                self.navigationController?.pushViewController(nextVC, animated: true)
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
             }
         }))
         
