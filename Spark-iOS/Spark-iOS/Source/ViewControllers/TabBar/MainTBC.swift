@@ -47,7 +47,10 @@ extension MainTBC {
         let storageNVC = UINavigationController(rootViewController: storageVC)
         storageNVC.isNavigationBarHidden = true
         
-        setViewControllers([feedVC, homeNVC, storageNVC], animated: false)
+        let feedNVC = UINavigationController(rootViewController: feedVC)
+        feedNVC.isNavigationBarHidden = true
+        
+        setViewControllers([feedNVC, homeNVC, storageNVC], animated: false)
         
         tabBar.tintColor = .sparkDarkPinkred
         tabBar.itemPositioning = .centered

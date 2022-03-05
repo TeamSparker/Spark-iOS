@@ -14,12 +14,11 @@ class FeedVC: UIViewController {
     
     // MARK: - Properties
     
-    let collectionViewFlowlayout = UICollectionViewFlowLayout()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
-    
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
-    lazy var refreshControl = UIRefreshControl()
+    private let collectionViewFlowlayout = UICollectionViewFlowLayout()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var refreshControl = UIRefreshControl()
     
     private var dateList: [String] = []
     private var dayList: [String] = []
@@ -51,8 +50,10 @@ class FeedVC: UIViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = false
         
+        // FIXME: - 처음 피드 접속시 잘못된 lastID 에러 발생
         feedLastID = -1
         
         dateList.removeAll()
@@ -429,15 +430,21 @@ extension FeedVC: FeedCellDelegate {
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
-                // TODO: - 피드 신고 화면 전환
-                
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.feedReport, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.feedReport) as? FeedReportVC else { return }
+                self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }))
         
         alert.addSection()
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 feedVC에서 액션 시트를 띄울 경우 탭바 아래로 띄워짐
+                // 임시로 탭바를 hidden 시키고 있는 상황
+                self.tabBarController?.tabBar.isHidden = false
+            }
         }))
+        
+        tabBarController?.tabBar.isHidden = true
         
         present(alert, animated: true)
     }

@@ -26,13 +26,73 @@ class FeedReportVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Zsssgljaljl")
         setNavigationBar()
         setUI()
         setLayout()
+        setPlaceHolder()
     }
     
     // MARK: - Method
     
+    private func setUI() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        titleLabel.text = "신고 이유에 대해 알려주세요."
+        describeLabel.text = "신고 전 잠깐!"
+        subDescribeLabel.text = """
+        - 신고하신 내용은 서비스 운영 정책에 따라 처리됩니다.
+        - 타당한 근거 없이 신고된 내용은 반영되지 않을 수 \n있습니다.
+        """
+        subDescribeLabel.numberOfLines = 3
+        
+        titleLabel.font = .h2Title
+        describeLabel.font = .p2Subtitle
+        subDescribeLabel.font = .p2Subtitle
+        
+        titleLabel.textColor = .sparkBlack
+        describeLabel.textColor = .sparkDarkGray
+        subDescribeLabel.textColor = .sparkDarkGray
+        
+        reportTextView.layer.cornerRadius = 2
+        reportTextView.layer.borderWidth = 1
+        reportTextView.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
+        
+        reportTextView.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    }
+    
+    private func setPlaceHolder() {
+        reportTextView.text = """
+        해당 게시글을 신고하는 이유에 대해
+        구체적으로 작성해주세요. (최대 150자)
+        """
+        reportTextView.textColor = .sparkGray
+        reportTextView.font = .p1TitleLight
+    }
+    
+    private func setNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = true
+        
+        customNavigationBar.title("게시물 신고")
+            .leftButtonImage("icBackWhite")
+            .leftButonAction {
+                self.popToFeedVC()
+            }
+    }
+    
+    private func popToFeedVC() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - @objc
+
+}
+
+// MARK: - Network
+
+// MARK: - Layout
+
+extension FeedReportVC {
     private func setLayout() {
         view.addSubviews([customNavigationBar, titleLabel, reportTextView,
                           describeLabel, subDescribeLabel, reportButton])
@@ -60,48 +120,21 @@ class FeedReportVC: UIViewController {
         }
         
         subDescribeLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(20)
-            make.bottom.equalTo(reportButton.snp.top).inset(44)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(reportButton.snp.top).offset(-44)
         }
         
         describeLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(20)
-            make.bottom.equalTo(subDescribeLabel.snp.top).inset(12)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(subDescribeLabel.snp.top).offset(-12)
         }
     }
-    
-    private func setUI() {
-        titleLabel.text = "신고 이유에 대해 알려주세요."
-        reportTextView.backgroundColor = .sparkDarkPinkred
-        
-        describeLabel.text = "신고 전 잠깐!"
-        subDescribeLabel.text = """
-        - 신고하신 내용은 서비스 운영 정책에 따라 처리됩니다.
-        - 타당한 근거 없이 신고된 내용은 반영되지 않을 수 있습니다.
-        """
-        subDescribeLabel.numberOfLines = 3
-        
-        titleLabel.font = .h2Title
-        describeLabel.font = .p2Subtitle
-        subDescribeLabel.font = .p2Subtitle
-    }
-    
-    private func setNavigationBar() {
-        customNavigationBar.title("게시물 신고")
-            .leftButtonImage("icBackWhite")
-            .leftButonAction {
-                self.navigationController?.popToViewController(self, animated: true)
-            }
-    }
-    
-    // MARK: - @objc
-
 }
 
-// MARK: - Network
-
-// MARK: - Layout
-
-extension FeedReportVC {
-    
+// MARK: - UIGestureRecognizerDelegate
+// FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
+extension FeedReportVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
+    }
 }
