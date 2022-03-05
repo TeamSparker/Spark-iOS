@@ -34,7 +34,7 @@ class FeedCVC: UICollectionViewCell {
     private let likeCountLabel = UILabel()
     private let lottieView = AnimationView(name: "icHeartActive")
     
-    weak var likeDelegate: FeedCellDelegate?
+    weak var buttonDelegate: FeedCellDelegate?
     private var likeState: Bool = false
     private var cellId: Int = 0
     private var indexPath: IndexPath?
@@ -97,6 +97,7 @@ class FeedCVC: UICollectionViewCell {
     
     private func setAddTarget() {
         likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(tapMoreButton), for: .touchUpInside)
     }
     
     @objc
@@ -120,7 +121,12 @@ class FeedCVC: UICollectionViewCell {
             }
         }
         // likeState 가 false 라면 좋아요를 취소한 것.
-        self.likeDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
+        self.buttonDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
+    }
+    
+    @objc
+    func tapMoreButton() {
+        self.buttonDelegate?.moreButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0))
     }
 }
 

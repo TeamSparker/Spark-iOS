@@ -339,7 +339,7 @@ extension FeedVC: UICollectionViewDataSource {
             }
             
             cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath)
-            cell.likeDelegate = self
+            cell.buttonDelegate = self
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
@@ -424,6 +424,23 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
  
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
+    func moreButtonTapped(recordID: Int, indexPath: IndexPath) {
+        print("🍎 recordID: \(recordID), indexPath: \(indexPath)")
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                print("화면 전환 2️⃣")
+            }
+        }))
+        
+        alert.addSection()
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
+    }
+    
     func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
         if indexPath.section == 0 {
             if likeState {
