@@ -25,6 +25,8 @@ class EditProfileVC: UIViewController {
     private let maxLength: Int = 10
     private var didEdit: Bool = false
     
+    weak var profileImageDelegate: ProfileImageDelegate?
+    
     var profileImage: UIImage?
     var nickname: String?
     
@@ -62,7 +64,6 @@ extension EditProfileVC {
                 }
             }
         
-        profileImageView.backgroundColor = .blue
         profileImageView.image = profileImage
         profileImageView.layer.cornerRadius = 58
         profileImageView.contentMode = .scaleAspectFill
@@ -140,7 +141,9 @@ extension EditProfileVC {
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
             alert.addAction(SparkAction("사진 삭제", titleType: .blackMediumTitle, handler: {
-                self.profileImageView.image = UIImage(named: "profileEmpty")
+                alert.dismiss(animated: true) {
+                    self.profileImageView.image = UIImage(named: "profileEmpty")
+                }
             }))
         }
         
@@ -156,14 +159,16 @@ extension EditProfileVC {
     @objc
     func touchCompleteButton() {
         if profileImageView.image == UIImage(named: "profileEmpty") {
-//            signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
-//                self.dismiss(animated: true, completion: nil)
-//            }
+            profileEditWithAPI(profileImage: nil) {
+                self.dismiss(animated: true, completion: nil)
+            }
         } else {
-//            signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
-//                self.dismiss(animated: true, completion: nil)
-//            }
+            profileEditWithAPI(profileImage: profileImageView.image) {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
+        profileImageDelegate?.sendProfile(image: profileImageView.image ?? UIImage(named: "profileEmpty")!,
+                                          nickname: textField.text ?? "")
     }
 }
 
@@ -215,7 +220,24 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
 // MARK: - Network
 
 extension EditProfileVC {
-    
+    private func profileEditWithAPI(profileImage: UIImage?, completion: @escaping (() -> Void)) {
+        let nickname = textField.text
+        UserAPI.shared.profileEdit(profileImage: profileImage, nickname: nickname ?? "") { response in
+            switch response {
+            case .success(let message):
+                completion()
+                print("profileEditWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("profileEditWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileEditWithAPI - pathErr")
+            case .serverErr:
+                print("profileEditWithAPI - serverErr")
+            case .networkFail:
+                print("profileEditWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - Layout

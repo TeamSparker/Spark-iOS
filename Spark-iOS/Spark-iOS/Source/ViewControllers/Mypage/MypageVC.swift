@@ -35,8 +35,9 @@ class MypageVC: UIViewController {
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
-    private var profile: Profile?
+    
     private var profileImage: UIImage?
+    private var profileNickname: String?
     
     // MARK: - View Life Cycle
     
@@ -46,11 +47,6 @@ class MypageVC: UIViewController {
         setUI()
         setLayout()
         setTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         profileFetchWithAPI()
     }
 }
@@ -88,6 +84,7 @@ extension MypageVC {
             tableView.sectionHeaderTopPadding = 0
         }
     }
+
 }
 
 // MARK: - UITableViewDelegate
@@ -127,8 +124,9 @@ extension MypageVC: UITableViewDelegate {
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
 
             editProfileVC.profileImage = profileImage
-            editProfileVC.nickname = profile?.nickname
-            editProfileVC.modalPresentationStyle = .overFullScreen
+            editProfileVC.nickname = profileNickname
+            editProfileVC.profileImageDelegate = self
+            editProfileVC.modalPresentationStyle = .fullScreen
             present(editProfileVC, animated: true, completion: nil)
         }
     }
@@ -184,7 +182,7 @@ extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
-            cell.initCell(profile: profile?.profileImage, nickname: profile?.nickname)
+            cell.initCell(profileImage: profileImage, nickname: profileNickname)
             cell.selectionStyle = .none
             
             return cell
@@ -231,7 +229,8 @@ extension MypageVC {
             switch response {
             case .success(let data):
                 if let profile = data as? Profile {
-                    self.profile = profile
+                    self.profileNickname = profile.nickname
+                    
                     let imageView = UIImageView()
                     imageView.updateImage(profile.profileImage, type: .small)
                     self.profileImage = imageView.image
@@ -246,24 +245,6 @@ extension MypageVC {
             case .networkFail:
                 print("profileFetchWithAPI - networkFail")
             }
-        }
-    }
-    
-    private func profileEditWithAPI() {
-        UserAPI.shared.profileFetch { response in
-            switch response {
-            case .success(let message):
-                print("profileEditWithAPI - success: \(message)")
-            case .requestErr(let message):
-                print("profileEditWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("profileEditWithAPI - pathErr")
-            case .serverErr:
-                print("profileEditWithAPI - serverErr")
-            case .networkFail:
-                print("profileEditWithAPI - networkFail")
-            }
-            
         }
     }
 }
@@ -284,6 +265,16 @@ extension MypageVC {
             $0.top.equalTo(customNavigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - ProfileImageDelegate
+
+extension MypageVC: ProfileImageDelegate {
+    func sendProfile(image profileImage: UIImage, nickname: String) {
+        self.profileImage = profileImage
+        self.profileNickname = nickname
+        tableView.reloadData()
     }
 }
 
