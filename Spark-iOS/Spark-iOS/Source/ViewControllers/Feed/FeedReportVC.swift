@@ -83,14 +83,16 @@ class FeedReportVC: UIViewController {
     }
     
     private func popToFeedVC() {
-        navigationController?.popViewController(animated: true)
+        // FIXME: - 화면전환 pop으로 바꾸기
+//        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - @objc
     
     @objc
     func touchReportButton() {
-        // TODO: - 신고 서버 통신 후 dismiss + 토스트메세지 노트 보내기
+        // TODO: - 신고 서버 통신 후 dismiss + 토스트메세지 노티 보내기
     }
 }
 
