@@ -53,7 +53,6 @@ class FeedVC: UIViewController {
         navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = false
         
-        // FIXME: - 처음 피드 접속시 잘못된 lastID 에러 발생
         feedLastID = -1
         
         dateList.removeAll()
@@ -240,6 +239,7 @@ extension FeedVC {
                 }
                 completion()
             case .requestErr(let message):
+                // TODO: - print 지우기
                 print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -278,8 +278,12 @@ extension FeedVC: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // FIXME: - MainTBC에서 FeedVC를 네비게이션 컨트롤러로 만든 뒤부터 처음 뷰를 로드했을 때  scrollViewDidScroll 이 실행됨
-        if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
+        // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
+//        print("👥")
+//        print("contentOffset.y: \(scrollView.contentOffset.y), \(scrollView.contentSize.height - scrollView.bounds.height)")
+//        print("-------------------")
+        
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
                 isInfiniteScroll = false
@@ -442,8 +446,7 @@ extension FeedVC: FeedCellDelegate {
         alert.addSection()
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
             self.dismiss(animated: true) {
-                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 feedVC에서 액션 시트를 띄울 경우 탭바 아래로 띄워짐
-                // 임시로 탭바를 hidden 시키고 있는 상황
+                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 액션 시트를 띄울 경우 탭바 아래로 띄워짐 -> 임시로 탭바를 hidden 시키고 있는 상황
                 self.tabBarController?.tabBar.isHidden = false
             }
         }))

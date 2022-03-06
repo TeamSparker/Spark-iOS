@@ -63,7 +63,6 @@ class FeedReportVC: UIViewController {
     
     private func setPlaceHolder() {
         reportTextView.text = placeHolder
-//        "해당 게시글을 신고하는 이유에 대해\n구체적으로 작성해주세요. (최대 150자)"
         reportTextView.textColor = .sparkGray
         reportTextView.font = .p1TitleLight
         reportTextView.layer.borderColor = UIColor.sparkGray.cgColor
