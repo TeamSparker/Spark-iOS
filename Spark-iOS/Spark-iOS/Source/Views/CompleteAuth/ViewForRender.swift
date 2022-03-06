@@ -65,6 +65,7 @@ class ViewForRender: UIView {
         profileImageView.layer.borderWidth = 2
         profileImageView.clipsToBounds = true
         profileImageView.layer.masksToBounds = true
+        profileImageView.contentMode = .scaleAspectFill
         
         self.layer.cornerRadius = 2
     }

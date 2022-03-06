@@ -61,6 +61,7 @@
 		2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */; };
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */; };
+		EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
 		EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */; };
@@ -228,6 +229,7 @@
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkActionSheet.swift; sourceTree = "<group>"; };
+		EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkCVC.swift; sourceTree = "<group>"; };
 		EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoingStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneStorageCVC.swift; sourceTree = "<group>"; };
@@ -1096,6 +1098,7 @@
 			children = (
 				2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */,
 				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
+				EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -1302,6 +1305,7 @@
 				2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */,
 				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
+				EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */,
 				F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */,
