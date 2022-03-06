@@ -54,9 +54,9 @@ extension MypageProfileTVC {
     }
     
     // initializer.
-    func initCell(profile: String, nickname: String) {
-        profileImageView.updateImage(profile)
-        profileNameLabel.text = nickname
+    func initCell(profile: String?, nickname: String?) {
+        profileImageView.updateImage(profile ?? "")
+        profileNameLabel.text = nickname ?? ""
     }
 }
 

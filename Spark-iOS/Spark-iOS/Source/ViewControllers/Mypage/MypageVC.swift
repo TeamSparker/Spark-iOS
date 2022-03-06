@@ -35,6 +35,8 @@ class MypageVC: UIViewController {
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
+    private var profile: Profile?
+    private var profileImageView: UIImageView?
     
     // MARK: - View Life Cycle
     
@@ -117,9 +119,9 @@ extension MypageVC: UITableViewDelegate {
         
         if indexPath.section == 0 {
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
-            // TODO: - 서벼 연결 후 넣기
-//            editProfileVC.profileImg =
-//            editProfileVC.nickname =
+
+            editProfileVC.profileImage = profileImageView?.image
+            editProfileVC.nickname = profile?.nickname
             editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
         }
@@ -176,7 +178,7 @@ extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
-            cell.initCell(profile: "", nickname: "하양")
+            cell.initCell(profile: profile?.profileImg, nickname: profile?.nickname)
             cell.selectionStyle = .none
             
             return cell
@@ -219,6 +221,27 @@ extension MypageVC: UITableViewDataSource {
 
 extension MypageVC {
     // TODO: - 서버통신.
+    private func profileFetchWithAPI() {
+        UserAPI.shared.profileFetch { response in
+            switch response {
+            case .success(let data):
+                if let profile = data as? Profile {
+                    self.profile = profile
+                    self.profileImageView?.updateImage(profile.profileImg, type: .small)
+                    self.tableView.reloadData()
+                }
+            case .requestErr(let message):
+                print("profileFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileFetchWithAPI - pathErr")
+            case .serverErr:
+                print("profileFetchWithAPI - serverErr")
+            case .networkFail:
+                print("profileFetchWithAPI - networkFail")
+            }
+            
+        }
+    }
 }
 
 // MARK: - Layout

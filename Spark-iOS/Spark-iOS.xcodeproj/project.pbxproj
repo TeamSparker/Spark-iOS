@@ -125,6 +125,9 @@
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
 		F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF027D238440073FFCA /* EditProfileVC.swift */; };
 		F8250CF327D238990073FFCA /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8250CF227D238990073FFCA /* EditProfile.storyboard */; };
+		F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF727D25F240073FFCA /* UserAPI.swift */; };
+		F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF927D25F2B0073FFCA /* UserService.swift */; };
+		F8250CFC27D483E70073FFCA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFB27D483E70073FFCA /* Profile.swift */; };
 		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
@@ -292,6 +295,9 @@
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F8250CF027D238440073FFCA /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		F8250CF227D238990073FFCA /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
+		F8250CF727D25F240073FFCA /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		F8250CF927D25F2B0073FFCA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F8250CFB27D483E70073FFCA /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
@@ -893,6 +899,7 @@
 				2BF3AB42279475B9001A9042 /* Room */,
 				2BBED13127956D040052CA5C /* Feed */,
 				EBEA382A27947C4100B5736A /* MyRoom */,
+				F8250CF627D25F080073FFCA /* User */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -907,6 +914,7 @@
 				2BF3AB4A27947C3A001A9042 /* Room */,
 				2BBED12E27956C4F0052CA5C /* Feed */,
 				EBEA382B27947C6600B5736A /* MyRoom */,
+				F8250CF527D25F000073FFCA /* User */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -977,6 +985,23 @@
 				F816F124278E1C920008ED00 /* LoginVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F8250CF527D25F000073FFCA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F8250CFB27D483E70073FFCA /* Profile.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		F8250CF627D25F080073FFCA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F8250CF727D25F240073FFCA /* UserAPI.swift */,
+				F8250CF927D25F2B0073FFCA /* UserService.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		F82B2E0F278F54B000219628 /* Splash */ = {
@@ -1311,6 +1336,7 @@
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
+				F8250CFC27D483E70073FFCA /* Profile.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
@@ -1359,10 +1385,12 @@
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
+				F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */,
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
+				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
 				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
