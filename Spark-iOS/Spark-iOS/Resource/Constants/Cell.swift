@@ -27,6 +27,7 @@ extension Const {
             static let sendSparkCVC = "SendSparkCVC"
             static let mypageProfileTVC = "MypageProfileTVC"
             static let mypageDefaultTVC = "MypageDefaultTVC"
+            static let noticeUpdateHeaderView = "NoticeUpdateHeaderView"
         }
     }
 }
