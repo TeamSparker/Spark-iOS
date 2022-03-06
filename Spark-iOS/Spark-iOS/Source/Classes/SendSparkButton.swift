@@ -7,16 +7,19 @@
 
 import UIKit
 
+public enum SendSparkStatus: Int {
+    case message
+    case first
+    case second
+    case third
+    case fourth
+}
+
 final class SendSparkButton: UIButton {
     
     // MARK: - Properties
-    
-    public enum SendSparkStatus {
-        case first
-        case second
-        case third
-        case fourth
-    }
+    var type: SendSparkStatus?
+    var content: String?
     
     // MARK: - Initialize
     
@@ -39,25 +42,57 @@ final class SendSparkButton: UIButton {
 
 extension SendSparkButton {
     private func setUI(_ type: SendSparkStatus) {
-        self.layer.borderColor = UIColor.sparkLightPinkred.cgColor
-        self.layer.cornerRadius = 2
+        self.layer.borderColor = UIColor.sparkPinkred.cgColor
+        self.layer.cornerRadius = 124 / 2
         self.layer.borderWidth = 1
-        self.setTitleColor(.sparkLightPinkred, for: .normal)
-        self.titleLabel?.font = .krMediumFont(ofSize: 14)
+        self.backgroundColor = .sparkWhite
+        self.setTitleColor(.sparkPinkred, for: .normal)
+        self.titleLabel?.font = .btn3
+        self.titleLabel?.lineBreakMode = .byCharWrapping
+        self.titleLabel?.textAlignment = .center
+        self.type = type
         
         switch type {
+        case .message:
+            self.setTitle("""
+                          메시지
+                          직접 입력하기
+                          """,
+                          for: .normal)
+            self.backgroundColor = .sparkPinkred
+            self.setTitleColor(.sparkWhite, for: .normal)
         case .first:
-            self.setTitle("👊 아자아자 파이팅!", for: .normal)
-            self.tag = 1
+            self.setTitle("""
+                          👊
+                          아자아자
+                          파이팅!
+                          """,
+                          for: .normal)
+            self.content = "👊아자아자 파이팅!"
         case .second:
-            self.setTitle("🔥오늘 안 해? 같이 해!", for: .normal)
-            self.tag = 2
+            self.setTitle("""
+                          🔥
+                          오늘 안 해?
+                          같이 해!
+                          """,
+                          for: .normal)
+            self.content = "🔥오늘 안 해? 같이 해!"
         case .third:
-            self.setTitle("👉 너만 하면 돼!", for: .normal)
-            self.tag = 3
+            self.setTitle("""
+                          👉
+                          너만
+                          하면 돼!
+                          """,
+                          for: .normal)
+            self.content = "👉너만 하면 돼!"
         case .fourth:
-            self.setTitle("👍 얼마 안 남았어, 어서 하자!", for: .normal)
-            self.tag = 4
+            self.setTitle("""
+                          👍
+                          얼마 안 남았어,
+                          어서 하자!
+                          """,
+                          for: .normal)
+            self.content = "👍얼마 안 남았어, 어서 하자!"
         }
     }
     
