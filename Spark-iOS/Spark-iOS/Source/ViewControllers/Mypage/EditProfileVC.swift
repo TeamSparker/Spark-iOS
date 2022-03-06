@@ -65,6 +65,7 @@ extension EditProfileVC {
         profileImageView.backgroundColor = .blue
         profileImageView.image = profileImage
         profileImageView.layer.cornerRadius = 58
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
         
         fadeView.backgroundColor = .sparkBlack.withAlphaComponent(0.6)
