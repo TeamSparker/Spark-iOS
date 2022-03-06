@@ -13,6 +13,7 @@ class StorageMoreVC: UIViewController {
     
     var roomID: Int?
     var titleText: String?
+    var thumbnailURL: String?
     private var selectedIndex: Int?
     private var selectedRecordId: Int?
     private var isChangingImageView: Bool = false
@@ -136,6 +137,7 @@ extension StorageMoreVC {
                 
                 nextVC.roomID = self.roomID
                 nextVC.titleText = "대표 이미지 변경"
+                nextVC.thumbnailURL = self.thumbnailURL
                 nextVC.isChangingImageView = true
 
                 nextVC.modalPresentationStyle = .fullScreen
@@ -200,6 +202,9 @@ extension StorageMoreVC: UICollectionViewDataSource {
                           status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
         } else {
             cell.updateImage(mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", status: myRoomCertificationList?[indexPath.row].status ?? "")
+            if (self.selectedIndex == nil)&&(thumbnailURL == myRoomCertificationList?[indexPath.row].certifyingImg) {
+                cell.isSelected = true
+            }
         }
         
         return cell

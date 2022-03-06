@@ -24,8 +24,10 @@ class MoreStorageCVC: UICollectionViewCell {
         didSet {
             if isChangingImageView {
                 if isSelected {
-                    certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
-                    dDayOrPointLabel.isHidden = false
+                    DispatchQueue.main.async {
+                        self.certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
+                        self.dDayOrPointLabel.isHidden = false
+                    }
                 } else {
                     certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
                     dDayOrPointLabel.isHidden = true

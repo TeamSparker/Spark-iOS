@@ -500,12 +500,15 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case doingCV:
             nextVC.roomID = onGoingRoomList?[indexPath.row].roomID
             nextVC.titleText = onGoingRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = onGoingRoomList?[indexPath.row].thumbnail
         case doneCV:
             nextVC.roomID = completeRoomList?[indexPath.row].roomID
             nextVC.titleText = completeRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = completeRoomList?[indexPath.row].thumbnail
         case failCV:
             nextVC.roomID = failRoomList?[indexPath.row].roomID
             nextVC.titleText = failRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = failRoomList?[indexPath.row].thumbnail
         default:
             return
         }
