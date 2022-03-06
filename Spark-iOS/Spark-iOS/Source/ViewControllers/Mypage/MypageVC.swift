@@ -36,7 +36,7 @@ class MypageVC: UIViewController {
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
     private var profile: Profile?
-    private var profileImageView: UIImageView?
+    private var profileImage: UIImage?
     
     // MARK: - View Life Cycle
     
@@ -46,6 +46,12 @@ class MypageVC: UIViewController {
         setUI()
         setLayout()
         setTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        profileFetchWithAPI()
     }
 }
 
@@ -120,7 +126,7 @@ extension MypageVC: UITableViewDelegate {
         if indexPath.section == 0 {
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
 
-            editProfileVC.profileImage = profileImageView?.image
+            editProfileVC.profileImage = profileImage
             editProfileVC.nickname = profile?.nickname
             editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
@@ -178,7 +184,7 @@ extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
-            cell.initCell(profile: profile?.profileImg, nickname: profile?.nickname)
+            cell.initCell(profile: profile?.profileImage, nickname: profile?.nickname)
             cell.selectionStyle = .none
             
             return cell
@@ -220,14 +226,15 @@ extension MypageVC: UITableViewDataSource {
 // MARK: - Network
 
 extension MypageVC {
-    // TODO: - 서버통신.
     private func profileFetchWithAPI() {
         UserAPI.shared.profileFetch { response in
             switch response {
             case .success(let data):
                 if let profile = data as? Profile {
                     self.profile = profile
-                    self.profileImageView?.updateImage(profile.profileImg, type: .small)
+                    let imageView = UIImageView()
+                    imageView.updateImage(profile.profileImage, type: .small)
+                    self.profileImage = imageView.image
                     self.tableView.reloadData()
                 }
             case .requestErr(let message):
@@ -238,6 +245,23 @@ extension MypageVC {
                 print("profileFetchWithAPI - serverErr")
             case .networkFail:
                 print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func profileEditWithAPI() {
+        UserAPI.shared.profileFetch { response in
+            switch response {
+            case .success(let message):
+                print("profileEditWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("profileEditWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileEditWithAPI - pathErr")
+            case .serverErr:
+                print("profileEditWithAPI - serverErr")
+            case .networkFail:
+                print("profileEditWithAPI - networkFail")
             }
             
         }

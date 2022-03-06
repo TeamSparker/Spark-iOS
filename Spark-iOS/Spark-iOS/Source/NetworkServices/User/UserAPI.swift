@@ -45,13 +45,13 @@ public class UserAPI {
         }
     }
     
-    func profileEdit(completion: @escaping(NetworkResult<Any>) -> Void) {
-        userProvider.request(.profileEdit) { result in
+    func profileEdit(profileImage: UIImage?, nickname: String, completion: @escaping(NetworkResult<Any>) -> Void) {
+        userProvider.request(.profileEdit(profileImage: profileImage, nickname: nickname)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeProfileEidtStatus(by: statusCode, data)
+                let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)
@@ -59,13 +59,13 @@ public class UserAPI {
         }
     }
     
-    private func judgeProfileEidtStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<Profile>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
         else { return .pathErr }
         switch statusCode {
         case 200:
-            return .success(decodedData.data ?? "None-Data")
+            return .success(decodedData.message)
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:

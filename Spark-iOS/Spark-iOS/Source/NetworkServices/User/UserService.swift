@@ -8,10 +8,11 @@
 import Foundation
 
 import Moya
+import UIKit
 
 enum UserService {
     case profileFetch
-    case profileEdit
+    case profileEdit(profileImage: UIImage?, nickname: String)
 }
 
 extension UserService: TargetType {
@@ -33,7 +34,21 @@ extension UserService: TargetType {
     }
     
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .profileFetch:
+            return .requestPlain
+        case .profileEdit(let profileImage, let nickname):
+            var multiPartData: [Moya.MultipartFormData] = []
+            
+            let nickname = nickname.data(using: .utf8) ?? Data()
+            multiPartData.append(MultipartFormData(provider: .data(nickname), name: "nickname"))
+            if let profileImage = profileImage {
+                let profileImageData = MultipartFormData(provider: .data(profileImage.pngData() ?? Data()), name: "image", fileName: "image.png", mimeType: "image/png")
+                multiPartData.append(profileImageData)
+            }
+            
+            return .uploadMultipart(multiPartData)
+        }
     }
     
     var headers: [String: String]? {

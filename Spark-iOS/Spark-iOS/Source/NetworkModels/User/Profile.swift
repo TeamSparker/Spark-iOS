@@ -9,9 +9,10 @@ import Foundation
 
 // MARK: - Profile
 struct Profile: Codable {
-    let nickname, profileImg: String
+    let nickname, profileImage: String
     
     enum CodingKeys: String, CodingKey {
-        case nickname, profileImg
+        case nickname
+        case profileImage = "profileImg"
     }
 }

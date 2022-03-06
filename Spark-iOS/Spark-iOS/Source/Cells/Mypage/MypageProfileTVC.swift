@@ -38,6 +38,7 @@ extension MypageProfileTVC {
         profileImageView.layer.borderColor = UIColor.sparkLightGray.cgColor
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.cornerRadius = 32
+        profileImageView.layer.masksToBounds = true
         profileImageView.contentMode = .scaleAspectFill
         
         profileTextLabel.text = "프로필"
