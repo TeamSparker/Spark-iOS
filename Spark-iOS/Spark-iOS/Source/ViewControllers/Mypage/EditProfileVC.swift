@@ -18,7 +18,7 @@ class EditProfileVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private var completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setDisable()
+    private var completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setAble()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
     
@@ -77,6 +77,7 @@ extension EditProfileVC {
         
         textField.borderStyle = .none
         textField.placeholder = nickname
+        textField.text = nickname
         textField.tintColor = .sparkPinkred
         
         lineView.backgroundColor = .sparkGray
