@@ -76,7 +76,7 @@ extension HomeVC {
             .actions({
                 self.presentToMypageVC()
             }, {
-                self.presentToAlertVC()
+                self.pushToNoticeVC()
             })
         
         // set collectionView
@@ -126,7 +126,7 @@ extension HomeVC {
             .actions({
                 self.presentToMypageVC()
             }, {
-                self.presentToAlertVC()
+                self.pushToNoticeVC()
             })
         
         loadingBgView.addSubview(customNavigationBar)
@@ -155,8 +155,10 @@ extension HomeVC {
         navigationController?.pushViewController(nextVC, animated: true)
     }
 
-    private func presentToAlertVC() {
-        print("presentToAlertVC")
+    private func pushToNoticeVC() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.notice, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.notice) as? NoticeVC else { return }
+        
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
     // MARK: - Objc Methods
