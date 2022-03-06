@@ -14,6 +14,7 @@ class StorageMoreVC: UIViewController {
     var roomID: Int?
     var titleText: String?
     private var selectedIndex: Int?
+    private var selectedRecordId: Int?
     private var isChangingImageView: Bool = false
     private var myRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
@@ -95,7 +96,7 @@ extension StorageMoreVC {
                 }
                 .rightButtonPinkTitle("완료")
                 .rightButtonAction {
-                    self.dismiss(animated: true)
+                    self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: self.selectedRecordId ?? 0)
                 }
         }
 
@@ -206,6 +207,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
+        self.selectedRecordId = myRoomCertificationList?[indexPath.row].recordID
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -234,6 +236,23 @@ extension StorageMoreVC {
                     self.storageMoreCV.reloadData()
                 }
                 completion()
+            case .requestErr(let message):
+                print("getMyRoomCertiWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getMyRoomCertiWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomCertiWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomCertiWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func myRoomChangeThumbnailWithAPI(roomId: Int, recordId: Int) {
+        MyRoomAPI.shared.myRoomChangeThumbnail(roomId: roomId, recordId: recordId) {  response in
+            switch response {
+            case .success:
+                self.dismiss(animated: true, completion: nil)
             case .requestErr(let message):
                 print("getMyRoomCertiWithAPI - requestErr: \(message)")
             case .pathErr:
