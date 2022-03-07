@@ -14,7 +14,10 @@ class StorageMoreVC: UIViewController {
     var roomID: Int?
     var titleText: String?
     var thumbnailURL: String?
-    private var selectedIndex: Int?
+    
+    weak var sendThumnailURLDelegate: SendThumbnailURLDelegate?
+    
+    private var selectedIndexPath: IndexPath?
     private var selectedRecordId: Int?
     private var isChangingImageView: Bool = false
     private var myRoomCountSize: Int = 8
@@ -139,6 +142,7 @@ extension StorageMoreVC {
                 nextVC.titleText = "대표 이미지 변경"
                 nextVC.thumbnailURL = self.thumbnailURL
                 nextVC.isChangingImageView = true
+                nextVC.sendThumnailURLDelegate = self
 
                 nextVC.modalPresentationStyle = .fullScreen
                 self.present(nextVC, animated: true)
@@ -271,7 +275,10 @@ extension StorageMoreVC {
         MyRoomAPI.shared.myRoomChangeThumbnail(roomId: roomId, recordId: recordId) {  response in
             switch response {
             case .success:
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true) {
+                    // 이전 VC로 바뀐 대표이미지의 URL 전달해주기
+                    self.sendThumnailURLDelegate?.sendThumbnailURL(url: self.myRoomCertificationList?[self.selectedIndexPath?.row ?? 0].certifyingImg ?? "")
+                }
             case .requestErr(let message):
                 print("getMyRoomCertiWithAPI - requestErr: \(message)")
             case .pathErr:
@@ -285,10 +292,21 @@ extension StorageMoreVC {
     }
 }
 
+// MARK: - SendThumbnailDelegate Methods
+extension StorageMoreVC: SendThumbnailURLDelegate {
+    func sendThumbnailURL(url: String) {
+        self.thumbnailURL = url
+    }
+}
+
 // MARK: - UIGestureRecognizerDelegate
 // FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
 extension StorageMoreVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
+}
+
+protocol SendThumbnailURLDelegate: AnyObject {
+    func sendThumbnailURL(url: String)
 }
