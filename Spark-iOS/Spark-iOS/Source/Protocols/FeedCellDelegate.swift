@@ -9,4 +9,6 @@ import Foundation
 
 protocol FeedCellDelegate: AnyObject {
     func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool)
+    
+    func moreButtonTapped(recordID: Int, indexPath: IndexPath)
 }
