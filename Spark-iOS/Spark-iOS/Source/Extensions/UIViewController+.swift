@@ -86,7 +86,7 @@ extension UIViewController {
     /// - 최대 글자수 초과인 경우
     /// - 최대 글자수 이하 0 이상인 경우
     /// - 그 외의 경우 (글자수 0)
-    func changeCountLabel(textField: UITextField, maxLength: Int, countLabel: UILabel, lineView: UIView) {
+    func changeCountLabel(textField: UITextField, maxLength: Int, countLabel: UILabel) {
         if let text = textField.text {
             countLabel.text = "\(text.count)/\(maxLength)"
             

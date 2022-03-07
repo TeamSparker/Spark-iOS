@@ -38,6 +38,7 @@ extension Const {
             static let habitRoomLeave = "HabitRoomLeave"
             static let mypage = "Mypage"
             static let feedReport = "FeedReport"
+            static let editProfile = "EditProfile"
         }
     }
 }
