@@ -98,7 +98,7 @@ extension EditProfileVC {
     
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
-        tap.addTarget(self, action: #selector(showAlter))
+        tap.addTarget(self, action: #selector(showAlert))
     }
     
     private func openLibrary() {
@@ -123,7 +123,7 @@ extension EditProfileVC {
     }
     
     @objc
-    func showAlter() {
+    func showAlert() {
         didEdit = true
         
         let alert = SparkActionSheet()

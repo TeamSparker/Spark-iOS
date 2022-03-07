@@ -81,7 +81,7 @@ class ProfileSettingVC: UIViewController {
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
-        tap.addTarget(self, action: #selector(showAlter))
+        tap.addTarget(self, action: #selector(showAlert))
     }
     
     private func openLibrary() {
@@ -114,7 +114,7 @@ class ProfileSettingVC: UIViewController {
     }
     
     @objc
-    func showAlter() {
+    func showAlert() {
         let alert = SparkActionSheet()
         
         alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
