@@ -19,6 +19,7 @@ class FeedReportVC: UIViewController {
     private let subDescribeLabel = UILabel()
     private let reportButton = BottomButton().setUI(.pink).setTitle("신고하기").setDisable()
     private let placeHolder: String = "해당 게시글을 신고하는 이유에 대해\n구체적으로 작성해주세요. (최대 150자)"
+    private let maxLength: Int = 150
     
     private var customNavigationBar = LeftButtonNavigaitonBar()
     
@@ -123,6 +124,16 @@ extension FeedReportVC: UITextViewDelegate {
         } else {
             reportButton.setDisable()
             setPlaceHolder()
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if let text = textView.text {
+            if text.count >= maxLength {
+                let maxIndex = text.index(text.startIndex, offsetBy: maxLength)
+                let newString = String(text[text.startIndex..<maxIndex])
+                textView.text = newString
+            }
         }
     }
 }
