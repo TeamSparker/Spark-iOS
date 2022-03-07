@@ -83,9 +83,7 @@ class FeedReportVC: UIViewController {
     }
     
     private func popToFeedVC() {
-        // FIXME: - 화면전환 pop으로 바꾸기
-//        navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - @objc

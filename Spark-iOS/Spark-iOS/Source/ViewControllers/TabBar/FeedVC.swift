@@ -280,10 +280,10 @@ extension FeedVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
 //        print("👥")
-//        print("contentOffset.y: \(scrollView.contentOffset.y), \(scrollView.contentSize.height - scrollView.bounds.height)")
+//        print("contentOffset.y: \(scrollView.contentOffset.y), scrollView.contentSize.height:  \(scrollView.contentSize.height), scrollView.bounds.height: \(scrollView.bounds.height)")
 //        print("-------------------")
         
-        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+        if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
                 isInfiniteScroll = false
@@ -437,9 +437,7 @@ extension FeedVC: FeedCellDelegate {
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.feedReport, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.feedReport) as? FeedReportVC else { return }
-//                self.navigationController?.pushViewController(nextVC, animated: true)
-                nextVC.modalPresentationStyle = .fullScreen
-                self.present(nextVC, animated: true, completion: nil)
+                self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }))
         
