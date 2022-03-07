@@ -43,6 +43,7 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
+        setNotification()
         initRefreshControl()
     }
 
@@ -113,6 +114,10 @@ class FeedVC: UIViewController {
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage), name: .feedReport, object: nil)
     }
     
     private func setData(datalist: [Record]) {
@@ -203,6 +208,20 @@ class FeedVC: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
+    }
+    
+    @objc
+    private func setToastMessage(_ notification: NSNotification) {
+        guard let didReport: Bool = notification.userInfo?["didReport"] as? Bool else { return }
+        var message: String = ""
+        
+        if didReport {
+            message = "이미 신고된 피드입니다."
+        } else {
+            message = "신고 접수가 완료되었어요."
+        }
+        
+        self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
     }
 }
 
@@ -437,6 +456,9 @@ extension FeedVC: FeedCellDelegate {
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.feedReport, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.feedReport) as? FeedReportVC else { return }
+                
+                nextVC.recordID = recordID
+                
                 self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }))
