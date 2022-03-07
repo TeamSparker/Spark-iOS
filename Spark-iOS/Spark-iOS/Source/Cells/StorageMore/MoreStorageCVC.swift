@@ -23,14 +23,12 @@ class MoreStorageCVC: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isChangingImageView {
-                if isSelected {
-                    DispatchQueue.main.async {
-                        self.certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
-                        self.dDayOrPointLabel.isHidden = false
-                    }
+                if self.isSelected {
+                    self.certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
+                    self.dDayOrPointLabel.isHidden = false
                 } else {
-                    certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
-                    dDayOrPointLabel.isHidden = true
+                    self.certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
+                    self.dDayOrPointLabel.isHidden = true
                 }
             }
         }

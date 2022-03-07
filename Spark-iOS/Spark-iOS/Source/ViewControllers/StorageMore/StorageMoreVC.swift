@@ -202,8 +202,22 @@ extension StorageMoreVC: UICollectionViewDataSource {
                           status: myRoomCertificationList?[indexPath.row].status ?? "", timerCount: myRoomCertificationList?[indexPath.row].timerRecord ?? nil)
         } else {
             cell.updateImage(mainImage: myRoomCertificationList?[indexPath.row].certifyingImg ?? "", status: myRoomCertificationList?[indexPath.row].status ?? "")
-            if (self.selectedIndex == nil)&&(thumbnailURL == myRoomCertificationList?[indexPath.row].certifyingImg) {
-                cell.isSelected = true
+            
+            // 처음 대표이미지 변경 뷰로 왔을 때, 선택을 하지 않았으며 현재 셀의 인증사진 URL과 카드의 대표이미지 URL이 같은 경우 이미 선택된 상태로 만들어주기
+            if (self.selectedIndexPath == nil)&&(thumbnailURL == myRoomCertificationList?[indexPath.row].certifyingImg) {
+                DispatchQueue.main.async {
+                    // selectItem 코드를 넣지 않으면 중복선택이 되어버리는 오류가 발생함
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+                }
+            }
+            
+            // 선택을 한 경우, 무한스크롤로 인한 reloadData 시에도 선택된 셀이 유지되도록 함
+            if self.selectedIndexPath == indexPath {
+                DispatchQueue.main.async {
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+                }
             }
         }
         
@@ -211,7 +225,7 @@ extension StorageMoreVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndex = indexPath.row
+        self.selectedIndexPath = indexPath
         self.selectedRecordId = myRoomCertificationList?[indexPath.row].recordID
     }
     
