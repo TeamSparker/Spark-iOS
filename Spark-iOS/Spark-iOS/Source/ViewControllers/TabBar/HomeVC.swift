@@ -144,7 +144,7 @@ extension HomeVC {
     }
     
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: NSNotification.Name("leaveRoom"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
     }
     
     // MARK: - Screen Change

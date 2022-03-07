@@ -320,7 +320,7 @@ extension HabitRoomVC {
     }
     
     private func postNoti() {
-        NotificationCenter.default.post(name: NSNotification.Name("leaveRoom"), object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": false])
+        NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": false])
     }
     
     private func presentToMoreAlert() {
