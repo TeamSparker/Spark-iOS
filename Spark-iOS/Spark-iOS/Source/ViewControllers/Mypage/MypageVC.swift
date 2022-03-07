@@ -126,7 +126,7 @@ extension MypageVC: UITableViewDelegate {
             editProfileVC.profileImage = profileImage
             editProfileVC.nickname = profileNickname
             editProfileVC.profileImageDelegate = self
-            editProfileVC.modalPresentationStyle = .fullScreen
+            editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
         }
     }
