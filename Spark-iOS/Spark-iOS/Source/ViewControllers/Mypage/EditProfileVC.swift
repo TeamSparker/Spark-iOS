@@ -80,11 +80,12 @@ extension EditProfileVC {
         textField.text = nickname
         textField.tintColor = .sparkPinkred
         
-        lineView.backgroundColor = .sparkGray
+        lineView.backgroundColor = .sparkPinkred
         
         countLabel.text = "0/10"
         countLabel.font = .captionEng
         countLabel.textColor = .sparkDarkGray
+        changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel)
     }
     
     private func setDelegate() {
