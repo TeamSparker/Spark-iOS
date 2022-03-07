@@ -55,6 +55,6 @@ class DoingStorageCVC: UICollectionViewCell {
             dDayLabel.text = "D-\(leftDay)"
         }
         
-        thumbnailImage.updateImage(thumbnail)
+        thumbnailImage.updateImage(thumbnail, type: .large)
     }
 }
