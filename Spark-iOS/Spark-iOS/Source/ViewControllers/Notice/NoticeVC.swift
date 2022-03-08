@@ -24,8 +24,8 @@ class NoticeVC: UIViewController {
 
         setUI()
         setLayout()
-        setCollectionView()
-        setDelegate()
+//        setCollectionView()
+//        setDelegate()
     }
     
     // MARK: - Methods
@@ -47,8 +47,6 @@ class NoticeVC: UIViewController {
     private func setCollectionView() {
         collectionViewFlowLayout.sectionHeadersPinToVisibleBounds = true
         collectionViewFlowLayout.scrollDirection = .vertical
-        
-        collectionView.register(NoticeUpdateHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.noticeUpdateHeaderView)
     }
     
     private func setDelegate() {
@@ -71,54 +69,19 @@ extension NoticeVC: UICollectionViewDelegate {
 
 extension NoticeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 0
-        case 1:
-            return 0
-        default:
-            return 0
-        }
+        return 3
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch indexPath.section {
-        case 0:
-            guard let updateHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.noticeUpdateHeaderView, for: indexPath) as? NoticeUpdateHeaderView else { return UICollectionReusableView() }
-
-            return updateHeader
-        case 1:
-            return UICollectionReusableView()
-        default:
-            return UICollectionReusableView()
-        }
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
 }
 
 extension NoticeVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        switch section {
-        case 0:
-            let height = UIScreen.main.bounds.width*115/375
-            return CGSize(width: UIScreen.main.bounds.width, height: height)
-        case 1:
-            return CGSize(width: UIScreen.main.bounds.width, height: 200)
-        default:
-            return CGSize(width: UIScreen.main.bounds.width, height: 200)
-        }
-    }
+    
 }
 
 // MARK: - Network
-
 
 // MARK: - Layout
 
@@ -138,7 +101,6 @@ extension NoticeVC {
         }
     }
 }
-
 
 // MARK: - UIGestureRecognizerDelegate
 // FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
