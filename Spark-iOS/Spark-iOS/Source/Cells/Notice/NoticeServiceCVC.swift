@@ -16,6 +16,7 @@ class NoticeServiceCVC: UICollectionViewCell {
     private let titleLabel = UILabel()
     private let contentLabel = UILabel()
     private let dateLabel = UILabel()
+    private let bottomLineView = UIView()
     
     // MARK: - View Life Cycles
     
@@ -49,6 +50,8 @@ class NoticeServiceCVC: UICollectionViewCell {
         
         titleLabel.numberOfLines = 2
         contentLabel.numberOfLines = 2
+        
+        bottomLineView.backgroundColor = .sparkGray.withAlphaComponent(0.3)
     }
     
     func initCell(title: String, content: String, date: String) {
@@ -62,7 +65,7 @@ class NoticeServiceCVC: UICollectionViewCell {
 
 extension NoticeServiceCVC {
     private func setLayout() {
-        self.addSubviews([titleLabel, contentLabel, dateLabel])
+        self.addSubviews([titleLabel, contentLabel, dateLabel, bottomLineView])
         
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
@@ -79,6 +82,11 @@ extension NoticeServiceCVC {
             make.leading.equalTo(titleLabel.snp.leading)
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(22)
+        }
+        
+        bottomLineView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
         }
     }
 }

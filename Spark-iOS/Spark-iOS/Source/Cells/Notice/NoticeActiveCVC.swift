@@ -7,14 +7,17 @@
 
 import UIKit
 
+import SnapKit
+
 class NoticeActiveCVC: UICollectionViewCell {
     
     // MARK: - Properties
     
-    private let titleLabel = UILabel()
-    private let contentLabel = UILabel()
+    let titleLabel = UILabel()
+    let contentLabel = UILabel()
     private let dateLabel = UILabel()
     private let contentImageView = UIImageView()
+    private let bottomLineView = UIView()
     
     // MARK: - View Life Cycles
     
@@ -36,6 +39,12 @@ class NoticeActiveCVC: UICollectionViewCell {
         contentImageView.image = UIImage()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        titleLabel.preferredMaxLayoutWidth = titleLabel.frame.size.width
+        contentLabel.preferredMaxLayoutWidth = contentLabel.frame.size.width
+    }
+    
     // MARK: - Method
     
     private func setUI() {
@@ -54,6 +63,9 @@ class NoticeActiveCVC: UICollectionViewCell {
         contentImageView.layer.borderColor = UIColor.sparkWhite.cgColor
         contentImageView.layer.masksToBounds = true
         contentImageView.contentMode = .scaleAspectFill
+        contentImageView.backgroundColor = .sparkDarkGray
+        
+        bottomLineView.backgroundColor = .sparkGray.withAlphaComponent(0.3)
     }
     
     func initCell(title: String, content: String, date: String, image: String) {
@@ -69,11 +81,12 @@ class NoticeActiveCVC: UICollectionViewCell {
 
 extension NoticeActiveCVC {
     private func setLayout() {
-        self.addSubviews([titleLabel, contentLabel, dateLabel, contentImageView])
+        self.addSubviews([titleLabel, contentLabel, dateLabel,
+                          contentImageView, bottomLineView])
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.trailing.equalTo(contentImageView.snp.leading).offset(28)
+            make.trailing.equalTo(contentImageView.snp.leading).offset(-28)
             make.top.equalToSuperview().inset(22)
         }
         
@@ -93,6 +106,11 @@ extension NoticeActiveCVC {
             make.top.equalToSuperview().inset(22)
             make.trailing.equalToSuperview().inset(20)
             make.width.height.equalTo(44)
+        }
+        
+        bottomLineView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
         }
     }
 }

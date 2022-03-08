@@ -22,6 +22,15 @@ class NoticeVC: UIViewController {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     private var customNavigationBar = LeftButtonNavigaitonBar()
+    private var isActivity: Bool = true
+    
+    // MARK: - DummyData
+    
+    let titleList = ["방방방방방방방방방방방방방방방방에서 보낸 스파크", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!"]
+    let contentList = ["수아 : 💬 가나다라마바사아자차카타파하가", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요."]
+    
+    let secondTitleList = ["새로운 습관 시작 🔥", "가나다라마바사아자차카타파하가 대기방 삭제"]
+    let secontContentList = ["가나다라마바사아자차카타파하방에서 가장 먼저 스파크를 보내볼까요?", "방 개설자에 의해 대기방이 삭제되었어요."]
     
     // MARK: - View Life Cycles
 
@@ -32,7 +41,7 @@ class NoticeVC: UIViewController {
         setLayout()
         setCollectionView()
         setAddTarget()
-//        setDelegate()
+        setDelegate()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
             self.makeDrawAboveButton(button: self.activeButton)
@@ -73,8 +82,10 @@ class NoticeVC: UIViewController {
     }
     
     private func setCollectionView() {
-        collectionView.backgroundColor = .sparkGray
         collectionViewFlowLayout.scrollDirection = .vertical
+        
+        collectionView.register(NoticeActiveCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.noticeActiveCVC)
+        collectionView.register(NoticeServiceCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.noticeServiceCVC)
     }
     
     private func setDelegate() {
@@ -126,6 +137,10 @@ class NoticeVC: UIViewController {
         activeButton.isSelected = true
         noticeButton.isSelected = false
         makeDrawAboveButton(button: activeButton)
+        
+        isActivity = true
+        collectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
     
     @objc
@@ -133,29 +148,78 @@ class NoticeVC: UIViewController {
         activeButton.isSelected = false
         noticeButton.isSelected = true
         makeDrawAboveButton(button: noticeButton)
+        
+        isActivity = false
+        collectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension NoticeVC: UICollectionViewDelegate {
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 }
 
 // MARK: - UICollectionViewDataSource() {
 
 extension NoticeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if isActivity {
+            return titleList.count
+        } else {
+            return secondTitleList.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        if isActivity {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.noticeActiveCVC, for: indexPath) as? NoticeActiveCVC else { return UICollectionViewCell() }
+            
+            cell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.noticeServiceCVC, for: indexPath) as? NoticeServiceCVC else { return UICollectionViewCell() }
+            
+            cell.initCell(title: secondTitleList[indexPath.row], content: secontContentList[indexPath.row], date: "1일 전")
+            
+            return cell
+        }
     }
 }
 
 extension NoticeVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width
+        let estimatedHeight: CGFloat = width*161/375
+        
+        if isActivity {
+            let dummyCell = NoticeActiveCVC(frame: CGRect(x: 0, y: 0, width: width, height: estimatedHeight))
+            
+            dummyCell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            dummyCell.layoutIfNeeded()
+            
+            let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: width, height: estimatedHeight))
+
+            return CGSize(width: width, height: estimatedSize.height)
+        } else {
+            let dummyCell = NoticeServiceCVC(frame: CGRect(x: 0, y: 0, width: width, height: estimatedHeight))
+            
+            dummyCell.initCell(title: secondTitleList[indexPath.row], content: secontContentList[indexPath.row], date: "1일 전")
+            dummyCell.layoutIfNeeded()
+            
+            let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: width, height: estimatedHeight))
+            
+            return CGSize(width: width, height: estimatedSize.height)
+        }
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
 
 // MARK: - Network
