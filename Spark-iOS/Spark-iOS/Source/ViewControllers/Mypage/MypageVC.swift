@@ -36,6 +36,9 @@ class MypageVC: UIViewController {
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
     
+    private var profileImage: UIImage?
+    private var profileNickname: String?
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -44,6 +47,7 @@ class MypageVC: UIViewController {
         setUI()
         setLayout()
         setTableView()
+        profileFetchWithAPI()
     }
 }
 
@@ -80,6 +84,7 @@ extension MypageVC {
             tableView.sectionHeaderTopPadding = 0
         }
     }
+
 }
 
 // MARK: - UITableViewDelegate
@@ -114,6 +119,33 @@ extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 선택시 회색으로 변했다가 돌아옴.
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.section == 0 {
+            guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
+
+            editProfileVC.profileImage = profileImage
+            editProfileVC.nickname = profileNickname
+            editProfileVC.profileImageDelegate = self
+            editProfileVC.modalPresentationStyle = .overFullScreen
+            present(editProfileVC, animated: true, completion: nil)
+        } else if indexPath.section == 3, indexPath.row == 3 {
+            // logout
+            guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            
+            dialougeVC.dialogueType = .logout
+            dialougeVC.clousure = {
+                guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+                
+                loginVC.modalTransitionStyle = .crossDissolve
+                loginVC.modalPresentationStyle = .fullScreen
+                self.present(loginVC, animated: true) {
+                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                }
+            }
+            dialougeVC.modalTransitionStyle = .crossDissolve
+            dialougeVC.modalPresentationStyle = .overFullScreen
+            present(dialougeVC, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -167,7 +199,7 @@ extension MypageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
-            cell.initCell(profile: "", nickname: "하양")
+            cell.initCell(profileImage: profileImage, nickname: profileNickname)
             cell.selectionStyle = .none
             
             return cell
@@ -209,7 +241,29 @@ extension MypageVC: UITableViewDataSource {
 // MARK: - Network
 
 extension MypageVC {
-    // TODO: - 서버통신.
+    private func profileFetchWithAPI() {
+        UserAPI.shared.profileFetch { response in
+            switch response {
+            case .success(let data):
+                if let profile = data as? Profile {
+                    self.profileNickname = profile.nickname
+                    
+                    let imageView = UIImageView()
+                    imageView.updateImage(profile.profileImage, type: .small)
+                    self.profileImage = imageView.image
+                    self.tableView.reloadData()
+                }
+            case .requestErr(let message):
+                print("profileFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileFetchWithAPI - pathErr")
+            case .serverErr:
+                print("profileFetchWithAPI - serverErr")
+            case .networkFail:
+                print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - Layout
@@ -228,6 +282,16 @@ extension MypageVC {
             $0.top.equalTo(customNavigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - ProfileImageDelegate
+
+extension MypageVC: ProfileImageDelegate {
+    func sendProfile(image profileImage: UIImage, nickname: String) {
+        self.profileImage = profileImage
+        self.profileNickname = nickname
+        tableView.reloadData()
     }
 }
 

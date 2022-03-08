@@ -46,6 +46,6 @@ class FailStorageCVC: UICollectionViewCell {
         
         dDayLabel.text = "\(failDay) DAYS"
         
-        thumbnailImage.updateImage(thumbnail)
+        thumbnailImage.updateImage(thumbnail, type: .large)
     }
 }

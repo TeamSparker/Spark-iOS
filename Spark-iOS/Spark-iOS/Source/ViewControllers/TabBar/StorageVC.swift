@@ -21,6 +21,7 @@ class StorageVC: UIViewController {
     private var failRoomList: [MyRoomRooms]? = []
     private var failRoomLastID: Int = -1
     private var mainStatus: Int = -1
+    private var fromStorageMore: Bool = false
     
     // 사이즈 임의설정
     private var myRoomCountSize: Int = 30
@@ -97,6 +98,18 @@ class StorageVC: UIViewController {
         setUI()
         setLayout()
         setAddTargets(doingButton, doneButton, failButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        tabBarController?.tabBar.isHidden = false
+        
+        onGoingRoomList?.removeAll()
+        completeRoomList?.removeAll()
+        failRoomList?.removeAll()
         
         DispatchQueue.main.async { [self] in
             self.setLoading()
@@ -115,6 +128,13 @@ class StorageVC: UIViewController {
                             self.emptyView.isHidden = true
                         }
                         
+                        // 인증사진 모아보기에서 왔을 경우 버튼과 컬렉션뷰를 리셋하지 않기 위한 분기처리
+                        if !self.fromStorageMore {
+                            self.reSetView()
+                        } else {
+                            self.fromStorageMore = false
+                        }
+                        
                         self.loadingView.stop()
                         self.loadingView.removeFromSuperview()
                         self.loadingBgView.removeFromSuperview()
@@ -123,19 +143,6 @@ class StorageVC: UIViewController {
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.isNavigationBarHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        tabBarController?.tabBar.isHidden = false
-        
-        if (self.mainStatus == -1) || (self.mainStatus == 0) {
-            self.makeDrawAboveButton(button: self.doingButton)
-        }
-    }
-    
 }
 
 // MARK: - Methods
@@ -294,6 +301,23 @@ extension StorageVC {
                 make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
             }
         }
+    }
+    
+    private func reSetView() {
+        doingCV.isHidden = false
+        doneCV.isHidden = true
+        failCV.isHidden = true
+        doingButton.isSelected = true
+        doneButton.isSelected = false
+        failButton.isSelected = false
+        doingLabel.textColor = .sparkDarkPinkred
+        doneLabel.textColor = .sparkDarkGray
+        failLabel.textColor = .sparkDarkGray
+        makeDrawAboveButton(button: doingButton)
+        
+        doingCV.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        doneCV.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        failCV.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
     }
 }
 
@@ -500,16 +524,20 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case doingCV:
             nextVC.roomID = onGoingRoomList?[indexPath.row].roomID
             nextVC.titleText = onGoingRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = onGoingRoomList?[indexPath.row].thumbnail
         case doneCV:
             nextVC.roomID = completeRoomList?[indexPath.row].roomID
             nextVC.titleText = completeRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = completeRoomList?[indexPath.row].thumbnail
         case failCV:
             nextVC.roomID = failRoomList?[indexPath.row].roomID
             nextVC.titleText = failRoomList?[indexPath.row].roomName
+            nextVC.thumbnailURL = failRoomList?[indexPath.row].thumbnail
         default:
             return
         }
 
+        fromStorageMore = true
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
     }

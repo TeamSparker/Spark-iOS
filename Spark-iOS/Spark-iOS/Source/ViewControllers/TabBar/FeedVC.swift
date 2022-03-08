@@ -14,12 +14,11 @@ class FeedVC: UIViewController {
     
     // MARK: - Properties
     
-    let collectionViewFlowlayout = UICollectionViewFlowLayout()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
-    
-    lazy var loadingBgView = UIView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
-    lazy var refreshControl = UIRefreshControl()
+    private let collectionViewFlowlayout = UICollectionViewFlowLayout()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var refreshControl = UIRefreshControl()
     
     private var dateList: [String] = []
     private var dayList: [String] = []
@@ -44,6 +43,7 @@ class FeedVC: UIViewController {
         
         setLayout()
         setCollectionView()
+        setNotification()
         initRefreshControl()
     }
 
@@ -51,6 +51,7 @@ class FeedVC: UIViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+        navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = false
         
         feedLastID = -1
@@ -113,6 +114,10 @@ class FeedVC: UIViewController {
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage), name: .feedReport, object: nil)
     }
     
     private func setData(datalist: [Record]) {
@@ -204,6 +209,20 @@ class FeedVC: UIViewController {
             }
         }
     }
+    
+    @objc
+    private func setToastMessage(_ notification: NSNotification) {
+        guard let didReport: Bool = notification.userInfo?["didReport"] as? Bool else { return }
+        var message: String = ""
+        
+        if didReport {
+            message = "이미 신고된 피드입니다."
+        } else {
+            message = "신고 접수가 완료되었어요."
+        }
+        
+        self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
+    }
 }
 
 // MARK: - Layout
@@ -239,6 +258,8 @@ extension FeedVC {
                 }
                 completion()
             case .requestErr(let message):
+                // TODO: - print 지우기
+                print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("feedListFetchWithAPI - pathErr")
@@ -276,7 +297,12 @@ extension FeedVC: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.bounds.height {
+        // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
+//        print("👥")
+//        print("contentOffset.y: \(scrollView.contentOffset.y), scrollView.contentSize.height:  \(scrollView.contentSize.height), scrollView.bounds.height: \(scrollView.bounds.height)")
+//        print("-------------------")
+        
+        if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
                 isInfiniteScroll = false
@@ -339,7 +365,7 @@ extension FeedVC: UICollectionViewDataSource {
             }
             
             cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath)
-            cell.likeDelegate = self
+            cell.buttonDelegate = self
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
@@ -424,6 +450,32 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
  
 // MARK: - Protocol
 extension FeedVC: FeedCellDelegate {
+    func moreButtonTapped(recordID: Int, indexPath: IndexPath) {
+        print("🍎 recordID: \(recordID), indexPath: \(indexPath)")
+        let alert = SparkActionSheet()
+        alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
+            alert.dismiss(animated: true) {
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.feedReport, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.feedReport) as? FeedReportVC else { return }
+                
+                nextVC.recordID = recordID
+                
+                self.navigationController?.pushViewController(nextVC, animated: true)
+            }
+        }))
+        
+        alert.addSection()
+        alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
+            self.dismiss(animated: true) {
+                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 액션 시트를 띄울 경우 탭바 아래로 띄워짐 -> 임시로 탭바를 hidden 시키고 있는 상황
+                self.tabBarController?.tabBar.isHidden = false
+            }
+        }))
+        
+        tabBarController?.tabBar.isHidden = true
+        
+        present(alert, animated: true)
+    }
+    
     func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
         if indexPath.section == 0 {
             if likeState {

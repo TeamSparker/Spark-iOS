@@ -23,12 +23,12 @@ class MoreStorageCVC: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isChangingImageView {
-                if isSelected {
-                    certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
-                    dDayOrPointLabel.isHidden = false
+                if self.isSelected {
+                    self.certificationImage.layer.borderColor = UIColor.sparkPinkred.cgColor
+                    self.dDayOrPointLabel.isHidden = false
                 } else {
-                    certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
-                    dDayOrPointLabel.isHidden = true
+                    self.certificationImage.layer.borderColor = UIColor.sparkLightGray.cgColor
+                    self.dDayOrPointLabel.isHidden = true
                 }
             }
         }
@@ -94,7 +94,7 @@ class MoreStorageCVC: UICollectionViewCell {
                      status: String) {
         switch status {
         case "DONE":
-            certificationImage.updateImage(mainImage)
+            certificationImage.updateImage(mainImage, type: .small)
             self.isUserInteractionEnabled = true
         case "REST":
             certificationImage.image = UIImage(named: "stickerRestBigMybox")

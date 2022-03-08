@@ -12,6 +12,8 @@
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
+		2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D01527D3B2810060DA06 /* FeedReportVC.swift */; };
+		2B54D01927D3B8170060DA06 /* FeedReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B54D01827D3B8170060DA06 /* FeedReport.storyboard */; };
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
 		2B57F37E27969791002A677D /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37D27969791002A677D /* RoomId.swift */; };
 		2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F38027971D1D002A677D /* ProfileSettingVC.swift */; };
@@ -128,6 +130,12 @@
 		F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E56278C1C2700728E07 /* FeedVC.swift */; };
 		F816F122278E1C760008ED00 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F816F121278E1C760008ED00 /* Login.storyboard */; };
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
+		F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF027D238440073FFCA /* EditProfileVC.swift */; };
+		F8250CF327D238990073FFCA /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8250CF227D238990073FFCA /* EditProfile.storyboard */; };
+		F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF727D25F240073FFCA /* UserAPI.swift */; };
+		F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF927D25F2B0073FFCA /* UserService.swift */; };
+		F8250CFC27D483E70073FFCA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFB27D483E70073FFCA /* Profile.swift */; };
+		F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */; };
 		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
@@ -176,6 +184,8 @@
 		2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFooterView.swift; sourceTree = "<group>"; };
 		2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		2B54D01527D3B2810060DA06 /* FeedReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReportVC.swift; sourceTree = "<group>"; };
+		2B54D01827D3B8170060DA06 /* FeedReport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedReport.storyboard; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		2B57F37D27969791002A677D /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
 		2B57F38027971D1D002A677D /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
@@ -298,6 +308,12 @@
 		F80A3E56278C1C2700728E07 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		F816F121278E1C760008ED00 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		F8250CF027D238440073FFCA /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		F8250CF227D238990073FFCA /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
+		F8250CF727D25F240073FFCA /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		F8250CF927D25F2B0073FFCA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F8250CFB27D483E70073FFCA /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageDelegate.swift; sourceTree = "<group>"; };
 		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
@@ -355,6 +371,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B54D01427D3B22E0060DA06 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2B54D01527D3B2810060DA06 /* FeedReportVC.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		2B54D01727D3B8030060DA06 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2B54D01827D3B8170060DA06 /* FeedReport.storyboard */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		2B57F37F27971C87002A677D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,6 +888,7 @@
 				2BAF155B27D4928A00DE4190 /* Notice */,
 				F816F120278E1C550008ED00 /* Login */,
 				F80A3E59278C239F00728E07 /* TabBar */,
+				2B54D01727D3B8030060DA06 /* Feed */,
 				EB625E97278F8ED200C43DE9 /* StorageMore */,
 				2BC17272278F56BA00BA3029 /* Waiting */,
 				2B98520127902F8900CE40A7 /* Create */,
@@ -897,6 +930,7 @@
 				2BC1726E278F54B300BA3029 /* Waiting */,
 				2B9851FE27902F2B00CE40A7 /* Create */,
 				F80A3E58278C22BA00728E07 /* TabBar */,
+				2B54D01427D3B22E0060DA06 /* Feed */,
 				EB625E8B278F8D5400C43DE9 /* StorageMore */,
 				EB625E9A2790792F00C43DE9 /* CodeJoin */,
 				2B9C6BCC279277F500CD914F /* GoalWriting */,
@@ -913,6 +947,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */,
+				F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -926,6 +961,7 @@
 				2BF3AB42279475B9001A9042 /* Room */,
 				2BBED13127956D040052CA5C /* Feed */,
 				EBEA382A27947C4100B5736A /* MyRoom */,
+				F8250CF627D25F080073FFCA /* User */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -940,6 +976,7 @@
 				2BF3AB4A27947C3A001A9042 /* Room */,
 				2BBED12E27956C4F0052CA5C /* Feed */,
 				EBEA382B27947C6600B5736A /* MyRoom */,
+				F8250CF527D25F000073FFCA /* User */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -1013,6 +1050,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		F8250CF527D25F000073FFCA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F8250CFB27D483E70073FFCA /* Profile.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		F8250CF627D25F080073FFCA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F8250CF727D25F240073FFCA /* UserAPI.swift */,
+				F8250CF927D25F2B0073FFCA /* UserService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		F82B2E0F278F54B000219628 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,6 +1130,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E4DFCF27D0858500128B1F /* MypageVC.swift */,
+				F8250CF027D238440073FFCA /* EditProfileVC.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1084,6 +1139,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E4DFD227D0877000128B1F /* Mypage.storyboard */,
+				F8250CF227D238990073FFCA /* EditProfile.storyboard */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1198,6 +1254,7 @@
 				2BA98FB427CB451000C53820 /* HabitRoomLeave.storyboard in Resources */,
 				EB9C50882792A67B00588155 /* HabitAuth.storyboard in Resources */,
 				EB9C508C2792A90400588155 /* CompleteAuth.storyboard in Resources */,
+				F8250CF327D238990073FFCA /* EditProfile.storyboard in Resources */,
 				EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */,
 				EBEA381F279450B900B5736A /* illust_confetti.json in Resources */,
 				2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */,
@@ -1214,6 +1271,7 @@
 				F8F6D6F52797359600725537 /* HabitRoom.storyboard in Resources */,
 				F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */,
 				EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */,
+				2B54D01927D3B8170060DA06 /* FeedReport.storyboard in Resources */,
 				F80A3E51278C1BCE00728E07 /* Feed.storyboard in Resources */,
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
@@ -1312,6 +1370,7 @@
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
 				EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */,
 				F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */,
+				2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */,
 				2BAF156327D4A0CA00DE4190 /* NoticeUpdateHeaderView.swift in Sources */,
@@ -1338,6 +1397,7 @@
 				2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */,
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
+				F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */,
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
@@ -1347,6 +1407,7 @@
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
+				F8250CFC27D483E70073FFCA /* Profile.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
@@ -1385,6 +1446,7 @@
 				EB874AE82796FBD5000DD20B /* FeedCellDelegate.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,
 				F82F57FB27928437003E4174 /* NetworkResult.swift in Sources */,
+				F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */,
 				F8D4496C27BDE2D60091F297 /* SparkNavigationBar.swift in Sources */,
 				2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */,
 				F82F5802279287FD003E4174 /* HabitRoom.swift in Sources */,
@@ -1394,10 +1456,12 @@
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
+				F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */,
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
+				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
 				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,

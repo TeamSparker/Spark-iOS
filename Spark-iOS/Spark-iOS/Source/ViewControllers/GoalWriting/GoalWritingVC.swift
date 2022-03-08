@@ -148,9 +148,9 @@ class GoalWritingVC: UIViewController {
         if let textField = notification.object as? UITextField {
             switch textField {
             case whenTextField:
-                self.changeCountLabel(textField: whenTextField, maxLength: 15, countLabel: whenCountLabel, lineView: whenLineView)
+                self.changeCountLabel(textField: whenTextField, maxLength: 15, countLabel: whenCountLabel)
             case goalTextField:
-                self.changeCountLabel(textField: goalTextField, maxLength: 15, countLabel: goalCountLabel, lineView: goalLineView)
+                self.changeCountLabel(textField: goalTextField, maxLength: 15, countLabel: goalCountLabel)
             default:
                 return
             }

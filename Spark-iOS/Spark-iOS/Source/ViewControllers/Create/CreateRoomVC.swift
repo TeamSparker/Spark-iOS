@@ -85,7 +85,7 @@ class CreateRoomVC: UIViewController {
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
-            self.changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel, lineView: lineView)
+            self.changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel)
         }
     }
     

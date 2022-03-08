@@ -14,4 +14,6 @@ extension Notification.Name {
     static let disappearFloatingButton = Notification.Name("disappearFloatingButton")
     static let resetStopWatch = Notification.Name("resetStopWatch")
     static let updateHabitRoom = Notification.Name("updateHabitRoom")
+    static let leaveRoom = Notification.Name("leaveRoom")
+    static let feedReport = Notification.Name("feedReport")
 }

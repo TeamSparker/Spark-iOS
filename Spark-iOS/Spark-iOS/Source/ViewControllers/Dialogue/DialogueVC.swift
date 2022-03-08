@@ -19,6 +19,8 @@ enum DialogueType {
     case deleteWaitingRoom
     case leaveWaitingRoom
     case createRoom
+    case exitEditProfile
+    case logout
 }
 
 class DialogueVC: UIViewController {
@@ -112,6 +114,18 @@ extension DialogueVC {
             """
             resetOrExitLabel.text = "만들래요"
             resetOrExitLabel.textColor = .sparkDarkPinkred
+            
+        case .exitEditProfile:
+            guideLabel.text = """
+            프로필 수정이 완료되지 않았습니다.
+            그래도 나가시겠습니까?
+            """
+            
+        case .logout:
+            guideLabel.text = """
+            로그아웃 하시겠습니까?
+            """
+            resetOrExitLabel.text = "로그아웃"
             
         case .none:
             print("dialogueType을 지정해주세요")
