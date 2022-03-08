@@ -23,6 +23,9 @@ class FeedReportVC: UIViewController {
     
     private var customNavigationBar = LeftButtonNavigaitonBar()
     
+    var recordID: Int?
+    var didReport: Bool?
+    
     // MARK: - Life Cycles
 
     override func viewDidLoad() {
@@ -33,6 +36,7 @@ class FeedReportVC: UIViewController {
         setLayout()
         setPlaceHolder()
         setDelegate()
+        setAddTarget()
     }
     
     // MARK: - Method
@@ -83,15 +87,23 @@ class FeedReportVC: UIViewController {
             }
     }
     
+    private func setAddTarget() {
+        reportButton.addTarget(self, action: #selector(touchReportButton), for: .touchUpInside)
+    }
+    
     private func popToFeedVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func postNotification() {
+        NotificationCenter.default.post(name: .feedReport, object: nil, userInfo: ["didReport": didReport ?? false])
     }
     
     // MARK: - @objc
     
     @objc
     func touchReportButton() {
-        // TODO: - 신고 서버 통신 후 dismiss + 토스트메세지 노티 보내기
+        postFeedReportWithAPI(content: reportTextView.text ?? "")
     }
 }
 
@@ -139,6 +151,30 @@ extension FeedReportVC: UITextViewDelegate {
 }
 
 // MARK: - Network
+
+extension FeedReportVC {
+    func postFeedReportWithAPI(content: String) {
+        FeedAPI.shared.postFeedReport(recordID: recordID ?? 0, content: content) { response in
+            switch response {
+            case .success:
+                self.didReport = false
+                self.navigationController?.popViewController(animated: true)
+                self.postNotification()
+            case .requestErr(let message):
+                self.didReport = true
+                self.navigationController?.popViewController(animated: true)
+                self.postNotification()
+                print("postFeedReportWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("postFeedReportWithAPI - pathErr")
+            case .serverErr:
+                print("postFeedReportWithAPI - serverErr")
+            case .networkFail:
+                print("postFeedReportWithAPI - networkFail")
+            }
+        }
+    }
+}
 
 // MARK: - Layout
 

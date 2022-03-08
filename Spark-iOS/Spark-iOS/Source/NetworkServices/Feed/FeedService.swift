@@ -12,6 +12,7 @@ import Moya
 enum FeedService {
     case feedFetch(lastID: Int, size: Int)
     case feedLike(recordID: Int)
+    case feedReport(recordID: Int, content: String)
 }
 
 extension FeedService: TargetType {
@@ -25,6 +26,8 @@ extension FeedService: TargetType {
             return "/feed"
         case .feedLike(let recordID):
             return "/feed/\(recordID)/like"
+        case .feedReport(let recordID, _):
+            return "/feed/\(recordID)/report"
         }
     }
     
@@ -33,6 +36,8 @@ extension FeedService: TargetType {
         case .feedFetch:
             return .get
         case .feedLike:
+            return .post
+        case .feedReport:
             return .post
         }
     }
@@ -46,6 +51,8 @@ extension FeedService: TargetType {
         case .feedLike(let recordID):
             return .requestParameters(parameters: ["recordId": recordID],
                                       encoding: URLEncoding.queryString)
+        case .feedReport(_, let content):
+            return .requestParameters(parameters: ["reportReason": content], encoding: JSONEncoding.default)
         }
     }
     
@@ -54,6 +61,8 @@ extension FeedService: TargetType {
         case .feedFetch:
             return Const.Header.authorizationHeader
         case .feedLike:
+            return Const.Header.authorizationHeader
+        case .feedReport:
             return Const.Header.authorizationHeader
         }
     }
