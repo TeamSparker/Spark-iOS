@@ -5,6 +5,7 @@
 //  Created by kimhyungyu on 2022/03/03.
 //
 
+import MessageUI
 import UIKit
 
 import SnapKit
@@ -119,8 +120,9 @@ extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 선택시 회색으로 변했다가 돌아옴.
         tableView.deselectRow(at: indexPath, animated: false)
-        
-        if indexPath.section == 0 {
+        guard let section = MypageTableViewSection(rawValue: indexPath.section) else { return }
+        switch section {
+        case .profile:
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
 
             editProfileVC.profileImage = profileImage
@@ -128,23 +130,38 @@ extension MypageVC: UITableViewDelegate {
             editProfileVC.profileImageDelegate = self
             editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
-        } else if indexPath.section == 3, indexPath.row == 3 {
-            // logout
-            guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-            
-            dialougeVC.dialogueType = .logout
-            dialougeVC.clousure = {
-                guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+        case .setting:
+            return
+        case .center:
+            if MFMailComposeViewController.canSendMail() {
+                let mailComposeVC = MFMailComposeViewController()
+                mailComposeVC.delegate = self
                 
-                loginVC.modalTransitionStyle = .crossDissolve
-                loginVC.modalPresentationStyle = .fullScreen
-                self.present(loginVC, animated: true) {
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-                }
+                mailComposeVC.setToRecipients(["teamsparker66@gmail.com"])
+                mailComposeVC.setSubject("스파크 문의 사항")
+                mailComposeVC.setMessageBody("문의 사항을 상세히 입력해주세요.",
+                                             isHTML: false)
+                present(mailComposeVC, animated: true, completion: nil)
             }
-            dialougeVC.modalTransitionStyle = .crossDissolve
-            dialougeVC.modalPresentationStyle = .overFullScreen
-            present(dialougeVC, animated: true, completion: nil)
+        case .service:
+            if indexPath.row == 3 {
+                // logout
+                guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+                
+                dialougeVC.dialogueType = .logout
+                dialougeVC.clousure = {
+                    guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+                    
+                    loginVC.modalTransitionStyle = .crossDissolve
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true) {
+                        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    }
+                }
+                dialougeVC.modalTransitionStyle = .crossDissolve
+                dialougeVC.modalPresentationStyle = .overFullScreen
+                present(dialougeVC, animated: true, completion: nil)
+            }
         }
     }
     
@@ -292,6 +309,13 @@ extension MypageVC: ProfileImageDelegate {
         self.profileImage = profileImage
         self.profileNickname = nickname
         tableView.reloadData()
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+extension MypageVC: MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
