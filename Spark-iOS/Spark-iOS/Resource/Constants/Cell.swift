@@ -29,6 +29,7 @@ extension Const {
             static let mypageDefaultTVC = "MypageDefaultTVC"
             static let noticeUpdateHeaderView = "NoticeUpdateHeaderView"
             static let noticeActiveCVC = "NoticeActiveCVC"
+            static let noticeServiceCVC = "NoticeServiceCVC"
         }
     }
 }

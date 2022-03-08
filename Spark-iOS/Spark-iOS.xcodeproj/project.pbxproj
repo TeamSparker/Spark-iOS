@@ -13,6 +13,7 @@
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		2B50C1A227D7752C004BED9C /* NoticeActiveCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */; };
+		2B50C1A427D77CA9004BED9C /* NoticeServiceCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */; };
 		2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D01527D3B2810060DA06 /* FeedReportVC.swift */; };
 		2B54D01927D3B8170060DA06 /* FeedReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B54D01827D3B8170060DA06 /* FeedReport.storyboard */; };
 		2B57F37C27968A28002A677D /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57F37B27968A28002A677D /* CreateRoom.swift */; };
@@ -185,6 +186,7 @@
 		2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeActiveCVC.swift; sourceTree = "<group>"; };
+		2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeServiceCVC.swift; sourceTree = "<group>"; };
 		2B54D01527D3B2810060DA06 /* FeedReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReportVC.swift; sourceTree = "<group>"; };
 		2B54D01827D3B8170060DA06 /* FeedReport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedReport.storyboard; sourceTree = "<group>"; };
 		2B57F37B27968A28002A677D /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 			children = (
 				2BAF156227D4A0CA00DE4190 /* NoticeUpdateHeaderView.swift */,
 				2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */,
+				2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */,
 			);
 			path = Notice;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				F82F580A279289C4003E4174 /* HomeService.swift in Sources */,
 				EB874AE82796FBD5000DD20B /* FeedCellDelegate.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,
+				2B50C1A427D77CA9004BED9C /* NoticeServiceCVC.swift in Sources */,
 				F82F57FB27928437003E4174 /* NetworkResult.swift in Sources */,
 				F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */,
 				F8D4496C27BDE2D60091F297 /* SparkNavigationBar.swift in Sources */,
