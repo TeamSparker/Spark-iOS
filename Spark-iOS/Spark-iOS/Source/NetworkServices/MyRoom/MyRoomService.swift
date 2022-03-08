@@ -11,6 +11,7 @@ import Moya
 enum MyRoomService {
     case myRoomFetch(roomType: String, lastID: Int, size: Int)
     case myRoomCertiFetch(roomID: Int, lastID: Int, size: Int)
+    case myRoomChangeThumbnail(roomId: Int, recordId: Int)
 }
 
 extension MyRoomService: TargetType {
@@ -24,6 +25,8 @@ extension MyRoomService: TargetType {
             return "/myroom"
         case .myRoomCertiFetch(let roomID, _, _):
             return "/myroom/\(roomID)"
+        case .myRoomChangeThumbnail(let roomId, let recordId):
+            return "/myroom/\(roomId)/thumbnail/\(recordId)"
         }
     }
     
@@ -33,6 +36,8 @@ extension MyRoomService: TargetType {
             return .get
         case .myRoomCertiFetch:
             return .get
+        case .myRoomChangeThumbnail:
+            return .patch
         }
     }
     
@@ -47,6 +52,8 @@ extension MyRoomService: TargetType {
             return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
+        case .myRoomChangeThumbnail:
+            return  .requestPlain
         }
     }
     
@@ -55,6 +62,8 @@ extension MyRoomService: TargetType {
         case .myRoomFetch:
             return Const.Header.authorizationHeader
         case .myRoomCertiFetch:
+            return Const.Header.authorizationHeader
+        case .myRoomChangeThumbnail:
             return Const.Header.authorizationHeader
         }
     }

@@ -1,55 +1,72 @@
 //
-//  ProfileSettingVC.swift
+//  EditProfileVC.swift
 //  Spark-iOS
 //
-//  Created by 양수빈 on 2022/01/19.
+//  Created by kimhyungyu on 2022/03/04.
 //
 
 import UIKit
 
-import SnapKit
+class EditProfileVC: UIViewController {
 
-class ProfileSettingVC: UIViewController {
-    
     // MARK: - Properties
     
-    private let closeButton = UIButton()
-    private let titleLabel = UILabel()
+    private var customNavigationBar = LeftButtonNavigaitonBar()
     private let profileImageView = UIImageView()
     private let fadeView = UIView()
     private let photoIconImageView = UIImageView()
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private var completeButton = BottomButton().setUI(.pink).setTitle("가입완료").setDisable()
+    private var completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setAble()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
+    
     private let maxLength: Int = 10
+    private var didEdit: Bool = false
+    
+    weak var profileImageDelegate: ProfileImageDelegate?
+    
+    var profileImage: UIImage?
+    var nickname: String?
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUI()
         setLayout()
         setNotification()
         setAddTarget()
         setDelegate()
     }
+}
     
-    // MARK: - Methods
-    
+    // MARK: - Extension
+extension EditProfileVC {
     private func setUI() {
-        closeButton.setImage(UIImage(named: "icQuit"), for: .normal)
-        titleLabel.text = "스파크에서 사용할 \n프로필을 설정해주세요!"
-        titleLabel.font = .h2Title
-        titleLabel.textColor = .sparkBlack
-        titleLabel.numberOfLines = 2
-        titleLabel.partColorChange(targetString: "프로필", textColor: .sparkPinkred)
+        customNavigationBar.title("프로필 수정")
+            .leftButtonImage("icQuit")
+            .leftButonAction {
+                if self.didEdit {
+                    guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+                    
+                    dialougeVC.dialogueType = .exitEditProfile
+                    dialougeVC.clousure = {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    dialougeVC.modalTransitionStyle = .crossDissolve
+                    dialougeVC.modalPresentationStyle = .overFullScreen
+                    self.present(dialougeVC, animated: true, completion: nil)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         
-        profileImageView.backgroundColor = .blue
-        profileImageView.image = UIImage(named: "profileEmpty")
+        profileImageView.image = profileImage
         profileImageView.layer.cornerRadius = 58
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
         
         fadeView.backgroundColor = .sparkBlack.withAlphaComponent(0.6)
@@ -59,14 +76,16 @@ class ProfileSettingVC: UIViewController {
         photoIconImageView.image = UIImage(named: "icImage")
         
         textField.borderStyle = .none
-        textField.placeholder = "닉네임 입력"
+        textField.placeholder = nickname
+        textField.text = nickname
         textField.tintColor = .sparkPinkred
         
-        lineView.backgroundColor = .sparkGray
+        lineView.backgroundColor = .sparkPinkred
         
         countLabel.text = "0/10"
-        countLabel.font = .p2SubtitleEng
+        countLabel.font = .captionEng
         countLabel.textColor = .sparkDarkGray
+        changeCountLabel(textField: textField, maxLength: maxLength, countLabel: countLabel)
     }
     
     private func setDelegate() {
@@ -80,7 +99,6 @@ class ProfileSettingVC: UIViewController {
     
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
-        closeButton.addTarget(self, action: #selector(touchCloseButton), for: .touchUpInside)
         tap.addTarget(self, action: #selector(showAlert))
     }
     
@@ -96,14 +114,6 @@ class ProfileSettingVC: UIViewController {
         }
     }
     
-    private func presentToMainTBC() {
-        guard let mainVC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
-        mainVC.modalPresentationStyle = .fullScreen
-        mainVC.modalTransitionStyle = .crossDissolve
-        
-        present(mainVC, animated: true, completion: nil)
-    }
-    
     // MARK: - @objc
     
     @objc
@@ -115,6 +125,8 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func showAlert() {
+        didEdit = true
+        
         let alert = SparkActionSheet()
         
         alert.addAction(SparkAction("카메라 촬영", titleType: .blackMediumTitle, handler: {
@@ -131,7 +143,9 @@ class ProfileSettingVC: UIViewController {
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
             alert.addAction(SparkAction("사진 삭제", titleType: .blackMediumTitle, handler: {
-                self.profileImageView.image = UIImage(named: "profileEmpty")
+                alert.dismiss(animated: true) {
+                    self.profileImageView.image = UIImage(named: "profileEmpty")
+                }
             }))
         }
         
@@ -147,25 +161,22 @@ class ProfileSettingVC: UIViewController {
     @objc
     func touchCompleteButton() {
         if profileImageView.image == UIImage(named: "profileEmpty") {
-            signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
-                self.presentToMainTBC()
+            profileEditWithAPI(profileImage: nil) {
+                self.dismiss(animated: true, completion: nil)
             }
         } else {
-            signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
-                self.presentToMainTBC()
+            profileEditWithAPI(profileImage: profileImageView.image) {
+                self.dismiss(animated: true, completion: nil)
             }
         }
-    }
-    
-    @objc
-    func touchCloseButton() {
-        dismiss(animated: true, completion: nil)
+        profileImageDelegate?.sendProfile(image: profileImageView.image ?? UIImage(named: "profileEmpty")!,
+                                          nickname: textField.text ?? "")
     }
 }
 
 // MARK: - UITextFieldDelegate
 
-extension ProfileSettingVC: UITextFieldDelegate {
+extension EditProfileVC: UITextFieldDelegate {
     // 여백 클릭 시
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -180,6 +191,7 @@ extension ProfileSettingVC: UITextFieldDelegate {
     // 입력 시작
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         lineView.backgroundColor = .sparkPinkred
+        didEdit = true
         return true
     }
     
@@ -196,7 +208,7 @@ extension ProfileSettingVC: UITextFieldDelegate {
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // UIImage 타입인 originalImage를 빼옴
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -207,30 +219,50 @@ extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControl
     }
 }
 
+// MARK: - Network
+
+extension EditProfileVC {
+    private func profileEditWithAPI(profileImage: UIImage?, completion: @escaping (() -> Void)) {
+        let nickname = textField.text
+        UserAPI.shared.profileEdit(profileImage: profileImage, nickname: nickname ?? "") { response in
+            switch response {
+            case .success(let message):
+                completion()
+                print("profileEditWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("profileEditWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileEditWithAPI - pathErr")
+            case .serverErr:
+                print("profileEditWithAPI - serverErr")
+            case .networkFail:
+                print("profileEditWithAPI - networkFail")
+            }
+        }
+    }
+}
+
 // MARK: - Layout
 
-extension ProfileSettingVC {
+extension EditProfileVC {
     private func setLayout() {
-        view.addSubviews([closeButton, titleLabel, profileImageView,
+        view.addSubviews([customNavigationBar, profileImageView,
                           fadeView, textField, lineView,
                           countLabel, completeButton])
-        fadeView.addSubview(photoIconImageView)
         
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.leading.equalToSuperview().inset(20)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(20)
-            make.leading.equalToSuperview().inset(20)
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
         }
         
         profileImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(188)
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(128)
             make.width.height.equalTo(115)
         }
+        
+        fadeView.addSubview(photoIconImageView)
         
         fadeView.snp.makeConstraints { make in
             make.edges.equalTo(profileImageView)
@@ -261,41 +293,6 @@ extension ProfileSettingVC {
         completeButton.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-    }
-}
-
-// MARK: - Network
-
-extension ProfileSettingVC {
-    private func signupWithAPI(profileImg: UIImage?, nickname: String, completion: @escaping () -> Void) {
-        let socialID: String
-        if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
-            socialID = "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
-        } else {
-            socialID = "Kakao@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
-        }
-        AuthAPI.shared.signup(socialID: socialID,
-                              profileImg: profileImg,
-                              nickname: nickname,
-                              fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
-            switch response {
-            case .success(let data):
-                if let signup = data as? Signup {
-                    UserDefaults.standard.set(signup.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
-                }
-                
-                completion()
-            case .requestErr(let message):
-                print("signupWithAPI - requestErr: \(message)")
-            case .pathErr:
-                print("signupWithAPI - pathErr")
-            case .serverErr:
-                print("signupWithAPI - serverErr")
-            case .networkFail:
-                print("signupWithAPI - networkFail")
-            }
-            
         }
     }
 }
