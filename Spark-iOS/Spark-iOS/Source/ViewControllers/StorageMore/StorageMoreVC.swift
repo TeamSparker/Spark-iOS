@@ -211,7 +211,6 @@ extension StorageMoreVC: UICollectionViewDataSource {
             if (self.selectedIndexPath == nil)&&(thumbnailURL == myRoomCertificationList?[indexPath.row].certifyingImg) {
                 DispatchQueue.main.async {
                     // selectItem 코드를 넣지 않으면 중복선택이 되어버리는 오류가 발생함
-                    cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
                 }
             }
@@ -219,7 +218,6 @@ extension StorageMoreVC: UICollectionViewDataSource {
             // 선택을 한 경우, 무한스크롤로 인한 reloadData 시에도 선택된 셀이 유지되도록 함
             if self.selectedIndexPath == indexPath {
                 DispatchQueue.main.async {
-                    cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
                 }
             }

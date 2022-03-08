@@ -52,9 +52,8 @@ extension MyRoomService: TargetType {
             return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
-        case .myRoomChangeThumbnail(let roomId, let recordId):
-            return  .requestParameters(parameters: ["roomId": roomId, "recordId": recordId],
-                                       encoding: JSONEncoding.default)
+        case .myRoomChangeThumbnail:
+            return  .requestPlain
         }
     }
     
