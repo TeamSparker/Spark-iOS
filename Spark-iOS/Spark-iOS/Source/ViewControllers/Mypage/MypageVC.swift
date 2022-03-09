@@ -135,13 +135,20 @@ extension MypageVC: UITableViewDelegate {
         case .center:
             if MFMailComposeViewController.canSendMail() {
                 let mailComposeVC = MFMailComposeViewController()
-                mailComposeVC.delegate = self
+                mailComposeVC.mailComposeDelegate = self
                 
                 mailComposeVC.setToRecipients(["teamsparker66@gmail.com"])
                 mailComposeVC.setSubject("스파크 문의 사항")
                 mailComposeVC.setMessageBody("문의 사항을 상세히 입력해주세요.",
                                              isHTML: false)
+                
                 present(mailComposeVC, animated: true, completion: nil)
+            } else {
+                // 메일이 계정과 연동되지 않은 경우.
+                let mailErrorAlert = UIAlertController(title: "메일 전송 실패", message: "이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
+                let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in }
+                mailErrorAlert.addAction(confirmAction)
+                present(mailErrorAlert, animated: true, completion: nil)
             }
         case .service:
             if indexPath.row == 3 {
@@ -313,7 +320,7 @@ extension MypageVC: ProfileImageDelegate {
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
-extension MypageVC: MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+extension MypageVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
