@@ -171,7 +171,7 @@ extension MypageVC: UITableViewDelegate {
             }
         }
     }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellWidth = tableView.frame.width
         let profileCellHeight = cellWidth * (125 / 375)
