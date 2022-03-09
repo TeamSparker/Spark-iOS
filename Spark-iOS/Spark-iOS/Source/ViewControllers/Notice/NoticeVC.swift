@@ -17,7 +17,9 @@ class NoticeVC: UIViewController {
     private let activeButton = UIButton() // 스파커 활동
     private let noticeButton = UIButton() // 안내
     private let noticeBadgeView = UIView()
-    
+    private let emptyView = UIView()
+    private let emptyImageView = UIImageView()
+    private let emptyLabel = UILabel()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -81,6 +83,19 @@ class NoticeVC: UIViewController {
         noticeBadgeView.layer.cornerRadius = 3
     }
     
+    private func setEmptyView() {
+        emptyImageView.image = UIImage(named: "noticeEmpty")
+        emptyLabel.text = "아직 도착한 알림이 없어요.\n친구와 함께 습관에 도전해 보세요!"
+        emptyLabel.textAlignment = .center
+        emptyLabel.font = .h3SubtitleLight
+        emptyLabel.textColor = .sparkGray
+        emptyLabel.numberOfLines = 2
+        
+        // 서버 통신 후 처리
+        collectionView.isHidden = true
+        emptyView.isHidden = false
+    }
+    
     private func setCollectionView() {
         collectionViewFlowLayout.scrollDirection = .vertical
         
@@ -104,11 +119,6 @@ class NoticeVC: UIViewController {
     
     private func makeDraw(rect: CGRect, button: UIButton) {
         let animateView = LineAnimationView(frame: rect)
-        
-        // activeButton.tag = 1
-        // noticeButton.tag = 2
-        // activeTag = 3
-        // noticeTag = 4
         
         animateView.tag = button.tag + 2
         
@@ -232,8 +242,9 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
 
 extension NoticeVC {
     private func setLayout() {
-        view.addSubviews([customNavigationBar, headerView, collectionView])
+        view.addSubviews([customNavigationBar, headerView, collectionView, emptyView])
         headerView.addSubviews([activeButton, noticeButton, noticeBadgeView])
+        emptyView.addSubviews([emptyImageView, emptyLabel])
         
         customNavigationBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -266,6 +277,21 @@ extension NoticeVC {
             make.width.height.equalTo(6)
             make.bottom.equalTo(noticeButton.snp.top).offset(12)
             make.leading.equalTo(noticeButton.snp.trailing)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-12)
+        }
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(emptyImageView.snp.bottom).offset(23)
         }
     }
 }
