@@ -211,16 +211,8 @@ class FeedVC: UIViewController {
     }
     
     @objc
-    private func setToastMessage(_ notification: NSNotification) {
-        guard let didReport: Bool = notification.userInfo?["didReport"] as? Bool else { return }
-        var message: String = ""
-        
-        if didReport {
-            message = "이미 신고된 피드입니다."
-        } else {
-            message = "신고 접수가 완료되었어요."
-        }
-        
+    private func setToastMessage() {
+        let message: String = "신고 접수가 완료되었어요."
         self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
     }
 }
