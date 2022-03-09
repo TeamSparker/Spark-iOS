@@ -39,12 +39,6 @@ class NoticeActiveCVC: UICollectionViewCell {
         contentImageView.image = UIImage()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel.preferredMaxLayoutWidth = titleLabel.frame.size.width
-        contentLabel.preferredMaxLayoutWidth = contentLabel.frame.size.width
-    }
-    
     // MARK: - Method
     
     private func setUI() {
