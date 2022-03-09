@@ -120,14 +120,15 @@ class NoticeVC: UIViewController {
     private func makeDraw(rect: CGRect, button: UIButton) {
         let animateView = LineAnimationView(frame: rect)
         
-        animateView.tag = button.tag + 2
-        
         // 기존의 모든 태그 삭제
         let activeTag = self.view.viewWithTag(3)
         let noticeTag = self.view.viewWithTag(4)
         
         activeTag?.removeFromSuperview()
         noticeTag?.removeFromSuperview()
+        
+        // 새로운 태그 추가
+        animateView.tag = button.tag + 2
         
         view.addSubview(animateView)
     }
