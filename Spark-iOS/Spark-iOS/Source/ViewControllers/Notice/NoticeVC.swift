@@ -25,11 +25,16 @@ class NoticeVC: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     private var customNavigationBar = LeftButtonNavigaitonBar()
     private var isActivity: Bool = true
+    private var activeLastID: Int = -1
+    private var activeCountSize: Int = 10
+    
+    private var activeList: [Active] = []
+    private var newNotice: Bool = false
     
     // MARK: - DummyData
     
-    let titleList = ["방방방방방방방방방방방방방방방방에서 보낸 스파크", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!"]
-    let contentList = ["수아 : 💬 가나다라마바사아자차카타파하가", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요.", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요."]
+//    let titleList = ["방방방방방방방방방방방방방방방방에서 보낸 스파크", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!"]
+//    let contentList = ["수아 : 💬 가나다라마바사아자차카타파하가", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요.", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요."]
     
     let secondTitleList = ["새로운 습관 시작 🔥", "가나다라마바사아자차카타파하가 대기방 삭제"]
     let secontContentList = ["가나다라마바사아자차카타파하방에서 가장 먼저 스파크를 보내볼까요?", "방 개설자에 의해 대기방이 삭제되었어요."]
@@ -47,6 +52,21 @@ class NoticeVC: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
             self.makeDrawAboveButton(button: self.activeButton)
+        }
+        
+        getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+            if self.activeList.isEmpty {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+                self.collectionView.reloadData()
+            }
+            
+            if self.newNotice {
+                self.noticeBadgeView.isHidden = false
+            } else {
+                self.noticeBadgeView.isHidden = true
+            }
         }
     }
     
@@ -179,7 +199,7 @@ extension NoticeVC: UICollectionViewDelegate {
 extension NoticeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isActivity {
-            return titleList.count
+            return activeList.count
         } else {
             return secondTitleList.count
         }
@@ -189,7 +209,7 @@ extension NoticeVC: UICollectionViewDataSource {
         if isActivity {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.noticeActiveCVC, for: indexPath) as? NoticeActiveCVC else { return UICollectionViewCell() }
             
-            cell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            cell.initCell(title: activeList[indexPath.item].noticeTitle, content: activeList[indexPath.item].noticeContent, date: activeList[indexPath.item].day, image: activeList[indexPath.item].noticeImg, isThumbProfile: activeList[indexPath.item].isThumbProfile, newService: activeList[indexPath.item].isNew)
             
             return cell
         } else {
@@ -210,7 +230,7 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
         if isActivity {
             let dummyCell = NoticeActiveCVC(frame: CGRect(x: 0, y: 0, width: width, height: estimatedHeight))
             
-            dummyCell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            dummyCell.initCell(title: activeList[indexPath.item].noticeTitle, content: activeList[indexPath.item].noticeContent, date: activeList[indexPath.item].day, image: activeList[indexPath.item].noticeImg, isThumbProfile: activeList[indexPath.item].isThumbProfile, newService: activeList[indexPath.item].isNew)
             dummyCell.layoutIfNeeded()
             
             let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: width, height: estimatedHeight))
@@ -238,6 +258,29 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Network
+
+extension NoticeVC {
+    private func getActiveNoticeFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
+        NoticeAPI.shared.activeFetch(lastID: lastID, size: activeCountSize) { response in
+            switch response {
+            case .success(let data):
+                if let active = data as? ActiveNotice {
+                    self.newNotice = active.newService
+                    self.activeList.append(contentsOf: active.notices)
+                }
+                completion()
+            case .requestErr(let message):
+                print("getActiveNoticeFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getActiveNoticeFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getActiveNoticeFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getActiveNoticeFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
 
 // MARK: - Layout
 

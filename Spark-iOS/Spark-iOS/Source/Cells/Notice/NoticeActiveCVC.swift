@@ -54,20 +54,28 @@ class NoticeActiveCVC: UICollectionViewCell {
         contentLabel.numberOfLines = 2
         
         contentImageView.layer.borderWidth = 2
-        contentImageView.layer.borderColor = UIColor.sparkWhite.cgColor
+        contentImageView.layer.borderColor = UIColor.sparkLightGray.cgColor
         contentImageView.layer.masksToBounds = true
         contentImageView.contentMode = .scaleAspectFill
-        contentImageView.backgroundColor = .sparkDarkGray
         
         bottomLineView.backgroundColor = .sparkGray.withAlphaComponent(0.3)
     }
     
-    func initCell(title: String, content: String, date: String, image: String) {
-        // TODO: - 사진 종류에 따라 radius 적용
+    func initCell(title: String, content: String, date: String, image: String, isThumbProfile: Bool, newService: Bool) {
         titleLabel.text = title
         contentLabel.text = content
         dateLabel.text = date
         contentImageView.updateImage(image, type: .small)
+        
+        if isThumbProfile {
+            contentImageView.layer.cornerRadius = 20
+        } else {
+            contentImageView.layer.cornerRadius = 2
+        }
+        
+        if newService {
+            self.backgroundColor = .sparkMostLightPinkred.withAlphaComponent(0.3)
+        }
     }
 }
 
