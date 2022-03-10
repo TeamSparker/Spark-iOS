@@ -64,6 +64,7 @@ class NoticeVC: UIViewController {
             } else {
                 self.noticeBadgeView.isHidden = true
             }
+            self.activeReadWithAPI()
         }
     }
     
@@ -185,6 +186,7 @@ class NoticeVC: UIViewController {
             } else {
                 self.noticeBadgeView.isHidden = true
             }
+            self.activeReadWithAPI()
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -349,6 +351,23 @@ extension NoticeVC {
                 print("getServiceNoticeFetchWithAPI - serverErr")
             case .networkFail:
                 print("getServiceNoticeFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func activeReadWithAPI() {
+        NoticeAPI.shared.activeRead { response in
+            switch response {
+            case .success(let message):
+                print("activeReadWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("setPurposeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("setPurposeWithAPI - pathErr")
+            case .serverErr:
+                print("setPurposeWithAPI - serverErr")
+            case .networkFail:
+                print("setPurposeWithAPI - networkFail")
             }
         }
     }

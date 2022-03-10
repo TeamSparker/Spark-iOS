@@ -87,4 +87,34 @@ public class NoticeAPI {
             return .networkFail
         }
     }
+    
+    func activeRead(completion: @escaping(NetworkResult<Any>) -> Void) {
+        noticeProvider.request(.activeRead) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data)
+        else { return .pathErr }
+        switch statusCode {
+        case 200:
+            return .success(decodedData.message)
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
 }

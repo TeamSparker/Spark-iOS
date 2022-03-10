@@ -12,6 +12,7 @@ import Moya
 enum NoticeService {
     case activeFetch(lastID: Int, size: Int)
     case serviceFetch(lastID: Int, size: Int)
+    case activeRead
 }
 
 extension NoticeService: TargetType {
@@ -25,6 +26,8 @@ extension NoticeService: TargetType {
             return "/notice/active"
         case .serviceFetch:
             return "/notice/service"
+        case .activeRead:
+            return "/notice/active/read"
         }
     }
     
@@ -34,6 +37,8 @@ extension NoticeService: TargetType {
             return .get
         case .serviceFetch:
             return .get
+        case .activeRead:
+            return .patch
         }
     }
     
@@ -47,6 +52,8 @@ extension NoticeService: TargetType {
             return .requestParameters(parameters: ["lastId": lastID,
                                                    "size": size],
                                       encoding: URLEncoding.queryString)
+        case .activeRead:
+            return .requestPlain
         }
     }
     
@@ -55,6 +62,8 @@ extension NoticeService: TargetType {
         case .activeFetch:
             return Const.Header.authorizationHeader
         case .serviceFetch:
+            return Const.Header.authorizationHeader
+        case .activeRead:
             return Const.Header.authorizationHeader
         }
     }
