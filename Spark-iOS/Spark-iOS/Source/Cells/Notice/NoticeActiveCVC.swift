@@ -33,6 +33,7 @@ class NoticeActiveCVC: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.backgroundColor = .clear
         titleLabel.text = ""
         contentLabel.text = ""
         dateLabel.text = ""

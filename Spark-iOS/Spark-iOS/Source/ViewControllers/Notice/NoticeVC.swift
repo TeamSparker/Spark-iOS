@@ -15,9 +15,9 @@ class NoticeVC: UIViewController {
     
     private let headerView = UIView()
     private let activeButton = UIButton() // 스파커 활동
-    private let noticeButton = UIButton() // 안내
+    private let serviceButton = UIButton() // 안내
     private let activeBadgeView = UIView()
-    private let noticeBadgeView = UIView()
+    private let serviceBadgeView = UIView()
     private let emptyView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyLabel = UILabel()
@@ -60,9 +60,9 @@ class NoticeVC: UIViewController {
             }
             
             if self.newService {
-                self.noticeBadgeView.isHidden = false
+                self.serviceBadgeView.isHidden = false
             } else {
-                self.noticeBadgeView.isHidden = true
+                self.serviceBadgeView.isHidden = true
             }
             self.activeReadWithAPI()
         }
@@ -89,17 +89,17 @@ class NoticeVC: UIViewController {
         activeButton.titleLabel?.font = .h3Subtitle
         activeButton.isSelected = true
         
-        noticeButton.setTitle("안내", for: .normal)
-        noticeButton.setTitleColor(.sparkDarkPinkred, for: .selected)
-        noticeButton.setTitleColor(.sparkDarkGray, for: .normal)
-        noticeButton.titleLabel?.font = .h3Subtitle
+        serviceButton.setTitle("안내", for: .normal)
+        serviceButton.setTitleColor(.sparkDarkPinkred, for: .selected)
+        serviceButton.setTitleColor(.sparkDarkGray, for: .normal)
+        serviceButton.titleLabel?.font = .h3Subtitle
         
         activeButton.tag = 1
-        noticeButton.tag = 2
+        serviceButton.tag = 2
         
-        noticeBadgeView.backgroundColor = .sparkDarkPinkred
-        noticeBadgeView.layer.cornerRadius = 3
-        noticeBadgeView.isHidden = true
+        serviceBadgeView.backgroundColor = .sparkDarkPinkred
+        serviceBadgeView.layer.cornerRadius = 3
+        serviceBadgeView.isHidden = true
         
         activeBadgeView.backgroundColor = .sparkDarkPinkred
         activeBadgeView.layer.cornerRadius = 3
@@ -133,7 +133,7 @@ class NoticeVC: UIViewController {
     
     private func setAddTarget() {
         activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
-        noticeButton.addTarget(self, action: #selector(touchNoticeButton), for: .touchUpInside)
+        serviceButton.addTarget(self, action: #selector(touchNoticeButton), for: .touchUpInside)
     }
 
     private func popToHomeVC() {
@@ -169,7 +169,7 @@ class NoticeVC: UIViewController {
     @objc
     private func touchActiveButton() {
         activeButton.isSelected = true
-        noticeButton.isSelected = false
+        serviceButton.isSelected = false
         activeBadgeView.isHidden = true
         makeDrawAboveButton(button: activeButton)
         
@@ -183,12 +183,11 @@ class NoticeVC: UIViewController {
             }
             
             if self.newService {
-                self.noticeBadgeView.isHidden = false
+                self.serviceBadgeView.isHidden = false
             } else {
-                self.noticeBadgeView.isHidden = true
+                self.serviceBadgeView.isHidden = true
             }
             self.activeReadWithAPI()
-            self.collectionView.reloadData()
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -196,9 +195,9 @@ class NoticeVC: UIViewController {
     @objc
     private func touchNoticeButton() {
         activeButton.isSelected = false
-        noticeButton.isSelected = true
-        noticeBadgeView.isHidden = true
-        makeDrawAboveButton(button: noticeButton)
+        serviceButton.isSelected = true
+        serviceBadgeView.isHidden = true
+        makeDrawAboveButton(button: serviceButton)
         
         isActivity = false
         serviceLastID = -1
@@ -215,7 +214,6 @@ class NoticeVC: UIViewController {
                 self.activeBadgeView.isHidden = true
             }
             self.serviceReadWithAPI()
-            self.collectionView.reloadData()
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -399,7 +397,7 @@ extension NoticeVC {
 extension NoticeVC {
     private func setLayout() {
         view.addSubviews([customNavigationBar, headerView, collectionView, emptyView])
-        headerView.addSubviews([activeButton, noticeButton, noticeBadgeView, activeBadgeView])
+        headerView.addSubviews([activeButton, serviceButton, serviceBadgeView, activeBadgeView])
         emptyView.addSubviews([emptyImageView, emptyLabel])
         
         customNavigationBar.snp.makeConstraints { make in
@@ -424,15 +422,15 @@ extension NoticeVC {
             make.top.equalToSuperview().inset(26)
         }
         
-        noticeButton.snp.makeConstraints { make in
+        serviceButton.snp.makeConstraints { make in
             make.leading.equalTo(activeButton.snp.trailing).offset(32)
             make.centerY.equalTo(activeButton.snp.centerY)
         }
         
-        noticeBadgeView.snp.makeConstraints { make in
+        serviceBadgeView.snp.makeConstraints { make in
             make.width.height.equalTo(6)
-            make.bottom.equalTo(noticeButton.snp.top).offset(12)
-            make.leading.equalTo(noticeButton.snp.trailing)
+            make.bottom.equalTo(serviceButton.snp.top).offset(12)
+            make.leading.equalTo(serviceButton.snp.trailing)
         }
         
         activeBadgeView.snp.makeConstraints { make in
