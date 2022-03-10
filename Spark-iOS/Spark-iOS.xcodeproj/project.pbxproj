@@ -64,6 +64,7 @@
 		2BE65F5127C3E34B005D370D /* RoomStart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE65F5027C3E34B005D370D /* RoomStart.storyboard */; };
 		2BE907DF27D9EE7D00B36002 /* NoticeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */; };
 		2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907E027D9EE9700B36002 /* NoticeService.swift */; };
+		2BE907E427D9F1BB00B36002 /* ActiveNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */; };
 		2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */; };
 		2BF3AB472794765F001A9042 /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB462794765F001A9042 /* RoomService.swift */; };
 		2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB48279479B8001A9042 /* RoomAPI.swift */; };
@@ -240,6 +241,7 @@
 		2BE65F5027C3E34B005D370D /* RoomStart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoomStart.storyboard; sourceTree = "<group>"; };
 		2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeAPI.swift; sourceTree = "<group>"; };
 		2BE907E027D9EE9700B36002 /* NoticeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeService.swift; sourceTree = "<group>"; };
+		2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveNotice.swift; sourceTree = "<group>"; };
 		2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		2BF3AB462794765F001A9042 /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
@@ -590,6 +592,14 @@
 			children = (
 				2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */,
 				2BE907E027D9EE9700B36002 /* NoticeService.swift */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		2BE907E227D9F10E00B36002 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */,
 			);
 			path = Notice;
 			sourceTree = "<group>";
@@ -988,6 +998,7 @@
 			children = (
 				F82F57FA27928437003E4174 /* NetworkResult.swift */,
 				F82F57FC2792847D003E4174 /* GenericResponse.swift */,
+				2BE907E227D9F10E00B36002 /* Notice */,
 				F8E3496B2796B7DF001B67E7 /* Auth */,
 				F82F5800279287EC003E4174 /* Home */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
@@ -1389,6 +1400,7 @@
 				EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */,
 				F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */,
 				2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */,
+				2BE907E427D9F1BB00B36002 /* ActiveNotice.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */,
 				2BAF156327D4A0CA00DE4190 /* NoticeUpdateHeaderView.swift in Sources */,
