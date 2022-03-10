@@ -99,6 +99,7 @@ class NoticeVC: UIViewController {
         
         noticeBadgeView.backgroundColor = .sparkDarkPinkred
         noticeBadgeView.layer.cornerRadius = 3
+        noticeBadgeView.isHidden = true
         
         activeBadgeView.backgroundColor = .sparkDarkPinkred
         activeBadgeView.layer.cornerRadius = 3
@@ -187,6 +188,7 @@ class NoticeVC: UIViewController {
                 self.noticeBadgeView.isHidden = true
             }
             self.activeReadWithAPI()
+            self.collectionView.reloadData()
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -212,6 +214,8 @@ class NoticeVC: UIViewController {
             } else {
                 self.activeBadgeView.isHidden = true
             }
+            self.serviceReadWithAPI()
+            self.collectionView.reloadData()
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -361,13 +365,30 @@ extension NoticeVC {
             case .success(let message):
                 print("activeReadWithAPI - success: \(message)")
             case .requestErr(let message):
-                print("setPurposeWithAPI - requestErr: \(message)")
+                print("activeReadWithAPI - requestErr: \(message)")
             case .pathErr:
-                print("setPurposeWithAPI - pathErr")
+                print("activeReadWithAPI - pathErr")
             case .serverErr:
-                print("setPurposeWithAPI - serverErr")
+                print("activeReadWithAPI - serverErr")
             case .networkFail:
-                print("setPurposeWithAPI - networkFail")
+                print("activeReadWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func serviceReadWithAPI() {
+        NoticeAPI.shared.serviceRead { response in
+            switch response {
+            case .success(let message):
+                print("serviceReadWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("serviceReadWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("serviceReadWithAPI - pathErr")
+            case .serverErr:
+                print("serviceReadWithAPI - serverErr")
+            case .networkFail:
+                print("serviceReadWithAPI - networkFail")
             }
         }
     }
