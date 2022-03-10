@@ -54,10 +54,14 @@ class NoticeServiceCVC: UICollectionViewCell {
         bottomLineView.backgroundColor = .sparkGray.withAlphaComponent(0.3)
     }
     
-    func initCell(title: String, content: String, date: String) {
+    func initCell(title: String, content: String, date: String, isNew: Bool) {
         titleLabel.text = title
         contentLabel.text = content
         dateLabel.text = date
+        
+        if isNew {
+            self.backgroundColor = .sparkMostLightPinkred.withAlphaComponent(0.3)
+        }
     }
 }
 
