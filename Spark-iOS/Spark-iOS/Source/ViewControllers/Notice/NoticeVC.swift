@@ -16,6 +16,7 @@ class NoticeVC: UIViewController {
     private let headerView = UIView()
     private let activeButton = UIButton() // 스파커 활동
     private let noticeButton = UIButton() // 안내
+    private let activeBadgeView = UIView()
     private let noticeBadgeView = UIView()
     private let emptyView = UIView()
     private let emptyImageView = UIImageView()
@@ -97,6 +98,10 @@ class NoticeVC: UIViewController {
         
         noticeBadgeView.backgroundColor = .sparkDarkPinkred
         noticeBadgeView.layer.cornerRadius = 3
+        
+        activeBadgeView.backgroundColor = .sparkDarkPinkred
+        activeBadgeView.layer.cornerRadius = 3
+        activeBadgeView.isHidden = true
     }
     
     private func setEmptyView() {
@@ -163,6 +168,7 @@ class NoticeVC: UIViewController {
     private func touchActiveButton() {
         activeButton.isSelected = true
         noticeButton.isSelected = false
+        activeBadgeView.isHidden = true
         makeDrawAboveButton(button: activeButton)
         
         isActivity = true
@@ -187,6 +193,7 @@ class NoticeVC: UIViewController {
     private func touchNoticeButton() {
         activeButton.isSelected = false
         noticeButton.isSelected = true
+        noticeBadgeView.isHidden = true
         makeDrawAboveButton(button: noticeButton)
         
         isActivity = false
@@ -198,12 +205,11 @@ class NoticeVC: UIViewController {
                 self.emptyView.isHidden = false
             }
             
-            // TODO: - 스파커 활동 위에 뱃지 추가하고 isHidden 처리
-//            if self.newActive {
-//
-//            } else {
-//
-//            }
+            if self.newActive {
+                self.activeBadgeView.isHidden = false
+            } else {
+                self.activeBadgeView.isHidden = true
+            }
         }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
@@ -353,7 +359,7 @@ extension NoticeVC {
 extension NoticeVC {
     private func setLayout() {
         view.addSubviews([customNavigationBar, headerView, collectionView, emptyView])
-        headerView.addSubviews([activeButton, noticeButton, noticeBadgeView])
+        headerView.addSubviews([activeButton, noticeButton, noticeBadgeView, activeBadgeView])
         emptyView.addSubviews([emptyImageView, emptyLabel])
         
         customNavigationBar.snp.makeConstraints { make in
@@ -387,6 +393,12 @@ extension NoticeVC {
             make.width.height.equalTo(6)
             make.bottom.equalTo(noticeButton.snp.top).offset(12)
             make.leading.equalTo(noticeButton.snp.trailing)
+        }
+        
+        activeBadgeView.snp.makeConstraints { make in
+            make.width.height.equalTo(6)
+            make.bottom.equalTo(activeButton.snp.top).offset(12)
+            make.leading.equalTo(activeButton.snp.trailing)
         }
         
         emptyView.snp.makeConstraints { make in
