@@ -27,6 +27,7 @@ class NoticeVC: UIViewController {
     private var isActivity: Bool = true
     private var activeLastID: Int = -1
     private var activeCountSize: Int = 10
+    private var isInfiniteScroll: Bool = true
     
     private var activeList: [Active] = []
     private var newNotice: Bool = false
@@ -59,7 +60,6 @@ class NoticeVC: UIViewController {
                 self.emptyView.isHidden = true
             } else {
                 self.emptyView.isHidden = false
-                self.collectionView.reloadData()
             }
             
             if self.newNotice {
@@ -170,7 +170,20 @@ class NoticeVC: UIViewController {
         makeDrawAboveButton(button: activeButton)
         
         isActivity = true
-        collectionView.reloadData()
+        activeLastID = -1
+        getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+            if self.activeList.isEmpty {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+            }
+            
+            if self.newNotice {
+                self.noticeBadgeView.isHidden = false
+            } else {
+                self.noticeBadgeView.isHidden = true
+            }
+        }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
     
@@ -191,6 +204,19 @@ class NoticeVC: UIViewController {
 extension NoticeVC: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                
+                activeLastID = activeList.last?.noticeID ?? 0
+                getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+                    self.isInfiniteScroll = true
+                }
+            }
+        }
     }
 }
 
@@ -267,6 +293,7 @@ extension NoticeVC {
                 if let active = data as? ActiveNotice {
                     self.newNotice = active.newService
                     self.activeList.append(contentsOf: active.notices)
+                    self.collectionView.reloadData()
                 }
                 completion()
             case .requestErr(let message):
