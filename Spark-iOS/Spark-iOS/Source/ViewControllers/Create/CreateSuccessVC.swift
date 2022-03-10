@@ -64,7 +64,6 @@ class CreateSuccessVC: UIViewController {
     }
     
     private func setLottie() {
-        ticketLottieView.backgroundColor = .blue.withAlphaComponent(0.5)
         ticketLottieView.contentMode = .scaleAspectFit
         ticketLottieView.loopMode = .loop
         ticketLottieView.play()
@@ -154,10 +153,10 @@ extension CreateSuccessVC {
         }
         
         ticketLottieView.snp.updateConstraints { make in
-            make.leading.equalTo(sparkFlakeImageView.snp.leading).inset(94)
-            make.trailing.equalTo(sparkFlakeImageView.snp.trailing).inset(94)
-            make.top.equalTo(sparkFlakeImageView.snp.top).inset(72)
-            make.bottom.equalTo(sparkFlakeImageView.snp.bottom).inset(114)
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(sparkFlakeImageView.snp.centerY).offset(-18)
+            make.width.equalTo(sparkFlakeImageView.snp.width).multipliedBy(0.6)
+            make.height.equalTo(ticketLottieView.snp.width).multipliedBy(0.7)
         }
         
         enterButton.snp.makeConstraints { make in
