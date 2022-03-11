@@ -189,4 +189,41 @@ public class SparkFlake {
             return .clear
         }
     }
+    
+    public func completeAuthText() -> String {
+        switch state {
+        case .day65:
+            return  """
+                    일단 시작했으니 반은 성공!
+                    자, 더 많은 친구들에게 자랑해볼까요?
+                    """
+        case .day62:
+            return  """
+                    우와!! 아주 잘하고 있어요!
+                    이대로 일주일까지 쭉~ 달려봐요!
+                    """
+        case .day58:
+            return  """
+                    서로의 도움이 중요한 시기예요!
+                    앞으로 스파크 마구 보내기로 약-속!
+                    """
+        case .day32:
+            return  """
+                    이제 반도 안 남았으니,
+                    점점 습관으로 자리잡고 있겠는걸요?
+                    """
+        case .day6:
+            return  """
+                    일주일도 안 남았네요!
+                    거의 다 왔는데요? 조금만 더 Fighting!
+                    """
+        case .dDay:
+            return  """
+                    드디어 인증이 끝났군요! 짝짝짝
+                    66일 간의 멋진 도전에 박수를 보내요!
+                    """
+        case .error:
+            return ""
+        }
+    }
 }
