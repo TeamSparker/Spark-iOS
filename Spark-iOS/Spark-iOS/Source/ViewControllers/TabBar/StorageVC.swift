@@ -79,32 +79,39 @@ class StorageVC: UIViewController {
             self.setLoading()
         }
         
-        DispatchQueue.main.async {
-            self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
-                self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
-                    self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
-                        self.doneCV.reloadData()
-                        self.failCV.reloadData()
-                        
-                        if self.onGoingRoomList?.count == 0 {
-                            self.emptyView.isHidden = false
-                        } else {
-                            self.emptyView.isHidden = true
-                        }
-                        
-                        // 인증사진 모아보기에서 왔을 경우 버튼과 컬렉션뷰를 리셋하지 않기 위한 분기처리
-                        if !self.fromStorageMore {
-                            self.reSetView()
-                        } else {
-                            self.fromStorageMore = false
-                        }
-                        
-                        self.loadingView.stop()
-                        self.loadingView.removeFromSuperview()
-                        self.loadingBgView.removeFromSuperview()
-                    }
-                }
+        let group = DispatchGroup.init()
+        group.enter()
+        getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.enter()
+        getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.enter()
+        getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.doneCV.reloadData()
+            self.failCV.reloadData()
+            
+            if self.onGoingRoomList?.count == 0 {
+                self.emptyView.isHidden = false
+            } else {
+                self.emptyView.isHidden = true
             }
+            
+            // 인증사진 모아보기에서 왔을 경우 버튼과 컬렉션뷰를 리셋하지 않기 위한 분기처리
+            if !self.fromStorageMore {
+                self.reSetView()
+            } else {
+                self.fromStorageMore = false
+            }
+            
+            self.loadingView.stop()
+            self.loadingView.removeFromSuperview()
+            self.loadingBgView.removeFromSuperview()
         }
     }
 }
