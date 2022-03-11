@@ -98,6 +98,8 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
+		EBD0D09227DBBBD10007E5AF /* SendThumbnailURLDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09127DBBBD10007E5AF /* SendThumbnailURLDelegate.swift */; };
+		EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09327DBBC270007E5AF /* SendSparkCellDelegate.swift */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
@@ -274,6 +276,8 @@
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
+		EBD0D09127DBBBD10007E5AF /* SendThumbnailURLDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendThumbnailURLDelegate.swift; sourceTree = "<group>"; };
+		EBD0D09327DBBC270007E5AF /* SendSparkCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkCellDelegate.swift; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
 		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
@@ -951,6 +955,8 @@
 			children = (
 				2BBED1382795F4500052CA5C /* FeedCellDelegate.swift */,
 				F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */,
+				EBD0D09127DBBBD10007E5AF /* SendThumbnailURLDelegate.swift */,
+				EBD0D09327DBBC270007E5AF /* SendSparkCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1416,6 +1422,7 @@
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
+				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
@@ -1445,6 +1452,7 @@
 				EBE90FDE2796C45900157075 /* StatusButton.swift in Sources */,
 				EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */,
 				F8096F3E2784213700B71D38 /* UIFont+.swift in Sources */,
+				EBD0D09227DBBBD10007E5AF /* SendThumbnailURLDelegate.swift in Sources */,
 				F82F580A279289C4003E4174 /* HomeService.swift in Sources */,
 				EB874AE82796FBD5000DD20B /* FeedCellDelegate.swift in Sources */,
 				EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */,

@@ -304,7 +304,3 @@ extension StorageMoreVC: UIGestureRecognizerDelegate {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
-
-protocol SendThumbnailURLDelegate: AnyObject {
-    func sendThumbnailURL(url: String)
-}
