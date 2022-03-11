@@ -67,7 +67,7 @@ class FeedCVC: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int, indexPath: IndexPath) {
+    func initCell(title: String, nickName: String, timeRecord: String?, likeCount: Int, sparkCount: Int, profileImg: String, certifyingImg: String, hasTime: Bool, isLiked: Bool, recordId: Int, indexPath: IndexPath, isMyRecord: Bool) {
         titleLabel.text = "\(title)"
         nameLabel.text = "\(nickName)"
         sparkCountLabel.text = "\(sparkCount)"
@@ -90,6 +90,12 @@ class FeedCVC: UICollectionViewCell {
             likeState = false
             likeButton.setImage(UIImage(named: "icHeartInactive"), for: .normal)
             likeCountLabel.textColor = .sparkGray
+        }
+        
+        if isMyRecord {
+            moreButton.isHidden = true
+        } else {
+            moreButton.isHidden = false
         }
         
         self.indexPath = indexPath
