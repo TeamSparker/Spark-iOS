@@ -8,18 +8,16 @@
 import UIKit
 import SwiftUI
 
+@frozen
+enum RoomStatus: String {
+    case none = "NONE"
+    case rest = "REST"
+    case done = "DONE"
+    case complete = "COMPLETE"
+    case fail = "FAIL"
+}
+
 class HomeHabitCVC: UICollectionViewCell {
-    
-    // MARK: - Properties
-    
-    @frozen
-    private enum Status: String {
-        case none = "NONE"
-        case rest = "REST"
-        case done = "DONE"
-        case complete = "COMPLETE"
-        case fail = "FAIL"
-    }
     
     // MARK: - @IBOutlet Properties
     
@@ -163,7 +161,7 @@ extension HomeHabitCVC {
             restLabel.isHidden = true
         }
         
-        guard let status = Status(rawValue: status) else { return }
+        guard let status = RoomStatus(rawValue: status) else { return }
         switch status {
         case .none:
             tagImage.isHidden = true
