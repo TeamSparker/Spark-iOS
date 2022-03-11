@@ -133,7 +133,7 @@ class NoticeVC: UIViewController {
     
     private func setAddTarget() {
         activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
-        serviceButton.addTarget(self, action: #selector(touchNoticeButton), for: .touchUpInside)
+        serviceButton.addTarget(self, action: #selector(touchServiceButton), for: .touchUpInside)
     }
 
     private func popToHomeVC() {
@@ -175,6 +175,10 @@ class NoticeVC: UIViewController {
         
         isActivity = true
         activeLastID = -1
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         getActiveNoticeFetchWithAPI(lastID: activeLastID) {
             if self.activeList.isEmpty {
                 self.emptyView.isHidden = true
@@ -187,13 +191,17 @@ class NoticeVC: UIViewController {
             } else {
                 self.serviceBadgeView.isHidden = true
             }
-            self.activeReadWithAPI()
+            group.leave()
         }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+
+        group.notify(queue: .main) {
+            self.activeReadWithAPI()
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
+        }
     }
     
     @objc
-    private func touchNoticeButton() {
+    private func touchServiceButton() {
         activeButton.isSelected = false
         serviceButton.isSelected = true
         serviceBadgeView.isHidden = true
@@ -201,21 +209,29 @@ class NoticeVC: UIViewController {
         
         isActivity = false
         serviceLastID = -1
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
             if self.serviceList.isEmpty {
                 self.emptyView.isHidden = true
             } else {
                 self.emptyView.isHidden = false
             }
-            
+
             if self.newActive {
                 self.activeBadgeView.isHidden = false
             } else {
                 self.activeBadgeView.isHidden = true
             }
-            self.serviceReadWithAPI()
+            group.leave()
         }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+
+        group.notify(queue: .main) {
+            self.serviceReadWithAPI()
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
+        }
     }
 }
 
@@ -235,11 +251,13 @@ extension NoticeVC: UICollectionViewDelegate {
                     activeLastID = activeList.last?.noticeID ?? 0
                     getActiveNoticeFetchWithAPI(lastID: activeLastID) {
                         self.isInfiniteScroll = true
+                        self.collectionView.reloadData()
                     }
                 } else {
                     serviceLastID = serviceList.last?.noticeID ?? 0
                     getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
                         self.isInfiniteScroll = true
+                        self.collectionView.reloadData()
                     }
                 }
             }
@@ -318,6 +336,7 @@ extension NoticeVC {
             switch response {
             case .success(let data):
                 if let active = data as? ActiveNotice {
+                    self.serviceList.removeAll()
                     self.newService = active.newService
                     self.activeList.append(contentsOf: active.notices)
                     self.collectionView.reloadData()
@@ -340,6 +359,7 @@ extension NoticeVC {
             switch response {
             case .success(let data):
                 if let service = data as? ServiceNotice {
+                    self.activeList.removeAll()
                     self.newActive = service.newActive
                     self.serviceList.append(contentsOf: service.notices)
                     self.collectionView.reloadData()
