@@ -14,7 +14,7 @@ public class NoticeAPI {
     static let shared = NoticeAPI()
     var noticeProvider = MoyaProvider<NoticeService>(plugins: [MoyaLoggerPlugin()])
     
-    public init() { }
+    private init() { }
     
     func activeFetch(lastID: Int, size: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
         noticeProvider.request(.activeFetch(lastID: lastID, size: size)) { result in

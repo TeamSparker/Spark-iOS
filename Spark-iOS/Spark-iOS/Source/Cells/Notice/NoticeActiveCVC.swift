@@ -62,7 +62,7 @@ class NoticeActiveCVC: UICollectionViewCell {
         bottomLineView.backgroundColor = .sparkGray.withAlphaComponent(0.3)
     }
     
-    func initCell(title: String, content: String, date: String, image: String, isThumbProfile: Bool, newService: Bool) {
+    func initCell(title: String, content: String, date: String, image: String, isThumbProfile: Bool, isNew: Bool) {
         titleLabel.text = title
         contentLabel.text = content
         dateLabel.text = date
@@ -74,7 +74,7 @@ class NoticeActiveCVC: UICollectionViewCell {
             contentImageView.layer.cornerRadius = 2
         }
         
-        if newService {
+        if isNew {
             self.backgroundColor = .sparkMostLightPinkred.withAlphaComponent(0.3)
         }
     }
