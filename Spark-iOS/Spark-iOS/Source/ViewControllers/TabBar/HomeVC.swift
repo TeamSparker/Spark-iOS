@@ -260,7 +260,8 @@ extension HomeVC: UICollectionViewDataSource {
                                   life: habitRoomList[indexPath.item].life ?? 0,
                                   status: habitRoomList[indexPath.item].myStatus ?? "NONE",
                                   memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
-                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0)
+                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0,
+                                  isUploaded: habitRoomList[indexPath.item].isUploaded)
                 
                 return habitCVC
             }
