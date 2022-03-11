@@ -87,6 +87,8 @@ class StorageVC: UIViewController {
     // MARK: - IBOutlet properties
     
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyViewUpperLabel: UILabel!
+    @IBOutlet weak var emptyViewLowerLabel: UILabel!
     
     // MARK: - View Life Cycle
     
@@ -313,6 +315,8 @@ extension StorageVC {
         doingLabel.textColor = .sparkDarkPinkred
         doneLabel.textColor = .sparkDarkGray
         failLabel.textColor = .sparkDarkGray
+        emptyViewUpperLabel.text = "아직 습관 카드가 없어요."
+        emptyViewLowerLabel.text = "인증과 함께 카드를 모아보세요!"
         makeDrawAboveButton(button: doingButton)
         
         doingCV.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
@@ -370,6 +374,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
+            emptyViewUpperLabel.text = "66일간의 습관 도전!"
+            emptyViewLowerLabel.text = "첫번째 성공을 이뤄내 보세요!"
             makeDrawAboveButton(button: doneButton)
             
             if completeRoomList?.count == 0 {
@@ -388,6 +394,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkPinkred
+            emptyViewUpperLabel.text = "미완료된 습관이 없네요."
+            emptyViewLowerLabel.text = "지금까지 아주 잘하고 있다는 증거!"
             makeDrawAboveButton(button: failButton)
             
             if failRoomList?.count == 0 {
@@ -406,6 +414,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkPinkred
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkGray
+            emptyViewUpperLabel.text = "아직 습관 카드가 없어요."
+            emptyViewLowerLabel.text = "인증과 함께 카드를 모아보세요!"
             makeDrawAboveButton(button: doingButton)
 
             if onGoingRoomList?.count == 0 {
