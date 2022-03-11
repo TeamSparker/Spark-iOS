@@ -9,10 +9,10 @@ import UIKit
 
 class CarouselLayout: UICollectionViewFlowLayout {
     
-    public var sideItemScale: CGFloat = 0.5
-    public var sideItemAlpha: CGFloat = 0.5
-    public var spacing: CGFloat = 10
-
+    public var sideItemScale: CGFloat = 464/520
+    public var sideItemAlpha: CGFloat = 0.4
+    public var spacing: CGFloat = 12
+    
     public var isPagingEnabled: Bool = false
     
     private var isSetup: Bool = false
@@ -42,6 +42,10 @@ class CarouselLayout: UICollectionViewFlowLayout {
         self.minimumLineSpacing = spacing - scaledItemOffset
 
         self.scrollDirection = .horizontal
+        
+        self.collectionView?.showsHorizontalScrollIndicator = false
+        
+        self.collectionView?.backgroundColor = .clear
     }
     
     public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {

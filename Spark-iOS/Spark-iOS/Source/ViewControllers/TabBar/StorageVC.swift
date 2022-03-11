@@ -28,61 +28,23 @@ class StorageVC: UIViewController {
     private var isInfiniteScroll: Bool = false
     private var tagCount: Int = 1
     
-    lazy var loadingBgView = UIImageView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
-    lazy var loadingTopView = UIView()
+    private lazy var loadingBgView = UIImageView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingTopView = UIView()
     
-    let doingButton = StatusButton()
-    let doneButton = StatusButton()
-    let failButton = StatusButton()
+    private let doingButton = StatusButton()
+    private let doneButton = StatusButton()
+    private let failButton = StatusButton()
     
-    let doingLabel = UILabel()
-    let doneLabel = UILabel()
-    let failLabel = UILabel()
+    private let doingLabel = UILabel()
+    private let doneLabel = UILabel()
+    private let failLabel = UILabel()
     
-    let usernameSparkLabel = UILabel()
+    private let usernameSparkLabel = UILabel()
     
-    var doingCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
-    
-    var doneCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
-    
-    var failCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
+    private let doingCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
+    private let doneCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
+    private let failCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
     
     // MARK: - IBOutlet properties
     
@@ -446,10 +408,6 @@ extension StorageVC {
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
-
-        layout.sideItemScale = 464/520
-        layout.spacing = 12
-        layout.sideItemAlpha = 0.4
         
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()
