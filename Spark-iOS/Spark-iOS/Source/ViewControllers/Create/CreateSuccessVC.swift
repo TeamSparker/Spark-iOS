@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Lottie
 
 class CreateSuccessVC: UIViewController {
     
@@ -16,7 +17,8 @@ class CreateSuccessVC: UIViewController {
     private let titleLabel = UILabel()
     private let guideLabel = UILabel()
     private let copyButton = UIButton()
-    private let wantImageView = UIImageView()
+    private let sparkFlakeImageView = UIImageView()
+    private let ticketLottieView = AnimationView(name: Const.Lottie.Name.ticketWelcome)
     private let homeButton = BottomButton().setUI(.white).setTitle("홈으로 가기")
     private let enterButton = BottomButton().setUI(.pink).setTitle("대기방 입장하기")
     
@@ -50,14 +52,21 @@ class CreateSuccessVC: UIViewController {
         guideLabel.textColor = .sparkDarkGray
         
         copyButton.setImage(UIImage(named: "btnSmall"), for: .normal)
+        sparkFlakeImageView.image = UIImage(named: "sparkflakePattern")
         
-        wantImageView.backgroundColor = .gray
+        setLottie()
     }
     
     private func setAddTarget() {
         copyButton.addTarget(self, action: #selector(copyToClipboard), for: .touchUpInside)
         homeButton.addTarget(self, action: #selector(touchHomeButton), for: .touchUpInside)
         enterButton.addTarget(self, action: #selector(touchEnterButton), for: .touchUpInside)
+    }
+    
+    private func setLottie() {
+        ticketLottieView.contentMode = .scaleAspectFit
+        ticketLottieView.loopMode = .loop
+        ticketLottieView.play()
     }
     
     // MARK: - @objc
@@ -117,7 +126,8 @@ extension CreateSuccessVC {
 extension CreateSuccessVC {
     private func setLayout() {
         view.addSubviews([titleLabel, guideLabel, copyButton,
-                         wantImageView, homeButton, enterButton])
+                         sparkFlakeImageView, ticketLottieView,
+                          homeButton, enterButton])
         
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -136,10 +146,17 @@ extension CreateSuccessVC {
             make.height.equalTo(36)
         }
         
-        wantImageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(300)
+        sparkFlakeImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(copyButton.snp.bottom).offset(28)
+            make.height.equalTo(sparkFlakeImageView.snp.width).multipliedBy(0.86)
+        }
+        
+        ticketLottieView.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(sparkFlakeImageView.snp.centerY).offset(-18)
+            make.width.equalTo(sparkFlakeImageView.snp.width).multipliedBy(0.6)
+            make.height.equalTo(ticketLottieView.snp.width).multipliedBy(0.7)
         }
         
         enterButton.snp.makeConstraints { make in
