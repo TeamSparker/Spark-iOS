@@ -273,6 +273,7 @@ extension AuthUploadVC {
         popupVC.nickName = authUpload.nickname
         popupVC.profileImage = authUpload.profileImg
         popupVC.timerCount = self.timerLabel.text
+        popupVC.leftDay = 66-authUpload.day
         
         popupVC.vcType = self.vcType
         popupVC.modalTransitionStyle = .crossDissolve

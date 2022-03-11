@@ -12,6 +12,7 @@
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
+		2B2D31B827DA68EE000EDD28 /* ServiceNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */; };
 		2B50C1A227D7752C004BED9C /* NoticeActiveCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */; };
 		2B50C1A427D77CA9004BED9C /* NoticeServiceCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */; };
 		2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D01527D3B2810060DA06 /* FeedReportVC.swift */; };
@@ -62,6 +63,9 @@
 		2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D817279330A6007A544D /* TimerAuthView.swift */; };
 		2BE65F4F27C39595005D370D /* RoomStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE65F4E27C39595005D370D /* RoomStartVC.swift */; };
 		2BE65F5127C3E34B005D370D /* RoomStart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE65F5027C3E34B005D370D /* RoomStart.storyboard */; };
+		2BE907DF27D9EE7D00B36002 /* NoticeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */; };
+		2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907E027D9EE9700B36002 /* NoticeService.swift */; };
+		2BE907E427D9F1BB00B36002 /* ActiveNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */; };
 		2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */; };
 		2BF3AB472794765F001A9042 /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB462794765F001A9042 /* RoomService.swift */; };
 		2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3AB48279479B8001A9042 /* RoomAPI.swift */; };
@@ -185,6 +189,7 @@
 		2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFooterView.swift; sourceTree = "<group>"; };
 		2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceNotice.swift; sourceTree = "<group>"; };
 		2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeActiveCVC.swift; sourceTree = "<group>"; };
 		2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeServiceCVC.swift; sourceTree = "<group>"; };
 		2B54D01527D3B2810060DA06 /* FeedReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReportVC.swift; sourceTree = "<group>"; };
@@ -236,6 +241,9 @@
 		2BE5D817279330A6007A544D /* TimerAuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAuthView.swift; sourceTree = "<group>"; };
 		2BE65F4E27C39595005D370D /* RoomStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStartVC.swift; sourceTree = "<group>"; };
 		2BE65F5027C3E34B005D370D /* RoomStart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoomStart.storyboard; sourceTree = "<group>"; };
+		2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeAPI.swift; sourceTree = "<group>"; };
+		2BE907E027D9EE9700B36002 /* NoticeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeService.swift; sourceTree = "<group>"; };
+		2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveNotice.swift; sourceTree = "<group>"; };
 		2BEA121C27BA1CB400B67756 /* HabitRoomMemberCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitRoomMemberCVC.swift; sourceTree = "<group>"; };
 		2BF3AB462794765F001A9042 /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
@@ -579,6 +587,24 @@
 				EB9C509727931E4600588155 /* AuthUploadVC.swift */,
 			);
 			path = AuthUpload;
+			sourceTree = "<group>";
+		};
+		2BE907DD27D9EE6800B36002 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				2BE907DE27D9EE7D00B36002 /* NoticeAPI.swift */,
+				2BE907E027D9EE9700B36002 /* NoticeService.swift */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		2BE907E227D9F10E00B36002 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */,
+				2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */,
+			);
+			path = Notice;
 			sourceTree = "<group>";
 		};
 		2BF3AB42279475B9001A9042 /* Room */ = {
@@ -959,6 +985,7 @@
 			isa = PBXGroup;
 			children = (
 				F82F58052792897B003E4174 /* Plugin */,
+				2BE907DD27D9EE6800B36002 /* Notice */,
 				F8E3496627969B4F001B67E7 /* Auth */,
 				F82F5806279289AC003E4174 /* Home */,
 				2BF3AB42279475B9001A9042 /* Room */,
@@ -974,6 +1001,7 @@
 			children = (
 				F82F57FA27928437003E4174 /* NetworkResult.swift */,
 				F82F57FC2792847D003E4174 /* GenericResponse.swift */,
+				2BE907E227D9F10E00B36002 /* Notice */,
 				F8E3496B2796B7DF001B67E7 /* Auth */,
 				F82F5800279287EC003E4174 /* Home */,
 				2BF3AB4A27947C3A001A9042 /* Room */,
@@ -1375,6 +1403,7 @@
 				EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */,
 				F8D4497227BE46670091F297 /* LeftRightButtonsNavigationBar.swift in Sources */,
 				2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */,
+				2BE907E427D9F1BB00B36002 /* ActiveNotice.swift in Sources */,
 				F8F6D6F7279735BF00725537 /* HabitRoomVC.swift in Sources */,
 				EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */,
 				2BAF156327D4A0CA00DE4190 /* NoticeUpdateHeaderView.swift in Sources */,
@@ -1388,6 +1417,7 @@
 				EBEA382F27947C9E00B5736A /* MyRoomService.swift in Sources */,
 				2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */,
 				2BBED13527956EAB0052CA5C /* FeedAPI.swift in Sources */,
+				2BE907DF27D9EE7D00B36002 /* NoticeAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F82F580C27929F74003E4174 /* Header.swift in Sources */,
 				EBA2D6D4279AB50D0022DFD6 /* ViewForRender.swift in Sources */,
@@ -1410,6 +1440,7 @@
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
 				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
+				2B2D31B827DA68EE000EDD28 /* ServiceNotice.swift in Sources */,
 				F8250CFC27D483E70073FFCA /* Profile.swift in Sources */,
 				2BC17270278F54DB00BA3029 /* WaitingVC.swift in Sources */,
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
@@ -1464,6 +1495,7 @@
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
+				2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,

@@ -15,8 +15,9 @@ class NoticeVC: UIViewController {
     
     private let headerView = UIView()
     private let activeButton = UIButton() // 스파커 활동
-    private let noticeButton = UIButton() // 안내
-    private let noticeBadgeView = UIView()
+    private let serviceButton = UIButton() // 안내
+    private let activeBadgeView = UIView()
+    private let serviceBadgeView = UIView()
     private let emptyView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyLabel = UILabel()
@@ -25,14 +26,16 @@ class NoticeVC: UIViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     private var customNavigationBar = LeftButtonNavigaitonBar()
     private var isActivity: Bool = true
+    private var isInfiniteScroll: Bool = true
+    private var activeLastID: Int = -1
+    private var activeCountSize: Int = 10
+    private var serviceLastID: Int = -1
+    private var serviceCountSize: Int = 10
     
-    // MARK: - DummyData
-    
-    let titleList = ["방방방방방방방방방방방방방방방방에서 보낸 스파크", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!", "가나다라마바사아자차카타파하가님이 좋아한 피드", "세은님 고민중..💭", "아침 독서방 인원 변동 🚨", "센님의 인증 완료!"]
-    let contentList = ["수아 : 💬 가나다라마바사아자차카타파하가", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요.", "가나다라마바사아자차카타파하가방 인증을 좋아해요.", "10분 독서, 오늘 좀 힘든걸? 스파크 plz", "가나다라마바사아자차카타파님이 습관방에서 나갔어요.", "10분 독서방 인증을 완료했어요."]
-    
-    let secondTitleList = ["새로운 습관 시작 🔥", "가나다라마바사아자차카타파하가 대기방 삭제"]
-    let secontContentList = ["가나다라마바사아자차카타파하방에서 가장 먼저 스파크를 보내볼까요?", "방 개설자에 의해 대기방이 삭제되었어요."]
+    private var activeList: [Active] = []
+    private var serviceList: [Service] = []
+    private var newService: Bool = false
+    private var newActive: Bool = false
     
     // MARK: - View Life Cycles
 
@@ -47,6 +50,21 @@ class NoticeVC: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
             self.makeDrawAboveButton(button: self.activeButton)
+        }
+        
+        getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+            if self.activeList.isEmpty {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+            }
+            
+            if self.newService {
+                self.serviceBadgeView.isHidden = false
+            } else {
+                self.serviceBadgeView.isHidden = true
+            }
+            self.activeReadWithAPI()
         }
     }
     
@@ -71,16 +89,21 @@ class NoticeVC: UIViewController {
         activeButton.titleLabel?.font = .h3Subtitle
         activeButton.isSelected = true
         
-        noticeButton.setTitle("안내", for: .normal)
-        noticeButton.setTitleColor(.sparkDarkPinkred, for: .selected)
-        noticeButton.setTitleColor(.sparkDarkGray, for: .normal)
-        noticeButton.titleLabel?.font = .h3Subtitle
+        serviceButton.setTitle("안내", for: .normal)
+        serviceButton.setTitleColor(.sparkDarkPinkred, for: .selected)
+        serviceButton.setTitleColor(.sparkDarkGray, for: .normal)
+        serviceButton.titleLabel?.font = .h3Subtitle
         
         activeButton.tag = 1
-        noticeButton.tag = 2
+        serviceButton.tag = 2
         
-        noticeBadgeView.backgroundColor = .sparkDarkPinkred
-        noticeBadgeView.layer.cornerRadius = 3
+        serviceBadgeView.backgroundColor = .sparkDarkPinkred
+        serviceBadgeView.layer.cornerRadius = 3
+        serviceBadgeView.isHidden = true
+        
+        activeBadgeView.backgroundColor = .sparkDarkPinkred
+        activeBadgeView.layer.cornerRadius = 3
+        activeBadgeView.isHidden = true
     }
     
     private func setEmptyView() {
@@ -110,7 +133,7 @@ class NoticeVC: UIViewController {
     
     private func setAddTarget() {
         activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
-        noticeButton.addTarget(self, action: #selector(touchNoticeButton), for: .touchUpInside)
+        serviceButton.addTarget(self, action: #selector(touchServiceButton), for: .touchUpInside)
     }
 
     private func popToHomeVC() {
@@ -146,23 +169,69 @@ class NoticeVC: UIViewController {
     @objc
     private func touchActiveButton() {
         activeButton.isSelected = true
-        noticeButton.isSelected = false
+        serviceButton.isSelected = false
+        activeBadgeView.isHidden = true
         makeDrawAboveButton(button: activeButton)
         
         isActivity = true
-        collectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+        activeLastID = -1
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+            if self.activeList.isEmpty {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+            }
+            
+            if self.newService {
+                self.serviceBadgeView.isHidden = false
+            } else {
+                self.serviceBadgeView.isHidden = true
+            }
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.activeReadWithAPI()
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+        }
     }
     
     @objc
-    private func touchNoticeButton() {
+    private func touchServiceButton() {
         activeButton.isSelected = false
-        noticeButton.isSelected = true
-        makeDrawAboveButton(button: noticeButton)
+        serviceButton.isSelected = true
+        serviceBadgeView.isHidden = true
+        makeDrawAboveButton(button: serviceButton)
         
         isActivity = false
-        collectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+        serviceLastID = -1
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
+            if self.serviceList.isEmpty {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+            }
+
+            if self.newActive {
+                self.activeBadgeView.isHidden = false
+            } else {
+                self.activeBadgeView.isHidden = true
+            }
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.serviceReadWithAPI()
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+        }
     }
 }
 
@@ -172,6 +241,28 @@ extension NoticeVC: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            if isInfiniteScroll {
+                isInfiniteScroll = false
+                
+                if isActivity {
+                    activeLastID = activeList.last?.noticeID ?? 0
+                    getActiveNoticeFetchWithAPI(lastID: activeLastID) {
+                        self.isInfiniteScroll = true
+                        self.collectionView.reloadData()
+                    }
+                } else {
+                    serviceLastID = serviceList.last?.noticeID ?? 0
+                    getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
+                        self.isInfiniteScroll = true
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource() {
@@ -179,9 +270,9 @@ extension NoticeVC: UICollectionViewDelegate {
 extension NoticeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isActivity {
-            return titleList.count
+            return activeList.count
         } else {
-            return secondTitleList.count
+            return serviceList.count
         }
     }
 
@@ -189,13 +280,13 @@ extension NoticeVC: UICollectionViewDataSource {
         if isActivity {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.noticeActiveCVC, for: indexPath) as? NoticeActiveCVC else { return UICollectionViewCell() }
             
-            cell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            cell.initCell(title: activeList[indexPath.item].noticeTitle, content: activeList[indexPath.item].noticeContent, date: activeList[indexPath.item].day, image: activeList[indexPath.item].noticeImg, isThumbProfile: activeList[indexPath.item].isThumbProfile, isNew: activeList[indexPath.item].isNew)
             
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.noticeServiceCVC, for: indexPath) as? NoticeServiceCVC else { return UICollectionViewCell() }
             
-            cell.initCell(title: secondTitleList[indexPath.row], content: secontContentList[indexPath.row], date: "1일 전")
+            cell.initCell(title: serviceList[indexPath.item].noticeTitle, content: serviceList[indexPath.item].noticeContent, date: serviceList[indexPath.item].day, isNew: serviceList[indexPath.item].isNew)
             
             return cell
         }
@@ -210,7 +301,7 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
         if isActivity {
             let dummyCell = NoticeActiveCVC(frame: CGRect(x: 0, y: 0, width: width, height: estimatedHeight))
             
-            dummyCell.initCell(title: titleList[indexPath.row], content: contentList[indexPath.row], date: "오늘", image: "")
+            dummyCell.initCell(title: activeList[indexPath.item].noticeTitle, content: activeList[indexPath.item].noticeContent, date: activeList[indexPath.item].day, image: activeList[indexPath.item].noticeImg, isThumbProfile: activeList[indexPath.item].isThumbProfile, isNew: activeList[indexPath.item].isNew)
             dummyCell.layoutIfNeeded()
             
             let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: width, height: estimatedHeight))
@@ -219,7 +310,7 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
         } else {
             let dummyCell = NoticeServiceCVC(frame: CGRect(x: 0, y: 0, width: width, height: estimatedHeight))
             
-            dummyCell.initCell(title: secondTitleList[indexPath.row], content: secontContentList[indexPath.row], date: "1일 전")
+            dummyCell.initCell(title: serviceList[indexPath.item].noticeTitle, content: serviceList[indexPath.item].noticeContent, date: serviceList[indexPath.item].day, isNew: serviceList[indexPath.item].isNew)
             dummyCell.layoutIfNeeded()
             
             let estimatedSize = dummyCell.systemLayoutSizeFitting(CGSize(width: width, height: estimatedHeight))
@@ -239,12 +330,94 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
 
 // MARK: - Network
 
+extension NoticeVC {
+    private func getActiveNoticeFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
+        NoticeAPI.shared.activeFetch(lastID: lastID, size: activeCountSize) { response in
+            switch response {
+            case .success(let data):
+                if let active = data as? ActiveNotice {
+                    self.serviceList.removeAll()
+                    self.newService = active.newService
+                    self.activeList.append(contentsOf: active.notices)
+                    self.collectionView.reloadData()
+                }
+                completion()
+            case .requestErr(let message):
+                print("getActiveNoticeFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getActiveNoticeFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getActiveNoticeFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getActiveNoticeFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func getServiceNoticeFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
+        NoticeAPI.shared.serviceFetch(lastID: lastID, size: serviceCountSize) { response in
+            switch response {
+            case .success(let data):
+                if let service = data as? ServiceNotice {
+                    self.activeList.removeAll()
+                    self.newActive = service.newActive
+                    self.serviceList.append(contentsOf: service.notices)
+                    self.collectionView.reloadData()
+                }
+                completion()
+            case .requestErr(let message):
+                print("getServiceNoticeFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getServiceNoticeFetchWithAPI - pathErr")
+            case .serverErr:
+                print("getServiceNoticeFetchWithAPI - serverErr")
+            case .networkFail:
+                print("getServiceNoticeFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func activeReadWithAPI() {
+        NoticeAPI.shared.activeRead { response in
+            switch response {
+            case .success(let message):
+                print("activeReadWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("activeReadWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("activeReadWithAPI - pathErr")
+            case .serverErr:
+                print("activeReadWithAPI - serverErr")
+            case .networkFail:
+                print("activeReadWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func serviceReadWithAPI() {
+        NoticeAPI.shared.serviceRead { response in
+            switch response {
+            case .success(let message):
+                print("serviceReadWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("serviceReadWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("serviceReadWithAPI - pathErr")
+            case .serverErr:
+                print("serviceReadWithAPI - serverErr")
+            case .networkFail:
+                print("serviceReadWithAPI - networkFail")
+            }
+        }
+    }
+}
+
 // MARK: - Layout
 
 extension NoticeVC {
     private func setLayout() {
         view.addSubviews([customNavigationBar, headerView, collectionView, emptyView])
-        headerView.addSubviews([activeButton, noticeButton, noticeBadgeView])
+        headerView.addSubviews([activeButton, serviceButton, serviceBadgeView, activeBadgeView])
         emptyView.addSubviews([emptyImageView, emptyLabel])
         
         customNavigationBar.snp.makeConstraints { make in
@@ -269,15 +442,21 @@ extension NoticeVC {
             make.top.equalToSuperview().inset(26)
         }
         
-        noticeButton.snp.makeConstraints { make in
+        serviceButton.snp.makeConstraints { make in
             make.leading.equalTo(activeButton.snp.trailing).offset(32)
             make.centerY.equalTo(activeButton.snp.centerY)
         }
         
-        noticeBadgeView.snp.makeConstraints { make in
+        serviceBadgeView.snp.makeConstraints { make in
             make.width.height.equalTo(6)
-            make.bottom.equalTo(noticeButton.snp.top).offset(12)
-            make.leading.equalTo(noticeButton.snp.trailing)
+            make.bottom.equalTo(serviceButton.snp.top).offset(12)
+            make.leading.equalTo(serviceButton.snp.trailing)
+        }
+        
+        activeBadgeView.snp.makeConstraints { make in
+            make.width.height.equalTo(6)
+            make.bottom.equalTo(activeButton.snp.top).offset(12)
+            make.leading.equalTo(activeButton.snp.trailing)
         }
         
         emptyView.snp.makeConstraints { make in
