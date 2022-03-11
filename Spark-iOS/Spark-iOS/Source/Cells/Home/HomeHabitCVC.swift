@@ -105,6 +105,14 @@ extension HomeHabitCVC {
         habitTitleLabel.numberOfLines = 2
         habitTitleLabel.lineBreakMode = .byTruncatingTail
         
+        lifeTextLabel.text = "우리 팀의 생명"
+        lifeTextLabel.textColor = .sparkDarkGray
+        lifeTextLabel.font = .caption
+        
+        completePeopleLabel.text = "완료한 사람"
+        completePeopleLabel.textColor = .sparkDarkGray
+        completePeopleLabel.font = .caption
+        
         tagImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
