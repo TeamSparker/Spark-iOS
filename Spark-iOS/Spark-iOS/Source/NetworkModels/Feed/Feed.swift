@@ -24,11 +24,12 @@ struct Record: Codable {
     let sparkCount: Int
     var isLiked: Bool
     let timerRecord: String?
+    let isMyRecord: Bool
 
     enum CodingKeys: String, CodingKey {
         case date, day
         case userID = "userId"
         case recordID = "recordId"
-        case nickname, profileImg, certifyingImg, likeNum, sparkCount, isLiked, timerRecord, roomName
+        case nickname, profileImg, certifyingImg, likeNum, sparkCount, isLiked, timerRecord, roomName, isMyRecord
     }
 }
