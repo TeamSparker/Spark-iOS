@@ -210,7 +210,7 @@ public class SparkFlake {
         case .day32:
             return  """
                     이제 반도 안 남았으니,
-                    점점 습관으로 자리잡고 있겠는 걸요?
+                    점점 습관으로 자리잡고 있겠는걸요?
                     """
         case .day6:
             return  """
