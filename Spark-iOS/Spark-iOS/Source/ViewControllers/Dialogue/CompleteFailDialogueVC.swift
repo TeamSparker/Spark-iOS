@@ -16,7 +16,7 @@ class CompleteFailDialogueVC: UIViewController {
     
     private let bgView = UIView()
     private let sparkFlakePatternImageView = UIImageView()
-    private let lottieView = AnimationView(name: "")
+    private let lottieView = AnimationView(name: Const.Lottie.Name.ticketWelcome)
     private let titleLabel = UILabel()
     private let subtitleLable = UILabel()
     private let button = UIButton()
@@ -41,11 +41,13 @@ extension CompleteFailDialogueVC {
         self.view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         
         bgView.backgroundColor = .sparkWhite
+        bgView.layer.cornerRadius = 2
         
         lottieView.loopMode = .loop
         lottieView.contentMode = .scaleAspectFit
+        lottieView.play()
         
-        sparkFlakePatternImageView.image = UIImage(named: "sparkflakePattern")
+        sparkFlakePatternImageView.image = UIImage(named: "sparkflakePattern2")
         
         titleLabel.textColor = .sparkPinkred
         titleLabel.font = .enMediumItatlicFont(ofSize: 24.0)
@@ -88,6 +90,7 @@ extension CompleteFailDialogueVC {
         
         bgView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
             $0.height.equalTo(bgView.snp.width).multipliedBy(396 / 335)
         }
         
@@ -100,6 +103,8 @@ extension CompleteFailDialogueVC {
         
         lottieView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
+            $0.leading.trailing.equalToSuperview().inset(46)
+            $0.height.equalTo(lottieView.snp.width).multipliedBy(335 / 396)
             $0.centerX.equalToSuperview()
         }
         
@@ -116,7 +121,7 @@ extension CompleteFailDialogueVC {
         button.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(28)
             $0.leading.trailing.equalToSuperview().inset(106)
-            $0.height.equalTo(button.snp.width).multipliedBy(48 * 123)
+            $0.height.equalTo(button.snp.width).multipliedBy(48 / 123)
         }
     }
     
