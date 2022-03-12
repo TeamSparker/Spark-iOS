@@ -102,6 +102,10 @@
 		EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */; };
 		EBA93A82279082A5009AE771 /* CodeJoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A81279082A5009AE771 /* CodeJoin.storyboard */; };
 		EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA93A83279082B0009AE771 /* JoinCheck.storyboard */; };
+		EBD0D09927DC36BC0007E5AF /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09827DC36BC0007E5AF /* OnboardingVC.swift */; };
+		EBD0D09C27DC3A380007E5AF /* OnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */; };
+		EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */; };
+		EBD0D0A127DC444F0007E5AF /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
@@ -282,6 +286,10 @@
 		EBA93A7E279080E2009AE771 /* JoinCheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCheckVC.swift; sourceTree = "<group>"; };
 		EBA93A81279082A5009AE771 /* CodeJoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CodeJoin.storyboard; sourceTree = "<group>"; };
 		EBA93A83279082B0009AE771 /* JoinCheck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinCheck.storyboard; sourceTree = "<group>"; };
+		EBD0D09827DC36BC0007E5AF /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVC.swift; sourceTree = "<group>"; };
+		EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVCViewModel.swift; sourceTree = "<group>"; };
+		EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
 		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
@@ -787,6 +795,32 @@
 			path = CodeJoin;
 			sourceTree = "<group>";
 		};
+		EBD0D09527DC36730007E5AF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EBD0D09827DC36BC0007E5AF /* OnboardingVC.swift */,
+				EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */,
+			);
+			name = Onboarding;
+			path = Splash/Onboarding;
+			sourceTree = "<group>";
+		};
+		EBD0D09A27DC3A110007E5AF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EBD0D09F27DC44390007E5AF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		EBEA3819279441BD00B5736A /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +948,7 @@
 			children = (
 				F8096F0E2784107E00B71D38 /* LaunchScreen.storyboard */,
 				F82B2E0F278F54B000219628 /* Splash */,
+				EBD0D09F27DC44390007E5AF /* Onboarding */,
 				2BAF155B27D4928A00DE4190 /* Notice */,
 				F816F120278E1C550008ED00 /* Login */,
 				F80A3E59278C239F00728E07 /* TabBar */,
@@ -954,6 +989,7 @@
 			isa = PBXGroup;
 			children = (
 				F82B2E10278F54C200219628 /* Splash */,
+				EBD0D09527DC36730007E5AF /* Onboarding */,
 				2BAF155E27D492B500DE4190 /* Notice */,
 				F816F123278E1C800008ED00 /* Login */,
 				2BC1726E278F54B300BA3029 /* Waiting */,
@@ -1031,6 +1067,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EBD0D09A27DC3A110007E5AF /* Onboarding */,
 				2BAF156127D49D4B00DE4190 /* Notice */,
 				F8F6D6F82797525700725537 /* HabitRoom */,
 				F8FAA96B2790336E00C4190F /* Home */,
@@ -1280,6 +1317,7 @@
 				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
 				F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
+				EBD0D0A127DC444F0007E5AF /* Onboarding.storyboard in Resources */,
 				F816F122278E1C760008ED00 /* Login.storyboard in Resources */,
 				EBEA382327945F5A00B5736A /* icHeartActive.json in Resources */,
 				2BA98FB427CB451000C53820 /* HabitRoomLeave.storyboard in Resources */,
@@ -1430,6 +1468,7 @@
 				2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */,
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
+				EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */,
 				F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */,
@@ -1483,6 +1522,7 @@
 				F82F57FB27928437003E4174 /* NetworkResult.swift in Sources */,
 				F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */,
 				F8D4496C27BDE2D60091F297 /* SparkNavigationBar.swift in Sources */,
+				EBD0D09C27DC3A380007E5AF /* OnboardingCVC.swift in Sources */,
 				2BEA121D27BA1CB400B67756 /* HabitRoomMemberCVC.swift in Sources */,
 				F82F5802279287FD003E4174 /* HabitRoom.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
@@ -1491,6 +1531,7 @@
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
 				F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */,
+				EBD0D09927DC36BC0007E5AF /* OnboardingVC.swift in Sources */,
 				F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */,
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,

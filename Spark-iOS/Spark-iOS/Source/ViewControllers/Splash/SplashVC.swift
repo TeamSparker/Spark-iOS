@@ -55,17 +55,14 @@ class SplashVC: UIViewController {
          super.viewWillAppear(animated)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            if self.appDelegate?.isLogin == true {
+            if self.appDelegate?.isLogin == false {
                 self.presentToMainTBC()
             } else {
-
-                // FIXME: - 온보딩 만들면 적용하기
-
-//                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
+                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
                     self.presentToLogin()
-//                } else {
-//                    self.presentToOnboarding()
-//                }
+                } else {
+                    self.presentToOnboarding()
+                }
             }
         }
     }
@@ -115,9 +112,11 @@ extension SplashVC {
         loginVC.modalTransitionStyle = .crossDissolve
         self.present(loginVC, animated: true, completion: nil)
     }
-    
-    // TODO: - 온보딩 뷰 화면전환
-    
+
     private func presentToOnboarding() {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.onboarding) as? OnboardingVC else { return }
+        nextVC.modalPresentationStyle = .fullScreen
+        
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
