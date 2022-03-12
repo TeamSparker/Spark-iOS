@@ -211,16 +211,8 @@ class FeedVC: UIViewController {
     }
     
     @objc
-    private func setToastMessage(_ notification: NSNotification) {
-        guard let didReport: Bool = notification.userInfo?["didReport"] as? Bool else { return }
-        var message: String = ""
-        
-        if didReport {
-            message = "이미 신고된 피드입니다."
-        } else {
-            message = "신고 접수가 완료되었어요."
-        }
-        
+    private func setToastMessage() {
+        let message: String = "신고 접수가 완료되었어요."
         self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
     }
 }
@@ -364,7 +356,7 @@ extension FeedVC: UICollectionViewDataSource {
                 alist = firstList[indexPath.item]
             }
             
-            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath)
+            cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath, isMyRecord: alist.isMyRecord)
             cell.buttonDelegate = self
             return cell
         } else {

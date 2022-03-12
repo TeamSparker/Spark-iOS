@@ -39,6 +39,7 @@ extension Const {
             static let mypage = "MypageVC"
             static let feedReport = "FeedReportVC"
             static let editProfile = "EditProfileVC"
+            static let notice = "NoticeVC"
             static let completeFailDialogue = "CompleteFailDialogueVC"
         }
     }

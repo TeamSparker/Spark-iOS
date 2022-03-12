@@ -96,7 +96,7 @@ class FeedReportVC: UIViewController {
     }
     
     private func postNotification() {
-        NotificationCenter.default.post(name: .feedReport, object: nil, userInfo: ["didReport": didReport ?? false])
+        NotificationCenter.default.post(name: .feedReport, object: nil)
     }
     
     // MARK: - @objc
@@ -157,13 +157,9 @@ extension FeedReportVC {
         FeedAPI.shared.postFeedReport(recordID: recordID ?? 0, content: content) { response in
             switch response {
             case .success:
-                self.didReport = false
                 self.navigationController?.popViewController(animated: true)
                 self.postNotification()
             case .requestErr(let message):
-                self.didReport = true
-                self.navigationController?.popViewController(animated: true)
-                self.postNotification()
                 print("postFeedReportWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("postFeedReportWithAPI - pathErr")
