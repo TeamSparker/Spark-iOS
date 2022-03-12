@@ -31,7 +31,6 @@ class OnboardingCVC: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .sparkGray
         return iv
     }()
     
@@ -53,6 +52,7 @@ class OnboardingCVC: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         guideLabel.attributedText = viewModel.guideText
+        illustImageView.image = viewModel.illustImage
     }
     
     private func setLayout() {
@@ -60,12 +60,13 @@ class OnboardingCVC: UICollectionViewCell {
         
         guideLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(144)
+            make.top.equalToSuperview().offset(191)
         }
         
         illustImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(37)
-            make.top.equalTo(guideLabel.snp.bottom).offset(60)
+            make.top.equalTo(guideLabel.snp.bottom).offset(83)
+            make.height.equalTo(illustImageView.snp.width)
         }
     }
     

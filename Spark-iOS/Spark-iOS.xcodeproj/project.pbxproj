@@ -809,7 +809,6 @@
 			isa = PBXGroup;
 			children = (
 				EBD0D09827DC36BC0007E5AF /* OnboardingVC.swift */,
-				EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */,
 			);
 			name = Onboarding;
 			path = Splash/Onboarding;
@@ -819,6 +818,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */,
+				EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";

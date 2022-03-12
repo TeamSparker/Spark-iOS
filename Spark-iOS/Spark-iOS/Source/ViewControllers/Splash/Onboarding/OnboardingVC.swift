@@ -57,6 +57,7 @@ class OnboardingVC: UIViewController {
         cv.showsHorizontalScrollIndicator = false
         cv.isPagingEnabled = true
         cv.backgroundColor = .clear
+        
         return cv
     }()
     
@@ -96,20 +97,24 @@ class OnboardingVC: UIViewController {
         setCollectionView()
         setDelegate()
     }
-    
-    // MARK: Methods
-    
+}
+
+// MARK: Methods
+
+extension OnboardingVC {
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
+
     private func setCollectionView() {
         collectionView.register(OnboardingCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.onboardingCVC)
     }
-    
-    // MARK: @objc Methods
-    
+}
+
+// MARK: @objc Methods
+
+extension OnboardingVC {
     @objc
     private func tapSkipToEnd() {
         sparkStartButtonHidden = true
@@ -119,7 +124,7 @@ class OnboardingVC: UIViewController {
             self.sparkStartButtonHidden = false
         }
     }
-    
+
     @objc
     private func presentToLogin() {
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
@@ -189,17 +194,17 @@ extension OnboardingVC {
             make.leading.equalToSuperview().offset(20)
         }
         
+        pageControl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(skipButton.snp.centerY)
+        }
+        
         backgroundImageView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
-        }
-        
-        pageControl.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(108)
         }
         
         sparkStartButton.snp.makeConstraints { make in
