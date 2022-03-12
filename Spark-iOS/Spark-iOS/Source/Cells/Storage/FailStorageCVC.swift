@@ -44,7 +44,11 @@ class FailStorageCVC: UICollectionViewCell {
         let endDate = endDate.split(separator: "-")
         dateLabel.text = "\(startDate[0]).\(startDate[1]).\(startDate[2]) - \(endDate[0]).\(endDate[1]).\(endDate[2])"
         
-        dDayLabel.text = "\(failDay) DAYS"
+        if failDay == 1 {
+            dDayLabel.text = "\(failDay) DAY"
+        } else {
+            dDayLabel.text = "\(failDay) DAYS"
+        }
         
         thumbnailImage.updateImage(thumbnail, type: .large)
     }

@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="NotoSansKR-Bold.otf">
+            <string>NotoSansKR-Bold</string>
+        </array>
         <array key="NotoSansKR-Regular.otf">
             <string>NotoSansKR-Regular</string>
         </array>
@@ -27,11 +30,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlI-kd-tu0">
-                                <rect key="frame" x="20" y="371.5" width="374" height="145.5"/>
+                                <rect key="frame" x="20" y="372" width="374" height="144.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 습관 카드가 없어요. 인증과 함께 카드를 모아보세요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-OR-VCJ">
-                                        <rect key="frame" x="70.5" y="93" width="233.5" height="52.5"/>
-                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 습관 카드가 없어요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDT-OR-VCJ">
+                                        <rect key="frame" x="93.5" y="93" width="187" height="26.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
                                         <color key="textColor" name="sparkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -42,14 +45,23 @@
                                             <constraint firstAttribute="height" constant="80" id="Zx9-d4-9Ob"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인증과 함께 카드를 모아보세요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qp-9H-vKW">
+                                        <rect key="frame" x="69" y="118" width="236.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
+                                        <color key="textColor" name="sparkGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="8qp-9H-vKW" firstAttribute="centerX" secondItem="DDT-OR-VCJ" secondAttribute="centerX" id="6HI-ff-Yhr"/>
+                                    <constraint firstItem="8qp-9H-vKW" firstAttribute="top" secondItem="DDT-OR-VCJ" secondAttribute="bottom" constant="-1.5" id="72L-f4-tWI"/>
                                     <constraint firstItem="dcc-Qq-aE1" firstAttribute="centerX" secondItem="JlI-kd-tu0" secondAttribute="centerX" id="Mhf-nQ-UPq"/>
+                                    <constraint firstItem="8qp-9H-vKW" firstAttribute="top" secondItem="dcc-Qq-aE1" secondAttribute="bottom" constant="38" id="WKb-ig-ruk"/>
+                                    <constraint firstAttribute="bottom" secondItem="8qp-9H-vKW" secondAttribute="bottom" id="faH-cX-gwa"/>
                                     <constraint firstItem="DDT-OR-VCJ" firstAttribute="centerX" secondItem="JlI-kd-tu0" secondAttribute="centerX" id="rBh-Mu-lvZ"/>
                                     <constraint firstItem="DDT-OR-VCJ" firstAttribute="top" secondItem="dcc-Qq-aE1" secondAttribute="bottom" constant="13" id="tfz-fi-KfS"/>
                                     <constraint firstItem="dcc-Qq-aE1" firstAttribute="top" secondItem="JlI-kd-tu0" secondAttribute="top" id="wlm-lu-EVZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="DDT-OR-VCJ" secondAttribute="bottom" id="x00-Xr-NJq"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzV-np-QNI">
@@ -78,6 +90,8 @@
                     </view>
                     <connections>
                         <outlet property="emptyView" destination="JlI-kd-tu0" id="PyM-uF-thr"/>
+                        <outlet property="emptyViewLowerLabel" destination="8qp-9H-vKW" id="l0D-ZW-qYY"/>
+                        <outlet property="emptyViewUpperLabel" destination="DDT-OR-VCJ" id="M6Z-VH-pmO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
