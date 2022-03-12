@@ -44,7 +44,7 @@ class OnboardingVC: UIViewController {
         button.setTitleColor(.sparkGray, for: .normal)
         button.setTitle("Skip", for: .normal)
         button.titleLabel?.font = .h3Subtitle
-//        button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapSkipToEnd), for: .touchUpInside)
         return button
     }()
     
@@ -99,7 +99,21 @@ class OnboardingVC: UIViewController {
     private func setCollectionView() {
         collectionView.register(OnboardingCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.onboardingCVC)
     }
+    
+    // MARK: @objc Methods
+    
+    @objc
+    private func tapSkipToEnd() {
+        sparkStartButtonHidden = true
+        collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .right, animated: true)
+        currentPage = 3
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.sparkStartButtonHidden = false
+        }
+    }
 }
+
+// MARK: UICollectionViewDataSource
 
 extension OnboardingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -113,6 +127,8 @@ extension OnboardingVC: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: UICollectionViewDelegate
 
 extension OnboardingVC: UICollectionViewDelegate {
     // 스크롤이 애니메이션이 끝나기 전에 목표지를 예상해주는 메서드 - 페이지컨트롤의 자연스러운 전환을 위해 사용
@@ -140,6 +156,8 @@ extension OnboardingVC: UICollectionViewDelegate {
         }
     }
 }
+
+// MARK: UI & Layout
 
 extension OnboardingVC {
     private func setUI() {
