@@ -15,15 +15,14 @@ class OnboardingVC: UIViewController {
     
     private var sparkStartButtonHidden: Bool = false {
         didSet {
-            guard let cell = collectionView.cellForItem(at: IndexPath(item: 3, section: 0)) as? OnboardingCVC else { return }
             if sparkStartButtonHidden == false {
-                cell.sparkStartButton.isHidden = false
-                cell.sparkStartButton.alpha = 0
+                sparkStartButton.isHidden = false
+                sparkStartButton.alpha = 0
                 UIView.animate(withDuration: 0.3) {
-                    cell.sparkStartButton.alpha = 1
+                    self.sparkStartButton.alpha = 1
                 }
             } else {
-                cell.sparkStartButton.isHidden = true
+                sparkStartButton.isHidden = true
             }
         }
     }
@@ -78,6 +77,15 @@ class OnboardingVC: UIViewController {
         return pc
     }()
     
+    private lazy var sparkStartButton: BottomButton = {
+        let bt = BottomButton()
+        bt.setUI(.pink)
+            .setTitle("스파크 시작하기")
+        bt.addTarget(self, action: #selector(presentToLogin), for: .touchUpInside)
+        bt.isHidden = true
+        return bt
+    }()
+    
     // MARK: View Life Cycle
     
     override func viewDidLoad() {
@@ -111,6 +119,14 @@ class OnboardingVC: UIViewController {
             self.sparkStartButtonHidden = false
         }
     }
+    
+    @objc
+    private func presentToLogin() {
+        guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+        loginVC.modalPresentationStyle = .fullScreen
+        loginVC.modalTransitionStyle = .crossDissolve
+        self.present(loginVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -140,9 +156,8 @@ extension OnboardingVC: UICollectionViewDelegate {
     // 스크롤이 시작되면 호출되는 메서드 - 버튼이 바로 사라지도록 하기 위해 사용
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if !sparkStartButtonHidden {
-            guard let cell = collectionView.cellForItem(at: IndexPath(item: 3, section: 0)) as? OnboardingCVC else { return }
-            UIView.animate(withDuration: 0.05) {
-                cell.sparkStartButton.alpha = 0
+            UIView.animate(withDuration: 0.03) {
+                self.sparkStartButton.alpha = 0
             }
         }
     }
@@ -167,7 +182,7 @@ extension OnboardingVC {
     }
     
     private func setLayout() {
-        view.addSubviews([backgroundImageView, collectionView, pageControl, skipButton])
+        view.addSubviews([backgroundImageView, collectionView, pageControl, skipButton, sparkStartButton])
         
         skipButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(61)
@@ -185,6 +200,11 @@ extension OnboardingVC {
         pageControl.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(108)
+        }
+        
+        sparkStartButton.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
 }
