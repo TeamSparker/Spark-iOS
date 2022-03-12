@@ -48,8 +48,22 @@ struct OnboardingCVCViewModel {
         }
     }
     
-    var buttonStatus: Bool {
-        return true
+    var skipButtonHidden: Bool {
+        switch index {
+        case 0, 1, 2:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    var startSparkButtonHidden: Bool {
+        switch index {
+        case 0, 1, 2:
+            return true
+        default:
+            return false
+        }
     }
     
     // MARK: Initializer

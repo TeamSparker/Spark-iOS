@@ -44,6 +44,13 @@ class OnboardingCVC: UICollectionViewCell {
         return iv
     }()
     
+    private lazy var sparkStartButton: BottomButton = {
+        let bt = BottomButton()
+        bt.setUI(.pink)
+            .setTitle("스파크 시작하기")
+        return bt
+    }()
+    
     // MARK: - View Life Cycles
     
     override init(frame: CGRect) {
@@ -61,11 +68,14 @@ class OnboardingCVC: UICollectionViewCell {
     private func setUI() {
         guard let viewModel = viewModel else { return }
         
+        skipButton.isHidden = viewModel.skipButtonHidden
         guideLabel.attributedText = viewModel.guideText
+        sparkStartButton.isHidden = viewModel.startSparkButtonHidden
     }
     
     private func setLayout() {
-        self.addSubviews([skipButton, guideLabel, illustImageView])
+        self.addSubviews([skipButton, guideLabel, illustImageView,
+                          sparkStartButton])
         
         skipButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(61)
@@ -80,6 +90,11 @@ class OnboardingCVC: UICollectionViewCell {
         illustImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(37)
             make.top.equalTo(guideLabel.snp.bottom).offset(60)
+        }
+        
+        sparkStartButton.snp.makeConstraints { make in
+            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(20)
         }
     }
     
