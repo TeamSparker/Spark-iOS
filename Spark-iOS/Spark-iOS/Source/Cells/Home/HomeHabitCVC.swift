@@ -8,16 +8,16 @@
 import UIKit
 import SwiftUI
 
+@frozen
+enum RoomStatus: String {
+    case none = "NONE"
+    case rest = "REST"
+    case done = "DONE"
+    case complete = "COMPLETE"
+    case fail = "FAIL"
+}
+
 class HomeHabitCVC: UICollectionViewCell {
-    
-    // MARK: - Properties
-    
-    @frozen
-    private enum Status: String {
-        case none = "NONE"
-        case rest = "REST"
-        case done = "DONE"
-    }
     
     // MARK: - @IBOutlet Properties
     
@@ -36,6 +36,10 @@ class HomeHabitCVC: UICollectionViewCell {
     @IBOutlet weak var firstLifeImage: UIImageView!
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
+    @IBOutlet weak var completeFailLabel: UILabel!
+    @IBOutlet weak var completePeopleLabel: UILabel!
+    @IBOutlet weak var lifeStackView: UIStackView!
+    @IBOutlet weak var lifeTextLabel: UILabel!
     
     // MARK: - View Life Cycle
     
@@ -66,6 +70,13 @@ class HomeHabitCVC: UICollectionViewCell {
             $0?.image = UIImage()
             $0?.isHidden = true
         }
+        
+        completeFailLabel.isHidden = true
+        completePeopleLabel.isHidden = true
+        memberLabel.isHidden = true
+        lifeTextLabel.isHidden = true
+        lifeStackView.isHidden = true
+        habitTitleLabel.textColor = .sparkBlack
     }
 }
 
@@ -94,6 +105,14 @@ extension HomeHabitCVC {
         habitTitleLabel.numberOfLines = 2
         habitTitleLabel.lineBreakMode = .byTruncatingTail
         
+        lifeTextLabel.text = "우리 팀의 생명"
+        lifeTextLabel.textColor = .sparkDarkGray
+        lifeTextLabel.font = .caption
+        
+        completePeopleLabel.text = "완료한 사람"
+        completePeopleLabel.textColor = .sparkDarkGray
+        completePeopleLabel.font = .caption
+        
         tagImage.isHidden = true
         
         memberLabel.textColor = .sparkDeepGray
@@ -107,7 +126,8 @@ extension HomeHabitCVC {
                   life: Int,
                   status: String,
                   memberNum: Int,
-                  doneMemberNum: Int) {
+                  doneMemberNum: Int,
+                  isUploaded: Bool) {
         if leftDay == 0 {
             ddayTitleLabel.text = "D-day"
         } else {
@@ -149,19 +169,65 @@ extension HomeHabitCVC {
             restLabel.isHidden = true
         }
         
-        guard let status = Status(rawValue: status) else { return }
+        guard let status = RoomStatus(rawValue: status) else { return }
         switch status {
         case .none:
             tagImage.isHidden = true
             ticketImage.image = UIImage(named: "property1TicketRight4")
+            completeFailLabel.isHidden = true
+            completePeopleLabel.isHidden = false
+            memberLabel.isHidden = false
+            lifeTextLabel.isHidden = false
+            lifeStackView.isHidden = false
+            habitTitleLabel.textColor = .sparkDeepGray
         case .rest:
             tagImage.isHidden = false
             tagImage.image = UIImage(named: "tagRest")
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
+            completeFailLabel.isHidden = true
+            completePeopleLabel.isHidden = false
+            memberLabel.isHidden = false
+            lifeTextLabel.isHidden = false
+            lifeStackView.isHidden = false
+            habitTitleLabel.textColor = .sparkDeepGray
         case .done:
             tagImage.isHidden = false
             tagImage.image = UIImage(named: "tagDone")
             ticketImage.image = UIImage(named: "property1TicketRightFold4")
+            completeFailLabel.isHidden = true
+            completePeopleLabel.isHidden = false
+            memberLabel.isHidden = false
+            lifeTextLabel.isHidden = false
+            lifeStackView.isHidden = false
+            habitTitleLabel.textColor = .sparkDeepGray
+        case .complete:
+            tagImage.isHidden = false
+            tagImage.image = UIImage(named: "tagSuccess")
+            completeFailLabel.isHidden = false
+            completePeopleLabel.isHidden = true
+            if isUploaded {
+                ticketImage.image = UIImage(named: "property1TicketRight4FoldDark")
+            } else {
+                ticketImage.image = UIImage(named: "property1TicketRight4Dark")
+            }
+            memberLabel.isHidden = true
+            lifeTextLabel.isHidden = true
+            lifeStackView.isHidden = true
+            habitTitleLabel.textColor = .sparkWhite
+        case .fail:
+            tagImage.isHidden = false
+            tagImage.image = UIImage(named: "tagOhno")
+            completeFailLabel.isHidden = false
+            completePeopleLabel.isHidden = true
+            if isUploaded {
+                ticketImage.image = UIImage(named: "property1TicketRight4FoldDark")
+            } else {
+                ticketImage.image = UIImage(named: "property1TicketRight4Dark")
+            }
+            memberLabel.isHidden = true
+            lifeTextLabel.isHidden = true
+            lifeStackView.isHidden = true
+            habitTitleLabel.textColor = .sparkWhite
         }
         
         habitTitleLabel.text = roomName

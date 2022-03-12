@@ -40,6 +40,7 @@ extension Const {
             static let feedReport = "FeedReport"
             static let editProfile = "EditProfile"
             static let notice = "Notice"
+            static let completeFailDialogue = "CompleteFailDialogue"
         }
     }
 }
