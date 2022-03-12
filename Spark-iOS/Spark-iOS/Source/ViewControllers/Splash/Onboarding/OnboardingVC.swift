@@ -130,6 +130,7 @@ extension OnboardingVC {
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
         loginVC.modalPresentationStyle = .fullScreen
         loginVC.modalTransitionStyle = .crossDissolve
+        UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
         self.present(loginVC, animated: true, completion: nil)
     }
 }
