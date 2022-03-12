@@ -218,10 +218,31 @@ extension HomeVC: UICollectionViewDelegate {
         if habitRoomList.count != 0 {
             if habitRoomList[indexPath.item].isStarted == true {
                 // 습관방
-                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-                nextVC.roomID = habitRoomList[indexPath.item].roomID
-                
-                navigationController?.pushViewController(nextVC, animated: true)
+               
+                guard let roomStatus = RoomStatus(rawValue: habitRoomList[indexPath.item].myStatus ?? "NONE") else { return }
+                switch roomStatus {
+                case .none, .rest, .done:
+                    guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+                    nextVC.roomID = habitRoomList[indexPath.item].roomID
+                    
+                    navigationController?.pushViewController(nextVC, animated: true)
+                case .complete:
+                    guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.completeFailDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeFailDialogue) as? CompleteFailDialogueVC else { return }
+                    
+                    dialogueVC.roomStatus = .complete
+                    dialogueVC.modalTransitionStyle = .crossDissolve
+                    dialogueVC.modalPresentationStyle = .overFullScreen
+                    
+                    present(dialogueVC, animated: true, completion: nil)
+                case .fail:
+                    guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.completeFailDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeFailDialogue) as? CompleteFailDialogueVC else { return }
+                    
+                    dialogueVC.roomStatus = .fail
+                    dialogueVC.modalTransitionStyle = .crossDissolve
+                    dialogueVC.modalPresentationStyle = .overFullScreen
+                    
+                    present(dialogueVC, animated: true, completion: nil)
+                }
             } else {
                 // 대기방
                 guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
@@ -262,7 +283,8 @@ extension HomeVC: UICollectionViewDataSource {
                                   life: habitRoomList[indexPath.item].life ?? 0,
                                   status: habitRoomList[indexPath.item].myStatus ?? "NONE",
                                   memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
-                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0)
+                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0,
+                                  isUploaded: habitRoomList[indexPath.item].isUploaded)
                 
                 return habitCVC
             }

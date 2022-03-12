@@ -28,65 +28,29 @@ class StorageVC: UIViewController {
     private var isInfiniteScroll: Bool = false
     private var tagCount: Int = 1
     
-    lazy var loadingBgView = UIImageView()
-    lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
-    lazy var loadingTopView = UIView()
+    private lazy var loadingBgView = UIImageView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
+    private lazy var loadingTopView = UIView()
     
-    let doingButton = StatusButton()
-    let doneButton = StatusButton()
-    let failButton = StatusButton()
+    private let doingButton = StatusButton()
+    private let doneButton = StatusButton()
+    private let failButton = StatusButton()
     
-    let doingLabel = UILabel()
-    let doneLabel = UILabel()
-    let failLabel = UILabel()
+    private let doingLabel = UILabel()
+    private let doneLabel = UILabel()
+    private let failLabel = UILabel()
     
-    let usernameSparkLabel = UILabel()
+    private let usernameSparkLabel = UILabel()
     
-    var doingCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
-    
-    var doneCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
-    
-    var failCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: layout)
-        cv.backgroundColor = .clear
-        cv.showsHorizontalScrollIndicator = false
-        
-        return cv
-    }()
+    private let doingCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
+    private let doneCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
+    private let failCV = UICollectionView(frame: CGRect(x: 0, y: 197, width: 375, height: 520), collectionViewLayout: UICollectionViewLayout())
     
     // MARK: - IBOutlet properties
     
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyViewUpperLabel: UILabel!
+    @IBOutlet weak var emptyViewLowerLabel: UILabel!
     
     // MARK: - View Life Cycle
     
@@ -115,32 +79,39 @@ class StorageVC: UIViewController {
             self.setLoading()
         }
         
-        DispatchQueue.main.async {
-            self.getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
-                self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
-                    self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
-                        self.doneCV.reloadData()
-                        self.failCV.reloadData()
-                        
-                        if self.onGoingRoomList?.count == 0 {
-                            self.emptyView.isHidden = false
-                        } else {
-                            self.emptyView.isHidden = true
-                        }
-                        
-                        // 인증사진 모아보기에서 왔을 경우 버튼과 컬렉션뷰를 리셋하지 않기 위한 분기처리
-                        if !self.fromStorageMore {
-                            self.reSetView()
-                        } else {
-                            self.fromStorageMore = false
-                        }
-                        
-                        self.loadingView.stop()
-                        self.loadingView.removeFromSuperview()
-                        self.loadingBgView.removeFromSuperview()
-                    }
-                }
+        let group = DispatchGroup.init()
+        group.enter()
+        getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.enter()
+        getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.enter()
+        getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.doneCV.reloadData()
+            self.failCV.reloadData()
+            
+            if self.onGoingRoomList?.count == 0 {
+                self.emptyView.isHidden = false
+            } else {
+                self.emptyView.isHidden = true
             }
+            
+            // 인증사진 모아보기에서 왔을 경우 버튼과 컬렉션뷰를 리셋하지 않기 위한 분기처리
+            if !self.fromStorageMore {
+                self.reSetView()
+            } else {
+                self.fromStorageMore = false
+            }
+            
+            self.loadingView.stop()
+            self.loadingView.removeFromSuperview()
+            self.loadingBgView.removeFromSuperview()
         }
     }
 }
@@ -313,6 +284,8 @@ extension StorageVC {
         doingLabel.textColor = .sparkDarkPinkred
         doneLabel.textColor = .sparkDarkGray
         failLabel.textColor = .sparkDarkGray
+        emptyViewUpperLabel.text = "아직 습관 카드가 없어요."
+        emptyViewLowerLabel.text = "인증과 함께 카드를 모아보세요!"
         makeDrawAboveButton(button: doingButton)
         
         doingCV.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
@@ -370,6 +343,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkPinkred
             failLabel.textColor = .sparkDarkGray
+            emptyViewUpperLabel.text = "66일간의 습관 도전!"
+            emptyViewLowerLabel.text = "첫번째 성공을 이뤄내 보세요!"
             makeDrawAboveButton(button: doneButton)
             
             if completeRoomList?.count == 0 {
@@ -388,6 +363,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkGray
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkPinkred
+            emptyViewUpperLabel.text = "미완료된 습관이 없네요."
+            emptyViewLowerLabel.text = "지금까지 아주 잘하고 있다는 증거!"
             makeDrawAboveButton(button: failButton)
             
             if failRoomList?.count == 0 {
@@ -406,6 +383,8 @@ extension StorageVC {
             doingLabel.textColor = .sparkDarkPinkred
             doneLabel.textColor = .sparkDarkGray
             failLabel.textColor = .sparkDarkGray
+            emptyViewUpperLabel.text = "아직 습관 카드가 없어요."
+            emptyViewLowerLabel.text = "인증과 함께 카드를 모아보세요!"
             makeDrawAboveButton(button: doingButton)
 
             if onGoingRoomList?.count == 0 {
@@ -436,10 +415,6 @@ extension StorageVC {
         let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
         
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
-
-        layout.sideItemScale = 464/520
-        layout.spacing = 12
-        layout.sideItemAlpha = 0.4
         
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()

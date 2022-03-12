@@ -73,8 +73,3 @@ extension SendSparkCVC {
         }
     }
 }
-
-protocol SendSparkCellDelegate: AnyObject {
-    func sendSpark(_ content: String)
-    func showTextField()
-}

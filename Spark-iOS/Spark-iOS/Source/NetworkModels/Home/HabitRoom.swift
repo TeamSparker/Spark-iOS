@@ -23,9 +23,10 @@ struct Room: Codable {
     let isStarted: Bool
     let myStatus: String?
     let memberNum, doneMemberNum: Int?
+    let isUploaded: Bool
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, leftDay, profileImg, life, isStarted, myStatus, memberNum, doneMemberNum
+        case roomName, leftDay, profileImg, life, isStarted, myStatus, memberNum, doneMemberNum, isUploaded
     }
 }
