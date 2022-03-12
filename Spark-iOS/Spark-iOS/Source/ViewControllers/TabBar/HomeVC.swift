@@ -225,9 +225,21 @@ extension HomeVC: UICollectionViewDelegate {
                     
                     navigationController?.pushViewController(nextVC, animated: true)
                 case .complete:
-                    return 
+                    guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.completeFailDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeFailDialogue) as? CompleteFailDialogueVC else { return }
+                    
+                    dialogueVC.roomStatus = .complete
+                    dialogueVC.modalTransitionStyle = .crossDissolve
+                    dialogueVC.modalPresentationStyle = .overFullScreen
+                    
+                    present(dialogueVC, animated: true, completion: nil)
                 case .fail:
-                    return
+                    guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.completeFailDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.completeFailDialogue) as? CompleteFailDialogueVC else { return }
+                    
+                    dialogueVC.roomStatus = .fail
+                    dialogueVC.modalTransitionStyle = .crossDissolve
+                    dialogueVC.modalPresentationStyle = .overFullScreen
+                    
+                    present(dialogueVC, animated: true, completion: nil)
                 }
             } else {
                 // 대기방
