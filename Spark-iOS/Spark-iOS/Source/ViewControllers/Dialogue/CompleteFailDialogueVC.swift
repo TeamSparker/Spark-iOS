@@ -91,7 +91,7 @@ extension CompleteFailDialogueVC {
         bgView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(bgView.snp.width).multipliedBy(396 / 335)
+            $0.height.equalTo(bgView.snp.width).multipliedBy(1.18)
         }
         
         bgView.addSubviews([sparkFlakePatternImageView, lottieView, titleLabel, subtitleLable, button])
@@ -103,8 +103,8 @@ extension CompleteFailDialogueVC {
         
         lottieView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
-            $0.leading.trailing.equalToSuperview().inset(46)
-            $0.height.equalTo(lottieView.snp.width).multipliedBy(335 / 396)
+            $0.width.equalTo(242)
+            $0.height.equalTo(170)
             $0.centerX.equalToSuperview()
         }
         
@@ -121,7 +121,7 @@ extension CompleteFailDialogueVC {
         button.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(28)
             $0.leading.trailing.equalToSuperview().inset(106)
-            $0.height.equalTo(button.snp.width).multipliedBy(48 / 123)
+            $0.height.equalTo(button.snp.width).multipliedBy(0.4)
         }
     }
     
