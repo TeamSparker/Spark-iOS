@@ -30,6 +30,7 @@ extension Const {
             static let noticeUpdateHeaderView = "NoticeUpdateHeaderView"
             static let noticeActiveCVC = "NoticeActiveCVC"
             static let noticeServiceCVC = "NoticeServiceCVC"
+            static let onboardingCVC = "OnboardingCVC"
         }
     }
 }

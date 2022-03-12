@@ -40,6 +40,7 @@ extension Const {
             static let feedReport = "FeedReportVC"
             static let editProfile = "EditProfileVC"
             static let notice = "NoticeVC"
+            static let onboarding = "OnboardingVC"
         }
     }
 }
