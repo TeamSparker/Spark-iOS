@@ -17,11 +17,12 @@ class OnboardingVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        layout.minimumLineSpacing = .zero
         
         let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.isPagingEnabled = true
-        cv.backgroundColor = .black.withAlphaComponent(0.5)
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -66,6 +67,7 @@ extension OnboardingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.onboardingCVC, for: indexPath) as? OnboardingCVC else { return UICollectionViewCell()
         }
+        cell.viewModel = OnboardingCVCViewModel(index: indexPath.row)
         return cell
     }
 }

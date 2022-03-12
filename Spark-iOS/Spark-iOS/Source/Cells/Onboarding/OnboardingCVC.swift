@@ -30,6 +30,9 @@ class OnboardingCVC: UICollectionViewCell {
         let label = UILabel()
         label.text = ""
         label.font = .h2Title
+        label.lineBreakMode = .byCharWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -38,7 +41,6 @@ class OnboardingCVC: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .sparkGray
-        iv.image = UIImage(named: "bgOnboarding")
         return iv
     }()
     
@@ -58,18 +60,26 @@ class OnboardingCVC: UICollectionViewCell {
     
     private func setUI() {
         guard let viewModel = viewModel else { return }
+        
+        guideLabel.attributedText = viewModel.guideText
     }
     
     private func setLayout() {
-        self.addSubviews([skipButton])
+        self.addSubviews([skipButton, guideLabel, illustImageView])
         
         skipButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(61)
             make.leading.equalToSuperview().offset(20)
         }
         
+        guideLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(skipButton.snp.bottom).offset(58)
+        }
+        
         illustImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(37)
+            make.top.equalTo(guideLabel.snp.bottom).offset(60)
         }
     }
     
