@@ -21,6 +21,8 @@ class CompleteFailDialogueVC: UIViewController {
     private let subtitleLable = UILabel()
     private let button = UIButton()
     
+    var roomID: Int?
+    
     var roomStatus: RoomStatus?
     
     // MARK: - View Life Cycle
@@ -128,7 +130,10 @@ extension CompleteFailDialogueVC {
     // MARK: - Screen Change
     
     private func dismissCompleteFailDialogueVC() {
-        dismiss(animated: true, completion: nil)
+        readRoomWithAPI {
+            self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: .updateHome, object: nil)
+        }
     }
     
     // MARK: - @objc Methods
@@ -136,5 +141,28 @@ extension CompleteFailDialogueVC {
     @objc
     private func touchButton() {
         dismissCompleteFailDialogueVC()
+    }
+}
+
+// MARK: - Network
+
+extension CompleteFailDialogueVC {
+    private func readRoomWithAPI(completion: @escaping () -> Void) {
+        RoomAPI.shared.readRoom(roomID: roomID ?? -1) { response in
+            switch response {
+            case .success(let message):
+                
+                completion()
+                print("readRoomWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("readRoomWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("readRoomWithAPI - pathErr")
+            case .serverErr:
+                print("readRoomWithAPI - serverErr")
+            case .networkFail:
+                print("readRoomWithAPI - networkFail")
+            }
+        }
     }
 }

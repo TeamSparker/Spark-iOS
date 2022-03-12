@@ -16,4 +16,5 @@ extension Notification.Name {
     static let updateHabitRoom = Notification.Name("updateHabitRoom")
     static let leaveRoom = Notification.Name("leaveRoom")
     static let feedReport = Notification.Name("feedReport")
+    static let updateHome = Notification.Name("updateHome")
 }
