@@ -20,6 +20,7 @@ class CompleteAuthVC: UIViewController {
     var nickName: String?
     var profileImage: String?
     var timerCount: String?
+    var leftDay: Int?
     let viewForRender = ViewForRender()
     
     private lazy var confettiView: AnimationView = {
@@ -36,6 +37,8 @@ class CompleteAuthVC: UIViewController {
     @IBOutlet weak var animationFrameView: UIView!
     @IBOutlet weak var goToFeedButton: UIButton!
     @IBOutlet weak var instaView: UIView!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var encourageLabel: UILabel!
     
     // MARK: - View Life Cycles
     
@@ -70,6 +73,11 @@ extension CompleteAuthVC {
         popUpMainView.layer.cornerRadius = 2
         
         instaView.layer.cornerRadius = 2
+        
+        dayLabel.text = "Day \(66-(leftDay ?? 65))"
+        
+        let sparkFlake = SparkFlake(leftDay: leftDay ?? 65)
+        encourageLabel.text = sparkFlake.completeAuthText()
         
         viewForRender.roomNameLabel.text = roomName
         viewForRender.nickNameLabel.text = nickName

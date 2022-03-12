@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,8 +29,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tna-Uq-rNe">
                                 <rect key="frame" x="20" y="192.66666666666663" width="335" height="437"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WOW!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY4-Ef-lwe">
-                                        <rect key="frame" x="131" y="202.00000000000003" width="78" height="31.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WOW!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY4-Ef-lwe">
+                                        <rect key="frame" x="128.66666666666666" y="202.00000000000003" width="77.666666666666657" height="31.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="24"/>
                                         <color key="textColor" name="sparkPinkRed"/>
                                         <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-yb-TR2">
-                                        <rect key="frame" x="106.66666666666669" y="388" width="122" height="21"/>
+                                        <rect key="frame" x="109.33333333333334" y="388" width="116.66666666666666" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="s1w-yG-5YZ"/>
                                         </constraints>
@@ -52,7 +52,7 @@
                                             <attributedString key="attributedTitle">
                                                 <fragment content="피드로 보러 가기">
                                                     <attributes>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -88,7 +88,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-TD-Inj">
-                                        <rect key="frame" x="118.66666666666666" y="406" width="97.666666666666657" height="1"/>
+                                        <rect key="frame" x="121" y="406" width="93.333333333333314" height="1"/>
                                         <color key="backgroundColor" name="sparkDarkGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="UTo-GP-sq1"/>
@@ -115,6 +115,7 @@
                                     <constraint firstItem="uYS-yb-TR2" firstAttribute="bottom" secondItem="N8R-TD-Inj" secondAttribute="top" constant="3" id="DJf-AU-1GT"/>
                                     <constraint firstItem="cm5-OK-aky" firstAttribute="trailing" secondItem="CEp-69-sDa" secondAttribute="trailing" constant="-25" id="GfA-gN-6Bw"/>
                                     <constraint firstItem="1bv-cF-dvo" firstAttribute="centerX" secondItem="cm5-OK-aky" secondAttribute="centerX" constant="7" id="KpF-Gd-ZlM"/>
+                                    <constraint firstItem="JY4-Ef-lwe" firstAttribute="centerX" secondItem="Tna-Uq-rNe" secondAttribute="centerX" id="N9w-vC-3Ax"/>
                                     <constraint firstAttribute="bottom" secondItem="CEp-69-sDa" secondAttribute="bottom" constant="132" id="Oc8-Ye-YHw"/>
                                     <constraint firstItem="N8R-TD-Inj" firstAttribute="width" secondItem="uYS-yb-TR2" secondAttribute="width" multiplier="0.8" id="OnV-os-d9D"/>
                                     <constraint firstItem="Jcm-Se-nlb" firstAttribute="leading" secondItem="Tna-Uq-rNe" secondAttribute="leading" constant="64" id="Ord-T4-ZTt"/>
@@ -125,13 +126,11 @@
                                     <constraint firstItem="CEp-69-sDa" firstAttribute="leading" secondItem="Tna-Uq-rNe" secondAttribute="leading" constant="21" id="Y0i-vL-BAq"/>
                                     <constraint firstItem="cm5-OK-aky" firstAttribute="top" secondItem="Tna-Uq-rNe" secondAttribute="top" constant="24" id="ZF1-GP-nIJ"/>
                                     <constraint firstItem="wxE-3q-J17" firstAttribute="top" secondItem="JY4-Ef-lwe" secondAttribute="bottom" constant="12" id="arr-Md-hRq"/>
-                                    <constraint firstAttribute="trailing" secondItem="JY4-Ef-lwe" secondAttribute="trailing" constant="126" id="hYI-kJ-WhT"/>
                                     <constraint firstItem="wxE-3q-J17" firstAttribute="leading" secondItem="CEp-69-sDa" secondAttribute="leading" constant="13" id="j5v-0r-LGs"/>
                                     <constraint firstItem="cm5-OK-aky" firstAttribute="leading" secondItem="CEp-69-sDa" secondAttribute="leading" constant="26" id="kGG-98-Pyh"/>
                                     <constraint firstItem="1bv-cF-dvo" firstAttribute="width" secondItem="cm5-OK-aky" secondAttribute="width" multiplier="0.95" id="lRq-tX-9a8"/>
                                     <constraint firstItem="JY4-Ef-lwe" firstAttribute="top" secondItem="cm5-OK-aky" secondAttribute="bottom" constant="8" id="oS9-dI-hFB"/>
                                     <constraint firstItem="Jcm-Se-nlb" firstAttribute="top" secondItem="wxE-3q-J17" secondAttribute="bottom" constant="28" id="p7j-Ih-rmy"/>
-                                    <constraint firstItem="JY4-Ef-lwe" firstAttribute="leading" secondItem="Tna-Uq-rNe" secondAttribute="leading" constant="131" id="pCy-C9-sVP"/>
                                     <constraint firstAttribute="trailing" secondItem="Jcm-Se-nlb" secondAttribute="trailing" constant="64" id="pUZ-YS-Q4z"/>
                                     <constraint firstItem="uYS-yb-TR2" firstAttribute="top" secondItem="Jcm-Se-nlb" secondAttribute="bottom" constant="20" id="toX-tA-RA0"/>
                                     <constraint firstAttribute="trailing" secondItem="CEp-69-sDa" secondAttribute="trailing" constant="21" id="vMN-KS-nBb"/>
@@ -149,6 +148,8 @@
                     </view>
                     <connections>
                         <outlet property="animationFrameView" destination="1bv-cF-dvo" id="Y3D-HB-tg1"/>
+                        <outlet property="dayLabel" destination="JY4-Ef-lwe" id="EuN-g4-v5L"/>
+                        <outlet property="encourageLabel" destination="wxE-3q-J17" id="im3-Iz-cg8"/>
                         <outlet property="goToFeedButton" destination="uYS-yb-TR2" id="Dc9-cr-hij"/>
                         <outlet property="instaView" destination="Jcm-Se-nlb" id="jHd-vh-64a"/>
                         <outlet property="popUpMainView" destination="Tna-Uq-rNe" id="R7r-IM-RUJ"/>
