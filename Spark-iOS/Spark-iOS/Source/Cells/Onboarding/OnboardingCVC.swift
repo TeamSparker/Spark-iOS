@@ -17,15 +17,6 @@ class OnboardingCVC: UICollectionViewCell {
         didSet { setUI() }
     }
     
-    private lazy var skipButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.sparkGray, for: .normal)
-        button.setTitle("Skip", for: .normal)
-        button.titleLabel?.font = .h3Subtitle
-//        button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
-        return button
-    }()
-    
     private let guideLabel: UILabel = {
         let label = UILabel()
         label.text = ""
@@ -44,10 +35,11 @@ class OnboardingCVC: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var sparkStartButton: BottomButton = {
+    lazy var sparkStartButton: BottomButton = {
         let bt = BottomButton()
         bt.setUI(.pink)
             .setTitle("스파크 시작하기")
+        bt.isHidden = true
         return bt
     }()
     
@@ -68,23 +60,15 @@ class OnboardingCVC: UICollectionViewCell {
     private func setUI() {
         guard let viewModel = viewModel else { return }
         
-        skipButton.isHidden = viewModel.skipButtonHidden
         guideLabel.attributedText = viewModel.guideText
-        sparkStartButton.isHidden = viewModel.startSparkButtonHidden
     }
     
     private func setLayout() {
-        self.addSubviews([skipButton, guideLabel, illustImageView,
-                          sparkStartButton])
-        
-        skipButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(61)
-            make.leading.equalToSuperview().offset(20)
-        }
+        self.addSubviews([guideLabel, illustImageView, sparkStartButton])
         
         guideLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(skipButton.snp.bottom).offset(58)
+            make.top.equalToSuperview().offset(144)
         }
         
         illustImageView.snp.makeConstraints { make in
