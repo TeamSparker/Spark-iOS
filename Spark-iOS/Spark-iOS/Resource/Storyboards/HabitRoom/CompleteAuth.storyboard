@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -42,7 +42,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-yb-TR2">
-                                        <rect key="frame" x="106.66666666666669" y="388" width="122" height="21"/>
+                                        <rect key="frame" x="109.33333333333334" y="388" width="116.66666666666666" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="s1w-yG-5YZ"/>
                                         </constraints>
@@ -52,7 +52,7 @@
                                             <attributedString key="attributedTitle">
                                                 <fragment content="피드로 보러 가기">
                                                     <attributes>
-                                                        <font key="NSFont" size="14" name="NotoSansKR-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -88,7 +88,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-TD-Inj">
-                                        <rect key="frame" x="118.66666666666666" y="406" width="97.666666666666657" height="1"/>
+                                        <rect key="frame" x="121" y="406" width="93.333333333333314" height="1"/>
                                         <color key="backgroundColor" name="sparkDarkGray"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="UTo-GP-sq1"/>

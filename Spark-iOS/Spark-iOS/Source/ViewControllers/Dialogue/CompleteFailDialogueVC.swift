@@ -7,23 +7,129 @@
 
 import UIKit
 
+import SnapKit
+import Lottie
+
 class CompleteFailDialogueVC: UIViewController {
 
+    // MARK: - Properties
+    
+    private let bgView = UIView()
+    private let sparkFlakePatternImageView = UIImageView()
+    private let lottieView = AnimationView(name: "")
+    private let titleLabel = UILabel()
+    private let subtitleLable = UILabel()
+    private let button = UIButton()
+    
+    var roomStatus: RoomStatus?
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setUI()
+        setLayout()
+        setAddTargets()
+    }
+}
+
+// MARK: - Extensions
+
+extension CompleteFailDialogueVC {
+    private func setUI() {
+        self.view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
+        
+        bgView.backgroundColor = .sparkWhite
+        
+        lottieView.loopMode = .loop
+        lottieView.contentMode = .scaleAspectFit
+        
+        sparkFlakePatternImageView.image = UIImage(named: "sparkflakePattern")
+        
+        titleLabel.textColor = .sparkPinkred
+        titleLabel.font = .enMediumItatlicFont(ofSize: 24.0)
+        
+        subtitleLable.textColor = .sparkDeepGray
+        subtitleLable.font = .p1TitleLight
+        subtitleLable.numberOfLines = 2
+        
+        if let roomStatus = roomStatus {
+            switch roomStatus {
+            case .complete:
+                titleLabel.text = "Congratulations!"
+                subtitleLable.text = """
+                66일간의 도전 성공!
+                여기까지 달려온 나를 마음껏 칭찬해주기!
+                """
+            case .fail:
+                titleLabel.text = "Don’t give up!"
+                subtitleLable.text = """
+                성공하진 못했어도 실패는 아니에요.
+                그러니 언제든 주저 말고 다시 도전하기!
+                """
+            case .done, .rest, .none:
+                return
+            }
+        }
+        
+        button.setTitle("확인했어요", for: .normal)
+        button.setTitleColor(.sparkWhite, for: .normal)
+        button.titleLabel?.font = .btn1Default
+        button.backgroundColor = .sparkBlack
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setAddTargets() {
+        button.addTarget(self, action: #selector(touchButton), for: .touchUpInside)
     }
-    */
-
+    
+    private func setLayout() {
+        view.addSubview(bgView)
+        
+        bgView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(bgView.snp.width).multipliedBy(396 / 335)
+        }
+        
+        bgView.addSubviews([sparkFlakePatternImageView, lottieView, titleLabel, subtitleLable, button])
+        
+        sparkFlakePatternImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(21)
+        }
+        
+        lottieView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(24)
+            $0.centerX.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(lottieView.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
+        }
+        
+        subtitleLable.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(28)
+            $0.leading.trailing.equalToSuperview().inset(106)
+            $0.height.equalTo(button.snp.width).multipliedBy(48 * 123)
+        }
+    }
+    
+    // MARK: - Screen Change
+    
+    private func dismissCompleteFailDialogueVC() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func touchButton() {
+        dismissCompleteFailDialogueVC()
+    }
 }
