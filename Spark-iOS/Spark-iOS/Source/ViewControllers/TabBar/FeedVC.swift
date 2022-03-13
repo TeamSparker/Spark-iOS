@@ -14,6 +14,10 @@ class FeedVC: UIViewController {
     
     // MARK: - Properties
     
+    private let emptyView = UIView()
+    private let emptyImageView = UIImageView()
+    private let emptyLabel = UILabel()
+    
     private let collectionViewFlowlayout = UICollectionViewFlowLayout()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
     private lazy var loadingBgView = UIView()
@@ -41,6 +45,7 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
         setLayout()
         setCollectionView()
         setNotification()
@@ -74,12 +79,31 @@ class FeedVC: UIViewController {
         
         DispatchQueue.main.async {
             self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                if !self.feedList.isEmpty {
+                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                }
             }
         }
     }
     
     // MARK: - Methods
+    
+    private func setUI() {
+        emptyView.isHidden = true
+        collectionView.isHidden = false
+    }
+    
+    private func setEmptyView() {
+        emptyView.isHidden = false
+        collectionView.isHidden = true
+        
+        emptyLabel.text = "아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!"
+        emptyLabel.textAlignment = .center
+        emptyLabel.font = .krRegularFont(ofSize: 18)
+        emptyLabel.textColor = .sparkGray
+        emptyLabel.numberOfLines = 2
+        emptyImageView.image = UIImage(named: "tagEmpty")
+    }
     
     private func setLoading() {
         view.addSubview(loadingBgView)
@@ -110,7 +134,6 @@ class FeedVC: UIViewController {
         collectionView.register(FeedHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.feedHeaderView)
         collectionView.register(FeedFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView)
         collectionView.register(FeedCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedCVC)
-        collectionView.register(FeedEmptyCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC)
         
         collectionViewFlowlayout.scrollDirection = .vertical
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
@@ -121,53 +144,57 @@ class FeedVC: UIViewController {
     }
     
     private func setData(datalist: [Record]) {
-        var indexPath = 0
-        var sectionCount = 0 // section을 돌기 위한 변수
-        
-        // 섹션에 들어갈 날짜 리스트 구함
-        while indexPath < datalist.count {
-            if dateList.isEmpty {
-                dateList.append(datalist[indexPath].date)
-                dayList.append(datalist[indexPath].day)
-                indexPath += 1
-            } else {
-                let date: String = datalist[indexPath].date
-                let day: String = datalist[indexPath].day
-                
-                if !(dateList.contains(date)) {
-                    dateList.append(date)
-                    dayList.append(day)
+        if feedList.isEmpty {
+            setEmptyView()
+        } else {
+            var indexPath = 0
+            var sectionCount = 0 // section을 돌기 위한 변수
+            
+            // 섹션에 들어갈 날짜 리스트 구함
+            while indexPath < datalist.count {
+                if dateList.isEmpty {
+                    dateList.append(datalist[indexPath].date)
+                    dayList.append(datalist[indexPath].day)
+                    indexPath += 1
+                } else {
+                    let date: String = datalist[indexPath].date
+                    let day: String = datalist[indexPath].day
+                    
+                    if !(dateList.contains(date)) {
+                        dateList.append(date)
+                        dayList.append(day)
+                    }
+                    
+                    indexPath += 1
                 }
-                
-                indexPath += 1
             }
-        }
-        
-        // section별 리스트 생성
-        var indexInSection = 0
-        while indexInSection < datalist.count && !datalist.isEmpty && sectionCount < dateList.count {
-            if dateList[sectionCount] == datalist[indexInSection].date {
-                switch sectionCount {
-                case 0:
-                    firstList.append(datalist[indexInSection])
-                case 1:
-                    secondList.append(datalist[indexInSection])
-                case 2:
-                    thirdList.append(datalist[indexInSection])
-                case 3:
-                    fourthList.append(datalist[indexInSection])
-                case 4:
-                    fifthList.append(datalist[indexInSection])
-                case 5:
-                    sixthList.append(datalist[indexInSection])
-                case 6:
-                    seventhList.append(datalist[indexInSection])
-                default:
-                    seventhList.append(datalist[indexInSection])
+            
+            // section별 리스트 생성
+            var indexInSection = 0
+            while indexInSection < datalist.count && !datalist.isEmpty && sectionCount < dateList.count {
+                if dateList[sectionCount] == datalist[indexInSection].date {
+                    switch sectionCount {
+                    case 0:
+                        firstList.append(datalist[indexInSection])
+                    case 1:
+                        secondList.append(datalist[indexInSection])
+                    case 2:
+                        thirdList.append(datalist[indexInSection])
+                    case 3:
+                        fourthList.append(datalist[indexInSection])
+                    case 4:
+                        fifthList.append(datalist[indexInSection])
+                    case 5:
+                        sixthList.append(datalist[indexInSection])
+                    case 6:
+                        seventhList.append(datalist[indexInSection])
+                    default:
+                        seventhList.append(datalist[indexInSection])
+                    }
+                    indexInSection += 1
+                } else {
+                    sectionCount += 1
                 }
-                indexInSection += 1
-            } else {
-                sectionCount += 1
             }
         }
     }
@@ -220,10 +247,30 @@ class FeedVC: UIViewController {
 // MARK: - Layout
 extension FeedVC {
     private func setLayout() {
-        view.addSubviews([collectionView])
+        view.addSubviews([collectionView, emptyView])
         
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(20)
+        }
+        
+        emptyView.addSubviews([emptyImageView, emptyLabel])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(10)
+            make.width.equalTo(90)
+            make.height.equalTo(66)
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(emptyImageView.snp.bottom).offset(20)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 }
@@ -326,7 +373,7 @@ extension FeedVC: UICollectionViewDataSource {
             }
             return itemCount
         } else {
-            return 1
+            return 0
         }
     }
     
@@ -359,10 +406,8 @@ extension FeedVC: UICollectionViewDataSource {
             cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath, isMyRecord: alist.isMyRecord)
             cell.buttonDelegate = self
             return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedEmptyCVC, for: indexPath) as? FeedEmptyCVC else { return UICollectionViewCell() }
-            return cell
         }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -426,16 +471,9 @@ extension FeedVC: UICollectionViewDataSource {
 
 extension FeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width: CGFloat
-        var height: CGFloat
+        let width: CGFloat = UIScreen.main.bounds.width
+        let height: CGFloat = width*535/375
         
-        if dateList.count != 0 {
-            width = UIScreen.main.bounds.width
-            height = width*535/375
-        } else {
-            width = UIScreen.main.bounds.width
-            height = self.collectionView.frame.height
-        }
         return CGSize(width: width, height: height)
     }
 }
