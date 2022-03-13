@@ -55,7 +55,7 @@ class SplashVC: UIViewController {
          super.viewWillAppear(animated)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            if self.appDelegate?.isLogin == true {
+            if self.appDelegate?.isLogin == false {
                 self.presentToMainTBC()
             } else {
                 if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {

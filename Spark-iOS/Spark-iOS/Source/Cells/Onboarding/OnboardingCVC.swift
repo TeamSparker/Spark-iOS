@@ -21,7 +21,6 @@ class OnboardingCVC: UICollectionViewCell {
         let label = UILabel()
         label.text = ""
         label.font = .h2Title
-        label.lineBreakMode = .byCharWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

@@ -13,7 +13,7 @@ class OnboardingVC: UIViewController {
     
     // MARK: Properties
     
-    private var sparkStartButtonHidden: Bool = false {
+    private var sparkStartButtonHidden: Bool = true {
         didSet {
             if sparkStartButtonHidden == false {
                 sparkStartButton.isHidden = false
@@ -130,8 +130,9 @@ extension OnboardingVC {
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
         loginVC.modalPresentationStyle = .fullScreen
         loginVC.modalTransitionStyle = .crossDissolve
-        UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
-        self.present(loginVC, animated: true, completion: nil)
+        self.present(loginVC, animated: true) {
+            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
+        }
     }
 }
 
@@ -182,8 +183,6 @@ extension OnboardingVC: UICollectionViewDelegate {
 
 extension OnboardingVC {
     private func setUI() {
-        navigationController?.isNavigationBarHidden = true
-        
         pageControl.isUserInteractionEnabled = false
     }
     
