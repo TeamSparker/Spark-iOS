@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
+final class SparkTabBar: UIView {
+    
+}
