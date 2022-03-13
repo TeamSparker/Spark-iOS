@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SparkTabBarDelegate: AnyObject {
-    func SparkTabBar(_ sender: SparkTabBar, didSelectItemAt index: Int)
+    func sparkTabBar(_ sender: SparkTabBar, didSelectItemAt index: Int)
 }
