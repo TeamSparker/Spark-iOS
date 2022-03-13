@@ -356,7 +356,9 @@ extension HomeVC: UICollectionViewDataSource {
                 return habitCVC
             }
         } else {
-            return UICollectionViewCell()
+            guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
+            return waitingCVC
+//            return UICollectionViewCell()
         }
     }
 }
