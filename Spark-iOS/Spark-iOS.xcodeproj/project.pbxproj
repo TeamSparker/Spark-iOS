@@ -139,6 +139,8 @@
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
 		F821812E27DE224A00DDFBF8 /* SparkTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821812D27DE224A00DDFBF8 /* SparkTabBar.swift */; };
 		F821813127DE226300DDFBF8 /* SparkTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821813027DE226300DDFBF8 /* SparkTabBarDelegate.swift */; };
+		F821813327DE512D00DDFBF8 /* SparkTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821813227DE512D00DDFBF8 /* SparkTabBarItem.swift */; };
+		F821813527DE659E00DDFBF8 /* SparkTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821813427DE659E00DDFBF8 /* SparkTabBarController.swift */; };
 		F8250CF127D238440073FFCA /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF027D238440073FFCA /* EditProfileVC.swift */; };
 		F8250CF327D238990073FFCA /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8250CF227D238990073FFCA /* EditProfile.storyboard */; };
 		F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF727D25F240073FFCA /* UserAPI.swift */; };
@@ -328,6 +330,8 @@
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F821812D27DE224A00DDFBF8 /* SparkTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTabBar.swift; sourceTree = "<group>"; };
 		F821813027DE226300DDFBF8 /* SparkTabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTabBarDelegate.swift; sourceTree = "<group>"; };
+		F821813227DE512D00DDFBF8 /* SparkTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTabBarItem.swift; sourceTree = "<group>"; };
+		F821813427DE659E00DDFBF8 /* SparkTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTabBarController.swift; sourceTree = "<group>"; };
 		F8250CF027D238440073FFCA /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		F8250CF227D238990073FFCA /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		F8250CF727D25F240073FFCA /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
@@ -1111,6 +1115,8 @@
 			isa = PBXGroup;
 			children = (
 				F821812D27DE224A00DDFBF8 /* SparkTabBar.swift */,
+				F821813227DE512D00DDFBF8 /* SparkTabBarItem.swift */,
+				F821813427DE659E00DDFBF8 /* SparkTabBarController.swift */,
 			);
 			path = SparkTabBar;
 			sourceTree = "<group>";
@@ -1506,6 +1512,7 @@
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
 				F8E4DFD627D0918C00128B1F /* MypageProfileTVC.swift in Sources */,
+				F821813527DE659E00DDFBF8 /* SparkTabBarController.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
@@ -1544,6 +1551,7 @@
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */,
+				F821813327DE512D00DDFBF8 /* SparkTabBarItem.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
