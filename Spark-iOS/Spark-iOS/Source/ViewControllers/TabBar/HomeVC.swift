@@ -145,6 +145,7 @@ extension HomeVC {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHome), name: .updateHome, object: nil)
     }
     
     // MARK: - Screen Change
@@ -195,6 +196,22 @@ extension HomeVC {
             self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: message, font: .p1TitleLight)
         }
     }
+    
+    @objc
+    private func updateHome() {
+        self.habitRoomLastID = -1
+        self.habitRoomList?.removeAll()
+        
+        DispatchQueue.main.async {
+            self.setLoading()
+        }
+        
+        DispatchQueue.main.async {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -232,6 +249,7 @@ extension HomeVC: UICollectionViewDelegate {
                     dialogueVC.roomStatus = .complete
                     dialogueVC.modalTransitionStyle = .crossDissolve
                     dialogueVC.modalPresentationStyle = .overFullScreen
+                    dialogueVC.roomID = habitRoomList[indexPath.item].roomID
                     
                     present(dialogueVC, animated: true, completion: nil)
                 case .fail:
@@ -240,6 +258,7 @@ extension HomeVC: UICollectionViewDelegate {
                     dialogueVC.roomStatus = .fail
                     dialogueVC.modalTransitionStyle = .crossDissolve
                     dialogueVC.modalPresentationStyle = .overFullScreen
+                    dialogueVC.roomID = habitRoomList[indexPath.item].roomID
                     
                     present(dialogueVC, animated: true, completion: nil)
                 }
