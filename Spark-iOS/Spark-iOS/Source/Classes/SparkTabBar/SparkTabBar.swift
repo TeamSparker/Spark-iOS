@@ -17,7 +17,12 @@ final class SparkTabBar: UIView {
     // use for tab bar select delegate.
     weak var delegate: SparkTabBarDelegate?
     
-    var items: [UITabBarItem] = []
+    var items: [UITabBarItem] = [] {
+        didSet {
+            // notify with delegate.
+            select(at: 0)
+        }
+    }
     
     // called by the system when the tintColor property changes.
     override func tintColorDidChange() {
@@ -26,7 +31,7 @@ final class SparkTabBar: UIView {
         reloadAppearance()
     }
     
-    private func reloadAppearance() {
+    func reloadAppearance() {
         tabBarItems().forEach { item in
             item.selectedColor = tintColor
         }
@@ -100,7 +105,7 @@ final class SparkTabBar: UIView {
     }
     
     /// select item.
-    private func select(at selectedIndex: Int, notifyDelegate: Bool = true) {
+    func select(at selectedIndex: Int, notifyDelegate: Bool = true) {
         for (index, item) in self.stackView.arrangedSubviews.enumerated() {
             if let item = item as? SparkTabBarItem {
                 item.isSelected = index == selectedIndex ? true : false
