@@ -378,9 +378,8 @@ extension FeedVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedCVC, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
         if dateList.count != 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedCVC, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
-            
             var alist: Record
             
             // section별 데이터 넣기
@@ -405,9 +404,8 @@ extension FeedVC: UICollectionViewDataSource {
             
             cell.initCell(title: alist.roomName, nickName: alist.nickname, timeRecord: alist.timerRecord, likeCount: alist.likeNum, sparkCount: alist.sparkCount, profileImg: alist.profileImg, certifyingImg: alist.certifyingImg, hasTime: true, isLiked: alist.isLiked, recordId: alist.recordID, indexPath: indexPath, isMyRecord: alist.isMyRecord)
             cell.buttonDelegate = self
-            return cell
         }
-        return UICollectionViewCell()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
