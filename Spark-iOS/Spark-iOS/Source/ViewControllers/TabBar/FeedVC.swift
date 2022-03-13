@@ -99,7 +99,7 @@ class FeedVC: UIViewController {
         
         emptyLabel.text = "아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!"
         emptyLabel.textAlignment = .center
-        emptyLabel.font = .krRegularFont(ofSize: 18)
+        emptyLabel.font = .h3SubtitleLight
         emptyLabel.partFontChange(targetString: "아직 올라온 인증이 없어요.", font: .btn1Default)
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2

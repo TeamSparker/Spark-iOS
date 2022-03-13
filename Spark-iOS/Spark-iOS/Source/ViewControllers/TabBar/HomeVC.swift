@@ -15,6 +15,10 @@ class HomeVC: UIViewController {
     
     // MARK: - Properties
     
+    private let emptyView = UIView()
+    private let emptyImageView = UIImageView()
+    private let emptyLabel = UILabel()
+    
     private var habitRoomList: [Room]? = []
     private var habitRoomLastID: Int = -1
     private var habitRoomCountSize: Int = 8
@@ -58,7 +62,9 @@ class HomeVC: UIViewController {
         
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                if self.habitRoomList?.count != 0 {
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
             }
         }
     }
@@ -89,6 +95,44 @@ extension HomeVC {
         mainCollectionView.indicatorStyle = .black
         mainCollectionView.showsVerticalScrollIndicator = true
         mainCollectionView.isScrollEnabled = false
+        
+        emptyView.isHidden = true
+        mainCollectionView.isHidden = false
+    }
+    
+    private func setEmptyView() {
+        emptyView.isHidden = false
+        mainCollectionView.isHidden = true
+        
+        emptyLabel.text = "아직 습관방이 없어요.\n+를 눌러 습관을 시작해 보세요!"
+        emptyLabel.textAlignment = .center
+        emptyLabel.font = .h3SubtitleLight
+        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .btn1Default)
+        emptyLabel.textColor = .sparkGray
+        emptyLabel.numberOfLines = 2
+        emptyImageView.image = UIImage(named: "ticketEmpty")
+        
+        view.addSubview(emptyView)
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(2)
+        }
+        
+        emptyView.addSubviews([emptyLabel, emptyImageView])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+            make.width.equalTo(85)
+            make.height.equalTo(60)
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(emptyImageView.snp.bottom).offset(21)
+            make.bottom.equalToSuperview()
+        }
     }
     
     private func setDelegate() {
@@ -99,7 +143,6 @@ extension HomeVC {
     private func registerXib() {
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeHabitCVC)
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC)
-        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC)
     }
     
     private func setLoading() {
@@ -208,7 +251,9 @@ extension HomeVC {
         
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                if self.habitRoomList?.count != 0 {
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
             }
         }
     }
@@ -279,8 +324,12 @@ extension HomeVC: UICollectionViewDelegate {
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = habitRoomList?.count ?? 0
-        return count == 0 ? 1 : count
+        if habitRoomList?.count != 0 {
+            let count = habitRoomList?.count ?? 0
+            return count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -304,15 +353,10 @@ extension HomeVC: UICollectionViewDataSource {
                                   memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
                                   doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0,
                                   isUploaded: habitRoomList[indexPath.item].isUploaded)
-                
                 return habitCVC
             }
         } else {
-            // empty view.
-            collectionView.isScrollEnabled = false
-            guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
-
-            return emptyCVC
+            return UICollectionViewCell()
         }
     }
 }
@@ -364,7 +408,11 @@ extension HomeVC {
                 self.loadingBgView.removeFromSuperview()
                 if let habitRooms = data as? HabitRoom {
                     self.habitRoomList?.append(contentsOf: habitRooms.rooms)
-                    self.mainCollectionView.reloadData()
+                    if self.habitRoomList?.count == 0 {
+                        self.setEmptyView()
+                    } else {
+                        self.mainCollectionView.reloadData()
+                    }
                 }
                 
                 completion()
