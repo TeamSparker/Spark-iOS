@@ -687,11 +687,7 @@
 				F86C68B627955ABA009A5296 /* SparkFlake.swift */,
 				F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */,
 				2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */,
-				F8D4496B27BDE2D60091F297 /* SparkNavigationBar.swift */,
-				F8D4496D27BE25610091F297 /* LeftButtonNavigaitonBar.swift */,
-				F8D4496F27BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift */,
-				F8D4497127BE46670091F297 /* LeftRightButtonsNavigationBar.swift */,
-				EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */,
+				F821812B27DE21FE00DDFBF8 /* SparkNavigationBar */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1091,6 +1087,18 @@
 				F816F124278E1C920008ED00 /* LoginVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F821812B27DE21FE00DDFBF8 /* SparkNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				F8D4496B27BDE2D60091F297 /* SparkNavigationBar.swift */,
+				F8D4496D27BE25610091F297 /* LeftButtonNavigaitonBar.swift */,
+				F8D4496F27BE2DBC0091F297 /* RightTwoButtonNavigationBar.swift */,
+				F8D4497127BE46670091F297 /* LeftRightButtonsNavigationBar.swift */,
+				EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */,
+			);
+			path = SparkNavigationBar;
 			sourceTree = "<group>";
 		};
 		F8250CF527D25F000073FFCA /* User */ = {
