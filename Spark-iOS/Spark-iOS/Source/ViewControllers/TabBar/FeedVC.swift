@@ -100,6 +100,7 @@ class FeedVC: UIViewController {
         emptyLabel.text = "아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .krRegularFont(ofSize: 18)
+        emptyLabel.partFontChange(targetString: "아직 올라온 인증이 없어요.", font: .btn1Default)
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
         emptyImageView.image = UIImage(named: "tagEmpty")
@@ -254,23 +255,22 @@ extension FeedVC {
         }
         
         emptyView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(20)
+            make.center.equalToSuperview()
         }
         
         emptyView.addSubviews([emptyImageView, emptyLabel])
         
         emptyImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(10)
+            make.top.equalToSuperview()
             make.width.equalTo(90)
             make.height.equalTo(66)
         }
         
         emptyLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(emptyImageView.snp.bottom).offset(20)
-            make.bottom.equalToSuperview().inset(10)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(17)
+            make.bottom.equalToSuperview()
         }
     }
 }
