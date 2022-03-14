@@ -7,27 +7,13 @@
 
 import UIKit
 
+import JJFloatingActionButton
+
 class SparkTabBarController: UITabBarController {
-    
-    // MARK: - IBInspectable
-    
-    @IBInspectable
-    public var tintColor: UIColor? {
-        didSet {
-            self.sparkTabBar.tintColor = tintColor
-            self.sparkTabBar.reloadAppearance()
-        }
-    }
-    
-    @IBInspectable
-    public var backgroundColor: UIColor? {
-        didSet {
-            self.sparkTabBar.backgroundColor = backgroundColor
-        }
-    }
     
     // MARK: - Properties
     
+    private let bottomSafeArea: CGFloat = 34.0
     private let tabBarHeight: CGFloat = 54.0
     
     public let sparkTabBar: SparkTabBar = {
@@ -46,6 +32,8 @@ class SparkTabBarController: UITabBarController {
         }
     }
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,11 +41,18 @@ class SparkTabBarController: UITabBarController {
         setLayout()
         setTabBar()
     }
+}
+
+// MARK: - Extension
+
+extension SparkTabBarController {
     
+    /// Set UI.
     private func setUI() {
         self.tabBar.isHidden = true
     }
     
+    /// Set tab bar.
     private func setTabBar() {
         self.sparkTabBar.select(at: selectedIndex)
         self.sparkTabBar.delegate = self
@@ -65,12 +60,13 @@ class SparkTabBarController: UITabBarController {
     
     // MARK: - Layout
     
+    /// Set layout.
     private func setLayout() {
         self.view.addSubview(sparkTabBar)
         
         sparkTabBar.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(self.tabBarHeight)
+            $0.height.equalTo(self.tabBarHeight + self.bottomSafeArea)
         }
     }
 }
