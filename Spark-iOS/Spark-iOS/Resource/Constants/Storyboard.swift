@@ -41,6 +41,7 @@ extension Const {
             static let editProfile = "EditProfile"
             static let notice = "Notice"
             static let completeFailDialogue = "CompleteFailDialogue"
+            static let onboarding = "Onboarding"
         }
     }
 }
