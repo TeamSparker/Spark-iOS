@@ -122,7 +122,7 @@ extension HomeVC {
         
         emptyBackgroundView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(customNavigationBar.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(54)
             make.height.equalTo(emptyBackgroundView.snp.width).multipliedBy(1.6)
         }
         
@@ -336,12 +336,8 @@ extension HomeVC: UICollectionViewDelegate {
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if habitRoomList?.count != 0 {
-            let count = habitRoomList?.count ?? 0
-            return count
-        } else {
-            return 0
-        }
+        let count = habitRoomList?.count ?? 0
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
