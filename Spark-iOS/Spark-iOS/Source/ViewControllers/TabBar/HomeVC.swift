@@ -15,6 +15,11 @@ class HomeVC: UIViewController {
     
     // MARK: - Properties
     
+    private let emptyView = UIView()
+    private let emptyImageView = UIImageView()
+    private let emptyLabel = UILabel()
+    private let emptyBackgroundView = UIImageView()
+    
     private var habitRoomList: [Room]? = []
     private var habitRoomLastID: Int = -1
     private var habitRoomCountSize: Int = 8
@@ -58,7 +63,9 @@ class HomeVC: UIViewController {
         
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                if self.habitRoomList?.count != 0 {
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
             }
         }
     }
@@ -89,6 +96,55 @@ extension HomeVC {
         mainCollectionView.indicatorStyle = .black
         mainCollectionView.showsVerticalScrollIndicator = true
         mainCollectionView.isScrollEnabled = false
+        
+        emptyView.isHidden = true
+        emptyBackgroundView.isHidden = true
+        mainCollectionView.isHidden = false
+    }
+    
+    private func setEmptyView() {
+        emptyView.isHidden = false
+        emptyBackgroundView.isHidden = false
+        mainCollectionView.isHidden = true
+        
+        emptyLabel.text = "아직 습관방이 없어요.\n+를 눌러 습관을 시작해 보세요!"
+        emptyLabel.textAlignment = .center
+        emptyLabel.font = .h3SubtitleLight
+        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .btn1Default)
+        emptyLabel.textColor = .sparkWhite
+        emptyLabel.numberOfLines = 2
+        
+        emptyImageView.image = UIImage(named: "ticketEmpty")
+        emptyBackgroundView.image = UIImage(named: "bgHomeEmpty")
+        emptyBackgroundView.contentMode = .scaleAspectFill
+        
+        view.addSubviews([emptyBackgroundView, emptyView])
+        
+        emptyBackgroundView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(54)
+            make.height.equalTo(emptyBackgroundView.snp.width).multipliedBy(1.6)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(2)
+        }
+        
+        emptyView.addSubviews([emptyLabel, emptyImageView])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+            make.width.equalTo(85)
+            make.height.equalTo(60)
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(emptyImageView.snp.bottom).offset(21)
+            make.bottom.equalToSuperview()
+        }
     }
     
     private func setDelegate() {
@@ -99,7 +155,6 @@ extension HomeVC {
     private func registerXib() {
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeHabitCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeHabitCVC)
         mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeWaitingCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC)
-        mainCollectionView.register(UINib(nibName: Const.Cell.Identifier.homeEmptyCVC, bundle: nil), forCellWithReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC)
     }
     
     private func setLoading() {
@@ -208,7 +263,9 @@ extension HomeVC {
         
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                if self.habitRoomList?.count != 0 {
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                }
             }
         }
     }
@@ -280,7 +337,7 @@ extension HomeVC: UICollectionViewDelegate {
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = habitRoomList?.count ?? 0
-        return count == 0 ? 1 : count
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -304,15 +361,12 @@ extension HomeVC: UICollectionViewDataSource {
                                   memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
                                   doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0,
                                   isUploaded: habitRoomList[indexPath.item].isUploaded)
-                
                 return habitCVC
             }
         } else {
-            // empty view.
-            collectionView.isScrollEnabled = false
-            guard let emptyCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeEmptyCVC, for: indexPath) as? HomeEmptyCVC else { return UICollectionViewCell()}
-
-            return emptyCVC
+            guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
+            return waitingCVC
+//            return UICollectionViewCell()
         }
     }
 }
@@ -364,7 +418,11 @@ extension HomeVC {
                 self.loadingBgView.removeFromSuperview()
                 if let habitRooms = data as? HabitRoom {
                     self.habitRoomList?.append(contentsOf: habitRooms.rooms)
-                    self.mainCollectionView.reloadData()
+                    if self.habitRoomList?.count == 0 {
+                        self.setEmptyView()
+                    } else {
+                        self.mainCollectionView.reloadData()
+                    }
                 }
                 
                 completion()
