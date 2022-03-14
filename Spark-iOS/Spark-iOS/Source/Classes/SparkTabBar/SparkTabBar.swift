@@ -9,41 +9,37 @@ import UIKit
 
 import SnapKit
 
-/// Custom Tab Bar.
+/// Implement tab bar with UIView.
 final class SparkTabBar: UIView {
     
     // MARK: - Properties
     
-    // use for tab bar select delegate.
+    // Use for tab bar select delegate.
     weak var delegate: SparkTabBarDelegate?
     
-    var items: [UITabBarItem] = [] {
-        didSet {
-            // notify with delegate.
-            select(at: 0)
-        }
-    }
+    var itemsArray: [UITabBarItem] = []
     
-    // called by the system when the tintColor property changes.
+    // Called by the system when the tintColor property changes.
     override func tintColorDidChange() {
         super.tintColorDidChange()
         
         reloadAppearance()
     }
     
+    /// Reload appearance of spark tab bar.
     func reloadAppearance() {
         tabBarItems().forEach { item in
             item.selectedColor = tintColor
         }
     }
     
-    /// use for tab bar.
+    /// Use for tab bar.
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.spacing = 44
+        stackView.spacing = 44.0
         
         return stackView
     }()
@@ -53,58 +49,66 @@ final class SparkTabBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setUI()
+        setUI()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// set UI.
+    /// Set UI.
     private func setUI() {
         self.backgroundColor = .sparkWhite
     }
     
-    // FIXME: -  deinit
-//    deinit {
-//
-//    }
-    
-    /// set layout.
+    /// Set layout.
     private func setLayout() {
         self.addSubview(self.stackView)
         
         self.stackView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+            $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().inset(6)
-            $0.bottom.equalToSuperview()
+            $0.width.equalTo(232)
+            $0.height.equalTo(48)
         }
     }
     
-    func add(item: UITabBarItem) {
-        self.items.append(item)
-        self.addItem(with: item)
+    /// Add tab bar item to items array and compose spark tab bar.
+    func add(items tabBarItems: [UITabBarItem]) {
+        for tabBarItem in tabBarItems {
+            self.itemsArray.append(tabBarItem)
+            self.addItem(with: tabBarItem)
+        }
     }
     
+    /// Add spark tab bar item with tab bar item.
+    ///
+    /// add spark tab bar item to stack view.
     private func addItem(with item: UITabBarItem) {
         let item = SparkTabBarItem(forItem: item)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: item, action: #selector(itemTapped(_:)))
         item.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(itemTapped(_:)))
         item.addGestureRecognizer(tapGestureRecognizer)
         
-        // set item's selected color with SparkTabBar tint color.
+        // set item's selected color with SparkTabBar's tint color.
         item.selectedColor = self.tintColor
         self.stackView.addArrangedSubview(item)
     }
     
     @objc
-    private func itemTapped(_ sender: SparkTabBarItem) {
-        if let index = self.stackView.arrangedSubviews.firstIndex(of: sender) {
+    private func itemTapped(_ sender: UITapGestureRecognizer) {
+        if let sparkTabBarItem = sender.view as? SparkTabBarItem,
+           let index = self.stackView.arrangedSubviews.firstIndex(of: sparkTabBarItem) {
             self.select(at: index)
         }
     }
     
-    /// select item.
+    /// Select item.
+    ///
+    /// - Parameter notifyDelegate: Value is true when spark tab bar item is selected by tap gesture.
+    /// If value is always true, delegate methods are called whenever spark tab bar controller's `selectedIndex` value changes.
+    /// So, corresponding parameter is to solve call loop.
     func select(at selectedIndex: Int, notifyDelegate: Bool = true) {
         for (index, item) in self.stackView.arrangedSubviews.enumerated() {
             if let item = item as? SparkTabBarItem {
@@ -117,7 +121,7 @@ final class SparkTabBar: UIView {
         }
     }
     
-    // return items that compose the tab bar.
+    // Return items that compose the tab bar.
     private func tabBarItems() -> [SparkTabBarItem] {
         // return array containing non-nil results.
         return self.stackView.arrangedSubviews.compactMap { $0 as? SparkTabBarItem }
