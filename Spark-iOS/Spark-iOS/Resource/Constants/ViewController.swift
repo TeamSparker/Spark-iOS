@@ -41,6 +41,7 @@ extension Const {
             static let editProfile = "EditProfileVC"
             static let notice = "NoticeVC"
             static let completeFailDialogue = "CompleteFailDialogueVC"
+            static let onboarding = "OnboardingVC"
         }
     }
 }
