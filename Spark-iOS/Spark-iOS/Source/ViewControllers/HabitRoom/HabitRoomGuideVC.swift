@@ -16,6 +16,7 @@ class HabitRoomGuideVC: UIViewController {
     private let popupView = UIView()
     private let titleLabel = UILabel()
 //    private let flakeBackgroundView = UIImageView()
+    private let guideLabel = UILabel()
     private let pageControl = UIPageControl()
     private let closeButton = UIButton()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -44,6 +45,12 @@ class HabitRoomGuideVC: UIViewController {
         titleLabel.font = .h3Subtitle
         titleLabel.textColor = .sparkMoreDeepGray
         titleLabel.textAlignment = .center
+        
+        guideLabel.text = "습관방의 생명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!"
+        guideLabel.textAlignment = .center
+        guideLabel.font = .p1TitleLight
+        guideLabel.textColor = .sparkDeepGray
+        guideLabel.numberOfLines = 2
         
         closeButton.setTitle("닫기", for: .normal)
         closeButton.setTitleColor(.sparkPinkred, for: .normal)
@@ -92,6 +99,7 @@ extension HabitRoomGuideVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.habitRoomGuideCVC, for: indexPath) as? HabitRoomGuideCVC else { return UICollectionViewCell() }
+        // TODO: - 일러 넣기
         return cell
     }
 }
@@ -102,6 +110,17 @@ extension HabitRoomGuideVC: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let page = Int(targetContentOffset.pointee.x / self.collectionView.frame.width)
         pageControl.currentPage = page
+        
+        switch page {
+        case 0:
+            guideLabel.text = "습관방의 생명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!"
+        case 1:
+            guideLabel.text = "만약 친구가 고민중이라면?\n스파크를 마구 보내 힘껏 응원하기!"
+        case 2:
+            guideLabel.text = "‘쉴래요’ 기회는 3번\n조금 아껴뒀다 꼭 필요할 때 사용하기!"
+        default:
+            return
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -149,8 +168,8 @@ extension HabitRoomGuideVC {
             make.height.equalTo((UIScreen.main.bounds.width - 40) * 396 / 335)
         }
         
-        popupView.addSubviews([titleLabel, collectionView, pageControl,
-                               closeButton])
+        popupView.addSubviews([titleLabel, collectionView, guideLabel,
+                               pageControl, closeButton])
         
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -159,15 +178,19 @@ extension HabitRoomGuideVC {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(28)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(popupView.snp.height).multipliedBy(0.6)
+            make.height.equalTo(popupView.snp.height).multipliedBy(0.41)
+        }
+        
+        guideLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(collectionView.snp.bottom).offset(28)
         }
         
         pageControl.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(collectionView.snp.bottom).offset(34)
+            make.top.equalTo(guideLabel.snp.bottom).offset(34)
             make.bottom.equalToSuperview().inset(36)
         }
         

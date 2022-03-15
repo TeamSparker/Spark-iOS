@@ -14,7 +14,6 @@ class HabitRoomGuideCVC: UICollectionViewCell {
     // MARK: - Properties
     
     private let guideImageView = UIImageView()
-    private let guideLabel = UILabel()
     
     // MARK: - View Life Cycles
     override init(frame: CGRect) {
@@ -35,31 +34,19 @@ class HabitRoomGuideCVC: UICollectionViewCell {
     
     // MARK: - Methods
     
-    private func setUI() {
-        guideLabel.text = "습관방의 생명은 오직 3개,\n매일 자정까지 잊지 말고 인증하기!"
-        guideLabel.textAlignment = .center
-        guideLabel.font = .p1TitleLight
-        guideLabel.textColor = .sparkDeepGray
-        guideLabel.numberOfLines = 2
-        
+    private func setUI() {        
         guideImageView.backgroundColor = .darkGray
         guideImageView.contentMode = .scaleAspectFill
     }
     
     private func setLayout() {
-        self.addSubviews([guideImageView, guideLabel])
+        self.addSubview(guideImageView)
         
         guideImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview()
+            make.top.bottom.equalToSuperview()
             make.width.equalTo(242)
             make.height.equalTo(165)
-        }
-        
-        guideLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(guideImageView.snp.bottom).offset(28)
-            make.bottom.equalToSuperview()
         }
     }
 }
