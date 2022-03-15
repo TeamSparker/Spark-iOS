@@ -269,7 +269,7 @@ extension HabitRoomVC {
             }
         }))
         
-        alert.addAction(SparkAction("앨범에서 선택하기", titleType: .blackMediumTitle, handler: {
+        alert.addAction(SparkAction("앨범에서 선택", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
                 self.openLibrary()
             }
