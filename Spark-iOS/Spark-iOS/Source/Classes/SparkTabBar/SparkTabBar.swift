@@ -34,7 +34,7 @@ final class SparkTabBar: UIView {
     }
     
     /// Use for tab bar.
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing

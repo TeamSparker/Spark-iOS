@@ -16,9 +16,7 @@ class SparkTabBarController: UITabBarController {
     private let bottomSafeArea: CGFloat = 34.0
     private let tabBarHeight: CGFloat = 54.0
     
-    public let sparkTabBar: SparkTabBar = {
-        return SparkTabBar()
-    }()
+    public let sparkTabBar = SparkTabBar()
     
     override var selectedIndex: Int {
         didSet {
