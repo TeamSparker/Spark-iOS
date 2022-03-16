@@ -94,7 +94,7 @@ class MoreStorageCVC: UICollectionViewCell {
                      status: String) {
         switch status {
         case "DONE":
-            certificationImage.updateImage(mainImage, type: .small)
+            certificationImage.updateImage(mainImage, type: .small, placeholder: .sparkDarkGray)
             self.isUserInteractionEnabled = true
         case "REST":
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
