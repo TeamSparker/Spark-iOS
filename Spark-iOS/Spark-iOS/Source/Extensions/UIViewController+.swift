@@ -24,9 +24,20 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 2
         toastLabel.clipsToBounds = true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 2.0, delay: 0.4,
-                       options: .curveEaseIn, animations: { toastLabel.alpha = 0.0 },
-                       completion: {_ in toastLabel.removeFromSuperview() })
+        
+        toastLabel.alpha = 0.0
+        UIView.animate(withDuration: 0.2, delay: 0,
+                       options: .curveEaseInOut) {
+            toastLabel.alpha = 1.0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.8, delay: 1.0,
+                           options:
+                                .curveEaseInOut) {
+                toastLabel.alpha = 0.0
+            } completion: { _ in
+                toastLabel.removeFromSuperview()
+            }
+        }
     }
     
     func showSparkToast(x: CGFloat, y: CGFloat, message: String) {

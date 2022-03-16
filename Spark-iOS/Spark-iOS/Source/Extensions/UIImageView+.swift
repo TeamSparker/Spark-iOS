@@ -17,6 +17,12 @@ enum ResizingImagetype {
     case large
 }
 
+@frozen
+enum PlaceholderBackgroundColor: String {
+    case sparkDarkGray = "sparkDarkGrayPlaceholder"
+    case sparkLightGray = "sparkLightGrayPlaceholder"
+}
+
 extension UIImageView {
     /// URL 주소를 가지고 이미지 다운로드.
     ///
@@ -25,7 +31,7 @@ extension UIImageView {
     /// - medium - 360*360
     /// - large - 720*720
     @discardableResult
-    func updateImage(_ imagePath: String, type: ResizingImagetype = .small) -> Bool {
+    func updateImage(_ imagePath: String, type: ResizingImagetype = .small, placeholder: PlaceholderBackgroundColor = .sparkLightGray) -> Bool {
         guard let periodIndex = imagePath.lastIndex(of: ".") else {
             self.image = UIImage()
             return false
@@ -51,7 +57,7 @@ extension UIImageView {
         self.kf.indicatorType = .none
         self.kf.setImage(
             with: url,
-            placeholder: UIImage(named: "placeholder"),
+            placeholder: UIImage(named: "\(placeholder.rawValue)"),
             options: [
                 .scaleFactor(UIScreen.main.scale),
                 .transition(.fade(0.3)),

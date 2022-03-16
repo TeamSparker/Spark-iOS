@@ -164,6 +164,7 @@
 		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
 		F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */; };
+		F85DB23127E1B3430004C6B1 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85DB23027E1B3430004C6B1 /* UIDevice+.swift */; };
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 		F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B627955ABA009A5296 /* SparkFlake.swift */; };
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
@@ -359,6 +360,7 @@
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkButton.swift; sourceTree = "<group>"; };
+		F85DB23027E1B3430004C6B1 /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
@@ -1080,6 +1082,7 @@
 				F86C68B827958AA9009A5296 /* UIImageView+.swift */,
 				2B13FB22279899C6004CCE46 /* UIScreen+.swift */,
 				EBA2D6CE2799EAFD0022DFD6 /* UIImage+.swift */,
+				F85DB23027E1B3430004C6B1 /* UIDevice+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1489,6 +1492,7 @@
 				2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */,
 				F8D4496E27BE25610091F297 /* LeftButtonNavigaitonBar.swift in Sources */,
 				2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */,
+				F85DB23127E1B3430004C6B1 /* UIDevice+.swift in Sources */,
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */,
