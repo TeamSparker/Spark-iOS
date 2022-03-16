@@ -66,7 +66,7 @@ class MoreStorageCVC: UICollectionViewCell {
                   timerCount: String?) {
         switch status {
         case "DONE":
-            certificationImage.updateImage(mainImage)
+            certificationImage.updateImage(mainImage, placeholder: .sparkDarkGray)
         case "REST":
             certificationImage.image = UIImage(named: "stickerRestBigMybox")
         default:
