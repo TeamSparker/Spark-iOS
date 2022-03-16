@@ -334,9 +334,7 @@ extension MypageVC: MFMailComposeViewControllerDelegate {
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension MypageVC: UIViewControllerTransitioningDelegate {
-    
-}
+extension MypageVC: UIViewControllerTransitioningDelegate { }
 
 // MARK: - UIGestureRecognizerDelegate
 // FIXME: - 네비게이션 extension 정리후 공통으로 빼서 사용하기
