@@ -120,8 +120,6 @@ extension MypageVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 선택시 회색으로 변했다가 돌아옴.
-        tableView.deselectRow(at: indexPath, animated: false)
         guard let section = MypageTableViewSection(rawValue: indexPath.section) else { return }
         switch section {
         case .profile:
@@ -143,7 +141,7 @@ extension MypageVC: UITableViewDelegate {
                 mailComposeVC.setSubject("스파크 문의 사항")
                 mailComposeVC.setMessageBody("문의 사항을 상세히 입력해주세요.",
                                              isHTML: false)
-                
+        
                 present(mailComposeVC, animated: true, completion: nil)
             } else {
                 // 메일이 계정과 연동되지 않은 경우.
@@ -157,11 +155,17 @@ extension MypageVC: UITableViewDelegate {
                 // 스파크 사용 가이드
                 guard let url = URL(string: Const.URL.sparkGuideURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
+                safariVC.transitioningDelegate = self
+                safariVC.modalPresentationStyle = .pageSheet
+                
                 present(safariVC, animated: true, completion: nil)
             } else if indexPath.row == 1 {
                 // 약관 및 정책
                 guard let url = URL(string: Const.URL.tosURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
+                safariVC.transitioningDelegate = self
+                safariVC.modalPresentationStyle = .pageSheet
+                
                 present(safariVC, animated: true, completion: nil)
             } else if indexPath.row == 3 {
                 // logout
@@ -225,39 +229,37 @@ extension MypageVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        guard let section = MypageTableViewSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        switch section {
+        case .profile:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
             cell.initCell(profileImage: profileImage, nickname: profileNickname)
             cell.selectionStyle = .none
             
             return cell
-        } else if indexPath.section == 1 {
+        case .setting:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .notification)
             cell.selectionStyle = .none
             
             return cell
-        } else if indexPath.section == 2 {
+        case .center:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             cell.initCell(type: .contact)
             cell.selectionStyle = .none
             
             return cell
-        } else {
+        case .service:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
             /*
-            MypageRow(rawValue: 3) 는 .sparkGuide 이다.
-            MypageRow(rawValue: 4) 는 .tos 이다.
-            MypageRow(rawValue: 6) 는 .logout 이다.
+             MypageRow(rawValue: 3) 는 .sparkGuide 이다.
+             MypageRow(rawValue: 4) 는 .tos 이다.
+             MypageRow(rawValue: 5) 는 .version 이다.
+             MypageRow(rawValue: 6) 는 .logout 이다.
              */
             guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
-                    cell.initCell(type: row)
-            
-            // MypageRow(rawValue: 5) 는 .version 이다.
-            if indexPath.row == 2 {
-                cell.isUserInteractionEnabled = false
-            }
+            cell.initCell(type: row)
             
             cell.selectionStyle = .none
             
@@ -328,6 +330,12 @@ extension MypageVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension MypageVC: UIViewControllerTransitioningDelegate {
+    
 }
 
 // MARK: - UIGestureRecognizerDelegate
