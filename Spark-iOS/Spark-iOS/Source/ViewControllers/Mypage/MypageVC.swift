@@ -143,7 +143,7 @@ extension MypageVC: UITableViewDelegate {
                 mailComposeVC.setSubject("스파크 문의 사항")
                 mailComposeVC.setMessageBody("""
                 
-                Device : \()
+                Device : \(UIDevice.iPhoneModel)
                 OS Version : \(UIDevice.iOSVersion)
                 App Version : \(appVersion)
                 --------------------
