@@ -325,7 +325,13 @@ extension MypageVC: ProfileImageDelegate {
 // MARK: - MFMailComposeViewControllerDelegate
 extension MypageVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true) {
+            let mailSuccessAlert = UIAlertController(title: "메일 전송 성공", message: "성공적으로 메일이 전송되었습니다.", preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in }
+            mailSuccessAlert.addAction(confirmAction)
+            
+            self.present(mailSuccessAlert, animated: true, completion: nil)
+        }
     }
 }
 
