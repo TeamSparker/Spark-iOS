@@ -59,8 +59,8 @@ extension MypageDefaultTVC {
         withdrawalButton.titleLabel?.font = .caption
         withdrawalButton.setTitleColor(.sparkGray, for: .normal)
         
-        // local update. > next version v1.0.1
-        versionLabel.text = " v1.0.0"
+        guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+        versionLabel.text = "v\(appVersion)"
         versionLabel.font = .captionEng
         versionLabel.textColor = .sparkDarkGray
     }

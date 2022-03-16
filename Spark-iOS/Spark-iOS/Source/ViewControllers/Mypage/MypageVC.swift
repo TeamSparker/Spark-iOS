@@ -134,12 +134,23 @@ extension MypageVC: UITableViewDelegate {
             return
         case .center:
             if MFMailComposeViewController.canSendMail() {
+                guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+                
                 let mailComposeVC = MFMailComposeViewController()
                 mailComposeVC.mailComposeDelegate = self
                 
                 mailComposeVC.setToRecipients(["teamsparker66@gmail.com"])
                 mailComposeVC.setSubject("스파크 문의 사항")
-                mailComposeVC.setMessageBody("문의 사항을 상세히 입력해주세요.",
+                mailComposeVC.setMessageBody("""
+                
+                Device : \(UIDevice.iPhoneModel)
+                OS Version : \(UIDevice.iOSVersion)
+                App Version : \(appVersion)
+                --------------------
+                
+                
+                문의 사항을 상세히 입력해주세요.
+                """,
                                              isHTML: false)
                 
                 present(mailComposeVC, animated: true, completion: nil)
@@ -314,7 +325,20 @@ extension MypageVC: ProfileImageDelegate {
 // MARK: - MFMailComposeViewControllerDelegate
 extension MypageVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
+        switch result {
+        case .cancelled:
+            controller.dismiss(animated: true) { print("mailComposeController - cancelled.")}
+        case .saved:
+            controller.dismiss(animated: true) { print("mailComposeController - saved.")}
+        case .sent:
+            controller.dismiss(animated: true) {
+                self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: "성공적으로 메일을 보냈어요!", font: .p1TitleLight)
+            }
+        case .failed:
+            controller.dismiss(animated: true) { print("mailComposeController - filed.")}
+        @unknown default:
+            return
+        }
     }
 }
 
