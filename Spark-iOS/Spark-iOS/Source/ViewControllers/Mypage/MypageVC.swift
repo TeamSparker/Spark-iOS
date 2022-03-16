@@ -139,7 +139,17 @@ extension MypageVC: UITableViewDelegate {
                 
                 mailComposeVC.setToRecipients(["teamsparker66@gmail.com"])
                 mailComposeVC.setSubject("스파크 문의 사항")
-                mailComposeVC.setMessageBody("문의 사항을 상세히 입력해주세요.",
+                mailComposeVC.setMessageBody("""
+                
+                
+                Device:
+                OS Version: \(UIDevice.iOSVersion)
+                App Version: 
+                --------------------
+                
+                
+                문의 사항을 상세히 입력해주세요.
+                """,
                                              isHTML: false)
                 
                 present(mailComposeVC, animated: true, completion: nil)
