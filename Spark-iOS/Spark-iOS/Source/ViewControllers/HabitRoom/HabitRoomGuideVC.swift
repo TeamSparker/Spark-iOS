@@ -15,6 +15,7 @@ class HabitRoomGuideVC: UIViewController {
     
     private let popupView = UIView()
     private let titleLabel = UILabel()
+    // TODO: - 배경 일러 넣기
 //    private let flakeBackgroundView = UIImageView()
     private let guideLabel = UILabel()
     private let pageControl = UIPageControl()
