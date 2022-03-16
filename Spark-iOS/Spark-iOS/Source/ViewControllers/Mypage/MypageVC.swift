@@ -134,6 +134,8 @@ extension MypageVC: UITableViewDelegate {
             return
         case .center:
             if MFMailComposeViewController.canSendMail() {
+                guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+                
                 let mailComposeVC = MFMailComposeViewController()
                 mailComposeVC.mailComposeDelegate = self
                 
@@ -141,10 +143,9 @@ extension MypageVC: UITableViewDelegate {
                 mailComposeVC.setSubject("스파크 문의 사항")
                 mailComposeVC.setMessageBody("""
                 
-                
-                Device:
-                OS Version: \(UIDevice.iOSVersion)
-                App Version: 
+                Device : \()
+                OS Version : \(UIDevice.iOSVersion)
+                App Version : \(appVersion)
                 --------------------
                 
                 
