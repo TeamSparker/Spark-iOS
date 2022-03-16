@@ -325,8 +325,19 @@ extension MypageVC: ProfileImageDelegate {
 // MARK: - MFMailComposeViewControllerDelegate
 extension MypageVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true) {
-            self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: "성공적으로 메일을 보냈어요!", font: .p1TitleLight)
+        switch result {
+        case .cancelled:
+            controller.dismiss(animated: true) { print("mailComposeController - cancelled.")}
+        case .saved:
+            controller.dismiss(animated: true) { print("mailComposeController - saved.")}
+        case .sent:
+            controller.dismiss(animated: true) {
+                self.showToast(x: 20, y: self.view.safeAreaInsets.top, message: "성공적으로 메일을 보냈어요!", font: .p1TitleLight)
+            }
+        case .failed:
+            controller.dismiss(animated: true) { print("mailComposeController - filed.")}
+        @unknown default:
+            return
         }
     }
 }
