@@ -6,7 +6,9 @@
 //
 
 import MessageUI
+import SafariServices
 import UIKit
+
 
 import SnapKit
 
@@ -151,7 +153,17 @@ extension MypageVC: UITableViewDelegate {
                 present(mailErrorAlert, animated: true, completion: nil)
             }
         case .service:
-            if indexPath.row == 3 {
+            if indexPath.row == 0 {
+                // 스파크 사용 가이드
+                guard let url = URL(string: Const.URL.sparkGuideURL) else { return }
+                let safariVC = SFSafariViewController(url: url)
+                present(safariVC, animated: true, completion: nil)
+            } else if indexPath.row == 1 {
+                // 약관 및 정책
+                guard let url = URL(string: Const.URL.tosURL) else { return }
+                let safariVC = SFSafariViewController(url: url)
+                present(safariVC, animated: true, completion: nil)
+            } else if indexPath.row == 3 {
                 // logout
                 guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
                 
