@@ -16,10 +16,27 @@ class NotificationService: UNNotificationServiceExtension {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
-        if let bestAttemptContent = bestAttemptContent {
-            // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+        if let bestAttemptContent = bestAttemptContent,
+           let fcmOptionsUserInfo = bestAttemptContent.userInfo["fcm_options"] as? [String: Any] {
+            guard let imageURLString = fcmOptionsUserInfo["image"] as? String else {
+                contentHandler(bestAttemptContent)
+                return
+            }
+            let imageURL = URL(string: imageURLString)!
             
+            // TODO: - 이미지 다운로드
+//            guard let imageData = try? Data(contentsOf: imageURL) else {
+//                contentHandler(bestAttemptContent)
+//                return
+//            }
+            
+            // TODO: - UNNotificationAttachment 생성
+//            do {
+//                let attachment = try UNNotificationAttachment(identifier: "certificationImage", url: "URL", options: nil)
+//                bestAttemptContent.attachments = [attachment]
+//            } catch {
+//                print("error")
+//            }
             contentHandler(bestAttemptContent)
         }
     }
