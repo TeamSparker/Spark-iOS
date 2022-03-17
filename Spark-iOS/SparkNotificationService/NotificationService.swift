@@ -25,18 +25,17 @@ class NotificationService: UNNotificationServiceExtension {
             let imageURL = URL(string: imageURLString)!
             
             // TODO: - 이미지 다운로드
-//            guard let imageData = try? Data(contentsOf: imageURL) else {
-//                contentHandler(bestAttemptContent)
-//                return
-//            }
+            guard let imageData = try? Data(contentsOf: imageURL) else {
+                contentHandler(bestAttemptContent)
+                return
+            }
             
             // TODO: - UNNotificationAttachment 생성
-//            do {
-//                let attachment = try UNNotificationAttachment(identifier: "certificationImage", url: "URL", options: nil)
-//                bestAttemptContent.attachments = [attachment]
-//            } catch {
-//                print("error")
-//            }
+            guard let attachment = UNNotificationAttachment.saveImageToDisk(identifier: "certificationImage", data: imageData, options: nil) else {
+                contentHandler(bestAttemptContent)
+                return
+            }
+            bestAttemptContent.attachments = [attachment]
             contentHandler(bestAttemptContent)
         }
     }
@@ -49,4 +48,25 @@ class NotificationService: UNNotificationServiceExtension {
         }
     }
 
+}
+
+// MARK: - UNNotificationAttachment
+
+extension UNNotificationAttachment {
+    static func saveImageToDisk(identifier: String, data: Data, options: [AnyHashable : Any]? = nil) -> UNNotificationAttachment? {
+        let fileManager = FileManager.default
+        let folderName = ProcessInfo.processInfo.globallyUniqueString
+        let folderURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(folderName, isDirectory: true)!
+        
+        do {
+            try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
+            let fileURL = folderURL.appendingPathExtension(identifier)
+            try data.write(to: fileURL)
+            let attachment = try UNNotificationAttachment(identifier: identifier, url: fileURL, options: options)
+            return attachment
+        } catch {
+            print("saveImageToDisk error - \(error)")
+        }
+        return nil
+    }
 }
