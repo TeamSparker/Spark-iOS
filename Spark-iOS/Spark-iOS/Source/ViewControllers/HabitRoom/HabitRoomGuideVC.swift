@@ -124,17 +124,19 @@ extension HabitRoomGuideVC: UICollectionViewDelegate {
         }
     }
     
+    // 스크롤뷰 드래그 시작될때, closeButton이 hidden 상태가 아니라면 hidden 시켜주기
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if !closeButton.isHidden {
-            UIView.animate(withDuration: 0.03) {
+            UIView.animate(withDuration: 0.1) {
                 self.closeButton.alpha = 0
             }
         }
     }
     
+    // 스크롤뷰 드래그가 멈췄을때, 마지막 content라면 닫기 버튼 보이기
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x + 1 >= scrollView.contentSize.width - scrollView.frame.size.width {
-            UIView.animate(withDuration: 0.1) {
+        if scrollView.contentOffset.x == scrollView.contentSize.width - scrollView.frame.size.width {
+            UIView.animate(withDuration: 0.2) {
                 self.closeButton.alpha = 1
             }
         } else {
