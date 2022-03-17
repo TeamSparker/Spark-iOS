@@ -85,6 +85,45 @@ extension LifeDiminishDialogueVC {
     private func setAddTargets() {
         button.addTarget(self, action: #selector(touchButton), for: .touchUpInside)
     }
+    
+    private func setLayout() {
+        view.addSubview(popUpView)
+        
+        popUpView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(popUpView.snp.width).multipliedBy(1.61)
+        }
+        
+        popUpView.addSubviews([backgroundImageView, illustImageView, titleLabel, subtitleLabel, button])
+        
+        backgroundImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(21)
+        }
+        
+        illustImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview().inset(46)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(illustImageView.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
+        }
+        
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(28)
+            $0.leading.trailing.equalToSuperview().inset(106)
+            $0.height.equalTo(button.snp.width).multipliedBy(0.4)
+        }
+    }
+    
     // MARK: - @objc Methods
     
     @objc
