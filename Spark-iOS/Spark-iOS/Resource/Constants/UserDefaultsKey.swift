@@ -14,5 +14,6 @@ extension Const {
         static let userID = "userID"
         static let accessToken = "accessToekn"
         static let fcmToken = "fcmToken"
+        static let checkHabitRoomGuide = "checkHabitRoomGuide"
     }
 }
