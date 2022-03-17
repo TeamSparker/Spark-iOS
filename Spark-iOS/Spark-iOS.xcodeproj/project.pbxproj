@@ -108,6 +108,7 @@
 		EBD0D09C27DC3A380007E5AF /* OnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */; };
 		EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */; };
 		EBD0D0A127DC444F0007E5AF /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */; };
+		EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
@@ -297,6 +298,7 @@
 		EBD0D09B27DC3A380007E5AF /* OnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVC.swift; sourceTree = "<group>"; };
 		EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVCViewModel.swift; sourceTree = "<group>"; };
 		EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeDiminishDialogueVC.swift; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
 		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
@@ -745,6 +747,7 @@
 			children = (
 				EB874AEA279706FC000DD20B /* DialogueVC.swift */,
 				F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */,
+				EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -1502,6 +1505,7 @@
 				EB874AEB279706FC000DD20B /* DialogueVC.swift in Sources */,
 				2BBED13027956C9F0052CA5C /* Feed.swift in Sources */,
 				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
+				EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
