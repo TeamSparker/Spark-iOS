@@ -284,9 +284,6 @@
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoom.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		620906E011B5DB2E891A1F9B /* Pods-Spark-iOS-SparkNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS-SparkNotificationService.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS-SparkNotificationService/Pods-Spark-iOS-SparkNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
-		62A82A5CCE45CE092E4C3470 /* Pods_Spark_iOS_SparkNotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS_SparkNotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE7A30E51EE57B6A3BA0BF4E /* Pods-Spark-iOS-SparkNotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS-SparkNotificationService.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS-SparkNotificationService/Pods-Spark-iOS-SparkNotificationService.release.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkActionSheet.swift; sourceTree = "<group>"; };
@@ -386,8 +383,6 @@
 		F85036C927E2567C00F02751 /* SparkNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SparkNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85036CB27E2567C00F02751 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F85036CD27E2567C00F02751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F85036D527E3848800F02751 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F85036D927E385E100F02751 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85DB23027E1B3430004C6B1 /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
@@ -692,10 +687,7 @@
 		98B179D2EEBCF1113A785423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F85036D927E385E100F02751 /* FirebaseMessaging.framework */,
-				F85036D527E3848800F02751 /* FirebaseMessaging.framework */,
 				E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */,
-				62A82A5CCE45CE092E4C3470 /* Pods_Spark_iOS_SparkNotificationService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -705,8 +697,6 @@
 			children = (
 				C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */,
 				3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */,
-				620906E011B5DB2E891A1F9B /* Pods-Spark-iOS-SparkNotificationService.debug.xcconfig */,
-				BE7A30E51EE57B6A3BA0BF4E /* Pods-Spark-iOS-SparkNotificationService.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
