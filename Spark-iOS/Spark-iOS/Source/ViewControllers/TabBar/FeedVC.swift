@@ -149,6 +149,7 @@ class FeedVC: UIViewController {
         if feedList.isEmpty {
             setEmptyView()
         } else {
+            setUI()
             var indexPath = 0
             var sectionCount = 0 // section을 돌기 위한 변수
             
