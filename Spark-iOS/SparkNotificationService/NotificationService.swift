@@ -23,15 +23,15 @@ class NotificationService: UNNotificationServiceExtension {
                 return
             }
             let imageURL = URL(string: imageURLString)!
-            
-            // TODO: - 이미지 다운로드
+
+            // download image.
             guard let imageData = try? Data(contentsOf: imageURL) else {
                 contentHandler(bestAttemptContent)
                 return
             }
-            
-            // TODO: - UNNotificationAttachment 생성
-            guard let attachment = UNNotificationAttachment.saveImageToDisk(identifier: "certificationImage", data: imageData, options: nil) else {
+
+            // set UNNotificationAttachment.
+            guard let attachment = UNNotificationAttachment.saveImageToDisk(identifier: "certificationImage.jpg", data: imageData, options: nil) else {
                 contentHandler(bestAttemptContent)
                 return
             }
@@ -47,22 +47,22 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
         }
     }
-
 }
 
 // MARK: - UNNotificationAttachment
 
 extension UNNotificationAttachment {
-    static func saveImageToDisk(identifier: String, data: Data, options: [AnyHashable : Any]? = nil) -> UNNotificationAttachment? {
+    static func saveImageToDisk(identifier: String, data: Data, options: [AnyHashable: Any]? = nil) -> UNNotificationAttachment? {
         let fileManager = FileManager.default
         let folderName = ProcessInfo.processInfo.globallyUniqueString
-        let folderURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(folderName, isDirectory: true)!
+        let folderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(folderName, isDirectory: true)
         
         do {
             try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
-            let fileURL = folderURL.appendingPathExtension(identifier)
-            try data.write(to: fileURL)
+            let fileURL = folderURL.appendingPathComponent(identifier)
+            try data.write(to: fileURL, options: [])
             let attachment = try UNNotificationAttachment(identifier: identifier, url: fileURL, options: options)
+            
             return attachment
         } catch {
             print("saveImageToDisk error - \(error)")
