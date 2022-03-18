@@ -301,8 +301,6 @@ extension FeedVC {
                 }
                 completion()
             case .requestErr(let message):
-                // TODO: - print 지우기
-                print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("feedListFetchWithAPI - pathErr")
@@ -341,10 +339,6 @@ extension FeedVC: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
-//        print("👥")
-//        print("contentOffset.y: \(scrollView.contentOffset.y), scrollView.contentSize.height:  \(scrollView.contentSize.height), scrollView.bounds.height: \(scrollView.bounds.height)")
-//        print("-------------------")
-        
         if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
