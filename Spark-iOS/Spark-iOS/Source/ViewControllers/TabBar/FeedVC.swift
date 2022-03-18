@@ -39,6 +39,7 @@ class FeedVC: UIViewController {
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     private var isLastScroll = false
+    private var isFirstScroll = true
     
     // MARK: - View Life Cycles
     
@@ -292,6 +293,9 @@ extension FeedVC {
                         self.isLastScroll = false
                     }
                     self.feedList.append(contentsOf: feed.records)
+                    if self.feedList.count >= self.feedCountSize {
+                        self.isFirstScroll = false
+                    }
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
                 }
@@ -423,8 +427,7 @@ extension FeedVC: UICollectionViewDataSource {
             case UICollectionView.elementKindSectionFooter:
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
                 
-                // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
-                if isLastScroll && isInfiniteScroll {
+                if (isLastScroll && isInfiniteScroll) || isFirstScroll {
                     footer.stopLoading()
                 } else {
                     footer.playLoading()
