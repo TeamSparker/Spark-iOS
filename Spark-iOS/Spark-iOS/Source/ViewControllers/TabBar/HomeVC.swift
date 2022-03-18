@@ -102,6 +102,12 @@ extension HomeVC {
         mainCollectionView.isHidden = false
     }
     
+    private func showView() {
+        emptyView.isHidden = true
+        emptyBackgroundView.isHidden = true
+        mainCollectionView.isHidden = false
+    }
+    
     private func setEmptyView() {
         emptyView.isHidden = false
         emptyBackgroundView.isHidden = false
@@ -421,6 +427,7 @@ extension HomeVC {
                     if self.habitRoomList?.count == 0 {
                         self.setEmptyView()
                     } else {
+                        self.showView()
                         self.mainCollectionView.reloadData()
                     }
                 }
