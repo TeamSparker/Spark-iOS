@@ -42,6 +42,7 @@ extension Const {
             static let notice = "Notice"
             static let completeFailDialogue = "CompleteFailDialogue"
             static let onboarding = "Onboarding"
+            static let lifeDiminishDialogue = "LifeDiminishDialogue"
         }
     }
 }

@@ -30,7 +30,7 @@ class LifeDiminishDialogueVC: UIViewController {
     
     private let illustImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "sparkflakePattern")
+        iv.image = UIImage(named: "illustLifeDecrease")
         return iv
     }()
     
@@ -47,6 +47,7 @@ class LifeDiminishDialogueVC: UIViewController {
         label.textColor = .sparkDeepGray
         label.font = .p1TitleLight
         label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -89,17 +90,17 @@ extension LifeDiminishDialogueVC {
     private func setLayout() {
         view.addSubview(popUpView)
         
-        popUpView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(popUpView.snp.width).multipliedBy(1.61)
+        popUpView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerY.equalToSuperview()
+            make.height.equalTo((UIScreen.main.bounds.width - 40) * 396 / 335)
         }
         
         popUpView.addSubviews([backgroundImageView, illustImageView, titleLabel, subtitleLabel, button])
         
-        backgroundImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
-            $0.leading.trailing.equalToSuperview().inset(21)
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(21)
         }
         
         illustImageView.snp.makeConstraints { make in
@@ -107,20 +108,20 @@ extension LifeDiminishDialogueVC {
             make.leading.trailing.equalToSuperview().inset(46)
         }
         
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(illustImageView.snp.bottom).offset(8)
-            $0.centerX.equalToSuperview()
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(illustImageView.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
         }
         
-        subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
-            $0.centerX.equalToSuperview()
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
         }
         
-        button.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(28)
-            $0.leading.trailing.equalToSuperview().inset(106)
-            $0.height.equalTo(button.snp.width).multipliedBy(0.4)
+        button.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(28)
+            make.leading.trailing.equalToSuperview().inset(106)
+            make.height.equalTo(button.snp.width).multipliedBy(0.4)
         }
     }
     

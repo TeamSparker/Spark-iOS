@@ -109,6 +109,7 @@
 		EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */; };
 		EBD0D0A127DC444F0007E5AF /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */; };
 		EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */; };
+		EBE01B1427E334D200085AB7 /* LifeDiminishDialogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE01B1327E334D200085AB7 /* LifeDiminishDialogue.storyboard */; };
 		EBE90FD42795D67500157075 /* AuthUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD32795D67500157075 /* AuthUpload.swift */; };
 		EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FD92796128800157075 /* SendSparkVC.swift */; };
 		EBE90FDC279612CA00157075 /* SendSpark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE90FDB279612CA00157075 /* SendSpark.storyboard */; };
@@ -299,6 +300,7 @@
 		EBD0D09D27DC3A890007E5AF /* OnboardingCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVCViewModel.swift; sourceTree = "<group>"; };
 		EBD0D0A027DC444F0007E5AF /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeDiminishDialogueVC.swift; sourceTree = "<group>"; };
+		EBE01B1327E334D200085AB7 /* LifeDiminishDialogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LifeDiminishDialogue.storyboard; sourceTree = "<group>"; };
 		EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomCerti.swift; sourceTree = "<group>"; };
 		EBE90FD32795D67500157075 /* AuthUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUpload.swift; sourceTree = "<group>"; };
 		EBE90FD92796128800157075 /* SendSparkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkVC.swift; sourceTree = "<group>"; };
@@ -757,6 +759,7 @@
 			children = (
 				EB874AED2797071C000DD20B /* Dialogue.storyboard */,
 				F8C3659627DBB834000AA9BD /* CompleteFailDialogue.storyboard */,
+				EBE01B1327E334D200085AB7 /* LifeDiminishDialogue.storyboard */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -1378,6 +1381,7 @@
 				EB625E99278F8EF200C43DE9 /* StorageMore.storyboard in Resources */,
 				EB625E80278F272300C43DE9 /* DoneStorageCVC.xib in Resources */,
 				F8FAA9732790344D00C4190F /* HomeHabitCVC.xib in Resources */,
+				EBE01B1427E334D200085AB7 /* LifeDiminishDialogue.storyboard in Resources */,
 				2BA98FB827CB621B00C53820 /* CreateSuccess.storyboard in Resources */,
 				F8096F0B2784107D00B71D38 /* Home.storyboard in Resources */,
 			);
