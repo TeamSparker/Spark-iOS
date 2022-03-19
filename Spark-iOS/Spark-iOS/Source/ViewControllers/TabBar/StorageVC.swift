@@ -56,6 +56,7 @@ class StorageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setDelegate()
         registerXib()
         setCarousels()
@@ -68,8 +69,9 @@ class StorageVC: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.isNavigationBarHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        tabBarController?.tabBar.isHidden = false
+        
+        setTabBar()
+        setFloatingButton()
         
         onGoingRoomList?.removeAll()
         completeRoomList?.removeAll()
@@ -120,6 +122,14 @@ class StorageVC: UIViewController {
 
 // UI및 레이아웃
 extension StorageVC {
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = false
+    }
     
     private func setDelegate() {
         doingCV.delegate = self

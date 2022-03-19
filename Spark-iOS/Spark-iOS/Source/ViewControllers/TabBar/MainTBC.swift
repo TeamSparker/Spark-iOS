@@ -8,7 +8,7 @@
 import UIKit
 import JJFloatingActionButton
 
-class MainTBC: UITabBarController {
+class MainTBC: SparkTabBarController {
 
     private let floatingButton = JJFloatingActionButton()
     private let tapGestrueRecognizer = UITapGestureRecognizer()
@@ -23,7 +23,6 @@ class MainTBC: UITabBarController {
         setAddTarget()
         setFloatingButton()
         setNotification()
-        
     }
 }
 
@@ -37,9 +36,7 @@ extension MainTBC {
         
         feedVC.tabBarItem = UITabBarItem(title: "피드", image: UIImage(named: "icFeedInactive"), selectedImage: UIImage(named: "icFeedActive"))
         homeVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "icHomeInactive"), selectedImage: UIImage(named: "icHomeActive"))
-        storageVC.tabBarItem = UITabBarItem(title: "보관함", image: UIImage(named: "icMyboxInactive"), selectedImage: UIImage(named: "icMyboxActive"))
-    
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caption], for: .normal)
+        storageVC.tabBarItem = UITabBarItem(title: "내 보관함", image: UIImage(named: "icMyboxInactive"), selectedImage: UIImage(named: "icMyboxActive"))
         
         let homeNVC = UINavigationController(rootViewController: homeVC)
         homeNVC.isNavigationBarHidden = true
@@ -50,27 +47,15 @@ extension MainTBC {
         let feedNVC = UINavigationController(rootViewController: feedVC)
         feedNVC.isNavigationBarHidden = true
         
-        // TODO: - feedNVC 연결하기
         setViewControllers([feedNVC, homeNVC, storageNVC], animated: false)
         
-        tabBar.tintColor = .sparkDarkPinkred
-        tabBar.itemPositioning = .centered
-        selectedIndex = 1
-        
-        let appearance = UITabBarAppearance()
-        // set tabbar opacity
-        appearance.configureWithOpaqueBackground()
-        // remove tabbar border line
-        appearance.shadowColor = UIColor.clear
-        // set tabbar background color
-        appearance.backgroundColor = .white
-
-        tabBar.standardAppearance = appearance
-
-        if #available(iOS 15.0, *) {
-                // set tabbar opacity
-            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        // set sparkTabBar.
+        if let items = self.tabBar.items {
+            self.sparkTabBar.add(items: items)
         }
+        self.sparkTabBar.tintColor = .sparkDarkPinkred
+        
+        self.selectedIndex = 1
     }
     
     private func setGestureRecognizer() {
@@ -84,8 +69,7 @@ extension MainTBC {
     }
     
     private func setFloatingButton() {
-        // set floatingButton
-        // buttonImage 와 itemAnimationConfiguration 은 default.
+        // buttonImage, itemAnimationConfiguration are set by default.
         floatingButton.buttonColor = .sparkDarkPinkred
         floatingButton.buttonImageColor = .sparkWhite
         floatingButton.layer.shadowColor = UIColor.sparkDarkPinkred.cgColor
@@ -93,7 +77,7 @@ extension MainTBC {
         floatingButton.layer.shadowOpacity = Float(0.3)
         floatingButton.layer.shadowRadius = CGFloat(10)
         
-        // set floatingButton items
+        // set floatingButton items.
         floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
             self.presentToCodeJoinVC()
         }
@@ -102,7 +86,6 @@ extension MainTBC {
             self.presentToWaitingVC()
         }
         
-        // 아이템 버튼 컬러 변경. defualt 는 white 임.
         floatingButton.configureDefaultItem { item in
             item.buttonColor = .sparkDarkPinkred
             item.layer.shadowColor = .none
@@ -156,17 +139,5 @@ extension MainTBC {
             floatingButton.buttonColor = .sparkDarkPinkred
             floatingButton.buttonImageColor = .sparkWhite
         }
-    }
-    
-    // TODO: - 화면전환
-    
-    @objc
-    private func presentToProfileVC() {
-        
-    }
-    
-    @objc
-    private func presentToAertVC() {
-        
     }
 }

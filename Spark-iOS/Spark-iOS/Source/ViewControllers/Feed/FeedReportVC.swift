@@ -39,6 +39,12 @@ class FeedReportVC: UIViewController {
         setAddTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBar()
+    }
+    
     // MARK: - Method
     
     private func setUI() {
@@ -85,6 +91,11 @@ class FeedReportVC: UIViewController {
             .leftButonAction {
                 self.popToFeedVC()
             }
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
     }
     
     private func setAddTarget() {

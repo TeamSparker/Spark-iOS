@@ -68,21 +68,25 @@ class NoticeVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBar()
+        setFloatingButton()
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        tabBarController?.tabBar.isHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        
         customNavigationBar.title("알림")
             .leftButtonImage("icBackWhite")
             .leftButonAction {
                 self.popToHomeVC()
             }
-        
+
         activeButton.setTitle("스파커 활동", for: .normal)
         activeButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         activeButton.setTitleColor(.sparkDarkGray, for: .normal)
@@ -104,6 +108,15 @@ class NoticeVC: UIViewController {
         activeBadgeView.backgroundColor = .sparkDarkPinkred
         activeBadgeView.layer.cornerRadius = 3
         activeBadgeView.isHidden = true
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     private func setEmptyView() {

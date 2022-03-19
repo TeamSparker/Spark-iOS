@@ -59,8 +59,7 @@ class HabitAuthVC: UIViewController {
 extension HabitAuthVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
-        tabBarController?.tabBar.isHidden = true
-        
+
         switch authType {
         case .photoOnly:
             authTypeImageView.image = UIImage(named: "stickerPhotoDefault")

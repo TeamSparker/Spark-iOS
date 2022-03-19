@@ -50,9 +50,8 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
-        
-        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+        setTabBar()
+        setFloatingButton()
         
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
@@ -64,7 +63,7 @@ class HomeVC: UIViewController {
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
                 }
             }
         }
@@ -76,8 +75,7 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         bgView.contentMode = .scaleAspectFill
-        
-        // set navigation bar.
+    
         customNavigationBar
             .buttonsImage("icProfile", "icNotice")
             .actions({
@@ -101,6 +99,16 @@ extension HomeVC {
         emptyBackgroundView.isHidden = true
         mainCollectionView.isHidden = false
     }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = false
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+
     
     private func showView() {
         emptyView.isHidden = true
