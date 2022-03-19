@@ -95,9 +95,7 @@ extension HomeVC {
         mainCollectionView.showsVerticalScrollIndicator = true
         mainCollectionView.isScrollEnabled = false
         
-        emptyView.isHidden = true
-        emptyBackgroundView.isHidden = true
-        mainCollectionView.isHidden = false
+        updateHiddenCollectionView()
     }
     
     private func setTabBar() {
@@ -109,6 +107,11 @@ extension HomeVC {
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
 
+    private func updateHiddenCollectionView() {
+        emptyView.isHidden = true
+        emptyBackgroundView.isHidden = true
+        mainCollectionView.isHidden = false
+    }
     
     private func setEmptyView() {
         emptyView.isHidden = false
@@ -429,6 +432,7 @@ extension HomeVC {
                     if self.habitRoomList?.count == 0 {
                         self.setEmptyView()
                     } else {
+                        self.updateHiddenCollectionView()
                         self.mainCollectionView.reloadData()
                     }
                 }

@@ -46,7 +46,7 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
+        updateHiddenCollectionView()
         setLayout()
         setCollectionView()
         setNotification()
@@ -90,7 +90,7 @@ class FeedVC: UIViewController {
     
     // MARK: - Methods
     
-    private func setUI() {
+    private func updateHiddenCollectionView() {
         emptyView.isHidden = true
         collectionView.isHidden = false
     }
@@ -159,6 +159,7 @@ class FeedVC: UIViewController {
         if feedList.isEmpty {
             setEmptyView()
         } else {
+            updateHiddenCollectionView()
             var indexPath = 0
             var sectionCount = 0 // section을 돌기 위한 변수
             
