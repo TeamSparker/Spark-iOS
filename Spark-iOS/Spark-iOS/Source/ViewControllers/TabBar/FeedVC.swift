@@ -490,7 +490,7 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
 
 extension FeedVC: FeedCellDelegate {
     func moreButtonTapped(recordID: Int?) {
-        guard let sparkTabBarVC = tabBarController as? SparkTabBarController else { return }
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
@@ -507,7 +507,7 @@ extension FeedVC: FeedCellDelegate {
             self.dismiss(animated: true, completion: nil)
         }))
         
-        sparkTabBarVC.present(alert, animated: true)
+        tabBarController.present(alert, animated: true)
     }
     
     func likeButtonTapped(recordID: Int?, indexPath: IndexPath, likeState: Bool) {
