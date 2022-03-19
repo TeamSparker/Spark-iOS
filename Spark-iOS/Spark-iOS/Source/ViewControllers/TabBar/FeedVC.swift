@@ -55,10 +55,10 @@ class FeedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        navigationController?.isNavigationBarHidden = true
-        tabBarController?.tabBar.isHidden = false
+        setFloatingButton()
         
+        navigationController?.isNavigationBarHidden = true
+
         feedLastID = -1
         
         dateList.removeAll()
@@ -91,6 +91,10 @@ class FeedVC: UIViewController {
     private func setUI() {
         emptyView.isHidden = true
         collectionView.isHidden = false
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     private func setEmptyView() {
@@ -493,13 +497,8 @@ extension FeedVC: FeedCellDelegate {
         
         alert.addSection()
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
-            self.dismiss(animated: true) {
-                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 액션 시트를 띄울 경우 탭바 아래로 띄워짐 -> 임시로 탭바를 hidden 시키고 있는 상황
-                self.tabBarController?.tabBar.isHidden = false
-            }
+            self.dismiss(animated: true, completion: nil)
         }))
-        
-        tabBarController?.tabBar.isHidden = true
         
         present(alert, animated: true)
     }

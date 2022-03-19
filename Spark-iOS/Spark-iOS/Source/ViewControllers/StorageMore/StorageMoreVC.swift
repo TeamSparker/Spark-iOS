@@ -60,6 +60,12 @@ class StorageMoreVC: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBar()
+    }
 }
 
 // MARK: - Methods
@@ -103,8 +109,11 @@ extension StorageMoreVC {
                     self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: self.selectedRecordId ?? 0)
                 }
         }
-
-        tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
     }
     
     private func setLayout() {
