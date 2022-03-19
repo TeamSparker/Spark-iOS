@@ -53,7 +53,6 @@ class CodeJoinVC: UIViewController {
 extension CodeJoinVC {
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
-        tabBarController?.tabBar.isHidden = true
         
         popUpView.layer.cornerRadius = 2
         

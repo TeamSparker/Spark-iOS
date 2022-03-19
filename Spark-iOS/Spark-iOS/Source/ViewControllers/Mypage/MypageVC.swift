@@ -52,6 +52,13 @@ class MypageVC: UIViewController {
         setTableView()
         profileFetchWithAPI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBar()
+        setFloatingButton()
+    }
 }
 
 // MARK: - Extension
@@ -67,11 +74,17 @@ extension MypageVC {
             }
         
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
-        tabBarController?.tabBar.isHidden = true
-        
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
+    }
+    
+    private func setFloatingButton() {
         NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
+    
     private func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self

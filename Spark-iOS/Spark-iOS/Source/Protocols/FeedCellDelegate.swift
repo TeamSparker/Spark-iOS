@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FeedCellDelegate: AnyObject {
-    func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool)
+    func likeButtonTapped(recordID: Int?, indexPath: IndexPath, likeState: Bool)
     
-    func moreButtonTapped(recordID: Int, indexPath: IndexPath)
+    func moreButtonTapped(recordID: Int?)
 }
