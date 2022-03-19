@@ -480,10 +480,11 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
     }
 }
  
-// MARK: - Protocol
+// MARK: - FeedCellDelegate
+
 extension FeedVC: FeedCellDelegate {
-    func moreButtonTapped(recordID: Int, indexPath: IndexPath) {
-        print("🍎 recordID: \(recordID), indexPath: \(indexPath)")
+    func moreButtonTapped(recordID: Int?) {
+        guard let sparkTabBarVC = tabBarController as? SparkTabBarController else { return }
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
@@ -500,10 +501,10 @@ extension FeedVC: FeedCellDelegate {
             self.dismiss(animated: true, completion: nil)
         }))
         
-        present(alert, animated: true)
+        sparkTabBarVC.present(alert, animated: true)
     }
     
-    func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
+    func likeButtonTapped(recordID: Int?, indexPath: IndexPath, likeState: Bool) {
         if indexPath.section == 0 {
             if likeState {
                 firstList[indexPath.item].isLiked = false
@@ -562,6 +563,6 @@ extension FeedVC: FeedCellDelegate {
             }
         }
          
-        postFeedLikeWithAPI(recordID: recordID)
+        postFeedLikeWithAPI(recordID: recordID ?? 0)
     }
 }

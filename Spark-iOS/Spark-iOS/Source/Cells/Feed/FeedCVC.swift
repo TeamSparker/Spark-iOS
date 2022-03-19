@@ -36,7 +36,7 @@ class FeedCVC: UICollectionViewCell {
     
     weak var buttonDelegate: FeedCellDelegate?
     private var likeState: Bool = false
-    private var cellId: Int = 0
+    private var recordID: Int?
     private var indexPath: IndexPath?
     
     // MARK: - View Life Cycles
@@ -73,7 +73,7 @@ class FeedCVC: UICollectionViewCell {
         sparkCountLabel.text = "\(sparkCount)"
         likeCountLabel.text = "\(likeCount)"
         feedImageView.updateImage(certifyingImg, type: .large)
-        cellId = recordId
+        recordID = recordId
         profileImageView.updateImage(profileImg, type: .small)
         
         if let time = timeRecord {
@@ -127,12 +127,12 @@ class FeedCVC: UICollectionViewCell {
             }
         }
         // likeState 가 false 라면 좋아요를 취소한 것.
-        self.buttonDelegate?.likeButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
+        self.buttonDelegate?.likeButtonTapped(recordID: recordID, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), likeState: !likeState)
     }
     
     @objc
     func tapMoreButton() {
-        self.buttonDelegate?.moreButtonTapped(recordID: cellId, indexPath: self.indexPath ?? IndexPath(item: 0, section: 0))
+        self.buttonDelegate?.moreButtonTapped(recordID: recordID)
     }
 }
 
