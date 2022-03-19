@@ -39,6 +39,7 @@ class FeedVC: UIViewController {
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     private var isLastScroll = false
+    private var isFirstScroll = true
     
     // MARK: - View Life Cycles
     
@@ -302,13 +303,14 @@ extension FeedVC {
                         self.isLastScroll = false
                     }
                     self.feedList.append(contentsOf: feed.records)
+                    if self.feedList.count > self.feedCountSize {
+                        self.isFirstScroll = false
+                    }
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
                 }
                 completion()
             case .requestErr(let message):
-                // TODO: - print 지우기
-                print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("feedListFetchWithAPI - pathErr")
@@ -347,10 +349,6 @@ extension FeedVC: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
-//        print("👥")
-//        print("contentOffset.y: \(scrollView.contentOffset.y), scrollView.contentSize.height:  \(scrollView.contentSize.height), scrollView.bounds.height: \(scrollView.bounds.height)")
-//        print("-------------------")
-        
         if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
@@ -433,8 +431,7 @@ extension FeedVC: UICollectionViewDataSource {
             case UICollectionView.elementKindSectionFooter:
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
                 
-                // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
-                if isLastScroll && isInfiniteScroll {
+                if (isLastScroll && isInfiniteScroll) || isFirstScroll {
                     footer.stopLoading()
                 } else {
                     footer.playLoading()
