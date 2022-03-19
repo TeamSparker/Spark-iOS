@@ -54,6 +54,7 @@ class HabitRoomVC: UIViewController {
         registerXib()
         setNotification()
         initRefreshControl()
+        setHabitRoomGuide()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -247,6 +248,19 @@ extension HabitRoomVC {
         loadingView.play()
     }
     
+    private func setHabitRoomGuide() {
+        let checkedGuide = UserDefaults.standard.object(forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        
+        if checkedGuide == nil {
+            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+            guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+            guideVC.modalPresentationStyle = .overFullScreen
+            guideVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(guideVC, animated: true, completion: nil)
+        }
+    }
+    
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateHabitRoom), name: .updateHabitRoom, object: nil)
     }
@@ -351,6 +365,18 @@ extension HabitRoomVC {
                 }
                 
                 self.present(checkVC, animated: true, completion: nil)
+            }
+        }))
+        
+        // TODO: - 이용가이드 레이아웃 확인용. 나중에 삭제하겠습니다..
+        
+        alert.addAction(SparkAction("이용가이드", titleType: .blackMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+                guideVC.modalPresentationStyle = .overFullScreen
+                guideVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(guideVC, animated: true, completion: nil)
             }
         }))
 
