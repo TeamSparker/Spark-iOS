@@ -64,7 +64,7 @@ class HomeVC: UIViewController {
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
                 }
             }
         }
