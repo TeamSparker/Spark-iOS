@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let rootViewController = UIStoryboard(name: Const.Storyboard.Name.splash, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.splash)
-        window?.rootViewController = rootViewController
+        let navigationViewController = UINavigationController(rootViewController: rootViewController)
+        window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
     }
     

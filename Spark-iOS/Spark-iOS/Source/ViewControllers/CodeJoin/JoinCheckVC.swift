@@ -52,7 +52,7 @@ class JoinCheckVC: UIViewController {
     }
     
     @IBAction func touchCloseButton(_ sender: Any) {
-        dismiss(animated: true)
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

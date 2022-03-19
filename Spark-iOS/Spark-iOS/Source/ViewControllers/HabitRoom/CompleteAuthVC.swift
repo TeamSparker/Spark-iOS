@@ -68,7 +68,6 @@ extension CompleteAuthVC {
     
     private func setUI() {
         view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
-        tabBarController?.tabBar.isHidden = true
         
         popUpMainView.layer.cornerRadius = 2
         
