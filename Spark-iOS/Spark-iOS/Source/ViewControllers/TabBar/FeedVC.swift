@@ -55,6 +55,7 @@ class FeedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setTabBar()
         setFloatingButton()
         
         navigationController?.isNavigationBarHidden = true
@@ -91,6 +92,11 @@ class FeedVC: UIViewController {
     private func setUI() {
         emptyView.isHidden = true
         collectionView.isHidden = false
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = false
     }
     
     private func setFloatingButton() {
