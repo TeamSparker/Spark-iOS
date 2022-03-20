@@ -305,7 +305,7 @@ extension FeedVC {
                         self.isLastScroll = false
                     }
                     self.feedList.append(contentsOf: feed.records)
-                    if self.feedList.count > self.feedCountSize {
+                    if self.feedList.count >= self.feedCountSize {
                         self.isFirstScroll = false
                     }
                     self.setData(datalist: feed.records)
