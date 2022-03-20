@@ -109,6 +109,7 @@ class NoticeVC: UIViewController {
         emptyLabel.font = .h3SubtitleLight
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
+        emptyView.isHidden = true
     }
     
     private func setTabBar() {
