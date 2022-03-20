@@ -413,7 +413,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 20, bottom: 16, right: 20)
+        return UIEdgeInsets(top: 16, left: 20, bottom: 100, right: 20)
     }
 }
 
