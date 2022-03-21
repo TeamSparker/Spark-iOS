@@ -263,7 +263,8 @@ extension FeedVC {
         view.addSubviews([collectionView, emptyView])
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(54)
         }
         
         emptyView.snp.makeConstraints { make in
@@ -304,7 +305,7 @@ extension FeedVC {
                         self.isLastScroll = false
                     }
                     self.feedList.append(contentsOf: feed.records)
-                    if self.feedList.count > self.feedCountSize {
+                    if self.feedList.count >= self.feedCountSize {
                         self.isFirstScroll = false
                     }
                     self.setData(datalist: feed.records)
