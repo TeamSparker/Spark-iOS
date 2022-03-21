@@ -13,5 +13,6 @@ extension Const {
         // FIXME: - 현재 약관 및 정책 URL 로 설정됨.
         static let sparkGuideURL = "https://jealous-supernova-274.notion.site/be178522025a4517a3a592fb85a49520"
         static let tosURL = "https://jealous-supernova-274.notion.site/be178522025a4517a3a592fb85a49520"
+        static let openSourceLibraryURL = "https://jealous-supernova-274.notion.site/Spark-Open-Source-Library-46ceed0477dc463ca9b8b3081a1370dc"
     }
 }
