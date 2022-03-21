@@ -121,7 +121,7 @@ extension HomeVC {
         emptyLabel.text = "아직 습관방이 없어요.\n+를 눌러 습관을 시작해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
-        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .btn1Default)
+        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .h3SubtitleBold)
         emptyLabel.textColor = .sparkWhite
         emptyLabel.numberOfLines = 2
         

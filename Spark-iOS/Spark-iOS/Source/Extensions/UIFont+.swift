@@ -98,6 +98,10 @@ extension UIFont {
         return UIFont(name: AppFontName.krMeduim, size: 18.0)!
     }
     
+    @nonobjc class var h3SubtitleBold: UIFont {
+        return UIFont(name: AppFontName.krBold, size: 18.0)!
+    }
+    
     @nonobjc class var h3SubtitleLight: UIFont {
         return UIFont(name: AppFontName.krRegular, size: 18.0)!
     }

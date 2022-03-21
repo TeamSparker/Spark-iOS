@@ -107,6 +107,7 @@ class NoticeVC: UIViewController {
         emptyLabel.text = "아직 도착한 알림이 없어요.\n친구와 함께 습관에 도전해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
+        emptyLabel.partFontChange(targetString: "아직 도착한 알림이 없어요.", font: .h3SubtitleBold)
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
         emptyView.isHidden = true
