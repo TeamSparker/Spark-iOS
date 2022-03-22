@@ -19,6 +19,7 @@ public enum MypageRow: Int {
     case contact // 문의하기
     case sparkGuide // 스파크 사용 가이드
     case tos // Terms of service terms of use. 약관 및 정책
+    case openSourceLibrary // 오픈소스 라이브러리
     case version // 버전 정보
     case logout // 로그아웃
     case withdrawal // 회원 탈퇴
@@ -191,6 +192,14 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
+            } else if indexPath.row == 2 {
+                // 오픈소스 라이브러리
+                guard let url = URL(string: Const.URL.openSourceLibraryURL) else { return }
+                let safariVC = SFSafariViewController(url: url)
+                safariVC.transitioningDelegate = self
+                safariVC.modalPresentationStyle = .pageSheet
+                
+                present(safariVC, animated: true, completion: nil)
             } else if indexPath.row == 3 {
                 // logout
                 guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
@@ -246,7 +255,7 @@ extension MypageVC: UITableViewDataSource {
             
             return rowOfSection.count
         case .service:
-            rowOfSection = [.sparkGuide, .tos, .version, .logout, .withdrawal]
+            rowOfSection = [.sparkGuide, .tos, .openSourceLibrary, .version, .logout, .withdrawal]
             
             return rowOfSection.count
         }
