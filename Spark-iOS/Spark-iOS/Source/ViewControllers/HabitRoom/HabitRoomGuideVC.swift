@@ -55,7 +55,7 @@ class HabitRoomGuideVC: UIViewController {
         
         closeButton.setTitle("닫기", for: .normal)
         closeButton.setTitleColor(.sparkPinkred, for: .normal)
-        closeButton.titleLabel?.font = .btn2
+        closeButton.titleLabel?.font = .krBoldFont(ofSize: 16)
         closeButton.alpha = 0
         
         pageControl.numberOfPages = 3
@@ -183,12 +183,12 @@ extension HabitRoomGuideVC {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(28)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(popupView.snp.height).multipliedBy(0.41)
+            make.height.equalTo(popupView.snp.height).multipliedBy(0.67)
         }
         
         guideLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(collectionView.snp.bottom).offset(28)
+            make.bottom.equalTo(collectionView.snp.bottom).inset(28)
         }
         
         pageControl.snp.makeConstraints { make in

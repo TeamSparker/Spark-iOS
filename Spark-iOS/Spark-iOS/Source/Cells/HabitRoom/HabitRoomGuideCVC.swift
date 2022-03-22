@@ -44,7 +44,7 @@ class HabitRoomGuideCVC: UICollectionViewCell {
         
         guideImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.bottom.equalToSuperview()
+            make.top.equalToSuperview()
             make.width.equalTo(242)
             make.height.equalTo(165)
         }
