@@ -493,13 +493,18 @@ extension WaitingVC {
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
             }
+            self.postStartHabitNotification()
         }
         
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    private func postNotification() {
+    private func postLeaveNotification() {
         NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": true])
+    }
+    
+    private func postStartHabitNotification() {
+        NotificationCenter.default.post(name: .startHabitRoom, object: nil, userInfo: ["roomID": roomId ?? 0])
     }
 }
 
@@ -564,7 +569,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
-                self.postNotification()
+                self.postLeaveNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
@@ -593,7 +598,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
-                self.postNotification()
+                self.postLeaveNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
