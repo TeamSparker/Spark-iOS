@@ -504,7 +504,7 @@ extension WaitingVC {
     }
     
     private func postStartHabitNotification() {
-        NotificationCenter.default.post(name: .startHabit, object: nil, userInfo: ["roomID": roomId ?? 0])
+        NotificationCenter.default.post(name: .startHabitRoom, object: nil, userInfo: ["roomID": roomId ?? 0])
     }
 }
 

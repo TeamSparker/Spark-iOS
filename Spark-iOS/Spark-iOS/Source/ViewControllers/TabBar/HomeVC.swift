@@ -212,7 +212,7 @@ extension HomeVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateHome), name: .updateHome, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .startHabit, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .startHabitRoom, object: nil)
     }
     
     // MARK: - Screen Change
