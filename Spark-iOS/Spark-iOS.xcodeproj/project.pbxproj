@@ -142,6 +142,8 @@
 		F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80A3E52278C1C0C00728E07 /* Storage.storyboard */; };
 		F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E54278C1C1F00728E07 /* StorageVC.swift */; };
 		F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80A3E56278C1C2700728E07 /* FeedVC.swift */; };
+		F80B02CF27EC1BD800D63B45 /* homeCardFail.json in Resources */ = {isa = PBXBuildFile; fileRef = F80B02CE27EC1BD800D63B45 /* homeCardFail.json */; };
+		F80B02D127EC1BDC00D63B45 /* homeCardSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = F80B02D027EC1BDC00D63B45 /* homeCardSuccess.json */; };
 		F816F122278E1C760008ED00 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F816F121278E1C760008ED00 /* Login.storyboard */; };
 		F816F125278E1C920008ED00 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816F124278E1C920008ED00 /* LoginVC.swift */; };
 		F821812E27DE224A00DDFBF8 /* SparkTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F821812D27DE224A00DDFBF8 /* SparkTabBar.swift */; };
@@ -367,6 +369,8 @@
 		F80A3E52278C1C0C00728E07 /* Storage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storage.storyboard; sourceTree = "<group>"; };
 		F80A3E54278C1C1F00728E07 /* StorageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageVC.swift; sourceTree = "<group>"; };
 		F80A3E56278C1C2700728E07 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		F80B02CE27EC1BD800D63B45 /* homeCardFail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homeCardFail.json; sourceTree = "<group>"; };
+		F80B02D027EC1BDC00D63B45 /* homeCardSuccess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homeCardSuccess.json; sourceTree = "<group>"; };
 		F816F121278E1C760008ED00 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F816F124278E1C920008ED00 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F821812D27DE224A00DDFBF8 /* SparkTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTabBar.swift; sourceTree = "<group>"; };
@@ -885,6 +889,8 @@
 		EBEA3819279441BD00B5736A /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				F80B02D027EC1BDC00D63B45 /* homeCardSuccess.json */,
+				F80B02CE27EC1BD800D63B45 /* homeCardFail.json */,
 				EBEA383427948C2D00B5736A /* ticket_welcome.json */,
 				EBEA381E279450B800B5736A /* illust_confetti.json */,
 				F8ABAEFE2796163300C0F774 /* splash_logo.json */,
@@ -1478,8 +1484,10 @@
 				2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
+				F80B02CF27EC1BD800D63B45 /* homeCardFail.json in Resources */,
 				F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
+				F80B02D127EC1BDC00D63B45 /* homeCardSuccess.json in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
 				F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */,
 				EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */,
