@@ -50,6 +50,7 @@ extension CompleteFailDialogueVC {
         
         titleLabel.textColor = .sparkPinkred
         titleLabel.font = .enMediumItatlicFont(ofSize: 24.0)
+        titleLabel.textAlignment = .center
         
         subtitleLable.textColor = .sparkDeepGray
         subtitleLable.font = .p1TitleLight
