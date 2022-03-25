@@ -88,7 +88,7 @@ class FeedReportVC: UIViewController {
         
         customNavigationBar.title("게시물 신고")
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.popToFeedVC()
             }
     }

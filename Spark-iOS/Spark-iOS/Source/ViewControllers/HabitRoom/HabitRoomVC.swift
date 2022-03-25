@@ -106,7 +106,7 @@ extension HabitRoomVC {
             .tintColor(.sparkWhite)
             .backgroundColor(.clear)
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.popToHomeVC()
             }
             .rightButtonImage("icMoreVerticalWhite")

@@ -55,7 +55,7 @@ class AuthTimerVC: UIViewController {
     private func setUI() {
         customNavigationBar.title(roomName ?? "")
             .leftButtonImage("icQuit")
-            .leftButonAction {
+            .leftButtonAction {
                 self.dismissToHabitRoom()
             }
         

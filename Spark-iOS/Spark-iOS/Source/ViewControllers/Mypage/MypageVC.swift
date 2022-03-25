@@ -69,7 +69,7 @@ extension MypageVC {
         customNavigationBar.title("MY")
             .font(.h3SubtitleEng)
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
             }

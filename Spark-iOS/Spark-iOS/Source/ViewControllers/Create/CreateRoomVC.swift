@@ -41,7 +41,7 @@ class CreateRoomVC: UIViewController {
         
         customNavigationBar.title("")
             .leftButtonImage("icQuit")
-            .leftButonAction {
+            .leftButtonAction {
                 self.dismissToHomeVC()
             }
         
