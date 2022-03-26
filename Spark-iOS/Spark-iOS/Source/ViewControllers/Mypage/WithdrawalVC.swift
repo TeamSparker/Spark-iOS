@@ -61,17 +61,17 @@ extension WithdrawalVC {
         firstTextLabel.lineBreakMode = .byCharWrapping
         
         firstCircleLabel.font = .p1TitleLight
-        firstCircleLabel.text = "   •"
+        firstCircleLabel.text = "  •"
         firstCircleLabel.textColor = .sparkDarkGray
         
         secondTextLabel.font = .p1TitleLight
         secondTextLabel.textColor = .sparkDarkGray
-        secondTextLabel.text = "최근 7일 동안의 습관 인증, 친구에게 보낸 스파크, 좋아요 등 타 스파커들에게 공유된 정보는 각가의 습관방에 귀속되어, 생성일로부터 7일 동안 보관 후 삭제됩니다."
+        secondTextLabel.text = "최근 7일 동안의 습관 인증, 친구에게 보낸 스파크, 좋아요 등 타 스파커들에게 공유된 정보는 각각의 습관방에 귀속되어, 생성일로부터 7일 동안 보관 후 삭제됩니다."
         secondTextLabel.numberOfLines = 0
         secondTextLabel.lineBreakMode = .byCharWrapping
         
         secondCircleLabel.font = .p1TitleLight
-        secondCircleLabel.text = "   •"
+        secondCircleLabel.text = "  •"
         secondCircleLabel.textColor = .sparkDarkGray
         
         bottomDividerLine.backgroundColor = .sparkDarkGray
@@ -98,6 +98,27 @@ extension WithdrawalVC {
     @objc
     private func touchWithdrawalButtonButton() {
         // TODO: - 탈퇴하기 서버통신
+        guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        dialogueVC.modalPresentationStyle = .overFullScreen
+        dialogueVC.modalTransitionStyle = .crossDissolve
+        dialogueVC.dialogueType = .withdrawal
+        dialogueVC.clousure = {
+            if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+                // TODO: - 애플 탈퇴 api
+            } else {
+                // TODO: - 카카오 탈퇴 api
+            }
+            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
+            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
+            
+            guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+            loginVC.modalPresentationStyle = .overFullScreen
+            loginVC.modalTransitionStyle = .crossDissolve
+            self.present(loginVC, animated: true, completion: nil)
+        }
+        
+        present(dialogueVC, animated: true, completion: nil)
     }
     
     @objc
