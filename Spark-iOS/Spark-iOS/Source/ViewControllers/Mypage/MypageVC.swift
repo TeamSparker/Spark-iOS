@@ -100,7 +100,6 @@ extension MypageVC {
             tableView.sectionHeaderTopPadding = 0
         }
     }
-
 }
 
 // MARK: - UITableViewDelegate
@@ -144,7 +143,9 @@ extension MypageVC: UITableViewDelegate {
             editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
         case .setting:
-            return
+            guard let notificationVC = UIStoryboard(name: Const.Storyboard.Name.notification, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.notification) as? NotificationVC else { return }
+            
+            navigationController?.pushViewController(notificationVC, animated: true)
         case .center:
             if MFMailComposeViewController.canSendMail() {
                 guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }

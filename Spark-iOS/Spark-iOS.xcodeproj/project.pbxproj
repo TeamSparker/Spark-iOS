@@ -183,6 +183,8 @@
 		F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */; };
 		F8B18E0527EFA19E001A1A7D /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0427EFA19E001A1A7D /* NotificationVC.swift */; };
 		F8B18E0727EFA1AA001A1A7D /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B18E0627EFA1AA001A1A7D /* Notification.storyboard */; };
+		F8B18E0927EFA43F001A1A7D /* NotificationHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0827EFA43F001A1A7D /* NotificationHeaderTVC.swift */; };
+		F8B18E0B27EFA453001A1A7D /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0A27EFA453001A1A7D /* NotificationTVC.swift */; };
 		F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C14A992795094800498687 /* HomeEmptyCVC.swift */; };
 		F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */; };
 		F8C3659527DBB82A000AA9BD /* CompleteFailDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */; };
@@ -417,6 +419,8 @@
 		F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCellDelegate.swift; sourceTree = "<group>"; };
 		F8B18E0427EFA19E001A1A7D /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		F8B18E0627EFA1AA001A1A7D /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
+		F8B18E0827EFA43F001A1A7D /* NotificationHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHeaderTVC.swift; sourceTree = "<group>"; };
+		F8B18E0A27EFA453001A1A7D /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		F8C14A992795094800498687 /* HomeEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCVC.swift; sourceTree = "<group>"; };
 		F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeEmptyCVC.xib; sourceTree = "<group>"; };
 		F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFailDialogueVC.swift; sourceTree = "<group>"; };
@@ -1345,6 +1349,8 @@
 				F8E4DFD527D0918C00128B1F /* MypageProfileTVC.swift */,
 				F8E4DFD727D09F7A00128B1F /* MypageDefaultTVC.swift */,
 				F8E4DFD927D0DE3700128B1F /* MypageTableHeaderView.swift */,
+				F8B18E0827EFA43F001A1A7D /* NotificationHeaderTVC.swift */,
+				F8B18E0A27EFA453001A1A7D /* NotificationTVC.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1671,6 +1677,7 @@
 				F8E4DFD627D0918C00128B1F /* MypageProfileTVC.swift in Sources */,
 				F821813527DE659E00DDFBF8 /* SparkTabBarController.swift in Sources */,
 				F8B18E0527EFA19E001A1A7D /* NotificationVC.swift in Sources */,
+				F8B18E0B27EFA453001A1A7D /* NotificationTVC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
@@ -1701,6 +1708,7 @@
 				F82F5802279287FD003E4174 /* HabitRoom.swift in Sources */,
 				F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */,
 				F8E4DFDA27D0DE3700128B1F /* MypageTableHeaderView.swift in Sources */,
+				F8B18E0927EFA43F001A1A7D /* NotificationHeaderTVC.swift in Sources */,
 				F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */,
 				F82F580427928975003E4174 /* MoyaLoggerPlugin.swift in Sources */,
 				F8096F2927841F1E00B71D38 /* Const.swift in Sources */,
