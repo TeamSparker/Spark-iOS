@@ -83,12 +83,6 @@ extension MypageDefaultTVC {
             arrowImageView.isHidden = false
             versionLabel.isHidden = true
             withdrawalButton.isHidden = true
-        case .sparkGuide:
-            titleLabel.text = "스파크 사용 가이드"
-            titleLabel.isHidden = false
-            arrowImageView.isHidden = false
-            versionLabel.isHidden = true
-            withdrawalButton.isHidden = true
         case .tos:
             titleLabel.text = "약관 및 정책"
             titleLabel.isHidden = false

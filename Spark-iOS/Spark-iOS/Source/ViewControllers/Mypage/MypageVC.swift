@@ -17,7 +17,6 @@ public enum MypageRow: Int {
     case profile // 프로필
     case notification // 알림
     case contact // 문의하기
-    case sparkGuide // 스파크 사용 가이드
     case tos // Terms of service terms of use. 약관 및 정책
     case openSourceLibrary // 오픈소스 라이브러리
     case version // 버전 정보
@@ -184,7 +183,7 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 1 {
+            } else if indexPath.row == 0 {
                 // 약관 및 정책
                 guard let url = URL(string: Const.URL.tosURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
@@ -192,7 +191,7 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 1 {
                 // 오픈소스 라이브러리
                 guard let url = URL(string: Const.URL.openSourceLibraryURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
@@ -200,6 +199,12 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
+            } else if indexPath.row == 2 {
+              // FIXME: - 탈퇴 연습
+                // 버전정보
+                guard let withdrawalVC = UIStoryboard(name: Const.Storyboard.Name.withdrawal, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.withdrawal) as? WithdrawalVC else { return }
+                
+                navigationController?.pushViewController(withdrawalVC, animated: true)
             } else if indexPath.row == 3 {
                 // logout
                 guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
@@ -255,7 +260,7 @@ extension MypageVC: UITableViewDataSource {
             
             return rowOfSection.count
         case .service:
-            rowOfSection = [.sparkGuide, .tos, .openSourceLibrary, .version, .logout, .withdrawal]
+            rowOfSection = [.tos, .openSourceLibrary, .version, .logout, .withdrawal]
             
             return rowOfSection.count
         }
