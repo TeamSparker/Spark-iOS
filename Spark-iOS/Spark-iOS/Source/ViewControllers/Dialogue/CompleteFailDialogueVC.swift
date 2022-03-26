@@ -16,13 +16,14 @@ class CompleteFailDialogueVC: UIViewController {
     
     private let bgView = UIView()
     private let sparkFlakePatternImageView = UIImageView()
-    private let lottieView = AnimationView(name: Const.Lottie.Name.ticketWelcome)
+    private let lottieView = UIView()
+    private lazy var successLottieView = AnimationView(name: Const.Lottie.Name.homeCardSuccess)
+    private lazy var failLottieView = AnimationView(name: Const.Lottie.Name.homeCardFail)
     private let titleLabel = UILabel()
     private let subtitleLable = UILabel()
     private let button = UIButton()
     
     var roomID: Int?
-    
     var roomStatus: RoomStatus?
     
     // MARK: - View Life Cycle
@@ -44,15 +45,12 @@ extension CompleteFailDialogueVC {
         
         bgView.backgroundColor = .sparkWhite
         bgView.layer.cornerRadius = 2
-        
-        lottieView.loopMode = .loop
-        lottieView.contentMode = .scaleAspectFit
-        lottieView.play()
-        
+
         sparkFlakePatternImageView.image = UIImage(named: "sparkflakePattern2")
         
         titleLabel.textColor = .sparkPinkred
         titleLabel.font = .enMediumItatlicFont(ofSize: 24.0)
+        titleLabel.textAlignment = .center
         
         subtitleLable.textColor = .sparkDeepGray
         subtitleLable.font = .p1TitleLight
@@ -124,6 +122,27 @@ extension CompleteFailDialogueVC {
             $0.bottom.equalToSuperview().inset(28)
             $0.leading.trailing.equalToSuperview().inset(106)
             $0.height.equalTo(button.snp.width).multipliedBy(0.4)
+        }
+        
+        switch roomStatus {
+        case .complete:
+            lottieView.addSubview(successLottieView)
+            successLottieView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            successLottieView.loopMode = .loop
+            successLottieView.contentMode = .scaleAspectFit
+            successLottieView.play()
+        case .fail:
+            lottieView.addSubview(failLottieView)
+            failLottieView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            failLottieView.loopMode = .loop
+            failLottieView.contentMode = .scaleAspectFit
+            failLottieView.play()
+        default:
+            return
         }
     }
     

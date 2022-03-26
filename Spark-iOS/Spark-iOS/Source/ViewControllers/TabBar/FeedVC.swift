@@ -39,13 +39,14 @@ class FeedVC: UIViewController {
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     private var isLastScroll = false
+    private var isFirstScroll = true
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
+        updateHiddenCollectionView()
         setLayout()
         setCollectionView()
         setNotification()
@@ -55,10 +56,11 @@ class FeedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        navigationController?.isNavigationBarHidden = true
-        tabBarController?.tabBar.isHidden = false
+        setTabBar()
+        setFloatingButton()
         
+        navigationController?.isNavigationBarHidden = true
+
         feedLastID = -1
         
         dateList.removeAll()
@@ -88,9 +90,18 @@ class FeedVC: UIViewController {
     
     // MARK: - Methods
     
-    private func setUI() {
+    private func updateHiddenCollectionView() {
         emptyView.isHidden = true
         collectionView.isHidden = false
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = false
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     private func setEmptyView() {
@@ -100,7 +111,7 @@ class FeedVC: UIViewController {
         emptyLabel.text = "아직 올라온 인증이 없어요.\n습관방에서 첫 인증을 시작해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
-        emptyLabel.partFontChange(targetString: "아직 올라온 인증이 없어요.", font: .btn1Default)
+        emptyLabel.partFontChange(targetString: "아직 올라온 인증이 없어요.", font: .h3SubtitleBold)
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
         emptyImageView.image = UIImage(named: "tagEmpty")
@@ -148,6 +159,7 @@ class FeedVC: UIViewController {
         if feedList.isEmpty {
             setEmptyView()
         } else {
+            updateHiddenCollectionView()
             var indexPath = 0
             var sectionCount = 0 // section을 돌기 위한 변수
             
@@ -251,7 +263,8 @@ extension FeedVC {
         view.addSubviews([collectionView, emptyView])
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(54)
         }
         
         emptyView.snp.makeConstraints { make in
@@ -292,13 +305,14 @@ extension FeedVC {
                         self.isLastScroll = false
                     }
                     self.feedList.append(contentsOf: feed.records)
+                    if self.feedList.count >= self.feedCountSize {
+                        self.isFirstScroll = false
+                    }
                     self.setData(datalist: feed.records)
                     self.collectionView.reloadData()
                 }
                 completion()
             case .requestErr(let message):
-                // TODO: - print 지우기
-                print("🤍 lastId: \(lastID)")
                 print("feedListFetchWithAPI - requestErr: \(message)")
             case .pathErr:
                 print("feedListFetchWithAPI - pathErr")
@@ -337,10 +351,6 @@ extension FeedVC: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // FIXME: - 처음 뷰를 로드했을 떄 scrollViewDidScroll이 두 번 실행됨
-//        print("👥")
-//        print("contentOffset.y: \(scrollView.contentOffset.y), scrollView.contentSize.height:  \(scrollView.contentSize.height), scrollView.bounds.height: \(scrollView.bounds.height)")
-//        print("-------------------")
-        
         if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
             if isInfiniteScroll && !isLastScroll {
@@ -423,8 +433,7 @@ extension FeedVC: UICollectionViewDataSource {
             case UICollectionView.elementKindSectionFooter:
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Const.Cell.Identifier.feedFooterView, for: indexPath) as? FeedFooterView else { return UICollectionReusableView() }
                 
-                // 마지막 스크롤이면 loading 멈추고, 마지막이 아닌 경우 loading
-                if isLastScroll && isInfiniteScroll {
+                if (isLastScroll && isInfiniteScroll) || isFirstScroll {
                     footer.stopLoading()
                 } else {
                     footer.playLoading()
@@ -476,10 +485,11 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
     }
 }
  
-// MARK: - Protocol
+// MARK: - FeedCellDelegate
+
 extension FeedVC: FeedCellDelegate {
-    func moreButtonTapped(recordID: Int, indexPath: IndexPath) {
-        print("🍎 recordID: \(recordID), indexPath: \(indexPath)")
+    func moreButtonTapped(recordID: Int?) {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
         let alert = SparkActionSheet()
         alert.addAction(SparkAction("신고하기", titleType: .blackMediumTitle, handler: {
             alert.dismiss(animated: true) {
@@ -493,18 +503,13 @@ extension FeedVC: FeedCellDelegate {
         
         alert.addSection()
         alert.addAction(SparkAction("취소", titleType: .blackBoldTitle, handler: {
-            self.dismiss(animated: true) {
-                // FIXME: - MaicTabbar가 feedVC를 포함하고 있어서 액션 시트를 띄울 경우 탭바 아래로 띄워짐 -> 임시로 탭바를 hidden 시키고 있는 상황
-                self.tabBarController?.tabBar.isHidden = false
-            }
+            self.dismiss(animated: true, completion: nil)
         }))
         
-        tabBarController?.tabBar.isHidden = true
-        
-        present(alert, animated: true)
+        tabBarController.present(alert, animated: true)
     }
     
-    func likeButtonTapped(recordID: Int, indexPath: IndexPath, likeState: Bool) {
+    func likeButtonTapped(recordID: Int?, indexPath: IndexPath, likeState: Bool) {
         if indexPath.section == 0 {
             if likeState {
                 firstList[indexPath.item].isLiked = false
@@ -563,6 +568,6 @@ extension FeedVC: FeedCellDelegate {
             }
         }
          
-        postFeedLikeWithAPI(recordID: recordID)
+        postFeedLikeWithAPI(recordID: recordID ?? 0)
     }
 }

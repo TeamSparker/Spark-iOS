@@ -95,6 +95,12 @@ extension MypageDefaultTVC {
             arrowImageView.isHidden = false
             versionLabel.isHidden = true
             withdrawalButton.isHidden = true
+        case .openSourceLibrary:
+            titleLabel.text = "오픈소스 라이브러리"
+            titleLabel.isHidden = false
+            arrowImageView.isHidden = false
+            versionLabel.isHidden = true
+            withdrawalButton.isHidden = true
         case .version:
             titleLabel.text = "버전 정보"
             titleLabel.isHidden = false

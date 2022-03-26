@@ -54,12 +54,15 @@ class HabitRoomVC: UIViewController {
         registerXib()
         setNotification()
         initRefreshControl()
+        setHabitRoomGuide()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         updateHabitRoom()
+        setTabBar()
+        setFloatingButton()
     }
     
     // set status bar style
@@ -110,9 +113,6 @@ extension HabitRoomVC {
             .rightButtonAction {
                 self.presentToMoreAlert()
             }
-    
-        tabBarController?.tabBar.isHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
         
         flakeImageView.contentMode = .scaleAspectFit
         
@@ -147,6 +147,15 @@ extension HabitRoomVC {
         authButton.isEnabled = false
         
         gradationView.setHabitGradient()
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     private func setUIByData(_ habitRoomDetail: HabitRoomDetail) {
@@ -245,6 +254,19 @@ extension HabitRoomVC {
         loadingView.loopMode = .loop
         loadingView.contentMode = .scaleAspectFit
         loadingView.play()
+    }
+    
+    private func setHabitRoomGuide() {
+        let checkedGuide = UserDefaults.standard.object(forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        
+        if checkedGuide == nil {
+            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+            guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+            guideVC.modalPresentationStyle = .overFullScreen
+            guideVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(guideVC, animated: true, completion: nil)
+        }
     }
     
     private func setNotification() {
@@ -351,6 +373,18 @@ extension HabitRoomVC {
                 }
                 
                 self.present(checkVC, animated: true, completion: nil)
+            }
+        }))
+        
+        // TODO: - 이용가이드 레이아웃 확인용. 나중에 삭제하겠습니다..
+        
+        alert.addAction(SparkAction("이용가이드", titleType: .blackMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+                guideVC.modalPresentationStyle = .overFullScreen
+                guideVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(guideVC, animated: true, completion: nil)
             }
         }))
 

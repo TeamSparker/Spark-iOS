@@ -50,9 +50,8 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
-        
-        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+        setTabBar()
+        setFloatingButton()
         
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
@@ -64,7 +63,7 @@ class HomeVC: UIViewController {
         DispatchQueue.main.async {
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
                 }
             }
         }
@@ -76,8 +75,7 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         bgView.contentMode = .scaleAspectFill
-        
-        // set navigation bar.
+    
         customNavigationBar
             .buttonsImage("icProfile", "icNotice")
             .actions({
@@ -97,6 +95,19 @@ extension HomeVC {
         mainCollectionView.showsVerticalScrollIndicator = true
         mainCollectionView.isScrollEnabled = false
         
+        updateHiddenCollectionView()
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = false
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
+    }
+
+    private func updateHiddenCollectionView() {
         emptyView.isHidden = true
         emptyBackgroundView.isHidden = true
         mainCollectionView.isHidden = false
@@ -110,7 +121,7 @@ extension HomeVC {
         emptyLabel.text = "아직 습관방이 없어요.\n+를 눌러 습관을 시작해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
-        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .btn1Default)
+        emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .h3SubtitleBold)
         emptyLabel.textColor = .sparkWhite
         emptyLabel.numberOfLines = 2
         
@@ -201,6 +212,7 @@ extension HomeVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateHome), name: .updateHome, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .startHabitRoom, object: nil)
     }
     
     // MARK: - Screen Change
@@ -268,6 +280,15 @@ extension HomeVC {
                 }
             }
         }
+    }
+    
+    @objc
+    private func enterHabitRoomVC(_ notification: NSNotification) {
+        guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+        guard let roomID: Int = notification.userInfo?["roomID"] as? Int else { return }
+        nextVC.roomID = roomID
+        
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
@@ -402,7 +423,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 20, bottom: 16, right: 20)
+        return UIEdgeInsets(top: 16, left: 20, bottom: 100, right: 20)
     }
 }
 
@@ -421,6 +442,7 @@ extension HomeVC {
                     if self.habitRoomList?.count == 0 {
                         self.setEmptyView()
                     } else {
+                        self.updateHiddenCollectionView()
                         self.mainCollectionView.reloadData()
                     }
                 }

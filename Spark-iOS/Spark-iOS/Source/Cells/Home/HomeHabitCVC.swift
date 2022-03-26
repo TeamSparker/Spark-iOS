@@ -85,13 +85,13 @@ class HomeHabitCVC: UICollectionViewCell {
 extension HomeHabitCVC {
     private func setUI() {
         flakeImage.contentMode = .scaleAspectFill
-        ticketImage.contentMode = .scaleAspectFit
+        ticketImage.contentMode = .scaleAspectFill
         
         ddayTitleLabel.font = .h1BigtitleEng
         ddaySubtitleLabel.font = .caption
         
         [firstProfileImage, secondProfileImage, thirdProfileImage, fourthProfileImage].forEach {
-            $0?.layer.cornerRadius = 13
+            $0?.layer.cornerRadius = 14
             $0?.layer.borderWidth = 2
             $0?.layer.borderColor = UIColor.sparkWhite.cgColor
             $0?.contentMode = .scaleAspectFill

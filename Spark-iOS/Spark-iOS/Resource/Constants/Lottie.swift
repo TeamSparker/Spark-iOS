@@ -17,6 +17,8 @@ extension Const {
             static let splashLogo = "splash_logo"
             static let splashBackground = "splash_bg_iOS"
             static let loading = "loading3"
+            static let homeCardSuccess = "homeCardSuccess"
+            static let homeCardFail = "homeCardFail"
         }
     }
 }

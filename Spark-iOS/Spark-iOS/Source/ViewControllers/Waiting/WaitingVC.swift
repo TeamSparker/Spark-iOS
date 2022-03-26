@@ -100,6 +100,8 @@ class WaitingVC: UIViewController {
         DispatchQueue.main.async {
             self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         }
+        setTabBar()
+        setFloatingButton()
     }
 }
 
@@ -147,10 +149,6 @@ extension WaitingVC {
     }
     
     private func setUI() {
-        tabBarController?.tabBar.isHidden = true
-        // 플로팅버튼 내리기
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        
         [firstDivideView, secondDivideView].forEach {$0.backgroundColor = .sparkLightGray}
         checkDivideView.backgroundColor = .sparkDarkGray
         
@@ -195,6 +193,15 @@ extension WaitingVC {
         friendSubTitleLabel.textColor = .gray
         
         startButton.isHidden = true
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
     }
     
     /// 선택한 인증 방식에 따라 라벨을 보이는 함수
@@ -486,13 +493,18 @@ extension WaitingVC {
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
             }
+            self.postStartHabitNotification()
         }
         
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    private func postNotification() {
+    private func postLeaveNotification() {
         NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": true])
+    }
+    
+    private func postStartHabitNotification() {
+        NotificationCenter.default.post(name: .startHabitRoom, object: nil, userInfo: ["roomID": roomId ?? 0])
     }
 }
 
@@ -557,7 +569,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
-                self.postNotification()
+                self.postLeaveNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")
@@ -586,7 +598,7 @@ extension WaitingVC {
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
-                self.postNotification()
+                self.postLeaveNotification()
                 print("deleteWaitingRoomWithAPI - success: \(message)")
             case .requestErr(let message):
                 print("deleteWaitingRoomWithAPI - requestErr: \(message)")

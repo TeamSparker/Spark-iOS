@@ -53,12 +53,6 @@ class NoticeVC: UIViewController {
         }
         
         getActiveNoticeFetchWithAPI(lastID: activeLastID) {
-            if self.activeList.isEmpty {
-                self.emptyView.isHidden = true
-            } else {
-                self.emptyView.isHidden = false
-            }
-            
             if self.newService {
                 self.serviceBadgeView.isHidden = false
             } else {
@@ -68,21 +62,25 @@ class NoticeVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBar()
+        setFloatingButton()
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        tabBarController?.tabBar.isHidden = true
-        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
-        
         customNavigationBar.title("알림")
             .leftButtonImage("icBackWhite")
             .leftButonAction {
                 self.popToHomeVC()
             }
-        
+
         activeButton.setTitle("스파커 활동", for: .normal)
         activeButton.setTitleColor(.sparkDarkPinkred, for: .selected)
         activeButton.setTitleColor(.sparkDarkGray, for: .normal)
@@ -104,19 +102,34 @@ class NoticeVC: UIViewController {
         activeBadgeView.backgroundColor = .sparkDarkPinkred
         activeBadgeView.layer.cornerRadius = 3
         activeBadgeView.isHidden = true
-    }
-    
-    private func setEmptyView() {
+        
         emptyImageView.image = UIImage(named: "noticeEmpty")
         emptyLabel.text = "아직 도착한 알림이 없어요.\n친구와 함께 습관에 도전해 보세요!"
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
+        emptyLabel.partFontChange(targetString: "아직 도착한 알림이 없어요.", font: .h3SubtitleBold)
         emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
-        
-        // 서버 통신 후 처리
+        emptyView.isHidden = true
+    }
+    
+    private func setTabBar() {
+        guard let tabBarController = tabBarController as? SparkTabBarController else { return }
+        tabBarController.sparkTabBar.isHidden = true
+    }
+    
+    private func setFloatingButton() {
+        NotificationCenter.default.post(name: .disappearFloatingButton, object: nil)
+    }
+    
+    private func setEmptyView() {
         collectionView.isHidden = true
         emptyView.isHidden = false
+    }
+    
+    private func updateHiddenCollectionView() {
+        collectionView.isHidden = false
+        emptyView.isHidden = true
     }
     
     private func setCollectionView() {
@@ -180,12 +193,6 @@ class NoticeVC: UIViewController {
         
         group.enter()
         getActiveNoticeFetchWithAPI(lastID: activeLastID) {
-            if self.activeList.isEmpty {
-                self.emptyView.isHidden = true
-            } else {
-                self.emptyView.isHidden = false
-            }
-            
             if self.newService {
                 self.serviceBadgeView.isHidden = false
             } else {
@@ -196,7 +203,9 @@ class NoticeVC: UIViewController {
 
         group.notify(queue: .main) {
             self.activeReadWithAPI()
-            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            if !self.collectionView.isHidden {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
         }
     }
     
@@ -214,12 +223,6 @@ class NoticeVC: UIViewController {
         
         group.enter()
         getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
-            if self.serviceList.isEmpty {
-                self.emptyView.isHidden = true
-            } else {
-                self.emptyView.isHidden = false
-            }
-
             if self.newActive {
                 self.activeBadgeView.isHidden = false
             } else {
@@ -230,7 +233,9 @@ class NoticeVC: UIViewController {
 
         group.notify(queue: .main) {
             self.serviceReadWithAPI()
-            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            if !self.collectionView.isHidden {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            }
         }
     }
 }
@@ -339,7 +344,12 @@ extension NoticeVC {
                     self.serviceList.removeAll()
                     self.newService = active.newService
                     self.activeList.append(contentsOf: active.notices)
-                    self.collectionView.reloadData()
+                    if self.activeList.isEmpty {
+                        self.setEmptyView()
+                    } else {
+                        self.updateHiddenCollectionView()
+                        self.collectionView.reloadData()
+                    }
                 }
                 completion()
             case .requestErr(let message):
@@ -362,7 +372,12 @@ extension NoticeVC {
                     self.activeList.removeAll()
                     self.newActive = service.newActive
                     self.serviceList.append(contentsOf: service.notices)
-                    self.collectionView.reloadData()
+                    if self.serviceList.isEmpty {
+                        self.setEmptyView()
+                    } else {
+                        self.updateHiddenCollectionView()
+                        self.collectionView.reloadData()
+                    }
                 }
                 completion()
             case .requestErr(let message):

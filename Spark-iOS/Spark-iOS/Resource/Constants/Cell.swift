@@ -31,6 +31,7 @@ extension Const {
             static let noticeActiveCVC = "NoticeActiveCVC"
             static let noticeServiceCVC = "NoticeServiceCVC"
             static let onboardingCVC = "OnboardingCVC"
+            static let habitRoomGuideCVC = "HabitRoomGuideCVC"
         }
     }
 }
