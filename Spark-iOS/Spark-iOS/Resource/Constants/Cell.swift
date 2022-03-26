@@ -32,7 +32,7 @@ extension Const {
             static let noticeServiceCVC = "NoticeServiceCVC"
             static let onboardingCVC = "OnboardingCVC"
             static let habitRoomGuideCVC = "HabitRoomGuideCVC"
-            static let notificationHeaderTVC = "NotificationHeaderTVC"
+            static let notificationTableHeaderView = "NotificationTableHeaderView"
             static let notificationTVC = "NotificationTVC"
         }
     }

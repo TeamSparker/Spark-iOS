@@ -17,7 +17,7 @@ class MypageTableHeaderView: UIView {
     
     // MARK: - View Life Cycle
     
-    init(type: MypageTableViewSection) {
+    init(type: MypageTableSection) {
         super.init(frame: .zero)
         
         switch type {
