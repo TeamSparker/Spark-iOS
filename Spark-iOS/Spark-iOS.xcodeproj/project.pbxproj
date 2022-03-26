@@ -180,6 +180,7 @@
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
 		F8ABAEFD279615DA00C0F774 /* splash_bg_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */; };
 		F8ABAEFF2796163300C0F774 /* splash_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFE2796163300C0F774 /* splash_logo.json */; };
+		F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */; };
 		F8C14A9B2795094800498687 /* HomeEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C14A992795094800498687 /* HomeEmptyCVC.swift */; };
 		F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */; };
 		F8C3659527DBB82A000AA9BD /* CompleteFailDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */; };
@@ -411,6 +412,7 @@
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_bg_iOS.json; sourceTree = "<group>"; };
 		F8ABAEFE2796163300C0F774 /* splash_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_logo.json; sourceTree = "<group>"; };
+		F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCellDelegate.swift; sourceTree = "<group>"; };
 		F8C14A992795094800498687 /* HomeEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCVC.swift; sourceTree = "<group>"; };
 		F8C14A9A2795094800498687 /* HomeEmptyCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeEmptyCVC.xib; sourceTree = "<group>"; };
 		F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteFailDialogueVC.swift; sourceTree = "<group>"; };
@@ -1089,6 +1091,7 @@
 				EBD0D09127DBBBD10007E5AF /* SendThumbnailURLDelegate.swift */,
 				EBD0D09327DBBC270007E5AF /* SendSparkCellDelegate.swift */,
 				F821812F27DE225200DDFBF8 /* SparkTabBar */,
+				F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1601,6 +1604,7 @@
 				EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */,
 				2BAF156327D4A0CA00DE4190 /* NoticeUpdateHeaderView.swift in Sources */,
 				2BF3AB4C27947C50001A9042 /* WaitingRoom.swift in Sources */,
+				F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,

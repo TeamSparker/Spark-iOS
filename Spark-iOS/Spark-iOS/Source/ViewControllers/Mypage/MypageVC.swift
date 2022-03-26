@@ -176,14 +176,6 @@ extension MypageVC: UITableViewDelegate {
             }
         case .service:
             if indexPath.row == 0 {
-                // 스파크 사용 가이드
-                guard let url = URL(string: Const.URL.sparkGuideURL) else { return }
-                let safariVC = SFSafariViewController(url: url)
-                safariVC.transitioningDelegate = self
-                safariVC.modalPresentationStyle = .pageSheet
-                
-                present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 0 {
                 // 약관 및 정책
                 guard let url = URL(string: Const.URL.tosURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
@@ -199,14 +191,8 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 2 {
-              // FIXME: - 탈퇴 연습
-                // 버전정보
-                guard let withdrawalVC = UIStoryboard(name: Const.Storyboard.Name.withdrawal, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.withdrawal) as? WithdrawalVC else { return }
-                
-                navigationController?.pushViewController(withdrawalVC, animated: true)
             } else if indexPath.row == 3 {
-                // logout
+                // 로그아웃
                 guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
                 
                 loginVC.modalTransitionStyle = .crossDissolve
@@ -291,14 +277,15 @@ extension MypageVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
             /*
-             MypageRow(rawValue: 3) 는 .sparkGuide 이다.
-             MypageRow(rawValue: 4) 는 .tos 이다.
+             MypageRow(rawValue: 3) 는 .tos 이다.
+             MypageRow(rawValue: 4) 는 .openSourceLibrary 이다.
              MypageRow(rawValue: 5) 는 .version 이다.
              MypageRow(rawValue: 6) 는 .logout 이다.
+             MypageRow(rawValue: 7) 는 .withdrawal 이다.
              */
             guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
             cell.initCell(type: row)
-            
+            cell.withdrawalCellDelegate = self
             cell.selectionStyle = .none
             
             return cell
@@ -392,5 +379,15 @@ extension MypageVC: UIViewControllerTransitioningDelegate { }
 extension MypageVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
+    }
+}
+
+// MARK: - WithdrawalCellDelegate
+
+extension MypageVC: WithdrawalCellDelegate {
+    func withdrawalButtonTapped() {
+        guard let withdrawalVC = UIStoryboard(name: Const.Storyboard.Name.withdrawal, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.withdrawal) as? WithdrawalVC else { return }
+        
+        navigationController?.pushViewController(withdrawalVC, animated: true)
     }
 }

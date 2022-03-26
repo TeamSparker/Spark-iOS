@@ -16,12 +16,15 @@ class MypageDefaultTVC: UITableViewCell {
     private let withdrawalButton = UIButton()
     private let versionLabel = UILabel()
     
+    weak var withdrawalCellDelegate: WithdrawalCellDelegate?
+    
     // MARK: - View Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setUI()
+        setAddTargets()
         setLayout()
     }
     
@@ -63,6 +66,10 @@ extension MypageDefaultTVC {
         versionLabel.text = "v\(appVersion)"
         versionLabel.font = .captionEng
         versionLabel.textColor = .sparkDarkGray
+    }
+    
+    private func setAddTargets() {
+        withdrawalButton.addTarget(self, action: #selector(touchWithDrawalButton), for: .touchUpInside)
     }
     
     // initializer.
@@ -114,13 +121,20 @@ extension MypageDefaultTVC {
             withdrawalButton.isHidden = false
         }
     }
+    
+    // MARK: - @objc Methods
+    
+    @objc
+    private func touchWithDrawalButton() {
+        withdrawalCellDelegate?.withdrawalButtonTapped()
+    }
 }
 
 // MARK: - Layout
 
 extension MypageDefaultTVC {
     private func setLayout() {
-        self.addSubviews([titleLabel, arrowImageView, versionLabel, withdrawalButton])
+        self.contentView.addSubviews([titleLabel, arrowImageView, versionLabel, withdrawalButton])
         
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
