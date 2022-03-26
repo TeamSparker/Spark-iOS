@@ -15,12 +15,13 @@ struct HabitRoomDetail: Codable {
     let moment, purpose: String?
     let leftDay, life: Int
     let fromStart: Bool
+    let lifeDeductionCount: Int
     let myRecord: MyRecord
     let otherRecords: [OtherRecord?]
 
     enum CodingKeys: String, CodingKey {
         case roomID = "roomId"
-        case roomName, startDate, endDate, moment, purpose, leftDay, life, fromStart, myRecord, otherRecords
+        case roomName, startDate, endDate, moment, purpose, leftDay, life, fromStart, myRecord, otherRecords, lifeDeductionCount
     }
 }
 

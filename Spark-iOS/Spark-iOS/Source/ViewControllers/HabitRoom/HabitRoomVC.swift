@@ -54,7 +54,6 @@ class HabitRoomVC: UIViewController {
         registerXib()
         setNotification()
         initRefreshControl()
-        setHabitRoomGuide()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -259,13 +258,29 @@ extension HabitRoomVC {
     private func setHabitRoomGuide() {
         let checkedGuide = UserDefaults.standard.object(forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
         
-        if checkedGuide == nil {
+        if checkedGuide != nil {
             UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+            guideVC.dismissClousure = {
+                self.setLifeDiminishDialogue()
+            }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
+        } else {
+            setLifeDiminishDialogue()
+        }
+    }
+    
+    private func setLifeDiminishDialogue() {
+        if let lifeCount = habitRoomDetail?.lifeDeductionCount, lifeCount != 0 {
+            guard let lifeVC = UIStoryboard(name: Const.Storyboard.Name.lifeDiminishDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeDiminishDialogue) as? LifeDiminishDialogueVC else { return }
+            lifeVC.diminishedLifeCount = lifeCount
+            lifeVC.modalPresentationStyle = .overFullScreen
+            lifeVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(lifeVC, animated: true, completion: nil)
         }
     }
     
@@ -414,6 +429,7 @@ extension HabitRoomVC {
         DispatchQueue.main.async {
             self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
                 self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                self.setHabitRoomGuide()
             }
         }
     }

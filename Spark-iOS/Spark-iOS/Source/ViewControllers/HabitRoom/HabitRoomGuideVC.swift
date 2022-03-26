@@ -13,6 +13,8 @@ class HabitRoomGuideVC: UIViewController {
     
     // MARK: - Properties
     
+    var dismissClousure: (() -> Void)?
+    
     private let popupView = UIView()
     private let titleLabel = UILabel()
     // TODO: - 배경 일러 넣기
@@ -87,7 +89,9 @@ class HabitRoomGuideVC: UIViewController {
     
     @objc
     private func dismissHabitRoomGuideVC() {
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            self.dismissClousure?()
+        }
     }
 }
 
