@@ -278,11 +278,11 @@ extension MypageVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
             /*
-             MypageRow(rawValue: 3) 는 .tos 이다.
-             MypageRow(rawValue: 4) 는 .openSourceLibrary 이다.
-             MypageRow(rawValue: 5) 는 .version 이다.
-             MypageRow(rawValue: 6) 는 .logout 이다.
-             MypageRow(rawValue: 7) 는 .withdrawal 이다.
+             MypageTableRow(rawValue: 3) 는 .tos 이다.
+             MypageTableRow(rawValue: 4) 는 .openSourceLibrary 이다.
+             MypageTableRow(rawValue: 5) 는 .version 이다.
+             MypageTableRow(rawValue: 6) 는 .logout 이다.
+             MypageTableRow(rawValue: 7) 는 .withdrawal 이다.
              */
             guard let row = MypageTableRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
             cell.initCell(type: row)
