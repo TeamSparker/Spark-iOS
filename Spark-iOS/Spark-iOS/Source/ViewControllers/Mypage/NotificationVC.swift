@@ -42,7 +42,7 @@ class NotificationVC: UIViewController {
         setUI()
         setTableView()
         setLayout()
-        fetchSettingWithAPI()
+        settingFetchWithAPI()
     }
 }
 
@@ -164,8 +164,8 @@ extension NotificationVC: UITableViewDataSource {
 // MARK: - Network
 
 extension NotificationVC {
-    private func fetchSettingWithAPI() {
-        NoticeAPI.shared.fetchSetting { response in
+    private func settingFetchWithAPI() {
+        NoticeAPI.shared.settingFetch { response in
             switch response {
             case .success(let data):
                 if let noticeSetting = data as? NoticeSetting {

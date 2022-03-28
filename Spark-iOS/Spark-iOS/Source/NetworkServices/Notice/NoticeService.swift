@@ -14,7 +14,7 @@ enum NoticeService {
     case serviceFetch(lastID: Int, size: Int)
     case activeRead
     case serviceRead
-    case fetchSetting
+    case settingFetch
 }
 
 extension NoticeService: TargetType {
@@ -32,7 +32,7 @@ extension NoticeService: TargetType {
             return "/notice/active/read"
         case .serviceRead:
             return "/notice/service/read"
-        case .fetchSetting:
+        case .settingFetch:
             return "/notice/setting"
         }
     }
@@ -47,7 +47,7 @@ extension NoticeService: TargetType {
             return .patch
         case .serviceRead:
             return .patch
-        case .fetchSetting:
+        case .settingFetch:
             return .get
         }
     }
@@ -66,7 +66,7 @@ extension NoticeService: TargetType {
             return .requestPlain
         case .serviceRead:
             return .requestPlain
-        case .fetchSetting:
+        case .settingFetch:
             return .requestPlain
         }
     }
@@ -81,7 +81,7 @@ extension NoticeService: TargetType {
             return Const.Header.authorizationHeader
         case .serviceRead:
             return Const.Header.authorizationHeader
-        case .fetchSetting:
+        case .settingFetch:
             return Const.Header.authorizationHeader
         }
     }

@@ -132,13 +132,13 @@ public class NoticeAPI {
         }
     }
     
-    func fetchSetting(completion: @escaping(NetworkResult<Any>) -> Void) {
-        noticeProvider.request(.fetchSetting) { result in
+    func settingFetch(completion: @escaping(NetworkResult<Any>) -> Void) {
+        noticeProvider.request(.settingFetch) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgefetchSettingStatus(by: statusCode, data)
+                let networkResult = self.judgeSettingFetchStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)
@@ -146,7 +146,7 @@ public class NoticeAPI {
         }
     }
     
-    private func judgefetchSettingStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+    private func judgeSettingFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<NoticeSetting>.self, from: data)
         else { return .pathErr }
