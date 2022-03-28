@@ -138,6 +138,8 @@ extension NotificationVC: UITableViewDataSource {
         guard let noticeSetting = noticeSetting else { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.notificationTVC, for: indexPath) as? NotificationTVC else { return UITableViewCell() }
         cell.selectionStyle = .none
+        cell.delegate = self
+        
         switch section {
         case .information:
             cell.initCell(with: .roomStart, isOn: noticeSetting.roomStart)
@@ -183,6 +185,35 @@ extension NotificationVC {
                 print("profileFetchWithAPI - networkFail")
             }
         }
+    }
+    
+    private func settingPatchWithAPI(category: String) {
+        NoticeAPI.shared.settingPatch(category: category) { response in
+            switch response {
+            case .success(let data):
+                if let noticeSetting = data as? NoticeSetting {
+                    self.noticeSetting = noticeSetting
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                }
+            case .requestErr(let message):
+                print("profileFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileFetchWithAPI - pathErr")
+            case .serverErr:
+                print("profileFetchWithAPI - serverErr")
+            case .networkFail:
+                print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - notificationCellDelegate
+
+extension NotificationVC: notificationCellDelegate {
+    func notificationSwitchToggle(category: String) {
+        settingPatchWithAPI(category: category)
     }
 }
 

@@ -161,4 +161,18 @@ public class NoticeAPI {
             return .networkFail
         }
     }
+    
+    func settingPatch(category: String, completion: @escaping(NetworkResult<Any>) -> Void) {
+        noticeProvider.request(.settingPatch(category: category)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }

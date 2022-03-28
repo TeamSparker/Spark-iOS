@@ -177,6 +177,7 @@
 		F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B627955ABA009A5296 /* SparkFlake.swift */; };
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
 		F86FC47A27F1B835004478F3 /* NoticeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47927F1B835004478F3 /* NoticeSetting.swift */; };
+		F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
 		F8ABAEFD279615DA00C0F774 /* splash_bg_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */; };
@@ -414,6 +415,7 @@
 		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		F86FC47927F1B835004478F3 /* NoticeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSetting.swift; sourceTree = "<group>"; };
+		F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellDelegate.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_bg_iOS.json; sourceTree = "<group>"; };
@@ -1103,6 +1105,7 @@
 				EBD0D09327DBBC270007E5AF /* SendSparkCellDelegate.swift */,
 				F821812F27DE225200DDFBF8 /* SparkTabBar */,
 				F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */,
+				F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1722,6 +1725,7 @@
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */,
+				F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */,
 				F821813327DE512D00DDFBF8 /* SparkTabBarItem.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */,
