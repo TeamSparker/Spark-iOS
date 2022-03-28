@@ -152,7 +152,7 @@ public class NoticeAPI {
         else { return .pathErr }
         switch statusCode {
         case 200:
-            return .success(decodedData.data ?? ?? "None-Data")
+            return .success(decodedData.data ?? "None-Data")
         case 400..<500:
             return .requestErr(decodedData.message)
         case 500:
