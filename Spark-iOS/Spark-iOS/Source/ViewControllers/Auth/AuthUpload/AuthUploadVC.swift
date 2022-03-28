@@ -64,14 +64,14 @@ extension AuthUploadVC {
         case .photoOnly:
             customNavigationBar.title(roomName ?? "")
                 .leftButtonImage("icQuit")
-                .leftButonAction {
+                .leftButtonAction {
                     self.presentToDialogue()
                 }
             
         case .photoTimer:
             customNavigationBar.title(roomName ?? "")
                 .leftButtonImage("icBackWhite")
-                .leftButonAction {
+                .leftButtonAction {
                     self.popToPresentingVC()
                 }
                 .rightButtonImage("icQuit")

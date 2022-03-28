@@ -86,7 +86,7 @@ class LeftButtonNavigaitonBar: SparkNavigationBar {
     
     /// add action to reft button.
     @discardableResult
-    func leftButonAction(_ clousure: (() -> Void)? = nil) -> Self {
+    func leftButtonAction(_ clousure: (() -> Void)? = nil) -> Self {
         self.leftButtonClosure = clousure
         self.leftButton.addTarget(self, action: #selector(leftButtonSelector), for: .touchUpInside)
         

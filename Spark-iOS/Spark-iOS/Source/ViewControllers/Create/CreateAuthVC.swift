@@ -42,7 +42,7 @@ class CreateAuthVC: UIViewController {
     private func setUI() {
         customNavigationBar.title("")
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.popToCreatRoomVC()
             }
         
