@@ -77,7 +77,7 @@ class NoticeVC: UIViewController {
         
         customNavigationBar.title("알림")
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.popToHomeVC()
             }
 

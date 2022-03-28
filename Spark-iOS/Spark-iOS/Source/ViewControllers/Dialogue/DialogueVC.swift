@@ -20,6 +20,7 @@ enum DialogueType {
     case leaveWaitingRoom
     case createRoom
     case exitEditProfile
+    case withdrawal
 }
 
 class DialogueVC: UIViewController {
@@ -119,6 +120,15 @@ extension DialogueVC {
             프로필 수정이 완료되지 않았습니다.
             그래도 나가시겠습니까?
             """
+            resetOrExitLabel.textColor = .sparkDarkPinkred
+            
+        case .withdrawal:
+            guideLabel.text = """
+            정말 Spark를 탈퇴할 건가요?
+            더 멋진 서비스가 되어 기다리고 있을게요.
+            """
+            resetOrExitLabel.text = "탈퇴하기"
+            resetOrExitLabel.textColor = .sparkDarkPinkred
             
         case .none:
             print("dialogueType을 지정해주세요")

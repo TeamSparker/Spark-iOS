@@ -48,7 +48,7 @@ extension EditProfileVC {
     private func setUI() {
         customNavigationBar.title("프로필 수정")
             .leftButtonImage("icQuit")
-            .leftButonAction {
+            .leftButtonAction {
                 if self.didEdit {
                     guard let dialougeVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
                     

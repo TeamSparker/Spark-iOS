@@ -116,7 +116,7 @@ extension WaitingVC {
             navigationController?.interactivePopGestureRecognizer?.delegate = self
             customNavigationBar.title(title)
                 .leftButtonImage("icBackWhite")
-                .leftButonAction {
+                .leftButtonAction {
                     self.popToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
@@ -126,7 +126,7 @@ extension WaitingVC {
         case .joinCode:
             customNavigationBar.title(title)
                 .leftButtonImage("icHome")
-                .leftButonAction {
+                .leftButtonAction {
                     self.dismissJoinCodeToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
@@ -136,7 +136,7 @@ extension WaitingVC {
         case .makeRoom:
             customNavigationBar.title(title)
                 .leftButtonImage("icHome")
-                .leftButonAction {
+                .leftButtonAction {
                     self.dismissToHomeVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")

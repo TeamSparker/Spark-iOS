@@ -119,7 +119,7 @@ extension SendSparkVC {
             .backgroundColor(.clear)
             .tintColor(.sparkWhite)
             .leftButtonImage("icQuit")
-            .leftButonAction {
+            .leftButtonAction {
                 self.dismiss(animated: true, completion: nil)
                 self.removeObservers()
             }
