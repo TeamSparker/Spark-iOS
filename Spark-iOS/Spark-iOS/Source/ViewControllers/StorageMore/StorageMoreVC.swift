@@ -89,7 +89,7 @@ extension StorageMoreVC {
                 .tintColor(.sparkWhite)
                 .backgroundColor(.sparkBlack)
                 .leftButtonImage("icBackWhite")
-                .leftButonAction {
+                .leftButtonAction {
                     self.popToStorageVC()
                 }
                 .rightButtonImage("icMoreVerticalWhite")
@@ -101,7 +101,7 @@ extension StorageMoreVC {
                 .tintColor(.sparkWhite)
                 .backgroundColor(.sparkBlack)
                 .leftButtonTitle("취소")
-                .leftButonAction {
+                .leftButtonAction {
                     self.dismiss(animated: true, completion: nil)
                 }
                 .rightButtonPinkTitle("완료")

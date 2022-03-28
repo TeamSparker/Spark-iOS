@@ -43,6 +43,7 @@ extension Const {
             static let completeFailDialogue = "CompleteFailDialogueVC"
             static let onboarding = "OnboardingVC"
             static let habitRoomGuide = "HabitRoomGuideVC"
+            static let withdrawal = "WithdrawalVC"
             static let lifeDiminishDialogue = "LifeDiminishDialogueVC"
         }
     }

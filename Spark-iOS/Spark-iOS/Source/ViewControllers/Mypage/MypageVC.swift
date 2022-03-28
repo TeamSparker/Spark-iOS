@@ -17,7 +17,6 @@ public enum MypageRow: Int {
     case profile // 프로필
     case notification // 알림
     case contact // 문의하기
-    case sparkGuide // 스파크 사용 가이드
     case tos // Terms of service terms of use. 약관 및 정책
     case openSourceLibrary // 오픈소스 라이브러리
     case version // 버전 정보
@@ -69,7 +68,7 @@ extension MypageVC {
         customNavigationBar.title("MY")
             .font(.h3SubtitleEng)
             .leftButtonImage("icBackWhite")
-            .leftButonAction {
+            .leftButtonAction {
                 self.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
             }
@@ -177,14 +176,6 @@ extension MypageVC: UITableViewDelegate {
             }
         case .service:
             if indexPath.row == 0 {
-                // 스파크 사용 가이드
-                guard let url = URL(string: Const.URL.sparkGuideURL) else { return }
-                let safariVC = SFSafariViewController(url: url)
-                safariVC.transitioningDelegate = self
-                safariVC.modalPresentationStyle = .pageSheet
-                
-                present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 1 {
                 // 약관 및 정책
                 guard let url = URL(string: Const.URL.tosURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
@@ -192,7 +183,7 @@ extension MypageVC: UITableViewDelegate {
                 safariVC.modalPresentationStyle = .pageSheet
                 
                 present(safariVC, animated: true, completion: nil)
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 1 {
                 // 오픈소스 라이브러리
                 guard let url = URL(string: Const.URL.openSourceLibraryURL) else { return }
                 let safariVC = SFSafariViewController(url: url)
@@ -201,7 +192,7 @@ extension MypageVC: UITableViewDelegate {
                 
                 present(safariVC, animated: true, completion: nil)
             } else if indexPath.row == 3 {
-                // logout
+                // 로그아웃
                 guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
                 
                 loginVC.modalTransitionStyle = .crossDissolve
@@ -255,7 +246,7 @@ extension MypageVC: UITableViewDataSource {
             
             return rowOfSection.count
         case .service:
-            rowOfSection = [.sparkGuide, .tos, .openSourceLibrary, .version, .logout, .withdrawal]
+            rowOfSection = [.tos, .openSourceLibrary, .version, .logout, .withdrawal]
             
             return rowOfSection.count
         }
@@ -286,14 +277,15 @@ extension MypageVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
             /*
-             MypageRow(rawValue: 3) 는 .sparkGuide 이다.
-             MypageRow(rawValue: 4) 는 .tos 이다.
+             MypageRow(rawValue: 3) 는 .tos 이다.
+             MypageRow(rawValue: 4) 는 .openSourceLibrary 이다.
              MypageRow(rawValue: 5) 는 .version 이다.
              MypageRow(rawValue: 6) 는 .logout 이다.
+             MypageRow(rawValue: 7) 는 .withdrawal 이다.
              */
             guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
             cell.initCell(type: row)
-            
+            cell.withdrawalCellDelegate = self
             cell.selectionStyle = .none
             
             return cell
@@ -387,5 +379,15 @@ extension MypageVC: UIViewControllerTransitioningDelegate { }
 extension MypageVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
+    }
+}
+
+// MARK: - WithdrawalCellDelegate
+
+extension MypageVC: WithdrawalCellDelegate {
+    func withdrawalButtonTapped() {
+        guard let withdrawalVC = UIStoryboard(name: Const.Storyboard.Name.withdrawal, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.withdrawal) as? WithdrawalVC else { return }
+        
+        navigationController?.pushViewController(withdrawalVC, animated: true)
     }
 }
