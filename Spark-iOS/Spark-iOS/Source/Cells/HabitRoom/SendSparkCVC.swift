@@ -64,7 +64,6 @@ extension SendSparkCVC {
     
     @objc
     func touchSendSparkButton(_ sender: SendSparkButton) {
-        print(sender.tag)
         if sender.type == .message {
             sendSparkCellDelegate?.showTextField()
         } else {
