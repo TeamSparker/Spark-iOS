@@ -176,6 +176,7 @@
 		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 		F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B627955ABA009A5296 /* SparkFlake.swift */; };
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
+		F86FC47A27F1B835004478F3 /* NoticeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47927F1B835004478F3 /* NoticeSetting.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
 		F8ABAEFD279615DA00C0F774 /* splash_bg_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */; };
@@ -412,6 +413,7 @@
 		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		F86FC47927F1B835004478F3 /* NoticeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSetting.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_bg_iOS.json; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 			children = (
 				2BE907E327D9F1BB00B36002 /* ActiveNotice.swift */,
 				2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */,
+				F86FC47927F1B835004478F3 /* NoticeSetting.swift */,
 			);
 			path = Notice;
 			sourceTree = "<group>";
@@ -1722,6 +1725,7 @@
 				F821813327DE512D00DDFBF8 /* SparkTabBarItem.swift in Sources */,
 				F8096F3027841F9200B71D38 /* HomeVC.swift in Sources */,
 				F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */,
+				F86FC47A27F1B835004478F3 /* NoticeSetting.swift in Sources */,
 				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
