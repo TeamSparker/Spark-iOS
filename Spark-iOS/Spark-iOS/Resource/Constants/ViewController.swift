@@ -44,6 +44,7 @@ extension Const {
             static let onboarding = "OnboardingVC"
             static let habitRoomGuide = "HabitRoomGuideVC"
             static let withdrawal = "WithdrawalVC"
+            static let lifeDiminishDialogue = "LifeDiminishDialogueVC"
         }
     }
 }
