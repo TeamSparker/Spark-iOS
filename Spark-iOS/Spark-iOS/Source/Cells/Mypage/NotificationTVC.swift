@@ -13,7 +13,8 @@ class NotificationTVC: UITableViewCell {
     
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let switchControl = UISwitch()
+    private let notificationControl = UISwitch()
+    private let lineView = UIView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +28,8 @@ class NotificationTVC: UITableViewCell {
         
         titleLabel.text = ""
         subtitleLabel.text = ""
-        switchControl.isOn = false
+        notificationControl.isOn = false
+        lineView.isHidden = false
     }
 }
 
@@ -39,32 +41,36 @@ extension NotificationTVC {
         subtitleLabel.font = .caption
         subtitleLabel.textColor = .sparkDarkGray
         
-        switchControl.isOn = false
+        notificationControl.isOn = false
+        
+        lineView.backgroundColor = .sparkGray
     }
     
     // cell initializer.
     public func initCell(with type: NotificationTableRow, isOn: Bool) {
+        notificationControl.isOn = isOn
+        
         switch type {
         case .roomStart:
             titleLabel.text = "습관방 시작"
             subtitleLabel.text = "대기 중이었던 방이 시작되면 바로 알 수 있어요."
-            switchControl.isOn = isOn
+            lineView.isHidden = true
         case .spark:
             titleLabel.text = "스파크 보내기"
             subtitleLabel.text = "받은 스파크를 확인할 수 있어요."
-            switchControl.isOn = isOn
+            lineView.isHidden = false
         case .consider:
             titleLabel.text = "고민중"
             subtitleLabel.text = "다른 스파커가 고민중인 경우 바로 알 수 있어요."
-            switchControl.isOn = isOn
+            lineView.isHidden = false
         case .certification:
             titleLabel.text = "인증 완료"
             subtitleLabel.text = "스파커들의 인증 사진을 바로 확인할 수 있어요."
-            switchControl.isOn = isOn
+            lineView.isHidden = true
         case .remind:
             titleLabel.text = "미완료 습관방"
             subtitleLabel.text = "21:00에 미완료된 방이 있을 경우 알 수 있어요."
-            switchControl.isOn = isOn
+            lineView.isHidden = false
         }
     }
 }
@@ -73,8 +79,29 @@ extension NotificationTVC {
 
 extension NotificationTVC {
     private func setLayout() {
-        self.contentView.addSubviews([titleLabel, subtitleLabel, switchControl])
+        self.contentView.addSubviews([titleLabel, subtitleLabel, notificationControl])
         
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(11)
+            $0.leading.equalToSuperview().inset(20)
+        }
         
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(titleLabel.snp.leading)
+        }
+        
+        notificationControl.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(30)
+            $0.width.equalTo(51)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(0.5)
+            $0.leading.equalToSuperview().inset(20)
+        }
     }
 }
