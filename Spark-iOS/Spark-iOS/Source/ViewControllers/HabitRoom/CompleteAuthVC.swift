@@ -8,7 +8,6 @@
 import UIKit
 
 import Lottie
-import SwiftUI
 
 class CompleteAuthVC: UIViewController {
     
