@@ -7,7 +7,6 @@
 
 import UIKit
 
-import SwiftUI
 import SnapKit
 
 class FeedHeaderView: UICollectionReusableView {

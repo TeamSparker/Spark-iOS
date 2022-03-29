@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 @frozen
 enum RoomStatus: String {

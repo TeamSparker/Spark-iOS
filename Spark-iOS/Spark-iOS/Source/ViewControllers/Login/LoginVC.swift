@@ -6,6 +6,7 @@
 //
 
 import AuthenticationServices
+import SafariServices
 import UIKit
 
 import KakaoSDKUser
@@ -27,6 +28,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setGetstureRecognizer()
     }
     
     // MARK: - @IBOutlet Action
@@ -44,13 +46,43 @@ class LoginVC: UIViewController {
 
 extension LoginVC {
     private func setUI() {
-        loginLabel.text = "로그인 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
         loginLabel.textColor = .sparkWhite
-        
         loginLabel.font = .krMediumFont(ofSize: 12)
+        let guideText = "로그인 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
+        let attributeString = NSMutableAttributedString(string: guideText)
+        attributeString.addAttribute(.underlineStyle, value: 1, range: (guideText as NSString).range(of: "이용약관"))
+        attributeString.addAttribute(.underlineStyle, value: 1, range: (guideText as NSString).range(of: "개인정보 처리 방침"))
+        loginLabel.attributedText = attributeString
+        loginLabel.isUserInteractionEnabled = true
         
         kakaoLoginButton.setImage(UIImage(named: "btnKakaoLogin"), for: .normal)
         appleLoginButton.setImage(UIImage(named: "btnAppleLogin"), for: .normal)
+    }
+    
+    private func setGetstureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapLoginLabel(_:)))
+        loginLabel.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc
+    private func tapLoginLabel(_ sender: UITapGestureRecognizer) {
+        let point = sender.location(in: loginLabel)
+        
+        if let termsOfUseRect = loginLabel.rectFromString(with: "이용약관"), termsOfUseRect.contains(point) {
+            let safariVC = SFSafariViewController(url: URL(string: Const.URL.termsOfUse)!)
+            safariVC.transitioningDelegate = self
+            safariVC.modalPresentationStyle = .pageSheet
+            
+            present(safariVC, animated: true)
+        }
+        
+        if let privatePolicyRect = loginLabel.rectFromString(with: "개인정보 처리 방침"), privatePolicyRect.contains(point) {
+            let safariVC = SFSafariViewController(url: URL(string: Const.URL.privatePolicy)!)
+            safariVC.transitioningDelegate = self
+            safariVC.modalPresentationStyle = .pageSheet
+            
+            present(safariVC, animated: true)
+        }
     }
     
     private func signupWithApple() {
@@ -183,3 +215,7 @@ extension LoginVC {
         }
     }
 }
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension LoginVC: UIViewControllerTransitioningDelegate { }
