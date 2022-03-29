@@ -32,6 +32,8 @@ class NotificationVC: UIViewController {
     private let customNavigationBar = LeftButtonNavigaitonBar()
     private let tableView = UITableView()
     
+    private var noticeSetting: NoticeSetting?
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -40,6 +42,7 @@ class NotificationVC: UIViewController {
         setUI()
         setTableView()
         setLayout()
+        settingFetchWithAPI()
     }
 }
 
@@ -52,6 +55,8 @@ extension NotificationVC {
             .leftButtonAction {
                 self.navigationController?.popViewController(animated: true)
             }
+        
+        tableView.isHidden = true
     }
     
     private func setTableView() {
@@ -130,28 +135,85 @@ extension NotificationVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = NotificationTableSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let noticeSetting = noticeSetting else { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.notificationTVC, for: indexPath) as? NotificationTVC else { return UITableViewCell() }
         cell.selectionStyle = .none
+        cell.delegate = self
+        
         switch section {
         case .information:
-            cell.initCell(with: .roomStart, isOn: false)
+            cell.initCell(with: .roomStart, isOn: noticeSetting.roomStart)
             
             return cell
         case .sparkerActivity:
-            /*
-             NotificationTableRow(rawValue: 1) 는 .spark 이다.
-             NotificationTableRow(rawValue: 2) 는 .consider 이다.
-             NotificationTableRow(rawValue: 3) 는 .certification 이다.
-             */
-            guard let row = NotificationTableRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
-            cell.initCell(with: row, isOn: false)
+            if indexPath.row == 0 {
+                cell.initCell(with: .spark, isOn: noticeSetting.spark)
+            } else if indexPath.row == 1 {
+                cell.initCell(with: .consider, isOn: noticeSetting.consider)
+            } else {
+                cell.initCell(with: .certification, isOn: noticeSetting.certification)
+            }
             
             return cell
         case .remind:
-            cell.initCell(with: .remind, isOn: false)
+            cell.initCell(with: .remind, isOn: noticeSetting.remind)
             
             return cell
         }
+    }
+}
+
+// MARK: - Network
+
+extension NotificationVC {
+    private func settingFetchWithAPI() {
+        NoticeAPI.shared.settingFetch { response in
+            switch response {
+            case .success(let data):
+                if let noticeSetting = data as? NoticeSetting {
+                    self.noticeSetting = noticeSetting
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                }
+            case .requestErr(let message):
+                print("profileFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileFetchWithAPI - pathErr")
+            case .serverErr:
+                print("profileFetchWithAPI - serverErr")
+            case .networkFail:
+                print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func settingPatchWithAPI(category: String) {
+        NoticeAPI.shared.settingPatch(category: category) { response in
+            switch response {
+            case .success(let data):
+                if let noticeSetting = data as? NoticeSetting {
+                    self.noticeSetting = noticeSetting
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                }
+            case .requestErr(let message):
+                print("profileFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("profileFetchWithAPI - pathErr")
+            case .serverErr:
+                print("profileFetchWithAPI - serverErr")
+            case .networkFail:
+                print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - notificationCellDelegate
+
+extension NotificationVC: notificationCellDelegate {
+    func notificationSwitchToggle(category: String) {
+        settingPatchWithAPI(category: category)
     }
 }
 
