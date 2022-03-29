@@ -194,12 +194,14 @@ extension MypageVC: UITableViewDelegate {
                 present(safariVC, animated: true, completion: nil)
             } else if indexPath.row == 3 {
                 // 로그아웃
-                guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
-                
-                loginVC.modalTransitionStyle = .crossDissolve
-                loginVC.modalPresentationStyle = .fullScreen
-                self.present(loginVC, animated: true) {
-                    UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                signoutWithAPI {
+                    guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+                    
+                    loginVC.modalTransitionStyle = .crossDissolve
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true) {
+                        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                    }
                 }
             }
         }
@@ -317,6 +319,25 @@ extension MypageVC {
                 print("profileFetchWithAPI - serverErr")
             case .networkFail:
                 print("profileFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func signoutWithAPI(completion: @escaping () -> Void) {
+        AuthAPI.shared.signout { response in
+            switch response {
+            case .success(let message):
+                completion()
+                
+                print("signoutWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("signoutWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("signoutWithAPI - pathErr")
+            case .serverErr:
+                print("signoutWithAPI - serverErr")
+            case .networkFail:
+                print("signoutWithAPI - networkFail")
             }
         }
     }

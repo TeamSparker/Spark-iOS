@@ -7,6 +7,8 @@
 
 import UIKit
 
+import KakaoSDKUser
+
 class WithdrawalVC: UIViewController {
 
     // MARK: - Properties
@@ -104,21 +106,31 @@ extension WithdrawalVC {
         dialogueVC.dialogueType = .withdrawal
         dialogueVC.clousure = {
             if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
-                // TODO: - 애플 탈퇴 api
+                self.unlink()
             } else {
-                // TODO: - 카카오 탈퇴 api
+                UserApi.shared.unlink { error in
+                    if let error = error {
+                        print("kakao unlink error: \(error).")
+                    } else {
+                        // unlink success.
+                        self.unlink()
+                    }
+                }
             }
-            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
-            UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
-            
-            guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
-            loginVC.modalPresentationStyle = .overFullScreen
-            loginVC.modalTransitionStyle = .crossDissolve
-            self.present(loginVC, animated: true, completion: nil)
         }
         
         present(dialogueVC, animated: true, completion: nil)
+    }
+    
+    private func unlink() {
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
+        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
+        
+        guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
+        loginVC.modalPresentationStyle = .overFullScreen
+        loginVC.modalTransitionStyle = .crossDissolve
+        present(loginVC, animated: true, completion: nil)
     }
     
     @objc

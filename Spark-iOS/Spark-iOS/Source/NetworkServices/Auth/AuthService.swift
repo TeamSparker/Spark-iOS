@@ -11,6 +11,7 @@ import Moya
 enum AuthService {
     case signup(socialID: String, profileImg: UIImage?, nickname: String, fcmToken: String)
     case login(socialID: String, fcmToken: String)
+    case signout
 }
 
 extension AuthService: TargetType {
@@ -24,6 +25,8 @@ extension AuthService: TargetType {
             return "/auth/signup"
         case .login:
             return "/auth/doorbell"
+        case .signout:
+            return "/auth/signout"
         }
     }
     
@@ -33,6 +36,8 @@ extension AuthService: TargetType {
             return .post
         case .login:
             return .get
+        case .signout:
+            return .post
         }
     }
     
@@ -57,6 +62,8 @@ extension AuthService: TargetType {
             return .requestParameters(parameters: ["socialId": socialID,
                                                    "fcmToken": fcmToken],
                                       encoding: URLEncoding.queryString)
+        case .signout:
+            return .requestPlain
         }
     }
     
@@ -66,6 +73,8 @@ extension AuthService: TargetType {
             return Const.Header.multipartHeader
         case .login:
             return Const.Header.basicHeader
+        case .signout:
+            return Const.Header.authorizationHeader
         }
     }
 }
