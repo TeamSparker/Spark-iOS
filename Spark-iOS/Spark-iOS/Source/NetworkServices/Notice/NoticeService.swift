@@ -14,6 +14,8 @@ enum NoticeService {
     case serviceFetch(lastID: Int, size: Int)
     case activeRead
     case serviceRead
+    case settingFetch
+    case settingPatch(category: String)
 }
 
 extension NoticeService: TargetType {
@@ -31,6 +33,10 @@ extension NoticeService: TargetType {
             return "/notice/active/read"
         case .serviceRead:
             return "/notice/service/read"
+        case .settingFetch:
+            return "/notice/setting"
+        case .settingPatch:
+            return "/notice/setting"
         }
     }
     
@@ -43,6 +49,10 @@ extension NoticeService: TargetType {
         case .activeRead:
             return .patch
         case .serviceRead:
+            return .patch
+        case .settingFetch:
+            return .get
+        case .settingPatch:
             return .patch
         }
     }
@@ -61,6 +71,11 @@ extension NoticeService: TargetType {
             return .requestPlain
         case .serviceRead:
             return .requestPlain
+        case .settingFetch:
+            return .requestPlain
+        case .settingPatch(category: let category):
+            return .requestParameters(parameters: ["category": category],
+                                      encoding: URLEncoding.queryString)
         }
     }
     
@@ -73,6 +88,10 @@ extension NoticeService: TargetType {
         case .activeRead:
             return Const.Header.authorizationHeader
         case .serviceRead:
+            return Const.Header.authorizationHeader
+        case .settingFetch:
+            return Const.Header.authorizationHeader
+        case .settingPatch:
             return Const.Header.authorizationHeader
         }
     }

@@ -18,6 +18,8 @@ class NotificationTVC: UITableViewCell {
     private let notificationSwitch = UISwitch()
     private let lineView = UIView()
     
+    weak var delegate: notificationCellDelegate?
+    
     // MARK: - View Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -64,22 +66,27 @@ extension NotificationTVC {
             titleLabel.text = "습관방 시작"
             subtitleLabel.text = "대기 중이었던 방이 시작되면 바로 알 수 있어요."
             lineView.isHidden = false
+            notificationSwitch.tag = 0
         case .spark:
             titleLabel.text = "스파크 보내기"
             subtitleLabel.text = "받은 스파크를 확인할 수 있어요."
             lineView.isHidden = true
+            notificationSwitch.tag = 1
         case .consider:
             titleLabel.text = "고민중"
             subtitleLabel.text = "다른 스파커가 고민중인 경우 바로 알 수 있어요."
             lineView.isHidden = true
+            notificationSwitch.tag = 2
         case .certification:
             titleLabel.text = "인증 완료"
             subtitleLabel.text = "스파커들의 인증 사진을 바로 확인할 수 있어요."
             lineView.isHidden = false
+            notificationSwitch.tag = 3
         case .remind:
             titleLabel.text = "미완료 습관방"
             subtitleLabel.text = "21:00에 미완료된 방이 있을 경우 알 수 있어요."
             lineView.isHidden = true
+            notificationSwitch.tag = 4
         }
     }
     
@@ -90,8 +97,20 @@ extension NotificationTVC {
     // MARK: - @objc Methods
     
     @objc
-    private func touchNotificationSwitch() {
-    // TODO: - network
+    private func touchNotificationSwitch(_ sender: UISwitch) {
+        guard let category = NotificationTableRow(rawValue: sender.tag) else { return }
+        switch category {
+        case .roomStart:
+            delegate?.notificationSwitchToggle(category: "roomStart")
+        case .spark:
+            delegate?.notificationSwitchToggle(category: "spark")
+        case .consider:
+            delegate?.notificationSwitchToggle(category: "consider")
+        case .certification:
+            delegate?.notificationSwitchToggle(category: "certification")
+        case .remind:
+            delegate?.notificationSwitchToggle(category: "remind")
+        }
     }
 }
 
