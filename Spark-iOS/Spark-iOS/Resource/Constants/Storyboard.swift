@@ -45,6 +45,7 @@ extension Const {
             static let habitRoomGuide = "HabitRoomGuide"
             static let withdrawal = "Withdrawal"
             static let lifeDiminishDialogue = "LifeDiminishDialogue"
+            static let notification = "Notification"
         }
     }
 }

@@ -1,15 +1,13 @@
 //
-//  MypageTableHeaderView.swift
+//  NotificationHeaderTVC.swift
 //  Spark-iOS
 //
-//  Created by kimhyungyu on 2022/03/03.
+//  Created by kimhyungyu on 2022/03/27.
 //
 
 import UIKit
 
-import SnapKit
-
-class MypageTableHeaderView: UIView {
+class NotificationTableHeaderView: UIView {
     
     // MARK: - Properties
     
@@ -17,18 +15,16 @@ class MypageTableHeaderView: UIView {
     
     // MARK: - View Life Cycle
     
-    init(type: MypageTableSection) {
+    init(type: NotificationTableSection) {
         super.init(frame: .zero)
         
         switch type {
-        case .profile:
-            headerTitleLabel.text = ""
-        case .setting:
-            headerTitleLabel.text = "설정"
-        case .center:
-            headerTitleLabel.text = "고객센터"
-        case .service:
-            headerTitleLabel.text = "서비스"
+        case .information:
+            headerTitleLabel.text = "안내"
+        case .sparkerActivity:
+            headerTitleLabel.text = "스파커 활동"
+        case .remind:
+            headerTitleLabel.text = "리마인드"
         }
         setUI()
         setLayout()
@@ -39,7 +35,7 @@ class MypageTableHeaderView: UIView {
     }
 }
 
-extension MypageTableHeaderView {
+extension NotificationTableHeaderView {
     private func setUI() {
         headerTitleLabel.font = .p2Subtitle
         headerTitleLabel.textColor = .darkGray

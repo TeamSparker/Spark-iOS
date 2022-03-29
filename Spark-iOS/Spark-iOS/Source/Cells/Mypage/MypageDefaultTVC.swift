@@ -73,7 +73,7 @@ extension MypageDefaultTVC {
     }
     
     // initializer.
-    func initCell(type: MypageRow) {
+    func initCell(type: MypageTableRow) {
         switch type {
         case .profile:
             return
