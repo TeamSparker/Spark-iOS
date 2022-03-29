@@ -204,8 +204,10 @@ extension CodeJoinVC {
                     self.present(nextVC, animated: false, completion: nil)
                 }
             case .requestErr(let message):
-                self.errorLabel.isHidden = false
-                self.errorLabel.text = message as? String
+                if let msg = message as? String, msg != "만료된 토큰입니다" {
+                    self.errorLabel.isHidden = false
+                    self.errorLabel.text = msg
+                }
                 print("getCodeWaitingWithAPI - requestErr")
             case .pathErr:
                 print("getCodeWaitingWithAPI - pathErr")

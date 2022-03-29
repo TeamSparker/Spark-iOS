@@ -13,7 +13,7 @@ import UIKit
 import SnapKit
 
 @frozen
-public enum MypageRow: Int {
+public enum MypageTableRow: Int {
     case profile // 프로필
     case notification // 알림
     case contact // 문의하기
@@ -25,7 +25,7 @@ public enum MypageRow: Int {
 }
 
 @frozen
-public enum MypageTableViewSection: Int, CaseIterable {
+public enum MypageTableSection: Int, CaseIterable {
     case profile
     case setting
     case center
@@ -100,14 +100,13 @@ extension MypageVC {
             tableView.sectionHeaderTopPadding = 0
         }
     }
-
 }
 
 // MARK: - UITableViewDelegate
 
 extension MypageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let section = MypageTableViewSection(rawValue: section) else { return 0 }
+        guard let section = MypageTableSection(rawValue: section) else { return 0 }
         switch section {
         case .profile:
             return 0
@@ -119,7 +118,7 @@ extension MypageVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let section = MypageTableViewSection(rawValue: section) else { return UIView() }
+        guard let section = MypageTableSection(rawValue: section) else { return UIView() }
         switch section {
         case .profile:
             return MypageTableHeaderView(type: .profile)
@@ -133,7 +132,7 @@ extension MypageVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = MypageTableViewSection(rawValue: indexPath.section) else { return }
+        guard let section = MypageTableSection(rawValue: indexPath.section) else { return }
         switch section {
         case .profile:
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
@@ -144,7 +143,9 @@ extension MypageVC: UITableViewDelegate {
             editProfileVC.modalPresentationStyle = .overFullScreen
             present(editProfileVC, animated: true, completion: nil)
         case .setting:
-            return
+            guard let notificationVC = UIStoryboard(name: Const.Storyboard.Name.notification, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.notification) as? NotificationVC else { return }
+            
+            navigationController?.pushViewController(notificationVC, animated: true)
         case .center:
             if MFMailComposeViewController.canSendMail() {
                 guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
@@ -226,12 +227,12 @@ extension MypageVC: UITableViewDelegate {
 
 extension MypageVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return MypageTableViewSection.allCases.count
+        return MypageTableSection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowOfSection: [MypageRow]
-        guard let section = MypageTableViewSection(rawValue: section) else { return 0 }
+        var rowOfSection: [MypageTableRow]
+        guard let section = MypageTableSection(rawValue: section) else { return 0 }
         switch section {
         case .profile:
             rowOfSection = [.profile]
@@ -253,7 +254,7 @@ extension MypageVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = MypageTableViewSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let section = MypageTableSection(rawValue: indexPath.section) else { return UITableViewCell() }
         switch section {
         case .profile:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
@@ -277,13 +278,13 @@ extension MypageVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageDefaultTVC, for: indexPath) as? MypageDefaultTVC else { return UITableViewCell()}
             
             /*
-             MypageRow(rawValue: 3) 는 .tos 이다.
-             MypageRow(rawValue: 4) 는 .openSourceLibrary 이다.
-             MypageRow(rawValue: 5) 는 .version 이다.
-             MypageRow(rawValue: 6) 는 .logout 이다.
-             MypageRow(rawValue: 7) 는 .withdrawal 이다.
+             MypageTableRow(rawValue: 3) 는 .tos 이다.
+             MypageTableRow(rawValue: 4) 는 .openSourceLibrary 이다.
+             MypageTableRow(rawValue: 5) 는 .version 이다.
+             MypageTableRow(rawValue: 6) 는 .logout 이다.
+             MypageTableRow(rawValue: 7) 는 .withdrawal 이다.
              */
-            guard let row = MypageRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
+            guard let row = MypageTableRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
             cell.initCell(type: row)
             cell.withdrawalCellDelegate = self
             cell.selectionStyle = .none
