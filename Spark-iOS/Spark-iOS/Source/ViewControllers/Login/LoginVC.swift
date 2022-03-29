@@ -44,10 +44,13 @@ class LoginVC: UIViewController {
 
 extension LoginVC {
     private func setUI() {
-        loginLabel.text = "로그인 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
         loginLabel.textColor = .sparkWhite
-        
         loginLabel.font = .krMediumFont(ofSize: 12)
+        let guideText = "로그인 시 이용약관과 개인정보 처리 방침에 동의하게 됩니다."
+        let attributeString = NSMutableAttributedString(string: guideText)
+        attributeString.addAttribute(.underlineStyle, value: 1, range: (guideText as NSString).range(of: "이용약관"))
+        attributeString.addAttribute(.underlineStyle, value: 1, range: (guideText as NSString).range(of: "개인정보 처리 방침"))
+        loginLabel.attributedText = attributeString
         
         kakaoLoginButton.setImage(UIImage(named: "btnKakaoLogin"), for: .normal)
         appleLoginButton.setImage(UIImage(named: "btnAppleLogin"), for: .normal)
