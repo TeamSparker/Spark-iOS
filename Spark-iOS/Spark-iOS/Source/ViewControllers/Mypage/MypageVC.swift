@@ -288,7 +288,7 @@ extension MypageVC: UITableViewDataSource {
              */
             guard let row = MypageTableRow(rawValue: indexPath.section + indexPath.row) else { return UITableViewCell() }
             cell.initCell(type: row)
-            cell.withdrawalCellDelegate = self
+            cell.delegate = self
             cell.selectionStyle = .none
             
             return cell
