@@ -28,9 +28,9 @@ class NotificationService: UNNotificationServiceExtension {
             // .png or .jpeg
             let imageType = imageURL[periodIndex..<imageURL.endIndex]
             
-            let resizingURL = imageURL + "_720x720" + imageType
-            let url = URL(string: String(resizingURL))!
-
+            let resizingURL = String(imageURL + "_720x720" + imageType)
+            let url = URL(string: resizingURL)!
+            
             // download image.
             guard let imageData = try? Data(contentsOf: url) else {
                 contentHandler(bestAttemptContent)
