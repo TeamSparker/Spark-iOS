@@ -70,11 +70,11 @@ extension AuthService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .signup:
-            return Const.Header.multipartHeader
+            return Const.Header.multipartHeader()
         case .login:
-            return Const.Header.basicHeader
+            return Const.Header.basicHeader()
         case .signout:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         }
     }
 }

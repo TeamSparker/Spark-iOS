@@ -10,13 +10,25 @@ import Foundation
 extension Const {
     struct Header {
         /// Content-Type: application/json
-        static let basicHeader = ["Content-Type": "application/json"]
-        /// access token 을 헤더에 담아서 보내야하는 경우에 사용.
-        static let authorizationHeader = ["Content-Type": "application/json",
-                                          "Authorization": accessToken]
+        static func basicHeader() -> [String: String] {
+            ["Content-Type": "application/json"]
+        }
         
-        static let multipartHeader = ["Content-Type": "multipart/form-data"]
-        static let multipartAuthorizationHeader = ["Content-Type": "multipart/form-data",
-                                                   "Authorization": accessToken]
+        /// "Content-Type": "application/json" 과 access token 을 헤더에 담아서 보내야하는 경우에 사용.
+        static func authorizationHeader() -> [String: String] {
+            ["Content-Type": "application/json",
+                                              "Authorization": UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""]
+        }
+        
+        /// "Content-Type": "multipart/form-data"
+        static func multipartHeader() -> [String: String] {
+            ["Content-Type": "multipart/form-data"]
+        }
+        
+        /// "Content-Type": "multipart/form-data" 과 access token 을 헤더에 담아서 보내야하는 경우에 사용.
+        static func multipartAuthorizationHeader() -> [String: String] {
+            ["Content-Type": "multipart/form-data",
+                                                       "Authorization": UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""]
+        }
     }
 }

@@ -143,33 +143,33 @@ extension RoomService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .waitingFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .codeJoinCheckFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .enterRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .waitingMemberFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .authUpload:
-            return Const.Header.multipartAuthorizationHeader
+            return Const.Header.multipartAuthorizationHeader()
         case .createRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .sendSpark:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .startRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .setConsiderRest:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .habitRoomDetailFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .setPurpose:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .deleteWaitingRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .leaveRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .readRoom:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         }
     }
 }

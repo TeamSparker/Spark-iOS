@@ -60,11 +60,11 @@ extension MyRoomService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .myRoomFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .myRoomCertiFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .myRoomChangeThumbnail:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         }
     }
 }
