@@ -56,7 +56,7 @@ class AuthTimerVC: UIViewController {
         customNavigationBar.title(roomName ?? "")
             .leftButtonImage("icQuit")
             .leftButtonAction {
-                self.dismissToHabitRoom()
+                self.dismissAuthTimerVC()
             }
         
         firstLabel.text = "1"
@@ -103,7 +103,7 @@ class AuthTimerVC: UIViewController {
         button.layer.cornerRadius = 2
     }
     
-    func dismissToHabitRoom() {
+    func dismissAuthTimerVC() {
         if timeLabel.text != "00:00:00" {
             guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
             dialogVC.dialogueType = .exitTimer
