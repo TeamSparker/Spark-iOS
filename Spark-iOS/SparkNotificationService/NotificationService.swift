@@ -26,7 +26,7 @@ class NotificationService: UNNotificationServiceExtension {
             guard let periodIndex = imageURLString.lastIndex(of: ".") else { return }
             let imageURL = imageURLString[imageURLString.startIndex..<periodIndex]
             // .png or .jpeg
-            let imageType = imageURL[periodIndex..<imageURL.endIndex]
+            let imageType = imageURL[periodIndex..<imageURLString.endIndex]
             
             let resizingURL = String(imageURL + "_720x720" + imageType)
             let url = URL(string: resizingURL)!
