@@ -16,7 +16,7 @@ class MypageDefaultTVC: UITableViewCell {
     private let withdrawalButton = UIButton()
     private let versionLabel = UILabel()
     
-    weak var withdrawalCellDelegate: WithdrawalCellDelegate?
+    weak var delegate: WithdrawalCellDelegate?
     
     // MARK: - View Life Cycle
     
@@ -126,7 +126,7 @@ extension MypageDefaultTVC {
     
     @objc
     private func touchWithDrawalButton() {
-        withdrawalCellDelegate?.withdrawalButtonTapped()
+        delegate?.withdrawalButtonTapped()
     }
 }
 
