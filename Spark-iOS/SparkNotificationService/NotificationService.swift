@@ -22,10 +22,17 @@ class NotificationService: UNNotificationServiceExtension {
                 contentHandler(bestAttemptContent)
                 return
             }
-            let imageURL = URL(string: imageURLString)!
+            
+            guard let periodIndex = imageURLString.lastIndex(of: ".") else { return }
+            let imageURL = imageURLString[imageURLString.startIndex..<periodIndex]
+            // .png or .jpeg
+            let imageType = imageURL[periodIndex..<imageURL.endIndex]
+            
+            let resizingURL = imageURL + "_720x720" + imageType
+            let url = URL(string: String(resizingURL))!
 
             // download image.
-            guard let imageData = try? Data(contentsOf: imageURL) else {
+            guard let imageData = try? Data(contentsOf: url) else {
                 contentHandler(bestAttemptContent)
                 return
             }
