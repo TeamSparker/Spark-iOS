@@ -9,7 +9,6 @@ import MessageUI
 import SafariServices
 import UIKit
 
-
 import SnapKit
 
 @frozen
@@ -37,7 +36,7 @@ class MypageVC: UIViewController {
     // MARK: - Properties
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     
     private var profileImage: UIImage?
     private var profileNickname: String?
@@ -88,6 +87,8 @@ extension MypageVC {
     private func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.sectionFooterHeight = 0
+        tableView.backgroundColor = .sparkWhite
         
         tableView.register(MypageProfileTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.mypageProfileTVC)
         tableView.register(MypageDefaultTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.mypageDefaultTVC)
