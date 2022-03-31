@@ -54,9 +54,9 @@ extension UserService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .profileFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .profileEdit:
-            return Const.Header.multipartAuthorizationHeader
+            return Const.Header.multipartAuthorizationHeader()
         }
     }
 }
