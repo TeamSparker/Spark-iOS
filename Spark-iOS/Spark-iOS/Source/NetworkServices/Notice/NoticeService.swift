@@ -82,17 +82,17 @@ extension NoticeService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .activeFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .serviceFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .activeRead:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .serviceRead:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .settingFetch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         case .settingPatch:
-            return Const.Header.authorizationHeader
+            return Const.Header.authorizationHeader()
         }
     }
 }
