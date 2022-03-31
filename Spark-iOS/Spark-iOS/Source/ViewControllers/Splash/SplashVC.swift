@@ -107,6 +107,7 @@ extension SplashVC {
     }
     
     private func presentToLogin() {
+    private func presentToLoginVC() {
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
         loginVC.modalPresentationStyle = .fullScreen
         loginVC.modalTransitionStyle = .crossDissolve
@@ -114,6 +115,7 @@ extension SplashVC {
     }
 
     private func presentToOnboarding() {
+    private func presentToOnboardingVC() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.onboarding) as? OnboardingVC else { return }
         nextVC.modalPresentationStyle = .fullScreen
         
