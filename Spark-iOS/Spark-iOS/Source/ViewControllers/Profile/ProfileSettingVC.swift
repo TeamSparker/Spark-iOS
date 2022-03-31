@@ -148,10 +148,12 @@ class ProfileSettingVC: UIViewController {
     func touchCompleteButton() {
         if profileImageView.image == UIImage(named: "profileEmpty") {
             signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
+                NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
                 self.presentToMainTBC()
             }
         } else {
             signupWithAPI(profileImg: profileImageView.image ?? UIImage(), nickname: textField.text ?? "") {
+                NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
                 self.presentToMainTBC()
             }
         }
@@ -159,6 +161,7 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func touchCloseButton() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
 }

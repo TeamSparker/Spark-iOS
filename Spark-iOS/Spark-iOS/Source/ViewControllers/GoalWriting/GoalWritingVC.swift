@@ -165,6 +165,7 @@ class GoalWritingVC: UIViewController {
     
     @objc
     func touchCloseButton() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -177,6 +178,7 @@ extension GoalWritingVC {
             switch response {
             case .success(let message):
                 print("setPurposeWithAPI - success: \(message)")
+                NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
                 self.dismiss(animated: true, completion: nil)
             case .requestErr(let message):
                 print("setPurposeWithAPI - requestErr: \(message)")
