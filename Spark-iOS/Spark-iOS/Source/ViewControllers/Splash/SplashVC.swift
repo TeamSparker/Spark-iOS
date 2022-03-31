@@ -54,14 +54,14 @@ class SplashVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             if self.appDelegate?.isLogin == true {
-                self.presentToMainTBC()
+                self.doorBellWithAPI()
             } else {
                 if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
-                    self.presentToLogin()
+                    self.presentToLoginVC()
                 } else {
-                    self.presentToOnboarding()
+                    self.presentToOnboardingVC()
                 }
             }
         }
@@ -106,7 +106,6 @@ extension SplashVC {
         self.present(mainVC, animated: true, completion: nil)
     }
     
-    private func presentToLogin() {
     private func presentToLoginVC() {
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
         loginVC.modalPresentationStyle = .fullScreen
@@ -114,11 +113,48 @@ extension SplashVC {
         self.present(loginVC, animated: true, completion: nil)
     }
 
-    private func presentToOnboarding() {
     private func presentToOnboardingVC() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.onboarding, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.onboarding) as? OnboardingVC else { return }
         nextVC.modalPresentationStyle = .fullScreen
         
         self.present(nextVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Network
+
+extension SplashVC {
+    /// 자동 로그인시 액세스 토큰 갱신목적의 서버통신.
+    private func doorBellWithAPI() {
+        let isAppleLogin = UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin)
+        let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? ""
+        
+        let socialID = isAppleLogin ? "Apple@\(userID)" : "Kakao@\(userID)"
+        let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? ""
+        
+        AuthAPI.shared.login(socialID: socialID, fcmToken: fcmToken) { response in
+            switch response {
+            case .success(let data):
+                if let data = data as? Login {
+                    if data.isNew {
+                        // 회원가입을 하지 않은 사용자입니다.
+                        self.presentToLoginVC()
+                    } else {
+                        // 회원 정보를 불러왔습니다.
+                        UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                        
+                        self.presentToMainTBC()
+                    }
+                }
+            case .requestErr(let message):
+                print("doorBellWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("doorBellWithAPI - pathErr")
+            case .serverErr:
+                print("doorBellWithAPI - serverErr")
+            case .networkFail:
+                print("doorBellWithAPI - networkFail")
+            }
+        }
     }
 }
