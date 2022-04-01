@@ -141,7 +141,7 @@ extension MoreStorageCVC {
     
     private func setLayout() {
         dDayOrPointLabel.snp.makeConstraints { make in
-            make.width.equalTo(42)
+            make.width.equalTo(50)
             make.height.equalTo(24)
         }
     }
