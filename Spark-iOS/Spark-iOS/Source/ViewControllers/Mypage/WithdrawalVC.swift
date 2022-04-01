@@ -99,12 +99,12 @@ extension WithdrawalVC {
     
     @objc
     private func touchWithdrawalButtonButton() {
-        withdrawalWithAPI {
-            guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-            dialogueVC.modalPresentationStyle = .overFullScreen
-            dialogueVC.modalTransitionStyle = .crossDissolve
-            dialogueVC.dialogueType = .withdrawal
-            dialogueVC.clousure = {
+        guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+        dialogueVC.modalPresentationStyle = .overFullScreen
+        dialogueVC.modalTransitionStyle = .crossDissolve
+        dialogueVC.dialogueType = .withdrawal
+        dialogueVC.clousure = {
+            self.withdrawalWithAPI {
                 if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
                     self.unlink()
                 } else {
@@ -118,9 +118,9 @@ extension WithdrawalVC {
                     }
                 }
             }
-            
-            self.present(dialogueVC, animated: true, completion: nil)
         }
+        
+        present(dialogueVC, animated: true, completion: nil)
     }
     
     private func unlink() {
