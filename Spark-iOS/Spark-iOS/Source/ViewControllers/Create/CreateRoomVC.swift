@@ -76,7 +76,7 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Screen Change
 
-    private func dismissToHomeVC() {
+    private func dismissCreateRoomVC() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
