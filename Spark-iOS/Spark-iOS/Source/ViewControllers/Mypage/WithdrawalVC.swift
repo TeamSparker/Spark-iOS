@@ -99,27 +99,28 @@ extension WithdrawalVC {
     
     @objc
     private func touchWithdrawalButtonButton() {
-        // TODO: - 탈퇴하기 서버통신
-        guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
-        dialogueVC.modalPresentationStyle = .overFullScreen
-        dialogueVC.modalTransitionStyle = .crossDissolve
-        dialogueVC.dialogueType = .withdrawal
-        dialogueVC.clousure = {
-            if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
-                self.unlink()
-            } else {
-                UserApi.shared.unlink { error in
-                    if let error = error {
-                        print("kakao unlink error: \(error).")
-                    } else {
-                        // unlink success.
-                        self.unlink()
+        withdrawalWithAPI {
+            guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
+            dialogueVC.modalPresentationStyle = .overFullScreen
+            dialogueVC.modalTransitionStyle = .crossDissolve
+            dialogueVC.dialogueType = .withdrawal
+            dialogueVC.clousure = {
+                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+                    self.unlink()
+                } else {
+                    UserApi.shared.unlink { error in
+                        if let error = error {
+                            print("kakao unlink error: \(error).")
+                        } else {
+                            // unlink success.
+                            self.unlink()
+                        }
                     }
                 }
             }
+            
+            self.present(dialogueVC, animated: true, completion: nil)
         }
-        
-        present(dialogueVC, animated: true, completion: nil)
     }
     
     private func unlink() {
@@ -141,6 +142,29 @@ extension WithdrawalVC {
         } else {
             checkboxButton.isSelected = true
             withdrawalButton.setAble()
+        }
+    }
+}
+
+// MARK: - Network
+
+extension WithdrawalVC {
+    private func withdrawalWithAPI(completion: @escaping () -> Void) {
+        AuthAPI.shared.withdrawal { response in
+            switch response {
+            case .success(let message):
+                completion()
+                
+                print("withdrawalWithAPI - success: \(message)")
+            case .requestErr(let message):
+                print("withdrawalWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("withdrawalWithAPI - pathErr")
+            case .serverErr:
+                print("withdrawalWithAPI - serverErr")
+            case .networkFail:
+                print("withdrawalWithAPI - networkFail")
+            }
         }
     }
 }
