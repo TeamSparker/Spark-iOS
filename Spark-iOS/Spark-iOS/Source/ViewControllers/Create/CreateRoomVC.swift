@@ -42,7 +42,7 @@ class CreateRoomVC: UIViewController {
         customNavigationBar.title("")
             .leftButtonImage("icQuit")
             .leftButtonAction {
-                self.dismissToHomeVC()
+                self.dismissCreateRoomVC()
             }
         
         titleLabel.text = "어떤 습관방을 만들건가요?"
@@ -76,7 +76,7 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Screen Change
 
-    private func dismissToHomeVC() {
+    private func dismissCreateRoomVC() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }

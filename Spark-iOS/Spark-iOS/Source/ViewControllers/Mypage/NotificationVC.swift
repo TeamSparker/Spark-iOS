@@ -30,7 +30,7 @@ class NotificationVC: UIViewController {
     // MARK: - Properties
     
     private let customNavigationBar = LeftButtonNavigaitonBar()
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     
     private var noticeSetting: NoticeSetting?
     
@@ -62,6 +62,8 @@ extension NotificationVC {
     private func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.sectionFooterHeight = 0
+        tableView.backgroundColor = .sparkWhite
 
         tableView.register(NotificationTVC.self, forCellReuseIdentifier: Const.Cell.Identifier.notificationTVC)
         
