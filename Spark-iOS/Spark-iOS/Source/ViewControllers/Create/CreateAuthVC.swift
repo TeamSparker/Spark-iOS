@@ -71,8 +71,8 @@ class CreateAuthVC: UIViewController {
     }
     
     private func setGesture() {
-        let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-        let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
+        let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(timerTapped(_:)))
         photoAuthView.addGestureRecognizer(photoTapGesture)
         timerAuthView.addGestureRecognizer(timerTapGesture)
     }
@@ -102,11 +102,17 @@ class CreateAuthVC: UIViewController {
     }
     
     @objc
-    private func tapped(_ gesture: UITapGestureRecognizer) {
+    private func photoTapped(_ gesture: UITapGestureRecognizer) {
+        if !photoOnly {
+            photoOnly = true
+        }
+        setAuthViewState()
+    }
+    
+    @objc
+    private func timerTapped(_ gesture: UITapGestureRecognizer) {
         if photoOnly {
             photoOnly = false
-        } else {
-            photoOnly = true
         }
         setAuthViewState()
     }
