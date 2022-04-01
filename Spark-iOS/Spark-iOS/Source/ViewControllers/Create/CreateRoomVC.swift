@@ -42,7 +42,7 @@ class CreateRoomVC: UIViewController {
         customNavigationBar.title("")
             .leftButtonImage("icQuit")
             .leftButtonAction {
-                self.dismissToHomeVC()
+                self.dismissCreateRoomVC()
             }
         
         titleLabel.text = "어떤 습관방을 만들건가요?"

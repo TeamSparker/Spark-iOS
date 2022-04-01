@@ -127,7 +127,7 @@ extension WaitingVC {
             customNavigationBar.title(title)
                 .leftButtonImage("icHome")
                 .leftButtonAction {
-                    self.dismissJoinCodeToHomeVC()
+                    self.dismissFromJoinCode()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
@@ -137,7 +137,7 @@ extension WaitingVC {
             customNavigationBar.title(title)
                 .leftButtonImage("icHome")
                 .leftButtonAction {
-                    self.dismissToHomeVC()
+                    self.dismissWaitingVC()
                 }
                 .rightButtonImage("icMoreVerticalBlack")
                 .rightButtonAction {
@@ -423,12 +423,13 @@ extension WaitingVC {
         navigationController?.popViewController(animated: true)
     }
     
-    private func dismissToHomeVC() {
+    private func dismissWaitingVC() {
         presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
-    private func dismissJoinCodeToHomeVC() {
+    private func dismissFromJoinCode() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        NotificationCenter.default.post(name: .updateHome, object: nil)
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
     
@@ -485,7 +486,7 @@ extension WaitingVC {
                 case .fromHome:
                     self.popToHomeVC()
                 case .makeRoom:
-                    self.dismissToHomeVC()
+                    self.dismissWaitingVC()
                 case .joinCode:
                     // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
                     return
@@ -562,7 +563,7 @@ extension WaitingVC {
                 case .fromHome:
                     self.popToHomeVC()
                 case .makeRoom:
-                    self.dismissToHomeVC()
+                    self.dismissWaitingVC()
                 case .joinCode:
                     // 방장만 방 삭제 API를 사용하기 때문에 발생하지 않음.
                     return
@@ -592,9 +593,9 @@ extension WaitingVC {
                 case .fromHome:
                     self.popToHomeVC()
                 case .makeRoom:
-                    self.dismissToHomeVC()
+                    self.dismissWaitingVC()
                 case .joinCode:
-                    self.dismissJoinCodeToHomeVC()
+                    self.dismissFromJoinCode()
                 case .none:
                     print("fromeWhereStatus 를 지정해주세요.")
                 }
