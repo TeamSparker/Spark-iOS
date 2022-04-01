@@ -14,6 +14,4 @@ struct Const {
      Const.Xib.NibName.mainCVC 과 같이 사용.
      Notification.Name 을 extension 했기 때문에 .sendData 와 같이 사용가능.
      */
-    
-    static let accessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""
 }

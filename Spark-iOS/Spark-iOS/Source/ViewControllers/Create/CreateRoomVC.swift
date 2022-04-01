@@ -76,7 +76,8 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Screen Change
 
-    private func dismissCreateRoomVC() {
+    private func dismissToHomeVC() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
@@ -93,6 +94,7 @@ class CreateRoomVC: UIViewController {
     func touchNextButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
