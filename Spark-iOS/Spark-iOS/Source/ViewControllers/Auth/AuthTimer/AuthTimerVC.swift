@@ -48,6 +48,9 @@ class AuthTimerVC: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     // MARK: - Methods
@@ -93,6 +96,10 @@ class AuthTimerVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
+        // 백그라운드에서 포어그라운드로 돌아올때
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: NSNotification.Name("sceneWillEnterForeground"), object: nil)
+        // 포어그라운드에서 백그라운드로 갈때
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForground(_:)), name: NSNotification.Name("sceneDidEnterBackground"), object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
@@ -103,7 +110,7 @@ class AuthTimerVC: UIViewController {
         button.layer.cornerRadius = 2
     }
     
-    func dismissAuthTimerVC() {
+    private func dismissAuthTimerVC() {
         if timeLabel.text != "00:00:00" {
             guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
             dialogVC.dialogueType = .exitTimer
@@ -116,6 +123,18 @@ class AuthTimerVC: UIViewController {
         } else {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    private func timeFormatter(_ intTime: Int) -> String {
+        let hour = intTime / 3600
+        let min = (intTime % 3600) / 60
+        let sec = (intTime % 3600) % 60
+        
+        let hourStr =  hour < 10 ? "0\(hour)" : String(hour)
+        let minStr = min < 10 ? "0\(min)" : String(min)
+        let secStr = sec < 10 ? "0\(sec)" : String(sec)
+        
+        return "\(hourStr):\(minStr):\(secStr)"
     }
     
     // MARK: - @objc
@@ -150,16 +169,14 @@ class AuthTimerVC: UIViewController {
         }
     }
     
-    func timeFormatter(_ intTime: Int) -> String {
-        let hour = intTime / 3600
-        let min = (intTime % 3600) / 60
-        let sec = (intTime % 3600) % 60
-        
-        let hourStr =  hour < 10 ? "0\(hour)" : String(hour)
-        let minStr = min < 10 ? "0\(min)" : String(min)
-        let secStr = sec < 10 ? "0\(sec)" : String(sec)
-        
-        return "\(hourStr):\(minStr):\(secStr)"
+    @objc
+    func checkForground(_ notification: NSNotification) {
+        if let isValid = timer?.isValid {
+            if isTimerOn && isValid {
+                let time = notification.userInfo?["time"] as? Int ?? 0
+                currentTimeCount += time
+            }
+        }
     }
     
     @objc
