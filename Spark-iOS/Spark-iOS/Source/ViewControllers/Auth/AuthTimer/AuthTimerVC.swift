@@ -49,8 +49,8 @@ class AuthTimerVC: UIViewController {
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     // MARK: - Methods
@@ -96,10 +96,10 @@ class AuthTimerVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
-        // 백그라운드에서 포어그라운드로 돌아올때
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForground), name: NSNotification.Name("sceneWillEnterForeground"), object: nil)
-        // 포어그라운드에서 백그라운드로 갈때
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForground(_:)), name: NSNotification.Name("sceneDidEnterBackground"), object: nil)
+        // Background -> Foreground
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
+        // Foreground -> Background
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer(_:)), name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
@@ -170,7 +170,7 @@ class AuthTimerVC: UIViewController {
     }
     
     @objc
-    func checkForground(_ notification: NSNotification) {
+    func checkBackgroundTimer(_ notification: NSNotification) {
         if let isValid = timer?.isValid {
             if isTimerOn && isValid {
                 let time = notification.userInfo?["time"] as? Int ?? 0
