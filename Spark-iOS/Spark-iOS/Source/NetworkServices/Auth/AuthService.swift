@@ -12,6 +12,7 @@ enum AuthService {
     case signup(socialID: String, profileImg: UIImage?, nickname: String, fcmToken: String)
     case login(socialID: String, fcmToken: String)
     case signout
+    case withdrawal
 }
 
 extension AuthService: TargetType {
@@ -27,6 +28,8 @@ extension AuthService: TargetType {
             return "/auth/doorbell"
         case .signout:
             return "/auth/signout"
+        case .withdrawal:
+            return "/auth/user"
         }
     }
     
@@ -38,6 +41,8 @@ extension AuthService: TargetType {
             return .get
         case .signout:
             return .post
+        case .withdrawal:
+            return .delete
         }
     }
     
@@ -64,6 +69,8 @@ extension AuthService: TargetType {
                                       encoding: URLEncoding.queryString)
         case .signout:
             return .requestPlain
+        case .withdrawal:
+            return .requestPlain
         }
     }
     
@@ -74,6 +81,8 @@ extension AuthService: TargetType {
         case .login:
             return Const.Header.basicHeader()
         case .signout:
+            return Const.Header.authorizationHeader()
+        case .withdrawal:
             return Const.Header.authorizationHeader()
         }
     }
