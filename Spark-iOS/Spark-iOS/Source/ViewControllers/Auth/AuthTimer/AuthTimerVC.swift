@@ -48,9 +48,13 @@ class AuthTimerVC: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
     }
     
     // MARK: - Methods
@@ -99,7 +103,7 @@ class AuthTimerVC: UIViewController {
         // Background -> Foreground
         NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
         // Foreground -> Background
-        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer(_:)), name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
