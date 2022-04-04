@@ -375,6 +375,16 @@ extension HabitRoomVC {
                 self.present(nextVC, animated: true, completion: nil)
             }
         }))
+        
+        alert.addAction(SparkAction("습관방 이용 팁", titleType: .blackMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+                guideVC.modalPresentationStyle = .overFullScreen
+                guideVC.modalTransitionStyle = .crossDissolve
+                
+                self.present(guideVC, animated: true, completion: nil)
+            }
+        }))
 
         alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
             self.dismiss(animated: true) {
@@ -388,18 +398,6 @@ extension HabitRoomVC {
                 }
                 
                 self.present(checkVC, animated: true, completion: nil)
-            }
-        }))
-        
-        // TODO: - 이용가이드 레이아웃 확인용. 나중에 삭제하겠습니다..
-        
-        alert.addAction(SparkAction("이용가이드", titleType: .blackMediumTitle, handler: {
-            self.dismiss(animated: true) {
-                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
-                guideVC.modalPresentationStyle = .overFullScreen
-                guideVC.modalTransitionStyle = .crossDissolve
-                
-                self.present(guideVC, animated: true, completion: nil)
             }
         }))
 
