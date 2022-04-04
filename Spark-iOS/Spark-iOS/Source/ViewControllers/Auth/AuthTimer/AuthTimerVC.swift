@@ -100,10 +100,7 @@ class AuthTimerVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
-        // Background -> Foreground
         NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
-        // Foreground -> Background
-        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
