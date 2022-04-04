@@ -15,5 +15,7 @@ extension Const {
         static let accessToken = "accessToekn"
         static let fcmToken = "fcmToken"
         static let checkHabitRoomGuide = "checkHabitRoomGuide"
+        static let sceneWillEnterForeground = "sceneWillEnterForeground"
+        static let sceneDidEnterBackground = "sceneDidEnterBackground"
     }
 }
