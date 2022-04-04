@@ -127,14 +127,14 @@ extension HomeVC {
         
         emptyImageView.image = UIImage(named: "ticketEmpty")
         emptyBackgroundView.image = UIImage(named: "bgHomeEmpty")
-        emptyBackgroundView.contentMode = .scaleAspectFill
+        emptyBackgroundView.contentMode = .scaleAspectFit
         
         view.addSubviews([emptyBackgroundView, emptyView])
         
         emptyBackgroundView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalTo(customNavigationBar.snp.bottom).offset(20)
-            make.height.equalTo(view.snp.width).multipliedBy(1.69)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(19)
         }
         
         emptyView.snp.makeConstraints { make in
