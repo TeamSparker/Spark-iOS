@@ -347,7 +347,7 @@ extension SendSparkVC {
         }
         
         userNameLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(buttonCV.snp.top).offset(-200)
+            make.bottom.equalTo(buttonCV.snp.top).offset(UIScreen.main.hasNotch ? -200 : -140)
             make.centerX.equalToSuperview()
         }
         
@@ -370,6 +370,7 @@ extension SendSparkVC {
         lineView.snp.makeConstraints { make in
             make.height.equalTo(2)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 305 : 250)
         }
         
         textField.snp.makeConstraints { make in
