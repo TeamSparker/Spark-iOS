@@ -188,19 +188,19 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func showResetPopup() {
-        if !isTimerOn {
-            guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
-            
-            popupVC.modalPresentationStyle = .overFullScreen
-            popupVC.modalTransitionStyle = .crossDissolve
-            
-            present(popupVC, animated: true, completion: nil)
-        }
+        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
+        
+        popupVC.modalPresentationStyle = .overFullScreen
+        popupVC.modalTransitionStyle = .crossDissolve
+        
+        present(popupVC, animated: true, completion: nil)
     }
     
     @objc
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
+        isTimerOn = false
+        timer?.invalidate()
         timeLabel.text = "00:00:00"
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
