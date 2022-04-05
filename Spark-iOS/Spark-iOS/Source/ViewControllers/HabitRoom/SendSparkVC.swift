@@ -17,6 +17,8 @@ class SendSparkVC: UIViewController {
     var profileImage: String?
     private var maxLength: Int = 15
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
+    private var usernameLabelOriginalY: CGFloat = 0
+    private var lineViewOriginalY: CGFloat = 0
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
@@ -190,16 +192,7 @@ extension SendSparkVC {
             let lineViewHeight: CGFloat = 2
             let targetY: CGFloat = screenHeight - keyboardHeight - 20 - lineViewHeight
             
-            sendButton.snp.makeConstraints { make in
-                make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
-                make.bottom.equalTo(lineView.snp.top).offset(-4)
-            }
-            
-            lineView.snp.makeConstraints { make in
-                make.height.equalTo(2)
-                make.leading.trailing.equalToSuperview().inset(20)
-                make.top.equalToSuperview().inset(targetY)
-            }
+            usernameLabelOriginalY = usernameLabelOriginalY == 0 ? userNameLabel.frame.origin.y : usernameLabelOriginalY
             lineViewOriginalY = lineViewOriginalY == 0 ? lineView.frame.origin.y : lineViewOriginalY
             
             lineView.frame.origin.y = targetY
@@ -208,6 +201,14 @@ extension SendSparkVC {
             userNameLabel.frame.origin.y = targetY - userNameLabel.frame.height - 98
             profileImageView.frame.origin.y = targetY - profileImageView.frame.height - 136
         }
+    }
+    
+    @objc func keyWillHide(_ notification: NSNotification) {
+        userNameLabel.frame.origin.y = usernameLabelOriginalY
+        profileImageView.frame.origin.y = usernameLabelOriginalY - profileImageView.frame.height - 12
+        lineView.frame.origin.y = lineViewOriginalY
+        sendButton.frame.origin.y = lineViewOriginalY - sendButton.frame.height - 4
+        textField.frame.origin.y = lineViewOriginalY - textField.frame.height - 10
     }
 }
 
