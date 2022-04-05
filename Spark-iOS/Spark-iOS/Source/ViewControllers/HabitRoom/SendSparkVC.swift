@@ -149,11 +149,13 @@ extension SendSparkVC {
     }
     
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardChange), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - @objc Function
@@ -181,7 +183,7 @@ extension SendSparkVC {
         }
     }
     
-    @objc func keyBoardWillShow(_ notification: NSNotification) {
+    @objc func keyBoardChange(_ notification: NSNotification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
@@ -198,11 +200,13 @@ extension SendSparkVC {
                 make.leading.trailing.equalToSuperview().inset(20)
                 make.top.equalToSuperview().inset(targetY)
             }
+            lineViewOriginalY = lineViewOriginalY == 0 ? lineView.frame.origin.y : lineViewOriginalY
             
-            textField.snp.makeConstraints { make in
-                make.leading.equalTo(lineView.snp.leading).offset(8)
-                make.bottom.equalTo(lineView.snp.top).offset(-10)
-            }
+            lineView.frame.origin.y = targetY
+            sendButton.frame.origin.y = targetY - sendButton.frame.height - 4
+            textField.frame.origin.y = targetY - textField.frame.height - 10
+            userNameLabel.frame.origin.y = targetY - userNameLabel.frame.height - 98
+            profileImageView.frame.origin.y = targetY - profileImageView.frame.height - 136
         }
     }
 }
@@ -355,6 +359,21 @@ extension SendSparkVC {
         guideLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(44)
             make.centerX.equalToSuperview()
+        }
+        
+        sendButton.snp.makeConstraints { make in
+            make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
+            make.bottom.equalTo(lineView.snp.top).offset(-4)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        textField.snp.makeConstraints { make in
+            make.leading.equalTo(lineView.snp.leading).offset(8)
+            make.bottom.equalTo(lineView.snp.top).offset(-10)
         }
     }
 }
