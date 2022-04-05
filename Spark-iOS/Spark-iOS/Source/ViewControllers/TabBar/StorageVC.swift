@@ -75,7 +75,6 @@ class StorageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setDelegate()
         registerXib()
         setCarousels()
@@ -254,8 +253,8 @@ extension StorageVC {
     }
     
     private func setLayout() {
-        view.addSubviews([doingButton, doneButton, failButton,
-                               doingCV, doneCV, failCV,
+        view.addSubviews([doingCV, doneCV, failCV,
+                          doingButton, doneButton, failButton,
                                usernameSparkLabel, doingLabel, doneLabel,
                           failLabel])
         
@@ -296,9 +295,9 @@ extension StorageVC {
         
         [doingCV, doneCV, failCV].forEach {
             $0.snp.makeConstraints { make in
-                make.top.equalTo(failButton.snp.bottom).offset(14)
+                make.top.equalTo(failButton.snp.bottom).offset(12)
                 make.leading.trailing.equalToSuperview()
-                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-11)
+                make.bottom.equalToSuperview().offset(-96)
             }
         }
     }
@@ -440,10 +439,9 @@ extension StorageVC {
         let layout = CarouselLayout()
         
         let centerItemWidthScale: CGFloat = (UIScreen.main.bounds.width-48)/UIScreen.main.bounds.width
-        let centerItemHeightScale: CGFloat = 1
-        let centerItemSizeScale: CGFloat = UIScreen.main.bounds.height/812
+        let height: CGFloat = ScreenCase.init(rawValue: UIScreen.main.bounds.height)?.itemSize ?? 520
         
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: collectionView.frame.height*centerItemHeightScale*centerItemSizeScale)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*centerItemWidthScale, height: height)
         
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()
