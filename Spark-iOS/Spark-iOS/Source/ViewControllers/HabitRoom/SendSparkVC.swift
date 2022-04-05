@@ -19,6 +19,9 @@ class SendSparkVC: UIViewController {
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     private var usernameLabelOriginalY: CGFloat = 0
     private var lineViewOriginalY: CGFloat = 0
+    private var originYDif: CGFloat = 0
+    private var purposedY: CGFloat = 0
+    private var canChangeKeyboardFrame: Bool = false
     
     private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
@@ -151,11 +154,13 @@ extension SendSparkVC {
     }
     
     private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardChange), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -185,6 +190,14 @@ extension SendSparkVC {
         }
     }
     
+    @objc func keyDidShow(_ notification: NSNotification) {
+        // 키보드가 완전히 올라온 이후에 프로필 이미지와 닉네임 라벨의 위치 변화가 있을 수 있음을 설정하는 부분
+        canChangeKeyboardFrame = true
+        // UI 요소들의 원래 위치를 기억하기 위한 코드
+        usernameLabelOriginalY = usernameLabelOriginalY == 0 ? userNameLabel.frame.origin.y : usernameLabelOriginalY
+        lineViewOriginalY = lineViewOriginalY == 0 ? lineView.frame.origin.y : lineViewOriginalY
+    }
+    
     @objc func keyBoardChange(_ notification: NSNotification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -192,14 +205,21 @@ extension SendSparkVC {
             let lineViewHeight: CGFloat = 2
             let targetY: CGFloat = screenHeight - keyboardHeight - 20 - lineViewHeight
             
-            usernameLabelOriginalY = usernameLabelOriginalY == 0 ? userNameLabel.frame.origin.y : usernameLabelOriginalY
-            lineViewOriginalY = lineViewOriginalY == 0 ? lineView.frame.origin.y : lineViewOriginalY
+            // keyBoarFrameDidChange는 맨 처음 키보드가 올라올 때와, 키보드의 프레임 변화(이모지 키보드로의 전환)가 있을 때 모두 불림. 처음에는 originDif 에 targetY의 값을 저장하고, 이모지 키보드로 전환되었을 때 targetY의 변화값을 originDif에 저장한다.
+            // originDif에 targetY의 변화값이 저장되었을 때 비로소 purposedY에 그 값이 저장된다. 초기화 이후로 purposedY의 값은 유지된다.
+            originYDif = CGFloat(abs(Int(originYDif)-Int(targetY))) != originYDif ? targetY - originYDif : originYDif
+            purposedY = (originYDif < 0)&&(purposedY == 0) ? originYDif : purposedY
             
             lineView.frame.origin.y = targetY
             sendButton.frame.origin.y = targetY - sendButton.frame.height - 4
             textField.frame.origin.y = targetY - textField.frame.height - 10
-            userNameLabel.frame.origin.y = targetY - userNameLabel.frame.height - 98
-            profileImageView.frame.origin.y = targetY - profileImageView.frame.height - 136
+            
+            // keyBoardDidShow 메서드가 canChangeKeyboardFrame을 true로 만든 이후, 즉 키보드가 모두 올라온 이후에만 아래 코드블럭이 기능함. 이는 이모지 키보드로 전환했을 때에만 아래 코드블록이 기능하도록 한 것임.
+            if canChangeKeyboardFrame {
+                userNameLabel.frame.origin.y += purposedY
+                profileImageView.frame.origin.y += purposedY
+                purposedY = -purposedY
+            }
         }
     }
     
@@ -209,6 +229,10 @@ extension SendSparkVC {
         lineView.frame.origin.y = lineViewOriginalY
         sendButton.frame.origin.y = lineViewOriginalY - sendButton.frame.height - 4
         textField.frame.origin.y = lineViewOriginalY - textField.frame.height - 10
+        
+        // 이모지 키보드로 전환하고 바로 키보드를 내린 경우에 purposedY의 값을 반전시켜 줘야한다.
+        if purposedY > 0 { purposedY = -purposedY }
+        canChangeKeyboardFrame = false
     }
 }
 
