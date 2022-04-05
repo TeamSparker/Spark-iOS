@@ -14,6 +14,7 @@ class HabitRoomGuideVC: UIViewController {
     // MARK: - Properties
     
     var dismissClousure: (() -> Void)?
+    var fromMore: Bool = false
     
     private let popupView = UIView()
     private let titleLabel = UILabel()
@@ -58,7 +59,12 @@ class HabitRoomGuideVC: UIViewController {
         closeButton.setTitle("닫기", for: .normal)
         closeButton.setTitleColor(.sparkPinkred, for: .normal)
         closeButton.titleLabel?.font = .krBoldFont(ofSize: 16)
-        closeButton.alpha = 0
+        
+        if fromMore {
+            closeButton.alpha = 1
+        } else {
+            closeButton.alpha = 0
+        }
         
         pageControl.numberOfPages = 3
         pageControl.pageIndicatorTintColor = .sparkLightGray
@@ -130,7 +136,7 @@ extension HabitRoomGuideVC: UICollectionViewDelegate {
     
     // 스크롤뷰 드래그 시작될때, closeButton이 hidden 상태가 아니라면 hidden 시켜주기
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if !closeButton.isHidden {
+        if !closeButton.isHidden && !fromMore {
             UIView.animate(withDuration: 0.1) {
                 self.closeButton.alpha = 0
             }
@@ -139,12 +145,14 @@ extension HabitRoomGuideVC: UICollectionViewDelegate {
     
     // 스크롤뷰 드래그가 멈췄을때, 마지막 content라면 닫기 버튼 보이기
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x == scrollView.contentSize.width - scrollView.frame.size.width {
-            UIView.animate(withDuration: 0.2) {
-                self.closeButton.alpha = 1
+        if !fromMore {
+            if scrollView.contentOffset.x == scrollView.contentSize.width - scrollView.frame.size.width {
+                UIView.animate(withDuration: 0.2) {
+                    self.closeButton.alpha = 1
+                }
+            } else {
+                closeButton.alpha = 0
             }
-        } else {
-            closeButton.alpha = 0
         }
     }
 }

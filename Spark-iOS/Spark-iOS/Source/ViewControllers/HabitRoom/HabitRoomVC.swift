@@ -381,6 +381,7 @@ extension HabitRoomVC {
                 guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
                 guideVC.modalPresentationStyle = .overFullScreen
                 guideVC.modalTransitionStyle = .crossDissolve
+                guideVC.fromMore = true
                 
                 self.present(guideVC, animated: true, completion: nil)
             }
