@@ -14,6 +14,25 @@ class StorageVC: UIViewController {
     
     // MARK: - Properties
     
+    @frozen
+    private enum ScreenCase: CGFloat {
+        case elevenPro = 812
+        case twelevePro = 844
+        case elevenProMax = 896
+        case tweleveProMax = 926
+        case seThree = 667
+        
+        var itemSize: CGFloat {
+            switch self {
+            case .elevenPro: return 517
+            case .twelevePro: return 547
+            case .elevenProMax: return 597
+            case .tweleveProMax: return 625
+            case .seThree: return 394
+            }
+        }
+    }
+    
     private var onGoingRoomList: [MyRoomRooms]? = []
     private var onGoingRoomLastID: Int = -1
     private var completeRoomList: [MyRoomRooms]? = []
