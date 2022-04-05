@@ -116,7 +116,7 @@ public class SparkFlake {
         case .day6:
             return UIImage(named: "property1MyboxTicketOngoingLine5")
         case .dDay:
-            return UIImage()
+            return UIImage(named: "property1MyboxTicketOngoingLine5")
         case .error:
             return UIImage()
         }
