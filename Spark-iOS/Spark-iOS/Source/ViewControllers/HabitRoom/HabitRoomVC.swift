@@ -183,7 +183,7 @@ extension HabitRoomVC {
             timeLabel.text = habitRoomDetail.moment
         } else {
             timeTextLabel.text = ""
-            timeLabel.text = "습관을 시작하기 전에"
+            timeLabel.text = "아직 구체적인 계획이 없어요."
         }
         
         if habitRoomDetail.purpose != nil {
@@ -191,7 +191,7 @@ extension HabitRoomVC {
             goalLabel.text = habitRoomDetail.purpose
         } else {
             goalTextField.text = ""
-            goalLabel.text = "시간과 목표를 작성해 주세요!"
+            goalLabel.text = "나만의 시간과 목표를 작성해 보세요!"
         }
         
         // 방 생명 이미지 구현
@@ -375,6 +375,17 @@ extension HabitRoomVC {
                 self.present(nextVC, animated: true, completion: nil)
             }
         }))
+        
+        alert.addAction(SparkAction("습관방 이용 팁", titleType: .blackMediumTitle, handler: {
+            self.dismiss(animated: true) {
+                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
+                guideVC.modalPresentationStyle = .overFullScreen
+                guideVC.modalTransitionStyle = .crossDissolve
+                guideVC.fromMore = true
+                
+                self.present(guideVC, animated: true, completion: nil)
+            }
+        }))
 
         alert.addAction(SparkAction("방 나가기", titleType: .pinkMediumTitle, handler: {
             self.dismiss(animated: true) {
@@ -388,18 +399,6 @@ extension HabitRoomVC {
                 }
                 
                 self.present(checkVC, animated: true, completion: nil)
-            }
-        }))
-        
-        // TODO: - 이용가이드 레이아웃 확인용. 나중에 삭제하겠습니다..
-        
-        alert.addAction(SparkAction("이용가이드", titleType: .blackMediumTitle, handler: {
-            self.dismiss(animated: true) {
-                guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
-                guideVC.modalPresentationStyle = .overFullScreen
-                guideVC.modalTransitionStyle = .crossDissolve
-                
-                self.present(guideVC, animated: true, completion: nil)
             }
         }))
 

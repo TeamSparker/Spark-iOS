@@ -122,19 +122,19 @@ extension HomeVC {
         emptyLabel.textAlignment = .center
         emptyLabel.font = .h3SubtitleLight
         emptyLabel.partFontChange(targetString: "아직 습관방이 없어요.", font: .h3SubtitleBold)
-        emptyLabel.textColor = .sparkWhite
+        emptyLabel.textColor = .sparkGray
         emptyLabel.numberOfLines = 2
         
         emptyImageView.image = UIImage(named: "ticketEmpty")
         emptyBackgroundView.image = UIImage(named: "bgHomeEmpty")
-        emptyBackgroundView.contentMode = .scaleAspectFill
+        emptyBackgroundView.contentMode = .scaleAspectFit
         
         view.addSubviews([emptyBackgroundView, emptyView])
         
         emptyBackgroundView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(54)
-            make.height.equalTo(emptyBackgroundView.snp.width).multipliedBy(1.6)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(customNavigationBar.snp.bottom).offset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(19)
         }
         
         emptyView.snp.makeConstraints { make in

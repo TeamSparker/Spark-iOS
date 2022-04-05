@@ -50,6 +50,13 @@ class AuthTimerVC: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
@@ -93,6 +100,7 @@ class AuthTimerVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
@@ -103,7 +111,7 @@ class AuthTimerVC: UIViewController {
         button.layer.cornerRadius = 2
     }
     
-    func dismissAuthTimerVC() {
+    private func dismissAuthTimerVC() {
         if timeLabel.text != "00:00:00" {
             guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
             dialogVC.dialogueType = .exitTimer
@@ -116,6 +124,18 @@ class AuthTimerVC: UIViewController {
         } else {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    private func timeFormatter(_ intTime: Int) -> String {
+        let hour = intTime / 3600
+        let min = (intTime % 3600) / 60
+        let sec = (intTime % 3600) % 60
+        
+        let hourStr =  hour < 10 ? "0\(hour)" : String(hour)
+        let minStr = min < 10 ? "0\(min)" : String(min)
+        let secStr = sec < 10 ? "0\(sec)" : String(sec)
+        
+        return "\(hourStr):\(minStr):\(secStr)"
     }
     
     // MARK: - @objc
@@ -150,16 +170,14 @@ class AuthTimerVC: UIViewController {
         }
     }
     
-    func timeFormatter(_ intTime: Int) -> String {
-        let hour = intTime / 3600
-        let min = (intTime % 3600) / 60
-        let sec = (intTime % 3600) % 60
-        
-        let hourStr =  hour < 10 ? "0\(hour)" : String(hour)
-        let minStr = min < 10 ? "0\(min)" : String(min)
-        let secStr = sec < 10 ? "0\(sec)" : String(sec)
-        
-        return "\(hourStr):\(minStr):\(secStr)"
+    @objc
+    func checkBackgroundTimer(_ notification: NSNotification) {
+        if let isValid = timer?.isValid {
+            if isTimerOn && isValid {
+                let time = notification.userInfo?["time"] as? Int ?? 0
+                currentTimeCount += time
+            }
+        }
     }
     
     @objc
@@ -170,19 +188,19 @@ class AuthTimerVC: UIViewController {
     
     @objc
     func showResetPopup() {
-        if !isTimerOn {
-            guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
-            
-            popupVC.modalPresentationStyle = .overFullScreen
-            popupVC.modalTransitionStyle = .crossDissolve
-            
-            present(popupVC, animated: true, completion: nil)
-        }
+        guard let popupVC = UIStoryboard(name: Const.Storyboard.Name.resetPopup, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.resetPopup) as? ResetPopupVC else { return }
+        
+        popupVC.modalPresentationStyle = .overFullScreen
+        popupVC.modalTransitionStyle = .crossDissolve
+        
+        present(popupVC, animated: true, completion: nil)
     }
     
     @objc
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
+        isTimerOn = false
+        timer?.invalidate()
         timeLabel.text = "00:00:00"
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
