@@ -206,9 +206,9 @@ extension SendSparkVC {
             let targetY: CGFloat = screenHeight - keyboardHeight - 20 - lineViewHeight
             
             // keyBoarFrameDidChange는 맨 처음 키보드가 올라올 때와, 키보드의 프레임 변화(이모지 키보드로의 전환)가 있을 때 모두 불림. 처음에는 originDif 에 targetY의 값을 저장하고, 이모지 키보드로 전환되었을 때 targetY의 변화값을 originDif에 저장한다.
-            // originDif에 targetY의 변화값이 저장되었을 때 비로소 purposedY에 그 값이 저장된다. 초기화 이후로 purposedY의 값은 유지된다.
+            // originDif에 targetY의 변화값이 저장되었을 때 비로소 purposedY에 그 값이 저장된다. 한 번 초기화 이후로 purposedY의 값은 유지된다.
             originYDif = CGFloat(abs(Int(originYDif)-Int(targetY))) != originYDif ? targetY - originYDif : originYDif
-            purposedY = (originYDif < 0)&&(purposedY == 0) ? originYDif : purposedY
+            purposedY = (originYDif < 0) && (purposedY == 0) ? originYDif : purposedY
             
             lineView.frame.origin.y = targetY
             sendButton.frame.origin.y = targetY - sendButton.frame.height - 4
@@ -218,6 +218,7 @@ extension SendSparkVC {
             if canChangeKeyboardFrame {
                 userNameLabel.frame.origin.y += purposedY
                 profileImageView.frame.origin.y += purposedY
+                // 키보드가 전환될 떄마다 purposedY 값을 반전시켜줍니다
                 purposedY = -purposedY
             }
         }
