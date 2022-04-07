@@ -174,8 +174,6 @@ extension WaitingVC {
         nicknameLabel.text = "-"
         friendTitleLabel.text = "함께하는 스파커들"
         friendSubTitleLabel.text = "습관방은 최대 10명까지 입장할 수 있습니다."
-        timeLabel.text = "습관을 시작하기 전에"
-        goalLabel.text = "시간과 목표를 작성해 주세요!"
         
         nicknameLabel.font = .h3Subtitle
         friendCountLabel.font = .p2SubtitleEng
@@ -298,7 +296,7 @@ extension WaitingVC {
             timeLabel.partFontChange(targetString: "시간", font: .p1Title)
             goalLabel.partFontChange(targetString: "목표", font: .p1Title)
         } else {
-            timeLabel.text = "습관을 시작하기 전에"
+            timeLabel.text = "습관을 성공하기 위한"
             goalLabel.text = "시간과 목표를 작성해 주세요!"
         }
 
