@@ -53,6 +53,7 @@ extension NotificationTVC {
         subtitleLabel.textColor = .sparkDarkGray
         
         notificationSwitch.isOn = false
+        notificationSwitch.onTintColor = .sparkPinkred
         
         lineView.backgroundColor = .sparkGray
     }
