@@ -131,7 +131,9 @@ class ProfileSettingVC: UIViewController {
         
         if profileImageView.image != UIImage(named: "profileEmpty") {
             alert.addAction(SparkAction("사진 삭제", titleType: .blackMediumTitle, handler: {
-                self.profileImageView.image = UIImage(named: "profileEmpty")
+                alert.dismiss(animated: true) {
+                    self.profileImageView.image = UIImage(named: "profileEmpty")
+                }
             }))
         }
         
