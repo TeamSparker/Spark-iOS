@@ -16,6 +16,7 @@ enum NoticeService {
     case serviceRead
     case settingFetch
     case settingPatch(category: String)
+    case newNoticeFetch
 }
 
 extension NoticeService: TargetType {
@@ -37,6 +38,8 @@ extension NoticeService: TargetType {
             return "/notice/setting"
         case .settingPatch:
             return "/notice/setting"
+        case .newNoticeFetch:
+            return "/notice/new"
         }
     }
     
@@ -54,6 +57,8 @@ extension NoticeService: TargetType {
             return .get
         case .settingPatch:
             return .patch
+        case .newNoticeFetch:
+            return .get
         }
     }
     
@@ -76,6 +81,8 @@ extension NoticeService: TargetType {
         case .settingPatch(category: let category):
             return .requestParameters(parameters: ["category": category],
                                       encoding: URLEncoding.queryString)
+        case .newNoticeFetch:
+            return .requestPlain
         }
     }
     
@@ -92,6 +99,8 @@ extension NoticeService: TargetType {
         case .settingFetch:
             return Const.Header.authorizationHeader()
         case .settingPatch:
+            return Const.Header.authorizationHeader()
+        case .newNoticeFetch:
             return Const.Header.authorizationHeader()
         }
     }
