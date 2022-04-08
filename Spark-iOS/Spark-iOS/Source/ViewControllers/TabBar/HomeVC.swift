@@ -24,6 +24,7 @@ class HomeVC: UIViewController {
     private var habitRoomLastID: Int = -1
     private var habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
+    private var isNewNotice: Bool = false
     
     lazy var loadingBgView = UIImageView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
@@ -455,6 +456,25 @@ extension HomeVC {
                 print("habitRoomFetchWithAPI - serverErr")
             case .networkFail:
                 print("habitRoomFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func newNoticeFetchWithAPI() {
+        NoticeAPI.shared.newNoticeFetch { response in
+            switch response {
+            case .success(let data):
+                if let newNotice = data as? NewNotice {
+                    self.isNewNotice = newNotice.newNotice
+                }
+            case .requestErr(let message):
+                print("newNoticeFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("newNoticeFetchWithAPI - pathErr")
+            case .serverErr:
+                print("newNoticeFetchWithAPI - serverErr")
+            case .networkFail:
+                print("newNoticeFetchWithAPI - networkFail")
             }
         }
     }
