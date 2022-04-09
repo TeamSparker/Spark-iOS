@@ -362,7 +362,7 @@ extension HabitRoomVC {
     
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
-        alert.addAction(SparkAction("나의 목표 수정", titleType: .blackMediumTitle, handler: {
+        alert.addAction(SparkAction("나의 목표 관리", titleType: .blackMediumTitle, handler: {
             self.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
                 
