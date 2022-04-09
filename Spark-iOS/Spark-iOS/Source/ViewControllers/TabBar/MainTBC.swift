@@ -76,6 +76,8 @@ extension MainTBC {
         floatingButton.layer.shadowOffset = CGSize(width: 0, height: 2)
         floatingButton.layer.shadowOpacity = Float(0.3)
         floatingButton.layer.shadowRadius = CGFloat(10)
+        floatingButton.buttonDiameter = 60.0
+        floatingButton.itemSizeRatio = 44.0 / 60.0
         
         // set floatingButton items.
         floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
@@ -89,6 +91,7 @@ extension MainTBC {
         floatingButton.configureDefaultItem { item in
             item.buttonColor = .sparkDarkPinkred
             item.layer.shadowColor = .none
+            item.titleLabel.font = .h3Subtitle
         }
     }
     

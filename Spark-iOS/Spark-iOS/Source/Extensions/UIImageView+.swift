@@ -47,7 +47,7 @@ extension UIImageView {
         case .medium:
             resizingURL = imageURL + "_360x360" + imageType
         case .large:
-            resizingURL = imageURL + "_720x720" + imageType
+            resizingURL = imagePath
         }
         
         guard let url = URL(string: resizingURL) else {
