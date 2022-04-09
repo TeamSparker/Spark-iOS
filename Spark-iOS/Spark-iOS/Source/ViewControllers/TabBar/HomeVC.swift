@@ -62,9 +62,15 @@ class HomeVC: UIViewController {
         }
         
         DispatchQueue.main.async {
+            self.newNoticeFetchWithAPI()
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 if self.habitRoomList?.count != 0 {
                     self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                    }
                 }
             }
         }
@@ -238,8 +244,15 @@ extension HomeVC {
         habitRoomList?.removeAll()
         
         DispatchQueue.main.async {
+            self.newNoticeFetchWithAPI()
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 self.refreshControl.endRefreshing()
+                
+                if self.isNewNotice {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                } else {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                }
             }
         }
     }
@@ -275,9 +288,15 @@ extension HomeVC {
         }
         
         DispatchQueue.main.async {
+            self.newNoticeFetchWithAPI()
             self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
                 if self.habitRoomList?.count != 0 {
                     self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                    }
                 }
             }
         }
