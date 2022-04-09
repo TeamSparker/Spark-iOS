@@ -176,7 +176,6 @@
 		F85036CC27E2567C00F02751 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85036CB27E2567C00F02751 /* NotificationService.swift */; };
 		F85036D027E2567C00F02751 /* SparkNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F85036C927E2567C00F02751 /* SparkNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F85DB23127E1B3430004C6B1 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85DB23027E1B3430004C6B1 /* UIDevice+.swift */; };
-		F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867B6B5278F86610024B1D4 /* UINavigationController+.swift */; };
 		F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B627955ABA009A5296 /* SparkFlake.swift */; };
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
 		F86FC47A27F1B835004478F3 /* NoticeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47927F1B835004478F3 /* NoticeSetting.swift */; };
@@ -417,7 +416,6 @@
 		F85036CB27E2567C00F02751 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F85036CD27E2567C00F02751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F85DB23027E1B3430004C6B1 /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
-		F867B6B5278F86610024B1D4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		F86C68B627955ABA009A5296 /* SparkFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkFlake.swift; sourceTree = "<group>"; };
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		F86FC47927F1B835004478F3 /* NoticeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSetting.swift; sourceTree = "<group>"; };
@@ -1156,7 +1154,6 @@
 				F8096F3B2784211D00B71D38 /* UIColor+.swift */,
 				F8096F3D2784213700B71D38 /* UIFont+.swift */,
 				2BC1726C278E8F1000BA3029 /* UIView+.swift */,
-				F867B6B5278F86610024B1D4 /* UINavigationController+.swift */,
 				2B9851FC278FCBF400CE40A7 /* UILabel+.swift */,
 				2B9852062790984C00CE40A7 /* UIViewController+.swift */,
 				F86C68B827958AA9009A5296 /* UIImageView+.swift */,
@@ -1656,7 +1653,6 @@
 				2B98520B2790AD0000CE40A7 /* CreateAuthVC.swift in Sources */,
 				F85DB23127E1B3430004C6B1 /* UIDevice+.swift in Sources */,
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
-				F867B6B6278F86610024B1D4 /* UINavigationController+.swift in Sources */,
 				EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */,
 				F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
