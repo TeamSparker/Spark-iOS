@@ -57,9 +57,7 @@ class HomeVC: UIViewController {
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
         
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
+        self.setLoading()
         
         DispatchQueue.main.async {
             self.newNoticeFetchWithAPI {
@@ -324,8 +322,10 @@ extension HomeVC: UICollectionViewDelegate {
                 isInfiniteScroll = false
                 
                 habitRoomLastID = habitRoomList?.last?.roomID ?? 0
-                habitRoomFetchWithAPI(lastID: habitRoomLastID) {
-                    self.isInfiniteScroll = true
+                Task {
+                    await habitRoomFetchWithAPI(lastID: habitRoomLastID) {
+                        self.isInfiniteScroll = true
+                    }
                 }
             }
         }
@@ -452,7 +452,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 
 extension HomeVC {
-    private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) {
+    private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) async {
         HomeAPI.shared.habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
             switch response {
             case .success(let data):
