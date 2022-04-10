@@ -322,10 +322,8 @@ extension HomeVC: UICollectionViewDelegate {
                 isInfiniteScroll = false
                 
                 habitRoomLastID = habitRoomList?.last?.roomID ?? 0
-                Task {
-                    await habitRoomFetchWithAPI(lastID: habitRoomLastID) {
-                        self.isInfiniteScroll = true
-                    }
+                habitRoomFetchWithAPI(lastID: habitRoomLastID) {
+                    self.isInfiniteScroll = true
                 }
             }
         }
@@ -452,7 +450,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 
 extension HomeVC {
-    private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) async {
+    private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) {
         HomeAPI.shared.habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
             switch response {
             case .success(let data):
