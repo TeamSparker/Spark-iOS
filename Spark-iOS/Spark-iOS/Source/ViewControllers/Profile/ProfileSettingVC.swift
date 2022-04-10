@@ -154,7 +154,6 @@ class ProfileSettingVC: UIViewController {
                 self.presentToMainTBC()
             }
         } else {
-            // TODO: - image resizing
             signupWithAPI(profileImg: profileImageView.image?.resize() ?? UIImage(), nickname: textField.text ?? "") {
                 NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
                 self.presentToMainTBC()
@@ -206,7 +205,6 @@ extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // UIImage 타입인 originalImage를 빼옴
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // TODO: - image resizing
             profileImageView.image = image.resize()
             profileImageView.contentMode = .scaleAspectFill
         }

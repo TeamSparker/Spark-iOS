@@ -473,7 +473,6 @@ extension HabitRoomVC: UIImagePickerControllerDelegate, UINavigationControllerDe
                 nextVC.vcType = .photoOnly
             }
         }
-        // TODO: - image resizing
         nextVC.uploadImageView.image = self.imageContainer.resize()
         nextVC.modalPresentationStyle = .fullScreen
         
