@@ -62,14 +62,15 @@ class HomeVC: UIViewController {
         }
         
         DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI()
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-                    if self.isNewNotice {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                    } else {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    if self.habitRoomList?.count != 0 {
+                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                        if self.isNewNotice {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                        } else {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                        }
                     }
                 }
             }
@@ -82,7 +83,7 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         bgView.contentMode = .scaleAspectFill
-    
+        
         customNavigationBar
             .buttonsImage("icProfile", "icNotice")
             .actions({
@@ -113,7 +114,7 @@ extension HomeVC {
     private func setFloatingButton() {
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
-
+    
     private func updateHiddenCollectionView() {
         emptyView.isHidden = true
         emptyBackgroundView.isHidden = true
@@ -244,14 +245,15 @@ extension HomeVC {
         habitRoomList?.removeAll()
         
         DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI()
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.refreshControl.endRefreshing()
-                
-                if self.isNewNotice {
-                    self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                } else {
-                    self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    self.refreshControl.endRefreshing()
+                    
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                    }
                 }
             }
         }
@@ -288,14 +290,15 @@ extension HomeVC {
         }
         
         DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI()
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                    if self.isNewNotice {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                    } else {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    if self.habitRoomList?.count != 0 {
+                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                        if self.isNewNotice {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                        } else {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                        }
                     }
                 }
             }
@@ -479,7 +482,7 @@ extension HomeVC {
         }
     }
     
-    private func newNoticeFetchWithAPI() {
+    private func newNoticeFetchWithAPI(completion: @escaping () -> Void) {
         NoticeAPI.shared.newNoticeFetch { response in
             switch response {
             case .success(let data):
