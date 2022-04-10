@@ -487,6 +487,7 @@ extension HomeVC {
                 if let newNotice = data as? NewNotice {
                     self.isNewNotice = newNotice.newNotice
                 }
+                completion()
             case .requestErr(let message):
                 print("newNoticeFetchWithAPI - requestErr: \(message)")
             case .pathErr:
