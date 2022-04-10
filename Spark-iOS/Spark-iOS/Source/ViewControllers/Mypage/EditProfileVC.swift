@@ -212,7 +212,8 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // UIImage 타입인 originalImage를 빼옴
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profileImageView.image = image.resize(newWidth: profileImageView.frame.width)
+            // TODO: - image resizing
+            profileImageView.image = image.resize()
             profileImageView.contentMode = .scaleAspectFill
         }
         dismiss(animated: true, completion: nil)
