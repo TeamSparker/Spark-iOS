@@ -40,11 +40,12 @@ class AuthTimerVC: UIViewController {
         setLayout()
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
-        setNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setNotification()
         
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -53,8 +54,7 @@ class AuthTimerVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
+        removeObservers()
     }
     
     // MARK: - Methods
@@ -109,6 +109,11 @@ class AuthTimerVC: UIViewController {
         button.backgroundColor = backgroundColor
         button.titleLabel?.font = .enBoldFont(ofSize: 18)
         button.layer.cornerRadius = 2
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
     }
     
     private func dismissAuthTimerVC() {
