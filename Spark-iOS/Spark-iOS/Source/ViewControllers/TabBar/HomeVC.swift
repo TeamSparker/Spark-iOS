@@ -24,6 +24,7 @@ class HomeVC: UIViewController {
     private var habitRoomLastID: Int = -1
     private var habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
+    private var isNewNotice: Bool = false
     
     lazy var loadingBgView = UIImageView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
@@ -56,14 +57,19 @@ class HomeVC: UIViewController {
         self.habitRoomLastID = -1
         self.habitRoomList?.removeAll()
         
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
+        self.setLoading()
         
         DispatchQueue.main.async {
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    if self.habitRoomList?.count != 0 {
+                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                        if self.isNewNotice {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                        } else {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                        }
+                    }
                 }
             }
         }
@@ -75,7 +81,7 @@ class HomeVC: UIViewController {
 extension HomeVC {
     private func setUI() {
         bgView.contentMode = .scaleAspectFill
-    
+        
         customNavigationBar
             .buttonsImage("icProfile", "icNotice")
             .actions({
@@ -106,7 +112,7 @@ extension HomeVC {
     private func setFloatingButton() {
         NotificationCenter.default.post(name: .appearFloatingButton, object: nil)
     }
-
+    
     private func updateHiddenCollectionView() {
         emptyView.isHidden = true
         emptyBackgroundView.isHidden = true
@@ -237,8 +243,16 @@ extension HomeVC {
         habitRoomList?.removeAll()
         
         DispatchQueue.main.async {
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                self.refreshControl.endRefreshing()
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    self.refreshControl.endRefreshing()
+                    
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                    }
+                }
             }
         }
     }
@@ -274,9 +288,16 @@ extension HomeVC {
         }
         
         DispatchQueue.main.async {
-            self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                if self.habitRoomList?.count != 0 {
-                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            self.newNoticeFetchWithAPI {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
+                    if self.habitRoomList?.count != 0 {
+                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                        if self.isNewNotice {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                        } else {
+                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                        }
+                    }
                 }
             }
         }
@@ -455,6 +476,26 @@ extension HomeVC {
                 print("habitRoomFetchWithAPI - serverErr")
             case .networkFail:
                 print("habitRoomFetchWithAPI - networkFail")
+            }
+        }
+    }
+    
+    private func newNoticeFetchWithAPI(completion: @escaping () -> Void) {
+        NoticeAPI.shared.newNoticeFetch { response in
+            switch response {
+            case .success(let data):
+                if let newNotice = data as? NewNotice {
+                    self.isNewNotice = newNotice.newNotice
+                }
+                completion()
+            case .requestErr(let message):
+                print("newNoticeFetchWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("newNoticeFetchWithAPI - pathErr")
+            case .serverErr:
+                print("newNoticeFetchWithAPI - serverErr")
+            case .networkFail:
+                print("newNoticeFetchWithAPI - networkFail")
             }
         }
     }
