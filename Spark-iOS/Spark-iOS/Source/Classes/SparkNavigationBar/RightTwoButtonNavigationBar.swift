@@ -69,10 +69,12 @@ final class RightTwoButtonNavigationBar: SparkNavigationBar {
     
     /// set image of first, second button.
     /// - default image is UIImage()
+    /// - Parameter firstButtonImage: 우측 상단 버튼 중 왼쪽. Rendering mode is alwaysTemplate
+    /// - Parameter secondButtonImage: 우측 상단 버튼 중 오른쪽. Rendering mode is alwaysOriginal.
     @discardableResult
     func buttonsImage(_ firstButtonImage: String, _ secondButtonImage: String) -> Self {
         if let firstButtonImage = UIImage(named: firstButtonImage)?.withRenderingMode(.alwaysTemplate),
-           let secondButtonImage = UIImage(named: secondButtonImage)?.withRenderingMode(.alwaysTemplate) {
+           let secondButtonImage = UIImage(named: secondButtonImage)?.withRenderingMode(.alwaysOriginal) {
             self.firstRightButton.setImage(firstButtonImage, for: .normal)
             self.secondRightButton.setImage(secondButtonImage, for: .normal)
         } else {

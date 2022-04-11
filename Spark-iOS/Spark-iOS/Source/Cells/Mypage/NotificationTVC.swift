@@ -53,6 +53,7 @@ extension NotificationTVC {
         subtitleLabel.textColor = .sparkDarkGray
         
         notificationSwitch.isOn = false
+        notificationSwitch.onTintColor = .sparkPinkred
         
         lineView.backgroundColor = .sparkGray
     }
@@ -84,7 +85,7 @@ extension NotificationTVC {
             notificationSwitch.tag = 3
         case .remind:
             titleLabel.text = "미완료 습관방"
-            subtitleLabel.text = "21:00에 미완료된 방이 있을 경우 알 수 있어요."
+            subtitleLabel.text = "22:00에 미완료된 방이 있을 경우 알 수 있어요."
             lineView.isHidden = true
             notificationSwitch.tag = 4
         }
