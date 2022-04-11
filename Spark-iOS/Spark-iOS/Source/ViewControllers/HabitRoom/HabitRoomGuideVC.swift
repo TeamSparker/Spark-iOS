@@ -18,8 +18,7 @@ class HabitRoomGuideVC: UIViewController {
     
     private let popupView = UIView()
     private let titleLabel = UILabel()
-    // TODO: - 배경 일러 넣기
-//    private let flakeBackgroundView = UIImageView()
+    private let flakeBackgroundView = UIImageView()
     private let guideLabel = UILabel()
     private let pageControl = UIPageControl()
     private let closeButton = UIButton()
@@ -56,6 +55,9 @@ class HabitRoomGuideVC: UIViewController {
         guideLabel.textColor = .sparkDeepGray
         guideLabel.numberOfLines = 2
         
+        flakeBackgroundView.image = UIImage(named: "sparkflakePattern2")
+        flakeBackgroundView.contentMode = .scaleAspectFit
+        
         closeButton.setTitle("닫기", for: .normal)
         closeButton.setTitleColor(.sparkPinkred, for: .normal)
         closeButton.titleLabel?.font = .krBoldFont(ofSize: 16)
@@ -80,6 +82,7 @@ class HabitRoomGuideVC: UIViewController {
     private func setCollectionView() {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled  = true
+        collectionView.backgroundColor = .clear
         
         collectionViewFlowLayout.collectionView?.isPagingEnabled = true
         collectionViewFlowLayout.scrollDirection = .horizontal
@@ -110,7 +113,16 @@ extension HabitRoomGuideVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.habitRoomGuideCVC, for: indexPath) as? HabitRoomGuideCVC else { return UICollectionViewCell() }
-        // TODO: - 일러 넣기
+        switch indexPath.row {
+        case 0:
+            cell.initCell(image: "illustTip1")
+        case 1:
+            cell.initCell(image: "illustTip2")
+        case 2:
+            cell.initCell(image: "illustTip3")
+        default:
+            cell.initCell(image: "illustTip1")
+        }
         return cell
     }
 }
@@ -183,13 +195,19 @@ extension HabitRoomGuideVC {
             make.height.equalTo((UIScreen.main.bounds.width - 40) * 396 / 335)
         }
         
-        popupView.addSubviews([titleLabel, collectionView, guideLabel,
-                               pageControl, closeButton])
+        popupView.addSubviews([titleLabel, flakeBackgroundView, collectionView,
+                               guideLabel, pageControl, closeButton])
         
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(28)
             make.height.equalTo(21)
+        }
+        
+        flakeBackgroundView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(35)
+            make.top.equalTo(titleLabel.snp.bottom).offset(18)
         }
         
         collectionView.snp.makeConstraints { make in
