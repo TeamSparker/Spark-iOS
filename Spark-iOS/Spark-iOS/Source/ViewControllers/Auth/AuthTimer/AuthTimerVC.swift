@@ -55,6 +55,9 @@ class AuthTimerVC: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
+        
+        // 화면 꺼짐 방지 해제
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     // MARK: - Methods
@@ -145,6 +148,9 @@ class AuthTimerVC: UIViewController {
         if isTimerOn == false {
             // 최초 시작
             isTimerOn = true
+            // 화면 꺼짐 방지
+            UIApplication.shared.isIdleTimerDisabled = true
+            
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
@@ -156,12 +162,18 @@ class AuthTimerVC: UIViewController {
         } else if isTimerOn && timer!.isValid {
             // 타이머 진행 중 일시정지
             isTimerOn = false
+            // 화면 꺼짐 방지 해제
+            UIApplication.shared.isIdleTimerDisabled = false
+            
             pauseButton.setImage(UIImage(named: "btnPlay"), for: .normal)
             setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkDarkPinkred, isEnable: true)
             timer?.invalidate()
         } else if isTimerOn && !(timer!.isValid) {
             // 일시정지상태에서 재개
             isTimerOn = true
+            // 화면 꺼짐 방지
+            UIApplication.shared.isIdleTimerDisabled = true
+            
             pauseButton.setImage(UIImage(named: "btnStop"), for: .normal)
             setButton(bottomButton, title: "다음 단계로", backgroundColor: .sparkGray, isEnable: false)
             [pauseButton, resetButton].forEach { $0.isHidden = false }
@@ -200,6 +212,9 @@ class AuthTimerVC: UIViewController {
     func resetTimer(_ sender: AnyObject) {
         currentTimeCount = 0
         isTimerOn = false
+        // 화면 꺼짐 방지 해제
+        UIApplication.shared.isIdleTimerDisabled = false
+        
         timer?.invalidate()
         timeLabel.text = "00:00:00"
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
