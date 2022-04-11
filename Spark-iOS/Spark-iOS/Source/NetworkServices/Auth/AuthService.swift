@@ -58,7 +58,7 @@ extension AuthService: TargetType {
             let fcmTokenData = fcmToken.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(fcmTokenData), name: "fcmToken"))
             if let profileImg = profileImg {
-                let profileImgData = MultipartFormData(provider: .data(profileImg.pngData() ?? Data()), name: "image", fileName: "image.png", mimeType: "image/png")
+                let profileImgData = MultipartFormData(provider: .data(profileImg.jpegData(compressionQuality: 1.0) ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
                 multiPartData.append(profileImgData)
             }
             
