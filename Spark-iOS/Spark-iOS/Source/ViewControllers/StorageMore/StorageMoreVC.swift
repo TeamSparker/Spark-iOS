@@ -106,7 +106,11 @@ extension StorageMoreVC {
                 }
                 .rightButtonPinkTitle("완료")
                 .rightButtonAction {
-                    self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: self.selectedRecordId ?? 0)
+                    if let selected = self.selectedRecordId {
+                        self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: selected )
+                    } else {
+                        self.dismiss(animated: true)
+                    }
                 }
         }
     }
