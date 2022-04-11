@@ -79,6 +79,7 @@ extension MainTBC {
         floatingButton.buttonDiameter = 60.0
         floatingButton.itemSizeRatio = 44.0 / 60.0
         floatingButton.isExclusiveTouch = true
+        floatingButton.isMultipleTouchEnabled = true
         
         // set floatingButton items.
         floatingButton.addItem(title: "코드로 참여", image: UIImage(named: "icCode")) { _ in
