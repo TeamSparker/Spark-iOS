@@ -306,7 +306,7 @@ extension AuthUploadVC: UIImagePickerControllerDelegate, UINavigationControllerD
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            uploadImageView.image = image.resize(newWidth: uploadImageView.frame.width*resizeRatio)
+            uploadImageView.image = image.resize()
             fadeImageView.isHidden = false
             buttonStackView.isHidden = false
             photoAuthButton.isHidden = true
