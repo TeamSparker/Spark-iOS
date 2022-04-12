@@ -20,7 +20,8 @@ class SendSparkVC: UIViewController {
     private var usernameLabelOriginalY: CGFloat = 0
     private var lineViewOriginalY: CGFloat = 0
     private var originYDif: CGFloat = 0
-    private var constraiinDif: CGFloat = 0
+    private var constraintDif: CGFloat = 0
+    private var initialTargetY: CGFloat = 0
     private var canChangeKeyboardFrame: Bool = false
     private var keyBoardDidHideChecker: Bool = false
     
@@ -54,6 +55,7 @@ class SendSparkVC: UIViewController {
         tf.backgroundColor = .clear
         tf.attributedPlaceholder = NSAttributedString(string: "15자 이내의 응원 메시지를 보내보세요!",
                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.sparkDarkGray.cgColor])
+        tf.keyboardType = .default
         tf.returnKeyType = .send
         tf.isHidden = true
         return tf
@@ -155,6 +157,7 @@ extension SendSparkVC {
     }
     
     private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidChange), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -162,6 +165,7 @@ extension SendSparkVC {
     }
     
     private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -197,6 +201,18 @@ extension SendSparkVC {
 // MARK: KeyBoard Layout Update Methods
 
 extension SendSparkVC {
+    @objc func keyBoardWillShow(_ notification: NSNotification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            let lineViewHeight: CGFloat = 2
+            let targetY: CGFloat = screenHeight - keyboardHeight - 20 - lineViewHeight
+            initialTargetY = initialTargetY == 0 ? targetY : initialTargetY
+            // 키보드가 처음 올라갈 때 UI 요소들의 위치를 설정해줌
+            updateTextFieldLayout(targetY: initialTargetY, firstShow: true)
+        }
+    }
+    
     @objc func keyBoardDidShow(_ notification: NSNotification) {
         // 키보드가 완전히 올라온 이후에 프로필 이미지와 닉네임 라벨의 위치 변화가 있을 수 있음을 설정하는 부분
         canChangeKeyboardFrame = true
@@ -219,8 +235,8 @@ extension SendSparkVC {
             
             // constraiinDif가 0이면 아직 레이아웃을 변화시킬 때가 아니기 때문에 검사해줍니다.
             // keyBoardDidHideChecker를 통해 키보드가 내려갔다 올라온 가장 첫 순간의 경우 레이아웃을 업데이트 하지 않도록 합니다.
-            if (constraiinDif != 0)&&keyBoardDidHideChecker {
-                updateTextFieldLayout()
+            if (constraintDif != 0)&&keyBoardDidHideChecker {
+                updateTextFieldLayout(targetY: initialTargetY)
             }
             
             // keyBoardDidShow 메서드가 canChangeKeyboardFrame을 true로 만든 이후, 즉 키보드가 모두 올라온 이후에만 아래 코드블럭이 기능합니다. 이는 이모지 키보드로 전환했을 때에만 userNameLabel과 ProfileImageView의 레이아웃을 업데이트하기 위함입니다.
@@ -235,7 +251,7 @@ extension SendSparkVC {
         componentsDownAnimation()
         
         // 이모지 키보드로 전환하고 바로 키보드를 내린 경우에 constraiinDif의 값을 반전시켜 줘야한다.
-        if constraiinDif > 0 { constraiinDif = -constraiinDif }
+        if constraintDif > 0 { constraintDif = -constraintDif }
         canChangeKeyboardFrame = false
     }
     
@@ -250,12 +266,13 @@ extension SendSparkVC {
     /// keyBoardFrameDidChange 메서드의 특성을 이용하여 레이아웃 업데이트에 사용할 constrainDif(constrain의 변화)값을 구합니다.
     private func getConstrainDif(targetY: CGFloat) {
         originYDif = CGFloat(abs(Int(originYDif)-Int(targetY))) != originYDif ? targetY - originYDif : originYDif
-        constraiinDif = (originYDif < 0) && (constraiinDif == 0) ? originYDif : constraiinDif
+        constraintDif = (originYDif < 0) && (constraintDif == 0) ? originYDif : constraintDif
     }
     
     /// 이모지 키보드 전환에 따라 텍스트필드 및 버튼, 라인뷰의 레이아웃을 업데이트합니다.
-    private func updateTextFieldLayout() {
-        let constraintsDif: CGFloat = constraiinDif < 0 ? constraiinDif : 0
+    private func updateTextFieldLayout(targetY: CGFloat, firstShow: Bool = false) {
+        var constraintChanger: CGFloat = constraintDif < 0 ? constraintDif : 0
+        if firstShow { constraintChanger = 0 }
         
         sendButton.snp.updateConstraints { make in
             make.trailing.equalTo(lineView.snp.trailing).inset(2.5)
@@ -265,7 +282,7 @@ extension SendSparkVC {
         lineView.snp.updateConstraints { make in
             make.height.equalTo(2)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 305-constraintsDif : 250-constraintsDif)
+            make.bottom.equalToSuperview().inset(screenHeight-targetY-constraintChanger)
         }
         
         textField.snp.updateConstraints { make in
@@ -275,7 +292,7 @@ extension SendSparkVC {
     }
     
     private func updateUsernameProfileLayout() {
-        let constraintsDif: CGFloat = constraiinDif < 0 ? constraiinDif : 0
+        let constraintChanger: CGFloat = constraintDif < 0 ? constraintDif : 0
         
         profileImageView.snp.updateConstraints { make in
             make.bottom.equalTo(userNameLabel.snp.top).offset(-12)
@@ -284,12 +301,12 @@ extension SendSparkVC {
         }
         
         userNameLabel.snp.updateConstraints { make in
-            make.bottom.equalTo(buttonCV.snp.top).offset(UIScreen.main.hasNotch ? -200+constraintsDif : -140+constraintsDif)
+            make.bottom.equalTo(buttonCV.snp.top).offset(UIScreen.main.hasNotch ? -200+constraintChanger : -140+constraintChanger)
             make.centerX.equalToSuperview()
         }
         
         // 키보드가 전환될 떄마다 purposedY 값을 반전시켜줍니다
-        constraiinDif = -constraiinDif
+        constraintDif = -constraintDif
     }
     
     /// 키보드가 내려갈 때 UI 컴포넌트들이 내려가는 애니메이션을 줍니다.
