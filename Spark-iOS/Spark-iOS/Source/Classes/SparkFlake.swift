@@ -195,7 +195,7 @@ public class SparkFlake {
         case .day65:
             return  """
                     일단 시작했으니 반은 성공!
-                    자, 더 많은 친구들에게 자랑해볼까요?
+                    자, 더 많은 친구들에게 자랑해 볼까요?
                     """
         case .day62:
             return  """
