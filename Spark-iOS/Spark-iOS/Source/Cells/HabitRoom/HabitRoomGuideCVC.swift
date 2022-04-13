@@ -34,8 +34,11 @@ class HabitRoomGuideCVC: UICollectionViewCell {
     
     // MARK: - Methods
     
+    func initCell(image: String) {
+        guideImageView.image = UIImage(named: image)
+    }
+    
     private func setUI() {        
-        guideImageView.backgroundColor = .darkGray
         guideImageView.contentMode = .scaleAspectFill
     }
     
