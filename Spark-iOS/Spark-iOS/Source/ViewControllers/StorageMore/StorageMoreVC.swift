@@ -106,7 +106,11 @@ extension StorageMoreVC {
                 }
                 .rightButtonPinkTitle("완료")
                 .rightButtonAction {
-                    self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: self.selectedRecordId ?? 0)
+                    if let selected = self.selectedRecordId {
+                        self.myRoomChangeThumbnailWithAPI(roomId: self.roomID ?? 0, recordId: selected )
+                    } else {
+                        self.dismiss(animated: true)
+                    }
                 }
         }
     }
@@ -262,7 +266,12 @@ extension StorageMoreVC {
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    if (self.isChangingImageView) {
+                        let filteredData = myRoomCerti.records?.filter({ $0.status == "DONE" })
+                        self.myRoomCertificationList?.append(contentsOf: filteredData ?? [])
+                    } else {
+                        self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    }
                     self.storageMoreCV.reloadData()
                 }
                 completion()
