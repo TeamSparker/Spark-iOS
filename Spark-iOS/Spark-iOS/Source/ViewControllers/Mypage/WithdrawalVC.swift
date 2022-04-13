@@ -139,9 +139,11 @@ extension WithdrawalVC {
         if checkboxButton.isSelected {
             checkboxButton.isSelected = false
             withdrawalButton.setDisable()
+            withdrawalLabel.textColor = .sparkDarkGray
         } else {
             checkboxButton.isSelected = true
             withdrawalButton.setAble()
+            withdrawalLabel.textColor = .sparkDeepGray
         }
     }
 }
