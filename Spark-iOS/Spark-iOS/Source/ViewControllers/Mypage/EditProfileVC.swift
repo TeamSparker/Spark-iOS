@@ -41,6 +41,12 @@ class EditProfileVC: UIViewController {
         setAddTarget()
         setDelegate()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeObservers()
+    }
 }
     
     // MARK: - Extension
@@ -100,6 +106,10 @@ extension EditProfileVC {
     private func setAddTarget() {
         completeButton.addTarget(self, action: #selector(touchCompleteButton), for: .touchUpInside)
         tap.addTarget(self, action: #selector(showAlert))
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
     }
     
     private func openLibrary() {
