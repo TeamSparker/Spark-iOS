@@ -12,6 +12,16 @@
 				<string>kakaod51e83bca123750446afc70ab65225b9</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Deeplink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.TeamSparker.Spark</string>
+			</array>
+		</dict>
 	</array>
 	<key>FirebaseMessagingAutoInitEnabled</key>
 	<string>No</string>
