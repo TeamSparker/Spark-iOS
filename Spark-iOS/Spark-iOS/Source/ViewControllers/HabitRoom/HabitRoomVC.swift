@@ -551,7 +551,7 @@ extension HabitRoomVC: UICollectionViewDelegateFlowLayout {
 extension HabitRoomVC {
     /// 습관방 데이터 불러오기
     private func fetchHabitRoomDetailWithAPI(roomID: Int, completion: @escaping () -> Void) {
-        RoomAPI.shared.fetchHabitRoomDetail(roomID: roomID) { response in
+        RoomAPI(viewController: self).fetchHabitRoomDetail(roomID: roomID) { response in
             switch response {
             case .success(let data):
                 self.loadingView.stop()
@@ -577,7 +577,7 @@ extension HabitRoomVC {
     
     /// 습관방 나가기
     private func leaveHabitRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+        RoomAPI(viewController: self).leaveRoom(roomId: roomID) { response in
             switch response {
             case .success(let message):
                 self.navigationController?.popViewController(animated: true)

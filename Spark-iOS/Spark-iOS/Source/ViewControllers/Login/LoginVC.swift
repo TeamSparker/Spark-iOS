@@ -185,7 +185,7 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
 
 extension LoginVC {
     private func loginWithAPI(userID: String) {
-        AuthAPI.shared.login(socialID: userID, fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
+        AuthAPI(viewController: self).login(socialID: userID, fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
             switch response {
             case .success(let data):
                 if let data = data as? Login {

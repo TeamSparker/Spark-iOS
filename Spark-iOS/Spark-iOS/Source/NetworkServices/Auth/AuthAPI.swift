@@ -6,15 +6,15 @@
 //
 
 import Foundation
+
 import Moya
 
 public class AuthAPI {
-    
-    static let shared = AuthAPI()
-    var userProvider = MoyaProvider<AuthService>(plugins: [MoyaLoggerPlugin()])
-    
-    // 객체화할 수 없게 만들어서 싱글톤 패턴으로만 사용하도록 접근 제어자 설정.
-    private init() { }
+    var userProvider: MoyaProvider<AuthService>
+
+    public init(viewController: UIViewController) {
+        userProvider = MoyaProvider<AuthService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func signup(socialID: String, profileImg: UIImage?, nickname: String, fcmToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.signup(socialID: socialID, profileImg: profileImg, nickname: nickname, fcmToken: fcmToken)) { result in

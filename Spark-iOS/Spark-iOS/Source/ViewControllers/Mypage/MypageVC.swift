@@ -301,7 +301,7 @@ extension MypageVC: UITableViewDataSource {
 
 extension MypageVC {
     private func profileFetchWithAPI() {
-        UserAPI.shared.profileFetch { response in
+        UserAPI(viewController: self).profileFetch { response in
             switch response {
             case .success(let data):
                 if let profile = data as? Profile {
@@ -325,7 +325,7 @@ extension MypageVC {
     }
     
     private func signoutWithAPI(completion: @escaping () -> Void) {
-        AuthAPI.shared.signout { response in
+        AuthAPI(viewController: self).signout { response in
             switch response {
             case .success(let message):
                 completion()

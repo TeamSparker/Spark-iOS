@@ -152,7 +152,7 @@ extension WithdrawalVC {
 
 extension WithdrawalVC {
     private func withdrawalWithAPI(completion: @escaping () -> Void) {
-        AuthAPI.shared.withdrawal { response in
+        AuthAPI(viewController: self).withdrawal { response in
             switch response {
             case .success(let message):
                 completion()

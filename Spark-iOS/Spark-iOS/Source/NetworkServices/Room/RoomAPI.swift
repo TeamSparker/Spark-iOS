@@ -10,11 +10,11 @@ import Foundation
 import Moya
 
 public class RoomAPI {
+    var roomProvider: MoyaProvider<RoomService>
     
-    static let shared = RoomAPI()
-    var roomProvider = MoyaProvider<RoomService>(plugins: [MoyaLoggerPlugin()])
-    
-    public init() { }
+    public init(viewController: UIViewController) {
+        roomProvider = MoyaProvider<RoomService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
 
     func waitingFetch(roomID: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
         roomProvider.request(.waitingFetch(roomID: roomID)) { result in

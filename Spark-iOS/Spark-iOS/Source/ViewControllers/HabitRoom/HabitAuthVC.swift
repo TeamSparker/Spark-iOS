@@ -185,7 +185,7 @@ extension HabitAuthVC {
 
 extension HabitAuthVC {
     func setConsiderRestWithAPI(statusType: String) {
-        RoomAPI.shared.setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
+        RoomAPI(viewController: self).setConsiderRest(roomID: roomID ?? 0, statusType: statusType) {  response in
             switch response {
             case .success(let message):
                 NotificationCenter.default.post(name: .updateHabitRoom, object: nil)

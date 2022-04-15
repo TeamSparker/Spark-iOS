@@ -292,7 +292,7 @@ extension FeedVC {
 
 extension FeedVC {
     private func getFeedListFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
-        FeedAPI.shared.feedFetch(lastID: lastID, size: feedCountSize) { response in
+        FeedAPI(viewController: self).feedFetch(lastID: lastID, size: feedCountSize) { response in
             
             switch response {
             case .success(let data):
@@ -325,7 +325,7 @@ extension FeedVC {
     }
     
     private func postFeedLikeWithAPI(recordID: Int) {
-        FeedAPI.shared.feedLike(recordID: recordID) { response in
+        FeedAPI(viewController: self).feedLike(recordID: recordID) { response in
             switch response {
             case .success(let message):
                 print("feedLikeWithAPI - success: \(message)")

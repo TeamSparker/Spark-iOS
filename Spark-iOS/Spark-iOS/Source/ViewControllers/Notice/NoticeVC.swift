@@ -337,7 +337,7 @@ extension NoticeVC: UICollectionViewDelegateFlowLayout {
 
 extension NoticeVC {
     private func getActiveNoticeFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
-        NoticeAPI.shared.activeFetch(lastID: lastID, size: activeCountSize) { response in
+        NoticeAPI(viewController: self).activeFetch(lastID: lastID, size: activeCountSize) { response in
             switch response {
             case .success(let data):
                 if let active = data as? ActiveNotice {
@@ -365,7 +365,7 @@ extension NoticeVC {
     }
     
     private func getServiceNoticeFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
-        NoticeAPI.shared.serviceFetch(lastID: lastID, size: serviceCountSize) { response in
+        NoticeAPI(viewController: self).serviceFetch(lastID: lastID, size: serviceCountSize) { response in
             switch response {
             case .success(let data):
                 if let service = data as? ServiceNotice {
@@ -393,7 +393,7 @@ extension NoticeVC {
     }
     
     func activeReadWithAPI() {
-        NoticeAPI.shared.activeRead { response in
+        NoticeAPI(viewController: self).activeRead { response in
             switch response {
             case .success(let message):
                 print("activeReadWithAPI - success: \(message)")
@@ -410,7 +410,7 @@ extension NoticeVC {
     }
     
     func serviceReadWithAPI() {
-        NoticeAPI.shared.serviceRead { response in
+        NoticeAPI(viewController: self).serviceRead { response in
             switch response {
             case .success(let message):
                 print("serviceReadWithAPI - success: \(message)")

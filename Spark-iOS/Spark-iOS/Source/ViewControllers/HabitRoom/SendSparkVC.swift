@@ -443,7 +443,7 @@ extension SendSparkVC: UICollectionViewDelegate {
 
 extension SendSparkVC {
     func sendSparkWithAPI(content: String) {
-        RoomAPI.shared.sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: content) {  response in
+        RoomAPI(viewController: self).sendSpark(roomID: roomID ?? 0, recordID: recordID ?? 0, content: content) {  response in
             switch response {
             case .success:
                 let presentVC = self.presentingViewController

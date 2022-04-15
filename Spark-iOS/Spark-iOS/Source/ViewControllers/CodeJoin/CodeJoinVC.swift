@@ -183,7 +183,7 @@ extension CodeJoinVC: UITextFieldDelegate {
 
 extension CodeJoinVC {
     func codeJoinCheckFetchWithAPI() {
-        RoomAPI.shared.codeJoinCheckFetch(code: textField.text ?? "") {  response in
+        RoomAPI(viewController: self).codeJoinCheckFetch(code: textField.text ?? "") {  response in
             switch response {
             case .success(let data):
                 if let codeWaiting = data as? CodeWaiting {

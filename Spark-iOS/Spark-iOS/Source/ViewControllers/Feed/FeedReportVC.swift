@@ -165,7 +165,7 @@ extension FeedReportVC: UITextViewDelegate {
 
 extension FeedReportVC {
     func postFeedReportWithAPI(content: String) {
-        FeedAPI.shared.postFeedReport(recordID: recordID ?? 0, content: content) { response in
+        FeedAPI(viewController: self).postFeedReport(recordID: recordID ?? 0, content: content) { response in
             switch response {
             case .success:
                 self.navigationController?.popViewController(animated: true)

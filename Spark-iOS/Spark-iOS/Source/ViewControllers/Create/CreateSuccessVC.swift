@@ -103,7 +103,7 @@ class CreateSuccessVC: UIViewController {
 extension CreateSuccessVC {
     /// 방 코드 복사를 위해 대기방 API 통신
     private func getRoomCodeWithAPI(roomId: Int) {
-        RoomAPI.shared.waitingFetch(roomID: roomId) { response in
+        RoomAPI(viewController: self).waitingFetch(roomID: roomId) { response in
             switch response {
             case .success(let data):
                 if let createSuccess = data as? Waiting {

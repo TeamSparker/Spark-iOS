@@ -10,10 +10,11 @@ import Foundation
 import Moya
 
 public class UserAPI {
-    static let shared = UserAPI()
-    var userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggerPlugin()])
+    var userProvider: MoyaProvider<UserService>
     
-    private init() { }
+    public init(viewController: UIViewController) {
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func profileFetch(completion: @escaping(NetworkResult<Any>) -> Void) {
         userProvider.request(.profileFetch) { result in

@@ -280,7 +280,7 @@ extension ProfileSettingVC {
         } else {
             socialID = "Kakao@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
         }
-        AuthAPI.shared.signup(socialID: socialID,
+        AuthAPI(viewController: self).signup(socialID: socialID,
                               profileImg: profileImg,
                               nickname: nickname,
                               fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in

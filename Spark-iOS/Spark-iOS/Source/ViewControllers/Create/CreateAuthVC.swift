@@ -133,7 +133,7 @@ class CreateAuthVC: UIViewController {
 extension CreateAuthVC {
     func postCreateRoomWithAPI(roomName: String, fromStart: Bool, completion: @escaping () -> Void) {
         let createRoomRequest = CreateRoom(roomName: roomName, fromStart: fromStart)
-        RoomAPI.shared.createRoom(createRoom: createRoomRequest) { response in
+        RoomAPI(viewController: self).createRoom(createRoom: createRoomRequest) { response in
             switch response {
             case .success(let data):
                 if let createdRoom = data as? RoomId {
