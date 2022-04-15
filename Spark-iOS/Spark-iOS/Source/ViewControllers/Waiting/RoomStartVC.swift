@@ -100,7 +100,7 @@ class RoomStartVC: UIViewController {
 
 extension RoomStartVC {
     private func postStartRoomWithAPI(roomID: Int, completion: @escaping () -> Void) {
-        RoomAPI.shared.startRoomWithAPI(roomID: roomID) { response in
+        RoomAPI(viewController: self).startRoomWithAPI(roomID: roomID) { response in
             switch response {
             case .success(let message):
                 self.startSuccess = true

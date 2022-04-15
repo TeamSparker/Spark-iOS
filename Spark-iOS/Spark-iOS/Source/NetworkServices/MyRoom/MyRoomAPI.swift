@@ -9,11 +9,12 @@ import Foundation
 import Moya
 
 public class MyRoomAPI {
-     
-    static let shared = MyRoomAPI()
-    var userProvider = MoyaProvider<MyRoomService>(plugins: [MoyaLoggerPlugin()])
     
-    public init() { }
+    var userProvider: MoyaProvider<MyRoomService>
+    
+    public init(viewController: UIViewController) {
+        self.userProvider = MoyaProvider<MyRoomService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func myRoomFetch(roomType: String, lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.myRoomFetch(roomType: roomType, lastID: lastID, size: size)) { (result) in

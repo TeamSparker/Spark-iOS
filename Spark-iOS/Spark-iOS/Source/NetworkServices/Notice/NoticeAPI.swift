@@ -10,11 +10,11 @@ import Foundation
 import Moya
 
 public class NoticeAPI {
+    var noticeProvider: MoyaProvider<NoticeService>
     
-    static let shared = NoticeAPI()
-    var noticeProvider = MoyaProvider<NoticeService>(plugins: [MoyaLoggerPlugin()])
-    
-    private init() { }
+    public init(viewController: UIViewController) {
+        noticeProvider = MoyaProvider<NoticeService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func activeFetch(lastID: Int, size: Int, completion: @escaping(NetworkResult<Any>) -> Void) {
         noticeProvider.request(.activeFetch(lastID: lastID, size: size)) { result in

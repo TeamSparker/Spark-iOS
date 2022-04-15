@@ -171,7 +171,7 @@ extension SplashVC {
         let socialID = isAppleLogin ? "Apple@\(userID)" : "Kakao@\(userID)"
         let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? ""
         
-        AuthAPI.shared.login(socialID: socialID, fcmToken: fcmToken) { response in
+        AuthAPI(viewController: self).login(socialID: socialID, fcmToken: fcmToken) { response in
             switch response {
             case .success(let data):
                 if let data = data as? Login {

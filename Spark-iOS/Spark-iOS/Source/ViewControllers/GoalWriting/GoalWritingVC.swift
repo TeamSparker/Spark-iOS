@@ -174,7 +174,7 @@ class GoalWritingVC: UIViewController {
 
 extension GoalWritingVC {
     func setPurposeWithAPI(moment: String, purpose: String) {
-        RoomAPI.shared.setPurpose(roomID: roomId ?? 0, moment: moment, purpose: purpose) { response in
+        RoomAPI(viewController: self).setPurpose(roomID: roomId ?? 0, moment: moment, purpose: purpose) { response in
             switch response {
             case .success(let message):
                 print("setPurposeWithAPI - success: \(message)")
