@@ -511,7 +511,7 @@ extension WaitingVC {
 
 extension WaitingVC {
     private func getWaitingRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.waitingFetch(roomID: roomID) { response in
+        RoomAPI(viewController: self).waitingFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
                 self.stopLoadingAnimation()
@@ -533,7 +533,7 @@ extension WaitingVC {
     }
     
     private func getWaitingMembersWithAPI(roomID: Int) {
-        RoomAPI.shared.waitingMemberFetch(roomID: roomID) { response in
+        RoomAPI(viewController: self).waitingMemberFetch(roomID: roomID) { response in
             switch response {
             case .success(let data):
                 if let waitingMembers = data as? WaitingMember {
@@ -554,7 +554,7 @@ extension WaitingVC {
     
     /// 대기방 삭제 API (방장)
     private func deleteWaitingRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.deleteWaitingRoom(roomId: roomID) { response in
+        RoomAPI(viewController: self).deleteWaitingRoom(roomId: roomID) { response in
             switch response {
             case .success(let message):
                 switch self.fromWhereStatus {
@@ -584,7 +584,7 @@ extension WaitingVC {
     
     /// 대기방 나가기 API (참여자)
     private func leaveWaitingRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.leaveRoom(roomId: roomID) { response in
+        RoomAPI(viewController: self).leaveRoom(roomId: roomID) { response in
             switch response {
             case .success(let message):
                 switch self.fromWhereStatus {

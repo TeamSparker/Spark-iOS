@@ -167,7 +167,7 @@ extension CompleteFailDialogueVC {
 
 extension CompleteFailDialogueVC {
     private func readRoomWithAPI(completion: @escaping () -> Void) {
-        RoomAPI.shared.readRoom(roomID: roomID ?? -1) { response in
+        RoomAPI(viewController: self).readRoom(roomID: roomID ?? -1) { response in
             switch response {
             case .success(let message):
                 

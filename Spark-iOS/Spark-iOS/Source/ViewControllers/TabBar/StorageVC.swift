@@ -587,7 +587,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension StorageVC {
     
     func getOnGoingRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
-        MyRoomAPI.shared.myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
+        MyRoomAPI(viewController: self).myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
@@ -616,7 +616,7 @@ extension StorageVC {
     }
     
     func getFailRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
-        MyRoomAPI.shared.myRoomFetch(roomType: "FAIL", lastID: lastID, size: size) {  response in
+        MyRoomAPI(viewController: self).myRoomFetch(roomType: "FAIL", lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
@@ -637,7 +637,7 @@ extension StorageVC {
     }
     
     func getCompleteRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
-        MyRoomAPI.shared.myRoomFetch(roomType: "COMPLETE", lastID: lastID, size: size) {  response in
+        MyRoomAPI(viewController: self).myRoomFetch(roomType: "COMPLETE", lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {

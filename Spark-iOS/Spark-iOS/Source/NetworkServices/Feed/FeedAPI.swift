@@ -11,10 +11,10 @@ import Moya
 
 public class FeedAPI {
     
-    static let shared = FeedAPI()
-    var feedProvider = MoyaProvider<FeedService>(plugins: [MoyaLoggerPlugin()])
-    
-    public init() { }
+    var feedProvider: MoyaProvider<FeedService>
+    public init(viewController: UIViewController) {
+        feedProvider = MoyaProvider<FeedService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func feedFetch(lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         feedProvider.request(.feedFetch(lastID: lastID, size: size)) { result in

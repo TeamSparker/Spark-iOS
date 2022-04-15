@@ -451,7 +451,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 
 extension HomeVC {
     private func habitRoomFetchWithAPI(lastID: Int, completion: @escaping () -> Void) {
-        HomeAPI.shared.habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
+        HomeAPI(viewController: self).habitRoomFetch(lastID: lastID, size: habitRoomCountSize) { response in
             switch response {
             case .success(let data):
                 self.loadingView.stop()
@@ -481,7 +481,7 @@ extension HomeVC {
     }
     
     private func newNoticeFetchWithAPI(completion: @escaping () -> Void) {
-        NoticeAPI.shared.newNoticeFetch { response in
+        NoticeAPI(viewController: self).newNoticeFetch { response in
             switch response {
             case .success(let data):
                 if let newNotice = data as? NewNotice {

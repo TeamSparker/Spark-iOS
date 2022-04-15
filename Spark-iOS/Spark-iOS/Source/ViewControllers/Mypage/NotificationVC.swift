@@ -169,7 +169,7 @@ extension NotificationVC: UITableViewDataSource {
 
 extension NotificationVC {
     private func settingFetchWithAPI() {
-        NoticeAPI.shared.settingFetch { response in
+        NoticeAPI(viewController: self).settingFetch { response in
             switch response {
             case .success(let data):
                 if let noticeSetting = data as? NoticeSetting {
@@ -190,7 +190,7 @@ extension NotificationVC {
     }
     
     private func settingPatchWithAPI(category: String) {
-        NoticeAPI.shared.settingPatch(category: category) { response in
+        NoticeAPI(viewController: self).settingPatch(category: category) { response in
             switch response {
             case .success(let data):
                 if let noticeSetting = data as? NoticeSetting {

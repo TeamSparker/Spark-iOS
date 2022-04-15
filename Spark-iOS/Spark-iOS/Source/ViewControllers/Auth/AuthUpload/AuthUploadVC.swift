@@ -403,7 +403,7 @@ extension AuthUploadVC {
 
 extension AuthUploadVC {
     func authUploadWithAPI() {
-        RoomAPI.shared.authUpload(roomID: roomId ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
+        RoomAPI(viewController: self).authUpload(roomID: roomId ?? 0, timer: timerLabel.text ?? "", image: uploadImageView.image ?? UIImage()) {  response in
             switch response {
             case .success(let data):
                 if let authUpload = data as? AuthUpload {

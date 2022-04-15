@@ -55,8 +55,8 @@ class StorageMoreVC: UIViewController {
         setLayout()
         
         DispatchQueue.main.async { [self] in
-            self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
-                storageMoreCV.reloadData()
+            self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
+                self.storageMoreCV.reloadData()
             }
         }
     }
@@ -262,11 +262,11 @@ extension StorageMoreVC: UICollectionViewDataSource {
 
 extension StorageMoreVC {
     func getMyRoomCertiWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
-        MyRoomAPI.shared.myRoomCertiFetch(roomID: roomID ?? 0, lastID: lastID, size: size) {  response in
+        MyRoomAPI(viewController: self).myRoomCertiFetch(roomID: roomID ?? 0, lastID: lastID, size: size) {  response in
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    if (self.isChangingImageView) {
+                    if self.isChangingImageView {
                         let filteredData = myRoomCerti.records?.filter({ $0.status == "DONE" })
                         self.myRoomCertificationList?.append(contentsOf: filteredData ?? [])
                     } else {
@@ -288,7 +288,7 @@ extension StorageMoreVC {
     }
     
     func myRoomChangeThumbnailWithAPI(roomId: Int, recordId: Int) {
-        MyRoomAPI.shared.myRoomChangeThumbnail(roomId: roomId, recordId: recordId) {  response in
+        MyRoomAPI(viewController: self).myRoomChangeThumbnail(roomId: roomId, recordId: recordId) {  response in
             switch response {
             case .success:
                 self.dismiss(animated: true) {

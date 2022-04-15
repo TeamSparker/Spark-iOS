@@ -97,7 +97,7 @@ extension JoinCheckVC {
 
 extension JoinCheckVC {
     func enterRoomWithAPI(roomID: Int) {
-        RoomAPI.shared.enterRoom(roomID: roomID) {  response in
+        RoomAPI(viewController: self).enterRoom(roomID: roomID) {  response in
             switch response {
             case .success(let message):
                 let nextSB = UIStoryboard.init(name: Const.Storyboard.Name.waiting, bundle: nil)

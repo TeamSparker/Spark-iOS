@@ -9,11 +9,11 @@ import Foundation
 import Moya
 
 public class HomeAPI {
-     
-    static let shared = HomeAPI()
-    var userProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggerPlugin()])
+    var userProvider: MoyaProvider<HomeService>
     
-    public init() { }
+    public init(viewController: UIViewController) {
+        userProvider = MoyaProvider<HomeService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
+    }
     
     func habitRoomFetch(lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.habitRoomFetch(lastID: lastID, size: size)) { (result) in

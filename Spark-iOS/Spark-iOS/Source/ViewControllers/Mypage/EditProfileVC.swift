@@ -234,7 +234,7 @@ extension EditProfileVC: UIImagePickerControllerDelegate, UINavigationController
 extension EditProfileVC {
     private func profileEditWithAPI(profileImage: UIImage?, completion: @escaping (() -> Void)) {
         let nickname = textField.text
-        UserAPI.shared.profileEdit(profileImage: profileImage, nickname: nickname ?? "") { response in
+        UserAPI(viewController: self).profileEdit(profileImage: profileImage, nickname: nickname ?? "") { response in
             switch response {
             case .success(let message):
                 completion()
