@@ -56,7 +56,7 @@ class StorageMoreVC: UIViewController {
         
         DispatchQueue.main.async { [self] in
             self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
-                self.storageMoreCV.reloadData()
+                storageMoreCV.reloadData()
             }
         }
     }
