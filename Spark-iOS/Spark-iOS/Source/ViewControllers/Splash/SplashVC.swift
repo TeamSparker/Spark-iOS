@@ -49,6 +49,11 @@ class SplashVC: UIViewController {
 
         setUI()
         setLayout()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            if self.checkUpdateAvailable() {
+                self.presentUpdateAlertVC()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +123,40 @@ extension SplashVC {
         nextVC.modalPresentationStyle = .fullScreen
         
         self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    private func checkUpdateAvailable() -> Bool {
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+              let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String,
+              let url = URL(string: Const.URL.itunesURL + bundleID),
+              let data = try? Data(contentsOf: url),
+              let jsonData = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
+              let results = jsonData["results"] as? [[String: Any]],
+              results.count > 0,
+              let appStoreVersion = results[0]["version"] as? String else { return false }
+        
+        let currentVersionArray = currentVersion.split(separator: ".").map { $0 }
+        let appStoreVersionArray = appStoreVersion.split(separator: ".").map { $0 }
+        
+        if currentVersionArray[0] < appStoreVersionArray[0] {
+            return true
+        } else {
+            return currentVersionArray[1] < appStoreVersionArray[1] ? true : false
+        }
+    }
+    
+    // TODO: - 강제 업데이트 다이얼로그 만들어지면 구현하기
+    private func presentUpdateAlertVC() {
+        let alertVC = UIAlertController(title: "업데이트", message: "업데이트가 필요합니다.", preferredStyle: .alert)
+        let alertAtion = UIAlertAction(title: "업데이트", style: .default) { _ in
+            guard let url = URL(string: Const.URL.appStoreURLScheme) else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+        alertVC.addAction(alertAtion)
+        
+        present(alertVC, animated: true)
     }
 }
 
