@@ -101,6 +101,7 @@ extension EditProfileVC {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateKeyboardFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func setAddTarget() {
@@ -110,6 +111,7 @@ extension EditProfileVC {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func openLibrary() {
@@ -181,6 +183,25 @@ extension EditProfileVC {
         }
         profileImageDelegate?.sendProfile(image: profileImageView.image ?? UIImage(named: "profileEmpty")!,
                                           nickname: textField.text ?? "")
+    }
+    
+    @objc
+    func updateKeyboardFrame(_ notification: Notification) {
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardY = keyboardFrame.cgRectValue.minY
+        let lineViewY = lineView.frame.maxY
+        // 키보드와 lineView 와의 최소 간격 20.
+        if (lineViewY + 20) >= keyboardY {
+            // 키보드가 lineView 를 가린다고 판단.
+            let profileImageViewTopConstraints = 128 - (lineViewY + 20 - keyboardY)
+            profileImageView.snp.updateConstraints {
+                $0.top.equalTo(customNavigationBar.snp.bottom).offset(profileImageViewTopConstraints)
+            }
+        } else {
+            profileImageView.snp.updateConstraints {
+                $0.top.equalTo(customNavigationBar.snp.bottom).offset(128)
+            }
+        }
     }
 }
 
