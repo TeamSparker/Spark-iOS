@@ -51,6 +51,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setNavigationBar()
         setTabBar()
         setFloatingButton()
         
@@ -82,14 +83,6 @@ extension HomeVC {
     private func setUI() {
         bgView.contentMode = .scaleAspectFill
         
-        customNavigationBar
-            .buttonsImage("icProfile", "icNotice")
-            .actions({
-                self.presentToMypageVC()
-            }, {
-                self.pushToNoticeVC()
-            })
-        
         // set collectionView
         mainCollectionView.backgroundColor = .clear
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -102,6 +95,16 @@ extension HomeVC {
         mainCollectionView.isScrollEnabled = false
         
         updateHiddenCollectionView()
+    }
+    
+    private func setNavigationBar() {
+        customNavigationBar
+            .buttonsImage("icProfile", "icNotice")
+            .actions({
+                self.presentToMypageVC()
+            }, {
+                self.pushToNoticeVC()
+            })
     }
     
     private func setTabBar() {
@@ -284,6 +287,7 @@ extension HomeVC {
         self.habitRoomList?.removeAll()
         
         DispatchQueue.main.async {
+            self.setNavigationBar()
             self.setLoading()
         }
         
