@@ -191,16 +191,19 @@ extension EditProfileVC {
         let keyboardY = keyboardFrame.cgRectValue.minY
         let lineViewY = lineView.frame.maxY
         // 키보드와 lineView 와의 최소 간격 20.
-        if (lineViewY + 20) >= keyboardY {
-            // 키보드가 lineView 를 가린다고 판단.
-            let profileImageViewTopConstraints = 128 - (lineViewY + 20 - keyboardY)
-            profileImageView.snp.updateConstraints {
-                $0.top.equalTo(customNavigationBar.snp.bottom).offset(profileImageViewTopConstraints)
+        UIView.animate(withDuration: 0.3) {
+            if (lineViewY + 20) >= keyboardY {
+                // 키보드가 lineView 를 가린다고 판단.
+                let profileImageViewTopConstraints = 128 - (lineViewY + 20 - keyboardY)
+                self.profileImageView.snp.updateConstraints {
+                    $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewTopConstraints)
+                }
+            } else {
+                self.profileImageView.snp.updateConstraints {
+                    $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(128)
+                }
             }
-        } else {
-            profileImageView.snp.updateConstraints {
-                $0.top.equalTo(customNavigationBar.snp.bottom).offset(128)
-            }
+            self.profileImageView.superview?.layoutIfNeeded()
         }
     }
 }
