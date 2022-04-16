@@ -37,6 +37,12 @@ class ProfileSettingVC: UIViewController {
         setDelegate()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeObservers()
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
@@ -76,6 +82,12 @@ class ProfileSettingVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateKeyboardFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func setAddTarget() {
@@ -165,6 +177,25 @@ class ProfileSettingVC: UIViewController {
     func touchCloseButton() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func updateKeyboardFrame(_ notification: Notification) {
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardY = keyboardFrame.cgRectValue.minY
+        let lineViewY = lineView.frame.maxY
+        // 키보드와 lineView 와의 최소 간격 20.
+        if (lineViewY + 20) >= keyboardY {
+            // 키보드가 lineView 를 가린다고 판단.
+            let profileImageViewTopConstraints = 128 - (lineViewY + 20 - keyboardY)
+            profileImageView.snp.updateConstraints {
+                $0.top.equalTo(customNavigationBar.snp.bottom).offset(profileImageViewTopConstraints)
+            }
+        } else {
+            profileImageView.snp.updateConstraints {
+                $0.top.equalTo(customNavigationBar.snp.bottom).offset(128)
+            }
+        }
     }
 }
 
