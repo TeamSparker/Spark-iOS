@@ -184,17 +184,20 @@ class ProfileSettingVC: UIViewController {
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardY = keyboardFrame.cgRectValue.minY
         let lineViewY = lineView.frame.maxY
-        // 키보드와 lineView 와의 최소 간격 20.
-        if (lineViewY + 20) >= keyboardY {
-            // 키보드가 lineView 를 가린다고 판단.
-            let profileImageViewTopConstraints = 128 - (lineViewY + 20 - keyboardY)
-            profileImageView.snp.updateConstraints {
-                $0.top.equalTo(customNavigationBar.snp.bottom).offset(profileImageViewTopConstraints)
+        UIView.animate(withDuration: 0.3) {
+            // 키보드와 lineView 와의 최소 간격 20.
+            if (lineViewY + 20) >= keyboardY {
+                // 키보드가 lineView 를 가린다고 판단.
+                let profileImageViewTopConstraints = 66 - (lineViewY + 20 - keyboardY)
+                self.profileImageView.snp.updateConstraints {
+                    $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewTopConstraints)
+                }
+            } else {
+                self.profileImageView.snp.updateConstraints {
+                    $0.top.equalTo(self.titleLabel.snp.bottom).offset(66)
+                }
             }
-        } else {
-            profileImageView.snp.updateConstraints {
-                $0.top.equalTo(customNavigationBar.snp.bottom).offset(128)
-            }
+            self.profileImageView.superview?.layoutIfNeeded()
         }
     }
 }
@@ -264,7 +267,7 @@ extension ProfileSettingVC {
         
         profileImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(188)
+            make.top.equalTo(titleLabel.snp.bottom).offset(66)
             make.width.height.equalTo(115)
         }
         
