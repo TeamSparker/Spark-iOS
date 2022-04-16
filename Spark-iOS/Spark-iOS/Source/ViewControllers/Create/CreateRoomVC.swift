@@ -29,8 +29,19 @@ class CreateRoomVC: UIViewController {
         
         setUI()
         setLayout()
-        setNotification()
         setAddTarget()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        removeObservers()
     }
     
     // MARK: - Methods
@@ -74,10 +85,13 @@ class CreateRoomVC: UIViewController {
         nextButton.addTarget(self, action: #selector(touchNextButton), for: .touchUpInside)
     }
     
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
     // MARK: - Screen Change
 
     private func dismissCreateRoomVC() {
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
@@ -94,7 +108,6 @@ class CreateRoomVC: UIViewController {
     func touchNextButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
