@@ -190,17 +190,17 @@ extension EditProfileVC {
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardY = keyboardFrame.cgRectValue.minY
         let lineViewMinimumYMargin = lineView.frame.maxY + 20 // 키보드와 lineView 와의 최소 간격 20.
-        let profileImageViewY = profileImageView.frame.minY - customNavigationBar.frame.maxY // 커스텀 네비바로부터 profileImage 의 간격.
-        let profileImageViewDefaultY = 128.0 // 커스텀 네비바와 profileImageView 의 기본 간격.
+        let profileImageViewTopConstraint = profileImageView.frame.minY - customNavigationBar.frame.maxY // 커스텀 네비바로부터 profileImage 의 간격.
+        let profileImageViewDefaultTopConstraint = 128.0 // 커스텀 네비바와 profileImageView 의 기본 간격.
 
         UIView.animate(withDuration: 0.3) {
             if keyboardY != UIScreen.main.bounds.height {
                 // 키보드가 올라온다고 판단.
-                let updateProfileImageViewY = profileImageViewY - (lineViewMinimumYMargin - keyboardY)
-                if updateProfileImageViewY > profileImageViewDefaultY {
+                let updateProfileImageViewY = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardY)
+                if updateProfileImageViewY > profileImageViewDefaultTopConstraint {
                     // 업데이트 될 profileImageView 가 기본 위치보다 아래일때
                     self.profileImageView.snp.updateConstraints {
-                        $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewDefaultY)
+                        $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewDefaultTopConstraint)
                     }
                 } else {
                     self.profileImageView.snp.updateConstraints {
@@ -210,7 +210,7 @@ extension EditProfileVC {
             } else {
                 // 키보드가 내려감.
                 self.profileImageView.snp.updateConstraints {
-                    $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewDefaultY)
+                    $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewDefaultTopConstraint)
                 }
             }
             self.profileImageView.superview?.layoutIfNeeded()
