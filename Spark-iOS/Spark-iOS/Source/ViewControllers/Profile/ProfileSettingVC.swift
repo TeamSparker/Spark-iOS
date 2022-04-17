@@ -201,7 +201,7 @@ class ProfileSettingVC: UIViewController {
                 if  updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
                     // 업데이트 될 profileImageView 가 기본 위치보다 아래일때.
                     if lineViewMinimumYMargin == keyboardBeginY {
-                        // 이모지에서 기본 키보드로 변경될때.)
+                        // 이모지 키보드에서 기본 키보드로 변경될때.
                         let keyboardDifferenceY = keyboardEndY - keyboardBeginY
                         let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint + keyboardDifferenceY - ( textFieldDefaultTopConstraint - textFieldTopConstraint)
                         self.profileImageView.snp.updateConstraints {
@@ -211,6 +211,7 @@ class ProfileSettingVC: UIViewController {
                             $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
                         }
                     } else {
+                        // 키보드와 lineView 가 최소 간격보다 멀어서 굳이 레이아웃을 대응해주지 않아도 될 때
                         self.profileImageView.snp.updateConstraints {
                             $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
                         }
@@ -220,7 +221,7 @@ class ProfileSettingVC: UIViewController {
                     }
                 } else {
                     if minimumMargin > updatedProfileImageViewTopConstraint {
-                        // 업데이트 될 profileIma geView 가 titleLabel 보다 높게 위치할때(가릴때)
+                        // 업데이트 될 profileIma geView 가 titleLabel 보다 높게 위치할때(가릴 때)
                         let updatedTextFieldTopConstraint = minimumMargin - updatedProfileImageViewTopConstraint
                         self.profileImageView.snp.updateConstraints {
                             $0.top.equalTo(self.titleLabel.snp.bottom).offset(minimumMargin)
@@ -229,6 +230,7 @@ class ProfileSettingVC: UIViewController {
                             $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldTopConstraint - updatedTextFieldTopConstraint)
                         }
                     } else {
+                        // 가리지 않을 때.
                         self.profileImageView.snp.updateConstraints {
                             $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
                         }
