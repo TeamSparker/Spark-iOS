@@ -189,7 +189,7 @@ extension EditProfileVC {
     func updateKeyboardFrame(_ notification: Notification) {
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardY = keyboardFrame.cgRectValue.minY
-        let lineViewMinimumYMargin = lineView.frame.maxY + 20 // 키보드와 lineView 와의 최소 간격 20.
+        let lineViewMinimumYMargin = lineView.frame.maxY + 20 // 키보드와 lineView 와의 최소 간격 20 포함.
         let profileImageViewTopConstraint = profileImageView.frame.minY - customNavigationBar.frame.maxY // 커스텀 네비바로부터 profileImage 의 간격.
         let profileImageViewDefaultTopConstraint = 128.0 // 커스텀 네비바와 profileImageView 의 기본 간격.
 
