@@ -197,8 +197,8 @@ extension EditProfileVC {
             if keyboardY != UIScreen.main.bounds.height {
                 // 키보드가 올라온다고 판단.
                 let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardY)
-                if updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
-                    // 업데이트 될 profileImageView 가 기본 위치보다 아래일때
+                if updatedProfileImageViewTopConstraint >= profileImageViewDefaultTopConstraint {
+                    // 업데이트 될 profileImageView 가 기본 위치보다 아래일때 혹은 동일.
                     self.profileImageView.snp.updateConstraints {
                         $0.top.equalTo(self.customNavigationBar.snp.bottom).offset(profileImageViewDefaultTopConstraint)
                     }

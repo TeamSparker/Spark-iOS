@@ -193,6 +193,7 @@ class ProfileSettingVC: UIViewController {
                 let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardY)
                 if updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
                     // 업데이트 될 profileImageView 가 기본 위치보다 아래일때
+                if  updatedProfileImageViewTopConstraint >= profileImageViewDefaultTopConstraint {
                     self.profileImageView.snp.updateConstraints {
                         $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
                     }
