@@ -181,31 +181,69 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func updateKeyboardFrame(_ notification: Notification) {
-        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardY = keyboardFrame.cgRectValue.minY
-        let lineViewMinimumYMargin = lineView.frame.maxY + 20 // 키보드와 lineView 와의 최소 간격 20.
+        guard let keyboardEndFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let keyboardBeginFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
+        
+        let keyboardEndY = keyboardEndFrame.cgRectValue.minY
+        let keyboardBeginY = keyboardBeginFrame.cgRectValue.minY
+        let minimumMargin = 20.0 // 최소한의 간격
+        let lineViewMinimumYMargin = lineView.frame.maxY + minimumMargin // 키보드와 lineView 와의 최소 간격 20 포함.
         let profileImageViewTopConstraint = profileImageView.frame.minY - titleLabel.frame.maxY // titleLabel 로부터 profileImage 의 간격.
+        let textFieldTopConstraint = textField.frame.minY - profileImageView.frame.maxY // prfileImageView 와 textField 의 간격.
+        
         let profileImageViewDefaultTopConstraint = 66.0 // titleLabel 과 profileImageView 의 기본 간격.
+        let textFieldDefaultTopConstraint = 55.0 // prfileImageView 와 textField 의 기본 간격.
         
         UIView.animate(withDuration: 0.3) {
-            if keyboardY != UIScreen.main.bounds.height {
+            if keyboardEndY != UIScreen.main.bounds.height {
                 // 키보드가 올라온다고 판단.
-                let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardY)
-                if updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
-                    // 업데이트 될 profileImageView 가 기본 위치보다 아래일때
-                if  updatedProfileImageViewTopConstraint >= profileImageViewDefaultTopConstraint {
-                    self.profileImageView.snp.updateConstraints {
-                        $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
+                let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardEndY)
+                if  updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
+                    // 업데이트 될 profileImageView 가 기본 위치보다 아래일때.
+                    if lineViewMinimumYMargin == keyboardBeginY {
+                        // 이모지에서 기본 키보드로 변경될때.)
+                        let keyboardDifferenceY = keyboardEndY - keyboardBeginY
+                        let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint + keyboardDifferenceY - ( textFieldDefaultTopConstraint - textFieldTopConstraint)
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
+                    } else {
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
                     }
                 } else {
-                    self.profileImageView.snp.updateConstraints {
-                        $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
+                    if minimumMargin > updatedProfileImageViewTopConstraint {
+                        // 업데이트 될 profileIma geView 가 titleLabel 보다 높게 위치할때(가릴때)
+                        let updatedTextFieldTopConstraint = minimumMargin - updatedProfileImageViewTopConstraint
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(minimumMargin)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldTopConstraint - updatedTextFieldTopConstraint)
+                        }
+                    } else {
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
                     }
                 }
             } else {
                 // 키보드가 내려감.
                 self.profileImageView.snp.updateConstraints {
                     $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
+                }
+                self.textField.snp.updateConstraints {
+                    $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
                 }
             }
             self.profileImageView.superview?.layoutIfNeeded()
