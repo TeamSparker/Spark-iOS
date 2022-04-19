@@ -37,6 +37,12 @@ class ProfileSettingVC: UIViewController {
         setDelegate()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeObservers()
+    }
+    
     // MARK: - Methods
     
     private func setUI() {
@@ -76,6 +82,12 @@ class ProfileSettingVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateKeyboardFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func setAddTarget() {
@@ -166,6 +178,79 @@ class ProfileSettingVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc
+    func updateKeyboardFrame(_ notification: Notification) {
+        guard let keyboardEndFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let keyboardBeginFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
+        
+        let keyboardEndY = keyboardEndFrame.cgRectValue.minY
+        let keyboardBeginY = keyboardBeginFrame.cgRectValue.minY
+        let minimumMargin = 20.0 // 최소한의 간격
+        let lineViewMinimumYMargin = lineView.frame.maxY + minimumMargin // 키보드와 lineView 와의 최소 간격 20 포함.
+        let profileImageViewTopConstraint = profileImageView.frame.minY - titleLabel.frame.maxY // titleLabel 로부터 profileImage 의 간격.
+        let textFieldTopConstraint = textField.frame.minY - profileImageView.frame.maxY // prfileImageView 와 textField 의 간격.
+        
+        let profileImageViewDefaultTopConstraint = 66.0 // titleLabel 과 profileImageView 의 기본 간격.
+        let textFieldDefaultTopConstraint = 55.0 // prfileImageView 와 textField 의 기본 간격.
+        
+        UIView.animate(withDuration: 0.3) {
+            if keyboardEndY != UIScreen.main.bounds.height {
+                // 키보드가 올라온다고 판단.
+                let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint - (lineViewMinimumYMargin - keyboardEndY)
+                if  updatedProfileImageViewTopConstraint > profileImageViewDefaultTopConstraint {
+                    // 업데이트 될 profileImageView 가 기본 위치보다 아래일때.
+                    if lineViewMinimumYMargin == keyboardBeginY {
+                        // 이모지 키보드에서 기본 키보드로 변경될때.
+                        let keyboardDifferenceY = keyboardEndY - keyboardBeginY
+                        let updatedProfileImageViewTopConstraint = profileImageViewTopConstraint + keyboardDifferenceY - ( textFieldDefaultTopConstraint - textFieldTopConstraint)
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
+                    } else {
+                        // 키보드와 lineView 가 최소 간격보다 멀어서 굳이 레이아웃을 대응해주지 않아도 될 때
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
+                    }
+                } else {
+                    if minimumMargin > updatedProfileImageViewTopConstraint {
+                        // 업데이트 될 profileIma geView 가 titleLabel 보다 높게 위치할때(가릴 때)
+                        let updatedTextFieldTopConstraint = minimumMargin - updatedProfileImageViewTopConstraint
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(minimumMargin)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldTopConstraint - updatedTextFieldTopConstraint)
+                        }
+                    } else {
+                        // 가리지 않을 때.
+                        self.profileImageView.snp.updateConstraints {
+                            $0.top.equalTo(self.titleLabel.snp.bottom).offset(updatedProfileImageViewTopConstraint)
+                        }
+                        self.textField.snp.updateConstraints {
+                            $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                        }
+                    }
+                }
+            } else {
+                // 키보드가 내려감.
+                self.profileImageView.snp.updateConstraints {
+                    $0.top.equalTo(self.titleLabel.snp.bottom).offset(profileImageViewDefaultTopConstraint)
+                }
+                self.textField.snp.updateConstraints {
+                    $0.top.equalTo(self.profileImageView.snp.bottom).offset(textFieldDefaultTopConstraint)
+                }
+            }
+            self.profileImageView.superview?.layoutIfNeeded()
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -233,7 +318,7 @@ extension ProfileSettingVC {
         
         profileImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(188)
+            make.top.equalTo(titleLabel.snp.bottom).offset(66)
             make.width.height.equalTo(115)
         }
         
