@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
 import SnapKit
 
 class NoticeVC: UIViewController {
@@ -36,6 +38,7 @@ class NoticeVC: UIViewController {
     private var serviceList: [Service] = []
     private var newService: Bool = false
     private var newActive: Bool = false
+    private var disposeBag = DisposeBag()
     
     // MARK: - View Life Cycles
 
@@ -45,8 +48,8 @@ class NoticeVC: UIViewController {
         setUI()
         setLayout()
         setCollectionView()
-        setAddTarget()
         setDelegate()
+        bindButton()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
             self.makeDrawAboveButton(button: self.activeButton)
@@ -144,9 +147,25 @@ class NoticeVC: UIViewController {
         collectionView.dataSource = self
     }
     
-    private func setAddTarget() {
-        activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
-        serviceButton.addTarget(self, action: #selector(touchServiceButton), for: .touchUpInside)
+//    private func setAddTarget() {
+//        activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
+//        serviceButton.addTarget(self, action: #selector(touchServiceButton), for: .touchUpInside)
+//    }
+    
+    private func bindButton() {
+        activeButton.rx.tap
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.touchActiveButton()
+            })
+            .disposed(by: disposeBag)
+
+        serviceButton.rx.tap
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.touchServiceButton()
+            })
+            .disposed(by: disposeBag)
     }
 
     private func popToHomeVC() {
@@ -188,6 +207,7 @@ class NoticeVC: UIViewController {
         
         isActivity = true
         activeLastID = -1
+        activeList.removeAll()
         
         let group = DispatchGroup()
         
@@ -218,6 +238,7 @@ class NoticeVC: UIViewController {
         
         isActivity = false
         serviceLastID = -1
+        serviceList.removeAll()
         
         let group = DispatchGroup()
         
