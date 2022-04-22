@@ -64,7 +64,6 @@ extension DialogueVC {
         resetOrExitLabel.textColor = .sparkDarkPinkred
         
         switch dialogueType {
-            
         case .exitSignUp:
             guideLabel.text = """
             회원가입이 완료되지 않았습니다.
