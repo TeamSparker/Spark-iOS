@@ -51,7 +51,7 @@ class SplashVC: UIViewController {
         setLayout()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             if self.checkUpdateAvailable() {
-                self.presentUpdateAlertVC()
+                self.presentToForceUpdateDialougeVC()
             }
         }
     }
@@ -145,7 +145,7 @@ extension SplashVC {
         }
     }
     
-    private func presentUpdateAlertVC() {
+    private func presentToForceUpdateDialougeVC() {
         guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.singleResponseDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.singleResponseDialogue) as? SingleResponseDialogueVC else { return }
         dialogueVC.dialogueType = .update
         dialogueVC.clousure = {
