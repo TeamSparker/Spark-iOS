@@ -499,7 +499,7 @@ extension WaitingVC {
     }
     
     private func postLeaveNotification() {
-        NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": true])
+        NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": true, "isHost": isHost ?? false])
     }
     
     private func postStartHabitNotification() {

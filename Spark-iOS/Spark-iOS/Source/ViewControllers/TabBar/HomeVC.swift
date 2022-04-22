@@ -265,6 +265,8 @@ extension HomeVC {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             guard var roomName: String = notification.userInfo?["roomName"] as? String else { return }
             guard let waiting: Bool = notification.userInfo?["waitingRoom"] as? Bool else { return }
+            guard let isHost: Bool = notification.userInfo?["isHost"] as? Bool else { return }
+            
             let message: String
         
             if roomName.count > 8 {
@@ -273,7 +275,7 @@ extension HomeVC {
             }
             
             if waiting {
-                message = "'\(roomName)' 대기방을 나갔어요."
+                message = isHost ? "'\(roomName)' 대기방을 삭제했어요." : "'\(roomName)' 대기방을 나갔어요."
             } else {
                 message = "'\(roomName)' 방을 나갔어요."
             }
