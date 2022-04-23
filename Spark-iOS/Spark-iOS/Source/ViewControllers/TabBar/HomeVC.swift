@@ -321,7 +321,7 @@ extension HomeVC {
 
 extension HomeVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height, scrollView.contentOffset.y > 0 {
             if isInfiniteScroll {
                 isInfiniteScroll = false
                 
