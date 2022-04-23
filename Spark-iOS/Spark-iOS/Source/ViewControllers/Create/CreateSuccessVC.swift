@@ -39,6 +39,8 @@ class CreateSuccessVC: UIViewController {
     // MARK: - Custom Methods
     
     private func setUI() {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         titleLabel.text = "\(roomName ?? "")\n방을 만들었어요!"
         titleLabel.font = .h2Title
         titleLabel.textAlignment = .center
