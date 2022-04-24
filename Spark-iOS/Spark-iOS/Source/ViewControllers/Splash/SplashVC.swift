@@ -51,7 +51,7 @@ class SplashVC: UIViewController {
         setLayout()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             if self.checkUpdateAvailable() {
-                self.presentUpdateAlertVC()
+                self.presentToForceUpdateDialougeVC()
             }
         }
     }
@@ -145,18 +145,19 @@ extension SplashVC {
         }
     }
     
-    // TODO: - 강제 업데이트 다이얼로그 만들어지면 구현하기
-    private func presentUpdateAlertVC() {
-        let alertVC = UIAlertController(title: "업데이트", message: "업데이트가 필요합니다.", preferredStyle: .alert)
-        let alertAtion = UIAlertAction(title: "업데이트", style: .default) { _ in
+    private func presentToForceUpdateDialougeVC() {
+        guard let dialogueVC = UIStoryboard(name: Const.Storyboard.Name.singleResponseDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.singleResponseDialogue) as? SingleResponseDialogueVC else { return }
+        dialogueVC.dialogueType = .update
+        dialogueVC.clousure = {
             guard let url = URL(string: Const.URL.appStoreURLScheme) else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
             }
         }
-        alertVC.addAction(alertAtion)
+        dialogueVC.modalPresentationStyle = .overFullScreen
+        dialogueVC.modalTransitionStyle = .crossDissolve
         
-        present(alertVC, animated: true)
+        present(dialogueVC, animated: true)
     }
 }
 

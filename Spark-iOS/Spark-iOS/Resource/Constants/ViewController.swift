@@ -46,6 +46,7 @@ extension Const {
             static let withdrawal = "WithdrawalVC"
             static let lifeDiminishDialogue = "LifeDiminishDialogueVC"
             static let notification = "NotificationVC"
+            static let singleResponseDialogue = "SingleResponseDialogueVC"
         }
     }
 }

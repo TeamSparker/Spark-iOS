@@ -158,6 +158,8 @@
 		F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CF927D25F2B0073FFCA /* UserService.swift */; };
 		F8250CFC27D483E70073FFCA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFB27D483E70073FFCA /* Profile.swift */; };
 		F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */; };
+		F828181E2813169200D3E26C /* SingleResponseDialogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */; };
+		F8281822281316BA00D3E26C /* SingleResponseDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */; };
 		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
@@ -396,6 +398,8 @@
 		F8250CF927D25F2B0073FFCA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F8250CFB27D483E70073FFCA /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageDelegate.swift; sourceTree = "<group>"; };
+		F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SingleResponseDialogue.storyboard; sourceTree = "<group>"; };
+		F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleResponseDialogueVC.swift; sourceTree = "<group>"; };
 		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
@@ -593,13 +597,6 @@
 				2BBED13227956D170052CA5C /* FeedService.swift */,
 			);
 			path = Feed;
-			sourceTree = "<group>";
-		};
-		2BBFEFBD279ABBD900C085E4 /* HabitRoom */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HabitRoom;
 			sourceTree = "<group>";
 		};
 		2BC1726E278F54B300BA3029 /* Waiting */ = {
@@ -821,6 +818,7 @@
 				EB874AEA279706FC000DD20B /* DialogueVC.swift */,
 				F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */,
 				EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */,
+				F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -831,6 +829,7 @@
 				EB874AED2797071C000DD20B /* Dialogue.storyboard */,
 				F8C3659627DBB834000AA9BD /* CompleteFailDialogue.storyboard */,
 				EBE01B1327E334D200085AB7 /* LifeDiminishDialogue.storyboard */,
+				F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -1074,7 +1073,6 @@
 			isa = PBXGroup;
 			children = (
 				EBA2D6D0279AB4BB0022DFD6 /* CompleteAuth */,
-				2BBFEFBD279ABBD900C085E4 /* HabitRoom */,
 				2B98520C2790ADDC00CE40A7 /* CreateAuth */,
 			);
 			path = Views;
@@ -1485,6 +1483,7 @@
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
 				2BE65F5127C3E34B005D370D /* RoomStart.storyboard in Resources */,
 				EB9C509A27931E5F00588155 /* AuthUpload.storyboard in Resources */,
+				F828181E2813169200D3E26C /* SingleResponseDialogue.storyboard in Resources */,
 				EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */,
 				F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */,
 				F8096F102784107E00B71D38 /* LaunchScreen.storyboard in Resources */,
@@ -1633,6 +1632,7 @@
 				F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */,
 				EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */,
 				2BF3AB49279479B8001A9042 /* RoomAPI.swift in Sources */,
+				F8281822281316BA00D3E26C /* SingleResponseDialogueVC.swift in Sources */,
 				F8096F3227841FE100B71D38 /* ViewController.swift in Sources */,
 				F8096F042784107D00B71D38 /* AppDelegate.swift in Sources */,
 				2B985205279031D000CE40A7 /* CreateRoomVC.swift in Sources */,
