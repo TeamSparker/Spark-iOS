@@ -53,7 +53,6 @@ class ProfileSettingVC: UIViewController {
         titleLabel.numberOfLines = 2
         titleLabel.partColorChange(targetString: "프로필", textColor: .sparkPinkred)
         
-        profileImageView.backgroundColor = .blue
         profileImageView.image = UIImage(named: "profileEmpty")
         profileImageView.layer.cornerRadius = 58
         profileImageView.layer.masksToBounds = true
