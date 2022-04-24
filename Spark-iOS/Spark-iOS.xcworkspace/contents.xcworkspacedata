@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SingleResponseDialogue.storyboard">
-   </FileRef>
-   <FileRef
       location = "group:Spark-iOS.xcodeproj">
    </FileRef>
    <FileRef
