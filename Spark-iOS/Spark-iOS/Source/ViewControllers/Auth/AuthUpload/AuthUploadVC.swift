@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 import Lottie
 
@@ -256,6 +257,7 @@ extension AuthUploadVC {
         
         DispatchQueue.main.async {
             self.authUploadWithAPI()
+            Analytics.logEvent(Tracking.clickUpload, parameters: nil)
         }
     }
     

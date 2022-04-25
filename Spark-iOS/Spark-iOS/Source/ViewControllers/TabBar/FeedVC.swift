@@ -9,6 +9,7 @@ import UIKit
 
 import Lottie
 import SnapKit
+import FirebaseAnalytics
 
 class FeedVC: UIViewController {
     
@@ -568,5 +569,6 @@ extension FeedVC: FeedCellDelegate {
         }
          
         postFeedLikeWithAPI(recordID: recordID ?? 0)
+        Analytics.logEvent(Tracking.clickHeartFeed, parameters: nil)
     }
 }

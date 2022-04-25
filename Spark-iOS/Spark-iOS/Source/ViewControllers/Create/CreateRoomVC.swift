@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class CreateRoomVC: UIViewController {
@@ -108,6 +109,8 @@ class CreateRoomVC: UIViewController {
     func touchNextButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
+        Analytics.logEvent(Tracking.clickNextCreateRoom, parameters: nil)
+        
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

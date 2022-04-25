@@ -10,6 +10,7 @@ import UIKit
 import Lottie
 import SnapKit
 import JJFloatingActionButton
+import FirebaseAnalytics
 
 class HomeVC: UIViewController {
     
@@ -46,6 +47,12 @@ class HomeVC: UIViewController {
         registerXib()
         initRefreshControl()
         setNotification()
+        
+        Analytics.logEvent(Tracking.viewHome,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.ScreenName.home,
+                            AnalyticsParameterScreenClass: Tracking.ScreenClass.home
+                           ])
     }
     
     override func viewWillAppear(_ animated: Bool) {

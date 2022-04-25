@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class AuthTimerVC: UIViewController {
@@ -40,6 +41,11 @@ class AuthTimerVC: UIViewController {
         setLayout()
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
+        
+        Analytics.logEvent(Tracking.viewStopwatch, parameters: [
+            AnalyticsParameterScreenName: Tracking.ScreenName.stopwatch,
+            AnalyticsParameterScreenClass: Tracking.ScreenClass.stopwatch
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
