@@ -97,6 +97,7 @@ class GoalWritingVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateKeyboardFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func setAddTarget() {
@@ -123,6 +124,28 @@ class GoalWritingVC: UIViewController {
             self.subTitleLabel.alpha = 1.0
             
             let frame = CGAffineTransform(translationX: 0, y: 0)
+            [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
+             self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
+    private func upEmojiAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            
+            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -148 : -128)
+            [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
+             self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
+        }
+    }
+    
+    private func downEmojiAnimation() {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            
+            let frame = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -118 : -98)
             [self.whenLabel, self.whenExLabel, self.whenLineView, self.whenTextField, self.whenCountLabel,
              self.goalLabel, self.goalExLabel, self.goalLineView, self.goalTextField, self.goalCountLabel].forEach { $0.transform = frame }
         }
@@ -157,7 +180,7 @@ class GoalWritingVC: UIViewController {
         }
     }
     
-    // MARK: - 화면전환
+    // MARK: - @objc
     @objc
     func touchCompleteButton() {
         setPurposeWithAPI(moment: whenTextField.text ?? "", purpose: goalTextField.text ?? "")
@@ -167,6 +190,21 @@ class GoalWritingVC: UIViewController {
     func touchCloseButton() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func updateKeyboardFrame(_ notification: Notification) {
+        guard let keyboardEndFrame: NSValue = notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardEndY = keyboardEndFrame.cgRectValue.minY
+        
+        if keyboardEndY != UIScreen.main.bounds.height {
+            if keyboardEndFrame.cgRectValue.height > 291.0 {
+                upEmojiAnimation()
+            } else {
+                downEmojiAnimation()
+            }
+        } else {
+        }
     }
 }
 
