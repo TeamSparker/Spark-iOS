@@ -258,7 +258,7 @@ extension AuthUploadVC {
         DispatchQueue.main.async {
             self.authUploadWithAPI()
             Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemListName: Tracking.Select.clickUpload
+                AnalyticsParameterItemID: Tracking.Select.clickUpload
             ])
         }
     }

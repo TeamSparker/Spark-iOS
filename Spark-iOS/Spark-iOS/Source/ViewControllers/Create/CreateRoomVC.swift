@@ -111,7 +111,7 @@ class CreateRoomVC: UIViewController {
         nextVC.roomName = textField.text ?? ""
         
         Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemListName: Tracking.Select.clickNextCreateRoom
+            AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom
         ])
         
         navigationController?.pushViewController(nextVC, animated: true)

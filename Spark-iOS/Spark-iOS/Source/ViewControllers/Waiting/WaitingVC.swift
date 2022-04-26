@@ -490,7 +490,7 @@ extension WaitingVC {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
         Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemListName: Tracking.Select.clickStartHabit,
+            AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
             AnalyticsParameterStartDate: currentDateString
         ])
         

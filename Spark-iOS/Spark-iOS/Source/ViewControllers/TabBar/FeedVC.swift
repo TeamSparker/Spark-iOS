@@ -570,7 +570,7 @@ extension FeedVC: FeedCellDelegate {
          
         postFeedLikeWithAPI(recordID: recordID ?? 0)
         Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemListName: Tracking.Select.clickHeartFeed
+            AnalyticsParameterItemID: Tracking.Select.clickHeartFeed
         ])
     }
 }
