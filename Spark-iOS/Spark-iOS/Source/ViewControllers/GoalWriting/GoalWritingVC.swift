@@ -208,7 +208,7 @@ class GoalWritingVC: UIViewController {
         let keyboardEndY = keyboardEndFrame.cgRectValue.minY
         let height = UIScreen.main.bounds.size.height
         
-        // XS, 11 pro, 13 mini, se3에만 적용
+        // XS, 11 pro, 13 mini, 12 mini, se3에만 적용
         if (height == 812 || height == 667) && keyboardEndY != height {
             if keyboardEndFrame.cgRectValue.height > originKeyboardHeight && originKeyboardHeight != 0 {
                 upEmojiAnimation()
