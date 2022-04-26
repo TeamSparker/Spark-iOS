@@ -28,6 +28,7 @@ class GoalWritingVC: UIViewController {
     private let goalCountLabel = UILabel()
     private let completeButton = BottomButton().setUI(.pink).setTitle("작성 완료").setDisable()
     private let maxLength: Int = 15
+    private var originKeyboardHeight: CGFloat = 0
     
     var titleText: String?
     var roomId: Int?
@@ -97,6 +98,7 @@ class GoalWritingVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateKeyboardFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
@@ -193,17 +195,26 @@ class GoalWritingVC: UIViewController {
     }
     
     @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            originKeyboardHeight = keyboardRectangle.height
+        }
+    }
+    
+    @objc
     func updateKeyboardFrame(_ notification: Notification) {
-        guard let keyboardEndFrame: NSValue = notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let keyboardEndFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardEndY = keyboardEndFrame.cgRectValue.minY
+        let height = UIScreen.main.bounds.size.height
         
-        if keyboardEndY != UIScreen.main.bounds.height {
-            if keyboardEndFrame.cgRectValue.height > 291.0 {
+        // XS, 11 pro, 13 mini, se3에만 적용
+        if (height == 812 || height == 667) && keyboardEndY != height {
+            if keyboardEndFrame.cgRectValue.height > originKeyboardHeight && originKeyboardHeight != 0 {
                 upEmojiAnimation()
             } else {
                 downEmojiAnimation()
             }
-        } else {
         }
     }
 }
