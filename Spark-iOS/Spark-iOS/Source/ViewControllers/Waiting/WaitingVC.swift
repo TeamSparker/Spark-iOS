@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 import Lottie
 
@@ -63,6 +64,8 @@ class WaitingVC: UIViewController {
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
+    private var formatter = DateFormatter()
+    private var currentDateString: String = ""
     private var members: [Member] = []
     private var memberList: [Any] = []
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Member>!
@@ -88,6 +91,12 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
+        changeDate()
+        
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom,
+            AnalyticsParameterStartDate: currentDateString
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,6 +155,11 @@ extension WaitingVC {
         case .none:
             print("fromeWhereStatus 를 지정해주세요.")
         }
+    }
+    
+    private func changeDate() {
+        formatter.dateFormat = "yyyy-MM-dd"
+        currentDateString = formatter.string(from: Date())
     }
     
     private func setUI() {
@@ -474,6 +488,11 @@ extension WaitingVC {
     @objc
     private func touchToStartButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
+        
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
+            AnalyticsParameterStartDate: currentDateString
+        ])
         
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.modalTransitionStyle = .crossDissolve
