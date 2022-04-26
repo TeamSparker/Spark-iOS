@@ -54,10 +54,23 @@ extension MypageProfileTVC {
         lineView.backgroundColor = .sparkDarkGray
     }
     
-    // initializer.
-    func initCell(profileImage: UIImage?, nickname: String?) {
-        profileImageView.image = profileImage
+    // MARK: - Initializer
+    
+    /// 마이페이지에서 서버통신을 통해 프로필 사진 설정
+    func initCell(profileImageURL: String?, nickname: String?) {
+        guard let profileImageURL = profileImageURL else {
+            profileImageView.image = UIImage(named: "sparkLightGrayPlaceholder")
+            profileNameLabel.text = nickname ?? ""
+            return
+        }
+        profileImageView.updateImage(profileImageURL, type: .small)
         profileNameLabel.text = nickname ?? ""
+    }
+    
+    /// 프로필 수정해서 프로필 사진 설정
+    func initCell(profileImage: UIImage, nickname: String?) {
+        profileImageView.image = profileImage
+        profileNameLabel.text = nickname
     }
 }
 

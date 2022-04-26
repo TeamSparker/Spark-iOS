@@ -27,6 +27,7 @@ class EditProfileVC: UIViewController {
     
     weak var profileImageDelegate: ProfileImageDelegate?
     
+    var profileImageURL: String?
     var profileImage: UIImage?
     var nickname: String?
     
@@ -70,7 +71,15 @@ extension EditProfileVC {
                 }
             }
         
-        profileImageView.image = profileImage
+        if let profileImage = profileImage {
+            profileImageView.image = profileImage
+        } else {
+            guard let profileImageURL = profileImageURL else {
+                profileImageView.image = UIImage(named: "profileEmpty")
+                return
+            }
+            profileImageView.updateImage(profileImageURL, type: .small)
+        }
         profileImageView.layer.cornerRadius = 58
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true

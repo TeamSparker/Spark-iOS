@@ -39,6 +39,7 @@ class MypageVC: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
     private var profileImage: UIImage?
+    private var profileImageURL: String?
     private var profileNickname: String?
     
     // MARK: - View Life Cycle
@@ -137,8 +138,12 @@ extension MypageVC: UITableViewDelegate {
         switch section {
         case .profile:
             guard let editProfileVC = UIStoryboard(name: Const.Storyboard.Name.editProfile, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.editProfile) as? EditProfileVC else { return }
-
-            editProfileVC.profileImage = profileImage
+            
+            if let profileImage = profileImage {
+                editProfileVC.profileImage = profileImage
+            } else {
+                editProfileVC.profileImageURL = profileImageURL
+            }
             editProfileVC.nickname = profileNickname
             editProfileVC.profileImageDelegate = self
             editProfileVC.modalPresentationStyle = .overFullScreen
@@ -261,7 +266,11 @@ extension MypageVC: UITableViewDataSource {
         switch section {
         case .profile:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Const.Cell.Identifier.mypageProfileTVC, for: indexPath) as? MypageProfileTVC else { return UITableViewCell()}
-            cell.initCell(profileImage: profileImage, nickname: profileNickname)
+            if let profileImage = profileImage {
+                cell.initCell(profileImage: profileImage, nickname: profileNickname)
+            } else {
+                cell.initCell(profileImageURL: profileImageURL, nickname: profileNickname)
+            }
             cell.selectionStyle = .none
             
             return cell
@@ -306,10 +315,7 @@ extension MypageVC {
             case .success(let data):
                 if let profile = data as? Profile {
                     self.profileNickname = profile.nickname
-                    
-                    let imageView = UIImageView()
-                    imageView.updateImage(profile.profileImage, type: .small)
-                    self.profileImage = imageView.image
+                    self.profileImageURL = profile.profileImage
                     self.tableView.reloadData()
                 }
             case .requestErr(let message):
