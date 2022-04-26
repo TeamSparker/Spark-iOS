@@ -67,7 +67,6 @@ extension SendSparkCVC {
         if sender.type == .message {
             sendSparkCellDelegate?.showTextField()
         } else {
-            setFeedbackGenerator()
             sendSparkCellDelegate?.sendSpark(sender.content ?? "")
         }
     }

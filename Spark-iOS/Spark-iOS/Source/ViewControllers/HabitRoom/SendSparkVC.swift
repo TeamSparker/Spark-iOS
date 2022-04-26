@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class SendSparkVC: UIViewController {
 
     // MARK: Properties
@@ -15,6 +18,11 @@ class SendSparkVC: UIViewController {
     var recordID: Int?
     var userName: String?
     var profileImage: String?
+    
+    private let disposeBag = DisposeBag()
+    
+    private let sendSparkButtonTapped = PublishRelay<String>()
+    
     private var maxLength: Int = 15
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
     private var usernameLabelOriginalY: CGFloat = 0
@@ -112,6 +120,7 @@ class SendSparkVC: UIViewController {
         setDelegate()
         setAddTargets()
         setNotification()
+        bind()
     }
 }
 
@@ -170,6 +179,17 @@ extension SendSparkVC {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    private func bind() {
+        sendSparkButtonTapped
+            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { msg in
+                self.sendSparkWithAPI(content: msg)
+                self.setFeedbackGenerator()
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - @objc Function
@@ -381,7 +401,7 @@ extension SendSparkVC {
 
 extension SendSparkVC: SendSparkCellDelegate {
     func sendSpark(_ content: String) {
-        sendSparkWithAPI(content: content)
+        sendSparkButtonTapped.accept(content)
     }
     func showTextField() {
         showAnimation()
