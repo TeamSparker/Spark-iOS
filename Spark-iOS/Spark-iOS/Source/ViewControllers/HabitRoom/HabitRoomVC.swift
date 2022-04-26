@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import Lottie
 
 class HabitRoomVC: UIViewController {
@@ -54,6 +55,7 @@ class HabitRoomVC: UIViewController {
         registerXib()
         setNotification()
         initRefreshControl()
+        tracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -409,6 +411,13 @@ extension HabitRoomVC {
         }))
 
         present(alert, animated: true)
+    }
+    
+    private func tracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.View.viewHabitRoom
+                           ])
     }
     
     // MARK: - Screen Change

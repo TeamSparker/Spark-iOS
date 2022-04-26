@@ -12,6 +12,8 @@ struct Tracking {
         static let viewHome = "view_home"
         static let viewStopwatch = "view_stopwatch"
         static let viewWaitingRoom = "view_waiting_room"
+        static let viewSocialSignup = "view_social_signup"
+        static let viewHabitRoom = "view_habit_room"
     }
     
     struct Select {
