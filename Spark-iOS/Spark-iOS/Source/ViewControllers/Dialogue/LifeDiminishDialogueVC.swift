@@ -15,6 +15,8 @@ class LifeDiminishDialogueVC: UIViewController {
     
     var diminishedLifeCount: Int?
     
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
+    
     private let popUpView: UIView = {
         let view = UIView()
         view.backgroundColor = .sparkWhite
@@ -129,6 +131,10 @@ extension LifeDiminishDialogueVC {
     
     @objc
     private func touchButton() {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+        
         self.dismiss(animated: true)
     }
 }
