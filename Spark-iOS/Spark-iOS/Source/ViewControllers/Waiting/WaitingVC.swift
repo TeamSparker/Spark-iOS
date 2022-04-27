@@ -158,7 +158,7 @@ extension WaitingVC {
     
     private func changeDate() {
         formatter.dateFormat = "yyyy-MM-dd"
-        currentDateString = formatter.string(from: Date())
+        currentDateString = "waiting" + formatter.string(from: Date())
     }
     
     private func setUI() {

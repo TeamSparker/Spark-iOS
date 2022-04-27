@@ -77,7 +77,7 @@ class CreateAuthVC: UIViewController {
     
     private func changeDate() {
         formatter.dateFormat = "yyyy-MM-dd"
-        currentDateString = formatter.string(from: Date())
+        currentDateString = "habit" + formatter.string(from: Date())
     }
     
     private func setGesture() {
