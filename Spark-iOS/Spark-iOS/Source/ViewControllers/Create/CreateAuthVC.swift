@@ -80,6 +80,13 @@ class CreateAuthVC: UIViewController {
         currentDateString = "habit" + formatter.string(from: Date())
     }
     
+    private func createTracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom,
+            AnalyticsParameterStartDate: self.currentDateString
+        ])
+    }
+    
     private func setGesture() {
         let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(timerTapped(_:)))
@@ -97,10 +104,7 @@ class CreateAuthVC: UIViewController {
         
         dialogVC.dialogueType = .createRoom
         dialogVC.clousure = {
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom,
-                AnalyticsParameterStartDate: self.currentDateString
-            ])
+            self.createTracking()
             self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createSuccess, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createSuccess) as? CreateSuccessVC else { return }
                 

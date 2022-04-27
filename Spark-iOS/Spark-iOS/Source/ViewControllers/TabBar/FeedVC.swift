@@ -226,6 +226,12 @@ class FeedVC: UIViewController {
         collectionView.refreshControl = refreshControl
     }
     
+    private func heartTracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickHeartFeed
+        ])
+    }
+    
     // MARK: - @objc Methods
     
     @objc
@@ -517,6 +523,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 firstList[indexPath.item].isLiked = true
                 firstList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 1 {
             if likeState {
@@ -525,6 +532,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 secondList[indexPath.item].isLiked = true
                 secondList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 2 {
             if likeState {
@@ -533,6 +541,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 thirdList[indexPath.item].isLiked = true
                 thirdList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 3 {
             if likeState {
@@ -541,6 +550,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 fourthList[indexPath.item].isLiked = true
                 fourthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 4 {
             if likeState {
@@ -549,6 +559,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 fifthList[indexPath.item].isLiked = true
                 fifthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 5 {
             if likeState {
@@ -557,6 +568,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 sixthList[indexPath.item].isLiked = true
                 sixthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 6 {
             if likeState {
@@ -565,12 +577,9 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 seventhList[indexPath.item].isLiked = true
                 seventhList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         }
-         
         postFeedLikeWithAPI(recordID: recordID ?? 0)
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickHeartFeed
-        ])
     }
 }
