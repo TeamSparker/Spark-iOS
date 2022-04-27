@@ -94,8 +94,7 @@ class WaitingVC: UIViewController {
         changeDate()
         
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom,
-            AnalyticsParameterStartDate: currentDateString
+            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom
         ])
     }
     

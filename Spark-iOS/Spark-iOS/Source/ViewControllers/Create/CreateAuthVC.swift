@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Lottie
+import FirebaseAnalytics
 
 class CreateAuthVC: UIViewController {
     
@@ -20,6 +21,9 @@ class CreateAuthVC: UIViewController {
     private let timerAuthView = TimerAuthView()
     private let createButton = BottomButton().setUI(.pink).setTitle("습관방 만들기")
     private let customNavigationBar = LeftButtonNavigaitonBar()
+    
+    private var formatter = DateFormatter()
+    private var currentDateString: String = ""
     
     /// photoOnly가 true이면 fromStart가 false
     var photoOnly: Bool = true
@@ -35,6 +39,7 @@ class CreateAuthVC: UIViewController {
         setAddTarget()
         setAuthViewState()
         setGesture()
+        changeDate()
     }
     
     // MARK: - Methods
@@ -70,6 +75,11 @@ class CreateAuthVC: UIViewController {
         }
     }
     
+    private func changeDate() {
+        formatter.dateFormat = "yyyy-MM-dd"
+        currentDateString = formatter.string(from: Date())
+    }
+    
     private func setGesture() {
         let photoTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         let timerTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(timerTapped(_:)))
@@ -87,6 +97,10 @@ class CreateAuthVC: UIViewController {
         
         dialogVC.dialogueType = .createRoom
         dialogVC.clousure = {
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom,
+                AnalyticsParameterStartDate: self.currentDateString
+            ])
             self.postCreateRoomWithAPI(roomName: self.roomName, fromStart: !self.photoOnly) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createSuccess, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createSuccess) as? CreateSuccessVC else { return }
                 
