@@ -9,6 +9,7 @@ import UIKit
 
 import Lottie
 import SnapKit
+import FirebaseAnalytics
 
 class StorageVC: UIViewController {
     
@@ -422,6 +423,12 @@ extension StorageVC {
             }
         }
     }
+    
+    private func cardTracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickCard
+        ])
+    }
 }
 
 // MARK: - extension Methods
@@ -538,7 +545,9 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         default:
             return
         }
-
+        
+        cardTracking()
+        
         fromStorageMore = true
         nextVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(nextVC, animated: true)
