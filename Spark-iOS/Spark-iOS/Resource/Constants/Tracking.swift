@@ -26,5 +26,8 @@ struct Tracking {
         static let clickSparkTogether = "click_MASSAGE_TOGETHER_spark"
         static let clickSparkHurry = "click_MASSAGE_HURRY_spark"
         static let clickSparkInputText = "click_INPUT_TEXT_spark"
+        static let clickSignup = "click_FINISH_SIGNUP"
+        static let clickConsider = "click_CONSIDER_waiting_room"
+        static let clickCertifying = "click_CERTIFYING_NOW"
     }
 }

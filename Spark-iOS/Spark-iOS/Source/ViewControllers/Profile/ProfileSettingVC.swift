@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class ProfileSettingVC: UIViewController {
@@ -115,6 +116,12 @@ class ProfileSettingVC: UIViewController {
         present(mainVC, animated: true, completion: nil)
     }
     
+    private func tracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickSignup
+        ])
+    }
+    
     // MARK: - @objc
     
     @objc
@@ -159,16 +166,11 @@ class ProfileSettingVC: UIViewController {
     
     @objc
     func touchCompleteButton() {
-        if profileImageView.image == UIImage(named: "profileEmpty") {
-            signupWithAPI(profileImg: nil, nickname: textField.text ?? "") {
-                NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
-                self.presentToMainTBC()
-            }
-        } else {
-            signupWithAPI(profileImg: profileImageView.image?.resize() ?? UIImage(), nickname: textField.text ?? "") {
-                NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
-                self.presentToMainTBC()
-            }
+        let profileImage = profileImageView.image == UIImage(named: "profileEmpty") ? nil : profileImageView.image?.resize()
+        signupWithAPI(profileImage: profileImage, nickname: textField.text ?? "") {
+            NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+            self.presentToMainTBC()
+            self.tracking()
         }
     }
     
@@ -357,7 +359,7 @@ extension ProfileSettingVC {
 // MARK: - Network
 
 extension ProfileSettingVC {
-    private func signupWithAPI(profileImg: UIImage?, nickname: String, completion: @escaping () -> Void) {
+    private func signupWithAPI(profileImage: UIImage?, nickname: String, completion: @escaping () -> Void) {
         let socialID: String
         if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
             socialID = "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
@@ -365,7 +367,7 @@ extension ProfileSettingVC {
             socialID = "Kakao@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
         }
         AuthAPI(viewController: self).signup(socialID: socialID,
-                              profileImg: profileImg,
+                              profileImg: profileImage,
                               nickname: nickname,
                               fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
             switch response {
