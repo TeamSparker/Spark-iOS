@@ -234,6 +234,12 @@ extension AuthUploadVC {
         present(alert, animated: true)
     }
     
+    private func uploadTracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickUpload
+        ])
+    }
+    
     // MARK: - @objc
     
     // 두번째 플로우에서 사진 인증하기 버튼
@@ -257,9 +263,7 @@ extension AuthUploadVC {
         
         DispatchQueue.main.async {
             self.authUploadWithAPI()
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickUpload
-            ])
+            self.uploadTracking()
         }
     }
     

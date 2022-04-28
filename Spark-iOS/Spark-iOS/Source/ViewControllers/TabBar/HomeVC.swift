@@ -47,11 +47,7 @@ class HomeVC: UIViewController {
         registerXib()
         initRefreshControl()
         setNotification()
-        
-        Analytics.logEvent(AnalyticsEventScreenView,
-                           parameters: [
-                            AnalyticsParameterScreenName: Tracking.View.viewHome
-                           ])
+        viewTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -228,6 +224,13 @@ extension HomeVC {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateHome), name: .updateHome, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .startHabitRoom, object: nil)
+    }
+    
+    private func viewTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.View.viewHome
+                           ])
     }
     
     // MARK: - Screen Change
