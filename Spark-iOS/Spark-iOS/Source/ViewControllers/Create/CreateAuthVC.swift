@@ -79,8 +79,7 @@ class CreateAuthVC: UIViewController {
     }
     
     private func createTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom,
+        Analytics.logEvent(Tracking.Select.clickNextCreateRoom, parameters: [
             AnalyticsParameterStartDate: self.changeDate()
         ])
     }

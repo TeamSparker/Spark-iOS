@@ -227,9 +227,7 @@ class FeedVC: UIViewController {
     }
     
     private func heartTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickHeartFeed
-        ])
+        Analytics.logEvent(Tracking.Select.clickHeartFeed, parameters: nil)
     }
     
     // MARK: - @objc Methods

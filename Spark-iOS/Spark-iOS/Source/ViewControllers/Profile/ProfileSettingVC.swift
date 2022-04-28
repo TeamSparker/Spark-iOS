@@ -117,9 +117,7 @@ class ProfileSettingVC: UIViewController {
     }
     
     private func tracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickSignup
-        ])
+        Analytics.logEvent(Tracking.Select.clickSignup, parameters: nil)
     }
     
     // MARK: - @objc

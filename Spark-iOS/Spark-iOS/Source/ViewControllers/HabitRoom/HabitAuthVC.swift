@@ -136,16 +136,12 @@ extension HabitAuthVC {
     }
     
     private func considerTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickConsider
-        ])
+        Analytics.logEvent(Tracking.Select.clickConsider, parameters: nil)
         
     }
     
     private func okTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickCertifying
-        ])
+        Analytics.logEvent(Tracking.Select.clickCertifying, parameters: nil)
     }
     
     @objc

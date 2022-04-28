@@ -64,25 +64,15 @@ extension SendSparkCVC {
     private func tracking(type: SendSparkStatus) {
         switch type {
         case .message:
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickSparkInputText
-            ])
+            Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
         case .first:
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickSparkFighting
-            ])
+            Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
         case .second:
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickSparkTogether
-            ])
+            Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
         case .third:
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickSparkUonly
-            ])
+            Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
         case .fourth:
-            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-                AnalyticsParameterItemID: Tracking.Select.clickSparkHurry
-            ])
+            Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
         }
     }
     
