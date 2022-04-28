@@ -29,5 +29,9 @@ struct Tracking {
         static let clickSignup = "click_FINISH_SIGNUP"
         static let clickConsider = "click_CONSIDER_habit_room"
         static let clickCertifying = "click_CERTIFYING_NOW"
+        static let clickOK = "click_OK_input_code"
+        static let clickFeed = "click_FEED"
+        static let clickShare = "click_SHARE_INSTAGRAM"
+        static let clickCard = "click_CARD_my_room"
     }
 }
