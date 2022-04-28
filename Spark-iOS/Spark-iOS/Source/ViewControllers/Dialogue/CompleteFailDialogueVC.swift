@@ -23,6 +23,8 @@ class CompleteFailDialogueVC: UIViewController {
     private let subtitleLable = UILabel()
     private let button = UIButton()
     
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
+    
     var roomID: Int?
     var roomStatus: RoomStatus?
     
@@ -159,6 +161,10 @@ extension CompleteFailDialogueVC {
     
     @objc
     private func touchButton() {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+        
         dismissCompleteFailDialogueVC()
     }
 }

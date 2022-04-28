@@ -33,7 +33,7 @@ class SendSparkVC: UIViewController {
     private var canChangeKeyboardFrame: Bool = false
     private var keyBoardDidHideChecker: Bool = false
     
-    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
 
     private let customNavigationBar = LeftButtonNavigaitonBar()
     
@@ -157,8 +157,9 @@ extension SendSparkVC {
     }
     
     private func setFeedbackGenerator() {
-        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
-        selectionFeedbackGenerator?.selectionChanged()
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
     }
     
     private func setAddTargets() {
@@ -456,7 +457,11 @@ extension SendSparkVC: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension SendSparkVC: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+    }
 }
 
 // MARK: Network

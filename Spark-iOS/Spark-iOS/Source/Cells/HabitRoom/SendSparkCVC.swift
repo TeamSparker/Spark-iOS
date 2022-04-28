@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class SendSparkCVC: UICollectionViewCell {
@@ -44,7 +45,7 @@ extension SendSparkCVC {
     }
     
     private func setLayout() {
-        addSubviews([sparkButton])
+        addSubview(sparkButton)
         
         sparkButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
@@ -52,12 +53,37 @@ extension SendSparkCVC {
     }
     
     private func setAddTarget() {
-            sparkButton.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
+        sparkButton.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
     }
     
     private func setFeedbackGenerator() {
         selectionFeedbackGenerator = UISelectionFeedbackGenerator()
         selectionFeedbackGenerator?.selectionChanged()
+    }
+    
+    private func tracking(type: SendSparkStatus) {
+        switch type {
+        case .message:
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickSparkInputText
+            ])
+        case .first:
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickSparkFighting
+            ])
+        case .second:
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickSparkTogether
+            ])
+        case .third:
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickSparkUonly
+            ])
+        case .fourth:
+            Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+                AnalyticsParameterItemID: Tracking.Select.clickSparkHurry
+            ])
+        }
     }
     
     // MARK: - @objc Function
@@ -69,5 +95,7 @@ extension SendSparkCVC {
         } else {
             sendSparkCellDelegate?.sendSpark(sender.content ?? "")
         }
+    
+        tracking(type: sender.type ?? .message)
     }
 }
