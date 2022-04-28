@@ -55,8 +55,14 @@ class StorageMoreVC: UIViewController {
         setLayout()
         
         DispatchQueue.main.async { [self] in
-            self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
-                storageMoreCV.reloadData()
+            if self.isChangingImageView {
+                self.getMyRoomCertiChangeWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
+                    storageMoreCV.reloadData()
+                }
+            } else {
+                self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
+                    storageMoreCV.reloadData()
+                }
             }
         }
     }
@@ -266,12 +272,7 @@ extension StorageMoreVC {
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    if self.isChangingImageView {
-                        let filteredData = myRoomCerti.records?.filter({ $0.status == "DONE" })
-                        self.myRoomCertificationList?.append(contentsOf: filteredData ?? [])
-                    } else {
-                        self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
-                    }
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
                     self.storageMoreCV.reloadData()
                 }
                 completion()
@@ -283,6 +284,27 @@ extension StorageMoreVC {
                 print("getMyRoomCertiWithAPI - serverErr")
             case .networkFail:
                 print("getMyRoomCertiWithAPI - networkFail")
+            }
+        }
+    }
+    
+    func getMyRoomCertiChangeWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
+        MyRoomAPI(viewController: self).myRoomCertiChangeFetch(roomID: roomID ?? 0, lastID: lastID, size: size) {  response in
+            switch response {
+            case .success(let data):
+                if let myRoomCerti = data as? MyRoomCertification {
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    self.storageMoreCV.reloadData()
+                }
+                completion()
+            case .requestErr(let message):
+                print("getMyRoomCertiChangeWithAPI - requestErr: \(message)")
+            case .pathErr:
+                print("getMyRoomCertiChangeWithAPI - pathErr")
+            case .serverErr:
+                print("getMyRoomCertiChangeWithAPI - serverErr")
+            case .networkFail:
+                print("getMyRoomCertiChangeWithAPI - networkFail")
             }
         }
     }
