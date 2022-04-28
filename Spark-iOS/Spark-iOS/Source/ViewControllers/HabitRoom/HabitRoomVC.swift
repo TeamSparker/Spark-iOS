@@ -24,6 +24,8 @@ class HabitRoomVC: UIViewController {
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     lazy var refreshControl = UIRefreshControl()
     
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var customNavigationBar: LeftRightButtonsNavigationBar!
@@ -72,6 +74,10 @@ class HabitRoomVC: UIViewController {
     // MARK: - @IBOutlet Action
     
     @IBAction func presentToHabitAuthVC(_ sender: Any) {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+        
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitAuth) as? HabitAuthVC else { return }
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .overFullScreen
