@@ -256,8 +256,15 @@ extension StorageMoreVC: UICollectionViewDataSource {
                 isInfiniteScroll = false
                 
                 myRoomCertificationLastID = myRoomCertificationList?.last?.recordID ?? 0
-                getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
-                    self.isInfiniteScroll = true
+                
+                if isChangingImageView {
+                    getMyRoomCertiChangeWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
+                } else {
+                    getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) {
+                        self.isInfiniteScroll = true
+                    }
                 }
             }
         }
@@ -272,7 +279,7 @@ extension StorageMoreVC {
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records)
                     self.storageMoreCV.reloadData()
                 }
                 completion()
@@ -293,7 +300,7 @@ extension StorageMoreVC {
             switch response {
             case .success(let data):
                 if let myRoomCerti = data as? MyRoomCertification {
-                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records ?? [])
+                    self.myRoomCertificationList?.append(contentsOf: myRoomCerti.records)
                     self.storageMoreCV.reloadData()
                 }
                 completion()
