@@ -65,7 +65,6 @@ class WaitingVC: UIViewController {
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     private var formatter = DateFormatter()
-    private var currentDateString: String = ""
     private var members: [Member] = []
     private var memberList: [Any] = []
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Member>!
@@ -91,7 +90,6 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
-        changeDate()
         viewTracking()
     }
     
@@ -153,9 +151,9 @@ extension WaitingVC {
         }
     }
     
-    private func changeDate() {
+    private func changeDate() -> String {
         formatter.dateFormat = "yyyy-MM-dd"
-        currentDateString = "waiting" + formatter.string(from: Date())
+        return "waiting" + formatter.string(from: Date())
     }
     
     private func viewTracking() {
@@ -167,7 +165,7 @@ extension WaitingVC {
     private func startTracking() {
         Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
             AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
-            AnalyticsParameterStartDate: currentDateString
+            AnalyticsParameterStartDate: changeDate()
         ])
     }
     

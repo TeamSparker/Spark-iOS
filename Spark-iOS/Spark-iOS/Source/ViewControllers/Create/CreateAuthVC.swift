@@ -23,7 +23,6 @@ class CreateAuthVC: UIViewController {
     private let customNavigationBar = LeftButtonNavigaitonBar()
     
     private var formatter = DateFormatter()
-    private var currentDateString: String = ""
     
     /// photoOnly가 true이면 fromStart가 false
     var photoOnly: Bool = true
@@ -39,7 +38,6 @@ class CreateAuthVC: UIViewController {
         setAddTarget()
         setAuthViewState()
         setGesture()
-        changeDate()
     }
     
     // MARK: - Methods
@@ -75,15 +73,15 @@ class CreateAuthVC: UIViewController {
         }
     }
     
-    private func changeDate() {
+    private func changeDate() -> String {
         formatter.dateFormat = "yyyy-MM-dd"
-        currentDateString = "habit" + formatter.string(from: Date())
+        return "habit" + formatter.string(from: Date())
     }
     
     private func createTracking() {
         Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
             AnalyticsParameterItemID: Tracking.Select.clickNextCreateRoom,
-            AnalyticsParameterStartDate: self.currentDateString
+            AnalyticsParameterStartDate: self.changeDate()
         ])
     }
     
