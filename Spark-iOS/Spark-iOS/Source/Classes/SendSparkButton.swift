@@ -7,6 +7,7 @@
 
 import UIKit
 
+@frozen
 public enum SendSparkStatus: Int {
     case message
     case first
@@ -18,6 +19,7 @@ public enum SendSparkStatus: Int {
 final class SendSparkButton: UIButton {
     
     // MARK: - Properties
+    
     var type: SendSparkStatus?
     var content: String?
     
