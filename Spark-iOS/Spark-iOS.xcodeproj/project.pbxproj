@@ -1454,7 +1454,7 @@
 			};
 			buildConfigurationList = F8096EFB2784107D00B71D38 /* Build configuration list for PBXProject "Spark-iOS" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = kr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
