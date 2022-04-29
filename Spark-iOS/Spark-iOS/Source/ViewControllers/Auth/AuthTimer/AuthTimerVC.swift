@@ -41,10 +41,7 @@ class AuthTimerVC: UIViewController {
         setLayout()
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
-        
-        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-            AnalyticsParameterScreenName: Tracking.View.viewStopwatch
-        ])
+        viewTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +146,12 @@ class AuthTimerVC: UIViewController {
         let secStr = sec < 10 ? "0\(sec)" : String(sec)
         
         return "\(hourStr):\(minStr):\(secStr)"
+    }
+    
+    private func viewTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: Tracking.View.viewStopwatch
+        ])
     }
     
     // MARK: - @objc

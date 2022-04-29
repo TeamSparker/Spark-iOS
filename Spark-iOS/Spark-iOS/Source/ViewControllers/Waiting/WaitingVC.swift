@@ -65,7 +65,6 @@ class WaitingVC: UIViewController {
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     private var formatter = DateFormatter()
-    private var currentDateString: String = ""
     private var members: [Member] = []
     private var memberList: [Any] = []
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Member>!
@@ -91,12 +90,7 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
-        changeDate()
-        
-        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom,
-            AnalyticsParameterStartDate: currentDateString
-        ])
+        viewTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,9 +151,22 @@ extension WaitingVC {
         }
     }
     
-    private func changeDate() {
+    private func changeDate() -> String {
         formatter.dateFormat = "yyyy-MM-dd"
-        currentDateString = formatter.string(from: Date())
+        return "waiting" + formatter.string(from: Date())
+    }
+    
+    private func viewTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom
+        ])
+    }
+    
+    private func startTracking() {
+        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
+            AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
+            AnalyticsParameterStartDate: changeDate()
+        ])
     }
     
     private func setUI() {
@@ -489,10 +496,7 @@ extension WaitingVC {
     private func touchToStartButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
-            AnalyticsParameterStartDate: currentDateString
-        ])
+        startTracking()
         
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.modalTransitionStyle = .crossDissolve
