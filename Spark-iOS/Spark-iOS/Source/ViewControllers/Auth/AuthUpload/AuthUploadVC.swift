@@ -235,9 +235,7 @@ extension AuthUploadVC {
     }
     
     private func uploadTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickUpload
-        ])
+        Analytics.logEvent(Tracking.Select.clickUpload, parameters: nil)
     }
     
     // MARK: - @objc

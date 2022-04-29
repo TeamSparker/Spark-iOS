@@ -135,15 +135,11 @@ extension CompleteAuthVC {
     }
     
     private func goToFeedTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-             AnalyticsParameterItemID: Tracking.Select.clickFeed
-         ])
+        Analytics.logEvent(Tracking.Select.clickFeed, parameters: nil)
     }
     
     private func shareTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-             AnalyticsParameterItemID: Tracking.Select.clickShare
-         ])
+        Analytics.logEvent(Tracking.Select.clickShare, parameters: nil)
     }
     
     // MARK: - @objc

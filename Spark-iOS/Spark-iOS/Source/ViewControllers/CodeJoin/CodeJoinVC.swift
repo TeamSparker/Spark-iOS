@@ -99,9 +99,7 @@ extension CodeJoinVC {
     }
     
     private func okTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickOK
-        ])
+        Analytics.logEvent(Tracking.Select.clickOK, parameters: nil)
     }
     
     // MARK: - @objc Function

@@ -425,9 +425,7 @@ extension StorageVC {
     }
     
     private func cardTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickCard
-        ])
+        Analytics.logEvent(Tracking.Select.clickCard, parameters: nil)
     }
 }
 

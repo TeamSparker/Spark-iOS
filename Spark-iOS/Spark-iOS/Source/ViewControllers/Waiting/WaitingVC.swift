@@ -163,9 +163,8 @@ extension WaitingVC {
     }
     
     private func startTracking() {
-        Analytics.logEvent(AnalyticsEventSelectItem, parameters: [
-            AnalyticsParameterItemID: Tracking.Select.clickStartHabit,
-            AnalyticsParameterStartDate: changeDate()
+        Analytics.logEvent(Tracking.Select.clickStartHabit, parameters: [
+            AnalyticsParameterStartDate: self.changeDate()
         ])
     }
     
