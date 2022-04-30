@@ -76,6 +76,7 @@ class HomeVC: UIViewController {
                 }
             }
         }
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
@@ -519,7 +520,7 @@ extension HomeVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension HomeVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

@@ -194,7 +194,7 @@ extension CreateRoomVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension CreateRoomVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }
