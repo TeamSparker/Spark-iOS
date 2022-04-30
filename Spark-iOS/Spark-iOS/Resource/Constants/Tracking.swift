@@ -34,4 +34,12 @@ struct Tracking {
         static let clickShare = "click_SHARE_INSTAGRAM"
         static let clickCard = "click_CARD_my_room"
     }
+    
+    struct Notification {
+        static let spark = "notification_open_SPARK"
+        static let certification = "notification_open_CERTIFICATION"
+        static let remind = "notification_open_REMIND"
+        static let roomstart = "notification_open_ROOMSTART"
+        static let consider = "notification_open_CONSIDER"
+    }
 }
