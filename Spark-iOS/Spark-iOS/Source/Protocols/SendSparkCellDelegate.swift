@@ -8,6 +8,6 @@
 import Foundation
 
 protocol SendSparkCellDelegate: AnyObject {
-    func sendSpark(_ content: String)
+    func sendSpark(with content: String, type: SendSparkStatus?)
     func showTextField()
 }

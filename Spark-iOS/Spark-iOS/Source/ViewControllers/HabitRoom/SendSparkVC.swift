@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import RxCocoa
 import RxSwift
 
@@ -197,6 +198,7 @@ extension SendSparkVC {
     @objc
     private func sendSparkWithMessage() {
         sendSparkWithAPI(content: textField.text ?? "")
+        Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
     }
     
     @objc
@@ -401,8 +403,22 @@ extension SendSparkVC {
 // MARK: - SendSparkCellDelegate
 
 extension SendSparkVC: SendSparkCellDelegate {
-    func sendSpark(_ content: String) {
+    func sendSpark(with content: String, type: SendSparkStatus?) {
         sendSparkButtonTapped.accept(content)
+        
+        guard let type = type else { return }
+        switch type {
+        case .message:
+            Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
+        case .first:
+            Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
+        case .second:
+            Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
+        case .third:
+            Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
+        case .fourth:
+            Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
+        }
     }
     func showTextField() {
         showAnimation()
@@ -426,6 +442,8 @@ extension SendSparkVC: UITextFieldDelegate {
         }
         hideAnimation()
         self.view.endEditing(true)
+        
+        Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
         return true
     }
     
