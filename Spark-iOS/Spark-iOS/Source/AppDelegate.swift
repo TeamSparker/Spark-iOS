@@ -14,6 +14,15 @@ import KakaoSDKAuth
 import KakaoSDKCommon
 import KakaoSDKUser
 
+@frozen
+enum ThreadID: String {
+    case spark = "spark"
+    case certification = "certification"
+    case remind = "remind"
+    case roomStart = "roomStart"
+    case consider = "consider"
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -126,6 +135,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        let notificationThreadID = response.notification.request.content.threadIdentifier
+        guard let threadID = ThreadID(rawValue: notificationThreadID) else { return }
+        switch threadID {
+        case .spark:
+            Analytics.logEvent(Tracking.Notification.spark, parameters: nil)
+        case .certification:
+            Analytics.logEvent(Tracking.Notification.certification, parameters: nil)
+        case .remind:
+            Analytics.logEvent(Tracking.Notification.remind, parameters: nil)
+        case .roomStart:
+            Analytics.logEvent(Tracking.Notification.roomstart, parameters: nil)
+        case .consider:
+            Analytics.logEvent(Tracking.Notification.consider, parameters: nil)
+        }
         
         completionHandler()
     }
