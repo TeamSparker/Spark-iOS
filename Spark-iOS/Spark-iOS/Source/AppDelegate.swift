@@ -16,11 +16,11 @@ import KakaoSDKUser
 
 @frozen
 enum ThreadID: String {
-    case spark = "spark"
-    case certification = "certification"
-    case remind = "remind"
-    case roomStart = "roomStart"
-    case consider = "consider"
+    case spark
+    case certification
+    case remind
+    case roomStart
+    case consider
 }
 
 @main
