@@ -21,9 +21,10 @@ class HomeVC: UIViewController {
     private let emptyLabel = UILabel()
     private let emptyBackgroundView = UIImageView()
     
-    private var habitRoomList: [Room]? = []
-    private var habitRoomLastID: Int = -1
-    private var habitRoomCountSize: Int = 8
+    private var newHabitRooms: [Room] = []
+    private var habitRooms: [Room] = []
+    private var habitRoomInitID: Int = -1
+    private let habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
     private var isNewNotice: Bool = false
     
