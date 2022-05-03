@@ -69,7 +69,7 @@ class NoticeActiveCVC: UICollectionViewCell {
         contentImageView.updateImage(image, type: .small)
         
         if isThumbProfile {
-            contentImageView.layer.cornerRadius = 20
+            contentImageView.layer.cornerRadius = 22
         } else {
             contentImageView.layer.cornerRadius = 2
         }
