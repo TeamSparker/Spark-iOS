@@ -21,9 +21,10 @@ class HomeVC: UIViewController {
     private let emptyLabel = UILabel()
     private let emptyBackgroundView = UIImageView()
     
-    private var habitRoomList: [Room]? = []
-    private var habitRoomLastID: Int = -1
-    private var habitRoomCountSize: Int = 8
+    private var newHabitRooms: [Room] = []
+    private var habitRooms: [Room] = []
+    private var habitRoomInitID: Int = -1
+    private let habitRoomCountSize: Int = 8
     private var isInfiniteScroll: Bool = true
     private var isNewNotice: Bool = false
     
@@ -56,16 +57,14 @@ class HomeVC: UIViewController {
         setNavigationBar()
         setTabBar()
         setFloatingButton()
-        
-        self.habitRoomLastID = -1
-        self.habitRoomList?.removeAll()
-        
-        self.setLoading()
+        setLoading()
         
         DispatchQueue.main.async {
             self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                    if self.habitRoomList?.count != 0 {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                    self.habitRooms = self.newHabitRooms
+                    if self.habitRooms.count != 0 {
+                        self.mainCollectionView.reloadData()
                         self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
                         if self.isNewNotice {
                             self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
@@ -252,19 +251,19 @@ extension HomeVC {
     
     @objc
     private func refreshCollectionView() {
-        habitRoomLastID = -1
-        habitRoomList?.removeAll()
-        
         DispatchQueue.main.async {
             self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                    self.refreshControl.endRefreshing()
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                    self.habitRooms = self.newHabitRooms
+                    self.mainCollectionView.reloadData()
                     
                     if self.isNewNotice {
                         self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
                     } else {
                         self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                     }
+                    
+                    self.refreshControl.endRefreshing()
                 }
             }
         }
@@ -295,19 +294,17 @@ extension HomeVC {
     
     @objc
     private func updateHome() {
-        self.habitRoomLastID = -1
-        self.habitRoomList?.removeAll()
-        
-        DispatchQueue.main.async {
-            self.setNavigationBar()
-            self.setLoading()
-        }
+        setNavigationBar()
+        setLoading()
         
         DispatchQueue.main.async {
             self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomLastID) {
-                    if self.habitRoomList?.count != 0 {
+                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                    self.habitRooms = self.newHabitRooms
+                    if self.habitRooms.count != 0 {
+                        self.mainCollectionView.reloadData()
                         self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                        
                         if self.isNewNotice {
                             self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
                         } else {
@@ -337,8 +334,10 @@ extension HomeVC: UICollectionViewDelegate {
             if isInfiniteScroll {
                 isInfiniteScroll = false
                 
-                habitRoomLastID = habitRoomList?.last?.roomID ?? 0
+                let habitRoomLastID = habitRooms.last?.roomID ?? 0
                 habitRoomFetchWithAPI(lastID: habitRoomLastID) {
+                    self.habitRooms.append(contentsOf: self.newHabitRooms)
+                    self.mainCollectionView.reloadData()
                     self.isInfiniteScroll = true
                 }
             }
@@ -346,16 +345,15 @@ extension HomeVC: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let habitRoomList = habitRoomList else { return }
-        if habitRoomList.count != 0 {
-            if habitRoomList[indexPath.item].isStarted == true {
+        if habitRooms.count != 0 {
+            if habitRooms[indexPath.item].isStarted == true {
                 // 습관방
                
-                guard let roomStatus = RoomStatus(rawValue: habitRoomList[indexPath.item].myStatus ?? "NONE") else { return }
+                guard let roomStatus = RoomStatus(rawValue: habitRooms[indexPath.item].myStatus ?? "NONE") else { return }
                 switch roomStatus {
                 case .none, .rest, .done:
                     guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-                    nextVC.roomID = habitRoomList[indexPath.item].roomID
+                    nextVC.roomID = habitRooms[indexPath.item].roomID
                     
                     navigationController?.pushViewController(nextVC, animated: true)
                 case .complete:
@@ -364,7 +362,7 @@ extension HomeVC: UICollectionViewDelegate {
                     dialogueVC.roomStatus = .complete
                     dialogueVC.modalTransitionStyle = .crossDissolve
                     dialogueVC.modalPresentationStyle = .overFullScreen
-                    dialogueVC.roomID = habitRoomList[indexPath.item].roomID
+                    dialogueVC.roomID = habitRooms[indexPath.item].roomID
                     
                     present(dialogueVC, animated: true, completion: nil)
                 case .fail:
@@ -373,16 +371,16 @@ extension HomeVC: UICollectionViewDelegate {
                     dialogueVC.roomStatus = .fail
                     dialogueVC.modalTransitionStyle = .crossDissolve
                     dialogueVC.modalPresentationStyle = .overFullScreen
-                    dialogueVC.roomID = habitRoomList[indexPath.item].roomID
+                    dialogueVC.roomID = habitRooms[indexPath.item].roomID
                     
                     present(dialogueVC, animated: true, completion: nil)
                 }
             } else {
                 // 대기방
                 guard let waitingVC = UIStoryboard(name: Const.Storyboard.Name.waiting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.waiting) as? WaitingVC else { return }
-                waitingVC.roomId = habitRoomList[indexPath.item].roomID
+                waitingVC.roomId = habitRooms[indexPath.item].roomID
                 waitingVC.fromWhereStatus = .fromHome
-                waitingVC.roomName = habitRoomList[indexPath.item].roomName
+                waitingVC.roomName = habitRooms[indexPath.item].roomName
                 
                 navigationController?.pushViewController(waitingVC, animated: true)
             }
@@ -394,31 +392,29 @@ extension HomeVC: UICollectionViewDelegate {
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = habitRoomList?.count ?? 0
-        return count
+        return habitRooms.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let habitRoomList = habitRoomList else { return UICollectionViewCell()}
-        if habitRoomList.count != 0 {
+        if habitRooms.count != 0 {
             collectionView.isScrollEnabled = true
-            if habitRoomList[indexPath.item].isStarted == false {
+            if habitRooms[indexPath.item].isStarted == false {
                 guard let waitingCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeWaitingCVC, for: indexPath) as? HomeWaitingCVC else { return UICollectionViewCell() }
                 
-                waitingCVC.initCell(roomName: habitRoomList[indexPath.item].roomName)
+                waitingCVC.initCell(roomName: habitRooms[indexPath.item].roomName)
                 
                 return waitingCVC
             } else {
                 guard let habitCVC = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.homeHabitCVC, for: indexPath) as? HomeHabitCVC else { return UICollectionViewCell() }
                 
-                habitCVC.initCell(roomName: habitRoomList[indexPath.item].roomName,
-                                  leftDay: habitRoomList[indexPath.item].leftDay ?? 0,
-                                  profileImg: habitRoomList[indexPath.item].profileImg,
-                                  life: habitRoomList[indexPath.item].life ?? 0,
-                                  status: habitRoomList[indexPath.item].myStatus ?? "NONE",
-                                  memberNum: habitRoomList[indexPath.item].memberNum ?? 0,
-                                  doneMemberNum: habitRoomList[indexPath.item].doneMemberNum ?? 0,
-                                  isUploaded: habitRoomList[indexPath.item].isUploaded)
+                habitCVC.initCell(roomName: habitRooms[indexPath.item].roomName,
+                                  leftDay: habitRooms[indexPath.item].leftDay ?? 0,
+                                  profileImg: habitRooms[indexPath.item].profileImg,
+                                  life: habitRooms[indexPath.item].life ?? 0,
+                                  status: habitRooms[indexPath.item].myStatus ?? "NONE",
+                                  memberNum: habitRooms[indexPath.item].memberNum ?? 0,
+                                  doneMemberNum: habitRooms[indexPath.item].doneMemberNum ?? 0,
+                                  isUploaded: habitRooms[indexPath.item].isUploaded)
                 return habitCVC
             }
         } else {
@@ -432,13 +428,11 @@ extension HomeVC: UICollectionViewDataSource {
 
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let habitRoomList = habitRoomList else { return .zero }
-        
         let cellWidth = collectionView.frame.width - 40
         let collectionViewHeight = collectionView.frame.height
         
-        if habitRoomList.count != 0 {
-            if habitRoomList[indexPath.item].isStarted == false {
+        if habitRooms.count != 0 {
+            if habitRooms[indexPath.item].isStarted == false {
                 let waitingCellHeight = cellWidth * (98/335)
                 return CGSize(width: cellWidth, height: waitingCellHeight)
             } else {
@@ -473,13 +467,13 @@ extension HomeVC {
                 self.loadingView.stop()
                 self.loadingView.removeFromSuperview()
                 self.loadingBgView.removeFromSuperview()
-                if let habitRooms = data as? HabitRoom {
-                    self.habitRoomList?.append(contentsOf: habitRooms.rooms)
-                    if self.habitRoomList?.count == 0 {
+                
+                if let habitRoom = data as? HabitRoom {
+                    self.newHabitRooms = habitRoom.rooms
+                    if self.newHabitRooms.count == 0, self.habitRooms.count == 0 {
                         self.setEmptyView()
                     } else {
                         self.updateHiddenCollectionView()
-                        self.mainCollectionView.reloadData()
                     }
                 }
                 
