@@ -61,21 +61,6 @@ extension SendSparkCVC {
         selectionFeedbackGenerator?.selectionChanged()
     }
     
-    private func tracking(type: SendSparkStatus) {
-        switch type {
-        case .message:
-            Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
-        case .first:
-            Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
-        case .second:
-            Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
-        case .third:
-            Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
-        case .fourth:
-            Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
-        }
-    }
-    
     // MARK: - @objc Function
     
     @objc
@@ -83,9 +68,7 @@ extension SendSparkCVC {
         if sender.type == .message {
             sendSparkCellDelegate?.showTextField()
         } else {
-            sendSparkCellDelegate?.sendSpark(sender.content ?? "")
+            sendSparkCellDelegate?.sendSpark(with: sender.content ?? "", type: sender.type ?? .first)
         }
-    
-        tracking(type: sender.type ?? .message)
     }
 }
