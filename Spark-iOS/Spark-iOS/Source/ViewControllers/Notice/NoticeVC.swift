@@ -62,6 +62,7 @@ class NoticeVC: UIViewController {
                 self.serviceBadgeView.isHidden = true
             }
             self.activeReadWithAPI()
+            self.collectionView.reloadData()
         }
     }
     
@@ -147,11 +148,6 @@ class NoticeVC: UIViewController {
         collectionView.dataSource = self
     }
     
-//    private func setAddTarget() {
-//        activeButton.addTarget(self, action: #selector(touchActiveButton), for: .touchUpInside)
-//        serviceButton.addTarget(self, action: #selector(touchServiceButton), for: .touchUpInside)
-//    }
-    
     private func bindButton() {
         activeButton.rx.tap
             .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
@@ -205,7 +201,6 @@ class NoticeVC: UIViewController {
         activeBadgeView.isHidden = true
         makeDrawAboveButton(button: activeButton)
         
-        isActivity = true
         activeLastID = -1
         activeList.removeAll()
         
@@ -223,6 +218,8 @@ class NoticeVC: UIViewController {
 
         group.notify(queue: .main) {
             self.activeReadWithAPI()
+            self.isActivity = true
+            self.collectionView.reloadData()
             if !self.collectionView.isHidden {
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
             }
@@ -236,7 +233,6 @@ class NoticeVC: UIViewController {
         serviceBadgeView.isHidden = true
         makeDrawAboveButton(button: serviceButton)
         
-        isActivity = false
         serviceLastID = -1
         serviceList.removeAll()
         
@@ -254,6 +250,8 @@ class NoticeVC: UIViewController {
 
         group.notify(queue: .main) {
             self.serviceReadWithAPI()
+            self.isActivity = false
+            self.collectionView.reloadData()
             if !self.collectionView.isHidden {
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
             }
@@ -362,14 +360,12 @@ extension NoticeVC {
             switch response {
             case .success(let data):
                 if let active = data as? ActiveNotice {
-                    self.serviceList.removeAll()
                     self.newService = active.newService
                     self.activeList.append(contentsOf: active.notices)
                     if self.activeList.isEmpty {
                         self.setEmptyView()
                     } else {
                         self.updateHiddenCollectionView()
-                        self.collectionView.reloadData()
                     }
                 }
                 completion()
@@ -390,14 +386,12 @@ extension NoticeVC {
             switch response {
             case .success(let data):
                 if let service = data as? ServiceNotice {
-                    self.activeList.removeAll()
                     self.newActive = service.newActive
                     self.serviceList.append(contentsOf: service.notices)
                     if self.serviceList.isEmpty {
                         self.setEmptyView()
                     } else {
                         self.updateHiddenCollectionView()
-                        self.collectionView.reloadData()
                     }
                 }
                 completion()
