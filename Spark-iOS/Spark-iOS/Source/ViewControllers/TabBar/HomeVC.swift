@@ -63,7 +63,6 @@ class HomeVC: UIViewController {
             self.newNoticeFetchWithAPI {
                 self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
                     self.habitRooms = self.newHabitRooms
-                    
                     if self.habitRooms.count != 0 {
                         self.mainCollectionView.reloadData()
                         self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
@@ -256,7 +255,6 @@ extension HomeVC {
             self.newNoticeFetchWithAPI {
                 self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
                     self.habitRooms = self.newHabitRooms
-                    self.refreshControl.endRefreshing()
                     self.mainCollectionView.reloadData()
                     
                     if self.isNewNotice {
@@ -264,6 +262,8 @@ extension HomeVC {
                     } else {
                         self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                     }
+                    
+                    self.refreshControl.endRefreshing()
                 }
             }
         }
