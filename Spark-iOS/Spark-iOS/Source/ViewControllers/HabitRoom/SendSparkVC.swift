@@ -22,7 +22,7 @@ class SendSparkVC: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let sendSparkButtonTapped = PublishRelay<String>()
+    private let sendSparkButtonTapped = PublishRelay<[String: Any]>()
     
     private var maxLength: Int = 15
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
@@ -186,11 +186,25 @@ extension SendSparkVC {
     private func bind() {
         sendSparkButtonTapped
             .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { msg in
-                self.sendSparkWithAPI(content: msg)
+            .asDriver(onErrorJustReturn: ["": ""])
+            .drive(onNext: { dictionary in
+                guard let content = dictionary["content"] as? String, let type = dictionary["type"] as? SendSparkStatus else { return }
+                
+                self.sendSparkWithAPI(content: content)
                 self.setFeedbackGenerator()
-            })
+    
+                switch type {
+                case .message:
+                    return
+                case .first:
+                    Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
+                case .second:
+                    Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
+                case .third:
+                    Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
+                case .fourth:
+                    Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
+                }})
             .disposed(by: disposeBag)
     }
     
@@ -403,22 +417,9 @@ extension SendSparkVC {
 // MARK: - SendSparkCellDelegate
 
 extension SendSparkVC: SendSparkCellDelegate {
-    func sendSpark(with content: String, type: SendSparkStatus?) {
-        sendSparkButtonTapped.accept(content)
-        
-        guard let type = type else { return }
-        switch type {
-        case .message:
-            Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
-        case .first:
-            Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
-        case .second:
-            Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
-        case .third:
-            Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
-        case .fourth:
-            Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
-        }
+    func sendSpark(with content: String, type: SendSparkStatus) {
+        sendSparkButtonTapped.accept(["content": content,
+                                      "type": type])
     }
     func showTextField() {
         showAnimation()
