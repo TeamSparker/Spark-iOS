@@ -1932,8 +1932,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
-				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1970,8 +1970,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
-				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
