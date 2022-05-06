@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="Y6W-OH-hqX" customClass="LoginVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-hw-Imz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-e3-AlI">
+                                <rect key="frame" x="186" y="829" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khA-Ly-iRg">
+                                <rect key="frame" x="192" y="767" width="30" height="34"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="touchAppleLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PK7-na-bT4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa3-GQ-rb5">
+                                <rect key="frame" x="192" y="717" width="30" height="34"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="touchKakaoLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gqt-I8-Ond"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="zJk-BV-13w">
+                                <rect key="frame" x="125" y="276" width="164" height="84"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="khA-Ly-iRg" firstAttribute="top" secondItem="fa3-GQ-rb5" secondAttribute="bottom" constant="16" id="9CA-s2-itZ"/>
+                            <constraint firstItem="zJk-BV-13w" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="232" id="DKO-BL-kB1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3aV-hw-Imz" secondAttribute="trailing" id="Naf-4V-ivY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="i8d-e3-AlI" secondAttribute="bottom" constant="12" id="OnB-pc-AhS"/>
+                            <constraint firstItem="3aV-hw-Imz" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="TTs-US-nib"/>
+                            <constraint firstAttribute="bottom" secondItem="3aV-hw-Imz" secondAttribute="bottom" id="Tfd-ln-LC9"/>
+                            <constraint firstItem="fa3-GQ-rb5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="iZY-XD-75O"/>
+                            <constraint firstItem="i8d-e3-AlI" firstAttribute="top" secondItem="khA-Ly-iRg" secondAttribute="bottom" constant="28" id="ljW-OR-CHN"/>
+                            <constraint firstItem="3aV-hw-Imz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oCk-qS-gZA"/>
+                            <constraint firstItem="i8d-e3-AlI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="pYh-5I-Bi4"/>
+                            <constraint firstItem="khA-Ly-iRg" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="saB-wL-w9S"/>
+                            <constraint firstItem="zJk-BV-13w" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="yRo-6c-xBa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appleLoginButton" destination="khA-Ly-iRg" id="w17-Ax-rSf"/>
+                        <outlet property="kakaoLoginButton" destination="fa3-GQ-rb5" id="QGH-xs-pfg"/>
+                        <outlet property="loginLabel" destination="i8d-e3-AlI" id="e75-nt-IYO"/>
+                        <outlet property="logoImageView" destination="zJk-BV-13w" id="oPn-5o-YxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bgLogin" width="375" height="812"/>
+        <image name="logoWhite" width="164" height="84"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

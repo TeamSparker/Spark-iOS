@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansKR-Bold.otf">
+            <string>NotoSansKR-Bold</string>
+        </array>
+        <array key="NotoSansKR-Medium.otf">
+            <string>NotoSansKR-Medium</string>
+        </array>
+        <array key="NotoSansKR-Regular.otf">
+            <string>NotoSansKR-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Join CheckVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="JoinCheckVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="JoinCheckVC" customModule="Spark_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-Gi-Xm5">
+                                <rect key="frame" x="123.00000000000001" y="112" width="129.33333333333337" height="58"/>
+                                <string key="text">잠깐!
+이 방이 맞나요?</string>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="20"/>
+                                <color key="textColor" name="sparkDeepGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sparkflakePattern" translatesAutoresizingMaskIntoConstraints="NO" id="K9Q-Mh-9RA">
+                                <rect key="frame" x="20" y="190" width="335" height="290"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="K9Q-Mh-9RA" secondAttribute="height" multiplier="335:290" id="Xhy-bD-8US"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticketWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-20-0XK">
+                                <rect key="frame" x="114" y="262" width="147" height="104"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYL-iK-EZi">
+                                <rect key="frame" x="98.333333333333329" y="251.33333333333331" width="198.33333333333337" height="145.33333333333331"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아침 독서" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-yz-8ft">
+                                <rect key="frame" x="140" y="505" width="95.333333333333314" height="35"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-NR-SRK">
+                                <rect key="frame" x="20" y="664" width="335" height="39"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="코드 다시 입력하기">
+                                    <color key="titleColor" name="sparkDarkPinkRed"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchReinputCode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="y2M-Ef-5u1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-oV-XpG">
+                                <rect key="frame" x="20" y="719" width="335" height="39"/>
+                                <color key="backgroundColor" name="sparkDarkPinkRed"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="18"/>
+                                <color key="tintColor" name="sparkGray"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="대기방 입장하기">
+                                    <color key="titleColor" name="sparkWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchEnterWaitingVC:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="KZa-Ch-VkV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="힛이님이 초대한 방" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgJ-xi-AEd">
+                                <rect key="frame" x="109.33333333333333" y="467" width="156.33333333333337" height="29"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="20"/>
+                                <color key="textColor" name="sparkDarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7G-mr-14i">
+                                <rect key="frame" x="20" y="64" width="24" height="24"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="icQuit"/>
+                                <connections>
+                                    <action selector="touchCloseButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="x3Z-QG-7cA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="sparkWhite"/>
+                        <constraints>
+                            <constraint firstItem="XBD-NR-SRK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8Uf-9S-t5N"/>
+                            <constraint firstItem="K9Q-Mh-9RA" firstAttribute="top" secondItem="PnJ-Gi-Xm5" secondAttribute="bottom" constant="20" id="8Y5-Uj-hEC"/>
+                            <constraint firstItem="CQc-20-0XK" firstAttribute="bottom" secondItem="K9Q-Mh-9RA" secondAttribute="bottom" constant="-114" id="Ae0-KE-RL2"/>
+                            <constraint firstItem="BMl-yz-8ft" firstAttribute="top" secondItem="MgJ-xi-AEd" secondAttribute="bottom" constant="9" id="Bsi-xp-x00"/>
+                            <constraint firstItem="MgJ-xi-AEd" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="DDv-0U-ItK"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="height" secondItem="CQc-20-0XK" secondAttribute="height" multiplier="1.4" id="FNK-UN-Bdn"/>
+                            <constraint firstItem="Vtz-oV-XpG" firstAttribute="top" secondItem="XBD-NR-SRK" secondAttribute="bottom" constant="16" id="G0R-kU-j0v"/>
+                            <constraint firstItem="MgJ-xi-AEd" firstAttribute="top" secondItem="K9Q-Mh-9RA" secondAttribute="bottom" constant="-13" id="HKF-NB-wFR"/>
+                            <constraint firstItem="PnJ-Gi-Xm5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="68" id="IiF-P0-HNJ"/>
+                            <constraint firstItem="CQc-20-0XK" firstAttribute="top" secondItem="K9Q-Mh-9RA" secondAttribute="top" constant="72" id="J5T-KR-m1P"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerY" secondItem="CQc-20-0XK" secondAttribute="centerY" constant="10" id="JXc-PF-ThZ"/>
+                            <constraint firstItem="Vtz-oV-XpG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Kbr-2q-Lj0"/>
+                            <constraint firstItem="f7G-mr-14i" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Khs-Jj-bZ8"/>
+                            <constraint firstItem="f7G-mr-14i" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="MiF-Ow-pe4"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="centerX" secondItem="CQc-20-0XK" secondAttribute="centerX" constant="10" id="VxB-NU-kbC"/>
+                            <constraint firstItem="BMl-yz-8ft" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="WDd-qV-UT2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vtz-oV-XpG" secondAttribute="trailing" constant="20" id="bcl-Bm-O1B"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="20" id="d0W-c5-wHe"/>
+                            <constraint firstItem="CQc-20-0XK" firstAttribute="trailing" secondItem="K9Q-Mh-9RA" secondAttribute="trailing" constant="-94" id="dJO-Cn-btK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XBD-NR-SRK" secondAttribute="trailing" constant="20" id="dQI-A0-NPS"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Vtz-oV-XpG" secondAttribute="bottom" constant="20" id="dnY-b3-wc4"/>
+                            <constraint firstItem="Vtz-oV-XpG" firstAttribute="height" secondItem="XBD-NR-SRK" secondAttribute="height" id="pHd-ho-A9h"/>
+                            <constraint firstItem="K9Q-Mh-9RA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="srl-Ec-oPD"/>
+                            <constraint firstItem="PnJ-Gi-Xm5" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="vas-DF-QOF"/>
+                            <constraint firstItem="CQc-20-0XK" firstAttribute="leading" secondItem="K9Q-Mh-9RA" secondAttribute="leading" constant="94" id="x8z-U9-A4s"/>
+                            <constraint firstItem="hYL-iK-EZi" firstAttribute="width" secondItem="CQc-20-0XK" secondAttribute="width" multiplier="1.35" id="y8w-5D-d0J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animationFrameView" destination="hYL-iK-EZi" id="Sgd-Gd-Fq3"/>
+                        <outlet property="enterButton" destination="Vtz-oV-XpG" id="ULA-W8-j5K"/>
+                        <outlet property="reInputButton" destination="XBD-NR-SRK" id="sat-3t-wWL"/>
+                        <outlet property="roomNameLabel" destination="BMl-yz-8ft" id="nVN-WR-Aph"/>
+                        <outlet property="ticketImageView" destination="CQc-20-0XK" id="hcI-PT-Ci4"/>
+                        <outlet property="userInviteLabel" destination="MgJ-xi-AEd" id="yW4-oE-CFd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45.600000000000001" y="138.91625615763547"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icQuit" width="24" height="24"/>
+        <image name="sparkflakePattern" width="335" height="290"/>
+        <image name="ticketWelcome" width="147" height="104"/>
+        <namedColor name="sparkDarkGray">
+            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDarkPinkRed">
+            <color red="1" green="0.0" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkDeepGray">
+            <color red="0.16899999976158142" green="0.16899999976158142" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkGray">
+            <color red="0.6940000057220459" green="0.69800001382827759" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

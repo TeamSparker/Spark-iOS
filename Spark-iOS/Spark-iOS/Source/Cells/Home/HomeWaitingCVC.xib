@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansKR-Regular.otf">
+            <string>NotoSansKR-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeWaitingCVC" customModule="Spark_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="115"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="115"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sbl-hS-w3b">
+                        <rect key="frame" x="0.0" y="0.0" width="141" height="115"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Sbl-hS-w3b" secondAttribute="height" multiplier="120:98" id="xuB-WT-dIx"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Je-SE-b9g">
+                        <rect key="frame" x="141" y="0.0" width="252" height="115"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ij-88-tcj">
+                        <rect key="frame" x="24.5" y="29" width="92" height="57.5"/>
+                        <string key="text">Waiting
+Room</string>
+                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="22"/>
+                        <color key="textColor" name="sparkWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2C-z7-fTc">
+                        <rect key="frame" x="165" y="21" width="41.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다른 스파커 기다리는 중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRF-lP-dsT">
+                        <rect key="frame" x="165" y="73" width="152.5" height="21"/>
+                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="14"/>
+                        <color key="textColor" name="sparkDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="4Ij-88-tcj" firstAttribute="centerY" secondItem="Sbl-hS-w3b" secondAttribute="centerY" id="5kg-U7-OKm"/>
+                <constraint firstItem="XRF-lP-dsT" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" constant="24" id="7H3-UC-Na8"/>
+                <constraint firstItem="D2C-z7-fTc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="21" id="AO5-6i-fhj"/>
+                <constraint firstItem="Sbl-hS-w3b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AZn-GA-24X"/>
+                <constraint firstItem="4Ij-88-tcj" firstAttribute="centerX" secondItem="Sbl-hS-w3b" secondAttribute="centerX" id="Dbk-2O-h3P"/>
+                <constraint firstItem="0Je-SE-b9g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EZC-zO-uIQ"/>
+                <constraint firstAttribute="bottom" secondItem="0Je-SE-b9g" secondAttribute="bottom" id="HMY-lw-4Qm"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D2C-z7-fTc" secondAttribute="trailing" constant="37" id="Tc2-dZ-eer"/>
+                <constraint firstAttribute="bottom" secondItem="Sbl-hS-w3b" secondAttribute="bottom" id="VAH-Ak-fjW"/>
+                <constraint firstItem="0Je-SE-b9g" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" id="X3K-I2-vkB"/>
+                <constraint firstItem="D2C-z7-fTc" firstAttribute="leading" secondItem="Sbl-hS-w3b" secondAttribute="trailing" constant="24" id="hHR-Jn-F6T"/>
+                <constraint firstAttribute="bottom" secondItem="XRF-lP-dsT" secondAttribute="bottom" constant="21" id="ryn-wH-zcw"/>
+                <constraint firstAttribute="trailing" secondItem="0Je-SE-b9g" secondAttribute="trailing" id="vXd-tk-Z6h"/>
+                <constraint firstItem="Sbl-hS-w3b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zPF-Fj-U9d"/>
+            </constraints>
+            <size key="customSize" width="393" height="115"/>
+            <connections>
+                <outlet property="flakeImage" destination="Sbl-hS-w3b" id="wcd-PZ-ZMR"/>
+                <outlet property="habitTitleLabel" destination="D2C-z7-fTc" id="sWc-xq-7Yu"/>
+                <outlet property="ticketImage" destination="0Je-SE-b9g" id="ua6-OM-1sM"/>
+            </connections>
+            <point key="canvasLocation" x="383.33333333333337" y="175.11160714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="sparkDarkGray">
+            <color red="0.45100000500679016" green="0.45100000500679016" blue="0.46299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sparkWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
