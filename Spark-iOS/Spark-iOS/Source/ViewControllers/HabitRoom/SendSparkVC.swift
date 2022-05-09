@@ -475,13 +475,7 @@ extension SendSparkVC: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension SendSparkVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        impactFeedbackGenerator?.impactOccurred()
-        impactFeedbackGenerator = nil
-    }
-}
+extension SendSparkVC: UICollectionViewDelegate { }
 
 // MARK: Network
 
