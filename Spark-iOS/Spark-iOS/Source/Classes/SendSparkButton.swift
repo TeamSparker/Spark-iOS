@@ -20,23 +20,23 @@ final class SendSparkButton: UIButton {
     
     // MARK: - Properties
     
-    var type: SendSparkStatus?
+    var type: SendSparkStatus {
+        didSet {
+            self.setContent()
+        }
+    }
     var content: String?
     
     // MARK: - Initialize
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(type: SendSparkStatus) {
+    init(type: SendSparkStatus) {
+        self.type = type
         super.init(frame: .zero)
-        
-        setUI(type)
+        setUI(self.type)
     }
 }
 
@@ -53,8 +53,10 @@ extension SendSparkButton {
         self.titleLabel?.lineBreakMode = .byCharWrapping
         self.titleLabel?.textAlignment = .center
         self.type = type
-        
-        switch type {
+    }
+    
+    private func setContent() {
+        switch self.type {
         case .message:
             self.setTitle("""
                           메시지
@@ -95,20 +97,6 @@ extension SendSparkButton {
                           """,
                           for: .normal)
             self.content = "👍얼마 안 남았어, 어서 하자!"
-        }
-    }
-    
-    public func isSelected(_ isSelected: Bool) {
-        if isSelected {
-            self.setTitleColor(.sparkDarkPinkred, for: .normal)
-            self.backgroundColor = .sparkMostLightPinkred
-            self.titleLabel?.backgroundColor = .sparkMostLightPinkred
-            self.layer.borderColor = UIColor.sparkDarkPinkred.cgColor
-        } else {
-            self.setTitleColor(.sparkLightPinkred, for: .normal)
-            self.backgroundColor = .sparkWhite
-            self.titleLabel?.backgroundColor = .sparkWhite
-            self.layer.borderColor = UIColor.sparkLightPinkred.cgColor
         }
     }
 }
