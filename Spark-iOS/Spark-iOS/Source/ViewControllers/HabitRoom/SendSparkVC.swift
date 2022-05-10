@@ -211,6 +211,7 @@ extension SendSparkVC {
     // MARK: - @objc Function
     @objc
     private func sendSparkWithMessage() {
+        setFeedbackGenerator()
         sendSparkWithAPI(content: textField.text ?? "")
         Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
     }
