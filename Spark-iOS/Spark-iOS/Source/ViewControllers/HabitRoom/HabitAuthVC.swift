@@ -8,6 +8,8 @@
 import UIKit
 import AVFoundation
 
+import FirebaseAnalytics
+
 @frozen
 enum AuthType {
     case photoOnly
@@ -133,6 +135,15 @@ extension HabitAuthVC {
         restButton.addTarget(self, action: #selector(touchRestButton), for: .touchUpInside)
     }
     
+    private func considerTracking() {
+        Analytics.logEvent(Tracking.Select.clickConsider, parameters: nil)
+        
+    }
+    
+    private func okTracking() {
+        Analytics.logEvent(Tracking.Select.clickCertifying, parameters: nil)
+    }
+    
     @objc
     private func touchOkayButton() {
         let presentingVC = self.presentingViewController
@@ -154,12 +165,15 @@ extension HabitAuthVC {
         default:
             print("아닙니다")
         }
+        
+        okTracking()
     }
     
     @objc
     private func touchConsiderButton() {
         self.dismiss(animated: true) {
             self.setConsiderRestWithAPI(statusType: "CONSIDER")
+            self.considerTracking()
         }
     }
     

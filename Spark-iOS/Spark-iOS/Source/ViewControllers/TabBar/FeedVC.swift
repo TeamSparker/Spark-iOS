@@ -9,6 +9,7 @@ import UIKit
 
 import Lottie
 import SnapKit
+import FirebaseAnalytics
 
 class FeedVC: UIViewController {
     
@@ -34,8 +35,9 @@ class FeedVC: UIViewController {
     private var sixthList: [Record] = []
     private var seventhList: [Record] = []
     
-    private var feedList: [Record] = []
-    private var feedLastID: Int = -1
+    private var newFeeds: [Record] = []
+    private var feeds: [Record] = []
+    private let feedInitID: Int = -1
     private var feedCountSize: Int = 7
     private var isInfiniteScroll = true
     private var isLastScroll = false
@@ -61,27 +63,29 @@ class FeedVC: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
 
-        feedLastID = -1
-        
-        dateList.removeAll()
-        dayList.removeAll()
-        feedList.removeAll()
-        
-        firstList.removeAll()
-        secondList.removeAll()
-        thirdList.removeAll()
-        fourthList.removeAll()
-        fifthList.removeAll()
-        sixthList.removeAll()
-        seventhList.removeAll()
+        setLoading()
         
         DispatchQueue.main.async {
-            self.setLoading()
-        }
-        
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
-                if !self.feedList.isEmpty {
+            self.getFeedListFetchWithAPI(lastID: self.feedInitID) {
+                self.feeds = self.newFeeds
+                if self.feeds.count >= self.feedCountSize {
+                    self.isFirstScroll = false
+                }
+                
+                self.dateList.removeAll()
+                self.dayList.removeAll()
+                
+                self.firstList.removeAll()
+                self.secondList.removeAll()
+                self.thirdList.removeAll()
+                self.fourthList.removeAll()
+                self.fifthList.removeAll()
+                self.sixthList.removeAll()
+                self.seventhList.removeAll()
+                
+                self.setData(datalist: self.newFeeds)
+                if !self.feeds.isEmpty {
+                    self.collectionView.reloadData()
                     self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
                 }
             }
@@ -156,7 +160,7 @@ class FeedVC: UIViewController {
     }
     
     private func setData(datalist: [Record]) {
-        if feedList.isEmpty {
+        if feeds.isEmpty {
             setEmptyView()
         } else {
             updateHiddenCollectionView()
@@ -225,26 +229,36 @@ class FeedVC: UIViewController {
         collectionView.refreshControl = refreshControl
     }
     
+    private func heartTracking() {
+        Analytics.logEvent(Tracking.Select.clickHeartFeed, parameters: nil)
+    }
+    
     // MARK: - @objc Methods
     
     @objc
     private func refreshCollectionView() {
-        feedLastID = -1
-        
-        dateList.removeAll()
-        dayList.removeAll()
-        feedList.removeAll()
-        
-        firstList.removeAll()
-        secondList.removeAll()
-        thirdList.removeAll()
-        fourthList.removeAll()
-        fifthList.removeAll()
-        sixthList.removeAll()
-        seventhList.removeAll()
-        
         DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedLastID) {
+            self.getFeedListFetchWithAPI(lastID: self.feedInitID) {
+                self.feeds = self.newFeeds
+                if self.feeds.count >= self.feedCountSize {
+                    self.isFirstScroll = false
+                }
+                
+                self.dateList.removeAll()
+                self.dayList.removeAll()
+                
+                self.firstList.removeAll()
+                self.secondList.removeAll()
+                self.thirdList.removeAll()
+                self.fourthList.removeAll()
+                self.fifthList.removeAll()
+                self.sixthList.removeAll()
+                self.seventhList.removeAll()
+                
+                self.setData(datalist: self.newFeeds)
+                if !self.feeds.isEmpty {
+                    self.collectionView.reloadData()
+                }
                 self.refreshControl.endRefreshing()
             }
         }
@@ -293,7 +307,6 @@ extension FeedVC {
 extension FeedVC {
     private func getFeedListFetchWithAPI(lastID: Int, completion: @escaping() -> Void) {
         FeedAPI(viewController: self).feedFetch(lastID: lastID, size: feedCountSize) { response in
-            
             switch response {
             case .success(let data):
                 if let feed = data as? Feed {
@@ -304,12 +317,7 @@ extension FeedVC {
                     } else {
                         self.isLastScroll = false
                     }
-                    self.feedList.append(contentsOf: feed.records)
-                    if self.feedList.count >= self.feedCountSize {
-                        self.isFirstScroll = false
-                    }
-                    self.setData(datalist: feed.records)
-                    self.collectionView.reloadData()
+                    self.newFeeds = feed.records
                 }
                 completion()
             case .requestErr(let message):
@@ -356,8 +364,14 @@ extension FeedVC: UICollectionViewDelegate {
                 isInfiniteScroll = false
                 isLastScroll = true
                 
-                feedLastID = feedList.last?.recordID ?? 0
+                let feedLastID = feeds.last?.recordID ?? 0
                 getFeedListFetchWithAPI(lastID: feedLastID) {
+                    self.feeds.append(contentsOf: self.newFeeds)
+                    if self.feeds.count >= self.feedCountSize {
+                        self.isFirstScroll = false
+                    }
+                    self.setData(datalist: self.newFeeds)
+                    self.collectionView.reloadData()
                     self.isInfiniteScroll = true
                 }
             }
@@ -372,8 +386,8 @@ extension FeedVC: UICollectionViewDataSource {
         if dateList.count != 0 {
             var itemCount = 0
             var indexPath = 0
-            while indexPath < feedList.count {
-                if dateList[section] == feedList[indexPath].date {
+            while indexPath < feeds.count {
+                if dateList[section] == feeds[indexPath].date {
                     itemCount += 1
                     indexPath += 1
                 } else {
@@ -516,6 +530,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 firstList[indexPath.item].isLiked = true
                 firstList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 1 {
             if likeState {
@@ -524,6 +539,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 secondList[indexPath.item].isLiked = true
                 secondList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 2 {
             if likeState {
@@ -532,6 +548,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 thirdList[indexPath.item].isLiked = true
                 thirdList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 3 {
             if likeState {
@@ -540,6 +557,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 fourthList[indexPath.item].isLiked = true
                 fourthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 4 {
             if likeState {
@@ -548,6 +566,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 fifthList[indexPath.item].isLiked = true
                 fifthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 5 {
             if likeState {
@@ -556,6 +575,7 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 sixthList[indexPath.item].isLiked = true
                 sixthList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         } else if indexPath.section == 6 {
             if likeState {
@@ -564,9 +584,9 @@ extension FeedVC: FeedCellDelegate {
             } else {
                 seventhList[indexPath.item].isLiked = true
                 seventhList[indexPath.item].likeNum += 1
+                heartTracking()
             }
         }
-         
         postFeedLikeWithAPI(recordID: recordID ?? 0)
     }
 }

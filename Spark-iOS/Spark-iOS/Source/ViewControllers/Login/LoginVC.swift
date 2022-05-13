@@ -9,6 +9,7 @@ import AuthenticationServices
 import SafariServices
 import UIKit
 
+import FirebaseAnalytics
 import KakaoSDKUser
 
 class LoginVC: UIViewController {
@@ -29,6 +30,7 @@ class LoginVC: UIViewController {
         
         setUI()
         setGetstureRecognizer()
+        tracking()
     }
     
     // MARK: - @IBOutlet Action
@@ -117,7 +119,6 @@ extension LoginVC {
     }
     
     private func loginWithWeb() {
-        
         UserApi.shared.loginWithKakaoAccount { _, error in
             if let error = error {
                 print(error)
@@ -150,6 +151,13 @@ extension LoginVC {
         mainVC.modalTransitionStyle = .crossDissolve
         
         present(mainVC, animated: true, completion: nil)
+    }
+    
+    private func tracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.View.viewSocialSignup
+                           ])
     }
 }
 

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class CreateRoomVC: UIViewController {
@@ -108,6 +109,7 @@ class CreateRoomVC: UIViewController {
     func touchNextButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.createAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.createAuth) as? CreateAuthVC else { return }
         nextVC.roomName = textField.text ?? ""
+        
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
@@ -192,7 +194,7 @@ extension CreateRoomVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension CreateRoomVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

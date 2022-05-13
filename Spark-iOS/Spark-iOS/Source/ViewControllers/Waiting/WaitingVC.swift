@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 import Lottie
 
@@ -63,6 +64,7 @@ class WaitingVC: UIViewController {
     lazy var loadingBgView = UIView()
     lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
+    private var formatter = DateFormatter()
     private var members: [Member] = []
     private var memberList: [Any] = []
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Member>!
@@ -88,6 +90,7 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
+        viewTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,6 +149,23 @@ extension WaitingVC {
         case .none:
             print("fromeWhereStatus 를 지정해주세요.")
         }
+    }
+    
+    private func changeDate() -> String {
+        formatter.dateFormat = "yyyy-MM-dd"
+        return "waiting" + formatter.string(from: Date())
+    }
+    
+    private func viewTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: Tracking.View.viewWaitingRoom
+        ])
+    }
+    
+    private func startTracking() {
+        Analytics.logEvent(Tracking.Select.clickStartHabit, parameters: [
+            AnalyticsParameterStartDate: self.changeDate()
+        ])
     }
     
     private func setUI() {
@@ -475,6 +495,8 @@ extension WaitingVC {
     private func touchToStartButton() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.roomStart, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.roomStart) as? RoomStartVC else { return }
         
+        startTracking()
+        
         nextVC.modalPresentationStyle = .overFullScreen
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.roomID = self.roomId
@@ -772,7 +794,7 @@ extension WaitingVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension WaitingVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

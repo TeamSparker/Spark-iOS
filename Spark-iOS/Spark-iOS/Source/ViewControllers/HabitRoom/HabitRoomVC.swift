@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import Lottie
 
 class HabitRoomVC: UIViewController {
@@ -23,6 +24,8 @@ class HabitRoomVC: UIViewController {
     private lazy var loadingBgView = UIView()
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     lazy var refreshControl = UIRefreshControl()
+    
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     // MARK: - @IBOutlet Properties
     
@@ -54,6 +57,7 @@ class HabitRoomVC: UIViewController {
         registerXib()
         setNotification()
         initRefreshControl()
+        tracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +76,10 @@ class HabitRoomVC: UIViewController {
     // MARK: - @IBOutlet Action
     
     @IBAction func presentToHabitAuthVC(_ sender: Any) {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+        
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitAuth, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitAuth) as? HabitAuthVC else { return }
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .overFullScreen
@@ -411,6 +419,13 @@ extension HabitRoomVC {
         present(alert, animated: true)
     }
     
+    private func tracking() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [
+                            AnalyticsParameterScreenName: Tracking.View.viewHabitRoom
+                           ])
+    }
+    
     // MARK: - Screen Change
     
     private func popToHomeVC() {
@@ -599,7 +614,7 @@ extension HabitRoomVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension HabitRoomVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

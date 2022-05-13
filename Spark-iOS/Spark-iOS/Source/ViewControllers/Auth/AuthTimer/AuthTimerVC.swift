@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class AuthTimerVC: UIViewController {
@@ -40,6 +41,7 @@ class AuthTimerVC: UIViewController {
         setLayout()
         setButton(bottomButton, title: "시작하기", backgroundColor: .sparkDarkPinkred, isEnable: true)
         setAddTarget()
+        viewTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,6 +146,12 @@ class AuthTimerVC: UIViewController {
         let secStr = sec < 10 ? "0\(sec)" : String(sec)
         
         return "\(hourStr):\(minStr):\(secStr)"
+    }
+    
+    private func viewTracking() {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: Tracking.View.viewStopwatch
+        ])
     }
     
     // MARK: - @objc
@@ -321,7 +329,7 @@ extension AuthTimerVC {
 // MARK: - UIGestureRecognizerDelegate
 
 extension AuthTimerVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Lottie
+
 class EditProfileVC: UIViewController {
 
     // MARK: - Properties
@@ -18,9 +20,12 @@ class EditProfileVC: UIViewController {
     private let textField = UITextField()
     private let lineView = UIView()
     private let countLabel = UILabel()
-    private var completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setAble()
+    private let completeButton = BottomButton().setUI(.pink).setTitle("수정 완료").setAble()
     private let picker = UIImagePickerController()
     private let tap = UITapGestureRecognizer()
+    
+    private lazy var loadingBgView = UIView()
+    private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
     
     private let maxLength: Int = 10
     private var didEdit: Bool = false
@@ -135,6 +140,26 @@ extension EditProfileVC {
         }
     }
     
+    private func setLoading() {
+        view.addSubview(loadingBgView)
+        
+        loadingBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingBgView.addSubview(loadingView)
+        
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+        }
+        
+        loadingBgView.backgroundColor = .white.withAlphaComponent(0.8)
+        loadingView.loopMode = .loop
+        loadingView.contentMode = .scaleAspectFit
+        loadingView.play()
+    }
+    
     // MARK: - @objc
     
     @objc
@@ -181,6 +206,7 @@ extension EditProfileVC {
     
     @objc
     func touchCompleteButton() {
+        setLoading()
         if profileImageView.image == UIImage(named: "profileEmpty") {
             profileEditWithAPI(profileImage: nil) {
                 self.dismiss(animated: true, completion: nil)

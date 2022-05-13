@@ -88,6 +88,42 @@ public class MyRoomAPI {
         }
     }
     
+    func myRoomCertiChangeFetch(roomID: Int, lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        userProvider.request(.myRoomCertiChangeFetch(roomID: roomID, lastID: lastID, size: size)) { (result) in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeMyRoomCertiChangeFetchStatus(by: statusCode, data)
+                completion(networkResult)
+
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func judgeMyRoomCertiChangeFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<MyRoomCertification>.self, from: data)
+        else {
+            return .pathErr
+        }
+        
+        switch statusCode {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400..<500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
     func myRoomChangeThumbnail(roomId: Int, recordId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         userProvider.request(.myRoomChangeThumbnail(roomId: roomId, recordId: recordId)) { (result) in
             switch result {

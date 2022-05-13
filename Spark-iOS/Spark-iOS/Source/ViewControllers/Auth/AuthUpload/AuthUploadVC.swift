@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 import Lottie
 
@@ -233,6 +234,10 @@ extension AuthUploadVC {
         present(alert, animated: true)
     }
     
+    private func uploadTracking() {
+        Analytics.logEvent(Tracking.Select.clickUpload, parameters: nil)
+    }
+    
     // MARK: - @objc
     
     // 두번째 플로우에서 사진 인증하기 버튼
@@ -256,6 +261,7 @@ extension AuthUploadVC {
         
         DispatchQueue.main.async {
             self.authUploadWithAPI()
+            self.uploadTracking()
         }
     }
     

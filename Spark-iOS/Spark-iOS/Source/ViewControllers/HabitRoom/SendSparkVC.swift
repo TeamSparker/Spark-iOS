@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import RxCocoa
 import RxSwift
 
@@ -21,7 +22,7 @@ class SendSparkVC: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let sendSparkButtonTapped = PublishRelay<String>()
+    private let sendSparkButtonTapped = PublishRelay<[String: Any]>()
     
     private var maxLength: Int = 15
     private let screenHeight: CGFloat = UIScreen.main.bounds.height
@@ -33,7 +34,7 @@ class SendSparkVC: UIViewController {
     private var canChangeKeyboardFrame: Bool = false
     private var keyBoardDidHideChecker: Bool = false
     
-    private var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
 
     private let customNavigationBar = LeftButtonNavigaitonBar()
     
@@ -157,8 +158,9 @@ extension SendSparkVC {
     }
     
     private func setFeedbackGenerator() {
-        selectionFeedbackGenerator = UISelectionFeedbackGenerator()
-        selectionFeedbackGenerator?.selectionChanged()
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
     }
     
     private func setAddTargets() {
@@ -184,11 +186,25 @@ extension SendSparkVC {
     private func bind() {
         sendSparkButtonTapped
             .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { msg in
-                self.sendSparkWithAPI(content: msg)
+            .asDriver(onErrorJustReturn: ["": ""])
+            .drive(onNext: { dictionary in
+                guard let content = dictionary["content"] as? String, let type = dictionary["type"] as? SendSparkStatus else { return }
+                
+                self.sendSparkWithAPI(content: content)
                 self.setFeedbackGenerator()
-            })
+    
+                switch type {
+                case .message:
+                    return
+                case .first:
+                    Analytics.logEvent(Tracking.Select.clickSparkFighting, parameters: nil)
+                case .second:
+                    Analytics.logEvent(Tracking.Select.clickSparkTogether, parameters: nil)
+                case .third:
+                    Analytics.logEvent(Tracking.Select.clickSparkUonly, parameters: nil)
+                case .fourth:
+                    Analytics.logEvent(Tracking.Select.clickSparkHurry, parameters: nil)
+                }})
             .disposed(by: disposeBag)
     }
     
@@ -196,6 +212,7 @@ extension SendSparkVC {
     @objc
     private func sendSparkWithMessage() {
         sendSparkWithAPI(content: textField.text ?? "")
+        Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
     }
     
     @objc
@@ -400,8 +417,9 @@ extension SendSparkVC {
 // MARK: - SendSparkCellDelegate
 
 extension SendSparkVC: SendSparkCellDelegate {
-    func sendSpark(_ content: String) {
-        sendSparkButtonTapped.accept(content)
+    func sendSpark(with content: String, type: SendSparkStatus) {
+        sendSparkButtonTapped.accept(["content": content,
+                                      "type": type])
     }
     func showTextField() {
         showAnimation()
@@ -425,6 +443,8 @@ extension SendSparkVC: UITextFieldDelegate {
         }
         hideAnimation()
         self.view.endEditing(true)
+        
+        Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
         return true
     }
     
@@ -456,7 +476,11 @@ extension SendSparkVC: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension SendSparkVC: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.impactOccurred()
+        impactFeedbackGenerator = nil
+    }
 }
 
 // MARK: Network

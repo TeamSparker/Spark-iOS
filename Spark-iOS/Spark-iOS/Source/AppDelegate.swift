@@ -14,6 +14,15 @@ import KakaoSDKAuth
 import KakaoSDKCommon
 import KakaoSDKUser
 
+@frozen
+enum ThreadID: String {
+    case spark
+    case certification
+    case remind
+    case roomStart
+    case consider
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -83,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
-        application.registerForRemoteNotifications()
         
         // device token 요청.
         UIApplication.shared.registerForRemoteNotifications()
@@ -127,6 +135,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        let notificationThreadID = response.notification.request.content.threadIdentifier
+        guard let threadID = ThreadID(rawValue: notificationThreadID) else { return }
+        switch threadID {
+        case .spark:
+            Analytics.logEvent(Tracking.Notification.spark, parameters: nil)
+        case .certification:
+            Analytics.logEvent(Tracking.Notification.certification, parameters: nil)
+        case .remind:
+            Analytics.logEvent(Tracking.Notification.remind, parameters: nil)
+        case .roomStart:
+            Analytics.logEvent(Tracking.Notification.roomstart, parameters: nil)
+        case .consider:
+            Analytics.logEvent(Tracking.Notification.consider, parameters: nil)
+        }
         
         completionHandler()
     }

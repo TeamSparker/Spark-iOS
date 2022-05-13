@@ -10,7 +10,7 @@ import Foundation
 // MARK: - MyRoomCertiData
 struct MyRoomCertification: Codable {
     let roomName: String
-    let records: [CertiRecord]?
+    let records: [CertiRecord]
 }
 
 // MARK: - CertiRecord

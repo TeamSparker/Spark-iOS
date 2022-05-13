@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import Lottie
 
 class CompleteAuthVC: UIViewController {
@@ -53,6 +54,8 @@ class CompleteAuthVC: UIViewController {
     @IBAction func goToFeedVC(_ sender: Any) {
         guard let presentingVC = self.presentingViewController?.presentingViewController as? UITabBarController else { return }
         guard let naviVC = presentingVC.viewControllers?[1] as? UINavigationController else { return }
+        
+        goToFeedTracking()
         
         presentingVC.dismiss(animated: false) {
             naviVC.popViewController(animated: false)
@@ -131,10 +134,19 @@ extension CompleteAuthVC {
         }
     }
     
+    private func goToFeedTracking() {
+        Analytics.logEvent(Tracking.Select.clickFeed, parameters: nil)
+    }
+    
+    private func shareTracking() {
+        Analytics.logEvent(Tracking.Select.clickShare, parameters: nil)
+    }
+    
     // MARK: - @objc
     @objc
     func tapped(_ gesture: UITapGestureRecognizer) {
-
+        
+        shareTracking()
         shareAuthWithInstagram()
     }
 }

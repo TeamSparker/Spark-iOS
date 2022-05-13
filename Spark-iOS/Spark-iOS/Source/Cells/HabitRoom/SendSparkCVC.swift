@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import SnapKit
 
 class SendSparkCVC: UICollectionViewCell {
@@ -44,7 +45,7 @@ extension SendSparkCVC {
     }
     
     private func setLayout() {
-        addSubviews([sparkButton])
+        addSubview(sparkButton)
         
         sparkButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
@@ -52,7 +53,7 @@ extension SendSparkCVC {
     }
     
     private func setAddTarget() {
-            sparkButton.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
+        sparkButton.addTarget(self, action: #selector(touchSendSparkButton(_:)), for: .touchUpInside)
     }
     
     private func setFeedbackGenerator() {
@@ -67,7 +68,7 @@ extension SendSparkCVC {
         if sender.type == .message {
             sendSparkCellDelegate?.showTextField()
         } else {
-            sendSparkCellDelegate?.sendSpark(sender.content ?? "")
+            sendSparkCellDelegate?.sendSpark(with: sender.content ?? "", type: sender.type ?? .first)
         }
     }
 }

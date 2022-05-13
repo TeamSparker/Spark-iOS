@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 class CodeJoinVC: UIViewController {
 
     // MARK: - Properties
@@ -96,6 +98,10 @@ extension CodeJoinVC {
         }
     }
     
+    private func okTracking() {
+        Analytics.logEvent(Tracking.Select.clickOK, parameters: nil)
+    }
+    
     // MARK: - @objc Function
     
     @objc
@@ -121,8 +127,8 @@ extension CodeJoinVC {
     }
 
     @objc func touchOkayButton() {
+        okTracking()
         codeJoinCheckFetchWithAPI()
-        
     }
 }
 

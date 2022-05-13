@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */; };
 		2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */; };
+		2B12728C28167766002DA1DA /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12728B28167766002DA1DA /* Tracking.swift */; };
 		2B13FB23279899C6004CCE46 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B13FB22279899C6004CCE46 /* UIScreen+.swift */; };
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
@@ -245,6 +246,7 @@
 /* Begin PBXFileReference section */
 		2B014FAE27AAA90E004B4559 /* FeedFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFooterView.swift; sourceTree = "<group>"; };
 		2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
+		2B12728B28167766002DA1DA /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceNotice.swift; sourceTree = "<group>"; };
 		2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeActiveCVC.swift; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 				F82F57FE27928588003E4174 /* URL.swift */,
 				F82F580B27929F74003E4174 /* Header.swift */,
+				2B12728B28167766002DA1DA /* Tracking.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1451,9 +1454,10 @@
 			};
 			buildConfigurationList = F8096EFB2784107D00B71D38 /* Build configuration list for PBXProject "Spark-iOS" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				ko,
 				en,
 				Base,
 			);
@@ -1672,6 +1676,7 @@
 				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
 				2BD71BF427E0E53500771DCB /* HabitRoomGuideCVC.swift in Sources */,
 				EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */,
+				2B12728C28167766002DA1DA /* Tracking.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
@@ -1922,13 +1927,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
-				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1940,7 +1945,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1960,13 +1965,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Spark;
-				INFOPLIST_KEY_NSCameraUsageDescription = "사진을 선택하여 첨부할 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 촬영하여 첨부할 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1978,7 +1983,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1993,7 +1998,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SparkNotificationService/Info.plist;
@@ -2005,7 +2010,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2020,7 +2025,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SparkNotificationService/Info.plist;
@@ -2032,7 +2037,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
