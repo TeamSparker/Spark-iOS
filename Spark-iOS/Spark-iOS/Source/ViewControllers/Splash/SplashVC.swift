@@ -50,8 +50,12 @@ class SplashVC: UIViewController {
         setUI()
         setLayout()
         
-        if self.checkUpdateAvailable() {
-            self.presentToForceUpdateDialougeVC()
+        DispatchQueue.global().async {
+            if self.checkUpdateAvailable() {
+                DispatchQueue.main.async {
+                    self.presentToForceUpdateDialougeVC()
+                }
+            }
         }
     }
     
