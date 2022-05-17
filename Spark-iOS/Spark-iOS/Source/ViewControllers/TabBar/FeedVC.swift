@@ -54,7 +54,7 @@ class FeedVC: UIViewController {
         setNotification()
         initRefreshControl()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -62,32 +62,30 @@ class FeedVC: UIViewController {
         setFloatingButton()
         
         navigationController?.isNavigationBarHidden = true
-
+        
         setLoading()
         
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedInitID) {
-                self.feeds = self.newFeeds
-                if self.feeds.count >= self.feedCountSize {
-                    self.isFirstScroll = false
-                }
-                
-                self.dateList.removeAll()
-                self.dayList.removeAll()
-                
-                self.firstList.removeAll()
-                self.secondList.removeAll()
-                self.thirdList.removeAll()
-                self.fourthList.removeAll()
-                self.fifthList.removeAll()
-                self.sixthList.removeAll()
-                self.seventhList.removeAll()
-                
-                self.setData(datalist: self.newFeeds)
-                if !self.feeds.isEmpty {
-                    self.collectionView.reloadData()
-                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-                }
+        getFeedListFetchWithAPI(lastID: self.feedInitID) {
+            self.feeds = self.newFeeds
+            if self.feeds.count >= self.feedCountSize {
+                self.isFirstScroll = false
+            }
+            
+            self.dateList.removeAll()
+            self.dayList.removeAll()
+            
+            self.firstList.removeAll()
+            self.secondList.removeAll()
+            self.thirdList.removeAll()
+            self.fourthList.removeAll()
+            self.fifthList.removeAll()
+            self.sixthList.removeAll()
+            self.seventhList.removeAll()
+            
+            self.setData(datalist: self.newFeeds)
+            if !self.feeds.isEmpty {
+                self.collectionView.reloadData()
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
             }
         }
     }
@@ -237,30 +235,28 @@ class FeedVC: UIViewController {
     
     @objc
     private func refreshCollectionView() {
-        DispatchQueue.main.async {
-            self.getFeedListFetchWithAPI(lastID: self.feedInitID) {
-                self.feeds = self.newFeeds
-                if self.feeds.count >= self.feedCountSize {
-                    self.isFirstScroll = false
-                }
-                
-                self.dateList.removeAll()
-                self.dayList.removeAll()
-                
-                self.firstList.removeAll()
-                self.secondList.removeAll()
-                self.thirdList.removeAll()
-                self.fourthList.removeAll()
-                self.fifthList.removeAll()
-                self.sixthList.removeAll()
-                self.seventhList.removeAll()
-                
-                self.setData(datalist: self.newFeeds)
-                if !self.feeds.isEmpty {
-                    self.collectionView.reloadData()
-                }
-                self.refreshControl.endRefreshing()
+        getFeedListFetchWithAPI(lastID: self.feedInitID) {
+            self.feeds = self.newFeeds
+            if self.feeds.count >= self.feedCountSize {
+                self.isFirstScroll = false
             }
+            
+            self.dateList.removeAll()
+            self.dayList.removeAll()
+            
+            self.firstList.removeAll()
+            self.secondList.removeAll()
+            self.thirdList.removeAll()
+            self.fourthList.removeAll()
+            self.fifthList.removeAll()
+            self.sixthList.removeAll()
+            self.seventhList.removeAll()
+            
+            self.setData(datalist: self.newFeeds)
+            if !self.feeds.isEmpty {
+                self.collectionView.reloadData()
+            }
+            self.refreshControl.endRefreshing()
         }
     }
     
