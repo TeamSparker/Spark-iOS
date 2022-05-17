@@ -65,7 +65,8 @@ extension AuthService: TargetType {
             return .uploadMultipart(multiPartData)
         case .login(let socialID, let fcmToken):
             return .requestParameters(parameters: ["socialId": socialID,
-                                                   "fcmToken": fcmToken],
+                                                   "fcmToken": fcmToken,
+                                                   "os": "ios"],
                                       encoding: URLEncoding.queryString)
         case .signout:
             return .requestPlain
