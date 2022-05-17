@@ -63,14 +63,19 @@ class HomeVC: UIViewController {
             self.newNoticeFetchWithAPI {
                 self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
                     self.habitRooms = self.newHabitRooms
+                    self.mainCollectionView.reloadData()
+                    
                     if self.habitRooms.count != 0 {
-                        self.mainCollectionView.reloadData()
+                        self.updateHiddenCollectionView()
                         self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-                        if self.isNewNotice {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                        } else {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
-                        }
+                    } else {
+                        self.setEmptyView()
+                    }
+                    
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                     }
                 }
             }
@@ -257,6 +262,12 @@ extension HomeVC {
                     self.habitRooms = self.newHabitRooms
                     self.mainCollectionView.reloadData()
                     
+                    if self.habitRooms.count != 0 {
+                        self.updateHiddenCollectionView()
+                    } else {
+                        self.setEmptyView()
+                    }
+                    
                     if self.isNewNotice {
                         self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
                     } else {
@@ -301,15 +312,19 @@ extension HomeVC {
             self.newNoticeFetchWithAPI {
                 self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
                     self.habitRooms = self.newHabitRooms
+                    self.mainCollectionView.reloadData()
+                    
                     if self.habitRooms.count != 0 {
-                        self.mainCollectionView.reloadData()
+                        self.updateHiddenCollectionView()
                         self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                        
-                        if self.isNewNotice {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                        } else {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
-                        }
+                    } else {
+                        self.setEmptyView()
+                    }
+                    
+                    if self.isNewNotice {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                    } else {
+                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                     }
                 }
             }
@@ -470,11 +485,6 @@ extension HomeVC {
                 
                 if let habitRoom = data as? HabitRoom {
                     self.newHabitRooms = habitRoom.rooms
-                    if self.newHabitRooms.count == 0, self.habitRooms.count == 0 {
-                        self.setEmptyView()
-                    } else {
-                        self.updateHiddenCollectionView()
-                    }
                 }
                 
                 completion()
