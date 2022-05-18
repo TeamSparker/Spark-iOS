@@ -436,24 +436,17 @@ extension HabitRoomVC {
     
     @objc
     private func updateHabitRoom() {
-        DispatchQueue.main.async {
-            // 로딩
-            self.setLoading()
-        }
-        DispatchQueue.main.async {
-            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                self.setHabitRoomGuide()
-            }
+        setLoading()
+        fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            self.setHabitRoomGuide()
         }
     }
     
     @objc
     private func updateWithRefreshControl() {
-        DispatchQueue.main.async {
-            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
-                self.refreshControl.endRefreshing()
-            }
+        fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+            self.refreshControl.endRefreshing()
         }
     }
 }
