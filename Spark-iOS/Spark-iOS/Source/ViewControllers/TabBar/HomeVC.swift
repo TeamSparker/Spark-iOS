@@ -59,19 +59,22 @@ class HomeVC: UIViewController {
         setFloatingButton()
         setLoading()
         
-        DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
-                    self.habitRooms = self.newHabitRooms
-                    if self.habitRooms.count != 0 {
-                        self.mainCollectionView.reloadData()
-                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
-                        if self.isNewNotice {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                        } else {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
-                        }
-                    }
+        self.newNoticeFetchWithAPI {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                self.habitRooms = self.newHabitRooms
+                self.mainCollectionView.reloadData()
+                
+                if self.habitRooms.count != 0 {
+                    self.updateHiddenCollectionView()
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
+                } else {
+                    self.setEmptyView()
+                }
+                
+                if self.isNewNotice {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                } else {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                 }
             }
         }
@@ -240,7 +243,7 @@ extension HomeVC {
         
         navigationController?.pushViewController(nextVC, animated: true)
     }
-
+    
     private func pushToNoticeVC() {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.notice, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.notice) as? NoticeVC else { return }
         
@@ -251,20 +254,24 @@ extension HomeVC {
     
     @objc
     private func refreshCollectionView() {
-        DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
-                    self.habitRooms = self.newHabitRooms
-                    self.mainCollectionView.reloadData()
-                    
-                    if self.isNewNotice {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                    } else {
-                        self.customNavigationBar.buttonsImage("icProfile", "icNotice")
-                    }
-                    
-                    self.refreshControl.endRefreshing()
+        newNoticeFetchWithAPI {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                self.habitRooms = self.newHabitRooms
+                self.mainCollectionView.reloadData()
+                
+                if self.habitRooms.count != 0 {
+                    self.updateHiddenCollectionView()
+                } else {
+                    self.setEmptyView()
                 }
+                
+                if self.isNewNotice {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                } else {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNotice")
+                }
+                
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -277,7 +284,7 @@ extension HomeVC {
             guard let isHost: Bool = notification.userInfo?["isHost"] as? Bool else { return }
             
             let message: String
-        
+            
             if roomName.count > 8 {
                 let index = roomName.index(roomName.startIndex, offsetBy: 8)
                 roomName = roomName[..<index] + "..."
@@ -296,21 +303,22 @@ extension HomeVC {
     private func updateHome() {
         setNavigationBar()
         setLoading()
-        
-        DispatchQueue.main.async {
-            self.newNoticeFetchWithAPI {
-                self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
-                    self.habitRooms = self.newHabitRooms
-                    if self.habitRooms.count != 0 {
-                        self.mainCollectionView.reloadData()
-                        self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                        
-                        if self.isNewNotice {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
-                        } else {
-                            self.customNavigationBar.buttonsImage("icProfile", "icNotice")
-                        }
-                    }
+        newNoticeFetchWithAPI {
+            self.habitRoomFetchWithAPI(lastID: self.habitRoomInitID) {
+                self.habitRooms = self.newHabitRooms
+                self.mainCollectionView.reloadData()
+                
+                if self.habitRooms.count != 0 {
+                    self.updateHiddenCollectionView()
+                    self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+                } else {
+                    self.setEmptyView()
+                }
+                
+                if self.isNewNotice {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNoticeNew")
+                } else {
+                    self.customNavigationBar.buttonsImage("icProfile", "icNotice")
                 }
             }
         }
@@ -348,7 +356,7 @@ extension HomeVC: UICollectionViewDelegate {
         if habitRooms.count != 0 {
             if habitRooms[indexPath.item].isStarted == true {
                 // 습관방
-               
+                
                 guard let roomStatus = RoomStatus(rawValue: habitRooms[indexPath.item].myStatus ?? "NONE") else { return }
                 switch roomStatus {
                 case .none, .rest, .done:
@@ -470,11 +478,6 @@ extension HomeVC {
                 
                 if let habitRoom = data as? HabitRoom {
                     self.newHabitRooms = habitRoom.rooms
-                    if self.newHabitRooms.count == 0, self.habitRooms.count == 0 {
-                        self.setEmptyView()
-                    } else {
-                        self.updateHiddenCollectionView()
-                    }
                 }
                 
                 completion()

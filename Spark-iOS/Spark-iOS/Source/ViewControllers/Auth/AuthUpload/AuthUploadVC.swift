@@ -255,14 +255,9 @@ extension AuthUploadVC {
     // 업로드
     @objc
     func touchUploadButton() {
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
-        
-        DispatchQueue.main.async {
-            self.authUploadWithAPI()
-            self.uploadTracking()
-        }
+        setLoading()
+        authUploadWithAPI()
+        uploadTracking()
     }
     
     // MARK: - Screen Change

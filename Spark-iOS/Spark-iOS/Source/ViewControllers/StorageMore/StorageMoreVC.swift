@@ -55,12 +55,12 @@ class StorageMoreVC: UIViewController {
         setLayout()
         
         DispatchQueue.main.async { [self] in
-            if self.isChangingImageView {
-                self.getMyRoomCertiChangeWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
+            if isChangingImageView {
+                getMyRoomCertiChangeWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
                     storageMoreCV.reloadData()
                 }
             } else {
-                self.getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
+                getMyRoomCertiWithAPI(lastID: myRoomCertificationLastID, size: myRoomCountSize) { [self] in
                     storageMoreCV.reloadData()
                 }
             }
