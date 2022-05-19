@@ -185,6 +185,7 @@
 		F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
+		F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8917E592836A14500F96347 /* UserDefaultsManager.swift */; };
 		F8ABAEFD279615DA00C0F774 /* splash_bg_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */; };
 		F8ABAEFF2796163300C0F774 /* splash_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFE2796163300C0F774 /* splash_logo.json */; };
 		F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */; };
@@ -428,6 +429,7 @@
 		F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellDelegate.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
+		F8917E592836A14500F96347 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_bg_iOS.json; sourceTree = "<group>"; };
 		F8ABAEFE2796163300C0F774 /* splash_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_logo.json; sourceTree = "<group>"; };
 		F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCellDelegate.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,7 @@
 				F82F57FE27928588003E4174 /* URL.swift */,
 				F82F580B27929F74003E4174 /* Header.swift */,
 				2B12728B28167766002DA1DA /* Tracking.swift */,
+				F8917E592836A14500F96347 /* UserDefaultsManager.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1697,6 +1700,7 @@
 				F8B18E0527EFA19E001A1A7D /* NotificationVC.swift in Sources */,
 				F8B18E0B27EFA453001A1A7D /* NotificationTVC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
+				F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
