@@ -105,7 +105,7 @@ class AuthTimerVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(resetTimer(_:)), name: .resetStopWatch, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkBackgroundTimer), name: .sceneWillEnterForeground, object: nil)
     }
     
     private func setButton(_ button: UIButton, title: String, backgroundColor: UIColor, isEnable: Bool) {
@@ -117,8 +117,8 @@ class AuthTimerVC: UIViewController {
     }
     
     private func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneWillEnterForeground), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(Const.UserDefaultsKey.sceneDidEnterBackground), object: nil)
+        NotificationCenter.default.removeObserver(self, name: .sceneWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .sceneDidEnterBackground, object: nil)
     }
     
     private func dismissAuthTimerVC() {
