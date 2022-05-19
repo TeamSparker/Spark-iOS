@@ -136,8 +136,8 @@ extension LoginVC {
                 print(error)
             } else {
                 if let userID = user?.id {
-                    UserDefaults.standard.set(String(userID), forKey: Const.UserDefaultsKey.userID)
-                    UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isAppleLogin)
+                    UserDefaultsManager.userID = String(userID)
+                    UserDefaultsManager.isAppleLogin = false
                     
                     self.loginWithAPI(userID: String("Kakao@\(userID)"))
                 }
@@ -174,8 +174,8 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             let userIdentifier = appleIDCredential.user
             
-            UserDefaults.standard.set(userIdentifier, forKey: Const.UserDefaultsKey.userID)
-            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.isAppleLogin)
+            UserDefaultsManager.userID = userIdentifier
+            UserDefaultsManager.isAppleLogin = true
             
             loginWithAPI(userID: "Apple@\(userIdentifier)")
         default:
@@ -193,7 +193,7 @@ extension LoginVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerP
 
 extension LoginVC {
     private func loginWithAPI(userID: String) {
-        AuthAPI(viewController: self).login(socialID: userID, fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
+        AuthAPI(viewController: self).login(socialID: userID, fcmToken: UserDefaultsManager.fcmToken ?? "") { response in
             switch response {
             case .success(let data):
                 if let data = data as? Login {
@@ -206,7 +206,7 @@ extension LoginVC {
                         self.present(nextVC, animated: true, completion: nil)
                     } else {
                         // 회원 정보를 불러왔습니다.
-                        UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                        UserDefaultsManager.accessToken = data.accesstoken
                         
                         self.presentToMainTBC()
                     }

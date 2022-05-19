@@ -264,10 +264,10 @@ extension HabitRoomVC {
     }
     
     private func setHabitRoomGuide() {
-        let checkedGuide = UserDefaults.standard.object(forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        let checkHabitRoomGuide = UserDefaultsManager.checkHabitRoomGuide
         
-        if checkedGuide == nil {
-            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        if checkHabitRoomGuide == false {
+            UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
                 self.setLifeDiminishDialogue()
