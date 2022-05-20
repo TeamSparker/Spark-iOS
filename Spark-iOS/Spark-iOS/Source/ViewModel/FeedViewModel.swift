@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class FeedViewModel {
     
     static let shared: FeedViewModel = FeedViewModel()
@@ -46,6 +45,7 @@ final class FeedViewModel {
         eighthList.removeAll()
     }
     
+    /// cell 데이터 구성할 리스트 리턴하는 함수 - cellForItemAt
     func setDataList(indexPath: IndexPath) -> Record {
         var dataList: Record
         
@@ -71,6 +71,7 @@ final class FeedViewModel {
         return dataList
     }
     
+    /// 좋아요 상태에 따라 리스트의 isLike 및 likeNum 값 변경해주는 함수 - likeButtonTapped
     func changeLikeState(indexPath: IndexPath, likeState: Bool) {
         var targetList: [Record]
         

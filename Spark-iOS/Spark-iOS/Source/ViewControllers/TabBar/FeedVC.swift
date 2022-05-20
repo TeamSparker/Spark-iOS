@@ -365,7 +365,7 @@ extension FeedVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.feedCVC, for: indexPath) as? FeedCVC else { return UICollectionViewCell() }
         if viewModel.dateList.count != 0 {
             
-            // section별로 보여줄 데이터 넣기
+            // cell 별로 보여줄 데이터 리스트
             let dataList = viewModel.setDataList(indexPath: indexPath)
             
             cell.initCell(title: dataList.roomName, nickName: dataList.nickname, timeRecord: dataList.timerRecord, likeCount: dataList.likeNum, sparkCount: dataList.sparkCount, profileImg: dataList.profileImg, certifyingImg: dataList.certifyingImg, hasTime: true, isLiked: dataList.isLiked, recordId: dataList.recordID, indexPath: indexPath, isMyRecord: dataList.isMyRecord)
