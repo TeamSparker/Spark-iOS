@@ -5,12 +5,11 @@
 //  Created by 양수빈 on 2022/05/19.
 //
 
-import UIKit
+import Foundation
 
 final class FeedViewModel {
     
     static let shared: FeedViewModel = FeedViewModel()
-    // public private(set) - 외부에서는 읽기만 가능하고 내부에서는 수정도 가능한 상태
     public var dateList: [String] = []
     public var dayList: [String] = []
     public var firstList: [Record] = []
