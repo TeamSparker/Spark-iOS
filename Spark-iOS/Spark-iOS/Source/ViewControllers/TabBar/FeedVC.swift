@@ -141,22 +141,13 @@ class FeedVC: UIViewController {
             var sectionCount = 0 // section을 돌기 위한 변수
             
             // 섹션에 들어갈 날짜 리스트 구함
+
             while indexPath < datalist.count {
-                if viewModel.dateList.isEmpty {
-                    viewModel.dateList.append(datalist[indexPath].date)
-                    viewModel.dayList.append(datalist[indexPath].day)
-                    indexPath += 1
-                } else {
-                    let date: String = datalist[indexPath].date
-                    let day: String = datalist[indexPath].day
-                    
-                    if !(viewModel.dateList.contains(date)) {
-                        viewModel.dateList.append(date)
-                        viewModel.dayList.append(day)
-                    }
-                    
-                    indexPath += 1
-                }
+                let date: String = datalist[indexPath].date
+                let day: String = datalist[indexPath].day
+                
+                viewModel.setHeaderDataList(date: date, day: day)
+                indexPath += 1
             }
             
             // section별 리스트 생성
@@ -367,6 +358,8 @@ extension FeedVC: UICollectionViewDataSource {
             
             // cell 별로 보여줄 데이터 리스트
             let dataList = viewModel.setDataList(indexPath: indexPath)
+            
+            print("❓ \(dataList)")
             
             cell.initCell(title: dataList.roomName, nickName: dataList.nickname, timeRecord: dataList.timerRecord, likeCount: dataList.likeNum, sparkCount: dataList.sparkCount, profileImg: dataList.profileImg, certifyingImg: dataList.certifyingImg, hasTime: true, isLiked: dataList.isLiked, recordId: dataList.recordID, indexPath: indexPath, isMyRecord: dataList.isMyRecord)
             cell.buttonDelegate = self

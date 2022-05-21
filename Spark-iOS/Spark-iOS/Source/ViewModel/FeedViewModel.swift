@@ -71,6 +71,18 @@ final class FeedViewModel {
         return dataList
     }
     
+    func setHeaderDataList(date: String, day: String) {
+        if dateList.isEmpty {
+            dateList.append(date)
+            dayList.append(day)
+        } else {
+            if !(dateList.contains(date)) {
+                dateList.append(date)
+                dayList.append(day)
+            }
+        }
+    }
+    
     /// 좋아요 상태에 따라 리스트의 isLike 및 likeNum 값 변경해주는 함수 - likeButtonTapped
     func changeLikeState(indexPath: IndexPath, likeState: Bool) {
         var targetList: [Record]
