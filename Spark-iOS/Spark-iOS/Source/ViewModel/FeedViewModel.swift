@@ -45,8 +45,41 @@ final class FeedViewModel {
         eighthList.removeAll()
     }
     
+    func setDataList(sectionCount: Int, indexInSection: Int, datalist: [Record]) {
+        switch sectionCount {
+        case 0:
+            firstList.append(datalist[indexInSection])
+        case 1:
+            secondList.append(datalist[indexInSection])
+        case 2:
+            thirdList.append(datalist[indexInSection])
+        case 3:
+            fourthList.append(datalist[indexInSection])
+        case 4:
+            fifthList.append(datalist[indexInSection])
+        case 5:
+            sixthList.append(datalist[indexInSection])
+        case 6:
+            seventhList.append(datalist[indexInSection])
+        default:
+            eighthList.append(datalist[indexInSection])
+        }
+    }
+    
+    func setHeaderDataList(date: String, day: String) {
+        if dateList.isEmpty {
+            dateList.append(date)
+            dayList.append(day)
+        } else {
+            if !(dateList.contains(date)) {
+                dateList.append(date)
+                dayList.append(day)
+            }
+        }
+    }
+    
     /// cell 데이터 구성할 리스트 리턴하는 함수 - cellForItemAt
-    func setDataList(indexPath: IndexPath) -> Record {
+    func getDataList(indexPath: IndexPath) -> Record {
         var dataList: Record
         
         switch indexPath.section {
@@ -69,18 +102,6 @@ final class FeedViewModel {
         }
         
         return dataList
-    }
-    
-    func setHeaderDataList(date: String, day: String) {
-        if dateList.isEmpty {
-            dateList.append(date)
-            dayList.append(day)
-        } else {
-            if !(dateList.contains(date)) {
-                dateList.append(date)
-                dayList.append(day)
-            }
-        }
     }
     
     /// 좋아요 상태에 따라 리스트의 isLike 및 likeNum 값 변경해주는 함수 - likeButtonTapped

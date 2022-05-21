@@ -48,6 +48,7 @@ class FeedVC: UIViewController {
         setLoading()
         
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
+            // FIXME: - 고치기
             self.viewModel.feeds = self.viewModel.newFeeds
             if self.viewModel.feeds.count >= self.viewModel.feedCountSize {
                 self.viewModel.isFirstScroll = false
@@ -139,39 +140,18 @@ class FeedVC: UIViewController {
             updateHiddenCollectionView()
             var indexPath = 0
             var sectionCount = 0 // section을 돌기 위한 변수
+            var indexInSection = 0 // section 내부를 돌기 위한 변수
             
             // 섹션에 들어갈 날짜 리스트 구함
-
             while indexPath < datalist.count {
-                let date: String = datalist[indexPath].date
-                let day: String = datalist[indexPath].day
-                
-                viewModel.setHeaderDataList(date: date, day: day)
+                viewModel.setHeaderDataList(date: datalist[indexPath].date, day: datalist[indexPath].day)
                 indexPath += 1
             }
             
             // section별 리스트 생성
-            var indexInSection = 0
             while indexInSection < datalist.count && !datalist.isEmpty && sectionCount < viewModel.dateList.count {
                 if viewModel.dateList[sectionCount] == datalist[indexInSection].date {
-                    switch sectionCount {
-                    case 0:
-                        viewModel.firstList.append(datalist[indexInSection])
-                    case 1:
-                        viewModel.secondList.append(datalist[indexInSection])
-                    case 2:
-                        viewModel.thirdList.append(datalist[indexInSection])
-                    case 3:
-                        viewModel.fourthList.append(datalist[indexInSection])
-                    case 4:
-                        viewModel.fifthList.append(datalist[indexInSection])
-                    case 5:
-                        viewModel.sixthList.append(datalist[indexInSection])
-                    case 6:
-                        viewModel.seventhList.append(datalist[indexInSection])
-                    default:
-                        viewModel.eighthList.append(datalist[indexInSection])
-                    }
+                    viewModel.setDataList(sectionCount: sectionCount, indexInSection: indexInSection, datalist: datalist)
                     indexInSection += 1
                 } else {
                     sectionCount += 1
@@ -202,6 +182,7 @@ class FeedVC: UIViewController {
     @objc
     private func refreshCollectionView() {
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
+            // FIXME: - 여기도 고치기
             self.viewModel.feeds = self.viewModel.newFeeds
             if self.viewModel.feeds.count >= self.viewModel.feedCountSize {
                 self.viewModel.isFirstScroll = false
@@ -264,6 +245,7 @@ extension FeedVC {
                 if let feed = data as? Feed {
                     self.stopLoadingAnimation()
                     // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
+                    // FIXME: - 수정하는건 다 viewmodel로
                     if feed.records.isEmpty {
                         self.viewModel.isLastScroll = true
                     } else {
@@ -312,6 +294,7 @@ extension FeedVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
+            // FIXME: - 고치자
             if viewModel.isInfiniteScroll && !viewModel.isLastScroll {
                 viewModel.isInfiniteScroll = false
                 viewModel.isLastScroll = true
@@ -357,9 +340,7 @@ extension FeedVC: UICollectionViewDataSource {
         if viewModel.dateList.count != 0 {
             
             // cell 별로 보여줄 데이터 리스트
-            let dataList = viewModel.setDataList(indexPath: indexPath)
-            
-            print("❓ \(dataList)")
+            let dataList = viewModel.getDataList(indexPath: indexPath)
             
             cell.initCell(title: dataList.roomName, nickName: dataList.nickname, timeRecord: dataList.timerRecord, likeCount: dataList.likeNum, sparkCount: dataList.sparkCount, profileImg: dataList.profileImg, certifyingImg: dataList.certifyingImg, hasTime: true, isLiked: dataList.isLiked, recordId: dataList.recordID, indexPath: indexPath, isMyRecord: dataList.isMyRecord)
             cell.buttonDelegate = self
