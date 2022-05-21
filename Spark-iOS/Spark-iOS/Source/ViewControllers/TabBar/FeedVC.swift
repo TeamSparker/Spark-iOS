@@ -48,14 +48,10 @@ class FeedVC: UIViewController {
         setLoading()
         
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
-            // FIXME: - 고치기
-            self.viewModel.feeds = self.viewModel.newFeeds
-            if self.viewModel.feeds.count >= self.viewModel.feedCountSize {
-                self.viewModel.isFirstScroll = false
-            }
+            self.viewModel.setFeedsList(isScroll: false)
             self.viewModel.removeAllData()
-            
             self.setData(datalist: self.viewModel.newFeeds)
+            
             if !self.viewModel.feeds.isEmpty {
                 self.collectionView.reloadData()
                 self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
@@ -130,10 +126,7 @@ class FeedVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage), name: .feedReport, object: nil)
     }
     
-    // FIXME: - 불났다
     private func setData(datalist: [Record]) {
-        // viewmodel에서 feeds.isEmpty의 bool 값을 리턴하도록 해서 그 안에서 엠티뷰 세팅 / 컬렉션뷰 보이기 만 조절하도록
-        
         if viewModel.feeds.isEmpty {
             setEmptyView()
         } else {
@@ -182,14 +175,10 @@ class FeedVC: UIViewController {
     @objc
     private func refreshCollectionView() {
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
-            // FIXME: - 여기도 고치기
-            self.viewModel.feeds = self.viewModel.newFeeds
-            if self.viewModel.feeds.count >= self.viewModel.feedCountSize {
-                self.viewModel.isFirstScroll = false
-            }
+            self.viewModel.setFeedsList(isScroll: false)
             self.viewModel.removeAllData()
-            
             self.setData(datalist: self.viewModel.newFeeds)
+            
             if !self.viewModel.feeds.isEmpty {
                 self.collectionView.reloadData()
             }
@@ -245,13 +234,7 @@ extension FeedVC {
                 if let feed = data as? Feed {
                     self.stopLoadingAnimation()
                     // 통신했을때 들어오는 records가 없으면 마지막 스크롤이므로 isLastScroll = true
-                    // FIXME: - 수정하는건 다 viewmodel로
-                    if feed.records.isEmpty {
-                        self.viewModel.isLastScroll = true
-                    } else {
-                        self.viewModel.isLastScroll = false
-                    }
-                    self.viewModel.newFeeds = feed.records
+                    self.viewModel.setNewFeedsList(newList: feed)
                 }
                 completion()
             case .requestErr(let message):
@@ -294,17 +277,13 @@ extension FeedVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
             // isInfinitiScroll이 true이고, isLastScroll이 false일때 스크롤했을 경우만 feed 통신하도록
-            // FIXME: - 고치자
             if viewModel.isInfiniteScroll && !viewModel.isLastScroll {
                 viewModel.isInfiniteScroll = false
                 viewModel.isLastScroll = true
                 
                 let feedLastID = viewModel.feeds.last?.recordID ?? 0
                 getFeedListFetchWithAPI(lastID: feedLastID) {
-                    self.viewModel.feeds.append(contentsOf: self.viewModel.newFeeds)
-                    if self.viewModel.feeds.count >= self.viewModel.feedCountSize {
-                        self.viewModel.isFirstScroll = false
-                    }
+                    self.viewModel.setFeedsList(isScroll: true)
                     self.setData(datalist: self.viewModel.newFeeds)
                     self.collectionView.reloadData()
                     self.viewModel.isInfiniteScroll = true

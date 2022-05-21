@@ -104,6 +104,27 @@ final class FeedViewModel {
         return dataList
     }
     
+    func setFeedsList(isScroll: Bool) {
+        if isScroll {
+            self.feeds.append(contentsOf: self.newFeeds)
+        } else {
+            self.feeds = self.newFeeds
+        }
+        
+        if feeds.count >= feedCountSize {
+            isFirstScroll = false
+        }
+    }
+    
+    func setNewFeedsList(newList: Feed) {
+        if newList.records.isEmpty {
+            self.isLastScroll = true
+        } else {
+            self.isLastScroll = false
+        }
+        newFeeds = newList.records
+    }
+    
     /// 좋아요 상태에 따라 리스트의 isLike 및 likeNum 값 변경해주는 함수 - likeButtonTapped
     func changeLikeState(indexPath: IndexPath, likeState: Bool) {
         var targetList: [Record]
