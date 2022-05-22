@@ -105,7 +105,7 @@ extension WithdrawalVC {
         dialogueVC.dialogueType = .withdrawal
         dialogueVC.clousure = {
             self.withdrawalWithAPI {
-                if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+                if UserDefaultsManager.isAppleLogin {
                     self.unlink()
                 } else {
                     UserApi.shared.unlink { error in
@@ -124,9 +124,9 @@ extension WithdrawalVC {
     }
     
     private func unlink() {
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.userID)
-        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.isAppleLogin)
+        UserDefaultsManager.accessToken = nil
+        UserDefaultsManager.userID = ""
+        UserDefaultsManager.isAppleLogin = false
         
         guard let loginVC = UIStoryboard(name: Const.Storyboard.Name.login, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.login) as? LoginVC else { return }
         loginVC.modalPresentationStyle = .overFullScreen

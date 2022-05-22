@@ -66,7 +66,7 @@ class SplashVC: UIViewController {
             if self.appDelegate?.isLogin == true {
                 self.doorBellWithAPI()
             } else {
-                if UserDefaults.standard.object(forKey: Const.UserDefaultsKey.isOnboarding) != nil {
+                if UserDefaultsManager.isOnboarding != nil {
                     self.presentToLoginVC()
                 } else {
                     self.presentToOnboardingVC()
@@ -169,11 +169,11 @@ extension SplashVC {
 extension SplashVC {
     /// 자동 로그인시 액세스 토큰 갱신목적의 서버통신.
     private func doorBellWithAPI() {
-        let isAppleLogin = UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin)
-        let userID = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? ""
+        let isAppleLogin = UserDefaultsManager.isAppleLogin
+        let userID = UserDefaultsManager.userID ?? ""
         
         let socialID = isAppleLogin ? "Apple@\(userID)" : "Kakao@\(userID)"
-        let fcmToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? ""
+        let fcmToken = UserDefaultsManager.fcmToken ?? ""
         
         AuthAPI(viewController: self).login(socialID: socialID, fcmToken: fcmToken) { response in
             switch response {
@@ -184,7 +184,7 @@ extension SplashVC {
                         self.presentToLoginVC()
                     } else {
                         // 회원 정보를 불러왔습니다.
-                        UserDefaults.standard.set(data.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                        UserDefaultsManager.accessToken = data.accesstoken
                         
                         self.presentToMainTBC()
                     }
