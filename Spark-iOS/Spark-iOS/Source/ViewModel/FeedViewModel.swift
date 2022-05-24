@@ -12,14 +12,14 @@ final class FeedViewModel {
     static let shared: FeedViewModel = FeedViewModel()
     public var dateList: [String] = []
     public var dayList: [String] = []
-    public var firstList: [Record] = []
-    public var secondList: [Record] = []
-    public var thirdList: [Record] = []
-    public var fourthList: [Record] = []
-    public var fifthList: [Record] = []
-    public var sixthList: [Record] = []
-    public var seventhList: [Record] = []
-    public var eighthList: [Record] = []
+    public lazy var firstList: [Record] = []
+    public lazy var secondList: [Record] = []
+    public lazy var thirdList: [Record] = []
+    public lazy var fourthList: [Record] = []
+    public lazy var fifthList: [Record] = []
+    public lazy var sixthList: [Record] = []
+    public lazy var seventhList: [Record] = []
+    public lazy var eighthList: [Record] = []
     
     public var newFeeds: [Record] = []
     public var feeds: [Record] = []
@@ -83,6 +83,7 @@ final class FeedViewModel {
         
         switch indexPath.section {
         case 0:
+            print("✈️ firstList - \(firstList[indexPath.item])")
             dataList = firstList[indexPath.item]
         case 1:
             dataList = secondList[indexPath.item]
@@ -153,6 +154,25 @@ final class FeedViewModel {
         } else {
             targetList[indexPath.item].isLiked = true
             targetList[indexPath.item].likeNum += 1
+        }
+        
+        switch indexPath.section {
+        case 0:
+            firstList = targetList
+        case 1:
+            secondList = targetList
+        case 2:
+            thirdList = targetList
+        case 3:
+            fourthList = targetList
+        case 4:
+            fifthList = targetList
+        case 5:
+            sixthList = targetList
+        case 6:
+            seventhList = targetList
+        default:
+            eighthList = targetList
         }
     }
 }
