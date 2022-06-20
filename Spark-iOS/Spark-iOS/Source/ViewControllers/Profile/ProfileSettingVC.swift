@@ -384,19 +384,19 @@ extension ProfileSettingVC {
 extension ProfileSettingVC {
     private func signupWithAPI(profileImage: UIImage?, nickname: String, completion: @escaping () -> Void) {
         let socialID: String
-        if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
-            socialID = "Apple@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
+        if UserDefaultsManager.isAppleLogin {
+            socialID = "Apple@\(UserDefaultsManager.userID ?? "")"
         } else {
-            socialID = "Kakao@\(UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "")"
+            socialID = "Kakao@\(UserDefaultsManager.userID ?? "")"
         }
         AuthAPI(viewController: self).signup(socialID: socialID,
-                              profileImg: profileImage,
-                              nickname: nickname,
-                              fcmToken: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.fcmToken) ?? "") { response in
+                                             profileImg: profileImage,
+                                             nickname: nickname,
+                                             fcmToken: UserDefaultsManager.fcmToken ?? "") { response in
             switch response {
             case .success(let data):
                 if let signup = data as? Signup {
-                    UserDefaults.standard.set(signup.accesstoken, forKey: Const.UserDefaultsKey.accessToken)
+                    UserDefaultsManager.accessToken = signup.accesstoken
                 }
                 
                 completion()

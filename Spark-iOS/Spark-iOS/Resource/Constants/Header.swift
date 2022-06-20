@@ -17,7 +17,7 @@ extension Const {
         /// "Content-Type": "application/json" 과 access token 을 헤더에 담아서 보내야하는 경우에 사용.
         static func authorizationHeader() -> [String: String] {
             ["Content-Type": "application/json",
-                                              "Authorization": UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""]
+             "Authorization": UserDefaultsManager.accessToken ?? ""]
         }
         
         /// "Content-Type": "multipart/form-data"
@@ -28,7 +28,7 @@ extension Const {
         /// "Content-Type": "multipart/form-data" 과 access token 을 헤더에 담아서 보내야하는 경우에 사용.
         static func multipartAuthorizationHeader() -> [String: String] {
             ["Content-Type": "multipart/form-data",
-                                                       "Authorization": UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken) ?? ""]
+             "Authorization": UserDefaultsManager.accessToken ?? ""]
         }
     }
 }

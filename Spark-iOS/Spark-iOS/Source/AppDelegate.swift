@@ -31,13 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: "d51e83bca123750446afc70ab65225b9")
         
-        let accessToken = UserDefaults.standard.string(forKey: Const.UserDefaultsKey.accessToken)
+        let accessToken = UserDefaultsManager.accessToken
         
         if accessToken != nil {
-            if UserDefaults.standard.bool(forKey: Const.UserDefaultsKey.isAppleLogin) {
+            if UserDefaultsManager.isAppleLogin {
                 // 애플 로그인으로 연동되어 있을 때, -> 애플 ID와의 연동상태 확인 로직
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: Const.UserDefaultsKey.userID) ?? "") { credentialState, _ in
+                appleIDProvider.getCredentialState(forUserID: UserDefaultsManager.userID ?? "") { credentialState, _ in
                     switch credentialState {
                     case .authorized:
                         print("해당 ID는 연동되어있습니다.")
@@ -170,6 +170,6 @@ extension AppDelegate: MessagingDelegate {
     /// 현재 등록 토큰 가져오기.
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
-        UserDefaults.standard.set(fcmToken, forKey: Const.UserDefaultsKey.fcmToken)
+        UserDefaultsManager.fcmToken = fcmToken
     }
 }
