@@ -27,7 +27,7 @@ final class FeedViewModel {
     func removeAllData() {
         dateList.removeAll()
         dayList.removeAll()
-        for i in 0...7 {
+        for i in 0...contentList.count-1 {
             contentList[i].removeAll()
         }
     }
@@ -50,17 +50,21 @@ final class FeedViewModel {
     
     /// cell 데이터 구성할 리스트 리턴하는 함수 - cellForItemAt
     func getDataList(indexPath: IndexPath) -> Record {
-        var dataList: Record
-        dataList = contentList[indexPath.section][indexPath.item]
-        return dataList
+        return contentList[indexPath.section][indexPath.item]
     }
     
-    func setFeedsList(isScroll: Bool) {
-        if isScroll {
-            self.feeds.append(contentsOf: self.newFeeds)
-        } else {
-            self.feeds = self.newFeeds
+    /// scroll 후 받아온 데이터 append
+    func appendFeedsList() {
+        self.feeds.append(contentsOf: self.newFeeds)
+        
+        if feeds.count >= feedCountSize {
+            isFirstScroll = false
         }
+    }
+    
+    /// 최초 서버 통신 등 이전의 데이터가 없는 경우 데이터
+    func setFeedsList() {
+        self.feeds = self.newFeeds
         
         if feeds.count >= feedCountSize {
             isFirstScroll = false

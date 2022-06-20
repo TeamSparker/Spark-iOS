@@ -48,7 +48,7 @@ class FeedVC: UIViewController {
         setLoading()
         
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
-            self.viewModel.setFeedsList(isScroll: false)
+            self.viewModel.setFeedsList()
             self.viewModel.removeAllData()
             self.setData(datalist: self.viewModel.newFeeds)
             
@@ -175,7 +175,8 @@ class FeedVC: UIViewController {
     @objc
     private func refreshCollectionView() {
         getFeedListFetchWithAPI(lastID: self.viewModel.feedInitID) {
-            self.viewModel.setFeedsList(isScroll: false)
+//            self.viewModel.setFeedsList(isScroll: false)
+            self.viewModel.setFeedsList()
             self.viewModel.removeAllData()
             self.setData(datalist: self.viewModel.newFeeds)
             
@@ -283,7 +284,7 @@ extension FeedVC: UICollectionViewDelegate {
                 
                 let feedLastID = viewModel.feeds.last?.recordID ?? 0
                 getFeedListFetchWithAPI(lastID: feedLastID) {
-                    self.viewModel.setFeedsList(isScroll: true)
+                    self.viewModel.appendFeedsList()
                     self.setData(datalist: self.viewModel.newFeeds)
                     self.collectionView.reloadData()
                     self.viewModel.isInfiniteScroll = true
