@@ -59,6 +59,7 @@
 		2BD71BF027E0A59B00771DCB /* HabitRoomGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD71BEF27E0A59B00771DCB /* HabitRoomGuideVC.swift */; };
 		2BD71BF227E0A5CD00771DCB /* HabitRoomGuide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD71BF127E0A5CD00771DCB /* HabitRoomGuide.storyboard */; };
 		2BD71BF427E0E53500771DCB /* HabitRoomGuideCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD71BF327E0E53500771DCB /* HabitRoomGuideCVC.swift */; };
+		2BDB480A283680DD00E41F5B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB4809283680DD00E41F5B /* FeedViewModel.swift */; };
 		2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D80727930A06007A544D /* AuthTimerVC.swift */; };
 		2BE5D80C27930A35007A544D /* AuthTimer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5D80B27930A35007A544D /* AuthTimer.storyboard */; };
 		2BE5D80E2793203C007A544D /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5D80D2793203C007A544D /* Stopwatch.swift */; };
@@ -161,7 +162,6 @@
 		F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */; };
 		F828181E2813169200D3E26C /* SingleResponseDialogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */; };
 		F8281822281316BA00D3E26C /* SingleResponseDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */; };
-		F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */; };
 		F82B2E0E278ED01F00219628 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82B2E0D278ED01F00219628 /* Splash.storyboard */; };
 		F82B2E12278F54CD00219628 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82B2E11278F54CD00219628 /* SplashVC.swift */; };
 		F82F57FB27928437003E4174 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82F57FA27928437003E4174 /* NetworkResult.swift */; };
@@ -185,6 +185,7 @@
 		F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
+		F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8917E592836A14500F96347 /* UserDefaultsManager.swift */; };
 		F8ABAEFD279615DA00C0F774 /* splash_bg_iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */; };
 		F8ABAEFF2796163300C0F774 /* splash_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = F8ABAEFE2796163300C0F774 /* splash_logo.json */; };
 		F8B18E0327EF9903001A1A7D /* WithdrawalCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */; };
@@ -295,6 +296,7 @@
 		2BD71BEF27E0A59B00771DCB /* HabitRoomGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomGuideVC.swift; sourceTree = "<group>"; };
 		2BD71BF127E0A5CD00771DCB /* HabitRoomGuide.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitRoomGuide.storyboard; sourceTree = "<group>"; };
 		2BD71BF327E0E53500771DCB /* HabitRoomGuideCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRoomGuideCVC.swift; sourceTree = "<group>"; };
+		2BDB4809283680DD00E41F5B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		2BE5D80727930A06007A544D /* AuthTimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTimerVC.swift; sourceTree = "<group>"; };
 		2BE5D80B27930A35007A544D /* AuthTimer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthTimer.storyboard; sourceTree = "<group>"; };
 		2BE5D80D2793203C007A544D /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
@@ -402,7 +404,6 @@
 		F8250CFD27D4A55C0073FFCA /* ProfileImageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageDelegate.swift; sourceTree = "<group>"; };
 		F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SingleResponseDialogue.storyboard; sourceTree = "<group>"; };
 		F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleResponseDialogueVC.swift; sourceTree = "<group>"; };
-		F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		F82B2E0D278ED01F00219628 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		F82B2E11278F54CD00219628 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		F82F57FA27928437003E4174 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 		F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellDelegate.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
+		F8917E592836A14500F96347 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F8ABAEFC279615DA00C0F774 /* splash_bg_iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_bg_iOS.json; sourceTree = "<group>"; };
 		F8ABAEFE2796163300C0F774 /* splash_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_logo.json; sourceTree = "<group>"; };
 		F8B18E0227EF9903001A1A7D /* WithdrawalCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCellDelegate.swift; sourceTree = "<group>"; };
@@ -636,6 +638,14 @@
 				2BC17276278F765C00BA3029 /* WaitingFriendCVC.swift */,
 			);
 			path = Waiting;
+			sourceTree = "<group>";
+		};
+		2BDB4808283680C500E41F5B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BDB4809283680DD00E41F5B /* FeedViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2BE5D80327930743007A544D /* Auth */ = {
@@ -1006,6 +1016,7 @@
 				F8096F1F27841DC600B71D38 /* Protocols */,
 				F8096F1E27841DC100B71D38 /* ViewControllers */,
 				F8096F1D27841DB600B71D38 /* Views */,
+				2BDB4808283680C500E41F5B /* ViewModel */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1019,10 +1030,10 @@
 				F8096F3127841FE100B71D38 /* ViewController.swift */,
 				F8096F432784221900B71D38 /* Cell.swift */,
 				F8096F452784247100B71D38 /* Notification.swift */,
-				F82B2E0A278EBC4400219628 /* UserDefaultsKey.swift */,
 				F82F57FE27928588003E4174 /* URL.swift */,
 				F82F580B27929F74003E4174 /* Header.swift */,
 				2B12728B28167766002DA1DA /* Tracking.swift */,
+				F8917E592836A14500F96347 /* UserDefaultsManager.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1621,7 +1632,6 @@
 				F8FAA9722790344D00C4190F /* HomeHabitCVC.swift in Sources */,
 				2B9852072790984C00CE40A7 /* UIViewController+.swift in Sources */,
 				2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */,
-				F82B2E0B278EBC4400219628 /* UserDefaultsKey.swift in Sources */,
 				2B50C1A227D7752C004BED9C /* NoticeActiveCVC.swift in Sources */,
 				2BBED13327956D170052CA5C /* FeedService.swift in Sources */,
 				EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */,
@@ -1647,6 +1657,7 @@
 				2BE907DF27D9EE7D00B36002 /* NoticeAPI.swift in Sources */,
 				F80A3E55278C1C1F00728E07 /* StorageVC.swift in Sources */,
 				F82F580C27929F74003E4174 /* Header.swift in Sources */,
+				2BDB480A283680DD00E41F5B /* FeedViewModel.swift in Sources */,
 				EBA2D6D4279AB50D0022DFD6 /* ViewForRender.swift in Sources */,
 				F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
@@ -1697,6 +1708,7 @@
 				F8B18E0527EFA19E001A1A7D /* NotificationVC.swift in Sources */,
 				F8B18E0B27EFA453001A1A7D /* NotificationTVC.swift in Sources */,
 				F80A3E57278C1C2700728E07 /* FeedVC.swift in Sources */,
+				F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */,
 				EB9C50842792A61D00588155 /* HabitAuthVC.swift in Sources */,
 				2BC17277278F765C00BA3029 /* WaitingFriendCVC.swift in Sources */,
 				2B9851FD278FCBF400CE40A7 /* UILabel+.swift in Sources */,
@@ -1945,7 +1957,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1983,7 +1995,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

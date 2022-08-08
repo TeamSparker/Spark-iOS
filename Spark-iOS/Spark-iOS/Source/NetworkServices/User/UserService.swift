@@ -43,7 +43,7 @@ extension UserService: TargetType {
             let nickname = nickname.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(nickname), name: "nickname"))
             if let profileImage = profileImage {
-                let profileImageData = MultipartFormData(provider: .data(profileImage.jpegData(compressionQuality: 1.0) ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
+                let profileImageData = MultipartFormData(provider: .data(profileImage.jpegData(compressionQuality: 0.5) ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
                 multiPartData.append(profileImageData)
             }
             

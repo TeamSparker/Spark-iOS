@@ -95,14 +95,9 @@ class WaitingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
-            self.setLoading()
-        }
-        
-        DispatchQueue.main.async {
-            self.getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
-        }
+    
+        setLoading()
+        getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         setTabBar()
         setFloatingButton()
     }

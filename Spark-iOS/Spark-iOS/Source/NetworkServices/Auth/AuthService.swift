@@ -58,14 +58,15 @@ extension AuthService: TargetType {
             let fcmTokenData = fcmToken.data(using: .utf8) ?? Data()
             multiPartData.append(MultipartFormData(provider: .data(fcmTokenData), name: "fcmToken"))
             if let profileImg = profileImg {
-                let profileImgData = MultipartFormData(provider: .data(profileImg.jpegData(compressionQuality: 1.0) ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
+                let profileImgData = MultipartFormData(provider: .data(profileImg.jpegData(compressionQuality: 0.5) ?? Data()), name: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
                 multiPartData.append(profileImgData)
             }
             
             return .uploadMultipart(multiPartData)
         case .login(let socialID, let fcmToken):
             return .requestParameters(parameters: ["socialId": socialID,
-                                                   "fcmToken": fcmToken],
+                                                   "fcmToken": fcmToken,
+                                                   "os": "ios"],
                                       encoding: URLEncoding.queryString)
         case .signout:
             return .requestPlain

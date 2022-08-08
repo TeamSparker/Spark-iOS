@@ -18,4 +18,6 @@ extension Notification.Name {
     static let feedReport = Notification.Name("feedReport")
     static let updateHome = Notification.Name("updateHome")
     static let startHabitRoom = Notification.Name("startHabitRoom")
+    static let sceneWillEnterForeground = Notification.Name("sceneWillEnterForeground")
+    static let sceneDidEnterBackground = Notification.Name("sceneDidEnterBackground")
 }

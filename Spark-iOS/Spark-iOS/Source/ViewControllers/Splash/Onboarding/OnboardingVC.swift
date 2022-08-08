@@ -131,7 +131,7 @@ extension OnboardingVC {
         loginVC.modalPresentationStyle = .fullScreen
         loginVC.modalTransitionStyle = .crossDissolve
         self.present(loginVC, animated: true) {
-            UserDefaults.standard.set(false, forKey: Const.UserDefaultsKey.isOnboarding)
+            UserDefaultsManager.isOnboarding = "false"
         }
     }
 }

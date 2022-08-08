@@ -97,7 +97,7 @@ class StorageVC: UIViewController {
         failRoomList?.removeAll()
         
         DispatchQueue.main.async { [self] in
-            self.setLoading()
+            setLoading()
         }
         
         let group = DispatchGroup.init()

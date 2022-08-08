@@ -206,7 +206,7 @@ extension MypageVC: UITableViewDelegate {
                     loginVC.modalTransitionStyle = .crossDissolve
                     loginVC.modalPresentationStyle = .fullScreen
                     self.present(loginVC, animated: true) {
-                        UserDefaults.standard.removeObject(forKey: Const.UserDefaultsKey.accessToken)
+                        UserDefaultsManager.accessToken = nil
                     }
                 }
             }

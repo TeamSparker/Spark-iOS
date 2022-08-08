@@ -264,10 +264,10 @@ extension HabitRoomVC {
     }
     
     private func setHabitRoomGuide() {
-        let checkedGuide = UserDefaults.standard.object(forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        let checkHabitRoomGuide = UserDefaultsManager.checkHabitRoomGuide
         
-        if checkedGuide == nil {
-            UserDefaults.standard.set(true, forKey: Const.UserDefaultsKey.checkHabitRoomGuide)
+        if checkHabitRoomGuide == false {
+            UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
                 self.setLifeDiminishDialogue()
@@ -365,7 +365,7 @@ extension HabitRoomVC {
     }
     
     private func postNoti() {
-        NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": false])
+        NotificationCenter.default.post(name: .leaveRoom, object: nil, userInfo: ["roomName": "\(roomName ?? "")", "waitingRoom": false, "isHost": false])
     }
     
     private func presentToMoreAlert() {
@@ -436,24 +436,17 @@ extension HabitRoomVC {
     
     @objc
     private func updateHabitRoom() {
-        DispatchQueue.main.async {
-            // 로딩
-            self.setLoading()
-        }
-        DispatchQueue.main.async {
-            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
-                self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-                self.setHabitRoomGuide()
-            }
+        setLoading()
+        fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+            self.mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            self.setHabitRoomGuide()
         }
     }
     
     @objc
     private func updateWithRefreshControl() {
-        DispatchQueue.main.async {
-            self.fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
-                self.refreshControl.endRefreshing()
-            }
+        fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
+            self.refreshControl.endRefreshing()
         }
     }
 }
