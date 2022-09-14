@@ -95,19 +95,19 @@ PODS:
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
   - JJFloatingActionButton (2.5.0)
-  - KakaoSDKAuth (2.9.1):
-    - KakaoSDKCommon (= 2.9.1)
-  - KakaoSDKCommon (2.9.1):
-    - KakaoSDKCommon/Common (= 2.9.1)
-    - KakaoSDKCommon/Network (= 2.9.1)
-  - KakaoSDKCommon/Common (2.9.1)
-  - KakaoSDKCommon/Network (2.9.1):
+  - KakaoSDKAuth (2.11.1):
+    - KakaoSDKCommon (= 2.11.1)
+  - KakaoSDKCommon (2.11.1):
+    - KakaoSDKCommon/Common (= 2.11.1)
+    - KakaoSDKCommon/Network (= 2.11.1)
+  - KakaoSDKCommon/Common (2.11.1)
+  - KakaoSDKCommon/Network (2.11.1):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.9.1)
-  - KakaoSDKUser (2.9.1):
-    - KakaoSDKAuth (= 2.9.1)
   - Kingfisher (7.2.1)
   - lottie-ios (3.3.0)
+    - KakaoSDKCommon/Common (= 2.11.1)
+  - KakaoSDKUser (2.11.1):
+    - KakaoSDKAuth (= 2.11.1)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
