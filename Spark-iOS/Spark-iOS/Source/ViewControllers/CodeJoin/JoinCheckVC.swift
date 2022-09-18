@@ -39,6 +39,12 @@ class JoinCheckVC: UIViewController {
         setUI()
         setAnimation()
         setLayout()
+        setNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObserver()
     }
     
     // MARK: - @IBAction Properties
@@ -90,6 +96,21 @@ extension JoinCheckVC {
         enterButton.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width*48/335)
         }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissToHomeVC), name: .pushNotificationTapped, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func dismissToHomeVC() {
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

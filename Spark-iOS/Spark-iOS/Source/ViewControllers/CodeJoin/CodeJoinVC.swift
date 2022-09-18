@@ -82,6 +82,7 @@ extension CodeJoinVC {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissCodeJoinVC), name: .pushNotificationTapped, object: nil)
     }
     
     private func resetUI() {
@@ -103,6 +104,13 @@ extension CodeJoinVC {
     }
     
     // MARK: - @objc Function
+    
+    @objc
+    private func dismissCodeJoinVC() {
+        self.dismiss(animated: true) {
+            NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
+        }
+    }
     
     @objc
     private func textFieldDidChange(_ notification: Notification) {

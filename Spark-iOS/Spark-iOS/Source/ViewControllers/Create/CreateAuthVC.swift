@@ -38,6 +38,12 @@ class CreateAuthVC: UIViewController {
         setAddTarget()
         setAuthViewState()
         setGesture()
+        setNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObserver()
     }
     
     // MARK: - Methods
@@ -95,6 +101,14 @@ class CreateAuthVC: UIViewController {
         createButton.addTarget(self, action: #selector(touchCreateButton), for: .touchUpInside)
     }
     
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissToHomeVC), name: .pushNotificationTapped, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
+    }
+    
     @objc
     private func touchCreateButton() {
         guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
@@ -141,6 +155,11 @@ class CreateAuthVC: UIViewController {
     @objc
     private func popToCreateRoomVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func dismissToHomeVC() {
+        self.dismiss(animated: true)
     }
 }
 

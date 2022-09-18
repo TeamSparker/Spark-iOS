@@ -90,6 +90,7 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
+        setNotification()
         viewTracking()
     }
     
@@ -100,6 +101,11 @@ class WaitingVC: UIViewController {
         getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         setTabBar()
         setFloatingButton()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObserver()
     }
 }
 
@@ -430,16 +436,30 @@ extension WaitingVC {
         present(alert, animated: true)
     }
     
+    private func setNotification() {
+        if  fromWhereStatus == .makeRoom {
+            NotificationCenter.default.addObserver(self, selector: #selector(dismissWaitingVC), name: .pushNotificationTapped, object: nil)
+        } else if fromWhereStatus == .joinCode {
+            NotificationCenter.default.addObserver(self, selector: #selector(dismissFromJoinCode), name: .pushNotificationTapped, object: nil)
+        }
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
+    }
+    
     // MARK: - Screen Change
     
     private func popToHomeVC() {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc
     private func dismissWaitingVC() {
         presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
+    @objc
     private func dismissFromJoinCode() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
         NotificationCenter.default.post(name: .updateHome, object: nil)
@@ -501,6 +521,7 @@ extension WaitingVC {
                 case .fromHome:
                     self.popToHomeVC()
                 case .makeRoom:
+                    print("방 만들고 왔어용")
                     self.dismissWaitingVC()
                 case .joinCode:
                     // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.
@@ -520,7 +541,7 @@ extension WaitingVC {
     }
     
     private func postStartHabitNotification() {
-        NotificationCenter.default.post(name: .startHabitRoom, object: nil, userInfo: ["roomID": roomId ?? 0])
+        NotificationCenter.default.post(name: .startHabitRoom, object: nil, userInfo: ["roomID": String(roomId ?? 0)])
     }
 }
 

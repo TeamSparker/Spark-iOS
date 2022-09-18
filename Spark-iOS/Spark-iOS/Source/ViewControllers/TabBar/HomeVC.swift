@@ -227,6 +227,7 @@ extension HomeVC {
         NotificationCenter.default.addObserver(self, selector: #selector(setToastMessage(_:)), name: .leaveRoom, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateHome), name: .updateHome, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .startHabitRoom, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterHabitRoomVC(_:)), name: .pushNotificationTapped, object: nil)
     }
     
     private func viewTracking() {
@@ -327,10 +328,21 @@ extension HomeVC {
     @objc
     private func enterHabitRoomVC(_ notification: NSNotification) {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-        guard let roomID: Int = notification.userInfo?["roomID"] as? Int else { return }
-        nextVC.roomID = roomID
         
-        navigationController?.pushViewController(nextVC, animated: true)
+        guard let roomID: String = notification.userInfo?["roomID"] as? String else { return }
+        nextVC.roomID = Int(roomID)
+        if  UIApplication.getMostTopViewController() == self || notification.name == .startHabitRoom {
+            navigationController?.pushViewController(nextVC, animated: true)
+        } else {
+            self.popToHomeVC {
+                self.navigationController?.pushViewController(nextVC, animated: true)
+            }
+        }
+    }
+    
+    private func popToHomeVC(_ completion: () -> Void) {
+        navigationController?.popToRootViewController(animated: true)
+        completion()
     }
 }
 

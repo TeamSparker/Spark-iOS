@@ -100,6 +100,7 @@ extension MainTBC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(setAppearFloatingButtonLayout), name: .appearFloatingButton, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setDisappearFloatingButton), name: .disappearFloatingButton, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showTab(_:)), name: .pushNotificationTapped, object: nil)
     }
     
     private func presentToCodeJoinVC() {
@@ -143,6 +144,16 @@ extension MainTBC {
         } else {
             floatingButton.buttonColor = .sparkDarkPinkred
             floatingButton.buttonImageColor = .sparkWhite
+        }
+    }
+    
+    /// 푸시알림 종류에 따라 탭(feed/home) 이동
+    @objc
+    func showTab(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let feed = userInfo["feed"] as? Bool {
+                selectedIndex = feed ? 0 : 1
+            }
         }
     }
 }

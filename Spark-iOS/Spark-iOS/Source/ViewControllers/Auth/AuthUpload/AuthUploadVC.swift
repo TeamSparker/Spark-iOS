@@ -54,6 +54,12 @@ class AuthUploadVC: UIViewController {
         setLayout()
         setDelegate()
         setAddTarget()
+        setNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
     }
 }
 
@@ -238,6 +244,14 @@ extension AuthUploadVC {
         Analytics.logEvent(Tracking.Select.clickUpload, parameters: nil)
     }
     
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissToHomeVC), name: .pushNotificationTapped, object: nil)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
+    }
+    
     // MARK: - @objc
     
     // 두번째 플로우에서 사진 인증하기 버튼
@@ -281,6 +295,23 @@ extension AuthUploadVC {
         popupVC.modalPresentationStyle = .overFullScreen
         
         self.present(popupVC, animated: true)
+    }
+    
+    @objc
+    private func dismissToHomeVC() {
+//        switch vcType {
+//        case .photoTimer:
+//            self.dismiss(animated: true) {
+//                self.presentingViewController?.navigationController?.popViewController(animated: true)
+//            }
+//        case .photoOnly:
+//            self.dismiss(animated: true)
+//        default:
+//
+//        }
+        self.dismiss(animated: true) {
+            self.presentingViewController?.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc

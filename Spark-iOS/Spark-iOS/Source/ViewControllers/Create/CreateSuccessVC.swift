@@ -33,7 +33,13 @@ class CreateSuccessVC: UIViewController {
         setUI()
         setLayout()
         setAddTarget()
+        setNotification()
         getRoomCodeWithAPI(roomId: self.roomId ?? 0)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObserver()
     }
     
     // MARK: - Custom Methods
@@ -69,6 +75,14 @@ class CreateSuccessVC: UIViewController {
         ticketLottieView.contentMode = .scaleAspectFit
         ticketLottieView.loopMode = .loop
         ticketLottieView.play()
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(touchHomeButton), name: .pushNotificationTapped, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
     }
     
     // MARK: - @objc

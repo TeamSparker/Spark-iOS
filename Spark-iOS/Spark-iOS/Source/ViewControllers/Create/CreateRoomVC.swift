@@ -80,6 +80,7 @@ class CreateRoomVC: UIViewController {
     
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissCreateRoomVC), name: .pushNotificationTapped, object: nil)
     }
     
     private func setAddTarget() {
@@ -88,10 +89,12 @@ class CreateRoomVC: UIViewController {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
     }
     
     // MARK: - Screen Change
 
+    @objc
     private func dismissCreateRoomVC() {
         dismiss(animated: true, completion: nil)
     }

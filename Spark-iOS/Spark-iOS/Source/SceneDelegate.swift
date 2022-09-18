@@ -22,6 +22,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationViewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
+        
+        // 앱 종료 상태에서 푸시알림을 통해 앱에 접속하는 경우
+        if let notification = connectionOptions.notificationResponse {
+            let content = notification.notification.request.content
+            let userInfo = content.userInfo
+            guard let threadID = ThreadID(rawValue: content.threadIdentifier) else { return }
+            var info: [String: Any] = [:]
+            
+            if threadID == .certification {
+                info["feed"] = true
+            } else {
+                info["feed"] = false
+                info["roomID"] = userInfo["roomId"]
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
+            }
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

@@ -7,6 +7,7 @@
 
 import AuthenticationServices
 import UIKit
+import UserNotifications
 
 import Firebase
 import FirebaseMessaging
@@ -131,6 +132,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([.sound, .banner, .list])
     }
     
+    /// background에서 푸시알림 받은 경우 또는 푸시알림 누른 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         // With swizzling disabled you must let Messaging know about the message, for Analytics
@@ -138,6 +140,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         let notificationThreadID = response.notification.request.content.threadIdentifier
         guard let threadID = ThreadID(rawValue: notificationThreadID) else { return }
+        var info: [String: Any] = ["feed": false]
+        
+        if threadID == .certification {
+            info["feed"] = true
+        } else {
+            info["feed"] = false
+            info["roomID"] = userInfo["roomId"]
+        }
+        NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
+        
         switch threadID {
         case .spark:
             Analytics.logEvent(Tracking.Notification.spark, parameters: nil)
