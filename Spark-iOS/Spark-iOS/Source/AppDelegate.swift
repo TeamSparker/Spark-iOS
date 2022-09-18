@@ -142,14 +142,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         guard let threadID = ThreadID(rawValue: notificationThreadID),
               let recordId: String = userInfo["recordId"] as? String,
               let roomId: String = userInfo["roomId"] as? String else { return }
+        guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+        
+        guard let window = UIApplication.shared.windows.first else { return }
+        window.rootViewController = mainTBC
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
         
         if recordId.isEmpty {
-            guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
-            
-            guard let window = UIApplication.shared.windows.first else { return }
-            window.rootViewController = mainTBC
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
-            
             guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
             nextVC.roomID = Int(roomId)
             
