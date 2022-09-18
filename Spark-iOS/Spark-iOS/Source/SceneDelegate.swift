@@ -27,17 +27,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let notification = connectionOptions.notificationResponse {
             let content = notification.notification.request.content
             let userInfo = content.userInfo
-            guard let threadID = ThreadID(rawValue: content.threadIdentifier) else { return }
-            var info: [String: Any] = [:]
+            guard let recordId: String = userInfo["recordId"] as? String,
+                  let roomId: String = userInfo["roomId"] as? String else { return }
             
-            if threadID == .certification {
-                info["feed"] = true
-            } else {
-                info["feed"] = false
-                info["roomID"] = userInfo["roomId"]
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
                 NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
             }
         }

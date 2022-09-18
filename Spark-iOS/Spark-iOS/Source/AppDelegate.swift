@@ -139,16 +139,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
         let notificationThreadID = response.notification.request.content.threadIdentifier
-        guard let threadID = ThreadID(rawValue: notificationThreadID) else { return }
-        var info: [String: Any] = ["feed": false]
+        guard let threadID = ThreadID(rawValue: notificationThreadID),
+              let recordId: String = userInfo["recordId"] as? String,
+              let roomId: String = userInfo["roomId"] as? String else { return }
         
-        if threadID == .certification {
-            info["feed"] = true
+        if recordId.isEmpty {
+            guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+            
+            guard let window = UIApplication.shared.windows.first else { return }
+            window.rootViewController = mainTBC
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            
+            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+            nextVC.roomID = Int(roomId)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                let topVC = UIApplication.getMostTopViewController()
+                topVC?.navigationController?.pushViewController(nextVC, animated: true)
+            }
         } else {
-            info["feed"] = false
-            info["roomID"] = userInfo["roomId"]
+            let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
+            NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
         }
-        NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
         
         switch threadID {
         case .spark:

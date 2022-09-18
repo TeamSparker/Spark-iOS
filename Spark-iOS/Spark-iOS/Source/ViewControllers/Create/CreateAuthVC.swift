@@ -38,12 +38,6 @@ class CreateAuthVC: UIViewController {
         setAddTarget()
         setAuthViewState()
         setGesture()
-        setNotification()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObserver()
     }
     
     // MARK: - Methods
@@ -99,14 +93,6 @@ class CreateAuthVC: UIViewController {
     
     private func setAddTarget() {
         createButton.addTarget(self, action: #selector(touchCreateButton), for: .touchUpInside)
-    }
-    
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dismissToHomeVC), name: .pushNotificationTapped, object: nil)
-    }
-    
-    private func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
     }
     
     @objc

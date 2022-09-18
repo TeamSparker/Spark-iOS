@@ -90,7 +90,6 @@ class WaitingVC: UIViewController {
         setAuthLabel()
         setNavigationBar(title: roomName ?? "")
         setGestureRecognizer()
-        setNotification()
         viewTracking()
     }
     
@@ -101,11 +100,6 @@ class WaitingVC: UIViewController {
         getWaitingRoomWithAPI(roomID: self.roomId ?? 0)
         setTabBar()
         setFloatingButton()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObserver()
     }
 }
 
@@ -434,18 +428,6 @@ extension WaitingVC {
         }))
         
         present(alert, animated: true)
-    }
-    
-    private func setNotification() {
-        if  fromWhereStatus == .makeRoom {
-            NotificationCenter.default.addObserver(self, selector: #selector(dismissWaitingVC), name: .pushNotificationTapped, object: nil)
-        } else if fromWhereStatus == .joinCode {
-            NotificationCenter.default.addObserver(self, selector: #selector(dismissFromJoinCode), name: .pushNotificationTapped, object: nil)
-        }
-    }
-    
-    private func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: .pushNotificationTapped, object: nil)
     }
     
     // MARK: - Screen Change

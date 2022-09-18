@@ -151,8 +151,8 @@ extension MainTBC {
     @objc
     func showTab(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let feed = userInfo["feed"] as? Bool {
-                selectedIndex = feed ? 0 : 1
+            if let recordId = userInfo["recordID"] as? String {
+                selectedIndex = recordId.isEmpty ? 1 : 0
             }
         }
     }
