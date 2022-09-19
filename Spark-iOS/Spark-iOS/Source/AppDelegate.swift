@@ -142,23 +142,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         guard let threadID = ThreadID(rawValue: notificationThreadID),
               let recordId: String = userInfo["recordId"] as? String,
               let roomId: String = userInfo["roomId"] as? String else { return }
-        guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
-        
-        guard let window = UIApplication.shared.windows.first else { return }
-        window.rootViewController = mainTBC
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
-        
-        if recordId.isEmpty {
-            guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
-            nextVC.roomID = Int(roomId)
+
+        let applicationState = UIApplication.shared.applicationState
+        let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
+
+        if applicationState == .active || applicationState == .inactive {
+            guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                let topVC = UIApplication.getMostTopViewController()
-                topVC?.navigationController?.pushViewController(nextVC, animated: true)
+            guard let window = UIApplication.shared.windows.first else { return }
+            window.rootViewController = mainTBC
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            
+            if recordId.isEmpty {
+                guard let habitRoomVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+                habitRoomVC.roomID = Int(roomId)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    let topVC = UIApplication.getMostTopViewController()
+                    topVC?.navigationController?.pushViewController(habitRoomVC, animated: true)
+                }
+            } else {
+                NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
             }
-        } else {
-            let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
-            NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
         }
         
         switch threadID {
