@@ -436,12 +436,10 @@ extension WaitingVC {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc
     private func dismissWaitingVC() {
         presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
     
-    @objc
     private func dismissFromJoinCode() {
         presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
         NotificationCenter.default.post(name: .updateHome, object: nil)
@@ -503,7 +501,6 @@ extension WaitingVC {
                 case .fromHome:
                     self.popToHomeVC()
                 case .makeRoom:
-                    print("방 만들고 왔어용")
                     self.dismissWaitingVC()
                 case .joinCode:
                     // 코드로 참여시에는 createButton 이 히든되어 있어서 아무런 동작이 필요하지 않다.

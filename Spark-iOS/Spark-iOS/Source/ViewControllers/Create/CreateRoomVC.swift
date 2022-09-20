@@ -92,7 +92,6 @@ class CreateRoomVC: UIViewController {
     
     // MARK: - Screen Change
 
-    @objc
     private func dismissCreateRoomVC() {
         dismiss(animated: true, completion: nil)
     }

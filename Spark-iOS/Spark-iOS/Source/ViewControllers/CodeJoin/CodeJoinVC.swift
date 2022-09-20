@@ -103,12 +103,6 @@ extension CodeJoinVC {
     }
     
     // MARK: - @objc Function
-    
-    @objc
-    private func dismissCodeJoinVC() {
-        self.dismiss(animated: true)
-    }
-    
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {

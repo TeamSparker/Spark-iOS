@@ -284,23 +284,6 @@ extension AuthUploadVC {
     }
     
     @objc
-    private func dismissToHomeVC() {
-//        switch vcType {
-//        case .photoTimer:
-//            self.dismiss(animated: true) {
-//                self.presentingViewController?.navigationController?.popViewController(animated: true)
-//            }
-//        case .photoOnly:
-//            self.dismiss(animated: true)
-//        default:
-//
-//        }
-        self.dismiss(animated: true) {
-            self.presentingViewController?.navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    @objc
     private func presentToDialogue() {
         guard let dialogVC = UIStoryboard(name: Const.Storyboard.Name.dialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.dialogue) as? DialogueVC else { return }
         

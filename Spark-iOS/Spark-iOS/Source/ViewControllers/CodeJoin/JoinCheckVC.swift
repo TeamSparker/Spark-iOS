@@ -91,13 +91,6 @@ extension JoinCheckVC {
             make.height.equalTo(self.view.frame.width*48/335)
         }
     }
-    
-    // MARK: - @objc
-    
-    @objc
-    private func dismissToHomeVC() {
-        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
 }
 
 // MARK: Network

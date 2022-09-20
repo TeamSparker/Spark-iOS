@@ -142,11 +142,6 @@ class CreateAuthVC: UIViewController {
     private func popToCreateRoomVC() {
         navigationController?.popViewController(animated: true)
     }
-    
-    @objc
-    private func dismissToHomeVC() {
-        self.dismiss(animated: true)
-    }
 }
 
 // MARK: - Network
