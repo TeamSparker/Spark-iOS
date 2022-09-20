@@ -329,22 +329,13 @@ extension HomeVC {
     private func enterHabitRoomVC(_ notification: NSNotification) {
         guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
         
-        if notification.userInfo?["recordID"] == nil {
-            guard let roomID: String = notification.userInfo?["roomID"] as? String else { return }
+        guard let recordId = notification.userInfo?["recordID"] as? String,
+              let roomID = notification.userInfo?["roomID"] as? String else { return }
+        
+        if recordId.isEmpty {
             nextVC.roomID = Int(roomID)
-            if  UIApplication.getMostTopViewController() == self || notification.name == .startHabitRoom {
-                navigationController?.pushViewController(nextVC, animated: true)
-            } else {
-                self.popToHomeVC {
-                    self.navigationController?.pushViewController(nextVC, animated: true)
-                }
-            }
+            navigationController?.pushViewController(nextVC, animated: true)
         }
-    }
-    
-    private func popToHomeVC(_ completion: () -> Void) {
-        navigationController?.popToRootViewController(animated: true)
-        completion()
     }
 }
 
