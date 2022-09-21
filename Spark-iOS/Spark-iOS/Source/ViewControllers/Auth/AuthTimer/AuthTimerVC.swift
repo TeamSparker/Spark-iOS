@@ -253,13 +253,6 @@ class AuthTimerVC: UIViewController {
             }
         }
     }
-    
-    @objc
-    private func dismissToHomeVC() {
-        self.dismiss(animated: true) {
-            self.presentingViewController?.navigationController?.popViewController(animated: true)
-        }
-    }
 }
 
 // MARK: - Layout

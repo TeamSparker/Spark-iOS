@@ -150,9 +150,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
             
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            let window = windowScene.windows.first
-            window?.rootViewController = mainTBC
-            UIView.transition(with: window ?? UIWindow(), duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            guard let window = windowScene.windows.first  else { return }
+            window.rootViewController = mainTBC
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
             
             if recordId.isEmpty {
                 guard let habitRoomVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
