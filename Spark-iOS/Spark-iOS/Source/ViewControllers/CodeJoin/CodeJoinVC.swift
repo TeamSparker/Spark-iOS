@@ -103,7 +103,6 @@ extension CodeJoinVC {
     }
     
     // MARK: - @objc Function
-    
     @objc
     private func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {

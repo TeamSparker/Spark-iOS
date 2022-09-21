@@ -22,6 +22,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationViewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
+        
+        // 앱 종료 상태에서 푸시알림을 통해 앱에 접속하는 경우
+        if let notification = connectionOptions.notificationResponse {
+            let content = notification.notification.request.content
+            let userInfo = content.userInfo
+            guard let recordId: String = userInfo["recordId"] as? String,
+                  let roomId: String = userInfo["roomId"] as? String else { return }
+            
+            let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
+            }
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
