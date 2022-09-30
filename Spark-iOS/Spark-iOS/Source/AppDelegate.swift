@@ -7,6 +7,7 @@
 
 import AuthenticationServices
 import UIKit
+import UserNotifications
 
 import Firebase
 import FirebaseMessaging
@@ -131,13 +132,41 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([.sound, .banner, .list])
     }
     
+    /// background에서 푸시알림 받은 경우 또는 푸시알림 누른 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
         let notificationThreadID = response.notification.request.content.threadIdentifier
-        guard let threadID = ThreadID(rawValue: notificationThreadID) else { return }
+        guard let threadID = ThreadID(rawValue: notificationThreadID),
+              let recordId: String = userInfo["recordId"] as? String,
+              let roomId: String = userInfo["roomId"] as? String else { return }
+
+        let applicationState = UIApplication.shared.applicationState
+        let info: [String: Any] = ["recordID": recordId, "roomID": roomId]
+
+        if applicationState == .active || applicationState == .inactive {
+            guard let mainTBC = UIStoryboard(name: Const.Storyboard.Name.mainTabBar, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.mainTabBar) as? MainTBC else { return }
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            guard let window = windowScene.windows.first  else { return }
+            window.rootViewController = mainTBC
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            
+            if recordId.isEmpty {
+                guard let habitRoomVC = UIStoryboard(name: Const.Storyboard.Name.habitRoom, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoom) as? HabitRoomVC else { return }
+                habitRoomVC.roomID = Int(roomId)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    let topVC = UIApplication.getMostTopViewController()
+                    topVC?.navigationController?.pushViewController(habitRoomVC, animated: true)
+                }
+            } else {
+                NotificationCenter.default.post(name: .pushNotificationTapped, object: nil, userInfo: info)
+            }
+        }
+        
         switch threadID {
         case .spark:
             Analytics.logEvent(Tracking.Notification.spark, parameters: nil)

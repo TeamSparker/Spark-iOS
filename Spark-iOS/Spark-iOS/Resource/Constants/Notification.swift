@@ -20,4 +20,5 @@ extension Notification.Name {
     static let startHabitRoom = Notification.Name("startHabitRoom")
     static let sceneWillEnterForeground = Notification.Name("sceneWillEnterForeground")
     static let sceneDidEnterBackground = Notification.Name("sceneDidEnterBackground")
+    static let pushNotificationTapped = Notification.Name("pushNotificationTapped")
 }
