@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isLogin = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        KakaoSDK.initSDK(appKey: "d51e83bca123750446afc70ab65225b9")
+        let kakaoNativeAppKey = Bundle.main.object(forInfoDictionaryKey: "KakaoNativeAppKey") as? String ?? ""
+        KakaoSDK.initSDK(appKey: kakaoNativeAppKey)
         
         let accessToken = UserDefaultsManager.accessToken
         
