@@ -317,6 +317,7 @@
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoom.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		9CDB2BC50C4921D4EE5A9701 /* Pods-Spark-iOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.beta.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.beta.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkActionSheet.swift; sourceTree = "<group>"; };
@@ -756,6 +757,7 @@
 			children = (
 				C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */,
 				3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */,
+				9CDB2BC50C4921D4EE5A9701 /* Pods-Spark-iOS.beta.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1955,7 +1957,7 @@
 		};
 		F8096F152784107E00B71D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */;
+			baseConfigurationReference = F8371A2E28E7E1A400868718 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1963,7 +1965,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
@@ -1993,7 +1995,7 @@
 		};
 		F8096F162784107E00B71D38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */;
+			baseConfigurationReference = F8371A2F28E7E1A400868718 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2001,7 +2003,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
@@ -2028,6 +2030,132 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
+		};
+		F8371A3528E7E21700868718 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Beta;
+		};
+		F8371A3628E7E21700868718 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8371A3028E7E1A400868718 /* Beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Spark;
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
+		F8371A3728E7E21700868718 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SparkNotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SparkNotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
 		};
 		F85036D227E2567C00F02751 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2090,6 +2218,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8096F122784107E00B71D38 /* Debug */,
+				F8371A3528E7E21700868718 /* Beta */,
 				F8096F132784107E00B71D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2099,6 +2228,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8096F152784107E00B71D38 /* Debug */,
+				F8371A3628E7E21700868718 /* Beta */,
 				F8096F162784107E00B71D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2108,6 +2238,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F85036D227E2567C00F02751 /* Debug */,
+				F8371A3728E7E21700868718 /* Beta */,
 				F85036D327E2567C00F02751 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
