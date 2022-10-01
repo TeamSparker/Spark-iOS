@@ -9,7 +9,7 @@ import Foundation
 
 extension Const {
     struct URL {
-        static let baseURL = "https://asia-northeast3-we-sopt-spark.cloudfunctions.net/api"
+        static let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String ?? ""
         /// 약관 및 정책
         static let tosURL = "https://jealous-supernova-274.notion.site/433c8d2f5fdd4826a836293e522f1d51"
         /// 오픈소스 라이브러리
