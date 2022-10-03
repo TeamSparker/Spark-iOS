@@ -20,6 +20,8 @@
 		2B3EB43528EB1F31004D644F /* Beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB43128EB1F31004D644F /* Beta.xcconfig */; };
 		2B3EB43828EB2F9A004D644F /* LifeTimeLineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */; };
 		2B3EB43A28EB30D8004D644F /* LifeTimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB43928EB30D8004D644F /* LifeTimeLine.storyboard */; };
+		2B3EB43D28EB3551004D644F /* LifeTimeLineCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */; };
+		2B3EB43F28EB38F8004D644F /* LifeTimeLineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */; };
 		2B50C1A227D7752C004BED9C /* NoticeActiveCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */; };
 		2B50C1A427D77CA9004BED9C /* NoticeServiceCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */; };
 		2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D01527D3B2810060DA06 /* FeedReportVC.swift */; };
@@ -262,6 +264,8 @@
 		2B3EB43128EB1F31004D644F /* Beta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineVC.swift; sourceTree = "<group>"; };
 		2B3EB43928EB30D8004D644F /* LifeTimeLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LifeTimeLine.storyboard; sourceTree = "<group>"; };
+		2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineCVC.swift; sourceTree = "<group>"; };
+		2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineHeaderView.swift; sourceTree = "<group>"; };
 		2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeActiveCVC.swift; sourceTree = "<group>"; };
 		2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeServiceCVC.swift; sourceTree = "<group>"; };
 		2B54D01527D3B2810060DA06 /* FeedReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReportVC.swift; sourceTree = "<group>"; };
@@ -511,6 +515,15 @@
 			isa = PBXGroup;
 			children = (
 				2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */,
+			);
+			path = LifeTimeLine;
+			sourceTree = "<group>";
+		};
+		2B3EB43B28EB352F004D644F /* LifeTimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */,
+				2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */,
 			);
 			path = LifeTimeLine;
 			sourceTree = "<group>";
@@ -1215,6 +1228,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B3EB43B28EB352F004D644F /* LifeTimeLine */,
 				EBD0D09A27DC3A110007E5AF /* Onboarding */,
 				2BAF156127D49D4B00DE4190 /* Notice */,
 				F8F6D6F82797525700725537 /* HabitRoom */,
@@ -1715,6 +1729,7 @@
 				2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */,
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
+				2B3EB43D28EB3551004D644F /* LifeTimeLineCVC.swift in Sources */,
 				2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */,
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
@@ -1729,6 +1744,7 @@
 				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
 				2BD71BF427E0E53500771DCB /* HabitRoomGuideCVC.swift in Sources */,
 				EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */,
+				2B3EB43F28EB38F8004D644F /* LifeTimeLineHeaderView.swift in Sources */,
 				2B12728C28167766002DA1DA /* Tracking.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
