@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class LifeTimeLineVC: UIViewController {
     
     // MARK: - Properties
@@ -14,6 +16,7 @@ class LifeTimeLineVC: UIViewController {
     private let titleLabel = UILabel()
     private let collectionViewFlowlayout = UICollectionViewFlowLayout()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
+    private let tapGestureRecognizer = UITapGestureRecognizer()
     
     // MARK: - Life Cycles
     
@@ -22,7 +25,10 @@ class LifeTimeLineVC: UIViewController {
 
         setUI()
         setLayout()
+        setDelegate()
         setCollectionView()
+        setAddTarget()
+        setGestureRecognizer()
     }
     
     // MARK: - Custom Methods
@@ -46,19 +52,41 @@ class LifeTimeLineVC: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
         collectionView.register(LifeTimeLineCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.lifeTimeLineCVC)
         collectionView.register(LifeTimeLineHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Const.Cell.Identifier.lifeTimeLineHeaderView)
         
         collectionViewFlowlayout.sectionHeadersPinToVisibleBounds = true
     }
+    
+    private func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        tapGestureRecognizer.delegate = self
+    }
+    
+    private func setAddTarget() {
+        tapGestureRecognizer.addTarget(self, action: #selector(dismissToHabitRoom))
+    }
+    
+    private func setGestureRecognizer() {
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    private func dismissToHabitRoom() {
+        self.dismiss(animated: true)
+    }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension LifeTimeLineVC: UICollectionViewDelegate {
     
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension LifeTimeLineVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -68,6 +96,8 @@ extension LifeTimeLineVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension LifeTimeLineVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,5 +120,13 @@ extension LifeTimeLineVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cell.Identifier.lifeTimeLineCVC, for: indexPath) as? LifeTimeLineCVC else { return UICollectionViewCell() }
         // FIXME: - initcell
         return cell
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension LifeTimeLineVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return (touch.view is UICollectionViewCell) || (touch.view is UICollectionReusableView) ? false : true
     }
 }
