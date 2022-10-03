@@ -1957,7 +1957,7 @@
 		};
 		F8096F152784107E00B71D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */;
+			baseConfigurationReference = 2B3EB42F28EB1F31004D644F /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1995,7 +1995,7 @@
 		};
 		F8096F162784107E00B71D38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */;
+			baseConfigurationReference = 2B3EB43028EB1F31004D644F /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2094,7 +2094,7 @@
 		};
 		F8371A3628E7E21700868718 /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CDB2BC50C4921D4EE5A9701 /* Pods-Spark-iOS.beta.xcconfig */;
+			baseConfigurationReference = 2B3EB43128EB1F31004D644F /* Beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
