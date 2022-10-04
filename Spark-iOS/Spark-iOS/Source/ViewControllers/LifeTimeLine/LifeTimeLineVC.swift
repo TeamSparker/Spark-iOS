@@ -43,7 +43,161 @@ class LifeTimeLineVC: UIViewController {
             ],
             "day": "2일 전",
             "isNew": true
-        ]]
+        ],
+        ["title": "생명 충전 완료",
+         "content": "뭐무머머ㅓ머멈",
+         "day": "오늘",
+         "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        ["title": "생명 충전 완료",
+         "content": "뭐무머머ㅓ머멈",
+         "day": "오늘",
+         "isNew": true
+        ],
+        [
+            "title": "생명 1개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490"
+            ],
+            "day": "1일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        ["title": "생명 충전 완료",
+         "content": "뭐무머머ㅓ머멈",
+         "day": "오늘",
+         "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        ["title": "생명 충전 완료",
+         "content": "뭐무머머ㅓ머멈",
+         "day": "오늘",
+         "isNew": true
+        ],
+        [
+            "title": "생명 1개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490"
+            ],
+            "day": "1일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        ["title": "생명 충전 완료",
+         "content": "뭐무머머ㅓ머멈",
+         "day": "오늘",
+         "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ],
+        [
+            "title": "생명 2개 감소💧",
+            "content": "인증하지 않은 스파커가 있었네요. 응원이 더 필요해요!",
+            "profiles": [
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/common%2Fprofile_empty.png?alt=media&token=194cf154-6a1b-4ffe-9e51-6f07b3c45490",
+                "https://firebasestorage.googleapis.com/v0/b/we-sopt-spark.appspot.com/o/users%2F20220315_110435_256363256778.jpeg?alt=media"
+            ],
+            "day": "2일 전",
+            "isNew": true
+        ]
+    ]
     
     // MARK: - Life Cycles
     
@@ -129,6 +283,10 @@ extension LifeTimeLineVC: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: estimatedSize.height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -146,7 +304,7 @@ extension LifeTimeLineVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = UIScreen.main.bounds.width
-        let height = width*60/375
+        let height = width*80/375
         return CGSize(width: width, height: height)
     }
     

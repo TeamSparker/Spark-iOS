@@ -40,8 +40,7 @@ class LifeTimeLineHeaderView: UICollectionReusableView {
         self.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(10)
+            make.center.equalToSuperview()
         }
     }
 }
