@@ -39,6 +39,8 @@ class LifeTimeLineCVC: UICollectionViewCell {
         dayLabel.text = ""
         firstProfileImageView.image = UIImage()
         secondProfileImageView.image = UIImage()
+        firstProfileImageView.isHidden = true
+        secondProfileImageView.isHidden = true
     }
     
     // MARK: - Custom Methods
@@ -58,6 +60,8 @@ class LifeTimeLineCVC: UICollectionViewCell {
                 profileImageList[index].updateImage(profilImg[index] ?? "", type: .small)
                 profileImageList[index].isHidden = false
             }
+        } else {
+            updateDayLayout()
         }
     }
     
@@ -97,17 +101,19 @@ class LifeTimeLineCVC: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
         
-        dayLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(16)
-        }
-        
         divideLine.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
             make.height.equalTo(1)
+        }
+    }
+    
+    private func updateDayLayout() {
+        dayLabel.snp.remakeConstraints { make in
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(16)
         }
     }
     
