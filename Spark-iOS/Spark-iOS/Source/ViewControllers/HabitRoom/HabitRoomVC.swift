@@ -270,25 +270,14 @@ extension HabitRoomVC {
             UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
-                self.setLifeDiminishDialogue()
+                // FIXME: - 생명 감소 다이얼로그
             }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
         } else {
-            setLifeDiminishDialogue()
-        }
-    }
-    
-    private func setLifeDiminishDialogue() {
-        if let lifeCount = habitRoomDetail?.lifeDeductionCount, lifeCount != 0 {
-            guard let lifeVC = UIStoryboard(name: Const.Storyboard.Name.lifeDiminishDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeDiminishDialogue) as? LifeDiminishDialogueVC else { return }
-            lifeVC.diminishedLifeCount = lifeCount
-            lifeVC.modalPresentationStyle = .overFullScreen
-            lifeVC.modalTransitionStyle = .crossDissolve
-            
-            self.present(lifeVC, animated: true, completion: nil)
+            // FIXME: - 생명 감소 다이얼로그
         }
     }
     
