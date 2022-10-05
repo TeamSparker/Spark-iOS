@@ -40,12 +40,14 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var lifeStackView: UIStackView!
     @IBOutlet weak var firstLifeImage: UIImageView!
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var gradationView: UIView!
+    @IBOutlet weak var newTimeLine: UIImageView!
     
     // MARK: - View Life Cycle
     
@@ -154,6 +156,7 @@ extension HabitRoomVC {
         authButton.isEnabled = false
         
         gradationView.setHabitGradient()
+        newTimeLine.image = UIImage(named: "icBadgeNew")
     }
     
     private func setTabBar() {
@@ -218,6 +221,8 @@ extension HabitRoomVC {
                 lifeImgaeList[index]?.image = UIImage(named: "icRoomlifeEmpty")
             }
         }
+        
+        newTimeLine.isHidden = habitRoomDetail.isTimelineNew ? false : true
         
         // 오늘의 인증 버튼 세팅
         if leftDay == 66 {
