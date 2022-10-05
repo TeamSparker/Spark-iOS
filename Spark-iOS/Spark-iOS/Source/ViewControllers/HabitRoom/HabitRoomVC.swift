@@ -20,6 +20,7 @@ class HabitRoomVC: UIViewController {
     
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
+    private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentLifeTimeLineVC))
     
     private lazy var loadingBgView = UIView()
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
@@ -157,6 +158,8 @@ extension HabitRoomVC {
         
         gradationView.setHabitGradient()
         newTimeLine.image = UIImage(named: "icBadgeNew")
+        
+        self.lifeStackView.addGestureRecognizer(tapGesture)
     }
     
     private func setTabBar() {
@@ -453,6 +456,16 @@ extension HabitRoomVC {
         fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc
+    private func presentLifeTimeLineVC() {
+        guard let timelineVC = UIStoryboard(name: Const.Storyboard.Name.lifeTimeLine, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeTimeLine) as? LifeTimeLineVC else { return }
+        
+        timelineVC.modalPresentationStyle = .overFullScreen
+        timelineVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(timelineVC, animated: true, completion: nil)
     }
 }
 
