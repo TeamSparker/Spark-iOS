@@ -29,7 +29,7 @@ public class NoticeAPI {
             case . failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest()
     }
     
     private func judgeActiveFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
@@ -65,7 +65,7 @@ public class NoticeAPI {
             case . failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest()
     }
     
     private func judgeServiceFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
@@ -99,7 +99,7 @@ public class NoticeAPI {
             case .failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest()
     }
     
     func serviceRead(completion: @escaping(NetworkResult<Any>) -> Void) {
@@ -113,7 +113,7 @@ public class NoticeAPI {
             case .failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest()
     }
     
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
