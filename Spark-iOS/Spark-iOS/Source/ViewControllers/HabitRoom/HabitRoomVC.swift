@@ -20,6 +20,7 @@ class HabitRoomVC: UIViewController {
     
     private let picker = UIImagePickerController()
     private var imageContainer = UIImage()
+    private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentLifeTimeLineVC))
     
     private lazy var loadingBgView = UIView()
     private lazy var loadingView = AnimationView(name: Const.Lottie.Name.loading)
@@ -40,12 +41,14 @@ class HabitRoomVC: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var lifeStackView: UIStackView!
     @IBOutlet weak var firstLifeImage: UIImageView!
     @IBOutlet weak var secondLifeImage: UIImageView!
     @IBOutlet weak var thirdLifeImage: UIImageView!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var gradationView: UIView!
+    @IBOutlet weak var newTimeLine: UIImageView!
     
     // MARK: - View Life Cycle
     
@@ -154,6 +157,9 @@ extension HabitRoomVC {
         authButton.isEnabled = false
         
         gradationView.setHabitGradient()
+        newTimeLine.image = UIImage(named: "icBadgeNew")
+        
+        self.lifeStackView.addGestureRecognizer(tapGesture)
     }
     
     private func setTabBar() {
@@ -219,6 +225,8 @@ extension HabitRoomVC {
             }
         }
         
+        newTimeLine.isHidden = habitRoomDetail.isTimelineNew ? false : true
+        
         // 오늘의 인증 버튼 세팅
         if leftDay == 66 {
             authButton.isEnabled = false
@@ -270,25 +278,12 @@ extension HabitRoomVC {
             UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
-                self.setLifeDiminishDialogue()
+                
             }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
-        } else {
-            setLifeDiminishDialogue()
-        }
-    }
-    
-    private func setLifeDiminishDialogue() {
-        if let lifeCount = habitRoomDetail?.lifeDeductionCount, lifeCount != 0 {
-            guard let lifeVC = UIStoryboard(name: Const.Storyboard.Name.lifeDiminishDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeDiminishDialogue) as? LifeDiminishDialogueVC else { return }
-            lifeVC.diminishedLifeCount = lifeCount
-            lifeVC.modalPresentationStyle = .overFullScreen
-            lifeVC.modalTransitionStyle = .crossDissolve
-            
-            self.present(lifeVC, animated: true, completion: nil)
         }
     }
     
@@ -448,6 +443,16 @@ extension HabitRoomVC {
         fetchHabitRoomDetailWithAPI(roomID: self.roomID ?? 0) {
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc
+    private func presentLifeTimeLineVC() {
+        guard let timelineVC = UIStoryboard(name: Const.Storyboard.Name.lifeTimeLine, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeTimeLine) as? LifeTimeLineVC else { return }
+        
+        timelineVC.modalPresentationStyle = .overFullScreen
+        timelineVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(timelineVC, animated: true, completion: nil)
     }
 }
 

@@ -34,6 +34,8 @@ extension Const {
             static let habitRoomGuideCVC = "HabitRoomGuideCVC"
             static let notificationTableHeaderView = "NotificationTableHeaderView"
             static let notificationTVC = "NotificationTVC"
+            static let lifeTimeLineCVC = "LifeTimeLineCVC"
+            static let lifeTimeLineHeaderView = "LifeTimeLineHeaderView"
         }
     }
 }
