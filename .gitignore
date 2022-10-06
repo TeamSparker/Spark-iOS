@@ -119,6 +119,7 @@ Spark-iOS/fastlane/test_output
 Spark-iOS/fastlane/metadata/
 Spark-iOS/fastlane/screenshots/
 
+Spark-iOS/fastlane/key.json
 *.cer
 *.mobileprovision
 
