@@ -21,9 +21,22 @@ platform :ios do
     get_certificates
     get_provisioning_profile
     increment_build_number(xcodeproj: "Spark-iOS.xcodeproj")
-    build_app(workspace: "Spark-iOS.xcworkspace", scheme: "Spark-beta")
+    build_app(
+      workspace: "Spark-iOS.xcworkspace",
+      scheme: "Spark-beta",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: { 
+          "com.TeamSparker.Spark" => "com.TeamSparker.Spark AppStore",
+          "com.TeamSparker.Spark.SparkNotificationService" => "com.TeamSparker.Spark.SparkNotificationService AppStore"
+        }
+      }
+    )
     upload_to_testflight(
-      skip_waiting_for_build_processing: true
+      api_key_path: "fastlane/key.json",
+      skip_waiting_for_build_processing: true,
+      changelog: "- 수출 규정 문서 추가
+- fastlane 에서 테스트 세부사항 작성"
     )
     version = get_version_number
     build = get_build_number 
