@@ -278,14 +278,12 @@ extension HabitRoomVC {
             UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
-                // FIXME: - 생명 감소 다이얼로그
+                
             }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
-        } else {
-            // FIXME: - 생명 감소 다이얼로그
         }
     }
     
