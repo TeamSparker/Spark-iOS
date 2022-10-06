@@ -34,7 +34,8 @@ platform :ios do
     )
     upload_to_testflight(
       api_key_path: "fastlane/key.json",
-      skip_waiting_for_build_processing: true,
+      distribute_external: true,
+      groups: ["SparkBetaTestGroup"],
       changelog: "- 수출 규정 문서 추가
 - fastlane 에서 테스트 세부사항 작성"
     )
