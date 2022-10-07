@@ -94,7 +94,6 @@
 		EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E82278F273200C43DE9 /* FailStorageCVC.xib */; };
 		EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */; };
 		EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E89278F29D300C43DE9 /* CarouselLayout.swift */; };
-		EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */; };
 		EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */; };
 		EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */; };
 		EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */; };
@@ -342,7 +341,6 @@
 		EB625E82278F273200C43DE9 /* FailStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListDataModel.swift; sourceTree = "<group>"; };
 		EB625E89278F29D300C43DE9 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
-		EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreListDataModel.swift; sourceTree = "<group>"; };
 		EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreVC.swift; sourceTree = "<group>"; };
 		EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreStorageCVC.xib; sourceTree = "<group>"; };
@@ -815,7 +813,6 @@
 			isa = PBXGroup;
 			children = (
 				EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */,
-				EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */,
 			);
 			path = StorageList;
 			sourceTree = "<group>";
@@ -1816,7 +1813,6 @@
 				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
-				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				2BAF156027D492C500DE4190 /* NoticeVC.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
 				2B57F37E27969791002A677D /* RoomId.swift in Sources */,
