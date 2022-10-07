@@ -48,6 +48,7 @@ extension Const {
             static let notification = "NotificationVC"
             static let singleResponseDialogue = "SingleResponseDialogueVC"
             static let lifeTimeLine = "LifeTimeLineVC"
+            static let UpgradeFlakeDialogue = "UpgradeFlakeDialogueVC"
         }
     }
 }
