@@ -190,6 +190,7 @@ public class SparkFlake {
         }
     }
     
+    /// 인증 완료 flake.
     public func completeAuthText() -> String {
         switch state {
         case .day65:
