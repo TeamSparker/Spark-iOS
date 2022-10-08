@@ -10,11 +10,11 @@ import UIKit
 public struct UpgradeFlake {
     let flakeImage: UIImage
     let upgradeText: String
-    let levelTest: String
+    let levelText: String
     
-    init(_ flakeImage: UIImage, _ upgradeText: String, _ levelTest: String) {
+    init(_ flakeImage: UIImage, _ upgradeText: String, _ levelText: String) {
         self.flakeImage = flakeImage
         self.upgradeText = upgradeText
-        self.levelTest = levelTest
+        self.levelText = levelText
     }
 }
