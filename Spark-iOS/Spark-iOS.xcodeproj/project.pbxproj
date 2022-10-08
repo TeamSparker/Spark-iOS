@@ -32,6 +32,7 @@
 		2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B57F38327971F7A002A677D /* ProfileSetting.storyboard */; };
 		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E6278E28B2000F927F /* FeedCVC.swift */; };
+		2B916A3D28EFF8600016C7E6 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B916A3C28EFF8600016C7E6 /* TimeLine.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
 		2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */; };
 		2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */; };
@@ -276,6 +277,7 @@
 		2B57F38327971F7A002A677D /* ProfileSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetting.storyboard; sourceTree = "<group>"; };
 		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B69E7E6278E28B2000F927F /* FeedCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCVC.swift; sourceTree = "<group>"; };
+		2B916A3C28EFF8600016C7E6 /* TimeLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLine.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
 				F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */,
+				2B916A3C28EFF8600016C7E6 /* TimeLine.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -1717,6 +1720,7 @@
 				F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				F8E4DFD027D0858500128B1F /* MypageVC.swift in Sources */,
+				2B916A3D28EFF8600016C7E6 /* TimeLine.swift in Sources */,
 				2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */,
 				2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */,
 				F8D4496E27BE25610091F297 /* LeftButtonNavigaitonBar.swift in Sources */,
