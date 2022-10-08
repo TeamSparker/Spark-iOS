@@ -47,7 +47,7 @@ class LifeTimeLineCVC: UICollectionViewCell {
     
     func initCell(title: String,
                   subTitle: String,
-                  profilImg: [String?],
+                  profilImg: [String],
                   day: String) {
         titleLabel.text = title
         subTitleLabel.text = subTitle
@@ -57,7 +57,7 @@ class LifeTimeLineCVC: UICollectionViewCell {
             updateProfileLayout()
             let profileImageList = [firstProfileImageView, secondProfileImageView]
             for index in 0..<profilImg.count {
-                profileImageList[index].updateImage(profilImg[index] ?? "", type: .small)
+                profileImageList[index].updateImage(profilImg[index] , type: .small)
                 profileImageList[index].isHidden = false
             }
         } else {
