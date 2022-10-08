@@ -253,31 +253,31 @@ public class SparkFlake {
         case .day65:
             return UpgradeFlake(UIImage(), "", "")
         case .day62:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake1") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "property1DashSparkFlake2") ?? UIImage(),
                                 """
                                 3일을 달성하면 얻을 수 있어요!
                                 """,
                                 "Level 2")
         case .day58:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake2") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "property1DashSparkFlake3") ?? UIImage(),
                                 """
                                 7일을 달성하면 얻을 수 있어요!
                                 """,
                                 "Level 3")
         case .day32:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake3") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "property1DashSparkFlake4") ?? UIImage(),
                                 """
                                 33일을 달성하면 얻을 수 있어요!
                                 """,
                                 "Level 4")
         case .day6:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake4") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "property1DashSparkFlake5") ?? UIImage(),
                                 """
                                 마지막 7일 남았을 때 얻을 수 있어요!
                                 """,
                                 "Level 5")
         case .dDay:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake5") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "property1DashSparkFlake6") ?? UIImage(),
                                 """
                                 마지막 날에 얻을 수 있어요!
                                 """,
@@ -293,42 +293,42 @@ public class SparkFlake {
     private func afterUpgrade() -> UpgradeFlake {
         switch state {
         case .day65:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake1") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake1") ?? UIImage(),
                                 """
                                 새로운 습관 시작!
                                 첫 번째 불꽃 결정을 얻었어요.
                                 """,
                                 "Level 1")
         case .day62:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake2") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake2") ?? UIImage(),
                                 """
                                 3일 동안 열심히 달렸네요!
                                 두 번째 불꽃 결정을 얻었어요.
                                 """,
                                 "Level 2")
         case .day58:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake3") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake3") ?? UIImage(),
                                 """
                                 7일 동안 열심히 달렸네요!
                                 세 번째 불꽃 결정을 얻었어요.
                                 """,
                                 "Level 3")
         case .day32:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake4") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake4") ?? UIImage(),
                                 """
                                 33일 동안 열심히 달렸네요!
                                 네 번째 불꽃 결정을 얻었어요.
                                 """,
                                 "Level 4")
         case .day6:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake5") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake5") ?? UIImage(),
                                 """
                                 마지막 7일 남았네요!
                                 다섯 번째 불꽃 결정을 얻었어요.
                                 """,
                                 "Level 5")
         case .dDay:
-            return UpgradeFlake(UIImage(named: "sparkFlakeSparkFlake6") ?? UIImage(),
+            return UpgradeFlake(UIImage(named: "sparkFlakeSparkflake6") ?? UIImage(),
                                 """
                                 드디어 마지막 날이네요!
                                 여섯 번째 불꽃 결정을 얻었어요.
