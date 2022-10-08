@@ -449,6 +449,7 @@ extension HabitRoomVC {
     private func presentLifeTimeLineVC() {
         guard let timelineVC = UIStoryboard(name: Const.Storyboard.Name.lifeTimeLine, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.lifeTimeLine) as? LifeTimeLineVC else { return }
         
+        timelineVC.roomID = self.roomID
         timelineVC.modalPresentationStyle = .overFullScreen
         timelineVC.modalTransitionStyle = .crossDissolve
         
