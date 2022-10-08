@@ -48,7 +48,7 @@ platform :ios do
       username: "항상건강해야한다콩이",
       icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
       message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
@@ -79,7 +79,7 @@ platform :ios do
         username: "항상건강해야한다콩이",
         icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
         message: "성공적으로 앱을 등록했습니다!💫",
-        slack_url: "https://hooks.slack.com/services/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",
+        slack_url: "https://hooks.slack.com/services/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",
         payload: {
 	  "Version": version + "(" + build + ")"
         }
@@ -98,7 +98,7 @@ platform :ios do
       icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
       message: "에러 발생!!! 발생!!🚨 : #{exception}",
       success: false,
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
