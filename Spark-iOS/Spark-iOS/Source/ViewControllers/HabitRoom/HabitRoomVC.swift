@@ -278,12 +278,30 @@ extension HabitRoomVC {
             UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
-                
+                self.presentToUpgradeFlakeDialogueVC()
             }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
+        } else {
+            self.presentToUpgradeFlakeDialogueVC()
+        }
+    }
+    
+    private func presentToUpgradeFlakeDialogueVC() {
+        if let leftDay = habitRoomDetail?.leftDay,
+           let isTermNew = habitRoomDetail?.isTermNew {
+            if (leftDay == 62 || leftDay == 58 || leftDay == 32 || leftDay == 6 || leftDay == 0) && isTermNew {
+                guard let upgradeFlakeDialogueVC = UIStoryboard(name: Const.Storyboard.Name.UpgradeFlakeDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.UpgradeFlakeDialogue) as? UpgradeFlakeDialogueVC else { return }
+                
+                upgradeFlakeDialogueVC.leftDay = habitRoomDetail?.leftDay
+                upgradeFlakeDialogueVC.modalPresentationStyle = .overFullScreen
+                upgradeFlakeDialogueVC
+                    .modalTransitionStyle = .crossDissolve
+                
+                present(upgradeFlakeDialogueVC, animated: true)
+            }
         }
     }
     
