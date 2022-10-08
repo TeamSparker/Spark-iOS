@@ -41,7 +41,7 @@ class UpgradeFlakeCVC: UICollectionViewCell {
     }
     
     private func setUI() {
-        upgradeFlakeImageView.contentMode = .scaleAspectFit
+        upgradeFlakeImageView.contentMode = .scaleAspectFill
     }
     
     private func setLayout() {
