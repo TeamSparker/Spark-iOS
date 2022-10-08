@@ -193,6 +193,7 @@
 		F88BA13B28F08D8900F48BD0 /* UpgradeFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA13A28F08D8900F48BD0 /* UpgradeFlake.swift */; };
 		F88BA13E28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA13D28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift */; };
 		F88BA14028F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F88BA13F28F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard */; };
+		F88BA14228F16FA800F48BD0 /* UpgradeFlakeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
 		F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8917E592836A14500F96347 /* UserDefaultsManager.swift */; };
@@ -448,6 +449,7 @@
 		F88BA13A28F08D8900F48BD0 /* UpgradeFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlake.swift; sourceTree = "<group>"; };
 		F88BA13D28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeDialogueVC.swift; sourceTree = "<group>"; };
 		F88BA13F28F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpgradeFlakeDialogue.storyboard; sourceTree = "<group>"; };
+		F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeCVC.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		F8917E592836A14500F96347 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -1450,6 +1452,7 @@
 				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
 				EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */,
 				2BD71BF327E0E53500771DCB /* HabitRoomGuideCVC.swift */,
+				F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -1766,6 +1769,7 @@
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
+				F88BA14228F16FA800F48BD0 /* UpgradeFlakeCVC.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
