@@ -109,7 +109,7 @@ PODS:
     - KakaoSDKCommon/Common (= 2.11.3)
   - KakaoSDKUser (2.11.3):
     - KakaoSDKAuth (= 2.11.3)
-  - Kingfisher (7.3.2)
+  - Kingfisher (7.4.0)
   - lottie-ios (3.4.3)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -198,7 +198,7 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: a64dde90516e18fdfc35b83bbad2677c3675c329
   KakaoSDKCommon: b4235203f67a5b6ee2df75eaf9bbc863c6d92e09
   KakaoSDKUser: 9a42e9b74855ce876b071c841418aa6726534010
-  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
+  Kingfisher: 596b207973051aae5e4c54a1c1cb39837ea10d36
   lottie-ios: 9ae750cdc7820fecbd3c2f0cfc493038208fcdc4
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431

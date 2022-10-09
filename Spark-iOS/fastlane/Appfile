@@ -1,0 +1,8 @@
+app_identifier("com.TeamSparker.Spark") # The bundle identifier of your app
+apple_id("ypsophila97@icloud.com") # Your Apple Developer Portal username
+
+itc_team_id("119044239") # App Store Connect Team ID
+team_id("T8C9SSEX5G") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
