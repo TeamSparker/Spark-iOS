@@ -171,13 +171,13 @@ extension UpgradeFlakeDialogueVC {
             $0.height.equalTo(collectionView.snp.width).multipliedBy(0.9)
         }
         
-        subtitle.snp.makeConstraints {
-            $0.bottom.equalTo(collectionView.snp.bottom).inset(14)
+        levelTitle.snp.makeConstraints {
+            $0.bottom.equalTo(collectionView.snp.bottom).offset(-72)
             $0.centerX.equalToSuperview()
         }
         
-        levelTitle.snp.makeConstraints {
-            $0.bottom.equalTo(subtitle.snp.top).offset(-12)
+        subtitle.snp.makeConstraints {
+            $0.centerY.equalTo(levelTitle.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
         
