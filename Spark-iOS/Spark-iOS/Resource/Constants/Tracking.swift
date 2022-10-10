@@ -33,6 +33,8 @@ struct Tracking {
         static let clickFeed = "click_FEED"
         static let clickShare = "click_SHARE_INSTAGRAM"
         static let clickCard = "click_CARD_my_room"
+        static let clickTimelineWithNew = "click_TIMELINE_NEW_habit_room"
+        static let clickTimeline = "click_TIMELINE_NONE_habit_room"
     }
     
     struct Notification {

@@ -421,6 +421,14 @@ extension HabitRoomVC {
                            ])
     }
     
+    private func timelineTracking() {
+        if newTimeLine.isHidden {
+            Analytics.logEvent(Tracking.Select.clickTimeline, parameters: nil)
+        } else {
+            Analytics.logEvent(Tracking.Select.clickTimelineWithNew, parameters: nil)
+        }
+    }
+    
     // MARK: - Screen Change
     
     private func popToHomeVC() {
@@ -454,6 +462,7 @@ extension HabitRoomVC {
         timelineVC.modalTransitionStyle = .crossDissolve
         
         self.present(timelineVC, animated: true) {
+            self.timelineTracking()
             self.newTimeLine.isHidden = true
         }
     }
