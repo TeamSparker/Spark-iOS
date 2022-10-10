@@ -453,7 +453,9 @@ extension HabitRoomVC {
         timelineVC.modalPresentationStyle = .overFullScreen
         timelineVC.modalTransitionStyle = .crossDissolve
         
-        self.present(timelineVC, animated: true, completion: nil)
+        self.present(timelineVC, animated: true) {
+            self.newTimeLine.isHidden = true
+        }
     }
 }
 
