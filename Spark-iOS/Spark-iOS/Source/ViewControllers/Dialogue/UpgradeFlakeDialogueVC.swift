@@ -176,7 +176,7 @@ extension UpgradeFlakeDialogueVC {
             $0.height.equalTo(backgroundView.snp.width).multipliedBy(1.2)
         }
         
-        backgroundView.addSubviews([levelTitle, subtitle, collectionView, checkButton])
+        backgroundView.addSubviews([collectionView, levelTitle, subtitle, checkButton])
         
         collectionView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
