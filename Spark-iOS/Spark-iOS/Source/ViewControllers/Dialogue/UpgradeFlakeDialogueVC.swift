@@ -22,6 +22,7 @@ class UpgradeFlakeDialogueVC: UIViewController {
         SparkFlake(leftDay: 0)
     ]
     private var sparkUpgradeFlakes: [UpgradeFlake] = []
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     public var leftDay: Int?
     
@@ -43,6 +44,7 @@ class UpgradeFlakeDialogueVC: UIViewController {
         setLayout()
         setDelegate()
         setCollectionView()
+        setImpactFeedbackGenerator()
     }
 }
 
@@ -96,6 +98,11 @@ extension UpgradeFlakeDialogueVC {
         }
     }
     
+    private func setImpactFeedbackGenerator() {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.prepare()
+    }
+    
     // MARK: - @objc Methods
     
     @objc
@@ -142,6 +149,9 @@ extension UpgradeFlakeDialogueVC: UICollectionViewDelegate {
         let index: Int = Int(round(contentOffsetX / (halfOfCollectionViewWidth - halfOfLineSpacing)))
         
         if sparkUpgradeFlakes.count > index && index >= 0 {
+            if levelTitle.text != sparkUpgradeFlakes[index].levelText {
+                impactFeedbackGenerator?.impactOccurred()
+            }
             levelTitle.text = sparkUpgradeFlakes[index].levelText
             subtitle.text = sparkUpgradeFlakes[index].upgradeText
         }
