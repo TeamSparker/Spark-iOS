@@ -63,7 +63,8 @@ final class MoyaLoggerPlugin: PluginType {
     }
     
     func onFail(_ error: MoyaError) {
-        guard error.errorCode != 6 else { return }
+        guard let isExplicitlyCanclled = error.asAFError?.isExplicitlyCancelledError,
+              !isExplicitlyCanclled else { return }
         var log = "------------------- 네트워크 오류"
         log.append("(에러코드: \(error.errorCode)) -------------------\n")
         log.append("3️⃣ \(error.failureReason ?? error.errorDescription ?? "unknown error")\n")
