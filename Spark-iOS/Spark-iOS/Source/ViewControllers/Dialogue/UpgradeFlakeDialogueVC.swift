@@ -42,10 +42,10 @@ class UpgradeFlakeDialogueVC: UIViewController {
         setSparkFlakes()
         setUI()
         addTargets()
-        setLayout()
         setDelegate()
         setCollectionView()
         setImpactFeedbackGenerator()
+        setGradientLayer()
     }
 }
 
@@ -81,6 +81,10 @@ extension UpgradeFlakeDialogueVC {
         leftGradientView.isUserInteractionEnabled = false
         rightGradientView.isUserInteractionEnabled = false
     }
+    
+    private func setGradientLayer() {
+        leftGradientView.setGradient(color1: .init(white: 1, alpha: 1), color2: .init(white: 1, alpha: 0), startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
+        rightGradientView.setGradient(color1: .init(white: 1, alpha: 1), color2: .init(white: 1, alpha: 0), startPoint: CGPoint(x: 1.0, y: 0.5), endPoint: CGPoint(x: 0.0, y: 0.5))
     }
     
     private func addTargets() {
