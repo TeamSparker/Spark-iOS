@@ -52,11 +52,8 @@ class UpgradeFlakeCarouselLayout: UICollectionViewFlowLayout {
         } else {
             index = 5
         }
-
-        let halfOfCollectionViewWidth: CGFloat = collectionView.frame.width / 2
-        let invisuableFlakeSpace: CGFloat = 30.0
         
-        let contentOffset: CGPoint = CGPoint(x: index * (halfOfCollectionViewWidth - invisuableFlakeSpace), y: collectionView.frame.minY)
+        let contentOffset: CGPoint = CGPoint(x: index * 150, y: collectionView.frame.minY)
         
         DispatchQueue.main.async {
             self.collectionView?.setContentOffset(contentOffset, animated: false)
