@@ -7,8 +7,6 @@
 
 import UIKit
 
-import SnapKit
-
 class UpgradeFlakeDialogueVC: UIViewController {
 
     // MARK: - Properties
@@ -149,57 +147,5 @@ extension UpgradeFlakeDialogueVC: UICollectionViewDataSource {
         cell.initCell(sparkUpgradeFlakes[indexPath.item].flakeImage)
         
         return cell
-    }
-}
-
-// MARK: - Layout
-
-extension UpgradeFlakeDialogueVC {
-    private func setLayout() {
-        view.addSubview(backgroundView)
-        
-        backgroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(backgroundView.snp.width).multipliedBy(1.2)
-        }
-        
-        backgroundView.addSubviews([collectionView, levelTitle, subtitle, checkButton, leftGradientView, rightGradientView])
-        
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(collectionView.snp.width).multipliedBy(0.9)
-        }
-        
-        levelTitle.snp.makeConstraints {
-            $0.bottom.equalTo(collectionView.snp.bottom).offset(-72)
-            $0.centerX.equalToSuperview()
-        }
-        
-        subtitle.snp.makeConstraints {
-            $0.centerY.equalTo(levelTitle.snp.bottom).offset(32)
-            $0.centerX.equalToSuperview()
-        }
-        
-        checkButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(28)
-            $0.width.equalTo(123)
-            $0.height.equalTo(48)
-            $0.centerX.equalToSuperview()
-        }
-
-        leftGradientView.snp.makeConstraints {
-            $0.leading.equalTo(collectionView.snp.leading)
-            $0.width.equalTo(80)
-            $0.height.equalTo(120)
-            $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
-        }
-
-        rightGradientView.snp.makeConstraints {
-            $0.trailing.equalTo(collectionView.snp.trailing)
-            $0.width.equalTo(80)
-            $0.height.equalTo(120)
-            $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
-        }
     }
 }
