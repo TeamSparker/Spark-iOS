@@ -124,7 +124,7 @@ extension UpgradeFlakeDialogueVC {
 extension UpgradeFlakeDialogueVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffsetX: CGFloat = scrollView.contentOffset.x
-        let index: Int = Int(round(contentOffsetX / 150))
+        let index: Int = Int(round(contentOffsetX / (120 + scrollView.frame.width / 10)))
         
         if sparkUpgradeFlakes.count > index && index >= 0 {
             if levelTitle.text != sparkUpgradeFlakes[index].levelText {

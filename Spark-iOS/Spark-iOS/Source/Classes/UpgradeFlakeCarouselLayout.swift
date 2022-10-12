@@ -32,7 +32,7 @@ class UpgradeFlakeCarouselLayout: UICollectionViewFlowLayout {
         let insets: CGFloat = (collectionViewSize.width - 120) / 2
         self.sectionInset = UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
         
-        self.minimumLineSpacing = spacing
+        self.minimumLineSpacing = collectionViewSize.width / 10
         self.scrollDirection = .horizontal
         self.collectionView?.isPagingEnabled = false
         
@@ -53,7 +53,7 @@ class UpgradeFlakeCarouselLayout: UICollectionViewFlowLayout {
             index = 5
         }
         
-        let contentOffset: CGPoint = CGPoint(x: index * 150, y: collectionView.frame.minY)
+        let contentOffset: CGPoint = CGPoint(x: index * (120 + collectionViewSize.width / 10), y: collectionView.frame.minY)
         
         DispatchQueue.main.async {
             self.collectionView?.setContentOffset(contentOffset, animated: false)
