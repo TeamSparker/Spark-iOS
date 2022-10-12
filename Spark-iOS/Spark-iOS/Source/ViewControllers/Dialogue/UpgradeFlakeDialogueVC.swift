@@ -56,7 +56,7 @@ class UpgradeFlakeDialogueVC: UIViewController {
 
 extension UpgradeFlakeDialogueVC {
     private func setUI() {
-        view.backgroundColor = .sparkBlack.withAlphaComponent(0.7)
+        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         
         collectionView.backgroundColor = .clear
         
