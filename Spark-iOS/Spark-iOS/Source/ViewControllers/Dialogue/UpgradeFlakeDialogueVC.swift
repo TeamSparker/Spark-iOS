@@ -32,6 +32,10 @@ class UpgradeFlakeDialogueVC: UIViewController {
     private let levelTitle = UILabel()
     private let subtitle = UILabel()
     private let checkButton = UIButton()
+    private let leftGradientView = UIView()
+    private let rightGradientView = UIView()
+    private let leftGradientLayer = CAGradientLayer()
+    private let rightGradientLayer = CAGradientLayer()
     
     // MARK: - View Life Cycle
     
@@ -158,7 +162,7 @@ extension UpgradeFlakeDialogueVC {
             $0.height.equalTo(backgroundView.snp.width).multipliedBy(1.2)
         }
         
-        backgroundView.addSubviews([collectionView, levelTitle, subtitle, checkButton])
+        backgroundView.addSubviews([collectionView, levelTitle, subtitle, checkButton, leftGradientView, rightGradientView])
         
         collectionView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
@@ -179,6 +183,20 @@ extension UpgradeFlakeDialogueVC {
             $0.bottom.equalToSuperview().inset(28)
             $0.leading.trailing.equalToSuperview().inset(106)
             $0.height.equalTo(checkButton.snp.width).multipliedBy(0.4)
+        }
+
+        leftGradientView.snp.makeConstraints {
+            $0.leading.equalTo(collectionView.snp.leading)
+            $0.width.equalTo(100)
+            $0.height.equalTo(120)
+            $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
+        }
+
+        rightGradientView.snp.makeConstraints {
+            $0.trailing.equalTo(collectionView.snp.trailing)
+            $0.width.equalTo(100)
+            $0.height.equalTo(120)
+            $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
         }
     }
 }
