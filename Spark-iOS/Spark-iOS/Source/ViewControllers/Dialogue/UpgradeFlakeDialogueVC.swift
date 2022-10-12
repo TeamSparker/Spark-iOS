@@ -114,13 +114,11 @@ extension UpgradeFlakeDialogueVC {
 // MARK: - UICollectionViewDelegate
 
 extension UpgradeFlakeDialogueVC: UICollectionViewDelegate {
-    // TODO: - paging 되면서 sutitle, levettitle 변경
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let halfOfLineSpacing: CGFloat = 24.0
+        let invisuableFlakeSpace: CGFloat = 30.0
         let halfOfCollectionViewWidth: CGFloat = collectionView.frame.width / 2
         let contentOffsetX: CGFloat = scrollView.contentOffset.x
-        
-        let index: Int = Int(round(contentOffsetX / (halfOfCollectionViewWidth - halfOfLineSpacing)))
+        let index: Int = Int(round(contentOffsetX / (halfOfCollectionViewWidth - invisuableFlakeSpace)))
         
         if sparkUpgradeFlakes.count > index && index >= 0 {
             if levelTitle.text != sparkUpgradeFlakes[index].levelText {
