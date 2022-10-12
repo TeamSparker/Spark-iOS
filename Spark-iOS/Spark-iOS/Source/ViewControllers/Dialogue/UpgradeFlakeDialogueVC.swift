@@ -85,11 +85,11 @@ extension UpgradeFlakeDialogueVC {
     }
     
     private func setCollectionView() {
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(UpgradeFlakeCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.upgradeFlakeCVC)
         
-        collectionViewFlowlayout.collectionView?.isPagingEnabled = true
-        collectionViewFlowlayout.scrollDirection = .horizontal
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.collectionViewLayout = UpgradeFlakeCarouselLayout()
     }
     
     private func setSparkFlakes() {
@@ -108,32 +108,6 @@ extension UpgradeFlakeDialogueVC {
     @objc
     private func touchCheckButton() {
         dismiss(animated: true)
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension UpgradeFlakeDialogueVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = (backgroundView.frame.width - 16) / 3
-        let height: CGFloat = collectionView.frame.height
-        
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 48
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth: CGFloat = (backgroundView.frame.width - 16) / 3
-        let insets: CGFloat = (collectionView.frame.width - cellWidth) / 2
-        
-        return UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
     }
 }
 
