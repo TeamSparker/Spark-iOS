@@ -27,6 +27,8 @@
 	</array>
 	<key>FirebaseMessagingAutoInitEnabled</key>
 	<string>No</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>KakaoNativeAppKey</key>
 	<string>$(KAKAO_NATIVE_APP_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
