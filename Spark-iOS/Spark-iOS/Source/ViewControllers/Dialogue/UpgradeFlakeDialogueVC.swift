@@ -93,7 +93,11 @@ extension UpgradeFlakeDialogueVC {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        collectionView.collectionViewLayout = UpgradeFlakeCarouselLayout()
+        
+        let collectionViewLayout = UpgradeFlakeCarouselLayout()
+        collectionViewLayout.leftDay = self.leftDay
+        
+        collectionView.collectionViewLayout = collectionViewLayout
     }
     
     private func setSparkFlakes() {
