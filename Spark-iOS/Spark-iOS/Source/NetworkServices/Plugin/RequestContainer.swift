@@ -9,22 +9,36 @@ import Foundation
 
 import Moya
 
+typealias APIType = RequestContainer.CancellableAPIType
+
 class RequestContainer {
+    
     static let shared = RequestContainer()
     
-    private var requestArray: [Cancellable] = []
+    enum CancellableAPIType: CaseIterable {
+        case notice
+        case home
+        case storage
+        case feed
+    }
     
-    private init() { }
+    private var requestDictionary: [CancellableAPIType: [Cancellable]] = [:]
     
-    public func doCleanRequest(request: Cancellable) {
-        requestArray.forEach { $0.cancel() }
-        requestArray.removeAll()
-        requestArray.append(request)
+    private init() {
+        CancellableAPIType.allCases.forEach {
+            requestDictionary[$0] = [] as [Cancellable]
+        }
+    }
+    
+    public func doCleanRequest(request: Cancellable, key: APIType) {
+        requestDictionary[key]?.forEach { $0.cancel() }
+        requestDictionary[key]?.removeAll()
+        requestDictionary[key]?.append(request)
     }
 }
 
 extension Cancellable {
-    func doCleanRequest() {
-        RequestContainer.shared.doCleanRequest(request: self)
+    func doCleanRequest(from apiType: APIType) {
+        RequestContainer.shared.doCleanRequest(request: self, key: apiType)
     }
 }
