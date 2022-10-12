@@ -24,16 +24,15 @@ class UpgradeFlakeDialogueVC: UIViewController {
     
     public var leftDay: Int?
     
-    private let backgroundView = UIView()
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var levelTitleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var leftGradientView: UIView!
+    @IBOutlet weak var rightGradientView: UIView!
+    
     private let collectionViewFlowlayout = UICollectionViewFlowLayout()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
-    private let levelTitle = UILabel()
-    private let subtitle = UILabel()
-    private let checkButton = UIButton()
-    private let leftGradientView = UIView()
-    private let rightGradientView = UIView()
-    private let leftGradientLayer = CAGradientLayer()
-    private let rightGradientLayer = CAGradientLayer()
     
     // MARK: - View Life Cycle
     
@@ -60,21 +59,28 @@ extension UpgradeFlakeDialogueVC {
         
         backgroundView.backgroundColor = .sparkWhite
         
-        levelTitle.textColor = .sparkPinkred
-        levelTitle.font = .enMediumItatlicFont(ofSize: 24)
+        levelTitleLabel.textColor = .sparkPinkred
+        levelTitleLabel.font = .enMediumItatlicFont(ofSize: 24)
         
-        subtitle.tintColor = .sparkDeepGray
-        subtitle.font = .p1TitleLight
-        subtitle.textAlignment = .center
-        subtitle.numberOfLines = 2
+        subtitleLabel.tintColor = .sparkDeepGray
+        subtitleLabel.font = .p1TitleLight
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 2
         
         checkButton.setTitle("확인했어요", for: .normal)
         checkButton.setTitleColor(.sparkWhite, for: .normal)
         checkButton.backgroundColor = .sparkBlack
         checkButton.titleLabel?.font = .btn1Default
         
-        levelTitle.text = sparkUpgradeFlakes[0].levelText
-        subtitle.text = sparkUpgradeFlakes[0].upgradeText
+        levelTitleLabel.text = sparkUpgradeFlakes[0].levelText
+        subtitleLabel.text = sparkUpgradeFlakes[0].upgradeText
+        
+        leftGradientView.backgroundColor = .clear
+        rightGradientView.backgroundColor = .clear
+        
+        leftGradientView.isUserInteractionEnabled = false
+        rightGradientView.isUserInteractionEnabled = false
+    }
     }
     
     private func addTargets() {
@@ -125,11 +131,11 @@ extension UpgradeFlakeDialogueVC: UICollectionViewDelegate {
         let index: Int = Int(round(contentOffsetX / (120 + scrollView.frame.width / 10)))
         
         if sparkUpgradeFlakes.count > index && index >= 0 {
-            if levelTitle.text != sparkUpgradeFlakes[index].levelText {
+            if levelTitleLabel.text != sparkUpgradeFlakes[index].levelText {
                 impactFeedbackGenerator?.impactOccurred()
             }
-            levelTitle.text = sparkUpgradeFlakes[index].levelText
-            subtitle.text = sparkUpgradeFlakes[index].upgradeText
+            levelTitleLabel.text = sparkUpgradeFlakes[index].levelText
+            subtitleLabel.text = sparkUpgradeFlakes[index].upgradeText
         }
     }
 }
