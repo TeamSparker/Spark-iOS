@@ -183,20 +183,21 @@ extension UpgradeFlakeDialogueVC {
         
         checkButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(28)
-            $0.leading.trailing.equalToSuperview().inset(106)
-            $0.height.equalTo(checkButton.snp.width).multipliedBy(0.4)
+            $0.width.equalTo(123)
+            $0.height.equalTo(48)
+            $0.centerX.equalToSuperview()
         }
 
         leftGradientView.snp.makeConstraints {
             $0.leading.equalTo(collectionView.snp.leading)
-            $0.width.equalTo(100)
+            $0.width.equalTo(80)
             $0.height.equalTo(120)
             $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
         }
 
         rightGradientView.snp.makeConstraints {
             $0.trailing.equalTo(collectionView.snp.trailing)
-            $0.width.equalTo(100)
+            $0.width.equalTo(80)
             $0.height.equalTo(120)
             $0.bottom.equalTo(collectionView.snp.centerY).offset(20)
         }
