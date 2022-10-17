@@ -292,7 +292,7 @@ extension HabitRoomVC {
     private func presentToUpgradeFlakeDialogueVC() {
         if let leftDay = habitRoomDetail?.leftDay,
            let isTermNew = habitRoomDetail?.isTermNew {
-            if (leftDay == 62 || leftDay == 58 || leftDay == 32 || leftDay == 6 || leftDay == 0) && isTermNew {
+            if (leftDay == 65 || leftDay == 62 || leftDay == 58 || leftDay == 32 || leftDay == 6 || leftDay == 0) && isTermNew {
                 guard let upgradeFlakeDialogueVC = UIStoryboard(name: Const.Storyboard.Name.UpgradeFlakeDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.UpgradeFlakeDialogue) as? UpgradeFlakeDialogueVC else { return }
                 
                 upgradeFlakeDialogueVC.leftDay = habitRoomDetail?.leftDay
