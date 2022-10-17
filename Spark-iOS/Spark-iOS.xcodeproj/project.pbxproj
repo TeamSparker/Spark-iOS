@@ -183,6 +183,7 @@
 		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
 		F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */; };
+		F84492B328F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */; };
 		F849521427FFDB8B00D91B6B /* NewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F849521327FFDB8B00D91B6B /* NewNotice.swift */; };
 		F85036CC27E2567C00F02751 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85036CB27E2567C00F02751 /* NotificationService.swift */; };
 		F85036D027E2567C00F02751 /* SparkNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F85036C927E2567C00F02751 /* SparkNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -439,6 +440,7 @@
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkButton.swift; sourceTree = "<group>"; };
+		F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeCarouselLayout.swift; sourceTree = "<group>"; };
 		F849521327FFDB8B00D91B6B /* NewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotice.swift; sourceTree = "<group>"; };
 		F85036C927E2567C00F02751 /* SparkNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SparkNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85036CB27E2567C00F02751 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -840,6 +842,7 @@
 				2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */,
 				F821812B27DE21FE00DDFBF8 /* SparkNavigationBar */,
 				F821812C27DE223100DDFBF8 /* SparkTabBar */,
+				F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1771,6 +1774,7 @@
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
+				F84492B328F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
 				F88BA14228F16FA800F48BD0 /* UpgradeFlakeCVC.swift in Sources */,

@@ -7,8 +7,6 @@
 
 import UIKit
 
-import SnapKit
-
 class UpgradeFlakeDialogueVC: UIViewController {
 
     // MARK: - Properties
@@ -22,15 +20,19 @@ class UpgradeFlakeDialogueVC: UIViewController {
         SparkFlake(leftDay: 0)
     ]
     private var sparkUpgradeFlakes: [UpgradeFlake] = []
+    private var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     public var leftDay: Int?
     
-    private let backgroundView = UIView()
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var levelTitleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var leftGradientView: UIView!
+    @IBOutlet weak var rightGradientView: UIView!
+    
     private let collectionViewFlowlayout = UICollectionViewFlowLayout()
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowlayout)
-    private let levelTitle = UILabel()
-    private let subtitle = UILabel()
-    private let checkButton = UIButton()
     
     // MARK: - View Life Cycle
     
@@ -40,9 +42,10 @@ class UpgradeFlakeDialogueVC: UIViewController {
         setSparkFlakes()
         setUI()
         addTargets()
-        setLayout()
         setDelegate()
         setCollectionView()
+        setImpactFeedbackGenerator()
+        setGradientLayer()
     }
 }
 
@@ -50,27 +53,38 @@ class UpgradeFlakeDialogueVC: UIViewController {
 
 extension UpgradeFlakeDialogueVC {
     private func setUI() {
-        view.backgroundColor = .sparkBlack.withAlphaComponent(0.7)
+        view.backgroundColor = .sparkBlack.withAlphaComponent(0.8)
         
         collectionView.backgroundColor = .clear
         
         backgroundView.backgroundColor = .sparkWhite
         
-        levelTitle.textColor = .sparkPinkred
-        levelTitle.font = .enMediumItatlicFont(ofSize: 24)
+        levelTitleLabel.textColor = .sparkPinkred
+        levelTitleLabel.font = .enMediumItatlicFont(ofSize: 24)
         
-        subtitle.tintColor = .sparkDeepGray
-        subtitle.font = .p1TitleLight
-        subtitle.textAlignment = .center
-        subtitle.numberOfLines = 2
+        subtitleLabel.tintColor = .sparkDeepGray
+        subtitleLabel.font = .p1TitleLight
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 2
         
         checkButton.setTitle("확인했어요", for: .normal)
         checkButton.setTitleColor(.sparkWhite, for: .normal)
         checkButton.backgroundColor = .sparkBlack
         checkButton.titleLabel?.font = .btn1Default
         
-        levelTitle.text = sparkUpgradeFlakes[0].levelText
-        subtitle.text = sparkUpgradeFlakes[0].upgradeText
+        levelTitleLabel.text = sparkUpgradeFlakes[0].levelText
+        subtitleLabel.text = sparkUpgradeFlakes[0].upgradeText
+        
+        leftGradientView.backgroundColor = .clear
+        rightGradientView.backgroundColor = .clear
+        
+        leftGradientView.isUserInteractionEnabled = false
+        rightGradientView.isUserInteractionEnabled = false
+    }
+    
+    private func setGradientLayer() {
+        leftGradientView.setGradient(color1: .init(white: 1, alpha: 1), color2: .init(white: 1, alpha: 0), startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
+        rightGradientView.setGradient(color1: .init(white: 1, alpha: 1), color2: .init(white: 1, alpha: 0), startPoint: CGPoint(x: 1.0, y: 0.5), endPoint: CGPoint(x: 0.0, y: 0.5))
     }
     
     private func addTargets() {
@@ -83,17 +97,26 @@ extension UpgradeFlakeDialogueVC {
     }
     
     private func setCollectionView() {
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(UpgradeFlakeCVC.self, forCellWithReuseIdentifier: Const.Cell.Identifier.upgradeFlakeCVC)
         
-        collectionViewFlowlayout.collectionView?.isPagingEnabled = true
-        collectionViewFlowlayout.scrollDirection = .horizontal
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        
+        let collectionViewLayout = UpgradeFlakeCarouselLayout()
+        collectionViewLayout.leftDay = self.leftDay
+        
+        collectionView.collectionViewLayout = collectionViewLayout
     }
     
     private func setSparkFlakes() {
         sparkFlakes.forEach { sparkFlake in
             sparkUpgradeFlakes.append(sparkFlake.upgrade(leftDay ?? -1))
         }
+    }
+    
+    private func setImpactFeedbackGenerator() {
+        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackGenerator?.prepare()
     }
     
     // MARK: - @objc Methods
@@ -104,36 +127,21 @@ extension UpgradeFlakeDialogueVC {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension UpgradeFlakeDialogueVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = (backgroundView.frame.width - 16) / 3
-        let height: CGFloat = collectionView.frame.height
-        
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 48
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth: CGFloat = (backgroundView.frame.width - 16) / 3
-        let insets: CGFloat = (collectionView.frame.width - cellWidth) / 2
-        
-        return UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
-    }
-}
-
 // MARK: - UICollectionViewDelegate
 
 extension UpgradeFlakeDialogueVC: UICollectionViewDelegate {
-    // TODO: - paging 되면서 sutitle, levettitle 변경
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetX: CGFloat = scrollView.contentOffset.x
+        let index: Int = Int(round(contentOffsetX / (120 + scrollView.frame.width / 10)))
+        
+        if sparkUpgradeFlakes.count > index && index >= 0 {
+            if levelTitleLabel.text != sparkUpgradeFlakes[index].levelText {
+                impactFeedbackGenerator?.impactOccurred()
+            }
+            levelTitleLabel.text = sparkUpgradeFlakes[index].levelText
+            subtitleLabel.text = sparkUpgradeFlakes[index].upgradeText
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -149,42 +157,5 @@ extension UpgradeFlakeDialogueVC: UICollectionViewDataSource {
         cell.initCell(sparkUpgradeFlakes[indexPath.item].flakeImage)
         
         return cell
-    }
-}
-
-// MARK: - Layout
-
-extension UpgradeFlakeDialogueVC {
-    private func setLayout() {
-        view.addSubview(backgroundView)
-        
-        backgroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(backgroundView.snp.width).multipliedBy(1.2)
-        }
-        
-        backgroundView.addSubviews([levelTitle, subtitle, collectionView, checkButton])
-        
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(collectionView.snp.width).multipliedBy(0.9)
-        }
-        
-        subtitle.snp.makeConstraints {
-            $0.bottom.equalTo(collectionView.snp.bottom).inset(14)
-            $0.centerX.equalToSuperview()
-        }
-        
-        levelTitle.snp.makeConstraints {
-            $0.bottom.equalTo(subtitle.snp.top).offset(-12)
-            $0.centerX.equalToSuperview()
-        }
-        
-        checkButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(28)
-            $0.leading.trailing.equalToSuperview().inset(106)
-            $0.height.equalTo(checkButton.snp.width).multipliedBy(0.4)
-        }
     }
 }
