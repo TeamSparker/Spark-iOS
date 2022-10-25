@@ -103,14 +103,15 @@ class StorageVC: UIViewController {
         let group = DispatchGroup.init()
         group.enter()
         getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
-            group.leave()
-        }
-        group.enter()
-        getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
-            group.leave()
-        }
-        group.enter()
-        getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
+            group.enter()
+            self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
+                group.leave()
+            }
+            group.enter()
+            self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
+                group.leave()
+            }
+            
             group.leave()
         }
         group.notify(queue: .main) {
@@ -594,7 +595,7 @@ extension StorageVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension StorageVC {
     
     func getOnGoingRoomWithAPI(lastID: Int, size: Int, completion: @escaping () -> Void) {
-        MyRoomAPI(viewController: self).myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size) {  response in
+        MyRoomAPI(viewController: self).myRoomFetch(roomType: "ONGOING", lastID: lastID, size: size, needClean: true) {  response in
             switch response {
             case .success(let data):
                 if let myRoom = data as? MyRoom {
