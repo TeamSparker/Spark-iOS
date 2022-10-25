@@ -29,7 +29,7 @@ public class FeedAPI {
             case .failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest(from: .feed)
     }
     
     private func judgeFeedFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {

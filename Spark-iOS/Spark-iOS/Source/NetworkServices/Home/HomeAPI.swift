@@ -28,7 +28,7 @@ public class HomeAPI {
             case .failure(let err):
                 print(err)
             }
-        }
+        }.doCleanRequest(from: .home)
     }
     
     private func judgeHabitRoomFetchStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {

@@ -150,14 +150,12 @@ class NoticeVC: UIViewController {
     
     private func bindButton() {
         activeButton.rx.tap
-            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
             .subscribe(onNext: {
                 self.touchActiveButton()
             })
             .disposed(by: disposeBag)
 
         serviceButton.rx.tap
-            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
             .subscribe(onNext: {
                 self.touchServiceButton()
             })
@@ -202,7 +200,6 @@ class NoticeVC: UIViewController {
         makeDrawAboveButton(button: activeButton)
         
         activeLastID = -1
-        activeList.removeAll()
         
         let group = DispatchGroup()
         
@@ -234,7 +231,6 @@ class NoticeVC: UIViewController {
         makeDrawAboveButton(button: serviceButton)
         
         serviceLastID = -1
-        serviceList.removeAll()
         
         let group = DispatchGroup()
         
@@ -361,6 +357,7 @@ extension NoticeVC {
             case .success(let data):
                 if let active = data as? ActiveNotice {
                     self.newService = active.newService
+                    self.activeList.removeAll()
                     self.activeList.append(contentsOf: active.notices)
                     if self.activeList.isEmpty {
                         self.setEmptyView()
@@ -387,6 +384,7 @@ extension NoticeVC {
             case .success(let data):
                 if let service = data as? ServiceNotice {
                     self.newActive = service.newActive
+                    self.serviceList.removeAll()
                     self.serviceList.append(contentsOf: service.notices)
                     if self.serviceList.isEmpty {
                         self.setEmptyView()
