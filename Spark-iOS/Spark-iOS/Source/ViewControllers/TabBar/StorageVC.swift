@@ -103,7 +103,6 @@ class StorageVC: UIViewController {
         let group = DispatchGroup.init()
         group.enter()
         getOnGoingRoomWithAPI(lastID: self.onGoingRoomLastID, size: self.myRoomCountSize) {
-            group.leave()
             group.enter()
             self.getFailRoomWithAPI(lastID: self.failRoomLastID, size: self.myRoomCountSize) {
                 group.leave()
@@ -112,6 +111,8 @@ class StorageVC: UIViewController {
             self.getCompleteRoomWithAPI(lastID: self.completeRoomLastID, size: self.myRoomCountSize) {
                 group.leave()
             }
+            
+            group.leave()
         }
         group.notify(queue: .main) {
             self.doneCV.reloadData()
