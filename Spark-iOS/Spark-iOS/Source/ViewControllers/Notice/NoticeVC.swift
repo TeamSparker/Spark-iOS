@@ -150,14 +150,12 @@ class NoticeVC: UIViewController {
     
     private func bindButton() {
         activeButton.rx.tap
-//            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
             .subscribe(onNext: {
                 self.touchActiveButton()
             })
             .disposed(by: disposeBag)
 
         serviceButton.rx.tap
-//            .throttle(.seconds(3), latest: false, scheduler: MainScheduler.instance)
             .subscribe(onNext: {
                 self.touchServiceButton()
             })
