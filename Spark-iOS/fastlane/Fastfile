@@ -36,8 +36,7 @@ platform :ios do
       api_key_path: "fastlane/key.json",
       distribute_external: true,
       groups: ["SparkBetaTestGroup"],
-      changelog: "- 수출 규정 문서 추가
-- fastlane 에서 테스트 세부사항 작성"
+      changelog: "- 개발자 QA 중 Level 1 의 spark flake 이미지가 보이지 않아서 수정하였습니다."
     )
     version = get_version_number(
                 xcodeproj: "Spark-iOS.xcodeproj",
