@@ -67,7 +67,7 @@ platform :ios do
         skip_metadata: false,
         skip_screenshots: true,
         submit_for_review: true,
-        automatic_release: true,
+        automatic_release: false,
         force: true
       )
       version = get_version_number(
