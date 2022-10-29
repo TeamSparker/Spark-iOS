@@ -60,7 +60,17 @@ platform :ios do
       get_certificates
       get_provisioning_profile
       increment_version_number(version_number: options[:version])
-      build_app(workspace: "Spark-iOS.xcworkspace", scheme: "Spark-release")
+      build_app(
+        workspace: "Spark-iOS.xcworkspace",
+        scheme: "Spark-beta",
+        export_method: "app-store",
+        export_options: {
+          provisioningProfiles: { 
+            "com.TeamSparker.Spark" => "Spark AppStore",
+            "com.TeamSparker.Spark.SparkNotificationService" => "SparkNotificationService AppStore"
+          }
+        }
+      )
       upload_to_app_store(
         api_key_path: "fastlane/key.json",
         skip_metadata: false,
