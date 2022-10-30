@@ -77,7 +77,9 @@ platform :ios do
         skip_screenshots: true,
         submit_for_review: true,
         automatic_release: false,
-        force: true
+        force: true,
+        precheck_include_in_app_purchases: false,
+        submission_information: { add_id_info_uses_idfa: false }
       )
       version = get_version_number(
                 xcodeproj: "Spark-iOS.xcodeproj",
