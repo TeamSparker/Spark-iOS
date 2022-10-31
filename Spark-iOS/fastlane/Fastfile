@@ -59,7 +59,10 @@ platform :ios do
     if options[:version]
       get_certificates
       get_provisioning_profile
-      increment_version_number(version_number: options[:version])
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "Spark-iOS.xcodeproj"
+      )
       build_app(
         workspace: "Spark-iOS.xcworkspace",
         scheme: "Spark-beta",
