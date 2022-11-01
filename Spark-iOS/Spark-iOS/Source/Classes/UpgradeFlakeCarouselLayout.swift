@@ -15,6 +15,9 @@ class UpgradeFlakeCarouselLayout: UICollectionViewFlowLayout {
     
     private var isSetup: Bool = false
     
+    private let flakeSize: CGFloat = 120
+    private let itemPadding: CGFloat = 53
+    
     override public func prepare() {
         super.prepare()
         if isSetup == false {
@@ -27,10 +30,10 @@ class UpgradeFlakeCarouselLayout: UICollectionViewFlowLayout {
         guard let collectionView = self.collectionView else {return}
         let collectionViewSize = collectionView.bounds.size
         
-        self.itemSize = CGSize(width: 120, height: collectionViewSize.height)
+        self.itemSize = CGSize(width: flakeSize, height: itemPadding + flakeSize + itemPadding)
         
-        let insets: CGFloat = (collectionViewSize.width - 120) / 2
-        self.sectionInset = UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
+        let insets: CGFloat = (collectionViewSize.width - flakeSize) / 2
+        self.sectionInset = UIEdgeInsets(top: 0, left: insets, bottom: collectionViewSize.height - (itemPadding + flakeSize + itemPadding), right: insets)
         
         self.minimumLineSpacing = collectionViewSize.width / 10
         self.scrollDirection = .horizontal
