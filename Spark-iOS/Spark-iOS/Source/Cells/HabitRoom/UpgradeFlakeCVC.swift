@@ -49,7 +49,7 @@ class UpgradeFlakeCVC: UICollectionViewCell {
         
         upgradeFlakeImageView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(contentView.snp.centerY).offset(20)
+            $0.centerY.equalTo(contentView.snp.centerY)
             $0.height.equalTo(upgradeFlakeImageView.snp.width)
         }
     }
