@@ -384,7 +384,7 @@ extension HabitRoomVC {
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
         
-        alert.addAction(SparkAction("불꽃 결정 로드맵") {
+        alert.addAction(SparkAction("불꽃 결정 레벨") {
             self.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.UpgradeFlakeDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.UpgradeFlakeDialogue) as? UpgradeFlakeDialogueVC else { return }
                 
