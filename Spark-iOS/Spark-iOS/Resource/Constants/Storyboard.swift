@@ -47,6 +47,8 @@ extension Const {
             static let lifeDiminishDialogue = "LifeDiminishDialogue"
             static let notification = "Notification"
             static let singleResponseDialogue = "SingleResponseDialogue"
+            static let lifeTimeLine = "LifeTimeLine"
+            static let UpgradeFlakeDialogue = "UpgradeFlakeDialogue"
         }
     }
 }

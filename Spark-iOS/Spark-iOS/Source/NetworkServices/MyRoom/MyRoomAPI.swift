@@ -16,8 +16,8 @@ public class MyRoomAPI {
         self.userProvider = MoyaProvider<MyRoomService>(plugins: [MoyaLoggerPlugin(viewController: viewController)])
     }
     
-    func myRoomFetch(roomType: String, lastID: Int, size: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        userProvider.request(.myRoomFetch(roomType: roomType, lastID: lastID, size: size)) { (result) in
+    func myRoomFetch(roomType: String, lastID: Int, size: Int, needClean: Bool = false, completion: @escaping (NetworkResult<Any>) -> Void) {
+        let cancellable = userProvider.request(.myRoomFetch(roomType: roomType, lastID: lastID, size: size)) { (result) in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -29,6 +29,11 @@ public class MyRoomAPI {
             case .failure(let err):
                 print(err)
             }
+        }
+        if needClean {
+            cancellable.doCleanRequest(from: .storage)
+        } else {
+            cancellable.store(from: .storage)
         }
     }
     

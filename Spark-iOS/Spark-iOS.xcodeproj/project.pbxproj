@@ -14,6 +14,14 @@
 		2B13FB252798B705004CCE46 /* CompleteAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C50892792A86D00588155 /* CompleteAuthVC.swift */; };
 		2B13FB262798B70A004CCE46 /* MyRoomCerti.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE90FCD2795C23A00157075 /* MyRoomCerti.swift */; };
 		2B2D31B827DA68EE000EDD28 /* ServiceNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */; };
+		2B3EB43228EB1F31004D644F /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB42E28EB1F31004D644F /* Shared.xcconfig */; };
+		2B3EB43328EB1F31004D644F /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB42F28EB1F31004D644F /* Debug.xcconfig */; };
+		2B3EB43428EB1F31004D644F /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB43028EB1F31004D644F /* Release.xcconfig */; };
+		2B3EB43528EB1F31004D644F /* Beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB43128EB1F31004D644F /* Beta.xcconfig */; };
+		2B3EB43828EB2F9A004D644F /* LifeTimeLineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */; };
+		2B3EB43A28EB30D8004D644F /* LifeTimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EB43928EB30D8004D644F /* LifeTimeLine.storyboard */; };
+		2B3EB43D28EB3551004D644F /* LifeTimeLineCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */; };
+		2B3EB43F28EB38F8004D644F /* LifeTimeLineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */; };
 		2B50C1A227D7752C004BED9C /* NoticeActiveCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */; };
 		2B50C1A427D77CA9004BED9C /* NoticeServiceCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */; };
 		2B54D01627D3B2810060DA06 /* FeedReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54D01527D3B2810060DA06 /* FeedReportVC.swift */; };
@@ -24,6 +32,7 @@
 		2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B57F38327971F7A002A677D /* ProfileSetting.storyboard */; };
 		2B69E7E5278E22F4000F927F /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */; };
 		2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69E7E6278E28B2000F927F /* FeedCVC.swift */; };
+		2B916A3D28EFF8600016C7E6 /* TimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B916A3C28EFF8600016C7E6 /* TimeLine.swift */; };
 		2B9471F9278BE922005484C5 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */; };
 		2B9471FA278BE922005484C5 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */; };
 		2B9471FB278BE922005484C5 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */; };
@@ -78,6 +87,7 @@
 		76CFA86ADD8A78B244A43E61 /* Pods_Spark_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */; };
 		EB01BC1027C8DFBA00041A35 /* SparkActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */; };
 		EB26D93827CF74D700C88DCA /* SendSparkCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */; };
+		EB62422528EDA50C001432A8 /* RequestContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62422428EDA50C001432A8 /* RequestContainer.swift */; };
 		EB625E7B278F271400C43DE9 /* DoingStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */; };
 		EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */; };
 		EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */; };
@@ -86,7 +96,6 @@
 		EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E82278F273200C43DE9 /* FailStorageCVC.xib */; };
 		EB625E87278F27F000C43DE9 /* StorageListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */; };
 		EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E89278F29D300C43DE9 /* CarouselLayout.swift */; };
-		EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */; };
 		EB625E91278F8E3700C43DE9 /* StorageMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */; };
 		EB625E95278F8E7200C43DE9 /* MoreStorageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */; };
 		EB625E96278F8E7200C43DE9 /* MoreStorageCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */; };
@@ -175,6 +184,7 @@
 		F82F580E27930FD4003E4174 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F82F580D27930FD4003E4174 /* GoogleService-Info.plist */; };
 		F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F82F58102793B3FF003E4174 /* .swiftlint.yml */; };
 		F8404E8B27AB835F004AEDC3 /* SendSparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */; };
+		F84492B328F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */; };
 		F849521427FFDB8B00D91B6B /* NewNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F849521327FFDB8B00D91B6B /* NewNotice.swift */; };
 		F85036CC27E2567C00F02751 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85036CB27E2567C00F02751 /* NotificationService.swift */; };
 		F85036D027E2567C00F02751 /* SparkNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F85036C927E2567C00F02751 /* SparkNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -183,6 +193,10 @@
 		F86C68B927958AA9009A5296 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C68B827958AA9009A5296 /* UIImageView+.swift */; };
 		F86FC47A27F1B835004478F3 /* NoticeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47927F1B835004478F3 /* NoticeSetting.swift */; };
 		F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */; };
+		F88BA13B28F08D8900F48BD0 /* UpgradeFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA13A28F08D8900F48BD0 /* UpgradeFlake.swift */; };
+		F88BA13E28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA13D28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift */; };
+		F88BA14028F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F88BA13F28F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard */; };
+		F88BA14228F16FA800F48BD0 /* UpgradeFlakeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */; };
 		F8902FB927ED84060034E8F9 /* Withdrawal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */; };
 		F8902FBD27ED844E0034E8F9 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */; };
 		F8917E5A2836A14500F96347 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8917E592836A14500F96347 /* UserDefaultsManager.swift */; };
@@ -250,6 +264,14 @@
 		2B12728B28167766002DA1DA /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		2B13FB22279899C6004CCE46 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		2B2D31B727DA68EE000EDD28 /* ServiceNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceNotice.swift; sourceTree = "<group>"; };
+		2B3EB42E28EB1F31004D644F /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		2B3EB42F28EB1F31004D644F /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		2B3EB43028EB1F31004D644F /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		2B3EB43128EB1F31004D644F /* Beta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
+		2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineVC.swift; sourceTree = "<group>"; };
+		2B3EB43928EB30D8004D644F /* LifeTimeLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LifeTimeLine.storyboard; sourceTree = "<group>"; };
+		2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineCVC.swift; sourceTree = "<group>"; };
+		2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeLineHeaderView.swift; sourceTree = "<group>"; };
 		2B50C1A127D7752C004BED9C /* NoticeActiveCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeActiveCVC.swift; sourceTree = "<group>"; };
 		2B50C1A327D77CA9004BED9C /* NoticeServiceCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeServiceCVC.swift; sourceTree = "<group>"; };
 		2B54D01527D3B2810060DA06 /* FeedReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReportVC.swift; sourceTree = "<group>"; };
@@ -260,6 +282,7 @@
 		2B57F38327971F7A002A677D /* ProfileSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetting.storyboard; sourceTree = "<group>"; };
 		2B69E7E4278E22F4000F927F /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		2B69E7E6278E28B2000F927F /* FeedCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCVC.swift; sourceTree = "<group>"; };
+		2B916A3C28EFF8600016C7E6 /* TimeLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLine.swift; sourceTree = "<group>"; };
 		2B9471F6278BE922005484C5 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		2B9471F7278BE922005484C5 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		2B9471F8278BE922005484C5 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -313,10 +336,12 @@
 		2BF3AB48279479B8001A9042 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		2BF3AB4B27947C50001A9042 /* WaitingRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoom.swift; sourceTree = "<group>"; };
 		3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.release.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		9CDB2BC50C4921D4EE5A9701 /* Pods-Spark-iOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.beta.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.beta.xcconfig"; sourceTree = "<group>"; };
 		C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spark-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Spark-iOS/Pods-Spark-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E41C0A73912FEE9D1B2F72ED /* Pods_Spark_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spark_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB01BC0F27C8DFBA00041A35 /* SparkActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkActionSheet.swift; sourceTree = "<group>"; };
 		EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkCVC.swift; sourceTree = "<group>"; };
+		EB62422428EDA50C001432A8 /* RequestContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestContainer.swift; sourceTree = "<group>"; };
 		EB625E79278F271400C43DE9 /* DoingStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E7A278F271400C43DE9 /* DoingStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoingStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E7D278F272300C43DE9 /* DoneStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneStorageCVC.swift; sourceTree = "<group>"; };
@@ -325,7 +350,6 @@
 		EB625E82278F273200C43DE9 /* FailStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailStorageCVC.xib; sourceTree = "<group>"; };
 		EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListDataModel.swift; sourceTree = "<group>"; };
 		EB625E89278F29D300C43DE9 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
-		EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreListDataModel.swift; sourceTree = "<group>"; };
 		EB625E90278F8E3700C43DE9 /* StorageMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMoreVC.swift; sourceTree = "<group>"; };
 		EB625E93278F8E7200C43DE9 /* MoreStorageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreStorageCVC.swift; sourceTree = "<group>"; };
 		EB625E94278F8E7200C43DE9 /* MoreStorageCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreStorageCVC.xib; sourceTree = "<group>"; };
@@ -418,6 +442,7 @@
 		F82F58102793B3FF003E4174 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F8368FAA278F5DFF00110B74 /* Spark-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Spark-iOS.entitlements"; sourceTree = "<group>"; };
 		F8404E8A27AB835F004AEDC3 /* SendSparkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSparkButton.swift; sourceTree = "<group>"; };
+		F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeCarouselLayout.swift; sourceTree = "<group>"; };
 		F849521327FFDB8B00D91B6B /* NewNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotice.swift; sourceTree = "<group>"; };
 		F85036C927E2567C00F02751 /* SparkNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SparkNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85036CB27E2567C00F02751 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -427,6 +452,10 @@
 		F86C68B827958AA9009A5296 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		F86FC47927F1B835004478F3 /* NoticeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSetting.swift; sourceTree = "<group>"; };
 		F86FC47B27F1C8B3004478F3 /* NotificationCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellDelegate.swift; sourceTree = "<group>"; };
+		F88BA13A28F08D8900F48BD0 /* UpgradeFlake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlake.swift; sourceTree = "<group>"; };
+		F88BA13D28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeDialogueVC.swift; sourceTree = "<group>"; };
+		F88BA13F28F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpgradeFlakeDialogue.storyboard; sourceTree = "<group>"; };
+		F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeFlakeCVC.swift; sourceTree = "<group>"; };
 		F8902FB827ED84060034E8F9 /* Withdrawal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Withdrawal.storyboard; sourceTree = "<group>"; };
 		F8902FBC27ED844E0034E8F9 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		F8917E592836A14500F96347 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -483,6 +512,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B3EB42D28EB1F31004D644F /* XCConfig */ = {
+			isa = PBXGroup;
+			children = (
+				2B3EB42E28EB1F31004D644F /* Shared.xcconfig */,
+				2B3EB42F28EB1F31004D644F /* Debug.xcconfig */,
+				2B3EB43028EB1F31004D644F /* Release.xcconfig */,
+				2B3EB43128EB1F31004D644F /* Beta.xcconfig */,
+			);
+			path = XCConfig;
+			sourceTree = "<group>";
+		};
+		2B3EB43628EB2F6D004D644F /* LifeTimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				2B3EB43728EB2F9A004D644F /* LifeTimeLineVC.swift */,
+			);
+			path = LifeTimeLine;
+			sourceTree = "<group>";
+		};
+		2B3EB43B28EB352F004D644F /* LifeTimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				2B3EB43C28EB3551004D644F /* LifeTimeLineCVC.swift */,
+				2B3EB43E28EB38F8004D644F /* LifeTimeLineHeaderView.swift */,
+			);
+			path = LifeTimeLine;
+			sourceTree = "<group>";
+		};
 		2B54D01427D3B22E0060DA06 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -731,6 +788,7 @@
 				2B57F37B27968A28002A677D /* CreateRoom.swift */,
 				2B57F37D27969791002A677D /* RoomId.swift */,
 				F8F6D6FD2797D8BD00725537 /* HabitRoomDetail.swift */,
+				2B916A3C28EFF8600016C7E6 /* TimeLine.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -748,6 +806,7 @@
 			children = (
 				C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */,
 				3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */,
+				9CDB2BC50C4921D4EE5A9701 /* Pods-Spark-iOS.beta.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -769,7 +828,6 @@
 			isa = PBXGroup;
 			children = (
 				EB625E86278F27F000C43DE9 /* StorageListDataModel.swift */,
-				EB625E8E278F8E1900C43DE9 /* StorageMoreListDataModel.swift */,
 			);
 			path = StorageList;
 			sourceTree = "<group>";
@@ -786,6 +844,7 @@
 				2B0CF77327BFEDAC003C2E21 /* BottomButton.swift */,
 				F821812B27DE21FE00DDFBF8 /* SparkNavigationBar */,
 				F821812C27DE223100DDFBF8 /* SparkTabBar */,
+				F84492B228F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -831,6 +890,7 @@
 				F8C3659427DBB82A000AA9BD /* CompleteFailDialogueVC.swift */,
 				EBE01B1127E31BFE00085AB7 /* LifeDiminishDialogueVC.swift */,
 				F8281821281316BA00D3E26C /* SingleResponseDialogueVC.swift */,
+				F88BA13D28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -842,6 +902,7 @@
 				F8C3659627DBB834000AA9BD /* CompleteFailDialogue.storyboard */,
 				EBE01B1327E334D200085AB7 /* LifeDiminishDialogue.storyboard */,
 				F828181D2813169200D3E26C /* SingleResponseDialogue.storyboard */,
+				F88BA13F28F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard */,
 			);
 			path = Dialogue;
 			sourceTree = "<group>";
@@ -868,6 +929,7 @@
 				F8F6D6F42797359600725537 /* HabitRoom.storyboard */,
 				2BA98FB327CB451000C53820 /* HabitRoomLeave.storyboard */,
 				2BD71BF127E0A5CD00771DCB /* HabitRoomGuide.storyboard */,
+				2B3EB43928EB30D8004D644F /* LifeTimeLine.storyboard */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -960,6 +1022,7 @@
 			isa = PBXGroup;
 			children = (
 				F82F58102793B3FF003E4174 /* .swiftlint.yml */,
+				2B3EB42D28EB1F31004D644F /* XCConfig */,
 				F8096F022784107D00B71D38 /* Spark-iOS */,
 				F85036CA27E2567C00F02751 /* SparkNotificationService */,
 				F8096F012784107D00B71D38 /* Products */,
@@ -1078,6 +1141,7 @@
 		F8096F1C27841DAE00B71D38 /* AppModels */ = {
 			isa = PBXGroup;
 			children = (
+				F88BA13928F08D6800F48BD0 /* UpgradeFlake */,
 				EB625E85278F27C300C43DE9 /* StorageList */,
 			);
 			path = AppModels;
@@ -1095,6 +1159,7 @@
 		F8096F1E27841DC100B71D38 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B3EB43628EB2F6D004D644F /* LifeTimeLine */,
 				F82B2E10278F54C200219628 /* Splash */,
 				EBD0D09527DC36730007E5AF /* Onboarding */,
 				2BAF155E27D492B500DE4190 /* Notice */,
@@ -1179,6 +1244,7 @@
 		F8096F2327841DF800B71D38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B3EB43B28EB352F004D644F /* LifeTimeLine */,
 				EBD0D09A27DC3A110007E5AF /* Onboarding */,
 				2BAF156127D49D4B00DE4190 /* Notice */,
 				F8F6D6F82797525700725537 /* HabitRoom */,
@@ -1304,6 +1370,7 @@
 		F82F58052792897B003E4174 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				EB62422428EDA50C001432A8 /* RequestContainer.swift */,
 				F82F580327928975003E4174 /* MoyaLoggerPlugin.swift */,
 			);
 			path = Plugin;
@@ -1325,6 +1392,14 @@
 				F85036CD27E2567C00F02751 /* Info.plist */,
 			);
 			path = SparkNotificationService;
+			sourceTree = "<group>";
+		};
+		F88BA13928F08D6800F48BD0 /* UpgradeFlake */ = {
+			isa = PBXGroup;
+			children = (
+				F88BA13A28F08D8900F48BD0 /* UpgradeFlake.swift */,
+			);
+			path = UpgradeFlake;
 			sourceTree = "<group>";
 		};
 		F8E3496627969B4F001B67E7 /* Auth */ = {
@@ -1386,6 +1461,7 @@
 				F8F6D6FA2797527A00725537 /* HabitRoomMemberCVC.xib */,
 				EB26D93727CF74D700C88DCA /* SendSparkCVC.swift */,
 				2BD71BF327E0E53500771DCB /* HabitRoomGuideCVC.swift */,
+				F88BA14128F16FA800F48BD0 /* UpgradeFlakeCVC.swift */,
 			);
 			path = HabitRoom;
 			sourceTree = "<group>";
@@ -1489,11 +1565,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB625E84278F273200C43DE9 /* FailStorageCVC.xib in Resources */,
+				2B3EB43228EB1F31004D644F /* Shared.xcconfig in Resources */,
+				2B3EB43328EB1F31004D644F /* Debug.xcconfig in Resources */,
 				EB874AEE2797071C000DD20B /* Dialogue.storyboard in Resources */,
 				F8B18E0727EFA1AA001A1A7D /* Notification.storyboard in Resources */,
 				F8C14A9C2795094800498687 /* HomeEmptyCVC.xib in Resources */,
 				F8C3659727DBB834000AA9BD /* CompleteFailDialogue.storyboard in Resources */,
+				2B3EB43528EB1F31004D644F /* Beta.xcconfig in Resources */,
 				2B9852092790ACF000CE40A7 /* CreateAuth.storyboard in Resources */,
+				2B3EB43A28EB30D8004D644F /* LifeTimeLine.storyboard in Resources */,
 				2BBFEFBF279B214300C085E4 /* loading3.json in Resources */,
 				F80A3E4D278C182100728E07 /* MainTabBar.storyboard in Resources */,
 				2BE65F5127C3E34B005D370D /* RoomStart.storyboard in Resources */,
@@ -1531,12 +1611,14 @@
 				EBEA383527948C2D00B5736A /* ticket_welcome.json in Resources */,
 				F8FAA9772790346000C4190F /* HomeWaitingCVC.xib in Resources */,
 				2B57F38427971F7A002A677D /* ProfileSetting.storyboard in Resources */,
+				F88BA14028F0970900F48BD0 /* UpgradeFlakeDialogue.storyboard in Resources */,
 				EBA93A84279082B0009AE771 /* JoinCheck.storyboard in Resources */,
 				2B947203278CB00E005484C5 /* Futura Medium.otf in Resources */,
 				F80B02CF27EC1BD800D63B45 /* homeCardFail.json in Resources */,
 				F8F6D6FC2797527A00725537 /* HabitRoomMemberCVC.xib in Resources */,
 				2B9852032790310800CE40A7 /* CreateRoom.storyboard in Resources */,
 				F80B02D127EC1BDC00D63B45 /* homeCardSuccess.json in Resources */,
+				2B3EB43428EB1F31004D644F /* Release.xcconfig in Resources */,
 				F80A3E53278C1C0C00728E07 /* Storage.storyboard in Resources */,
 				F82F58112793B3FF003E4174 /* .swiftlint.yml in Resources */,
 				EB625E7C278F271400C43DE9 /* DoingStorageCVC.xib in Resources */,
@@ -1662,6 +1744,7 @@
 				F8E3496827969B61001B67E7 /* AuthAPI.swift in Sources */,
 				F8096F3C2784211D00B71D38 /* UIColor+.swift in Sources */,
 				F8E4DFD027D0858500128B1F /* MypageVC.swift in Sources */,
+				2B916A3D28EFF8600016C7E6 /* TimeLine.swift in Sources */,
 				2BE5D818279330A6007A544D /* TimerAuthView.swift in Sources */,
 				2BBED12D279539B90052CA5C /* WaitingMember.swift in Sources */,
 				F8D4496E27BE25610091F297 /* LeftButtonNavigaitonBar.swift in Sources */,
@@ -1670,14 +1753,17 @@
 				2B98520E2790AE0000CE40A7 /* PhotoAuthView.swift in Sources */,
 				EBD0D09E27DC3A890007E5AF /* OnboardingCVCViewModel.swift in Sources */,
 				F8250CFE27D4A55C0073FFCA /* ProfileImageDelegate.swift in Sources */,
+				EB62422528EDA50C001432A8 /* RequestContainer.swift in Sources */,
 				EB625E7F278F272300C43DE9 /* DoneStorageCVC.swift in Sources */,
 				2BA98FB627CB620E00C53820 /* CreateSuccessVC.swift in Sources */,
 				EBEA382D27947C9100B5736A /* MyRoomAPI.swift in Sources */,
 				2B69E7E7278E28B2000F927F /* FeedCVC.swift in Sources */,
+				2B3EB43D28EB3551004D644F /* LifeTimeLineCVC.swift in Sources */,
 				2B0CF77427BFEDAC003C2E21 /* BottomButton.swift in Sources */,
 				2BE5D80827930A06007A544D /* AuthTimerVC.swift in Sources */,
 				EBEA38372794B34300B5736A /* CodeJoinCheck.swift in Sources */,
 				F8096F2B27841F4100B71D38 /* Storyboard.swift in Sources */,
+				2B3EB43828EB2F9A004D644F /* LifeTimeLineVC.swift in Sources */,
 				2B57F38127971D1D002A677D /* ProfileSettingVC.swift in Sources */,
 				2B2D31B827DA68EE000EDD28 /* ServiceNotice.swift in Sources */,
 				F8250CFC27D483E70073FFCA /* Profile.swift in Sources */,
@@ -1687,12 +1773,15 @@
 				2B014FAF27AAA90E004B4559 /* FeedFooterView.swift in Sources */,
 				2BD71BF427E0E53500771DCB /* HabitRoomGuideCVC.swift in Sources */,
 				EBE01B1227E31BFE00085AB7 /* LifeDiminishDialogueVC.swift in Sources */,
+				2B3EB43F28EB38F8004D644F /* LifeTimeLineHeaderView.swift in Sources */,
 				2B12728C28167766002DA1DA /* Tracking.swift in Sources */,
 				F8F6D6FE2797D8BD00725537 /* HabitRoomDetail.swift in Sources */,
 				EBD0D09427DBBC270007E5AF /* SendSparkCellDelegate.swift in Sources */,
 				F8096F442784221900B71D38 /* Cell.swift in Sources */,
+				F84492B328F573B500A298B9 /* UpgradeFlakeCarouselLayout.swift in Sources */,
 				F86C68B727955ABA009A5296 /* SparkFlake.swift in Sources */,
 				EB625E8A278F29D300C43DE9 /* CarouselLayout.swift in Sources */,
+				F88BA14228F16FA800F48BD0 /* UpgradeFlakeCVC.swift in Sources */,
 				F82F57FF27928588003E4174 /* URL.swift in Sources */,
 				EB9C509827931E4600588155 /* AuthUploadVC.swift in Sources */,
 				2BBED1372795CDFE0052CA5C /* FeedEmptyCVC.swift in Sources */,
@@ -1703,6 +1792,7 @@
 				EBE90FDA2796128800157075 /* SendSparkVC.swift in Sources */,
 				EBEA383927953BC700B5736A /* Lottie.swift in Sources */,
 				F82F57FD2792847D003E4174 /* GenericResponse.swift in Sources */,
+				F88BA13E28F0957000F48BD0 /* UpgradeFlakeDialogueVC.swift in Sources */,
 				F8E4DFD627D0918C00128B1F /* MypageProfileTVC.swift in Sources */,
 				F821813527DE659E00DDFBF8 /* SparkTabBarController.swift in Sources */,
 				F8B18E0527EFA19E001A1A7D /* NotificationVC.swift in Sources */,
@@ -1748,6 +1838,7 @@
 				F8250CF827D25F240073FFCA /* UserAPI.swift in Sources */,
 				F8E3496D2796B7F6001B67E7 /* Signup.swift in Sources */,
 				F8E3496A27969B67001B67E7 /* AuthService.swift in Sources */,
+				F88BA13B28F08D8900F48BD0 /* UpgradeFlake.swift in Sources */,
 				2BA98FB227CB44E800C53820 /* HabitRoomLeaveVC.swift in Sources */,
 				2BE907E127D9EE9700B36002 /* NoticeService.swift in Sources */,
 				F86FC47C27F1C8B3004478F3 /* NotificationCellDelegate.swift in Sources */,
@@ -1758,7 +1849,6 @@
 				F8250CFA27D25F2B0073FFCA /* UserService.swift in Sources */,
 				F82F5808279289B2003E4174 /* HomeAPI.swift in Sources */,
 				EBA93A7F279080E2009AE771 /* JoinCheckVC.swift in Sources */,
-				EB625E8F278F8E1900C43DE9 /* StorageMoreListDataModel.swift in Sources */,
 				2BAF156027D492C500DE4190 /* NoticeVC.swift in Sources */,
 				F8096F462784247100B71D38 /* Notification.swift in Sources */,
 				2B57F37E27969791002A677D /* RoomId.swift in Sources */,
@@ -1931,7 +2021,7 @@
 		};
 		F8096F152784107E00B71D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C35EB7FFC7E2CF05E63983A7 /* Pods-Spark-iOS.debug.xcconfig */;
+			baseConfigurationReference = 2B3EB42F28EB1F31004D644F /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1939,7 +2029,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
@@ -1957,7 +2047,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1969,7 +2059,7 @@
 		};
 		F8096F162784107E00B71D38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3E6E986D8C9F3A27A30253 /* Pods-Spark-iOS.release.xcconfig */;
+			baseConfigurationReference = 2B3EB43028EB1F31004D644F /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1977,7 +2067,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
@@ -1995,7 +2085,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2005,12 +2095,111 @@
 			};
 			name = Release;
 		};
-		F85036D227E2567C00F02751 /* Debug */ = {
+		F8371A3528E7E21700868718 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Beta;
+		};
+		F8371A3628E7E21700868718 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B3EB43128EB1F31004D644F /* Beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Spark-iOS/Spark-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Spark-iOS/Resource/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Spark;
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 카메라 권한을 허락해 주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 설정 및 변경, 습관 인증을 위해 앨범 권한을 허락해 주세요.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
+		F8371A3728E7E21700868718 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SparkNotificationService/Info.plist;
@@ -2022,7 +2211,34 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
+		F85036D227E2567C00F02751 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = T8C9SSEX5G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SparkNotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SparkNotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2037,7 +2253,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = T8C9SSEX5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SparkNotificationService/Info.plist;
@@ -2049,7 +2265,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamSparker.Spark.SparkNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2066,6 +2282,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8096F122784107E00B71D38 /* Debug */,
+				F8371A3528E7E21700868718 /* Beta */,
 				F8096F132784107E00B71D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2075,6 +2292,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8096F152784107E00B71D38 /* Debug */,
+				F8371A3628E7E21700868718 /* Beta */,
 				F8096F162784107E00B71D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2084,6 +2302,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F85036D227E2567C00F02751 /* Debug */,
+				F8371A3728E7E21700868718 /* Beta */,
 				F85036D327E2567C00F02751 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
