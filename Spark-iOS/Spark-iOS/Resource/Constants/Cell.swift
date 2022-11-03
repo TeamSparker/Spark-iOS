@@ -36,6 +36,7 @@ extension Const {
             static let notificationTVC = "NotificationTVC"
             static let lifeTimeLineCVC = "LifeTimeLineCVC"
             static let lifeTimeLineHeaderView = "LifeTimeLineHeaderView"
+            static let upgradeFlakeCVC = "UpgradeFlakeCVC"
         }
     }
 }

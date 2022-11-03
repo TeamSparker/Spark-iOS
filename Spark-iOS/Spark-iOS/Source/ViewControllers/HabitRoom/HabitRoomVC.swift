@@ -278,12 +278,30 @@ extension HabitRoomVC {
             UserDefaultsManager.checkHabitRoomGuide = true
             guard let guideVC = UIStoryboard(name: Const.Storyboard.Name.habitRoomGuide, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.habitRoomGuide) as? HabitRoomGuideVC else { return }
             guideVC.dismissClousure = {
-                
+                self.presentToUpgradeFlakeDialogueVC()
             }
             guideVC.modalPresentationStyle = .overFullScreen
             guideVC.modalTransitionStyle = .crossDissolve
             
             self.present(guideVC, animated: true, completion: nil)
+        } else {
+            self.presentToUpgradeFlakeDialogueVC()
+        }
+    }
+    
+    private func presentToUpgradeFlakeDialogueVC() {
+        if let leftDay = habitRoomDetail?.leftDay,
+           let isTermNew = habitRoomDetail?.isTermNew {
+            if (leftDay == 65 || leftDay == 62 || leftDay == 58 || leftDay == 32 || leftDay == 6 || leftDay == 0) && isTermNew {
+                guard let upgradeFlakeDialogueVC = UIStoryboard(name: Const.Storyboard.Name.UpgradeFlakeDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.UpgradeFlakeDialogue) as? UpgradeFlakeDialogueVC else { return }
+                
+                upgradeFlakeDialogueVC.leftDay = habitRoomDetail?.leftDay
+                upgradeFlakeDialogueVC.modalPresentationStyle = .overFullScreen
+                upgradeFlakeDialogueVC
+                    .modalTransitionStyle = .crossDissolve
+                
+                present(upgradeFlakeDialogueVC, animated: true)
+            }
         }
     }
     
@@ -365,6 +383,19 @@ extension HabitRoomVC {
     
     private func presentToMoreAlert() {
         let alert = SparkActionSheet()
+        
+        alert.addAction(SparkAction("불꽃 결정 레벨") {
+            self.dismiss(animated: true) {
+                guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.UpgradeFlakeDialogue, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.UpgradeFlakeDialogue) as? UpgradeFlakeDialogueVC else { return }
+                
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.leftDay = self.habitRoomDetail?.leftDay
+                
+                self.present(nextVC, animated: true)
+            }
+        })
+        
         alert.addAction(SparkAction("나의 목표 관리", titleType: .blackMediumTitle, handler: {
             self.dismiss(animated: true) {
                 guard let nextVC = UIStoryboard(name: Const.Storyboard.Name.goalWriting, bundle: nil).instantiateViewController(withIdentifier: Const.ViewController.Identifier.goalWriting) as? GoalWritingVC else { return }
@@ -421,6 +452,14 @@ extension HabitRoomVC {
                            ])
     }
     
+    private func timelineTracking() {
+        if newTimeLine.isHidden {
+            Analytics.logEvent(Tracking.Select.clickTimeline, parameters: nil)
+        } else {
+            Analytics.logEvent(Tracking.Select.clickTimelineWithNew, parameters: nil)
+        }
+    }
+    
     // MARK: - Screen Change
     
     private func popToHomeVC() {
@@ -453,7 +492,10 @@ extension HabitRoomVC {
         timelineVC.modalPresentationStyle = .overFullScreen
         timelineVC.modalTransitionStyle = .crossDissolve
         
-        self.present(timelineVC, animated: true, completion: nil)
+        self.present(timelineVC, animated: true) {
+            self.timelineTracking()
+            self.newTimeLine.isHidden = true
+        }
     }
 }
 

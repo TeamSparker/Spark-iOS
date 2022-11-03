@@ -36,8 +36,7 @@ platform :ios do
       api_key_path: "fastlane/key.json",
       distribute_external: true,
       groups: ["SparkBetaTestGroup"],
-      changelog: "- 수출 규정 문서 추가
-- fastlane 에서 테스트 세부사항 작성"
+      changelog: "- 개발자 QA 중 Level 1 의 spark flake 이미지가 보이지 않아서 수정하였습니다."
     )
     version = get_version_number(
                 xcodeproj: "Spark-iOS.xcodeproj",
@@ -48,7 +47,7 @@ platform :ios do
       username: "항상건강해야한다콩이",
       icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
       message: "성공적으로 TestFlight 에 등록되었습니다!🔥",
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
@@ -60,15 +59,31 @@ platform :ios do
     if options[:version]
       get_certificates
       get_provisioning_profile
-      increment_version_number(version_number: options[:version])
-      build_app(workspace: "Spark-iOS.xcworkspace", scheme: "Spark-release")
+      increment_build_number(xcodeproj: "Spark-iOS.xcodeproj")
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "Spark-iOS.xcodeproj"
+      )
+      build_app(
+        workspace: "Spark-iOS.xcworkspace",
+        scheme: "Spark-beta",
+        export_method: "app-store",
+        export_options: {
+          provisioningProfiles: { 
+            "com.TeamSparker.Spark" => "Spark AppStore",
+            "com.TeamSparker.Spark.SparkNotificationService" => "SparkNotificationService AppStore"
+          }
+        }
+      )
       upload_to_app_store(
         api_key_path: "fastlane/key.json",
         skip_metadata: false,
         skip_screenshots: true,
         submit_for_review: true,
-        automatic_release: true,
-        force: true
+        automatic_release: false,
+        force: true,
+        precheck_include_in_app_purchases: false,
+        submission_information: { add_id_info_uses_idfa: false }
       )
       version = get_version_number(
                 xcodeproj: "Spark-iOS.xcodeproj",
@@ -79,7 +94,7 @@ platform :ios do
         username: "항상건강해야한다콩이",
         icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
         message: "성공적으로 앱을 등록했습니다!💫",
-        slack_url: "https://hooks.slack.com/services/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",
+        slack_url: "https://hooks.slack.com/services/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",
         payload: {
 	  "Version": version + "(" + build + ")"
         }
@@ -98,7 +113,7 @@ platform :ios do
       icon_url: "https://user-images.githubusercontent.com/69136340/194049016-4b1f747f-99ed-4a14-a28d-2ed9a26fe0e3.png",
       message: "에러 발생!!! 발생!!🚨 : #{exception}",
       success: false,
-      slack_url: "https://hooks.slack.com/services/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",
+      slack_url: "https://hooks.slack.com/services/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",
       payload: {
 	"Version": version + "(" + build + ")"
       }
