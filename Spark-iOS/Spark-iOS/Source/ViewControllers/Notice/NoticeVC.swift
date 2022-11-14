@@ -55,6 +55,7 @@ class NoticeVC: UIViewController {
             self.makeDrawAboveButton(button: self.activeButton)
         }
         
+        self.activeList.removeAll()
         getActiveNoticeFetchWithAPI(lastID: activeLastID) {
             if self.newService {
                 self.serviceBadgeView.isHidden = false
@@ -204,6 +205,7 @@ class NoticeVC: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
+        self.activeList.removeAll()
         getActiveNoticeFetchWithAPI(lastID: activeLastID) {
             if self.newService {
                 self.serviceBadgeView.isHidden = false
@@ -235,6 +237,7 @@ class NoticeVC: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
+        self.serviceList.removeAll()
         getServiceNoticeFetchWithAPI(lastID: serviceLastID) {
             if self.newActive {
                 self.activeBadgeView.isHidden = false
@@ -357,7 +360,6 @@ extension NoticeVC {
             case .success(let data):
                 if let active = data as? ActiveNotice {
                     self.newService = active.newService
-                    self.activeList.removeAll()
                     self.activeList.append(contentsOf: active.notices)
                     if self.activeList.isEmpty {
                         self.setEmptyView()
@@ -384,7 +386,6 @@ extension NoticeVC {
             case .success(let data):
                 if let service = data as? ServiceNotice {
                     self.newActive = service.newActive
-                    self.serviceList.removeAll()
                     self.serviceList.append(contentsOf: service.notices)
                     if self.serviceList.isEmpty {
                         self.setEmptyView()
