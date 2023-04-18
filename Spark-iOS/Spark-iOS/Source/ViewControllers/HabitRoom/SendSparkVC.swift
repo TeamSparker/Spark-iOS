@@ -211,6 +211,7 @@ extension SendSparkVC {
     // MARK: - @objc Function
     @objc
     private func sendSparkWithMessage() {
+        setFeedbackGenerator()
         sendSparkWithAPI(content: textField.text ?? "")
         Analytics.logEvent(Tracking.Select.clickSparkInputText, parameters: nil)
     }
@@ -475,13 +476,7 @@ extension SendSparkVC: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension SendSparkVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        impactFeedbackGenerator?.impactOccurred()
-        impactFeedbackGenerator = nil
-    }
-}
+extension SendSparkVC: UICollectionViewDelegate { }
 
 // MARK: Network
 
@@ -494,8 +489,18 @@ extension SendSparkVC {
                 self.dismiss(animated: true) {
                     presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
                 }
-            case .requestErr(let message):
-                print("sendSparkWithAPI - requestErr: \(message)")
+            case .requestErr(let status):
+                if status as? Int == 440 {
+                    let presentVC = self.presentingViewController
+                    self.dismiss(animated: true) {
+                        NotificationCenter.default.post(name: .updateHabitRoom, object: nil)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            presentVC?.showSparkToast(x: 20, y: 44, message: "\(self.userName ?? "")에게 스파크를 보냈어요!")
+                        }
+                    }
+                }
+
+                print("sendSparkWithAPI - requestErr: \(status)")
             case .pathErr:
                 print("sendSparkWithAPI - pathErr")
             case .serverErr:
